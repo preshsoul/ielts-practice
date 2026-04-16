@@ -1,4 +1,4 @@
-# ARIA — Scholarship & Graduate Trainee Intelligence Dashboard
+# Scholarship & Graduate Trainee Intelligence Dashboard
 A personal application-pipeline tool for navigating UK postgraduate funding and Nigerian graduate trainee programmes. Built to replace the usual candidate workflow — a tab graveyard of scholarship portals, a notebook of half-remembered deadlines, a spreadsheet that goes stale within a week — with a single dashboard that ingests content from structured files, refreshes itself from the open web, and presents opportunities in a form that maps cleanly onto decisions.
 
 ---
