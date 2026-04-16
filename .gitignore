@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+esbuild-check.js
+esbuild-check.css
+out.js
+out_app.js
+tmp_scholarship.js
+/.vite/
+/.vercel/
+/.netlify/
+supabase/.branches/
