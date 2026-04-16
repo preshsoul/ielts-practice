@@ -163,26 +163,10 @@ src/
 ---
 
 ## Status
-
 The application is in active personal use. It is not a product. There is no hosted instance, no signup flow, no multi-user storage, and no intention to add any of those. The schema is stable; the scraper extraction heuristics are being tuned against new sources as they are added; the question bank grows weekly.
-
 If you have found this repository and want to adapt it for your own pipeline, the two files you will want to change are `content/scholarship-sources.json` (the crawl roots) and whatever file holds the candidate profile used by the scorer. The rest should work unchanged.
 
 ---
-
-## Deploy
-
-- Vercel: build command `npm run build`, output directory `dist`
-- Netlify: build command `npm run build`, publish directory `dist`
-
-## Content updates
-
-- `npm run content:refresh` regenerates the public `/data/*.json` files from the source content files.
-- `content/questions.extra.json` holds additional question bank entries without touching app code.
-- `npm run content:scrape-scholarships` crawls the scholarship source registry in `content/scholarship-sources.json` and writes candidate results to `content/scholarships.scraped.json`.
-
----
-
 ## License
 
 MIT.
