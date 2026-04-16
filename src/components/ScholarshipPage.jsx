@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { INSTITUTIONS } from '../data/institutions.js';
+import { loadShortlistIds, removeShortlist, saveShortlist } from '../services/supabaseData.js';
 
 export default function ScholarshipPage(props) {
-  const { C, Chip, PrimaryBtn } = props;
+  const { institutions = [], authUser, profile, C, Chip, PrimaryBtn } = props;
   const [cvText, setCvText] = useState('');
   const [keywords, setKeywords] = useState([]);
   const [region, setRegion] = useState('All');
@@ -18,6 +18,21 @@ export default function ScholarshipPage(props) {
 
   useEffect(() => { localStorage.setItem('scholarship_shortlist', JSON.stringify(shortlist)); }, [shortlist]);
   useEffect(() => { localStorage.setItem('scholarship_consent', JSON.stringify(consentGiven)); }, [consentGiven]);
+  useEffect(() => {
+    if (!authUser?.id || !profile?.id) return;
+    let mounted = true;
+    loadShortlistIds(profile.id)
+      .then((remoteIds) => {
+        if (!mounted) return;
+        if (remoteIds.length) {
+          setShortlist(remoteIds);
+        }
+      })
+      .catch((error) => console.error(error));
+    return () => {
+      mounted = false;
+    };
+  }, [authUser?.id, profile?.id]);
 
   function parseKeywords(text) {
     // Very small client-side extractor: split, remove short/stopwords, count
@@ -35,9 +50,59 @@ export default function ScholarshipPage(props) {
 
   const regions = ['All', 'UK', 'US', 'Canada', 'Europe', 'Australia'];
 
-  const filtered = INSTITUTIONS.filter(inst => (region==='All' || inst.country===region || inst.city===region) && inst.tuition_international_yearly <= (Number(maxFee)||999999) && (
-    keywords.length===0 || keywords.some(k=>inst.research_areas.join(' ').toLowerCase().includes(k) || inst.name.toLowerCase().includes(k))
-  ));
+  const tuitionValue = (value) => {
+    if (value === null || value === undefined) return null;
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : null;
+  };
+
+  const coverageLabel = (inst) => {
+    const s = inst.scholarship;
+    if (!s) {
+      const tuition = tuitionValue(inst.tuition_international_yearly);
+      return tuition ? `${inst.currency} ${tuition.toLocaleString()}` : 'N/A';
+    }
+    const cov = s.coverage || {};
+    if (cov.rawAmount) return cov.rawAmount;
+    if (cov.amountGBP) return `£${cov.amountGBP.toLocaleString()}${cov.amountType === 'annual' ? '/yr' : ''}`;
+    if (cov.tuitionCovered && cov.livingCovered) return 'Full funding';
+    if (cov.tuitionCovered) return 'Tuition covered';
+    if (cov.livingCovered) return 'Living covered';
+    return 'TBC';
+  };
+
+  const livingLabel = (inst) => {
+    const s = inst.scholarship;
+    if (!s) {
+      return inst.living_cost_monthly_by_city && inst.living_cost_monthly_by_city['London']
+        ? `From ${inst.currency} ${inst.living_cost_monthly_by_city[inst.city] || inst.living_cost_monthly_by_city['London']}/mo`
+        : 'N/A';
+    }
+    const cov = s.coverage || {};
+    if (cov.livingCovered) return 'Included';
+    if (cov.tuitionCovered) return 'Tuition only';
+    return 'N/A';
+  };
+
+  const deadlineLabel = (inst) => {
+    const s = inst.scholarship;
+    if (!s) return 'TBC';
+    if (s.application?.deadlineType === 'rolling') return 'Rolling';
+    if (s.application?.deadlineRaw) return s.application.deadlineRaw;
+    if (s.application?.deadline) return new Date(s.application.deadline).toLocaleDateString('en-GB');
+    return 'TBC';
+  };
+
+  const applicationUrl = (inst) => {
+    return inst.scholarship?.application?.url || inst.website || '#';
+  };
+
+  const filtered = institutions.filter(inst => {
+    const tuition = tuitionValue(inst.tuition_international_yearly);
+    return (region === 'All' || inst.country === region || inst.city === region) && (tuition === null || tuition <= (Number(maxFee) || 999999)) && (
+      keywords.length === 0 || keywords.some(k => (inst.research_areas || []).join(' ').toLowerCase().includes(k) || inst.name.toLowerCase().includes(k))
+    );
+  });
 
   function exportData(){
     const payload = {shortlist, keywords, cvText, consentGiven, timestamp: new Date().toISOString()};
@@ -73,7 +138,15 @@ export default function ScholarshipPage(props) {
       setShowConsentModal(true);
       return;
     }
-    setShortlist(s => s.includes(id) ? s.filter(x=>x!==id) : [...s, id]);
+    const next = shortlist.includes(id) ? shortlist.filter((x) => x !== id) : [...shortlist, id];
+    setShortlist(next);
+    if (authUser?.id && profile?.id) {
+      if (next.includes(id)) {
+        saveShortlist(profile.id, id).catch((error) => console.error(error));
+      } else {
+        removeShortlist(profile.id, id).catch((error) => console.error(error));
+      }
+    }
   };
 
   return (
@@ -106,7 +179,7 @@ export default function ScholarshipPage(props) {
               <div style={{display:'flex',flexDirection:'column',gap:6}}>
                 {shortlist.length===0 && <div style={{color:C.muted}}>No items saved</div>}
                 {shortlist.map(id=>{
-                  const it = INSTITUTIONS.find(x=>x.id===id); if(!it) return null;
+                  const it = institutions.find(x=>x.id===id); if(!it) return null;
                   return <div key={id} style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                     <div style={{fontSize:13}}>{it.name}</div>
                     <button onClick={()=>toggleShortlist(id)} className="ghost-btn" style={{padding:'6px 10px'}}>Remove</button>
@@ -145,16 +218,16 @@ export default function ScholarshipPage(props) {
                     <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>{inst.city}, {inst.country}</div>
                   </div>
                   <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end',gap:6}}>
-                    <div style={{fontSize:13,fontFamily:'var(--font-ui)'}}>{inst.currency} {inst.tuition_international_yearly.toLocaleString()}</div>
-                    <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>Living: {inst.living_cost_monthly_by_city['London'] ? `From ${inst.currency} ${inst.living_cost_monthly_by_city[inst.city]||inst.living_cost_monthly_by_city['London']}/mo` : ''}</div>
-                    <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>IHS est: {inst.currency} {ihsTotal}</div>
+                    <div style={{fontSize:13,fontFamily:'var(--font-ui)'}}>{coverageLabel(inst)}</div>
+                    <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>Living: {livingLabel(inst)}</div>
+                    <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>Deadline: {deadlineLabel(inst)}</div>
                     <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>CAS speed: {inst.CAS_issuance_speed}</div>
                   </div>
                 </div>
                 <div style={{fontSize:13,color:C.muted,marginBottom:8,fontFamily:'var(--font-ui)',lineHeight:1.7}}>{inst.notes}</div>
                 <div className="sch-actions">
                   <button onClick={()=>toggleShortlist(inst.id)} className="ghost-btn" style={{padding:'9px 14px'}}>{shortlist.includes(inst.id)?'Remove from shortlist':'Save to shortlist'}</button>
-                  <a href={inst.website} target="_blank" rel="noreferrer" className="ghost-btn" style={{padding:'9px 14px',textDecoration:'none',display:'inline-flex',alignItems:'center'}}>Open website</a>
+                  <a href={applicationUrl(inst)} target="_blank" rel="noreferrer" className="ghost-btn" style={{padding:'9px 14px',textDecoration:'none',display:'inline-flex',alignItems:'center'}}>Open website</a>
                 </div>
               </div>
             </div>
