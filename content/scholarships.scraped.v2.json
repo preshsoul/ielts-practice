@@ -1,0 +1,473 @@
+{
+  "version": "2.0.0",
+  "updated_at": "2026-04-16T19:46:32.543Z",
+  "total": 8,
+  "scholarships": [
+    {
+      "id": "university-of-glasgow-university-of-glasgow-scholarships-funding",
+      "name": "University of Glasgow - Scholarships & funding",
+      "awardingBody": "University of Glasgow",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "tuition-only",
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": 15000000,
+        "amountType": "total",
+        "currency": "GBP",
+        "rawAmount": "£15 million"
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.gla.ac.uk/scholarships/",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.gla.ac.uk/scholarships/",
+        "scrapedAt": "2026-04-16T19:46:13.969Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.75,
+        "rawText": "University of Glasgow - Scholarships &amp; funding --> --> --> Skip to main content The University of Glasgow uses cookies for analytics. Find out more about our Privacy policy . privacy settings accept We use cookies Necessary cookies Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences. Analytics cookies Analytical cookies help us improve our website. We use Google Analytics. All data is anonymised. Switch analytics ON OFF Clarity Clarity helps us to understand our users’ behaviour by visually representing their clicks, taps and scrolling. All data is anonymised. Switch clarity ON OFF Privacy policy close Website Courses Staff --> Scholarships &amp; funding Research Explore Connect MyGlasgow University news search Study Research Explore Connect Website Courses Staff --> Search icon Close menu icon Menu icon bar 1 Menu icon bar 2 Menu icon bar 3 Home Scholarships &amp; funding Scholarships &amp; funding Scholarships &amp; funding Research Explore Connect MyGlasgow University news --> --> At Glasgow, we are dedicated to supporting our future World Changers. That is why we&nbsp;have allocated over £15 million in international scholarships.&nbsp; Our World Changers Glasgow Scholarships recognise academic excellence and aim to support international students to join Team UofG. Find a scholarship I am... a future student a current student country/region... UK - England UK - Northern Ireland UK - Scotland UK - Wales Afghanistan Albania Algeria Andorra Angola Anguilla Antigua and Barbuda Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin Bermuda Bhutan Bolivia Bosnia and Herzegovina Botswana Brazil British Virgin Islands Brunei Bulgaria Burkina Faso Burundi Cambodia Cameroon Canada Cape Verde Cayman Islands Central African Republic Chad Chile China Colombia Comoros Congo Congo Democratic Republic of C"
+      },
+      "status": "unknown",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-glasgow-university-of-glasgow-explore-awards-and-rankings",
+      "name": "University of Glasgow - Explore - Awards and rankings",
+      "awardingBody": "University of Glasgow",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "unknown",
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.gla.ac.uk/explore/awardsandrankings/",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.gla.ac.uk/explore/awardsandrankings/",
+        "scrapedAt": "2026-04-16T19:46:14.283Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.5,
+        "rawText": "University of Glasgow - Explore - Awards and rankings --> --> --> Skip to main content The University of Glasgow uses cookies for analytics. Find out more about our Privacy policy . privacy settings accept We use cookies Necessary cookies Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences. Analytics cookies Analytical cookies help us improve our website. We use Google Analytics. All data is anonymised. Switch analytics ON OFF Clarity Clarity helps us to understand our users’ behaviour by visually representing their clicks, taps and scrolling. All data is anonymised. Switch clarity ON OFF Privacy policy close Website Courses Staff --> Explore Awards and rankings Visit us Who's who Maps and travel Avenue search Study Research Explore Connect Website Courses Staff --> Search icon Close menu icon Menu icon bar 1 Menu icon bar 2 Menu icon bar 3 Home Explore Awards and rankings Explore Explore Awards and rankings Visit us Who's who Maps and travel Avenue Awards and rankings full list of international and national rankings World top 100:&nbsp;QS World University Rankings World top 100:&nbsp;Times Higher Education World University Rankings UK top 25:&nbsp;Guardian University Guide --> World top 30 for sustainability Our commitment to the&nbsp;UN Sustainable Development Goals We are ranked in the top 30 universities in the world for sustainability Sustainability at Glasgow --> We have been awarded the&#8239;Queen's Anniversary Prize [QAP] six times since the award&rsquo;s inception Research Excellence Framework (REF) In the Research Excellence Framework 2021 an outstanding 93.1% of our research was deemed world-leading or internationally excellent. The University has one of the broadest research bases in the UK with a varied range of disciplines reflected in our academic community. We submitted 118 impact case studies to expert panels, showcasing the University"
+      },
+      "status": "unknown",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-glasgow-university-of-glasgow-explore-awards-and-rankings-sustaina",
+      "name": "University of Glasgow - Explore - Awards and rankings - Sustainability rankings",
+      "awardingBody": "University of Glasgow",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "unknown",
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.gla.ac.uk/explore/awardsandrankings/sustainability-rankings/",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.gla.ac.uk/explore/awardsandrankings/sustainability-rankings/",
+        "scrapedAt": "2026-04-16T19:46:14.509Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.5,
+        "rawText": "University of Glasgow - Explore - Awards and rankings - Sustainability rankings --> --> --> Skip to main content The University of Glasgow uses cookies for analytics. Find out more about our Privacy policy . privacy settings accept We use cookies Necessary cookies Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences. Analytics cookies Analytical cookies help us improve our website. We use Google Analytics. All data is anonymised. Switch analytics ON OFF Clarity Clarity helps us to understand our users’ behaviour by visually representing their clicks, taps and scrolling. All data is anonymised. Switch clarity ON OFF Privacy policy close Website Courses Staff --> Sustainability rankings Study Research Explore Connect Website Courses Staff --> Search icon Close menu icon Menu icon bar 1 Menu icon bar 2 Menu icon bar 3 Home Explore Awards and rankings Sustainability rankings Awards and rankings Sustainability rankings Sustainability rankings We are ranked in the top 30 universities in the world for sustainability. QS Sustainability Rankings 2026 World 27th out of 1,994 universities We rank 27th&nbsp;in the world, 15th&nbsp;in Europe and 11th&nbsp;in the UK.&nbsp; The QS Sustainability Rankings are global university rankings that evaluate institutions on their environmental impact, social responsibility, and governance practices.&nbsp; In particular, the University of Glasgow excels in Social Impact, achieving an impressive 3rd&nbsp;place worldwide.&nbsp;&nbsp; THE Impact Rankings 2025 World 12th out of 2,318 institutions We&nbsp;rank top in Scotland, second in the UK and third in Europe. The THE Impact Rankings benchmark performance of universities against the 17 UN Sustainable Development Goals (SDGs). They consider universities’ commitment to addressing the world's most pressing challenges, including environmental sustainability, social inclusion, economic"
+      },
+      "status": "unknown",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-sheffield-funding-for-postgraduate-taught-courses-postgraduate-stu",
+      "name": "Funding for postgraduate taught courses | Postgraduate study | The University of Sheffield",
+      "awardingBody": "University of Sheffield",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "unknown",
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.sheffield.ac.uk/postgraduate/taught/funding",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.sheffield.ac.uk/postgraduate/taught/funding",
+        "scrapedAt": "2026-04-16T19:46:29.364Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.5,
+        "rawText": "Funding for postgraduate taught courses | Postgraduate study | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; Postgraduate study Library item label woz ere --> Taught courses Postgraduate taught courses home Course finder 2026-27 courses Browse by subject area Register your interest &nbsp; Distance learning courses International students: start here Postgraduate study for Sheffield students and alumni &nbsp; Applying essentials How to apply After you apply Deadlines &nbsp; Taught courses fees Fee lookup tool Taught courses funding Funding calculator PhD study PhD home Find a PhD PhD projects directory PhD Research Council scholarships Register your interest &nbsp; About PhD research at Sheffield Supervisor support Professional development Your community &nbsp; Scholarships Postgraduate doctoral loans PhD fees PhD scholarships profiles Deadlines &nbsp; PhD applying essentials Routes to a PhD How to apply Writing a proposal After you apply Visit Visit us Postgraduate visits Sheffield Live online events Take the video tour &nbsp; International applicants: get in touch International applicants: events in your region Accommodation Accommodation Our accommodation guarantee Rent Studying at Sheffield Study at Sheffield Ranking, reputation and history Teaching Research Facilities &nbsp; Employability and careers Our city Students' Union &nbsp; Clubs, societies and sport Study as a visiting student Policies Contact us &nbsp; Information for Black, Asian and Minority Ethnic (BAME) students Information for Muslim students &nbsp; Study Courses Undergraduate courses Postgraduate taught courses PhD study Apprenticeships Mature students Online learning TEFL and English as a second language Studying at Sheffield Teaching Facilities Ranking, reputation and history Your career prospects Contact us Student life Students' Union - the UK's no. 1 Clubs, societies and sport Guide to Sheffield Support Black, Asian and Minority Ethnic (BAME) stude"
+      },
+      "status": "unknown",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-sheffield-undergraduate-fees-and-funding-undergraduate-study-the-u",
+      "name": "Undergraduate fees and funding | Undergraduate study | The University of Sheffield",
+      "awardingBody": "University of Sheffield",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "tuition-only",
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.sheffield.ac.uk/undergraduate/fees-funding",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.sheffield.ac.uk/undergraduate/fees-funding",
+        "scrapedAt": "2026-04-16T19:46:29.711Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.5,
+        "rawText": "Undergraduate fees and funding | Undergraduate study | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; Undergraduate study Library item label woz ere --> Courses Undergraduate course search 2027-28 courses 2026-27 courses Browse by subject area Information for international students Visit Visit us Undergraduate open days Campus tours Offer holder days Online events Sheffield Live webinars Online subject tasters Other ways to engage Chat to our students International applicants: visits to your region Apply Apply Applying essentials for undergraduate study Admissions requirements Submitting your application How we assess your application Your results Fees and funding Fees and funding Tuition fees Living costs Student Funding Calculator &nbsp; Government loans and support Scholarships Bursaries &nbsp; Additional funding Money tools Contact the Financial Support Team Accommodation Accommodation Accommodation guarantee Rents Studying at Sheffield Study at Sheffield Ranking, reputation and history Teaching Research Facilities &nbsp; Chat to our students Support Students' Union Our city &nbsp; Study abroad Your career prospects Contact us Clubs, societies and sport &nbsp; Study as a visiting student Black, Asian and Minority Ethnic (BAME) students Muslim students Policies Study Courses Undergraduate courses Postgraduate taught courses PhD study Apprenticeships Mature students Online learning TEFL and English as a second language Studying at Sheffield Teaching Facilities Ranking, reputation and history Your career prospects Contact us Student life Students' Union - the UK's no. 1 Clubs, societies and sport Guide to Sheffield Support Black, Asian and Minority Ethnic (BAME) students Accommodation University residences Rent Apply for accommodation Visit Undergraduate open days Postgraduate visits International visits to your region Sheffield Live online events Subject taster sessions for&nbsp;Y12 and Y13 students Apply Undergraduate a"
+      },
+      "status": "unknown",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-sheffield-phd-scholarships-postgraduate-study-the-university-of-sh",
+      "name": "PhD scholarships | Postgraduate study | The University of Sheffield",
+      "awardingBody": "University of Sheffield",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "unknown",
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.sheffield.ac.uk/postgraduate/phd/scholarships",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.sheffield.ac.uk/postgraduate/phd/scholarships",
+        "scrapedAt": "2026-04-16T19:46:30.049Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.5,
+        "rawText": "PhD scholarships | Postgraduate study | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; Postgraduate study Library item label woz ere --> Taught courses Postgraduate taught courses home Course finder 2026-27 courses Browse by subject area Register your interest &nbsp; Distance learning courses International students: start here Postgraduate study for Sheffield students and alumni &nbsp; Applying essentials How to apply After you apply Deadlines &nbsp; Taught courses fees Fee lookup tool Taught courses funding Funding calculator PhD study PhD home Find a PhD PhD projects directory PhD Research Council scholarships Register your interest &nbsp; About PhD research at Sheffield Supervisor support Professional development Your community &nbsp; Scholarships Postgraduate doctoral loans PhD fees PhD scholarships profiles Deadlines &nbsp; PhD applying essentials Routes to a PhD How to apply Writing a proposal After you apply Visit Visit us Postgraduate visits Sheffield Live online events Take the video tour &nbsp; International applicants: get in touch International applicants: events in your region Accommodation Accommodation Our accommodation guarantee Rent Studying at Sheffield Study at Sheffield Ranking, reputation and history Teaching Research Facilities &nbsp; Employability and careers Our city Students' Union &nbsp; Clubs, societies and sport Study as a visiting student Policies Contact us &nbsp; Information for Black, Asian and Minority Ethnic (BAME) students Information for Muslim students &nbsp; Study Courses Undergraduate courses Postgraduate taught courses PhD study Apprenticeships Mature students Online learning TEFL and English as a second language Studying at Sheffield Teaching Facilities Ranking, reputation and history Your career prospects Contact us Student life Students' Union - the UK's no. 1 Clubs, societies and sport Guide to Sheffield Support Black, Asian and Minority Ethnic (BAME) students Accommodation Unive"
+      },
+      "status": "unknown",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-sheffield-support-for-students-and-scholars-seeking-sanctuary-abou",
+      "name": "Support for students and scholars seeking sanctuary | About us | The University of Sheffield",
+      "awardingBody": "University of Sheffield",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "unknown",
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.sheffield.ac.uk/about/supporting-sanctuary",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "rolling",
+        "deadlineRaw": "Rolling",
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.sheffield.ac.uk/about/supporting-sanctuary",
+        "scrapedAt": "2026-04-16T19:46:30.737Z",
+        "verified": false,
+        "needsVerification": [
+          "amount"
+        ],
+        "confidence": 0.75,
+        "rawText": "Support for students and scholars seeking sanctuary | About us | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; About our University Library item label woz ere --> Our University University profile Rankings Facts and figures Transparency return Annual report Governance Faculties and departments Alumni Our story History and heritage Our vision and strategic plan News Our campus Information for visitors Our impact Research Centres of Excellence Research features Research Excellence Framework&nbsp;2021 UN Sustainable Development Goals In Sheffield and beyond Our role in the city and region Global impact Impact in education Sustainability Commercialisation Partnerships Reports Annual report 2021-22 Economic and social impact assessment Rankings and reputation Rankings Research Excellence Framework&nbsp;2021 Prizes Nobel Prize winners Queen's Anniversary Prizes Dates of semesters Semester dates Current and future dates Past dates Non-standard semesters Charitable status Charitable status Donate to the University Contact Contact us Community relations Press Study Courses Undergraduate courses Postgraduate taught courses PhD study Apprenticeships Mature students Online learning TEFL and English as a second language Studying at Sheffield Teaching Facilities Ranking, reputation and history Your career prospects Contact us Student life Students' Union - the UK's no. 1 Clubs, societies and sport Guide to Sheffield Support Black, Asian and Minority Ethnic (BAME) students Accommodation University residences Rent Apply for accommodation Visit Undergraduate open days Postgraduate visits International visits to your region Sheffield Live online events Subject taster sessions for&nbsp;Y12 and Y13 students Apply Undergraduate applications Postgraduate taught applications PhD applications Applying as an international student Visas and immigration International students Our international community How to apply Visas and immigration Internatio"
+      },
+      "status": "open",
+      "urgency": "green"
+    },
+    {
+      "id": "university-of-sheffield-events-in-your-region-international-students-the-univers",
+      "name": "Events in your region | International students | The University of Sheffield",
+      "awardingBody": "University of Sheffield",
+      "awardingBodyType": "university",
+      "coverage": {
+        "type": "tuition-only",
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "international"
+        ],
+        "nigerianEligible": true,
+        "degreeClassRequired": null,
+        "disciplines": [],
+        "ageLimit": null,
+        "nyscRequired": false,
+        "englishTestRequired": null,
+        "otherRequirements": []
+      },
+      "application": {
+        "url": "https://www.sheffield.ac.uk/international/visits",
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "rolling",
+        "deadlineRaw": "Rolling",
+        "sequencing": "unknown",
+        "requiredDocuments": [],
+        "essayPrompt": null,
+        "essayWordLimit": null
+      },
+      "stackable": "unknown",
+      "stackableWith": [],
+      "competitionLevel": "unknown",
+      "competitionReasoning": null,
+      "fitScore": null,
+      "fitReasoning": null,
+      "tierGeographic": null,
+      "source": {
+        "sourceUrl": "https://www.sheffield.ac.uk/international/visits",
+        "scrapedAt": "2026-04-16T19:46:31.809Z",
+        "verified": false,
+        "needsVerification": [],
+        "confidence": 0.75,
+        "rawText": "Events in your region | International students | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; International students Library item label woz ere --> Scholarships and fees Scholarships and fees Scholarships Tuition fees EU students Entry requirements and applying How to apply Undergraduate Postgraduate taught Postgraduate research English language&nbsp;preparation Applying via an agent Official representatives Guide to choosing an agent Agent Quality Framework Alternative routes Foundation Pre-Masters NCUK After you apply After you apply Offer holder hub Events for offer holders Tuition fee information Visas and immigration Visas Graduate immigration route Arrival and orientation Information for before you arrive University accommodation Arriving in Sheffield International Student Success programme Upcoming events Upcoming events Virtual events for offer holders and enquirers Events in your region A-Z countries Get in touch Get in touch Visit us General enquiries Chat to current students Book a 1:1 Study Courses Undergraduate courses Postgraduate taught courses PhD study Apprenticeships Mature students Online learning TEFL and English as a second language Studying at Sheffield Teaching Facilities Ranking, reputation and history Your career prospects Contact us Student life Students' Union - the UK's no. 1 Clubs, societies and sport Guide to Sheffield Support Black, Asian and Minority Ethnic (BAME) students Accommodation University residences Rent Apply for accommodation Visit Undergraduate open days Postgraduate visits International visits to your region Sheffield Live online events Subject taster sessions for&nbsp;Y12 and Y13 students Apply Undergraduate applications Postgraduate taught applications PhD applications Applying as an international student Visas and immigration International students Our international community How to apply Visas and immigration International Summer School Pathway programmes Fees and funding "
+      },
+      "status": "open",
+      "urgency": "green"
+    }
+  ]
+}

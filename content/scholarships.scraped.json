@@ -1,0 +1,183 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-04-16T19:46:32.540Z",
+  "total": 8,
+  "scholarships": [
+    {
+      "id": "university-of-glasgow-university-of-glasgow-scholarships-funding",
+      "name": "University of Glasgow - Scholarships & funding",
+      "country": "UK",
+      "city": "Glasgow",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.gla.ac.uk/scholarships/",
+      "notes": "University of Glasgow - Scholarships & funding --> --> --> Skip to main content The University of Glasgow uses cookies for analytics. Find out more about our Privacy policy . privacy settings accept We use cookies Necessary cookies Necessary cookies enable cor",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.gla.ac.uk/"
+    },
+    {
+      "id": "university-of-glasgow-university-of-glasgow-explore-awards-and-rankings",
+      "name": "University of Glasgow - Explore - Awards and rankings",
+      "country": "UK",
+      "city": "Glasgow",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.gla.ac.uk/explore/awardsandrankings/",
+      "notes": "University of Glasgow - Explore - Awards and rankings --> --> --> Skip to main content The University of Glasgow uses cookies for analytics. Find out more about our Privacy policy . privacy settings accept We use cookies Necessary cookies Necessary cookies ena",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.gla.ac.uk/"
+    },
+    {
+      "id": "university-of-glasgow-university-of-glasgow-explore-awards-and-rankings-sustaina",
+      "name": "University of Glasgow - Explore - Awards and rankings - Sustainability rankings",
+      "country": "UK",
+      "city": "Glasgow",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.gla.ac.uk/explore/awardsandrankings/sustainability-rankings/",
+      "notes": "University of Glasgow - Explore - Awards and rankings - Sustainability rankings --> --> --> Skip to main content The University of Glasgow uses cookies for analytics. Find out more about our Privacy policy . privacy settings accept We use cookies Necessary coo",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.gla.ac.uk/"
+    },
+    {
+      "id": "university-of-sheffield-funding-for-postgraduate-taught-courses-postgraduate-stu",
+      "name": "Funding for postgraduate taught courses | Postgraduate study | The University of Sheffield",
+      "country": "UK",
+      "city": "Sheffield",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.sheffield.ac.uk/postgraduate/taught/funding",
+      "notes": "Funding for postgraduate taught courses | Postgraduate study | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; Postgraduate study Library item label woz ere --> Taught courses Postgraduate taught courses home Course f",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.sheffield.ac.uk/"
+    },
+    {
+      "id": "university-of-sheffield-undergraduate-fees-and-funding-undergraduate-study-the-u",
+      "name": "Undergraduate fees and funding | Undergraduate study | The University of Sheffield",
+      "country": "UK",
+      "city": "Sheffield",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.sheffield.ac.uk/undergraduate/fees-funding",
+      "notes": "Undergraduate fees and funding | Undergraduate study | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; Undergraduate study Library item label woz ere --> Courses Undergraduate course search 2027-28 courses 2026-27 cou",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.sheffield.ac.uk/"
+    },
+    {
+      "id": "university-of-sheffield-phd-scholarships-postgraduate-study-the-university-of-sh",
+      "name": "PhD scholarships | Postgraduate study | The University of Sheffield",
+      "country": "UK",
+      "city": "Sheffield",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.sheffield.ac.uk/postgraduate/phd/scholarships",
+      "notes": "PhD scholarships | Postgraduate study | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; Postgraduate study Library item label woz ere --> Taught courses Postgraduate taught courses home Course finder 2026-27 courses B",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.sheffield.ac.uk/"
+    },
+    {
+      "id": "university-of-sheffield-support-for-students-and-scholars-seeking-sanctuary-abou",
+      "name": "Support for students and scholars seeking sanctuary | About us | The University of Sheffield",
+      "country": "UK",
+      "city": "Sheffield",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.sheffield.ac.uk/about/supporting-sanctuary",
+      "notes": "Support for students and scholars seeking sanctuary | About us | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; About our University Library item label woz ere --> Our University University profile Rankings Facts and",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.sheffield.ac.uk/"
+    },
+    {
+      "id": "university-of-sheffield-events-in-your-region-international-students-the-univers",
+      "name": "Events in your region | International students | The University of Sheffield",
+      "country": "UK",
+      "city": "Sheffield",
+      "tuition_international_yearly": 0,
+      "currency": "GBP",
+      "typical_program_length_months": 12,
+      "living_cost_monthly_by_city": {},
+      "IHS_per_year": 0,
+      "CAS_issuance_speed": "unknown",
+      "research_areas": [
+        "scholarship",
+        "funding"
+      ],
+      "website": "https://www.sheffield.ac.uk/international/visits",
+      "notes": "Events in your region | International students | The University of Sheffield Skip to main content Search sheffield.ac.uk Close menu &times; International students Library item label woz ere --> Scholarships and fees Scholarships and fees Scholarships Tuition f",
+      "source": "scraped",
+      "verified": false,
+      "active": true,
+      "scraped_from": "https://www.sheffield.ac.uk/"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-04-16T00:00:00.000Z",
+  "sources": [
+    {
+      "label": "University of Glasgow",
+      "url": "https://www.gla.ac.uk/",
+      "country": "UK",
+      "city": "Glasgow",
+      "currency": "GBP",
+      "notes": "Use the site root as a crawl starting point and follow scholarship/funding/bursary links on the same domain."
+    },
+    {
+      "label": "University of Edinburgh",
+      "url": "https://www.ed.ac.uk/",
+      "country": "UK",
+      "city": "Edinburgh",
+      "currency": "GBP",
+      "notes": "Use the site root as a crawl starting point and follow scholarship/funding/bursary links on the same domain."
+    },
+    {
+      "label": "University of Sheffield",
+      "url": "https://www.sheffield.ac.uk/",
+      "country": "UK",
+      "city": "Sheffield",
+      "currency": "GBP",
+      "notes": "Use the site root as a crawl starting point and follow scholarship/funding/bursary links on the same domain."
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { INSTITUTIONS } from '../data/institutions.js';
+import InputSanitizer from '../services/inputSanitizer.js';
+import securityLogger from '../services/securityLogger.js';
 
 export default function ScholarshipPage(props) {
   const { C, Chip, PrimaryBtn } = props;
@@ -20,10 +22,21 @@ export default function ScholarshipPage(props) {
   useEffect(() => { localStorage.setItem('scholarship_consent', JSON.stringify(consentGiven)); }, [consentGiven]);
 
   function parseKeywords(text) {
+    // Sanitize input first
+    const sanitizedText = InputSanitizer.sanitizeText(text);
+    if (!sanitizedText) return [];
+
+    // Check for suspicious patterns
+    if (InputSanitizer.containsSuspiciousPatterns(text)) {
+      securityLogger.logSuspiciousActivity('SUSPICIOUS_KEYWORD_INPUT', {
+        originalLength: text.length,
+        sanitizedLength: sanitizedText.length
+      });
+    }
+
     // Very small client-side extractor: split, remove short/stopwords, count
-    if (!text) return [];
     const stop = new Set(['and','the','of','in','to','a','for','with','on','by','is','are','that','this','as','an','be','from','it','its']);
-    const toks = text.toLowerCase().replace(/[\W_]+/g,' ').split(/\s+/).filter(t=>t && t.length>2 && !stop.has(t));
+    const toks = sanitizedText.toLowerCase().replace(/[\W_]+/g,' ').split(/\s+/).filter(t=>t && t.length>2 && !stop.has(t));
     const freq = {};
     toks.forEach(t=>freq[t]=(freq[t]||0)+1);
     return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,20).map(e=>e[0]);
@@ -33,11 +46,23 @@ export default function ScholarshipPage(props) {
     setKeywords(parseKeywords(cvText));
   };
 
+  function parseMaxFee(value) {
+    const sanitizedValue = InputSanitizer.sanitizeText(value);
+    const num = InputSanitizer.sanitizeNumber(sanitizedValue, 0, 1000000); // Max 1M for reasonable limits
+    return num !== null ? num : 999999;
+  }
+
   const regions = ['All', 'UK', 'US', 'Canada', 'Europe', 'Australia'];
 
-  const filtered = INSTITUTIONS.filter(inst => (region==='All' || inst.country===region || inst.city===region) && inst.tuition_international_yearly <= (Number(maxFee)||999999) && (
-    keywords.length===0 || keywords.some(k=>inst.research_areas.join(' ').toLowerCase().includes(k) || inst.name.toLowerCase().includes(k))
-  ));
+  const filtered = INSTITUTIONS.filter(inst => {
+    const maxFeeNum = parseMaxFee(maxFee);
+    return (region === 'All' || inst.country === region || inst.city === region) &&
+           inst.tuition_international_yearly <= maxFeeNum &&
+           (keywords.length === 0 || keywords.some(k =>
+             inst.research_areas.join(' ').toLowerCase().includes(k.toLowerCase()) ||
+             inst.name.toLowerCase().includes(k.toLowerCase())
+           ));
+  });
 
   function exportData(){
     const payload = {shortlist, keywords, cvText, consentGiven, timestamp: new Date().toISOString()};

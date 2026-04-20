@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "npx esbuild src/index.jsx --bundle --format=esm --outfile=dist/assets/index.js --minify && node scripts/copy-html.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "content:refresh": "node scripts/refresh-content.mjs",
+    "content:scrape-scholarships": "node scripts/scrape-scholarships.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.103.3",
+    "dompurify": "^3.4.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-router-dom": "^7.14.1"
   },
   "devDependencies": {
     "playwright": "^1.59.1",

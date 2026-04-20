@@ -1,0 +1,339 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-04-16T00:00:00.000Z",
+  "questions": [
+    {
+      "id": "q45",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P4",
+      "difficulty": 1,
+      "question": "Early scientific opinion treated sleep as a passive state of reduced brain activity.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage says earlier consensus held that sleep was a passive state of reduced brain activity."
+    },
+    {
+      "id": "q46",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P4",
+      "difficulty": 2,
+      "question": "REM sleep is linked to emotional regulation and memory consolidation.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage states that REM sleep appears critical for emotional regulation and memory consolidation."
+    },
+    {
+      "id": "q47",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P4",
+      "difficulty": 2,
+      "question": "Chronic sleep deprivation means regularly sleeping fewer than six hours a night.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "False",
+      "explanation": "The passage defines chronic sleep deprivation as consistently sleeping fewer than seven hours per night."
+    },
+    {
+      "id": "q48",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P5",
+      "difficulty": 2,
+      "question": "GDP includes unpaid domestic labour in its calculation of national wellbeing.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "False",
+      "explanation": "The passage says GDP does not account for unpaid domestic labour."
+    },
+    {
+      "id": "q49",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P5",
+      "difficulty": 1,
+      "question": "New Zealand introduced a Wellbeing Budget in 2019.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage states that New Zealand adopted a Wellbeing Budget in 2019."
+    },
+    {
+      "id": "q50",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P5",
+      "difficulty": 3,
+      "question": "Wellbeing metrics are easy to measure consistently across countries.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "False",
+      "explanation": "The passage says critics argue wellbeing metrics are inherently subjective and difficult to measure consistently."
+    },
+    {
+      "id": "q51",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P6",
+      "difficulty": 1,
+      "question": "Around 380 million tonnes of plastic are produced globally each year.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage gives that figure directly."
+    },
+    {
+      "id": "q52",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P6",
+      "difficulty": 1,
+      "question": "Only about nine percent of all plastic ever made has been recycled.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage says only nine percent of all plastic ever manufactured has been recycled."
+    },
+    {
+      "id": "q53",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P6",
+      "difficulty": 2,
+      "question": "Microplastics have been detected in human blood.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage explicitly says microplastics have been detected in human blood."
+    },
+    {
+      "id": "q54",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P7",
+      "difficulty": 1,
+      "question": "Remote work became mainstream during the COVID-19 pandemic.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage says remote work became mainstream almost overnight during the pandemic."
+    },
+    {
+      "id": "q55",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P7",
+      "difficulty": 2,
+      "question": "Some economists think fully remote work could reduce innovation.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage states that some economists argue fully remote work may reduce innovation."
+    },
+    {
+      "id": "q56",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P8",
+      "difficulty": 1,
+      "question": "French loanwords became socially more prestigious than Old English equivalents in some domains.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage says French-derived words often carried higher social status than Old English equivalents."
+    },
+    {
+      "id": "q57",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "P8",
+      "difficulty": 2,
+      "question": "The Oxford English Dictionary tracks over 60,000 entries.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "False",
+      "explanation": "The passage says it tracks over 600,000 entries, not 60,000."
+    },
+    {
+      "id": "q58",
+      "exam": "IELTS",
+      "section": "Grammar",
+      "pid": null,
+      "difficulty": 1,
+      "question": "Choose the correct sentence.\n\nThe number of applicants ____ increased this year.",
+      "options": ["has", "have", "had", "are"],
+      "answer": "has",
+      "explanation": "'The number of' is singular, so the verb takes 'has.'"
+    },
+    {
+      "id": "q59",
+      "exam": "IELTS",
+      "section": "Grammar",
+      "pid": null,
+      "difficulty": 1,
+      "question": "Which noun is uncountable?",
+      "options": ["feedback", "ideas", "books", "cities"],
+      "answer": "feedback",
+      "explanation": "Feedback is uncountable, so it is not pluralised."
+    },
+    {
+      "id": "q60",
+      "exam": "IELTS",
+      "section": "Academic Vocabulary",
+      "pid": null,
+      "difficulty": 1,
+      "question": "Choose the best collocation.\n\nStudents should ____ a conclusion from the evidence.",
+      "options": ["reach", "make", "do", "take"],
+      "answer": "reach",
+      "explanation": "The natural collocation is 'reach a conclusion.'"
+    },
+    {
+      "id": "q61",
+      "exam": "IELTS",
+      "section": "Writing Task 1",
+      "pid": null,
+      "difficulty": 1,
+      "question": "In IELTS Writing Task 1, the overview should mainly:",
+      "options": [
+        "summarise the key trends and comparisons",
+        "list every figure in order",
+        "give your personal opinion",
+        "repeat the introduction word for word"
+      ],
+      "answer": "summarise the key trends and comparisons",
+      "explanation": "Task 1 overview paragraphs should describe the main patterns, not every detail."
+    },
+    {
+      "id": "q62",
+      "exam": "IELTS",
+      "section": "Writing Task 2",
+      "pid": null,
+      "difficulty": 1,
+      "question": "A strong IELTS Writing Task 2 introduction should:",
+      "options": [
+        "answer the question directly and state the writer's position",
+        "repeat the topic three times for emphasis",
+        "include detailed examples from the body paragraphs",
+        "avoid mentioning the question at all"
+      ],
+      "answer": "answer the question directly and state the writer's position",
+      "explanation": "The introduction should clearly frame the essay's position and task response."
+    },
+    {
+      "id": "q63",
+      "exam": "IELTS",
+      "section": "Listening",
+      "pid": null,
+      "difficulty": 2,
+      "question": "In a listening task, if a speaker gives one answer and immediately corrects it, you should write:",
+      "options": [
+        "the final corrected answer",
+        "the first answer only",
+        "both versions separated by a slash",
+        "nothing until the end"
+      ],
+      "answer": "the final corrected answer",
+      "explanation": "The corrected statement is the answer; the first version is usually the distractor."
+    },
+    {
+      "id": "q64",
+      "exam": "IELTS",
+      "section": "Exam Strategy",
+      "pid": null,
+      "difficulty": 1,
+      "question": "IELTS Reading has:",
+      "options": [
+        "no negative marking",
+        "a penalty for wrong answers",
+        "partial credit for blanks",
+        "only one chance to revise each answer"
+      ],
+      "answer": "no negative marking",
+      "explanation": "Guessing is better than leaving an answer blank because wrong answers are not penalised."
+    },
+    {
+      "id": "q65",
+      "exam": "CEP (C2)",
+      "section": "Use of English – Open Cloze",
+      "pid": null,
+      "difficulty": 2,
+      "question": "Choose the word that completes the phrase.\n\nThe new policy will ____ into effect next month.",
+      "options": ["come", "go", "get", "turn"],
+      "answer": "come",
+      "explanation": "The fixed phrase is 'come into effect.'"
+    },
+    {
+      "id": "q66",
+      "exam": "CEP (C2)",
+      "section": "Word Formation",
+      "pid": null,
+      "difficulty": 2,
+      "question": "Choose the correct form of the word in brackets.\n\nThe committee reached a highly ____ decision. (significant)",
+      "options": ["significant", "significance", "significantly", "signify"],
+      "answer": "significant",
+      "explanation": "The gap needs an adjective to modify 'decision.'"
+    },
+    {
+      "id": "q67",
+      "exam": "CEP (C2)",
+      "section": "Key Word Transformation",
+      "pid": null,
+      "difficulty": 3,
+      "question": "Complete the sentence using the key word.\n\nHe was too tired to continue.\n\nHe was so tired that he ____ continue.",
+      "options": ["couldn't", "shouldn't", "mustn't", "wouldn't"],
+      "answer": "couldn't",
+      "explanation": "The meaning is preserved with 'so tired that he couldn't continue.'"
+    },
+    {
+      "id": "q68",
+      "exam": "CEP (C2)",
+      "section": "Multiple Choice Cloze",
+      "pid": null,
+      "difficulty": 2,
+      "question": "Choose the best phrase.\n\nThe proposal was met with widespread ____.",
+      "options": ["approval", "approve", "approving", "approved"],
+      "answer": "approval",
+      "explanation": "The noun 'approval' fits the sentence naturally."
+    },
+    {
+      "id": "q69",
+      "exam": "CELPIP",
+      "section": "Exam Overview",
+      "pid": null,
+      "difficulty": 1,
+      "question": "CELPIP Speaking is scored by:",
+      "options": ["an AI system", "a human interviewer", "a live panel", "other candidates"],
+      "answer": "an AI system",
+      "explanation": "CELPIP speaking is computer-delivered and AI-scored."
+    },
+    {
+      "id": "q70",
+      "exam": "CELPIP",
+      "section": "Reading",
+      "pid": null,
+      "difficulty": 1,
+      "question": "In CELPIP Reading, Part 4 is generally the most demanding section.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "True",
+      "explanation": "The passage notes that Part 4 (Viewpoints) is the most demanding."
+    },
+    {
+      "id": "q71",
+      "exam": "CELPIP",
+      "section": "Writing",
+      "pid": null,
+      "difficulty": 1,
+      "question": "In CELPIP Writing Task 1, the tone should match:",
+      "options": [
+        "the relationship in the prompt",
+        "a formal academic essay",
+        "a newspaper editorial",
+        "a presentation to a large audience"
+      ],
+      "answer": "the relationship in the prompt",
+      "explanation": "CELPIP email tone changes depending on who you are writing to."
+    },
+    {
+      "id": "q72",
+      "exam": "CELPIP",
+      "section": "Exam Strategy",
+      "pid": null,
+      "difficulty": 1,
+      "question": "CELPIP and IELTS both use the same speaking test format.",
+      "options": ["True", "False", "Not Given"],
+      "answer": "False",
+      "explanation": "CELPIP speaking is computer-delivered and AI-scored, while IELTS speaking is face-to-face."
+    }
+  ]
+}

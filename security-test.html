@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS App Security Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .test-section { background: white; padding: 20px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        input, textarea { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+        .log-area { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ IELTS App Security Test Suite</h1>
+    <p>Test all security features implemented in the application.</p>
+
+    <div class="test-section">
+        <h2>1. Input Sanitization Tests</h2>
+        <div>
+            <label>Test Email Sanitization:</label>
+            <input type="email" id="emailInput" placeholder="Enter email (try: test@example.com or <script>alert('xss')</script>@bad.com)">
+            <button onclick="testEmailSanitization()">Test Email</button>
+        </div>
+        <div>
+            <label>Test Text Sanitization:</label>
+            <textarea id="textInput" rows="2" placeholder="Enter text with HTML (try: <b>Hello</b> <script>alert('xss')</script>)"></textarea>
+            <button onclick="testTextSanitization()">Test Text</button>
+        </div>
+        <div>
+            <label>Test Number Sanitization:</label>
+            <input type="text" id="numberInput" placeholder="Enter number (try: 123.45 or not-a-number)">
+            <button onclick="testNumberSanitization()">Test Number</button>
+        </div>
+        <div id="sanitizationResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Security Logger Tests</h2>
+        <button onclick="testSecurityLogger()">Test Security Logging</button>
+        <button onclick="showSecurityLogs()">Show Recent Logs</button>
+        <div id="loggerResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Error Handler Tests</h2>
+        <button onclick="testErrorHandler()">Test Error Handling</button>
+        <div id="errorResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Integration Tests</h2>
+        <button onclick="testIntegration()">Test All Features</button>
+        <div id="integrationResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Security Event Log</h2>
+        <div id="securityLog" class="log-area">Security events will appear here...</div>
+        <button onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <script type="module">
+        // Import security services
+        import securityLogger from '/src/services/securityLogger.js';
+        import InputSanitizer from '/src/services/inputSanitizer.js';
+        import SecureErrorHandler from '/src/services/secureErrorHandler.js';
+
+        // Make services globally available for button handlers
+        window.securityLogger = securityLogger;
+        window.InputSanitizer = InputSanitizer;
+        window.SecureErrorHandler = SecureErrorHandler;
+
+        // Test functions
+        window.testEmailSanitization = function() {
+            const input = document.getElementById('emailInput').value;
+            const result = InputSanitizer.sanitizeEmail(input);
+            const hasSuspicious = InputSanitizer.containsSuspiciousPatterns(input);
+
+            document.getElementById('sanitizationResults').innerHTML = `
+                <div class="test-result ${result ? 'success' : 'error'}">
+                    <strong>Email Sanitization:</strong><br>
+                    Input: "${input}"<br>
+                    Sanitized: "${result}"<br>
+                    Suspicious patterns: ${hasSuspicious ? 'DETECTED' : 'None'}
+                </div>
+            `;
+            logEvent('EMAIL_SANITIZATION_TEST', { input, result, hasSuspicious });
+        };
+
+        window.testTextSanitization = function() {
+            const input = document.getElementById('textInput').value;
+            const result = InputSanitizer.sanitizeText(input);
+            const hasSuspicious = InputSanitizer.containsSuspiciousPatterns(input);
+
+            document.getElementById('sanitizationResults').innerHTML += `
+                <div class="test-result ${result !== input ? 'success' : 'info'}">
+                    <strong>Text Sanitization:</strong><br>
+                    Input: "${input}"<br>
+                    Sanitized: "${result}"<br>
+                    Suspicious patterns: ${hasSuspicious ? 'DETECTED' : 'None'}
+                </div>
+            `;
+            logEvent('TEXT_SANITIZATION_TEST', { input, result, hasSuspicious });
+        };
+
+        window.testNumberSanitization = function() {
+            const input = document.getElementById('numberInput').value;
+            const result = InputSanitizer.sanitizeNumber(input, 0, 1000);
+
+            document.getElementById('sanitizationResults').innerHTML += `
+                <div class="test-result ${result !== null ? 'success' : 'error'}">
+                    <strong>Number Sanitization:</strong><br>
+                    Input: "${input}"<br>
+                    Sanitized: ${result}
+                </div>
+            `;
+            logEvent('NUMBER_SANITIZATION_TEST', { input, result });
+        };
+
+        window.testSecurityLogger = function() {
+            securityLogger.logAuthAttempt('test@example.com', false, 'test');
+            securityLogger.logAuthSuccess('user123', 'test@example.com');
+            securityLogger.logDataExport('user123', 'test_data', 3);
+            securityLogger.logSuspiciousActivity('TEST_ACTIVITY', { testData: true });
+
+            document.getElementById('loggerResults').innerHTML = `
+                <div class="test-result success">
+                    <strong>Security Logger:</strong> Test events logged successfully
+                </div>
+            `;
+            logEvent('LOGGER_TEST', { eventsLogged: 4 });
+        };
+
+        window.showSecurityLogs = function() {
+            const logs = securityLogger.getRecentEvents();
+            document.getElementById('loggerResults').innerHTML = `
+                <div class="test-result info">
+                    <strong>Recent Security Logs:</strong><br>
+                    <pre>${JSON.stringify(logs.slice(-3), null, 2)}</pre>
+                </div>
+            `;
+        };
+
+        window.testErrorHandler = function() {
+            const testErrors = [
+                { name: 'NetworkError', message: 'Failed to fetch' },
+                { status: 401, message: 'Unauthorized' },
+                { status: 500, message: 'Internal server error' },
+                new Error('Unknown error')
+            ];
+
+            let results = '';
+            testErrors.forEach((error, index) => {
+                const safeMessage = SecureErrorHandler.getSafeErrorMessage(error);
+                results += `
+                    <div class="test-result success">
+                        <strong>Error ${index + 1}:</strong> "${error.message || error.name}"<br>
+                        Safe message: "${safeMessage}"
+                    </div>
+                `;
+            });
+
+            document.getElementById('errorResults').innerHTML = results;
+            logEvent('ERROR_HANDLER_TEST', { errorsTested: testErrors.length });
+        };
+
+        window.testIntegration = function() {
+            // Test all services work together
+            const sessionId = securityLogger.getSessionId();
+            const maskedEmail = securityLogger.maskEmail('integration@test.com');
+            const sanitizedText = InputSanitizer.sanitizeText('Integration <script>test</script>');
+            const safeError = SecureErrorHandler.getSafeErrorMessage({ status: 403 });
+
+            document.getElementById('integrationResults').innerHTML = `
+                <div class="test-result success">
+                    <strong>Integration Test Results:</strong><br>
+                    Session ID: ${sessionId ? 'Generated' : 'Failed'}<br>
+                    Masked Email: ${maskedEmail}<br>
+                    Sanitized Text: "${sanitizedText}"<br>
+                    Safe Error: "${safeError}"
+                </div>
+            `;
+            logEvent('INTEGRATION_TEST', { allServices: 'working' });
+        };
+
+        window.clearLog = function() {
+            document.getElementById('securityLog').innerHTML = 'Security events will appear here...';
+        };
+
+        // Logging function for test events
+        function logEvent(event, details) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${event}: ${JSON.stringify(details)}\n`;
+            const logArea = document.getElementById('securityLog');
+            logArea.innerHTML += logEntry;
+            logArea.scrollTop = logArea.scrollHeight;
+        }
+
+        // Auto-run basic tests on page load
+        window.addEventListener('load', function() {
+            logEvent('PAGE_LOAD', { message: 'Security test page loaded successfully' });
+        });
+    </script>
+</body>
+</html>
