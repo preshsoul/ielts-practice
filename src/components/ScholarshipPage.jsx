@@ -1,12 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { INSTITUTIONS } from '../data/institutions.js';
-import InputSanitizer from '../services/inputSanitizer.js';
-import securityLogger from '../services/securityLogger.js';
+import { scoreScholarship } from '../services/scoringEngine.js';
+import ScholarshipMatchSummary from './ScholarshipMatchSummary.jsx';
+import ScholarshipDocumentImport from './ScholarshipDocumentImport.jsx';
+import { getAllowedApplicationTransitions, loadApplicationTracking, saveApplicationTracking, updateApplicationChecklist, updateApplicationTracking } from '../services/supabaseData.js';
+
+function parseMaxFee(value) {
+  const num = Number(value);
+  if (!Number.isFinite(num) || num < 0) return 999999;
+  return Math.min(num, 1000000);
+}
+
+function joinReasons(reasons) {
+  return Array.isArray(reasons) && reasons.length ? reasons.join(" • ") : "";
+}
+
+const STATE_LABELS = {
+  saved: "Saved",
+  drafting: "Drafting",
+  submitted: "Submitted",
+  interview: "Interview",
+  awarded: "Awarded",
+  rejected: "Rejected",
+};
 
 export default function ScholarshipPage(props) {
-  const { C, Chip, PrimaryBtn } = props;
-  const [cvText, setCvText] = useState('');
-  const [keywords, setKeywords] = useState([]);
+  const { C, Chip } = props;
+  const { profile, onImportCv, cvImportBusy, cvImportMessage, authUser } = props;
+
   const [region, setRegion] = useState('All');
   const [maxFee, setMaxFee] = useState(999999);
   const [shortlist, setShortlist] = useState(() => {
@@ -17,75 +38,52 @@ export default function ScholarshipPage(props) {
   });
   const [showConsentModal, setShowConsentModal] = useState(false);
   const [pendingShortlistId, setPendingShortlistId] = useState(null);
+  const [trackedApplications, setTrackedApplications] = useState({});
+  const [refereeInputs, setRefereeInputs] = useState({});
 
   useEffect(() => { localStorage.setItem('scholarship_shortlist', JSON.stringify(shortlist)); }, [shortlist]);
   useEffect(() => { localStorage.setItem('scholarship_consent', JSON.stringify(consentGiven)); }, [consentGiven]);
-
-  function parseKeywords(text) {
-    // Sanitize input first
-    const sanitizedText = InputSanitizer.sanitizeText(text);
-    if (!sanitizedText) return [];
-
-    // Check for suspicious patterns
-    if (InputSanitizer.containsSuspiciousPatterns(text)) {
-      securityLogger.logSuspiciousActivity('SUSPICIOUS_KEYWORD_INPUT', {
-        originalLength: text.length,
-        sanitizedLength: sanitizedText.length
-      });
+  useEffect(() => {
+    let mounted = true;
+    async function loadTracking() {
+      if (!profile?.id || typeof loadApplicationTracking !== 'function') {
+        if (mounted) setTrackedApplications({});
+        return;
+      }
+      try {
+        const rows = await loadApplicationTracking(profile.id);
+        if (!mounted) return;
+        const mapped = {};
+        for (const row of rows) {
+          mapped[row.scholarship_id] = row;
+        }
+        setTrackedApplications(mapped);
+      } catch {
+        if (mounted) setTrackedApplications({});
+      }
     }
+    loadTracking();
+    return () => { mounted = false; };
+  }, [profile?.id]);
 
-    // Very small client-side extractor: split, remove short/stopwords, count
-    const stop = new Set(['and','the','of','in','to','a','for','with','on','by','is','are','that','this','as','an','be','from','it','its']);
-    const toks = sanitizedText.toLowerCase().replace(/[\W_]+/g,' ').split(/\s+/).filter(t=>t && t.length>2 && !stop.has(t));
-    const freq = {};
-    toks.forEach(t=>freq[t]=(freq[t]||0)+1);
-    return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,20).map(e=>e[0]);
-  }
-
-  const onExtract = () => {
-    setKeywords(parseKeywords(cvText));
-  };
-
-  function parseMaxFee(value) {
-    const sanitizedValue = InputSanitizer.sanitizeText(value);
-    const num = InputSanitizer.sanitizeNumber(sanitizedValue, 0, 1000000); // Max 1M for reasonable limits
-    return num !== null ? num : 999999;
-  }
-
-  const regions = ['All', 'UK', 'US', 'Canada', 'Europe', 'Australia'];
-
-  const filtered = INSTITUTIONS.filter(inst => {
-    const maxFeeNum = parseMaxFee(maxFee);
-    return (region === 'All' || inst.country === region || inst.city === region) &&
-           inst.tuition_international_yearly <= maxFeeNum &&
-           (keywords.length === 0 || keywords.some(k =>
-             inst.research_areas.join(' ').toLowerCase().includes(k.toLowerCase()) ||
-             inst.name.toLowerCase().includes(k.toLowerCase())
-           ));
-  });
-
-  function exportData(){
-    const payload = {shortlist, keywords, cvText, consentGiven, timestamp: new Date().toISOString()};
-    try {
-      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'scholarship-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-      alert('Exported scholarship data.');
-    } catch(e){ console.error(e); alert('Export failed.'); }
-  }
-
-  function deleteData(){
-    if(!window.confirm('Delete all scholarship data (shortlist, CV text, keywords) from this browser?')) return;
-    setShortlist([]); setCvText(''); setKeywords([]); setConsentGiven(false);
-    localStorage.removeItem('scholarship_shortlist'); localStorage.removeItem('scholarship_consent');
+  function deleteData() {
+    if (!window.confirm('Delete all scholarship data (shortlist) from this browser?')) return;
+    setShortlist([]);
+    setConsentGiven(false);
+    localStorage.removeItem('scholarship_shortlist');
+    localStorage.removeItem('scholarship_consent');
     alert('Local scholarship data deleted.');
   }
 
-  function acceptConsentForPending(give){
-    if(give){
+  function acceptConsentForPending(give) {
+    if (give) {
       setConsentGiven(true);
-      if(pendingShortlistId){
-        setShortlist(s => s.includes(pendingShortlistId) ? s.filter(x=>x!==pendingShortlistId) : [...s, pendingShortlistId]);
+      if (pendingShortlistId) {
+        setShortlist((current) =>
+          current.includes(pendingShortlistId)
+            ? current.filter((item) => item !== pendingShortlistId)
+            : [...current, pendingShortlistId]
+        );
       }
     }
     setPendingShortlistId(null);
@@ -93,92 +91,328 @@ export default function ScholarshipPage(props) {
   }
 
   const toggleShortlist = (id) => {
-    if(!consentGiven){
+    if (!consentGiven) {
       setPendingShortlistId(id);
       setShowConsentModal(true);
       return;
     }
-    setShortlist(s => s.includes(id) ? s.filter(x=>x!==id) : [...s, id]);
+    setShortlist((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
   };
 
+  const trackApplication = async (scholarship) => {
+    if (!profile?.id || !authUser) return;
+    try {
+      const saved = await saveApplicationTracking(profile.id, scholarship, trackedApplications[scholarship.id]?.state || "saved");
+      if (saved) {
+        setTrackedApplications((current) => ({
+          ...current,
+          [scholarship.id]: saved,
+        }));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const advanceApplication = async (scholarshipId, nextState) => {
+    if (!profile?.id || !authUser) return;
+    try {
+      const saved = await updateApplicationTracking(profile.id, scholarshipId, nextState);
+      if (saved) {
+        setTrackedApplications((current) => ({
+          ...current,
+          [scholarshipId]: saved,
+        }));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateChecklist = async (scholarshipId, nextChecklistPatch) => {
+    if (!profile?.id || !authUser) return;
+    try {
+      const saved = await updateApplicationChecklist(profile.id, scholarshipId, nextChecklistPatch);
+      if (saved) {
+        setTrackedApplications((current) => ({
+          ...current,
+          [scholarshipId]: saved,
+        }));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const toggleRequiredDocument = async (scholarshipId, documentName) => {
+    const tracked = trackedApplications[scholarshipId];
+    if (!tracked) return;
+    const existingChecklist = tracked.documents_checklist || {};
+    const completedDocuments = Array.isArray(existingChecklist.completedDocuments)
+      ? existingChecklist.completedDocuments
+      : [];
+    const normalizedName = String(documentName || "").trim();
+    if (!normalizedName) return;
+    const nextCompleted = completedDocuments.includes(normalizedName)
+      ? completedDocuments.filter((item) => item !== normalizedName)
+      : [...completedDocuments, normalizedName];
+    await updateChecklist(scholarshipId, {
+      documents_checklist: {
+        ...existingChecklist,
+        completedDocuments: nextCompleted,
+      },
+    });
+  };
+
+  const addReferee = async (scholarshipId) => {
+    const nextReferee = String(refereeInputs[scholarshipId] || "").trim();
+    if (!nextReferee) return;
+    const tracked = trackedApplications[scholarshipId];
+    if (!tracked) return;
+    const currentReferees = Array.isArray(tracked.referees) ? tracked.referees : [];
+    if (currentReferees.some((referee) => String(referee?.name || referee).trim().toLowerCase() === nextReferee.toLowerCase())) {
+      setRefereeInputs((current) => ({ ...current, [scholarshipId]: "" }));
+      return;
+    }
+    const nextReferees = [...currentReferees, { name: nextReferee, status: "pending" }];
+    await updateChecklist(scholarshipId, { referees: nextReferees });
+    setRefereeInputs((current) => ({ ...current, [scholarshipId]: "" }));
+  };
+
+  const removeReferee = async (scholarshipId, refereeIndex) => {
+    const tracked = trackedApplications[scholarshipId];
+    if (!tracked) return;
+    const currentReferees = Array.isArray(tracked.referees) ? tracked.referees : [];
+    const nextReferees = currentReferees.filter((_, index) => index !== refereeIndex);
+    await updateChecklist(scholarshipId, { referees: nextReferees });
+  };
+
+  const maxFeeNum = parseMaxFee(maxFee);
+  const scored = INSTITUTIONS
+    .filter((inst) => region === 'All' || inst.country === region || inst.city === region)
+    .filter((inst) => inst.tuition_international_yearly <= maxFeeNum)
+    .map((inst) => ({ inst, analysis: scoreScholarship(inst, profile || {}) }))
+    .sort((a, b) => {
+      if (a.analysis.blocked !== b.analysis.blocked) return a.analysis.blocked ? 1 : -1;
+      return b.analysis.score - a.analysis.score;
+    });
+
   return (
-    <div>
-      <div style={{display:'flex',gap:12,marginBottom:16}}>
-        <div style={{flex:1}}>
-          <div style={{fontSize:11,color:C.muted,marginBottom:8,fontFamily:'var(--font-ui)',letterSpacing:'0.12em',textTransform:'uppercase'}}>Paste or drop your CV / profile text</div>
-          <textarea value={cvText} onChange={e=>setCvText(e.target.value)} style={{width:'100%',height:140,padding:14,fontFamily:'var(--font-ui)',borderRadius:'8px'}} placeholder="Paste CV text here (no upload in prototype)" />
-          <div style={{display:'flex',gap:8,marginTop:8}}>
-            <PrimaryBtn onClick={onExtract}>Extract keywords</PrimaryBtn>
-            <button onClick={()=>{setCvText(''); setKeywords([]);}} className="ghost-btn" style={{padding:'9px 14px'}}>Clear</button>
+    <div className="scholarship-page">
+      <div className="scholarship-hero">
+        <div className="scholarship-hero-main">
+          <div className="scholarship-kicker">Scholarships surface</div>
+          <h2 className="scholarship-title">Find, score, and shortlist opportunities against a live candidate profile.</h2>
+          <p className="scholarship-copy">
+            The ranking model now uses structured profile data instead of pasted CV text. Upload a document, confirm the extracted fields, and the system can explain why each scholarship ranks where it does.
+          </p>
+          <div className="scholarship-metrics">
+            <div className="scholarship-metric">
+              <span className="scholarship-metric-label">Matched</span>
+              <span className="scholarship-metric-value">{scored.length}</span>
+            </div>
+            <div className="scholarship-metric">
+              <span className="scholarship-metric-label">Regions</span>
+              <span className="scholarship-metric-value">5</span>
+            </div>
+            <div className="scholarship-metric">
+              <span className="scholarship-metric-label">Profile mode</span>
+              <span className="scholarship-metric-value">{profile?.tier || "free"}</span>
+            </div>
+            <div className="scholarship-metric">
+              <span className="scholarship-metric-label">Tracked</span>
+              <span className="scholarship-metric-value">{Object.keys(trackedApplications).length}</span>
+            </div>
           </div>
-          {keywords.length>0 && <div style={{marginTop:12}}>
-            <div style={{fontSize:11,color:C.muted,marginBottom:6,fontFamily:'var(--font-ui)',letterSpacing:'0.12em',textTransform:'uppercase'}}>Extracted keywords</div>
-            <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>{keywords.map(k=><Chip key={k} label={k} color={C.accent} />)}</div>
-          </div>}
         </div>
-        <div style={{width:320}}>
-          <div style={{fontSize:11,color:C.muted,marginBottom:8,fontFamily:'var(--font-ui)',letterSpacing:'0.12em',textTransform:'uppercase'}}>Filters</div>
-          <div style={{display:'flex',flexDirection:'column',gap:8}}>
-            <select value={region} onChange={e=>setRegion(e.target.value)} style={{padding:10,borderRadius:'8px'}}>
-              {regions.map(r=> <option key={r} value={r}>{r}</option>)}
-            </select>
-            <div>
-              <div style={{fontSize:12,marginBottom:6,fontFamily:'var(--font-ui)',color:C.muted}}>Max tuition (annual)</div>
-              <input type="number" value={maxFee} onChange={e=>setMaxFee(e.target.value)} style={{width:'100%',padding:10,borderRadius:'8px'}} />
+        <div className="scholarship-hero-side">
+          <ScholarshipMatchSummary profile={profile} scored={scored} shortlist={shortlist} C={C} Chip={Chip} />
+        </div>
+      </div>
+
+      <div className="scholarship-grid">
+        <ScholarshipDocumentImport
+          authUser={authUser}
+          profile={profile}
+          onImport={onImportCv}
+          busy={cvImportBusy}
+          message={cvImportMessage}
+        />
+
+        <div className="scholarship-card scholarship-filter-card">
+          <div className="scholarship-card-label">Filters</div>
+          <div className="scholarship-filter-stack">
+            <label className="scholarship-control">
+              <span>Region</span>
+              <select value={region} onChange={(e) => setRegion(e.target.value)}>
+                {['All', 'UK', 'US', 'Canada', 'Europe', 'Australia'].map((item) => <option key={item} value={item}>{item}</option>)}
+              </select>
+            </label>
+            <label className="scholarship-control">
+              <span>Max tuition (annual)</span>
+              <input type="number" value={maxFee} onChange={(e) => setMaxFee(e.target.value)} />
+            </label>
+            <div className="scholarship-note">
+              Saved shortlist stays local until the server-side flow is ready.
             </div>
-            <div>
-              <div style={{fontSize:12,marginBottom:6,fontFamily:'var(--font-ui)',color:C.muted}}>Shortlist</div>
-              <div style={{display:'flex',flexDirection:'column',gap:6}}>
-                {shortlist.length===0 && <div style={{color:C.muted}}>No items saved</div>}
-                {shortlist.map(id=>{
-                  const it = INSTITUTIONS.find(x=>x.id===id); if(!it) return null;
-                  return <div key={id} style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                    <div style={{fontSize:13}}>{it.name}</div>
-                    <button onClick={()=>toggleShortlist(id)} className="ghost-btn" style={{padding:'6px 10px'}}>Remove</button>
-                  </div>;
-                })}
-              </div>
-            </div>
-            <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)',lineHeight:1.7}}>Server sync: placeholder — will ask consent before any server-side storage.</div>
-            <div style={{marginTop:10,display:'flex',gap:8,flexDirection:'column'}}>
-              <label style={{fontSize:12,fontFamily:'var(--font-ui)',color:C.text}}>Consent to server storage (placeholder)</label>
-              <div style={{display:'flex',gap:8,alignItems:'center'}}>
-                <input id="consent" type="checkbox" checked={consentGiven} onChange={e=>setConsentGiven(e.target.checked)} />
-                <label htmlFor="consent" style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)',lineHeight:1.6}}>I consent to storing my CV keywords and shortlist on the server (will ask again before any real upload)</label>
-              </div>
-              <div style={{display:'flex',gap:8,marginTop:8}}>
-                <button onClick={exportData} className="ghost-btn" style={{padding:'8px 12px'}}>Export data</button>
-                <button onClick={deleteData} className="ghost-btn" style={{padding:'8px 12px'}}>Delete local data</button>
-              </div>
-            </div>
+            <button onClick={deleteData} className="ghost-btn scholarship-ghost-btn">Delete local shortlist</button>
+          </div>
+        </div>
+
+        <div className="scholarship-card scholarship-intro-card">
+          <div className="scholarship-card-label">Matching logic</div>
+          <div className="scholarship-intro-copy">
+            Discipline, geography, language readiness, degree class, funding value, urgency, and source confidence all contribute to the final score.
+          </div>
+          <div className="scholarship-intro-chips">
+            <Chip label="Explainable" color={C.accent} small />
+            <Chip label="Profile-based" color={C.green} small />
+            <Chip label="Document-ready" color={C.amber} small />
           </div>
         </div>
       </div>
 
-      <div style={{fontSize:11,color:C.muted,marginBottom:8,fontFamily:'var(--font-ui)',letterSpacing:'0.12em',textTransform:'uppercase'}}>{filtered.length} institutions matched</div>
-      <div style={{display:'grid',gridTemplateColumns:'1fr',gap:12}}>
-        {filtered.map(inst=>{
-          const ihsTotal = Math.round((inst.IHS_per_year * Math.ceil(inst.typical_program_length_months/12)) || 0);
-          const initials = inst.name.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
+      <div className="scholarship-results-label">
+        {scored.length} institutions matched
+      </div>
+
+      <div className="scholarship-results">
+        {scored.map(({ inst, analysis }) => {
+          const ihsTotal = Math.round((inst.IHS_per_year * Math.ceil(inst.typical_program_length_months / 12)) || 0);
+          const initials = inst.name.split(' ').slice(0,2).map((part) => part[0]).join('').toUpperCase();
+          const topCriteria = analysis.criteria.slice(0, 3);
+          const tracked = trackedApplications[inst.id];
+          const allowedStates = tracked ? getAllowedApplicationTransitions(tracked.state) : [];
+          const checklist = tracked?.documents_checklist || {};
+          const requiredDocuments = Array.isArray(checklist.requiredDocuments) ? checklist.requiredDocuments : [];
+          const completedDocuments = Array.isArray(checklist.completedDocuments) ? checklist.completedDocuments : [];
+          const refereesRequired = Number(checklist.refereesRequired || 0);
+          const referees = Array.isArray(tracked?.referees) ? tracked.referees : [];
+          const refereeCount = referees.length;
+
           return (
             <div key={inst.id} className="sch-card">
               <div className="sch-avatar">{initials}</div>
               <div style={{flex:1}}>
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:8,gap:12,flexWrap:'wrap'}}>
                   <div>
                     <div style={{fontSize:17,fontWeight:700,fontFamily:'var(--font-serif)',letterSpacing:'-0.02em'}}>{inst.name}</div>
                     <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>{inst.city}, {inst.country}</div>
                   </div>
                   <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end',gap:6}}>
+                    <Chip label={`Fit ${analysis.score}/100`} color={analysis.blocked ? C.amber : C.green} small />
+                    {analysis.blocked && <Chip label="Needs review" color={C.red} small />}
+                    {tracked && <Chip label={`Tracked: ${tracked.state}`} color={C.accent} small />}
+                    {tracked && <Chip label={`Urgency ${analysis.urgency?.score || 0}/10`} color={C.amber} small />}
                     <div style={{fontSize:13,fontFamily:'var(--font-ui)'}}>{inst.currency} {inst.tuition_international_yearly.toLocaleString()}</div>
-                    <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>Living: {inst.living_cost_monthly_by_city['London'] ? `From ${inst.currency} ${inst.living_cost_monthly_by_city[inst.city]||inst.living_cost_monthly_by_city['London']}/mo` : ''}</div>
                     <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>IHS est: {inst.currency} {ihsTotal}</div>
-                    <div style={{fontSize:12,color:C.muted,fontFamily:'var(--font-ui)'}}>CAS speed: {inst.CAS_issuance_speed}</div>
                   </div>
                 </div>
+
+                <div style={{display:'flex',gap:6,flexWrap:'wrap',marginBottom:8}}>
+                  {topCriteria.map((criterion) => (
+                    <Chip key={criterion.key} label={`${criterion.label}: ${criterion.score}/${criterion.max}`} color={criterion.score > 0 ? C.green : C.amber} small />
+                  ))}
+                </div>
+
+                {analysis.blockedReasons.length > 0 && (
+                  <div style={{fontSize:12,color:C.red,fontFamily:'var(--font-ui)',lineHeight:1.7,marginBottom:8}}>
+                    Blocked: {joinReasons(analysis.blockedReasons)}
+                  </div>
+                )}
+
                 <div style={{fontSize:13,color:C.muted,marginBottom:8,fontFamily:'var(--font-ui)',lineHeight:1.7}}>{inst.notes}</div>
+                {tracked && (
+                  <div style={{display:'grid',gap:8,marginBottom:10,padding:'12px',border:'1px solid var(--border)',borderRadius:'14px',background:'rgba(255,255,255,0.6)'}}>
+                    <div style={{fontSize:12,fontFamily:'var(--font-ui)',color:C.text}}>
+                      Checklist: {requiredDocuments.length ? `${completedDocuments.length}/${requiredDocuments.length} complete` : "No checklist loaded"}
+                    </div>
+                    {requiredDocuments.length > 0 && (
+                      <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+                        {requiredDocuments.map((documentName) => {
+                          const done = completedDocuments.includes(documentName);
+                          return (
+                            <button
+                              key={documentName}
+                              type="button"
+                              onClick={() => toggleRequiredDocument(inst.id, documentName)}
+                              className="ghost-btn"
+                              style={{
+                                padding: '7px 10px',
+                                borderRadius: '999px',
+                                borderColor: done ? C.green : 'var(--border)',
+                                background: done ? 'rgba(94, 141, 69, 0.12)' : 'transparent',
+                                color: done ? C.text : C.muted,
+                              }}
+                            >
+                              {done ? "[x] " : ""}{documentName}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                    <div style={{fontSize:12,fontFamily:'var(--font-ui)',color:C.text}}>
+                      Referees: {refereeCount}/{refereesRequired || 0}
+                    </div>
+                    {referees.length > 0 && (
+                      <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+                        {referees.map((referee, index) => {
+                          const name = typeof referee === "string" ? referee : referee?.name || `Referee ${index + 1}`;
+                          const status = typeof referee === "object" && referee?.status ? referee.status : "pending";
+                          return (
+                            <button
+                              key={`${name}-${index}`}
+                              type="button"
+                              onClick={() => removeReferee(inst.id, index)}
+                              className="ghost-btn"
+                              style={{
+                                padding: '7px 10px',
+                                borderRadius: '999px',
+                                borderColor: 'var(--border)',
+                                color: C.text,
+                              }}
+                              title="Remove referee"
+                            >
+                              {name} · {status} ×
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                    <div style={{display:'flex',gap:8,flexWrap:'wrap',alignItems:'center'}}>
+                      <label className="scholarship-control" style={{margin:0, minWidth:'180px'}}>
+                        <span>Update state</span>
+                        <select value={tracked.state} onChange={(e) => advanceApplication(inst.id, e.target.value)}>
+                          <option value={tracked.state}>{STATE_LABELS[tracked.state] || tracked.state}</option>
+                          {allowedStates.map((state) => (
+                            <option key={state} value={state}>{STATE_LABELS[state] || state}</option>
+                          ))}
+                        </select>
+                      </label>
+                      <label className="scholarship-control" style={{margin:0, minWidth:'220px', flex:1}}>
+                        <span>Add referee</span>
+                        <input
+                          value={refereeInputs[inst.id] || ""}
+                          onChange={(e) => setRefereeInputs((current) => ({ ...current, [inst.id]: e.target.value }))}
+                          placeholder="Enter referee name"
+                        />
+                      </label>
+                      <button
+                        type="button"
+                        className="ghost-btn"
+                        style={{ padding: '9px 14px' }}
+                        onClick={() => addReferee(inst.id)}
+                      >
+                        Add referee
+                      </button>
+                    </div>
+                  </div>
+                )}
                 <div className="sch-actions">
-                  <button onClick={()=>toggleShortlist(inst.id)} className="ghost-btn" style={{padding:'9px 14px'}}>{shortlist.includes(inst.id)?'Remove from shortlist':'Save to shortlist'}</button>
+                  <button onClick={() => toggleShortlist(inst.id)} className="ghost-btn" style={{padding:'9px 14px'}}>{shortlist.includes(inst.id) ? 'Remove from shortlist' : 'Save to shortlist'}</button>
+                  <button onClick={() => trackApplication(inst)} className="ghost-btn" style={{padding:'9px 14px'}} disabled={!authUser || !profile?.id}>
+                    {tracked ? 'Update tracker' : 'Track application'}
+                  </button>
                   <a href={inst.website} target="_blank" rel="noreferrer" className="ghost-btn" style={{padding:'9px 14px',textDecoration:'none',display:'inline-flex',alignItems:'center'}}>Open website</a>
                 </div>
               </div>
@@ -189,12 +423,12 @@ export default function ScholarshipPage(props) {
 
       {showConsentModal && (
         <div style={{position:'fixed',inset:0,display:'flex',alignItems:'center',justifyContent:'center',background:'rgba(0,0,0,0.4)'}}>
-        <div role="dialog" aria-modal="true" className="modal">
+          <div role="dialog" aria-modal="true" className="modal">
             <div className="title">Consent required</div>
-            <div className="body">To save items to shortlist you must consent to storing minimal metadata locally and (optionally) on a server. No data will be uploaded without explicit confirmation.</div>
+            <div className="body">To save items to shortlist you must consent to storing minimal metadata locally. No data will be uploaded without explicit confirmation.</div>
             <div style={{display:'flex',justifyContent:'flex-end',gap:8}}>
-              <button onClick={()=>{ setShowConsentModal(false); setPendingShortlistId(null); }} className="ghost-btn" style={{padding:'8px 12px'}}>Cancel</button>
-              <button onClick={()=>{ acceptConsentForPending(true); }} className="primary-btn" style={{padding:'8px 12px'}}>Give consent & save</button>
+              <button onClick={() => { setShowConsentModal(false); setPendingShortlistId(null); }} className="ghost-btn" style={{padding:'8px 12px'}}>Cancel</button>
+              <button onClick={() => { acceptConsentForPending(true); }} className="primary-btn" style={{padding:'8px 12px'}}>Give consent & save</button>
             </div>
           </div>
         </div>

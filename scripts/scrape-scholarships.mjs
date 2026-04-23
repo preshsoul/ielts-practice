@@ -2,12 +2,14 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { extractScholarship } from "./scholarship-extractor.mjs";
+import { validateScholarship } from "./scholarship-schema.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const sourcesPath = join(root, "content", "scholarship-sources.json");
 const outputPath = join(root, "content", "scholarships.scraped.json");
 const outputPathV2 = join(root, "content", "scholarships.scraped.v2.json");
+const validationFailuresPath = join(root, "content", "validation-failures.json");
 const wanted = /scholar|fund|funding|award|bursar|grant/i;
 
 function slugify(input) {
@@ -130,6 +132,7 @@ async function main() {
   const sources = parseSourceList(rawSources);
   const results = [];
   const resultsV2 = [];
+  const validationFailures = [];
   const seen = new Set();
 
   for (const source of sources) {
@@ -176,8 +179,28 @@ async function main() {
         sourceLabel: source.label,
         title,
       });
+      const validation = validateScholarship(v2);
+      if (!validation.valid) {
+        validationFailures.push({
+          sourceUrl: pageUrl,
+          sourceLabel: source.label,
+          title,
+          errors: validation.errors,
+          capturedAt: new Date().toISOString(),
+        });
+        continue;
+      }
+
       if (typeof v2.source.confidence === "number" && v2.source.confidence >= 0.35) {
         resultsV2.push(v2);
+      } else {
+        validationFailures.push({
+          sourceUrl: pageUrl,
+          sourceLabel: source.label,
+          title,
+          errors: ["confidence below threshold"],
+          capturedAt: new Date().toISOString(),
+        });
       }
     }
   }
@@ -213,8 +236,24 @@ async function main() {
     "utf8"
   );
 
+  await writeFile(
+    validationFailuresPath,
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        updated_at: new Date().toISOString(),
+        total: validationFailures.length,
+        failures: validationFailures,
+      },
+      null,
+      2
+    ),
+    "utf8"
+  );
+
   console.log(`Scraped ${results.length} scholarship candidates into ${resolve(outputPath)}`);
   console.log(`Wrote ${resultsV2.length} v2 records to ${resolve(outputPathV2)}`);
+  console.log(`Captured ${validationFailures.length} validation failures in ${resolve(validationFailuresPath)}`);
 }
 
 await main();

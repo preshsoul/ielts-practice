@@ -1,6 +1,5 @@
--- Initial Supabase schema for IELTS Practice & Scholarship Tools
--- This schema keeps Supabase auth as the source of identity and stores
--- app-specific profile data in public.profiles.
+-- Initial Supabase schema for Loci
+-- Based on Loci Technical Spec Sections 4.1-4.5
 
 create extension if not exists "pgcrypto";
 
@@ -14,6 +13,7 @@ begin
 end;
 $$;
 
+-- Updated profiles table with structured fields from spec Section 4.2
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   display_name text,
@@ -24,7 +24,19 @@ create table if not exists public.profiles (
   is_anonymous boolean not null default true,
   created_at timestamptz not null default now(),
   last_seen_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+
+  -- Structured profile fields
+  identity jsonb default '{"nationality": null, "countryOfResidence": null, "ageAtApplicationCycle": null}'::jsonb,
+  academic jsonb default '{"degreeClass": null, "institution": null, "institutionCountry": null, "discipline": null, "disciplineCategory": null, "graduationYear": null, "cgpa": null, "cgpaScale": 5.0}'::jsonb,
+  professional jsonb default '{"workExperienceYears": 0, "currentlyEmployed": null, "sector": null}'::jsonb,
+  languageTests jsonb default '{"ielts": null, "toefl": null, "celpip": null}'::jsonb,
+  applicationCycle text,
+  targetDegreeLevel text,
+  targetDisciplines text[],
+  targetCountries text[],
+  tier text not null default 'free',
+  tierUpgradedAt timestamptz
 );
 
 create table if not exists public.passages (
@@ -39,6 +51,7 @@ create table if not exists public.passages (
   updated_at timestamptz not null default now()
 );
 
+-- Updated questions table with IELTS fields from spec Section 4.4
 create table if not exists public.questions (
   id uuid primary key default gen_random_uuid(),
   external_id text unique not null,
@@ -54,31 +67,45 @@ create table if not exists public.questions (
   verified boolean not null default false,
   active boolean not null default true,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+
+  -- IELTS-specific fields
+  component text,
+  taskType text,
+  bandDescriptor text,
+  modelAnswer text
 );
 
+-- Updated scholarships table with JSONB structure from spec Section 4.1
 create table if not exists public.scholarships (
   id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
   name text not null,
-  institution text not null,
-  region text not null,
-  amount_min_gbp integer,
-  amount_max_gbp integer,
-  coverage text,
-  deadline date,
-  deadline_notes text,
-  status text not null,
-  eligibility text,
-  blockers text,
-  sequence text,
-  stackable text,
-  direct_url text,
-  notes text,
+  awardingBody text,
+  sourceType text default 'canonical',
+  coverage jsonb not null default '{"tuition": false, "living": false, "flights": false, "visaFees": false, "numericAmount": null, "rawAmountString": "", "currency": "GBP"}'::jsonb,
+  eligibility jsonb not null default '{"nationalities": [], "degreeClassMin": "", "disciplines": [], "ageLimitMin": null, "ageLimitMax": null, "workExperienceYearsMin": 0, "employmentStatusAtApplication": null, "languageReqs": {"ielts": null, "toefl": null, "celpip": null, "exemptions": []}, "refereesRequired": 0, "refereeCategories": [], "targetInstitutions": [], "targetProgrammes": [], "notes": ""}'::jsonb,
+  application jsonb not null default '{"url": "", "portal": "", "applicationOpensAt": null, "deadline": null, "deadlineType": "fixed", "requiredDocuments": [], "essayPrompts": []}'::jsonb,
+  provenance jsonb not null default '{"sourceUrl": "", "scrapedAt": null, "lastVerifiedAt": null, "verifiedBy": "", "confidenceScore": 0.5, "confidenceDecayRatePerDay": 0.001, "flaggedFields": [], "sourceType": "canonical"}'::jsonb,
+  awardeeContributions jsonb not null default '[]'::jsonb,
   tags text[] default '{}',
   fit_score_default integer,
   source text not null default 'static',
   verified boolean not null default true,
   active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Universities table from spec Section 4.5
+create table if not exists public.universities (
+  id text primary key,
+  name text not null,
+  aliases text[],
+  country text,
+  qsRankGlobal integer,
+  qsRankYear integer,
+  programmes jsonb not null default '[]'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -113,24 +140,49 @@ create table if not exists public.cv_profiles (
   id uuid primary key default gen_random_uuid(),
   profile_id uuid not null references public.profiles(id) on delete cascade,
   label text,
+  source_filename text,
+  mime_type text,
+  document_type text,
   keywords text[] not null default '{}',
   raw_text_hash text,
+  extracted_excerpt text,
+  extracted_text text,
+  parsed_profile jsonb not null default '{}'::jsonb,
+  confidence numeric,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
+-- Application tracking table from spec Section 4.3
+create table if not exists public.application_tracking (
+  id uuid primary key default gen_random_uuid(),
+  candidate_id uuid not null references public.profiles(id) on delete cascade,
+  scholarship_id uuid not null references public.scholarships(id) on delete cascade,
+  state text not null default 'saved',
+  state_history jsonb not null default '[]'::jsonb,
+  state_updated_at timestamptz not null default now(),
+  documents_checklist jsonb not null default '{}'::jsonb,
+  referees jsonb not null default '[]'::jsonb,
+  notes text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique (candidate_id, scholarship_id)
+);
+
+-- Indexes
 create index if not exists idx_questions_exam_section on public.questions (exam, section);
 create index if not exists idx_questions_difficulty on public.questions (difficulty);
 create index if not exists idx_questions_active on public.questions (active);
 create index if not exists idx_passages_active on public.passages (active);
-create index if not exists idx_scholarships_region on public.scholarships (region);
-create index if not exists idx_scholarships_status on public.scholarships (status);
-create index if not exists idx_scholarships_tags on public.scholarships using gin (tags);
-create index if not exists idx_scholarships_amount_max on public.scholarships (amount_max_gbp);
+create index if not exists idx_scholarships_slug on public.scholarships (slug);
+create index if not exists idx_scholarships_active on public.scholarships (active);
 create index if not exists idx_sessions_profile_id on public.practice_sessions (profile_id);
 create index if not exists idx_shortlists_profile_id on public.shortlists (profile_id);
 create index if not exists idx_cv_profiles_profile_id on public.cv_profiles (profile_id);
+create index if not exists idx_application_tracking_candidate on public.application_tracking (candidate_id);
+create index if not exists idx_universities_country on public.universities (country);
 
+-- Triggers
 drop trigger if exists set_profiles_updated_at on public.profiles;
 create trigger set_profiles_updated_at
 before update on public.profiles
@@ -166,13 +218,26 @@ create trigger set_cv_profiles_updated_at
 before update on public.cv_profiles
 for each row execute function public.set_updated_at();
 
+drop trigger if exists set_application_tracking_updated_at on public.application_tracking;
+create trigger set_application_tracking_updated_at
+before update on public.application_tracking
+for each row execute function public.set_updated_at();
+
+drop trigger if exists set_universities_updated_at on public.universities;
+create trigger set_universities_updated_at
+before update on public.universities
+for each row execute function public.set_updated_at();
+
+-- RLS
 alter table public.profiles enable row level security;
 alter table public.passages enable row level security;
 alter table public.questions enable row level security;
 alter table public.scholarships enable row level security;
+alter table public.universities enable row level security;
 alter table public.practice_sessions enable row level security;
 alter table public.shortlists enable row level security;
 alter table public.cv_profiles enable row level security;
+alter table public.application_tracking enable row level security;
 
 drop policy if exists "Profiles are owned by the authenticated user" on public.profiles;
 create policy "Profiles are owned by the authenticated user"
@@ -199,6 +264,12 @@ create policy "Scholarships are publicly readable"
   for select
   using (active = true);
 
+drop policy if exists "Universities are publicly readable" on public.universities;
+create policy "Universities are publicly readable"
+  on public.universities
+  for select
+  using (true);
+
 drop policy if exists "Users own their sessions" on public.practice_sessions;
 create policy "Users own their sessions"
   on public.practice_sessions
@@ -220,7 +291,14 @@ create policy "Users own their CV profiles"
   using (auth.uid() = profile_id)
   with check (auth.uid() = profile_id);
 
--- Safer than a trigger-based materialized view refresh for now.
+drop policy if exists "Users own their application tracking" on public.application_tracking;
+create policy "Users own their application tracking"
+  on public.application_tracking
+  for all
+  using (auth.uid() = candidate_id)
+  with check (auth.uid() = candidate_id);
+
+-- Read-only progress aggregation for the current profile.
 create or replace view public.user_section_accuracy as
 select
   ps.profile_id as user_id,

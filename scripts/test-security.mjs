@@ -117,4 +117,4 @@ console.log('1. Open http://localhost:5175 in your browser');
 console.log('2. Test authentication with valid/invalid emails');
 console.log('3. Test scholarship keyword extraction');
 console.log('4. Check browser console for security logs');
-console.log('5. Test data export functionality');
+console.log('5. Test results export functionality');

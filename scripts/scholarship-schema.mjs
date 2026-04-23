@@ -3,55 +3,70 @@ export function createEmptyScholarship() {
     id: null,
     name: null,
     awardingBody: null,
-    awardingBodyType: "unknown",
     coverage: {
-      type: "unknown",
+      tuition: false,
       tuitionCovered: false,
       livingCovered: false,
       flightsCovered: false,
-      amountGBP: null,
-      amountType: null,
+      visaFees: false,
+      numericAmount: null,
+      rawAmountString: "",
       currency: "GBP",
-      rawAmount: null,
     },
     eligibility: {
       nationalities: [],
-      nigerianEligible: null,
-      degreeClassRequired: null,
       disciplines: [],
-      ageLimit: null,
-      nyscRequired: false,
-      englishTestRequired: null,
-      otherRequirements: [],
+      degreeClassMin: "",
+      ageLimitMin: null,
+      ageLimitMax: null,
+      workExperienceYearsMin: 0,
+      employmentStatusAtApplication: null,
+      languageReqs: {
+        ielts: null,
+        toefl: null,
+        celpip: null,
+        exemptions: [],
+      },
+      refereesRequired: 0,
+      refereeCategories: [],
+      targetInstitutions: [],
+      targetProgrammes: [],
+      notes: "",
     },
     application: {
-      url: null,
+      url: "",
       portal: null,
       deadline: null,
-      deadlineType: "unknown",
+      deadlineType: "fixed",
       deadlineRaw: null,
-      sequencing: "unknown",
+      applicationOpensAt: null,
       requiredDocuments: [],
-      essayPrompt: null,
-      essayWordLimit: null,
+      essayPrompts: [],
     },
-    stackable: "unknown",
-    stackableWith: [],
-    competitionLevel: "unknown",
-    competitionReasoning: null,
-    fitScore: null,
-    fitReasoning: null,
-    tierGeographic: null,
-    source: {
-      sourceUrl: null,
+    provenance: {
+      sourceUrl: "",
       scrapedAt: null,
-      verified: false,
+      lastVerifiedAt: null,
+      verifiedBy: "",
+      confidenceScore: 0.5,
+      confidenceDecayRatePerDay: 0.001,
+      flaggedFields: [],
+      sourceType: "canonical",
+    },
+    source: {
+      sourceUrl: "",
+      scrapedAt: null,
+      verified: true,
       needsVerification: [],
-      confidence: 0,
+      confidence: 0.5,
       rawText: null,
     },
-    status: "unknown",
-    urgency: "green",
+    awardeeContributions: [],
+    tags: [],
+    fit_score_default: null,
+    source: "static",
+    verified: true,
+    active: true,
   };
 }
 
@@ -60,7 +75,8 @@ export function validateScholarship(obj) {
   if (!obj?.id) errors.push("missing id");
   if (!obj?.name) errors.push("missing name");
   if (!obj?.awardingBody) errors.push("missing awardingBody");
-  if (!obj?.source?.sourceUrl) errors.push("missing source.sourceUrl");
-  if (typeof obj?.source?.confidence !== "number") errors.push("confidence must be number");
+  if (!obj?.application?.url) errors.push("missing application.url");
+  if (!obj?.provenance?.sourceUrl) errors.push("missing provenance.sourceUrl");
+  if (typeof obj?.provenance?.confidenceScore !== "number") errors.push("confidenceScore must be number");
   return { valid: errors.length === 0, errors };
 }

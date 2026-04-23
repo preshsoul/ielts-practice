@@ -12,17 +12,20 @@ class SecurityLogger {
   constructor() {
     this.events = [];
     this.maxEvents = 1000; // Keep last 1000 events in memory
+    this.memorySessionId = null;
   }
 
   log(level, event, details = {}) {
+    const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : 'node';
+    const url = typeof window !== 'undefined' && window.location ? window.location.href : 'node';
     const logEntry = {
       timestamp: new Date().toISOString(),
       level,
       event,
       details: {
         ...details,
-        userAgent: navigator.userAgent,
-        url: window.location.href,
+        userAgent,
+        url,
         sessionId: this.getSessionId()
       }
     };
@@ -42,12 +45,26 @@ class SecurityLogger {
 
   // Generate or retrieve session ID
   getSessionId() {
-    let sessionId = sessionStorage.getItem('session_id');
-    if (!sessionId) {
-      sessionId = crypto.randomUUID();
-      sessionStorage.setItem('session_id', sessionId);
+    if (typeof sessionStorage !== 'undefined') {
+      let sessionId = sessionStorage.getItem('session_id');
+      if (!sessionId) {
+        sessionId = this.generateSessionId();
+        sessionStorage.setItem('session_id', sessionId);
+      }
+      return sessionId;
     }
-    return sessionId;
+
+    if (!this.memorySessionId) {
+      this.memorySessionId = this.generateSessionId();
+    }
+    return this.memorySessionId;
+  }
+
+  generateSessionId() {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    return `session_${Math.random().toString(36).slice(2)}_${Date.now()}`;
   }
 
   // Security event logging methods

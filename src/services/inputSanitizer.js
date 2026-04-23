@@ -10,16 +10,33 @@ const purifyConfig = {
   FORBID_ATTR: ['onclick', 'onload', 'onerror', 'onmouseover', 'style', 'href'],
 };
 
+function stripTags(input) {
+  return input
+    .replace(/<\/?[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function canUseDomPurify() {
+  return DOMPurify && typeof DOMPurify.sanitize === 'function';
+}
+
 class InputSanitizer {
   // Sanitize text input (removes HTML/script content)
   static sanitizeText(input) {
     if (typeof input !== 'string') return '';
-    return DOMPurify.sanitize(input, purifyConfig).trim();
+    if (canUseDomPurify()) {
+      return DOMPurify.sanitize(input, purifyConfig).trim();
+    }
+    return stripTags(input);
   }
 
   // Sanitize HTML content (allows limited safe tags for rich text)
   static sanitizeHtml(input, allowedTags = ['p', 'br', 'strong', 'em', 'u']) {
     if (typeof input !== 'string') return '';
+    if (!canUseDomPurify()) {
+      return stripTags(input);
+    }
     const htmlConfig = {
       ALLOWED_TAGS: allowedTags,
       ALLOWED_ATTR: [],

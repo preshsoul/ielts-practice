@@ -46,6 +46,232 @@ export async function ensureProfile(user) {
   return data;
 }
 
+export async function saveStructuredProfile(profileId, structuredProfile) {
+  if (!supabase || !profileId) return null;
+
+  const payload = {
+    ...structuredProfile,
+    last_seen_at: new Date().toISOString(),
+  };
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .update(payload)
+    .eq("id", profileId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function saveCvProfile(profileId, cvProfile) {
+  if (!supabase || !profileId) return null;
+
+  const payload = {
+    profile_id: profileId,
+    label: cvProfile?.label || null,
+    source_filename: cvProfile?.sourceFilename || null,
+    mime_type: cvProfile?.mimeType || null,
+    document_type: cvProfile?.documentType || null,
+    keywords: Array.isArray(cvProfile?.keywords) ? cvProfile.keywords : [],
+    raw_text_hash: cvProfile?.raw_text_hash || null,
+    extracted_excerpt: cvProfile?.extractedExcerpt || null,
+    extracted_text: cvProfile?.extractedText || null,
+    parsed_profile: cvProfile?.parsedProfile || {},
+    confidence: cvProfile?.confidence ?? null,
+  };
+
+  const { data, error } = await supabase
+    .from("cv_profiles")
+    .insert(payload)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+function buildApplicationChecklist(scholarship = {}) {
+  const application = scholarship.application || {};
+  const eligibility = scholarship.eligibility || {};
+  const requiredDocuments = Array.isArray(application.requiredDocuments) && application.requiredDocuments.length
+    ? application.requiredDocuments
+    : ["CV", "Transcript", "Two references"];
+  return {
+    requiredDocuments,
+    completedDocuments: [],
+    refereesRequired: eligibility.refereesRequired || application.refereesRequired || 2,
+  };
+}
+
+function buildApplicationHistory(state, previousHistory = []) {
+  return [
+    ...previousHistory,
+    {
+      state,
+      at: new Date().toISOString(),
+      source: "client",
+    },
+  ];
+}
+
+const APPLICATION_STATE_TRANSITIONS = {
+  saved: ["drafting", "submitted", "rejected"],
+  drafting: ["saved", "submitted", "rejected"],
+  submitted: ["drafting", "interview", "awarded", "rejected"],
+  interview: ["submitted", "awarded", "rejected"],
+  awarded: [],
+  rejected: [],
+};
+
+function normalizeApplicationState(state) {
+  const normalized = String(state || "").trim().toLowerCase();
+  return Object.prototype.hasOwnProperty.call(APPLICATION_STATE_TRANSITIONS, normalized) ? normalized : "saved";
+}
+
+export function getAllowedApplicationTransitions(state) {
+  const normalized = normalizeApplicationState(state);
+  return APPLICATION_STATE_TRANSITIONS[normalized] || [];
+}
+
+export async function loadApplicationTracking(profileId) {
+  if (!supabase || !profileId) return [];
+  const { data, error } = await supabase
+    .from("application_tracking")
+    .select("scholarship_id, state, state_history, documents_checklist, referees, notes, state_updated_at")
+    .eq("candidate_id", profileId)
+    .order("state_updated_at", { ascending: false });
+
+  if (error) throw error;
+  return data || [];
+}
+
+export async function saveApplicationTracking(profileId, scholarship, state = "saved") {
+  if (!supabase || !profileId || !scholarship?.id) return null;
+
+  const checklist = buildApplicationChecklist(scholarship);
+  const { data: existing, error: fetchError } = await supabase
+    .from("application_tracking")
+    .select("state_history")
+    .eq("candidate_id", profileId)
+    .eq("scholarship_id", scholarship.id)
+    .maybeSingle();
+
+  if (fetchError) throw fetchError;
+
+  const currentState = normalizeApplicationState(existing?.state || "saved");
+  const nextState = normalizeApplicationState(state || currentState);
+  const allowed = existing ? getAllowedApplicationTransitions(currentState) : ["saved", "drafting"];
+
+  if (existing && nextState !== currentState && !allowed.includes(nextState)) {
+    throw new Error(`Invalid application transition from ${currentState} to ${nextState}`);
+  }
+
+  const stateHistory = nextState === currentState && existing?.state_history?.length
+    ? existing.state_history
+    : buildApplicationHistory(nextState, existing?.state_history || []);
+  const payload = {
+    candidate_id: profileId,
+    scholarship_id: scholarship.id,
+    state: nextState,
+    state_history: stateHistory,
+    documents_checklist: checklist,
+    referees: existing?.referees || [],
+    notes: scholarship.notes || null,
+    state_updated_at: new Date().toISOString(),
+  };
+
+  const { data, error } = await supabase
+    .from("application_tracking")
+    .upsert(payload, { onConflict: "candidate_id,scholarship_id" })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function updateApplicationTracking(profileId, scholarshipId, nextState) {
+  if (!supabase || !profileId || !scholarshipId) return null;
+
+  const { data: existing, error: fetchError } = await supabase
+    .from("application_tracking")
+    .select("state, state_history, documents_checklist, referees, notes")
+    .eq("candidate_id", profileId)
+    .eq("scholarship_id", scholarshipId)
+    .maybeSingle();
+
+  if (fetchError) throw fetchError;
+  if (!existing) throw new Error("Tracking entry not found");
+
+  const currentState = normalizeApplicationState(existing.state);
+  const normalizedNextState = normalizeApplicationState(nextState);
+  if (normalizedNextState !== currentState && !getAllowedApplicationTransitions(currentState).includes(normalizedNextState)) {
+    throw new Error(`Invalid application transition from ${currentState} to ${normalizedNextState}`);
+  }
+
+  const stateHistory = normalizedNextState === currentState && existing?.state_history?.length
+    ? existing.state_history
+    : buildApplicationHistory(normalizedNextState, existing.state_history || []);
+
+  const { data, error } = await supabase
+    .from("application_tracking")
+    .update({
+      state: normalizedNextState,
+      state_history: stateHistory,
+      state_updated_at: new Date().toISOString(),
+    })
+    .eq("candidate_id", profileId)
+    .eq("scholarship_id", scholarshipId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function updateApplicationChecklist(profileId, scholarshipId, checklistPatch) {
+  if (!supabase || !profileId || !scholarshipId) return null;
+
+  const { data: existing, error: fetchError } = await supabase
+    .from("application_tracking")
+    .select("documents_checklist, referees")
+    .eq("candidate_id", profileId)
+    .eq("scholarship_id", scholarshipId)
+    .maybeSingle();
+
+  if (fetchError) throw fetchError;
+  if (!existing) throw new Error("Tracking entry not found");
+
+  const documents = {
+    ...(existing.documents_checklist || {}),
+    ...(checklistPatch?.documents_checklist || {}),
+  };
+  if (Array.isArray(checklistPatch?.completedDocuments)) {
+    documents.completedDocuments = checklistPatch.completedDocuments;
+  }
+  if (!Array.isArray(documents.completedDocuments)) {
+    documents.completedDocuments = [];
+  }
+  const referees = Array.isArray(checklistPatch?.referees) ? checklistPatch.referees : existing.referees || [];
+
+  const { data, error } = await supabase
+    .from("application_tracking")
+    .update({
+      documents_checklist: documents,
+      referees,
+      state_updated_at: new Date().toISOString(),
+    })
+    .eq("candidate_id", profileId)
+    .eq("scholarship_id", scholarshipId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
 async function hashText(text) {
   const encoded = new TextEncoder().encode(text);
   const digest = await crypto.subtle.digest("SHA-256", encoded);

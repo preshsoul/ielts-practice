@@ -8,10 +8,14 @@
     "build": "npx esbuild src/index.jsx --bundle --format=esm --outfile=dist/assets/index.js --minify && node scripts/copy-html.mjs",
     "preview": "vite preview",
     "content:refresh": "node scripts/refresh-content.mjs",
-    "content:scrape-scholarships": "node scripts/scrape-scholarships.mjs"
+    "content:scrape-scholarships": "node scripts/scrape-scholarships.mjs",
+    "content:scrape-questions": "node scripts/scrape-questions.mjs",
+    "content:review-questions": "node scripts/review-questions.mjs",
+    "test:parser": "node scripts/test-backend-parser.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.103.3",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.104.0",
     "dompurify": "^3.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

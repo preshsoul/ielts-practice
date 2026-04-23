@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-04-16T19:46:33.584Z",
-  "total": 72,
+  "updated_at": "2026-04-23T21:36:02.035Z",
+  "total": 117,
   "questions": [
     {
       "id": "q45",
@@ -1103,6 +1103,879 @@
       ],
       "answer": "She said she would submit the report the next day.",
       "explanation": "'Will' becomes 'would'; 'tomorrow' becomes 'the next day'; 'said' needs no object (unlike 'told'). B."
+    },
+    {
+      "id": "ielts-topic-bank-1-technology-in-daily-life-1-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p1",
+      "difficulty": 1,
+      "question": "The passage presents technology in daily life as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "technology in daily life"
+      ],
+      "passageText": "technology in daily life shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-1-technology-in-daily-life-1-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p1",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in technology in daily life.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "technology in daily life"
+      ],
+      "passageText": "technology in daily life shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-1-technology-in-daily-life-1-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p1",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles technology in daily life in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "technology in daily life"
+      ],
+      "passageText": "technology in daily life shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-1-technology-in-daily-life-1-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-1-p1",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about technology in daily life?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "technology in daily life"
+      ],
+      "passageText": "technology in daily life shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-1-technology-in-daily-life-1-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-1-p1",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on technology in daily life depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "technology in daily life"
+      ],
+      "passageText": "technology in daily life shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-1-education-and-learning-2-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p2",
+      "difficulty": 1,
+      "question": "The passage presents education and learning as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "education and learning"
+      ],
+      "passageText": "education and learning is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-1-education-and-learning-2-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p2",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in education and learning.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "education and learning"
+      ],
+      "passageText": "education and learning is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-1-education-and-learning-2-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p2",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles education and learning in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "education and learning"
+      ],
+      "passageText": "education and learning is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-1-education-and-learning-2-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-1-p2",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about education and learning?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "education and learning"
+      ],
+      "passageText": "education and learning is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-1-education-and-learning-2-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-1-p2",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on education and learning depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "education and learning"
+      ],
+      "passageText": "education and learning is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-1-health-and-sleep-habits-3-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p3",
+      "difficulty": 1,
+      "question": "The passage presents health and sleep habits as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "health and sleep habits"
+      ],
+      "passageText": "health and sleep habits illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe."
+    },
+    {
+      "id": "ielts-topic-bank-1-health-and-sleep-habits-3-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p3",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in health and sleep habits.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "health and sleep habits"
+      ],
+      "passageText": "health and sleep habits illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe."
+    },
+    {
+      "id": "ielts-topic-bank-1-health-and-sleep-habits-3-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-1-p3",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles health and sleep habits in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "health and sleep habits"
+      ],
+      "passageText": "health and sleep habits illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe."
+    },
+    {
+      "id": "ielts-topic-bank-1-health-and-sleep-habits-3-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-1-p3",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about health and sleep habits?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "health and sleep habits"
+      ],
+      "passageText": "health and sleep habits illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe."
+    },
+    {
+      "id": "ielts-topic-bank-1-health-and-sleep-habits-3-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-1-p3",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on health and sleep habits depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "health and sleep habits"
+      ],
+      "passageText": "health and sleep habits illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe."
+    },
+    {
+      "id": "ielts-topic-bank-2-plastic-pollution-101-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p101",
+      "difficulty": 1,
+      "question": "The passage presents plastic pollution as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "plastic pollution"
+      ],
+      "passageText": "plastic pollution has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance."
+    },
+    {
+      "id": "ielts-topic-bank-2-plastic-pollution-101-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p101",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in plastic pollution.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "plastic pollution"
+      ],
+      "passageText": "plastic pollution has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance."
+    },
+    {
+      "id": "ielts-topic-bank-2-plastic-pollution-101-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p101",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles plastic pollution in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "plastic pollution"
+      ],
+      "passageText": "plastic pollution has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance."
+    },
+    {
+      "id": "ielts-topic-bank-2-plastic-pollution-101-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-2-p101",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about plastic pollution?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "plastic pollution"
+      ],
+      "passageText": "plastic pollution has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance."
+    },
+    {
+      "id": "ielts-topic-bank-2-plastic-pollution-101-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-2-p101",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on plastic pollution depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "plastic pollution"
+      ],
+      "passageText": "plastic pollution has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance."
+    },
+    {
+      "id": "ielts-topic-bank-2-remote-work-102-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p102",
+      "difficulty": 1,
+      "question": "The passage presents remote work as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "remote work"
+      ],
+      "passageText": "remote work shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-2-remote-work-102-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p102",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in remote work.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "remote work"
+      ],
+      "passageText": "remote work shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-2-remote-work-102-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p102",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles remote work in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "remote work"
+      ],
+      "passageText": "remote work shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-2-remote-work-102-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-2-p102",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about remote work?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "remote work"
+      ],
+      "passageText": "remote work shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-2-remote-work-102-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-2-p102",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on remote work depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "remote work"
+      ],
+      "passageText": "remote work shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-2-university-funding-103-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p103",
+      "difficulty": 1,
+      "question": "The passage presents university funding as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "university funding"
+      ],
+      "passageText": "university funding is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-2-university-funding-103-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p103",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in university funding.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "university funding"
+      ],
+      "passageText": "university funding is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-2-university-funding-103-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-2-p103",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles university funding in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "university funding"
+      ],
+      "passageText": "university funding is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-2-university-funding-103-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-2-p103",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about university funding?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "university funding"
+      ],
+      "passageText": "university funding is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-2-university-funding-103-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-2-p103",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on university funding depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "university funding"
+      ],
+      "passageText": "university funding is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible."
+    },
+    {
+      "id": "ielts-topic-bank-3-urban-farming-201-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p201",
+      "difficulty": 1,
+      "question": "The passage presents urban farming as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "urban farming"
+      ],
+      "passageText": "urban farming reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-urban-farming-201-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p201",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in urban farming.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "urban farming"
+      ],
+      "passageText": "urban farming reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-urban-farming-201-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p201",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles urban farming in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "urban farming"
+      ],
+      "passageText": "urban farming reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-urban-farming-201-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-3-p201",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about urban farming?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "urban farming"
+      ],
+      "passageText": "urban farming reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-urban-farming-201-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-3-p201",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on urban farming depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "urban farming"
+      ],
+      "passageText": "urban farming reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-public-transport-202-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p202",
+      "difficulty": 1,
+      "question": "The passage presents public transport as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "public transport"
+      ],
+      "passageText": "public transport reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-public-transport-202-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p202",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in public transport.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "public transport"
+      ],
+      "passageText": "public transport reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-public-transport-202-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p202",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles public transport in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "public transport"
+      ],
+      "passageText": "public transport reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-public-transport-202-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-3-p202",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about public transport?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "public transport"
+      ],
+      "passageText": "public transport reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-public-transport-202-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-3-p202",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on public transport depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "public transport"
+      ],
+      "passageText": "public transport reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
+    },
+    {
+      "id": "ielts-topic-bank-3-digital-privacy-203-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p203",
+      "difficulty": 1,
+      "question": "The passage presents digital privacy as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "digital privacy"
+      ],
+      "passageText": "digital privacy shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-3-digital-privacy-203-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p203",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in digital privacy.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "digital privacy"
+      ],
+      "passageText": "digital privacy shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-3-digital-privacy-203-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "ielts-topic-bank-3-p203",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles digital privacy in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "digital privacy"
+      ],
+      "passageText": "digital privacy shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-3-digital-privacy-203-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "ielts-topic-bank-3-p203",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about digital privacy?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "digital privacy"
+      ],
+      "passageText": "digital privacy shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    },
+    {
+      "id": "ielts-topic-bank-3-digital-privacy-203-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "ielts-topic-bank-3-p203",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on digital privacy depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "digital privacy"
+      ],
+      "passageText": "digital privacy shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
     }
   ]
 }

@@ -65,12 +65,16 @@ function extractCoverage(text) {
 
   return {
     type,
+    tuition: tuition || fullCues,
     tuitionCovered: tuition || fullCues,
     livingCovered: stipend || fullCues,
     flightsCovered: flights || fullCues,
+    visaFees: /\bvisa\s+fees?\b/i.test(text),
+    numericAmount: amountGBP,
     amountGBP,
     amountType: amountGBP ? amountType : null,
     currency: "GBP",
+    rawAmountString: rawAmount,
     rawAmount,
   };
 }
@@ -91,9 +95,25 @@ function extractEligibility(text) {
 
   return {
     nationalities: nigerianEligible ? ["international"] : [],
+    degreeClassMin: normalizeDegreeClass(degreeMatch?.[1]) || "",
+    disciplines: [],
+    ageLimitMin: null,
+    ageLimitMax: null,
+    workExperienceYearsMin: 0,
+    employmentStatusAtApplication: null,
+    languageReqs: {
+      ielts: englishMatch?.[1] ? `IELTS ${englishMatch[1]}` : null,
+      toefl: englishMatch?.[2] ? `TOEFL ${englishMatch[2]}` : null,
+      celpip: null,
+      exemptions: [],
+    },
+    refereesRequired: /\b(referee|reference letter|references?)\b/i.test(text) ? 2 : 0,
+    refereeCategories: [],
+    targetInstitutions: [],
+    targetProgrammes: [],
+    notes: "",
     nigerianEligible,
     degreeClassRequired: normalizeDegreeClass(degreeMatch?.[1]),
-    disciplines: [],
     ageLimit: null,
     nyscRequired: /\bnysc\b/i.test(text),
     englishTestRequired,
@@ -139,9 +159,9 @@ function classifyAwardingBody(body) {
 function computeConfidence(record) {
   let c = 0;
   if (record.name && record.name.length > 10) c += 0.2;
-  if (record.coverage.amountGBP) c += 0.25;
+  if (record.coverage.numericAmount || record.coverage.amountGBP) c += 0.25;
   if (record.application.deadline || record.application.deadlineType === "rolling") c += 0.25;
-  if (record.eligibility.nigerianEligible || record.eligibility.nationalities.length) c += 0.15;
+  if (record.eligibility.degreeClassMin || record.eligibility.nigerianEligible || record.eligibility.nationalities.length) c += 0.15;
   if (record.application.url) c += 0.15;
   return Math.min(1, c);
 }
@@ -181,7 +201,7 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title }) {
   record.id = slugify(`${awardingBody}-${name}`);
   record.name = name;
   record.awardingBody = awardingBody;
-  record.awardingBodyType = classifyAwardingBody(awardingBody);
+  record.sourceType = classifyAwardingBody(awardingBody);
   record.coverage = extractCoverage(text);
   record.eligibility = extractEligibility(text);
 
@@ -191,12 +211,20 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title }) {
   record.application.deadlineType = deadline.type;
   record.application.deadlineRaw = deadline.raw;
 
+  const now = new Date().toISOString();
+  const confidence = computeConfidence(record);
+  const needsVerification = computeNeedsVerification(record);
+  record.provenance.sourceUrl = sourceUrl;
+  record.provenance.scrapedAt = now;
+  record.provenance.sourceType = "scraped";
+  record.provenance.confidenceScore = confidence;
+  record.provenance.flaggedFields = needsVerification;
   record.source.sourceUrl = sourceUrl;
-  record.source.scrapedAt = new Date().toISOString();
+  record.source.scrapedAt = now;
   record.source.verified = false;
   record.source.rawText = text.slice(0, 2000);
-  record.source.confidence = computeConfidence(record);
-  record.source.needsVerification = computeNeedsVerification(record);
+  record.source.confidence = confidence;
+  record.source.needsVerification = needsVerification;
 
   record.status = deadline.type === "rolling" ? "open" : record.application.deadline ? "open" : "unknown";
   record.urgency = computeUrgency(deadline.iso);

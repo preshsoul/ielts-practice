@@ -15,3 +15,16 @@ tmp_scholarship.js
 /.vercel/
 /.netlify/
 supabase/.branches/
+*.backup
+*.tmp
+*.png
+check_console.mjs
+security-test.html
+security_rls_fixes.sql
+"# Code Citations.md"
+.agents/
+.junie/
+.windsurf/
+.zencoder/
+skills/
+skills-lock.json
