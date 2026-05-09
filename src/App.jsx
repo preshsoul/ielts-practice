@@ -621,11 +621,13 @@ export default function App() {
 
   useEffect(() => {
     Promise.all([
-      loadSessions(),
+      loadSessions().catch(() => []),
       loadPublicContent().catch(() => ({ questions: [], passages: {}, institutions: [], notifications: [], contentManifest: null })),
     ]).then(([storedSessions, publicContent]) => {
       setSessions(storedSessions);
       setContent(publicContent);
+      setLoaded(true);
+    }).catch(() => {
       setLoaded(true);
     });
   }, []);
@@ -675,7 +677,10 @@ export default function App() {
       } else {
         setProfile(null);
       }
-      setAuthReady(true);
+      if (mounted) setAuthReady(true);
+    }).catch((error) => {
+      console.error("Session check failed:", error);
+      if (mounted) setAuthReady(true);
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
