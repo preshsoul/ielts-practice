@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, Navigate, Routes, Route, useLocation } from "react-router-dom";
 import PracticeView from './components/PracticeView.jsx';
+import PracticeHub from './components/PracticeHub.jsx';
+import ModulePracticeScreen from './components/ModulePracticeScreen.jsx';
 import ProgressView from './components/ProgressView.jsx';
 import WeakAreasView from './components/WeakAreasView.jsx';
 import LearningPathView from './components/LearningPathView.jsx';
 import ScholarshipPage from './components/ScholarshipPage.jsx';
 import AccountProfileForm from './components/AccountProfileForm.jsx';
 import AccountStatusCard from './components/AccountStatusCard.jsx';
+import AdminContentScreen from './components/AdminContentScreen.jsx';
+import AuthGate from './components/AuthGate.jsx';
+import OnboardingForm from './components/OnboardingForm.jsx';
+import DashboardHome from './components/DashboardHome.jsx';
 import './styles.css';
-import { supabase, loadPublicContent, ensureProfile, loadPracticeSessions, savePracticeSession, saveStructuredProfile, saveCvProfile } from "./services/supabaseData.js";
+import { supabase, loadPublicContent, ensureProfile, loadPracticeSessions, savePracticeSession, saveStructuredProfile, saveCvProfile, saveOnboardingProfile } from "./services/supabaseData.js";
 import { createStructuredProfileDraft, serializeStructuredProfileDraft } from "./services/scoringEngine.js";
 import securityLogger from "./services/securityLogger.js";
 import InputSanitizer from "./services/inputSanitizer.js";
 import SecureErrorHandler from "./services/secureErrorHandler.js";
 import { LEARNING_PATH } from "./data/learningPath.js";
+import { createOnboardingDraft, serializeOnboardingDraft } from "./lib/onboarding.js";
 
 /* ═══════════════════════════════════════════════════════
    HELPERS
@@ -22,7 +29,13 @@ const EXAMS = ["All", "IELTS", "CEP (C2)", "CELPIP"];
 const DIFF_LABEL = { 1: "Easy", 2: "Medium", 3: "Hard" };
 const DIFF_COLOR = { 1: "#1A8C4E", 2: "#B86A0A", 3: "#C93838" };
 const EXAM_COLOR = { IELTS: "#C47A00", "CEP (C2)": "#2A7AB0", CELPIP: "#A83030" };
-const APP_OWNER = import.meta.env.VITE_APP_OWNER || 'User';
+const ADMIN_EMAILS = new Set(
+  String(import.meta.env.VITE_ADMIN_EMAIL || "")
+    .split(",")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean)
+);
+const APP_OWNER = import.meta.env.VITE_APP_OWNER || "Loci: Your Source for Direction";
 const C = {
   bg: "#F9F7F4",
   surface: "#FFFFFF",
@@ -38,11 +51,6 @@ const C = {
   bg3: "#EAE6DF",
 };
 
-const SECTIONS_BY_EXAM = {
-  "IELTS": ["Reading – T/F/NG", "Reading – Multiple Choice", "Grammar", "Academic Vocabulary", "Writing Task 1", "Writing Task 2", "Listening", "Exam Strategy"],
-  "CEP (C2)": ["Use of English – Open Cloze", "Word Formation", "Key Word Transformation", "Multiple Choice Cloze", "Exam Strategy"],
-  "CELPIP": ["Exam Overview", "Reading", "Writing", "Speaking", "Exam Strategy"],
-};
 
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
@@ -110,6 +118,9 @@ function safeLoadSessions(rawData) {
       score: Number(session.score) || 0,
       total: Number(session.total) || 0,
       exam: String(session.exam || 'IELTS'),
+      module: String(session.module || 'reading'),
+      mode: String(session.mode || 'practice'),
+      component: String(session.component || 'Reading quiz'),
       results: Array.isArray(session.results) ? session.results : []
     }));
   } catch {
@@ -130,6 +141,9 @@ function normalizeSessions(list) {
   return (Array.isArray(list) ? list : []).map((session) => ({
     ...session,
     id: session.id || session.date || crypto.randomUUID(),
+    module: session.module || "reading",
+    mode: session.mode || "practice",
+    component: session.component || "Reading quiz",
   }));
 }
 
@@ -172,6 +186,8 @@ function buildResultsExport(sessions) {
       id: session.id,
       date: session.date,
       exam: session.exam,
+      module: session.module || session.exam,
+      mode: session.mode || "practice",
       score: session.score,
       total: session.total,
       durationSecs: session.durationSecs || null,
@@ -203,64 +219,156 @@ function GhostBtn({ children, onClick }) {
   return <button onClick={onClick} className="ghost-btn">{children}</button>;
 }
 
+function InterfaceIcon({ name }) {
+  const iconProps = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' };
+  switch (name) {
+    case 'home':
+      return (
+        <svg {...iconProps}>
+          <path d="M3 11.5L12 4l9 7.5" />
+          <path d="M9 21V12h6v9" />
+          <path d="M6 10.5v10" />
+          <path d="M18 10.5v10" />
+        </svg>
+      );
+    case 'practice':
+      return (
+        <svg {...iconProps}>
+          <path d="M6 4h12v16H6z" />
+          <path d="M9 8h6" />
+          <path d="M9 12h6" />
+          <path d="M9 16h4" />
+        </svg>
+      );
+    case 'scholarships':
+      return (
+        <svg {...iconProps}>
+          <path d="M4 7l8-4 8 4v12H4z" />
+          <path d="M4 7l8 4 8-4" />
+          <path d="M12 11v10" />
+          <path d="M9 17h6" />
+        </svg>
+      );
+    case 'account':
+      return (
+        <svg {...iconProps}>
+          <circle cx="12" cy="8" r="4" />
+          <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+        </svg>
+      );
+    case 'admin':
+      return (
+        <svg {...iconProps}>
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a7.96 7.96 0 0 0 .6-3 7.96 7.96 0 0 0-.6-3" />
+          <path d="M4.6 9a7.96 7.96 0 0 0-.6 3 7.96 7.96 0 0 0 .6 3" />
+          <path d="M9.5 19.4a8 8 0 0 0 5 0" />
+          <path d="M9.5 4.6a8 8 0 0 0 5 0" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════
    ROUTED APP
 ═══════════════════════════════════════════════════════ */
-const MAIN_NAV = [
-  { to: "/practice", label: "Practice" },
-  { to: "/scholarships", label: "Scholarships" },
-  { to: "/account", label: "Account" },
-];
 
 const PRACTICE_NAV = [
-  { to: "/practice", label: "Practice", end: true },
+  { to: "/practice", label: "Hub", end: true },
+  { to: "/practice/reading", label: "Reading" },
+  { to: "/practice/listening", label: "Listening" },
+  { to: "/practice/writing", label: "Writing" },
+  { to: "/practice/speaking", label: "Speaking" },
   { to: "/practice/progress", label: "Progress" },
   { to: "/practice/weak-areas", label: "Weak Areas" },
   { to: "/practice/learning-path", label: "Learning Path" },
 ];
 
-function Shell({ sessions, onReset, children }) {
-  return (
-    <div className="app-container app-shell" style={{ color: C.text, fontFamily: "var(--font-reading)" }}>
-      <header className="app-sidebar">
-        <Link to="/" className="app-brand app-brand-link">
-          <div className="app-brand-kicker">IELTS · Practice & Scholarship Tools</div>
-          <div className="app-brand-title">{APP_OWNER}</div>
-          <div className="app-brand-subtitle">A calm study workspace for exam prep and scholarship planning.</div>
-        </Link>
+function Shell({ sessions, onReset, children, authUser, profile }) {
+  const isAdmin = authUser?.email ? ADMIN_EMAILS.has(authUser.email.toLowerCase()) : false;
+  const navItems = [
+    { to: "/", label: "Home", icon: "home", end: true },
+    { to: "/practice", label: "Practice", icon: "practice" },
+    { to: "/scholarships", label: "Scholarships", icon: "scholarships" },
+    { to: "/account", label: "Profile", icon: "account" },
+  ];
 
-        <nav className="app-nav" aria-label="Primary">
-          {MAIN_NAV.map((item) => (
+  if (isAdmin) {
+    navItems.push({ to: "/admin", label: "Admin", icon: "admin" });
+  }
+
+  const targetBand = profile?.target_band || "Set goal";
+
+  return (
+    <div className="flight-deck-grid">
+      {/* Flight Deck Sidebar */}
+      <aside className="glass-sidebar flight-deck-sidebar">
+        <div className="sidebar-header">
+          <div className="sidebar-brand">
+            <div className="sidebar-logo">LOCI</div>
+            <div className="sidebar-title">Academic Co-Pilot</div>
+            <div className="sidebar-subtitle">Research, prep, scholarship flow</div>
+          </div>
+
+          {/* Mini Profile */}
+          <div className="mini-profile">
+            <div className="mini-profile-avatar">
+              {authUser?.email?.[0]?.toUpperCase() || "A"}
+            </div>
+            <div className="mini-profile-info">
+              <div className="mini-profile-band">Goal: {targetBand}</div>
+              <div className="mini-profile-status">Live guidance</div>
+            </div>
+          </div>
+
+          {/* System Status */}
+          <div className="system-status">
+            <div className="status-indicator active"></div>
+            <span>Relevance engine running</span>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <nav className="sidebar-nav">
+          {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               end={item.end}
-              className={({ isActive }) => `route-link${isActive ? " active" : ""}`}
+              className={({ isActive }) => `sidebar-nav-item${isActive ? " active" : ""}`}
             >
-              {item.label}
+              <span className="nav-icon"><InterfaceIcon name={item.icon} /></span>
+              <span className="nav-label">{item.label}</span>
             </NavLink>
           ))}
         </nav>
 
-        <div className="shell-actions">
-          <div className="session-count">
-            {sessions.length} session{sessions.length !== 1 ? "s" : ""}
+        {/* Session Info */}
+        <div className="sidebar-footer">
+          <div className="session-info">
+            <div className="session-count">{sessions.length} session{sessions.length !== 1 ? "s" : ""}</div>
+            <button onClick={onReset} className="sidebar-reset-btn">Reset</button>
           </div>
-          <button onClick={onReset} className="ghost-btn ghost-btn-danger">Reset</button>
         </div>
-      </header>
+      </aside>
 
-      <main className="app-main">{children}</main>
+      {/* Main Content Area */}
+      <main className="flight-deck-main">
+        {children}
+      </main>
 
-      <nav className="mobile-nav" aria-label="Mobile navigation">
-        {MAIN_NAV.filter((item) => item.to !== "/account").map((item) => (
+      <nav className="mobile-nav" aria-label="Primary navigation">
+        {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             end={item.end}
             className={({ isActive }) => `mobile-nav-btn${isActive ? " active" : ""}`}
           >
-            {item.label}
+            <InterfaceIcon name={item.icon} />
+            <span>{item.label}</span>
           </NavLink>
         ))}
       </nav>
@@ -307,55 +415,6 @@ function PracticeShell({ title, subtitle, weakCount, exportAction, children }) {
   );
 }
 
-function LandingPage({ questionsCount, examCount, passageCount }) {
-  return (
-    <section className="hero-grid">
-      <div className="hero-copy">
-        <div className="section-kicker">Landing</div>
-        <h1 className="hero-title">Prepare smarter. Find your scholarship.</h1>
-        <p className="hero-lead">
-          Built for exam prep and scholarship planning, with a calm editorial interface and clear study flows.
-        </p>
-        <div className="hero-actions">
-          <Link className="primary-btn link-button" to="/practice">Start practicing →</Link>
-          <Link className="ghost-btn link-button" to="/scholarships">Find scholarships</Link>
-        </div>
-      </div>
-
-      <aside className="hero-panel">
-        <div className="hero-panel-title">Current snapshot</div>
-        <div className="hero-stats">
-          <div className="stat-card">
-            <div className="stat-label">Questions</div>
-            <div className="stat-value">{questionsCount}</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-label">Exams</div>
-            <div className="stat-value">{examCount}</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-label">Passages</div>
-            <div className="stat-value">{passageCount}</div>
-          </div>
-        </div>
-        <div className="feature-strip">
-          <div className="feature-card">
-            <div className="feature-title">Adaptive Practice</div>
-            <div className="feature-text">Question queueing and weak-area weighting already work in-browser.</div>
-          </div>
-          <div className="feature-card">
-            <div className="feature-title">Scholarship Matching</div>
-            <div className="feature-text">Keyword-driven scholarship browsing and shortlist support are live.</div>
-          </div>
-          <div className="feature-card">
-            <div className="feature-title">Learning Path</div>
-            <div className="feature-text">Section guidance and revision notes are organized as separate routes.</div>
-          </div>
-        </div>
-      </aside>
-    </section>
-  );
-}
 
 function AccountPage({
   sessions,
@@ -415,36 +474,24 @@ function AccountPage({
   );
 }
 
-function ProtectedRoute({ component: Component, authUser, requiredRole = 'admin' }) {
-  if (!authUser) return <Navigate to="/" replace />;
-  // TODO: Add role checking when role system is implemented
-  return <Component />;
+function ProtectedRoute({ component: Component, authUser, isAdmin, ...rest }) {
+  if (!authUser || !isAdmin) return <Navigate to="/account" replace />;
+  return <Component authUser={authUser} {...rest} />;
 }
 
-function AdminPage() {
-  return (
-    <section className="panel-card route-card">
-      <PageHeader
-        title="Admin"
-        subtitle="Question verification and content review will live here once the backend review queue is added."
-      />
-      <div className="empty-state">
-        <div className="empty-state-title">Admin queue not wired yet</div>
-        <div className="empty-state-copy">
-          This route is reserved for verified-question review, scholarship moderation, and future content operations.
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, passages }) {
+function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, passages, LEARNING_PATH }) {
   const weak = computeWeakSections(sessions);
   const location = useLocation();
   const pathname = location.pathname;
 
   let content = (
+    <PracticeHub sessions={sessions} C={C} PrimaryBtn={PrimaryBtn} />
+  );
+
+  if (pathname === "/practice/reading") {
+    content = (
       <PracticeView
+        module="reading"
         sessions={sessions}
         onSessionComplete={onSessionComplete}
         QB={qb}
@@ -460,9 +507,44 @@ function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, passage
         Chip={Chip}
         C={C}
       />
-  );
-
-  if (pathname === "/practice/progress") {
+    );
+  } else if (pathname === "/practice/listening") {
+    content = (
+      <ModulePracticeScreen
+        module="listening"
+        sessions={sessions}
+        onSessionComplete={onSessionComplete}
+        C={C}
+        PrimaryBtn={PrimaryBtn}
+        GhostBtn={GhostBtn}
+        Chip={Chip}
+      />
+    );
+  } else if (pathname === "/practice/writing") {
+    content = (
+      <ModulePracticeScreen
+        module="writing"
+        sessions={sessions}
+        onSessionComplete={onSessionComplete}
+        C={C}
+        PrimaryBtn={PrimaryBtn}
+        GhostBtn={GhostBtn}
+        Chip={Chip}
+      />
+    );
+  } else if (pathname === "/practice/speaking") {
+    content = (
+      <ModulePracticeScreen
+        module="speaking"
+        sessions={sessions}
+        onSessionComplete={onSessionComplete}
+        C={C}
+        PrimaryBtn={PrimaryBtn}
+        GhostBtn={GhostBtn}
+        Chip={Chip}
+      />
+    );
+  } else if (pathname === "/practice/progress") {
     content = <ProgressView sessions={sessions} C={C} Chip={Chip} EXAM_COLOR={EXAM_COLOR} />;
   } else if (pathname === "/practice/weak-areas") {
     content = <WeakAreasView sessions={sessions} C={C} Chip={Chip} computeWeakSections={computeWeakSections} />;
@@ -482,29 +564,49 @@ function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, passage
   );
 }
 
-function ScholarshipRoutes({ sessions, institutions, authUser, profile, onImportCv, cvImportBusy, cvImportMessage }) {
+function ScholarshipRoutes({ sessions, institutions, authUser, profile, onImportCv, cvImportBusy, cvImportMessage, contentManifest, notifications }) {
   const { pathname } = useLocation();
+  const freshness = contentManifest?.updated_at ? new Date(contentManifest.updated_at).toLocaleDateString("en-GB") : "No recent content manifest";
   return (
     <>
       <PageHeader
         title="Scholarships"
-        subtitle={pathname === "/scholarships/shortlist" ? "Your shortlist is tracked in the scholarship workspace for now." : "Match your profile to institutions and keep a shortlist of viable options."}
+        subtitle={pathname === "/scholarships/shortlist"
+          ? "Your shortlist is tracked in the scholarship workspace for now."
+          : `${freshness}. Match your profile to institutions and keep a shortlist of viable options.`}
       />
       <section className="panel-card">
-        <ScholarshipPage sessions={sessions} institutions={institutions} authUser={authUser} profile={profile} onImportCv={onImportCv} cvImportBusy={cvImportBusy} cvImportMessage={cvImportMessage} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} />
+        <ScholarshipPage
+          sessions={sessions}
+          institutions={institutions}
+          authUser={authUser}
+          profile={profile}
+          onImportCv={onImportCv}
+          cvImportBusy={cvImportBusy}
+          cvImportMessage={cvImportMessage}
+          contentManifest={contentManifest}
+          notifications={notifications}
+          C={C}
+          Chip={Chip}
+          PrimaryBtn={PrimaryBtn}
+        />
       </section>
     </>
   );
 }
 
 export default function App() {
+  const location = useLocation();
   const [sessions, setSessions] = useState([]);
-  const [content, setContent] = useState({ questions: [], passages: {}, institutions: [] });
+  const [content, setContent] = useState({ questions: [], passages: {}, institutions: [], notifications: [], contentManifest: null });
   const [loaded, setLoaded] = useState(false);
   const [authReady, setAuthReady] = useState(false);
   const [authUser, setAuthUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [profileDraft, setProfileDraft] = useState(() => createStructuredProfileDraft());
+  const [onboardingDraft, setOnboardingDraft] = useState(() => createOnboardingDraft());
+  const [onboardingMessage, setOnboardingMessage] = useState("");
+  const [onboardingBusy, setOnboardingBusy] = useState(false);
   const [profileMessage, setProfileMessage] = useState("");
   const [profileBusy, setProfileBusy] = useState(false);
   const [cvImportBusy, setCvImportBusy] = useState(false);
@@ -520,7 +622,7 @@ export default function App() {
   useEffect(() => {
     Promise.all([
       loadSessions(),
-      loadPublicContent().catch(() => ({ questions: [], passages: {}, institutions: [] })),
+      loadPublicContent().catch(() => ({ questions: [], passages: {}, institutions: [], notifications: [], contentManifest: null })),
     ]).then(([storedSessions, publicContent]) => {
       setSessions(storedSessions);
       setContent(publicContent);
@@ -534,6 +636,16 @@ export default function App() {
     } else {
       setProfileDraft(createStructuredProfileDraft());
       setProfileMessage("");
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (profile) {
+      setOnboardingDraft(createOnboardingDraft(profile));
+      setOnboardingMessage("");
+    } else {
+      setOnboardingDraft(createOnboardingDraft());
+      setOnboardingMessage("");
     }
   }, [profile]);
 
@@ -631,6 +743,27 @@ export default function App() {
       setProfileMessage("Unable to save your profile right now.");
     } finally {
       setProfileBusy(false);
+    }
+  };
+
+  const saveOnboarding = async () => {
+    if (!authUser?.id || !profile?.id) {
+      setOnboardingMessage("Sign in first to save your onboarding setup.");
+      return;
+    }
+
+    setOnboardingBusy(true);
+    setOnboardingMessage("");
+    try {
+      const payload = serializeOnboardingDraft(onboardingDraft);
+      const updatedProfile = await saveOnboardingProfile(profile.id, payload);
+      setProfile(updatedProfile);
+      setOnboardingMessage("Setup saved. Your dashboard is ready.");
+    } catch (error) {
+      console.error(error);
+      setOnboardingMessage("Unable to save onboarding right now.");
+    } finally {
+      setOnboardingBusy(false);
     }
   };
 
@@ -760,21 +893,67 @@ export default function App() {
     }
   };
 
+  const pathname = location.pathname;
+  const publicMode = pathname === "/signup"
+    ? "signup"
+    : pathname === "/verify"
+      ? "verify"
+      : "login";
+
   if (!loaded || !authReady) {
     return <div style={{ background: C.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: C.muted, fontFamily: "var(--font-ui)", fontSize: 12 }}>Loading your data…</div>;
   }
 
+  if (pathname === "/reset-password") {
+    return <AuthGate mode="reset" />;
+  }
+
+  if (!authUser) {
+    return <AuthGate mode={publicMode} />;
+  }
+
+  if (pathname === "/onboarding") {
+    return (
+      <div style={{ background: C.bg, minHeight: "100vh", color: C.text }}>
+        <OnboardingForm
+          profile={profile}
+          draft={onboardingDraft}
+          setDraft={setOnboardingDraft}
+          onSave={saveOnboarding}
+          saving={onboardingBusy}
+          message={onboardingMessage}
+        />
+      </div>
+    );
+  }
+
+  const isAdmin = authUser?.email ? ADMIN_EMAILS.has(authUser.email.toLowerCase()) : false;
   const exportAction = () => exportResultsData(sessions, authUser?.id || profile?.id || 'anonymous');
   const QB = content.questions;
   const PASSAGES = content.passages;
   const institutions = content.institutions;
 
   return (
-    <Shell sessions={sessions} onReset={resetData}>
+    <Shell sessions={sessions} onReset={resetData} authUser={authUser} profile={profile}>
       <Routes>
-        <Route path="/" element={<LandingPage questionsCount={QB.length} examCount={Object.keys(SECTIONS_BY_EXAM).length} passageCount={Object.keys(PASSAGES).length} />} />
-        <Route path="/practice/*" element={<PracticeRoutes sessions={sessions} onSessionComplete={onSessionComplete} exportAction={exportAction} qb={QB} passages={PASSAGES} />} />
-        <Route path="/scholarships/*" element={<ScholarshipRoutes sessions={sessions} institutions={institutions} authUser={authUser} profile={profile} cvImportBusy={cvImportBusy} cvImportMessage={cvImportMessage} onImportCv={handleCvImport} />} />
+        <Route path="/" element={<DashboardHome profile={profile} sessions={sessions} contentManifest={content.contentManifest} notifications={content.notifications} />} />
+        <Route path="/practice/*" element={<PracticeRoutes sessions={sessions} onSessionComplete={onSessionComplete} exportAction={exportAction} qb={QB} passages={PASSAGES} LEARNING_PATH={LEARNING_PATH} />} />
+        <Route
+          path="/scholarships/*"
+          element={
+            <ScholarshipRoutes
+              sessions={sessions}
+              institutions={institutions}
+              authUser={authUser}
+              profile={profile}
+              cvImportBusy={cvImportBusy}
+              cvImportMessage={cvImportMessage}
+              onImportCv={handleCvImport}
+              contentManifest={content.contentManifest}
+              notifications={content.notifications}
+            />
+          }
+        />
         <Route
           path="/account"
           element={
@@ -796,7 +975,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/admin" element={<ProtectedRoute component={AdminPage} authUser={authUser} />} />
+        <Route path="/admin" element={<ProtectedRoute component={AdminContentScreen} authUser={authUser} isAdmin={isAdmin} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Shell>
