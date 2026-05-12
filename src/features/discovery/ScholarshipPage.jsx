@@ -128,6 +128,16 @@ function getSourceLabel(record = {}) {
   }
 }
 
+function getSourceHost(record = {}) {
+  const sourceUrl = String(record?.source_url || record?.sourceUrl || record?.website || "").trim();
+  if (!sourceUrl) return "";
+  try {
+    return new URL(sourceUrl).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
 export default function ScholarshipPage(props) {
   const { C, Chip } = props;
   const {
@@ -610,24 +620,28 @@ export default function ScholarshipPage(props) {
       </div>
 
       {universityPicks.length > 0 && (
-        <div className="scholarship-card" style={{ marginBottom: 20 }}>
+      <div className="scholarship-card" style={{ marginBottom: 20 }}>
           <div className="scholarship-card-label">University picks</div>
           <div className="scholarship-intro-copy" style={{ marginBottom: 14 }}>
             Official university and university-adjacent opportunities in the UK and NATO countries, shown first so you can spot the strongest academic routes quickly.
           </div>
           <div style={{ display: "grid", gap: 10 }}>
             {universityPicks.map((scholarship) => (
-              <div key={scholarship.id} style={{ padding: 14, border: "1px solid var(--border)", borderRadius: 12, background: "var(--color-bg-surface)" }}>
+              <div key={scholarship.id} style={{ padding: 14, border: "1px solid var(--border)", borderRadius: 12, background: "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,248,244,0.9))" }}>
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: C.accent, fontFamily: "var(--font-ui)", marginBottom: 3 }}>
-                      {cleanText(getSourceLabel(scholarship), { maxLength: 80 })}
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 5 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: C.accent, fontFamily: "var(--font-ui)" }}>
+                        {cleanText(getSourceLabel(scholarship), { maxLength: 72 })}
+                      </div>
+                      <Chip label="University pick" color={C.green} small />
                     </div>
-                    <div style={{ fontSize: 15, fontWeight: 700 }}>
-                      {cleanText(`${getSourceLabel(scholarship)} · ${getScholarshipTitle(scholarship)}`, { maxLength: 140 })}
+                    <div style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.35 }}>
+                      {cleanText(getScholarshipTitle(scholarship), { maxLength: 120 })}
                     </div>
                     <div style={{ fontSize: 12, color: C.muted, fontFamily: "var(--font-ui)" }}>
                       {(cleanText(scholarship.city, { maxLength: 40 }) || "Official university route") + (scholarship.country ? `, ${cleanText(scholarship.country, { maxLength: 40 })}` : "")}
+                      {getSourceHost(scholarship) ? ` · ${getSourceHost(scholarship)}` : ""}
                     </div>
                   </div>
                   <Chip label={`Priority ${Math.round((scholarship.priority_score || 0) * 100)}/100`} color={C.green} small />
@@ -641,11 +655,6 @@ export default function ScholarshipPage(props) {
                       ].filter(Boolean)
                   ).join(" ") || "This looks like a strong university-linked opportunity."}
                 </div>
-                {scholarship.source_url && (
-                  <div style={{ fontSize: 12, color: C.muted, marginTop: 8, fontFamily: "var(--font-ui)", wordBreak: "break-word" }}>
-                    {cleanText(scholarship.source_url, { maxLength: 140 })}
-                  </div>
-                )}
               </div>
             ))}
           </div>
