@@ -16,7 +16,13 @@ import {
 import { cleanText, cleanUrl } from "../../lib/security.js";
 import { getProfileCompletion } from "../../lib/profileCompletion.js";
 import { useWorkspace } from "../../components/layout/WorkspaceContext.jsx";
-import { buildPlainMatchReasons, formatIeltsScore } from "../../lib/opportunitySignals.js";
+import {
+  buildPlainMatchReasons,
+  classifyOpportunityFocus,
+  formatIeltsScore,
+  isNatoCountry,
+  isUniversityOpportunity,
+} from "../../lib/opportunitySignals.js";
 
 function parseMaxFee(value) {
   const num = Number(value);
@@ -97,6 +103,29 @@ function getScholarshipTuition(scholarship) {
     ?? 0;
   const parsed = Number(tuition);
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getSourceLabel(record = {}) {
+  const directLabel = [
+    record?.awardingBody,
+    record?.source?.sourceLabel,
+    record?.sourceLabel,
+    record?.source?.host,
+  ].find((value) => String(value || "").trim());
+
+  if (directLabel) {
+    return String(directLabel).trim();
+  }
+
+  const sourceUrl = String(record?.source_url || record?.sourceUrl || record?.website || "").trim();
+  if (!sourceUrl) return "Official source";
+
+  try {
+    const host = new URL(sourceUrl).hostname.replace(/^www\./, "");
+    return host || "Official source";
+  } catch {
+    return "Official source";
+  }
 }
 
 export default function ScholarshipPage(props) {
@@ -360,7 +389,22 @@ export default function ScholarshipPage(props) {
   };
 
   const maxFeeNum = parseMaxFee(maxFee);
-  const catalog = Array.isArray(scholarshipCatalog) && scholarshipCatalog.length ? scholarshipCatalog : scholarships;
+  const catalog = useMemo(() => {
+    const combined = [
+      ...(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : []),
+      ...(Array.isArray(scholarships) ? scholarships : []),
+    ];
+    const map = new Map();
+    for (const record of combined) {
+      if (!record) continue;
+      const key = record.id || record.slug || record.source_url || record.website || record.name || record.title;
+      if (!key) continue;
+      if (!map.has(key)) {
+        map.set(key, record);
+      }
+    }
+    return [...map.values()];
+  }, [scholarshipCatalog, scholarships]);
   const regionCount = new Set((Array.isArray(catalog) ? catalog : []).map((item) => item?.country).filter(Boolean)).size;
 
   const scored = useMemo(() => {
@@ -386,6 +430,41 @@ export default function ScholarshipPage(props) {
         return String(a.scholarship.id || "").localeCompare(String(b.scholarship.id || ""));
       });
   }, [catalog, region, maxFeeNum, matchingProfile]);
+
+  const universityPicks = useMemo(() => {
+    const dedupe = new Map();
+
+    for (const record of Array.isArray(catalog) ? catalog : []) {
+      if (!(isUniversityOpportunity(record) || isNatoCountry(record?.country))) continue;
+      const focus = classifyOpportunityFocus(record);
+      const label = getSourceLabel(record);
+      const key = [
+        String(record?.source_url || record?.sourceUrl || record?.website || "").trim(),
+        String(record?.awardingBody || label || "").trim().toLowerCase(),
+        String(record?.name || record?.title || "").trim().toLowerCase(),
+      ].join("|");
+      if (!key.trim()) continue;
+      if (!dedupe.has(key)) {
+        dedupe.set(key, {
+          ...record,
+          priority_score: Number.isFinite(Number(record?.priority_score)) ? Number(record.priority_score) : focus.priorityScore,
+          priority_reasons: Array.isArray(record?.priority_reasons) && record.priority_reasons.length ? record.priority_reasons : focus.priorityReasons,
+          source_label: label,
+          focus,
+        });
+      }
+    }
+
+    return [...dedupe.values()]
+      .sort((a, b) => {
+        const priorityDelta = Number(b?.priority_score || 0) - Number(a?.priority_score || 0);
+        if (priorityDelta) return priorityDelta;
+        const sourceDelta = String(a?.source_label || "").localeCompare(String(b?.source_label || ""));
+        if (sourceDelta) return sourceDelta;
+        return String(a?.name || "").localeCompare(String(b?.name || ""));
+      })
+      .slice(0, 12);
+  }, [catalog]);
 
   const contentSignals = buildContentSignals(contentManifest, notifications);
   const latestNotification = Array.isArray(notifications) && notifications.length ? notifications[0] : null;
@@ -529,6 +608,49 @@ export default function ScholarshipPage(props) {
       <div className="scholarship-results-label">
         {scored.length} scholarships matched
       </div>
+
+      {universityPicks.length > 0 && (
+        <div className="scholarship-card" style={{ marginBottom: 20 }}>
+          <div className="scholarship-card-label">University picks</div>
+          <div className="scholarship-intro-copy" style={{ marginBottom: 14 }}>
+            Official university and university-adjacent opportunities in the UK and NATO countries, shown first so you can spot the strongest academic routes quickly.
+          </div>
+          <div style={{ display: "grid", gap: 10 }}>
+            {universityPicks.map((scholarship) => (
+              <div key={scholarship.id} style={{ padding: 14, border: "1px solid var(--border)", borderRadius: 12, background: "var(--color-bg-surface)" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: C.accent, fontFamily: "var(--font-ui)", marginBottom: 3 }}>
+                      {cleanText(getSourceLabel(scholarship), { maxLength: 80 })}
+                    </div>
+                    <div style={{ fontSize: 15, fontWeight: 700 }}>
+                      {cleanText(`${getSourceLabel(scholarship)} · ${getScholarshipTitle(scholarship)}`, { maxLength: 140 })}
+                    </div>
+                    <div style={{ fontSize: 12, color: C.muted, fontFamily: "var(--font-ui)" }}>
+                      {(cleanText(scholarship.city, { maxLength: 40 }) || "Official university route") + (scholarship.country ? `, ${cleanText(scholarship.country, { maxLength: 40 })}` : "")}
+                    </div>
+                  </div>
+                  <Chip label={`Priority ${Math.round((scholarship.priority_score || 0) * 100)}/100`} color={C.green} small />
+                </div>
+                <div style={{ fontSize: 13, lineHeight: 1.7, color: C.text, marginTop: 10 }}>
+                  {(Array.isArray(scholarship.priority_reasons) && scholarship.priority_reasons.length
+                    ? scholarship.priority_reasons
+                    : [
+                        isUniversityOpportunity(scholarship) ? "Official university route." : null,
+                        isNatoCountry(scholarship?.country) ? "Located in a UK or NATO country." : null,
+                      ].filter(Boolean)
+                  ).join(" ") || "This looks like a strong university-linked opportunity."}
+                </div>
+                {scholarship.source_url && (
+                  <div style={{ fontSize: 12, color: C.muted, marginTop: 8, fontFamily: "var(--font-ui)", wordBreak: "break-word" }}>
+                    {cleanText(scholarship.source_url, { maxLength: 140 })}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="scholarship-results">
         {scored.length > 0 ? scored.map(({ scholarship, analysis }) => {

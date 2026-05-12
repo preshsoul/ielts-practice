@@ -17,6 +17,43 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
+const NATO_COUNTRIES = new Set([
+  "belgium",
+  "bulgaria",
+  "canada",
+  "croatia",
+  "czech republic",
+  "czechia",
+  "denmark",
+  "estonia",
+  "finland",
+  "france",
+  "germany",
+  "greece",
+  "hungary",
+  "iceland",
+  "italy",
+  "latvia",
+  "lithuania",
+  "luxembourg",
+  "montenegro",
+  "netherlands",
+  "north macedonia",
+  "norway",
+  "poland",
+  "portugal",
+  "romania",
+  "slovakia",
+  "slovenia",
+  "spain",
+  "sweden",
+  "turkey",
+  "united kingdom",
+  "uk",
+  "usa",
+  "united states",
+]);
+
 function collectOpportunityText(record = {}) {
   const parts = [
     record?.name,
@@ -162,6 +199,30 @@ export function classifyOpportunityFocus(record = {}) {
     priorityTier: priorityScore >= 0.7 ? "high" : priorityScore >= 0.35 ? "medium" : "low",
     priorityReasons: unique(reasons),
   };
+}
+
+export function isNatoCountry(value = "") {
+  const text = normalizeSignalText(value);
+  return NATO_COUNTRIES.has(text);
+}
+
+export function isUniversityOpportunity(record = {}) {
+  const sourceUrl = normalizeSignalText(record?.source_url || record?.sourceUrl || record?.source?.sourceUrl || "");
+  const title = normalizeSignalText(record?.name || record?.title || record?.name_full || "");
+  const body = normalizeSignalText(record?.awardingBody || record?.source?.sourceLabel || "");
+  const hostSignals = [
+    /\.ac\.uk\b/i,
+    /\.edu\b/i,
+    /cambridgetrust\.org/i,
+    /ox\.ac\.uk/i,
+    /ed\.ac\.uk/i,
+    /kuleuven\.be/i,
+    /kth\.se/i,
+    /university/i,
+    /college/i,
+    /school of/i,
+  ];
+  return hostSignals.some((pattern) => pattern.test(sourceUrl)) || /\buniversity\b|\bcollege\b|\binstitute\b/i.test(`${title} ${body}`);
 }
 
 export function formatIeltsScore(profile = {}) {

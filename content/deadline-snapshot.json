@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T22:44:24.239Z",
+  "updated_at": "2026-05-12T23:04:00.683Z",
   "items": {
     "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship": {
       "id": "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship",
@@ -236,6 +236,15 @@
       "sourceUrl": "https://www.scholarshipregion.com/university-of-bradford-scholarship",
       "urgency": "green"
     },
+    "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co": {
+      "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co",
+      "name": "Erasmus Mundus Master Of Theoretical Chemistry And Computational Modelling (tccm) Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kuleuven.be/scholarships/year/2025-2026/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
+      "urgency": "green"
+    },
     "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-funding-options": {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-funding-options",
       "name": "Funding Options",
@@ -279,6 +288,33 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://scholarshipscafe.com/positions",
+      "urgency": "green"
+    },
+    "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2026-2027-science-leuven-scholarship": {
+      "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2026-2027-science-leuven-scholarship",
+      "name": "Science@leuven Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust-scholarships_find-a-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust-scholarships_find-a-scholarship",
+      "name": "The Cambridge Trust",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars": {
+      "id": "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars",
+      "name": "The Cambridge Trust",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/current-scholars",
       "urgency": "green"
     },
     "scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op": {
@@ -353,6 +389,42 @@
       "sourceUrl": "https://www.chevening.org/fellowship/chevening-southeast-europe-british-library-fellowship",
       "urgency": "green"
     },
+    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-clarendon": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-clarendon",
+      "name": "Clarendon Fund",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-fees": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-fees",
+      "name": "Course Fees",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/fees",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-fees-and-other-charges-course-fees-and-fe": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-fees-and-other-charges-course-fees-and-fe",
+      "name": "Course Fees And Fee Liability",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-academic-declared-awards": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-academic-declared-awards",
+      "name": "Declared Awards",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/academic/declared-awards",
+      "urgency": "green"
+    },
     "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility": {
       "id": "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility",
       "name": "Eligibility For A Chevening Fellowship",
@@ -362,6 +434,24 @@
       "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
       "urgency": "green"
     },
+    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-undergraduate-fees-and-funding": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-undergraduate-fees-and-funding",
+      "name": "Fees And Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding",
+      "name": "Fees And Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding",
+      "urgency": "green"
+    },
     "www.chevening.org_chevening_fellowships": {
       "id": "www.chevening.org_chevening_fellowships",
       "name": "Fellowships",
@@ -369,6 +459,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/fellowships",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-assistance": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-assistance",
+      "name": "Financial Assistance And Support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/assistance",
       "urgency": "green"
     },
     "www.chevening.org_chevening_scholarships-find-a-course": {
@@ -389,6 +488,15 @@
       "sourceUrl": "https://www.chevening.org/fellowships/find-a-programme",
       "urgency": "green"
     },
+    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-under-represented-groups": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-under-represented-groups",
+      "name": "Funding For Under-represented Groups",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups",
+      "urgency": "green"
+    },
     "www.chevening.org_chevening_fellowships-host-a-fellowship": {
       "id": "www.chevening.org_chevening_fellowships-host-a-fellowship",
       "name": "Host A Chevening Fellowship",
@@ -405,6 +513,24 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-international": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-international",
+      "name": "International Opportunities",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/international",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-living-costs": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-living-costs",
+      "name": "Living Costs",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/living-costs",
       "urgency": "green"
     },
     "mastercardfdn.org_mastercard-foundation-scholars_en-news-mastercard-foundation-scholars-impress-at-the-2024-resolution-s": {
@@ -425,6 +551,33 @@
       "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program",
       "urgency": "green"
     },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-otherfunding": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-otherfunding",
+      "name": "Other Graduate Funding Sources",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/otherfunding",
+      "urgency": "green"
+    },
+    "www.kth.se_kth-scholarships_en-om-2-239-stipendieutlysningar": {
+      "id": "www.kth.se_kth-scholarships_en-om-2-239-stipendieutlysningar",
+      "name": "Scholarship Announcements | KTH",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kth.se/en/om/2.239/stipendieutlysningar",
+      "urgency": "green"
+    },
+    "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier-stipendieutlysningar-1-1080824": {
+      "id": "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier-stipendieutlysningar-1-1080824",
+      "name": "Scholarship Announcements | Student",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar-1.1080824",
+      "urgency": "green"
+    },
     "www.chevening.org_chevening_scholarships": {
       "id": "www.chevening.org_chevening_scholarships",
       "name": "Scholarships",
@@ -432,6 +585,51 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/scholarships",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.kuleuven.be_ku-leuven-scholarships_scholarships-year": {
+      "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kuleuven.be/scholarships/year",
+      "urgency": "green"
+    },
+    "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-facetednav": {
+      "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-facetednav",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kuleuven.be/scholarships/year/facetednav",
+      "urgency": "green"
+    },
+    "www.kth.se_kth-scholarships_en-om-2-239": {
+      "id": "www.kth.se_kth-scholarships_en-om-2-239",
+      "name": "Scholarships From KTH For Students | KTH",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kth.se/en/om/2.239",
+      "urgency": "green"
+    },
+    "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier": {
+      "id": "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier",
+      "name": "Scholarships From KTH For Students | Student",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier",
       "urgency": "green"
     },
     "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-the-m": {
@@ -468,6 +666,33 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://scholarshipscafe.com/position-detail?id=15721",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-ug-funding": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-ug-funding",
+      "name": "Undergraduate Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/ug-funding",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-us-canadiantaxcredits": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-us-canadiantaxcredits",
+      "name": "US And Canadian Tax Credits",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-veterans-affairs": {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-veterans-affairs",
+      "name": "US Department Of Veterans Affairs Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs",
       "urgency": "green"
     },
     "www.chevening.org_chevening_asean-chevening-scholarship-who-can-apply-for-a-chevening-asean-scholarship": {
@@ -567,6 +792,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.daad.de/de/barriere-melden/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust-scholarships_wp-content-uploads-2026-03-ctaddfundform-additional-funding-form-v1-": {
+      "id": "www.cambridgetrust.org_cambridge-trust-scholarships_wp-content-uploads-2026-03-ctaddfundform-additional-funding-form-v1-",
+      "name": "Ctaddfundform-additional-funding-form-v1_march26.pdf",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/wp-content/uploads/2026/03/CTAddFundForm-Additional-Funding-Form-V1_March26.pdf",
       "urgency": "green"
     },
     "careers.unilever.com_unilever-early-careers_en-early-careers": {
