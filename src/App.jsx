@@ -657,7 +657,19 @@ export default function App() {
     <Shell sessions={sessions} onRefresh={refreshSessions} authUser={authUser} profile={profile} isAdmin={isAdmin}>
       <Suspense fallback={routeFallback}>
         <Routes>
-          <Route path="/" element={<DashboardHome profile={profile} sessions={sessions} contentManifest={content.contentManifest} notifications={content.notifications} />} />
+          <Route
+            path="/"
+            element={
+              <DashboardHome
+                profile={profile}
+                sessions={sessions}
+                contentManifest={content.contentManifest}
+                notifications={content.notifications}
+                scholarships={content.scholarships}
+                scholarshipCatalog={content.scholarshipCatalog || content.scholarshipRecords || content.scholarships}
+              />
+            }
+          />
           <Route path="/practice/*" element={<PracticeRoutes sessions={sessions} onSessionComplete={onSessionComplete} exportAction={exportAction} qb={QB} passages={PASSAGES} learningPath={LEARNING_PATH} practiceLoaded={practiceLoaded} C={C} PrimaryBtn={PrimaryBtn} GhostBtn={GhostBtn} Chip={Chip} EXAMS={EXAMS} EXAM_COLOR={EXAM_COLOR} DIFF_LABEL={DIFF_LABEL} DIFF_COLOR={DIFF_COLOR} />} />
           <Route
             path="/scholarships/*"

@@ -125,6 +125,7 @@ function CommandPalette() {
     { label: "Home", description: "Open the dashboard", to: "/" },
     { label: "Practice", description: "Jump into IELTS training", to: "/practice" },
     { label: "Scholarships", description: "Open matching and shortlist", to: "/scholarships" },
+    { label: "Weekly scholarships", description: "See this week’s new additions", to: "/scholarships/weekly" },
     { label: "Account", description: "Review your profile", to: "/account" },
   ]), []);
 

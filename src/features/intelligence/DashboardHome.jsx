@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { buildDashboardSnapshot } from "../../lib/dashboard.js";
 import { buildNotificationFeed } from "../../lib/notifications.js";
 import { useWorkspace } from "../../components/layout/WorkspaceContext.jsx";
+import { getLatestScholarshipFeed } from "../../lib/scholarshipFeed.js";
 
 function SkillCard({ label, value }) {
   const numeric = Number(value);
@@ -148,7 +149,7 @@ function DashboardStat({ icon, label, value, note }) {
   );
 }
 
-export default function DashboardHome({ profile, sessions, contentManifest, notifications }) {
+export default function DashboardHome({ profile, sessions, contentManifest, notifications, scholarships = [], scholarshipCatalog = [] }) {
   const { openIntelPanel } = useWorkspace();
   const snapshot = buildDashboardSnapshot(profile || {}, sessions || []);
   const feed = buildNotificationFeed({ profile: profile || {}, sessions: sessions || [], contentManifest, contentNotifications: notifications || [] });
@@ -182,6 +183,14 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
   const completionFilled = profileFields.filter((value) => hasValue(value)).length;
   const completionPercent = Math.round((completionFilled / profileFields.length) * 100);
   const [animatedPercent, setAnimatedPercent] = useState(0);
+  const latestScholarships = getLatestScholarshipFeed([
+    ...(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : []),
+    ...(Array.isArray(scholarships) ? scholarships : []),
+  ], {
+    limit: 4,
+    referenceDate: contentManifest?.updated_at || new Date(),
+    recentDays: 10,
+  });
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setAnimatedPercent(completionPercent));
@@ -301,6 +310,32 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
               </Link>
             )) : (
               <div className="empty-state-meta">No new notifications. The workspace is quiet.</div>
+            )}
+          </div>
+        </article>
+
+        <article className="loci-card loci-card--editorial dashboard-scholarship-feed" style={{ gridColumn: "1 / -1" }}>
+          <div className="loci-card__eyebrow">Latest scholarships</div>
+          <div className="loci-card__title dashboard-card-title">Fresh additions this week</div>
+          <div className="loci-card__copy">
+            New scholarship opportunities appear here first, while the dedicated scholarship workspace stays focused on your own matches.
+          </div>
+          <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
+            {latestScholarships.length ? latestScholarships.map((item) => (
+              <div key={item.id} style={{ padding: 14, border: "1px solid var(--border)", borderRadius: 14, background: "var(--color-bg-surface)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "var(--color-text-secondary)", fontFamily: "var(--font-ui)", marginBottom: 4 }}>{item.sourceLabel}</div>
+                    <div style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.35 }}>{item.title}</div>
+                    <div style={{ fontSize: 12, color: "var(--text-3)", fontFamily: "var(--font-ui)", marginTop: 4 }}>{item.locationLabel}</div>
+                  </div>
+                  <Link className="ghost-btn link-button" to="/scholarships/weekly" style={{ alignSelf: "flex-start", textDecoration: "none", padding: "8px 12px" }}>
+                    Weekly feed
+                  </Link>
+                </div>
+              </div>
+            )) : (
+              <div className="empty-state-meta">No fresh scholarship additions available yet.</div>
             )}
           </div>
         </article>

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { PracticeShell } from "../layout/AppShell.jsx";
 import { computeWeakSections, selectQueue } from "../../lib/sessionTools.js";
 
@@ -10,6 +10,7 @@ const ProgressView = lazy(() => import("../../features/training/ProgressView.jsx
 const WeakAreasView = lazy(() => import("../../features/training/WeakAreasView.jsx"));
 const LearningPathView = lazy(() => import("../../features/training/LearningPathView.jsx"));
 const ScholarshipPage = lazy(() => import("../../features/discovery/ScholarshipPage.jsx"));
+const ScholarshipFeedPage = lazy(() => import("../../features/discovery/ScholarshipFeedPage.jsx"));
 const AdminContentScreen = lazy(() => import("../AdminContentScreen.jsx"));
 
 function RouteFallback({ label = "Loading route" }) {
@@ -104,6 +105,7 @@ export function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, 
 export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, onImportCv, cvImportBusy, cvImportMessage, contentManifest, notifications, scholarships, scholarshipCatalog, C, Chip, PrimaryBtn }) {
   const { pathname } = useLocation();
   const freshness = contentManifest?.updated_at ? new Date(contentManifest.updated_at).toLocaleDateString("en-GB") : "No recent content manifest";
+  const isWeeklyFeed = pathname.startsWith("/scholarships/weekly") || pathname.startsWith("/scholarships/latest");
 
   return (
     <>
@@ -114,28 +116,47 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
           <div className="page-subtitle">
             {pathname === "/scholarships/shortlist"
               ? "Your shortlist is tracked in the scholarship workspace for now."
-              : `${freshness}. Match your profile to institutions and keep a shortlist of viable options.`}
+              : isWeeklyFeed
+                ? `${freshness}. This week's scholarship additions are curated here before they appear in matching surfaces.`
+                : `${freshness}. Match your profile to institutions and keep a shortlist of viable options.`}
           </div>
+        </div>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+          {isWeeklyFeed ? (
+            <Link to="/scholarships" className="ghost-btn" style={{ textDecoration: "none" }}>My matches</Link>
+          ) : (
+            <Link to="/scholarships/weekly" className="ghost-btn" style={{ textDecoration: "none" }}>Weekly feed</Link>
+          )}
         </div>
       </div>
       <section className="panel-card">
         <Suspense fallback={<RouteFallback label="Loading scholarships" />}>
-          <ScholarshipPage
-            sessions={sessions}
-            authUser={authUser}
-            profile={profile}
-            profileDraft={profileDraft}
-            onImportCv={onImportCv}
-            cvImportBusy={cvImportBusy}
-            cvImportMessage={cvImportMessage}
-            contentManifest={contentManifest}
-            notifications={notifications}
-            scholarships={scholarships}
-            scholarshipCatalog={scholarshipCatalog}
-            C={C}
-            Chip={Chip}
-            PrimaryBtn={PrimaryBtn}
-          />
+          {isWeeklyFeed ? (
+            <ScholarshipFeedPage
+              scholarships={scholarships}
+              scholarshipCatalog={scholarshipCatalog}
+              contentManifest={contentManifest}
+              C={C}
+              Chip={Chip}
+            />
+          ) : (
+            <ScholarshipPage
+              sessions={sessions}
+              authUser={authUser}
+              profile={profile}
+              profileDraft={profileDraft}
+              onImportCv={onImportCv}
+              cvImportBusy={cvImportBusy}
+              cvImportMessage={cvImportMessage}
+              contentManifest={contentManifest}
+              notifications={notifications}
+              scholarships={scholarships}
+              scholarshipCatalog={scholarshipCatalog}
+              C={C}
+              Chip={Chip}
+              PrimaryBtn={PrimaryBtn}
+            />
+          )}
         </Suspense>
       </section>
     </>
