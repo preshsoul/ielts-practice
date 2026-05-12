@@ -7,6 +7,23 @@ function slugify(input) {
     .slice(0, 80);
 }
 
+function cleanTopicLabel(topic) {
+  const cleaned = String(topic || "")
+    .replace(/\s+/g, " ")
+    .replace(/\b(test info|test information|faq|home|menu|navigation|subscribe|cookie|privacy)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return "";
+  return cleaned
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => {
+      if (word === word.toUpperCase() && word.length > 1) return word;
+      return word.length > 3 ? word[0].toUpperCase() + word.slice(1).toLowerCase() : word.toUpperCase();
+    })
+    .join(" ");
+}
+
 function topicTheme(topic) {
   const t = String(topic || "").toLowerCase();
   if (/(climate|plastic|energy|environment|pollution|water|agric)/.test(t)) return "environment";
@@ -60,14 +77,40 @@ function buildPassage(topic, theme) {
 }
 
 function buildQuestions(topic, passage, pid, baseId, sourceId) {
-  const lowerTopic = String(topic || "").toLowerCase();
+  const cleanTopic = cleanTopicLabel(topic) || String(topic || "").trim();
+  const lowerTopic = cleanTopic.toLowerCase();
+  const theme = topicTheme(cleanTopic);
+  const mcqMainMessage = {
+    environment: "It asks readers to balance environmental ambition with practical limits",
+    education: "It shows how education policy is shaped by access and inequality",
+    health: "It shows that prevention works best when advice becomes routine behaviour",
+    technology: "It shows that efficiency gains still need careful rollout and trust",
+    economics: "It shows that numbers only make sense when distribution is considered",
+    society: "It shows that social change works best when reforms feel practical",
+  }[theme];
+  const summaryAnswer = {
+    environment: "cost / access",
+    education: "quality / accessibility",
+    health: "advice / routine",
+    technology: "speed / trust",
+    economics: "aggregate / distribution",
+    society: "practicality / acceptance",
+  }[theme];
+  const summaryExplanation = {
+    environment: "The passage consistently points to implementation cost and accessibility as the key tension.",
+    education: "The passage consistently points to quality and accessibility as the key tension.",
+    health: "The passage consistently points to advice and routine as the key tension.",
+    technology: "The passage consistently points to speed and trust as the key tension.",
+    economics: "The passage consistently points to aggregate results and distribution as the key tension.",
+    society: "The passage consistently points to practicality and public acceptance as the key tension.",
+  }[theme];
   const trueQuestion = {
     id: `${baseId}-t`,
     exam: "IELTS",
     section: "Reading – T/F/NG",
     pid,
     difficulty: 1,
-    question: `The passage presents ${topic} as an issue with practical consequences.`,
+    question: `The passage presents ${cleanTopic} as an issue with practical consequences.`,
     options: ["True", "False", "Not Given"],
     answer: "True",
     explanation: "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
@@ -79,7 +122,7 @@ function buildQuestions(topic, passage, pid, baseId, sourceId) {
     section: "Reading – T/F/NG",
     pid,
     difficulty: 2,
-    question: `The passage says there are no trade-offs involved in ${topic}.`,
+    question: `The passage says there are no trade-offs involved in ${cleanTopic}.`,
     options: ["True", "False", "Not Given"],
     answer: "False",
     explanation: "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
@@ -91,7 +134,7 @@ function buildQuestions(topic, passage, pid, baseId, sourceId) {
     section: "Reading – T/F/NG",
     pid,
     difficulty: 3,
-    question: `The passage explains whether every country handles ${topic} in exactly the same way.`,
+    question: `The passage explains whether every country handles ${cleanTopic} in exactly the same way.`,
     options: ["True", "False", "Not Given"],
     answer: "Not Given",
     explanation: "The passage discusses the issue in general terms but does not compare all countries.",
@@ -103,15 +146,15 @@ function buildQuestions(topic, passage, pid, baseId, sourceId) {
     section: "Reading – MCQ",
     pid,
     difficulty: 2,
-    question: `What is the main message of the passage about ${topic}?`,
+    question: `What is the main message of the passage about ${cleanTopic}?`,
     options: [
       "It is a simple problem with a single solution",
-      "It involves trade-offs between ambition and practicality",
+      mcqMainMessage,
       "It is only relevant to one small group of people",
       "It can be ignored until it becomes urgent",
     ],
-    answer: "It involves trade-offs between ambition and practicality",
-    explanation: "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+    answer: mcqMainMessage,
+    explanation: summaryExplanation,
     tags: [lowerTopic],
   };
   const summaryQuestion = {
@@ -120,15 +163,15 @@ function buildQuestions(topic, passage, pid, baseId, sourceId) {
     section: "Reading – Summary",
     pid,
     difficulty: 3,
-    question: `Complete the summary: The passage suggests that success on ${topic} depends on balancing ______ and ______.`,
+    question: `Complete the summary: The passage suggests that success on ${cleanTopic} depends on balancing ______ and ______.`,
     options: [
       "speed / luck",
-      "cost / access",
+      summaryAnswer,
       "image / gossip",
       "volume / noise",
     ],
-    answer: "cost / access",
-    explanation: "The passage consistently points to implementation cost and accessibility as the key tension.",
+    answer: summaryAnswer,
+    explanation: summaryExplanation,
     tags: [lowerTopic],
   };
   return [trueQuestion, falseQuestion, ngQuestion, mcqQuestion, summaryQuestion].map((item) => ({

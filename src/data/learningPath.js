@@ -1,6 +1,6 @@
 export const LEARNING_PATH = {
   "Reading – T/F/NG": {
-    icon: "📖", color: "#5BA3C9",
+    icon: "📖", color: "var(--color-status-info)",
     summary: "The most feared question type — and one of the most learnable once you internalise its strict logic.",
     steps: [
       { title: "Understand the three definitions precisely", body: "TRUE = the passage explicitly confirms the statement. FALSE = the passage explicitly contradicts it. NOT GIVEN = the information is absent or cannot be confirmed from the passage alone. There is no 'kind of true' or 'probably true.' IELTS deals in facts, not inferences." },
@@ -12,7 +12,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Reading – Multiple Choice": {
-    icon: "🔍", color: "#8899CC",
+    icon: "🔍", color: "var(--color-status-info)",
     summary: "Multiple choice in IELTS tests comprehension of specific detail, main idea, and writer's purpose. The answer is always in the passage — your general knowledge is irrelevant.",
     steps: [
       { title: "Read the question before the passage", body: "Read each question stem carefully before scanning the passage. Identify what type of question it is: specific detail (scan for keywords), main idea (read the whole paragraph), or purpose/attitude (look at tone and structure)." },
@@ -22,7 +22,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Grammar": {
-    icon: "⚙️", color: "#E09020",
+    icon: "⚙️", color: "var(--color-status-warning)",
     summary: "Grammar accounts for 25% of your Writing and Speaking band scores. The top errors are predictable and fixable with targeted practice.",
     steps: [
       { title: "Subject-verb agreement", body: "The most common error. 'The government has decided' (singular institution = singular verb). 'Neither the teacher nor the students were present' (verb agrees with the nearest noun — students = plural). 'The number of applicants has increased' ('The number of' = singular). 'A number of applicants have applied' ('A number of' = plural)." },
@@ -34,7 +34,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Academic Vocabulary": {
-    icon: "📚", color: "#2ECC71",
+    icon: "📚", color: "var(--color-status-success)",
     summary: "Lexical Resource counts for 25% of your Writing and Speaking scores. The goal is not rare words — it is accurate, precise, and varied academic language.",
     steps: [
       { title: "Learn collocations, not isolated words", body: "'Establish a link' not 'make a link.' 'Reach a conclusion' not 'make a conclusion.' 'Address an issue' not 'handle an issue.' 'Raise a question' not 'lift a question.' The wrong verb in the right context is penalised as an inaccuracy, not rewarded as vocabulary range." },
@@ -45,7 +45,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Writing Task 1": {
-    icon: "📊", color: "#8899CC",
+    icon: "📊", color: "var(--color-status-info)",
     summary: "Task 1 is worth one-third of your Writing band score. Most marks are lost through missing the overview, wrong tense, or describing every detail instead of key trends.",
     steps: [
       { title: "Structure: always Introduction → Overview → Body 1 → Body 2", body: "Your Introduction paraphrases the question. Your Overview (2–3 sentences) identifies the most significant overall trends — no specific figures here. Body paragraphs contain grouped, detailed data with figures. There is no conclusion in Task 1." },
@@ -56,7 +56,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Writing Task 2": {
-    icon: "✍️", color: "#E05252",
+    icon: "✍️", color: "var(--color-status-error)",
     summary: "Task 2 carries twice the weight of Task 1. Most candidates fail not on language but on Task Achievement — they don't fully answer what was asked.",
     steps: [
       { title: "Always fully answer the question", body: "Task Achievement is 25% of your score and the most commonly lost. Read the question twice. Identify: (1) the topic, (2) the specific task (agree/disagree? both views? causes and solutions?). A beautiful essay that answers the wrong question will not exceed Band 5." },
@@ -67,7 +67,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Listening": {
-    icon: "🎧", color: "#E09020",
+    icon: "🎧", color: "var(--color-status-warning)",
     summary: "Listening scores improve fastest when you stop losing easy marks to predictable traps. The test is played once — active, predictive listening is the core skill.",
     steps: [
       { title: "Use the reading time", body: "Before each section begins, you have time to read the questions. Use it to predict: what kind of answer is expected? A name? A number? A place? A date? Predicting the answer type means you know what to listen for rather than transcribing everything." },
@@ -78,7 +78,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Exam Strategy": {
-    icon: "🎯", color: "#5BA3C9",
+    icon: "🎯", color: "var(--color-status-info)",
     summary: "Test-taking strategy can add half a band to your score without improving your English. Most of these errors are entirely preventable.",
     steps: [
       { title: "Academic vs General Training", body: "Listening and Speaking are identical for both. Reading and Writing differ. Academic Reading uses complex analytical texts; General Training uses practical, workplace texts. Academic Writing Task 1 describes visual data; General Training Task 1 is a letter. Confirm which version your target institution requires." },
@@ -88,7 +88,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Use of English – Open Cloze": {
-    icon: "🔤", color: "#8899CC",
+    icon: "🔤", color: "var(--color-status-info)",
     summary: "Open cloze tests grammar and fixed phrases, not vocabulary. One word only — and it must be the exact grammatical form required.",
     steps: [
       { title: "Read the whole sentence before filling the gap", body: "The gap word always has a grammatical relationship with words on both sides. Read the full sentence first, then identify what role the missing word plays: preposition, auxiliary verb, article, conjunction, pronoun, or part of a fixed phrase." },
@@ -97,7 +97,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Word Formation": {
-    icon: "🏗️", color: "#2ECC71",
+    icon: "🏗️", color: "var(--color-status-success)",
     summary: "Word formation tests whether you know the correct suffix for the required grammatical category. Always identify whether the gap needs a noun, adjective, adverb, or verb before selecting.",
     steps: [
       { title: "Identify the required word class first", body: "Read the sentence and identify what grammatical function the gap word must serve. Is it the subject or object (noun)? Does it modify a noun (adjective)? Does it modify a verb or adjective (adverb)? Does it follow an auxiliary (verb)? The word class tells you which suffix to apply." },
@@ -106,7 +106,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Key Word Transformation": {
-    icon: "🔄", color: "#E09020",
+    icon: "🔄", color: "var(--color-status-warning)",
     summary: "KWT tests your ability to express the same meaning using a different grammatical structure. You must use the key word unchanged and keep within the 3–8 word limit.",
     steps: [
       { title: "Identify the grammatical transformation required", body: "Most transformations fall into predictable categories: passive voice, reported speech, conditionals, wishes and regrets, causative 'have/get,' comparative structures, inversion, modal verbs for deduction, too/enough/so-that. Recognise the category quickly rather than guessing from scratch." },
@@ -115,7 +115,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Multiple Choice Cloze": {
-    icon: "📝", color: "#5BA3C9",
+    icon: "📝", color: "var(--color-status-info)",
     summary: "Multiple choice cloze tests collocations, fixed phrases, and idiomatic language. The correct option is the one that is both grammatically correct AND the natural English choice.",
     steps: [
       { title: "Test all options in context", body: "Insert each option into the sentence and read it aloud mentally. One option will feel natural; the others will feel slightly off. This technique works because collocations are patterns — incorrect options often violate native speaker intuition even when the meaning seems close." },
@@ -124,7 +124,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Exam Overview": {
-    icon: "🗺️", color: "#2ECC71",
+    icon: "🗺️", color: "var(--color-status-success)",
     summary: "CELPIP is Canada-specific, fully computer-delivered, and aligned to Canadian Language Benchmarks. Understanding its format prevents costly surprises on test day.",
     steps: [
       { title: "CELPIP vs IELTS: key differences", body: "CELPIP Speaking: computer-delivered, AI-scored, no human examiner. IELTS Speaking: face-to-face with a human examiner. CELPIP content: Canadian daily life (healthcare, housing, weather, community). IELTS content: international academic and social contexts. CELPIP: 1–12 scale. IELTS: 1–9 scale in 0.5 bands." },
@@ -132,7 +132,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Reading": {
-    icon: "📖", color: "#5BA3C9",
+    icon: "📖", color: "var(--color-status-info)",
     summary: "CELPIP Reading uses everyday Canadian contexts — emails, memos, notices, and opinion texts — increasing in complexity across four parts.",
     steps: [
       { title: "Parts increase in difficulty", body: "Part 1 (Correspondence): everyday emails and letters. Part 2 (Diagrams): reading visual information. Part 3 (Forms): extracting specific information. Part 4 (Viewpoints): opinion and argument texts — the most demanding. Allocate more time to Parts 3 and 4." },
@@ -140,7 +140,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Writing": {
-    icon: "✍️", color: "#E05252",
+    icon: "✍️", color: "var(--color-status-error)",
     summary: "CELPIP Writing Task 1 is an email; Task 2 is a survey response. Both test real-world Canadian communication skills.",
     steps: [
       { title: "Task 1: email register", body: "Match your tone to the relationship specified. Emailing a neighbour: semi-formal. Emailing a manager: formal. Opening: 'Dear [Name],' not 'Hey.' State your purpose in the first sentence. Close politely. Target 150–200 words." },
@@ -148,7 +148,7 @@ export const LEARNING_PATH = {
     ],
   },
   "Speaking": {
-    icon: "🎙️", color: "#8899CC",
+    icon: "🎙️", color: "var(--color-status-info)",
     summary: "CELPIP Speaking has 8 tasks scored by AI. The absence of a human examiner changes what you should optimise for.",
     steps: [
       { title: "Use your 30-second preparation time", body: "Most tasks give 30 seconds before you begin speaking. Use it to identify the main point you want to make, a supporting example, and how you will conclude. Speak clearly and at a measured pace — the AI scores listenability." },

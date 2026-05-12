@@ -27,7 +27,7 @@ export default function LearningPathView(props){
             <div key={sec} style={{ border: `1px solid ${isWeak ? C.red + '30' : C.border}`, borderLeft: `3px solid ${isWeak ? C.red : lp.color}`, background: isWeak ? C.bg2 : C.surface, borderRadius: '10px', boxShadow: 'var(--shadow-xs)' }}>
               <button onClick={() => setOpen(isOpen ? null : sec)} style={{ width: '100%', background: 'none', border: 'none', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 8, background: lp.color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontFamily: 'var(--font-ui)' }}>{iconText}</div>
+                  <div style={{ width: 40, height: 40, borderRadius: 8, background: lp.color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-bg-surface)', fontWeight: 700, fontFamily: 'var(--font-ui)' }}>{iconText}</div>
                   <div>
                     <div style={{ fontSize: 14, color: C.text, fontFamily: 'var(--font-ui)', fontWeight: 600 }}>{sec}</div>
                     {isWeak && <div style={{ fontSize: 9, color: C.red, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--font-ui)', marginTop: 3 }}>Flagged weak - study this first</div>}

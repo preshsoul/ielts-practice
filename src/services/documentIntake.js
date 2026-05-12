@@ -186,7 +186,13 @@ function buildSuggestions(sourceText) {
   };
 }
 
+const MAX_DOCUMENT_BYTES = 5 * 1024 * 1024;
+
 export async function buildDocumentIntake(file, notes = "") {
+  if (typeof file?.size === "number" && file.size > MAX_DOCUMENT_BYTES) {
+    throw new Error("File too large. Please choose a document under 5 MB.");
+  }
+
   const bytes = await file.arrayBuffer();
   const hashBuffer = await crypto.subtle.digest("SHA-256", bytes);
   const rawTextHash = Array.from(new Uint8Array(hashBuffer)).map((byte) => byte.toString(16).padStart(2, "0")).join("");

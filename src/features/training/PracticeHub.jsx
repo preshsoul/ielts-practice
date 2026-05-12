@@ -1,0 +1,55 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import LociCard from "../../components/common/LociCard.jsx";
+
+const MODULE_LINKS = [
+  { to: "/practice/reading", title: "Reading", copy: "Answer one question at a time and keep your reading pace steady." },
+  { to: "/practice/listening", title: "Listening", copy: "Catch the correction, then write the answer you can defend." },
+  { to: "/practice/writing", title: "Writing", copy: "Plan fast, write clearly, and stay on task from the first sentence." },
+  { to: "/practice/speaking", title: "Speaking", copy: "Answer clearly, keep moving, and finish each thought cleanly." },
+];
+
+export default function PracticeHub({ sessions, C, PrimaryBtn }) {
+  const totalSessions = Array.isArray(sessions) ? sessions.length : 0;
+  return (
+    <div className="practice-hub">
+      <LociCard
+        variant="editorial"
+        tone="surface"
+        eyebrow="Practice"
+        title="Choose a module to practice"
+        copy="Each module keeps its own prompts, timer logic, and session history."
+        className="practice-hub-hero"
+      >
+        <div className="practice-hub-hero-grid">
+          <div className="practice-hub-stats">
+            <div className="summary-tile">
+              <span>Sessions</span>
+              <strong>{totalSessions}</strong>
+            </div>
+            <div className="summary-tile">
+              <span>Skills</span>
+              <strong>4</strong>
+            </div>
+          </div>
+          <div className="practice-hub-hero-copy">
+            Reading uses the shared question bank. Listening, Writing, and Speaking each use a dedicated practice flow.
+          </div>
+        </div>
+      </LociCard>
+
+      <div className="layout-grid layout-grid--stack">
+        {MODULE_LINKS.map((module) => (
+          <LociCard
+            key={module.to}
+            variant="utilitarian"
+            eyebrow="Practice module"
+            title={module.title}
+            copy={module.copy}
+            action={<Link className="primary-btn link-button" to={module.to}>Open {module.title}</Link>}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}

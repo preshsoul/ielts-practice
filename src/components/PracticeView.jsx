@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function PracticeView(props) {
-  const { sessions, onSessionComplete, QB, PASSAGES, computeWeakSections, selectQueue, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR, PrimaryBtn, GhostBtn, Chip, C } = props;
+  const { sessions, onSessionComplete, QB, PASSAGES, computeWeakSections, selectQueue, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR, PrimaryBtn, GhostBtn, Chip, C, module = "reading" } = props;
   const [phase, setPhase] = useState("setup");
   const [selExam, setSelExam] = useState("IELTS");
   const [timed, setTimed] = useState(false);
@@ -16,6 +16,7 @@ export default function PracticeView(props) {
   const topRef = useRef(null);
 
   const weakSections = computeWeakSections(sessions);
+  const visibleQB = module === "reading" ? QB.filter((question) => String(question.section || "").startsWith("Reading")) : QB;
 
   const check = useCallback(() => {
     if (chosen === null) return;
@@ -33,15 +34,17 @@ export default function PracticeView(props) {
   }, [timeLeft, timerOn, revealed, timed, check]);
 
   const startQuiz = () => {
-    const q = selectQueue(QB, weakSections, selExam, 20);
+    const q = selectQueue(visibleQB, weakSections, selExam, 20);
     setQueue(q); setIdx(0); setChosen(null); setRevealed(false);
     setScore(0); setResults([]); setTimeLeft(40); setTimerOn(timed);
     setPhase("quiz");
   };
 
+  const finishPct = queue.length ? Math.round((score / queue.length) * 100) : 0;
+
   const next = () => {
     if (idx + 1 >= queue.length) {
-      const sess = { date: new Date().toISOString(), score, total: queue.length, exam: selExam, results };
+      const sess = { date: new Date().toISOString(), score, total: queue.length, exam: selExam, module, mode: timed ? "timed" : "practice", component: "Reading quiz", results };
       onSessionComplete(sess); setPhase("done");
       return;
     }
@@ -70,21 +73,21 @@ export default function PracticeView(props) {
           </button>)}
         </div>
       </div>
-      {weakSections.length > 0 && <div style={{ background: "#1F0808", border: `1px solid ${C.red}25`, padding: "12px 16px", marginBottom: 24, borderLeft: `3px solid ${C.red}` }}>
-        <div style={{ fontSize: 11, color: C.red, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "var(--font-ui)", marginBottom: 6 }}>Weak sections detected — boosted in this session</div>
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>{weakSections.map(s => <Chip key={s} label={s} color={C.red} small />)}</div>
+      {weakSections.length > 0 && <div style={{ background: "var(--color-status-warning-soft)", border: `1px solid var(--color-status-warning)`, padding: "12px 16px", marginBottom: 24, borderLeft: `3px solid var(--color-status-warning)` }}>
+        <div style={{ fontSize: 11, color: "var(--color-status-warning)", letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "var(--font-ui)", marginBottom: 6 }}>Weak sections detected — boosted in this session</div>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>{weakSections.map(s => <Chip key={s} label={s} color="var(--color-status-warning)" small />)}</div>
       </div>}
-      <div style={{ fontSize: 13, color: C.muted, fontFamily: "var(--font-ui)", marginBottom: 20 }}>{QB.filter(q => selExam === "All" || q.exam === selExam).length} questions available · 20 per session · {weakSections.length > 0 ? "weighted toward weak areas" : "balanced random"}</div>
-      <PrimaryBtn onClick={startQuiz}>Start Session →</PrimaryBtn>
+        <div style={{ fontSize: 13, color: C.muted, fontFamily: "var(--font-ui)", marginBottom: 20 }}>{visibleQB.filter(q => selExam === "All" || q.exam === selExam).length} questions available · 20 per session · {weakSections.length > 0 ? "weighted toward weak areas" : "balanced random"}</div>
+      <PrimaryBtn onClick={startQuiz}>Start session</PrimaryBtn>
     </div>
   );
 
   if (phase === "done") return (
     <div>
       <div style={{ marginBottom: 32 }}>
-        <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "var(--font-ui)", marginBottom: 8 }}>Session Complete</div>
+        <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "var(--font-ui)", marginBottom: 8 }}>Session complete</div>
         <div style={{ fontSize: 64, lineHeight: 1, letterSpacing: "-0.04em", fontFamily: "var(--font-serif)" }}>{score}<span style={{ fontSize: 24, color: C.muted }}>/ {queue.length}</span></div>
-        <div style={{ fontSize: 13, color: C.muted, fontFamily: "var(--font-ui)", marginTop: 8 }}>{Math.round(score / queue.length * 100)}% · {score >= queue.length * .85 ? "Strong session." : score >= queue.length * .65 ? "Solid — review the explanation for each wrong answer." : "Study the learning path for your weakest sections before the next session."}</div>
+        <div style={{ fontSize: 13, color: C.muted, fontFamily: "var(--font-ui)", marginTop: 8 }}>{finishPct}% · {queue.length === 0 ? "No questions loaded for this session." : score >= queue.length * .85 ? "Strong session." : score >= queue.length * .65 ? "Solid. Review the explanation for each wrong answer." : "Study the learning path for your weakest sections before the next session."}</div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 24 }}>
         {results.map((r, i) => <div key={i} style={{ background: C.surface, padding: "12px 14px", borderLeft: `3px solid ${r.correct ? C.green : C.red}`, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, border: `1px solid ${C.border}`, borderRadius: "8px" }}>
@@ -95,7 +98,7 @@ export default function PracticeView(props) {
           </div>
         </div>)}
       </div>
-      <div style={{ display: "flex", gap: 8 }}><GhostBtn onClick={() => setPhase("setup")}>New Session</GhostBtn><PrimaryBtn onClick={startQuiz}>Retry Same Exam</PrimaryBtn></div>
+      <div style={{ display: "flex", gap: 8 }}><GhostBtn onClick={() => setPhase("setup")}>New session</GhostBtn><PrimaryBtn onClick={startQuiz}>Retry same exam</PrimaryBtn></div>
     </div>
   );
 
@@ -138,8 +141,8 @@ export default function PracticeView(props) {
         <div style={{ fontSize: 13, lineHeight: 1.85, color: C.muted }}>{q.explanation}</div>
       </div>}
       <div style={{ display: "flex", gap: 8 }}>
-        {!revealed ? <PrimaryBtn disabled={chosen === null} onClick={check}>Check Answer</PrimaryBtn>
-          : <PrimaryBtn onClick={next}>{idx + 1 >= queue.length ? "Finish Session →" : "Next →"}</PrimaryBtn>}
+        {!revealed ? <PrimaryBtn disabled={chosen === null} onClick={check}>Check answer</PrimaryBtn>
+          : <PrimaryBtn onClick={next}>{idx + 1 >= queue.length ? "Finish session" : "Next"}</PrimaryBtn>}
       </div>
     </div>
   );

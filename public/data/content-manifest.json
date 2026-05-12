@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-05-12T22:12:45.763Z",
+  "sources": {
+    "questions": {
+      "base": 72,
+      "extra": 117,
+      "total": 117
+    },
+    "passages": {
+      "base": 8,
+      "extra": 17,
+      "total": 25
+    },
+    "scholarships": {
+      "legacy": 2,
+      "v2": 37,
+      "records": 1,
+      "published": 37,
+      "published_public": 1
+    }
+  },
+  "deadlines": {
+    "tracked": 22,
+    "rolling": 21,
+    "unknown": 15,
+    "changes": 5
+  }
+}

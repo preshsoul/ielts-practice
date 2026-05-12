@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile, rename, unlink } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { normalizePassages, normalizeQuestions } from "./schema.js";
+import { normalizePassages, normalizeQuestions, normalizeQuestionText } from "./schema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..");
@@ -36,6 +36,18 @@ async function atomicWriteJson(path, data) {
 
 function mergePassageMaps(base = {}, extra = {}) {
   return { ...normalizePassages(base), ...normalizePassages(extra) };
+}
+
+function dedupeQuestionsByText(questions = []) {
+  const seen = new Set();
+  const result = [];
+  for (const question of questions) {
+    const key = normalizeQuestionText(question?.question || "").toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    result.push(question);
+  }
+  return result;
 }
 
 export async function readQuestionStores() {
@@ -102,7 +114,7 @@ export async function mergeQuestionStores(incoming, options = {}) {
 
 export async function writeReviewQueue(incoming, options = {}) {
   const stores = await readQuestionStores();
-  const incomingQuestions = normalizeQuestions(incoming?.questions || []).map((question) => ({
+  const incomingQuestions = dedupeQuestionsByText(normalizeQuestions(incoming?.questions || [])).map((question) => ({
     ...question,
     reviewStatus: "pending",
     reviewNotes: question.reviewNotes || "",
@@ -159,12 +171,12 @@ export async function promoteReviewedQuestions({ ids = [], target = "base" } = {
       delete nextReviewPassages[pid];
     }
   }
-  const mergedQuestions = normalizeQuestions([...approved.map((question) => ({
+  const mergedQuestions = dedupeQuestionsByText(normalizeQuestions([...approved.map((question) => ({
     ...question,
     reviewStatus: "approved",
     reviewedAt: new Date().toISOString(),
     promotedAt: new Date().toISOString(),
-  })), ...targetQuestions]);
+  })), ...targetQuestions]));
   const mergedPassages = mergePassageMaps(targetPassages, approvedPassages);
   const nextTargetPayload = {
     version: "1.1.0",

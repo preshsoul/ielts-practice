@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-04-23T21:45:25.354Z",
+  "updated_at": "2026-05-01T03:32:06.310Z",
   "questions": [
     {
       "id": "ielts-topic-bank-1-test-info-test-information-faq-1-t",
@@ -5075,6 +5075,982 @@
       "reviewNotes": "",
       "reviewedAt": null,
       "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-data-update-yesterday-who-do-americans-spend-time-with-over-th-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p201",
+      "difficulty": 1,
+      "question": "The passage presents Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "data update - yesterday who do americans spend time with over their lives? explore updated data on time use from the u.s. bureau of labor statistics. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-data-update-yesterday-who-do-americans-spend-time-with-over-th-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p201",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "data update - yesterday who do americans spend time with over their lives? explore updated data on time use from the u.s. bureau of labor statistics. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-data-update-yesterday-who-do-americans-spend-time-with-over-th-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p201",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "data update - yesterday who do americans spend time with over their lives? explore updated data on time use from the u.s. bureau of labor statistics. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-data-update-yesterday-who-do-americans-spend-time-with-over-th-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p201",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "data update - yesterday who do americans spend time with over their lives? explore updated data on time use from the u.s. bureau of labor statistics. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-data-update-yesterday-who-do-americans-spend-time-with-over-th-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p201",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "data update - yesterday who do americans spend time with over their lives? explore updated data on time use from the u.s. bureau of labor statistics. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-this-week-we-now-have-a-publication-on-substack-i-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p202",
+      "difficulty": 1,
+      "question": "The passage presents Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "announcement - this week we now have a publication on substack! it features the owid brief, our flagship newsletter. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-this-week-we-now-have-a-publication-on-substack-i-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p202",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "announcement - this week we now have a publication on substack! it features the owid brief, our flagship newsletter. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-this-week-we-now-have-a-publication-on-substack-i-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p202",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "announcement - this week we now have a publication on substack! it features the owid brief, our flagship newsletter. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-this-week-we-now-have-a-publication-on-substack-i-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p202",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "announcement - this week we now have a publication on substack! it features the owid brief, our flagship newsletter. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-this-week-we-now-have-a-publication-on-substack-i-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p202",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "announcement - this week we now have a publication on substack! it features the owid brief, our flagship newsletter. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-7-days-ago-hannah-ritchie-has-won-the-2026-unwin--t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p203",
+      "difficulty": 1,
+      "question": "The passage presents Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "announcement - 7 days ago hannah ritchie has won the 2026 unwin award! the award recognizes early-career authors whose work is considered to have made a significant contribution to the world. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more is often used as a shorthand for larger questions about value, fairness, and trade-offs in public life. Economists point out that headline figures can hide important distributional effects across regions and social groups. A policy may look successful in aggregate while leaving some communities with little immediate benefit. This is why analysts increasingly look for supporting indicators before making strong conclusions.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-7-days-ago-hannah-ritchie-has-won-the-2026-unwin--f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p203",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "announcement - 7 days ago hannah ritchie has won the 2026 unwin award! the award recognizes early-career authors whose work is considered to have made a significant contribution to the world. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more is often used as a shorthand for larger questions about value, fairness, and trade-offs in public life. Economists point out that headline figures can hide important distributional effects across regions and social groups. A policy may look successful in aggregate while leaving some communities with little immediate benefit. This is why analysts increasingly look for supporting indicators before making strong conclusions.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-7-days-ago-hannah-ritchie-has-won-the-2026-unwin--ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p203",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "announcement - 7 days ago hannah ritchie has won the 2026 unwin award! the award recognizes early-career authors whose work is considered to have made a significant contribution to the world. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more is often used as a shorthand for larger questions about value, fairness, and trade-offs in public life. Economists point out that headline figures can hide important distributional effects across regions and social groups. A policy may look successful in aggregate while leaving some communities with little immediate benefit. This is why analysts increasingly look for supporting indicators before making strong conclusions.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-7-days-ago-hannah-ritchie-has-won-the-2026-unwin--mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p203",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "announcement - 7 days ago hannah ritchie has won the 2026 unwin award! the award recognizes early-career authors whose work is considered to have made a significant contribution to the world. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more is often used as a shorthand for larger questions about value, fairness, and trade-offs in public life. Economists point out that headline figures can hide important distributional effects across regions and social groups. A policy may look successful in aggregate while leaving some communities with little immediate benefit. This is why analysts increasingly look for supporting indicators before making strong conclusions.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-announcement-7-days-ago-hannah-ritchie-has-won-the-2026-unwin--sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p203",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "announcement - 7 days ago hannah ritchie has won the 2026 unwin award! the award recognizes early-career authors whose work is considered to have made a significant contribution to the world. read more"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more is often used as a shorthand for larger questions about value, fairness, and trade-offs in public life. Economists point out that headline figures can hide important distributional effects across regions and social groups. A policy may look successful in aggregate while leaving some communities with little immediate benefit. This is why analysts increasingly look for supporting indicators before making strong conclusions.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-poverty-data-explorer-204-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p204",
+      "difficulty": 1,
+      "question": "The passage presents Poverty Data Explorer as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "poverty data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Poverty Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-poverty-data-explorer-204-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p204",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Poverty Data Explorer.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "poverty data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Poverty Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-poverty-data-explorer-204-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p204",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Poverty Data Explorer in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "poverty data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Poverty Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-poverty-data-explorer-204-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p204",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Poverty Data Explorer?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "poverty data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Poverty Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-poverty-data-explorer-204-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p204",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Poverty Data Explorer depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "poverty data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Poverty Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-population-demography-data-explorer-205-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p205",
+      "difficulty": 1,
+      "question": "The passage presents Population & Demography Data Explorer as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "population & demography data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Population & Demography Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-population-demography-data-explorer-205-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p205",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Population & Demography Data Explorer.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "population & demography data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Population & Demography Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-population-demography-data-explorer-205-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p205",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Population & Demography Data Explorer in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "population & demography data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Population & Demography Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-population-demography-data-explorer-205-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p205",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Population & Demography Data Explorer?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "population & demography data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Population & Demography Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-population-demography-data-explorer-205-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p205",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Population & Demography Data Explorer depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "population & demography data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Population & Demography Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-global-health-data-explorer-206-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p206",
+      "difficulty": 1,
+      "question": "The passage presents Global Health Data Explorer as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "global health data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Global Health Data Explorer illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-global-health-data-explorer-206-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p206",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Global Health Data Explorer.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "global health data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Global Health Data Explorer illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-global-health-data-explorer-206-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p206",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Global Health Data Explorer in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "global health data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Global Health Data Explorer illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-global-health-data-explorer-206-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p206",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Global Health Data Explorer?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "global health data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Global Health Data Explorer illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-global-health-data-explorer-206-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p206",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Global Health Data Explorer depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "global health data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Global Health Data Explorer illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-energy-data-explorer-207-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p207",
+      "difficulty": 1,
+      "question": "The passage presents Energy Data Explorer as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "energy data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Energy Data Explorer has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-energy-data-explorer-207-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p207",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Energy Data Explorer.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "energy data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Energy Data Explorer has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-energy-data-explorer-207-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p207",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Energy Data Explorer in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "energy data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Energy Data Explorer has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-energy-data-explorer-207-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p207",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Energy Data Explorer?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "energy data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Energy Data Explorer has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-energy-data-explorer-207-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p207",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Energy Data Explorer depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "energy data explorer"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Energy Data Explorer has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-child-infant-mortality-208-t",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p208",
+      "difficulty": 1,
+      "question": "The passage presents Child & Infant Mortality as an issue with practical consequences.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "True",
+      "explanation": "The passage explicitly frames the topic as affecting policy and everyday behaviour.",
+      "tags": [
+        "child & infant mortality"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Child & Infant Mortality reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-child-infant-mortality-208-f",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p208",
+      "difficulty": 2,
+      "question": "The passage says there are no trade-offs involved in Child & Infant Mortality.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "False",
+      "explanation": "The passage clearly discusses costs, limits, uncertainty, or compromise depending on the theme.",
+      "tags": [
+        "child & infant mortality"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Child & Infant Mortality reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-child-infant-mortality-208-ng",
+      "exam": "IELTS",
+      "section": "Reading – T/F/NG",
+      "pid": "our-world-in-data-p208",
+      "difficulty": 3,
+      "question": "The passage explains whether every country handles Child & Infant Mortality in exactly the same way.",
+      "options": [
+        "True",
+        "False",
+        "Not Given"
+      ],
+      "answer": "Not Given",
+      "explanation": "The passage discusses the issue in general terms but does not compare all countries.",
+      "tags": [
+        "child & infant mortality"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Child & Infant Mortality reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-child-infant-mortality-208-mcq",
+      "exam": "IELTS",
+      "section": "Reading – MCQ",
+      "pid": "our-world-in-data-p208",
+      "difficulty": 2,
+      "question": "What is the main message of the passage about Child & Infant Mortality?",
+      "options": [
+        "It is a simple problem with a single solution",
+        "It involves trade-offs between ambition and practicality",
+        "It is only relevant to one small group of people",
+        "It can be ignored until it becomes urgent"
+      ],
+      "answer": "It involves trade-offs between ambition and practicality",
+      "explanation": "The passage repeatedly emphasizes constraints, compromise, and implementation limits.",
+      "tags": [
+        "child & infant mortality"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Child & Infant Mortality reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
+    },
+    {
+      "id": "our-world-in-data-child-infant-mortality-208-sum",
+      "exam": "IELTS",
+      "section": "Reading – Summary",
+      "pid": "our-world-in-data-p208",
+      "difficulty": 3,
+      "question": "Complete the summary: The passage suggests that success on Child & Infant Mortality depends on balancing ______ and ______.",
+      "options": [
+        "speed / luck",
+        "cost / access",
+        "image / gossip",
+        "volume / noise"
+      ],
+      "answer": "cost / access",
+      "explanation": "The passage consistently points to implementation cost and accessibility as the key tension.",
+      "tags": [
+        "child & infant mortality"
+      ],
+      "sourceId": "our-world-in-data",
+      "passageText": "Child & Infant Mortality reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+      "reviewStatus": "pending",
+      "reviewNotes": "",
+      "reviewedAt": null,
+      "promotedAt": null
     }
   ],
   "passages": {
@@ -5094,9 +6070,9 @@
     "who-fact-sheets-p106": "Country cooperation strategies&#160; reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
     "who-fact-sheets-p107": "Country office profiles reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
     "who-fact-sheets-p108": "Strengthening country offices&#160; reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
-    "our-world-in-data-p201": "climate change has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
-    "our-world-in-data-p202": "education inequality is often discussed as a measure of long-term social mobility and national productivity. Advocates say that strong educational pathways widen opportunity and help people adapt to changing labour markets. Others point out that institutions can reproduce inequality when support structures are weak or unevenly distributed. Policy makers therefore face a familiar challenge: how to raise quality without making participation less accessible.",
-    "our-world-in-data-p203": "health access illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+    "our-world-in-data-p201": "Data update - Yesterday Who do Americans spend time with over their lives? Explore updated data on time use from the U.S. Bureau of Labor Statistics. Read more shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+    "our-world-in-data-p202": "Announcement - This Week We now have a publication on Substack! It features The OWID Brief, our flagship newsletter. Read more reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
+    "our-world-in-data-p203": "Announcement - 7 days ago Hannah Ritchie has won the 2026 Unwin Award! The award recognizes early-career authors whose work is considered to have made a significant contribution to the world. Read more is often used as a shorthand for larger questions about value, fairness, and trade-offs in public life. Economists point out that headline figures can hide important distributional effects across regions and social groups. A policy may look successful in aggregate while leaving some communities with little immediate benefit. This is why analysts increasingly look for supporting indicators before making strong conclusions.",
     "world-bank-open-knowledge-p301": "New Author Profiles reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
     "world-bank-open-knowledge-p302": "Projects and Operations reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
     "world-bank-open-knowledge-p303": "Access to Information reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
@@ -5109,6 +6085,11 @@
     "world-bank-open-knowledge-p304": "REPORT FRAUD OR CORRUPTION reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
     "world-bank-open-knowledge-p305": "development policy reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
     "world-bank-open-knowledge-p306": "poverty reduction reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense.",
-    "world-bank-open-knowledge-p307": "digital inclusion shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement."
+    "world-bank-open-knowledge-p307": "digital inclusion shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+    "our-world-in-data-p204": "Poverty Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+    "our-world-in-data-p205": "Population & Demography Data Explorer shows how technology can make work faster while also creating new forms of dependence and uncertainty. Businesses usually adopt tools when the promise of efficiency outweighs the cost of training and integration. At the same time, users often worry about privacy, reliability, and the loss of human judgement. For that reason, successful adoption tends to involve careful rollout rather than instant replacement.",
+    "our-world-in-data-p206": "Global Health Data Explorer illustrates how health outcomes are shaped by habits, institutions, and access to reliable information. Public campaigns often aim to reduce risk through early intervention, clearer guidance, and more consistent prevention. Even so, outcomes depend on whether people can translate advice into sustainable routines in everyday life. Researchers increasingly argue that prevention is cheaper and more humane than treatment after problems become severe.",
+    "our-world-in-data-p207": "Energy Data Explorer has become a recurring subject in public debate because it affects both policy and daily behaviour. Supporters argue that practical reform can reduce waste, improve resilience, and create more sustainable systems. Critics, however, note that implementation costs and uneven access often limit the scale of immediate change. The result is usually a compromise between ambition, available funding, and public acceptance.",
+    "our-world-in-data-p208": "Child & Infant Mortality reflects a broader social pattern rather than a single isolated event. People tend to support change when it feels practical, visible, and consistent with their own experience. Resistance usually grows when reforms appear abstract, expensive, or disconnected from everyday concerns. That tension makes social change both slow and uneven, even when public discussion is intense."
   }
 }

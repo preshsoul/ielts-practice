@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta?.env?.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta?.env?.VITE_SUPABASE_ANON_KEY;
+let currentAccessToken = null;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn(
@@ -9,8 +10,38 @@ if (!supabaseUrl || !supabaseAnonKey) {
   );
 }
 
-export const supabase =
-  supabaseUrl && supabaseAnonKey
-    ? createClient(supabaseUrl, supabaseAnonKey)
-    : null;
+export let supabase = null;
 
+function createSupabaseClient(accessToken = null) {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return null;
+  }
+
+  return createClient(supabaseUrl, supabaseAnonKey, {
+    global: accessToken
+      ? {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      : {},
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+    },
+  });
+}
+
+export function configureSupabaseSession(accessToken = null) {
+  const normalizedToken = accessToken ? String(accessToken) : null;
+  if (normalizedToken === currentAccessToken && supabase) {
+    return supabase;
+  }
+
+  currentAccessToken = normalizedToken;
+  supabase = createSupabaseClient(currentAccessToken);
+  return supabase;
+}
+
+configureSupabaseSession();

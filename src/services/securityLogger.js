@@ -36,8 +36,10 @@ class SecurityLogger {
       this.events.shift(); // Remove oldest
     }
 
-    // Console logging for development
-    console.log(`[${level}] ${event}`, details);
+    // Console logging only in development
+    if (typeof import.meta !== 'undefined' && import.meta.env?.DEV) {
+      console.debug(`[${level}] ${event}`, details);
+    }
 
     // In production, this would send to a logging service
     // this.sendToLoggingService(logEntry);
@@ -45,15 +47,6 @@ class SecurityLogger {
 
   // Generate or retrieve session ID
   getSessionId() {
-    if (typeof sessionStorage !== 'undefined') {
-      let sessionId = sessionStorage.getItem('session_id');
-      if (!sessionId) {
-        sessionId = this.generateSessionId();
-        sessionStorage.setItem('session_id', sessionId);
-      }
-      return sessionId;
-    }
-
     if (!this.memorySessionId) {
       this.memorySessionId = this.generateSessionId();
     }
@@ -64,7 +57,10 @@ class SecurityLogger {
     if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
       return crypto.randomUUID();
     }
-    return `session_${Math.random().toString(36).slice(2)}_${Date.now()}`;
+    const randomBytes = typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function'
+      ? crypto.getRandomValues(new Uint32Array(2))
+      : [Date.now() & 0xffffffff, (Date.now() >>> 0) ^ 0xa5a5a5a5];
+    return `session_${randomBytes[0].toString(36)}_${randomBytes[1].toString(36)}_${Date.now()}`;
   }
 
   // Security event logging methods

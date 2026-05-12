@@ -8,6 +8,39 @@ function isArray(value) {
   return Array.isArray(value);
 }
 
+export function normalizeWhitespace(value) {
+  return String(value ?? "")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([,.;:!?])/g, "$1")
+    .replace(/([([{])\s+/g, "$1")
+    .replace(/\s+([)\]}])/g, "$1")
+    .trim();
+}
+
+export function normalizeQuestionText(value) {
+  return normalizeWhitespace(value);
+}
+
+export function ensureTerminalPunctuation(value, fallback = ".") {
+  const text = normalizeQuestionText(value);
+  if (!text) return "";
+  return /[.?!…]$/.test(text) ? text : `${text}${fallback}`;
+}
+
+export function normalizeQuestionRecord(item = {}) {
+  return {
+    ...item,
+    question: ensureTerminalPunctuation(item.question),
+    explanation: ensureTerminalPunctuation(item.explanation),
+    answer: normalizeQuestionText(item.answer),
+    passageText: ensureTerminalPunctuation(item.passageText),
+    options: Array.isArray(item.options) ? item.options.map((option) => normalizeQuestionText(option)) : [],
+    tags: Array.isArray(item.tags)
+      ? item.tags.map((tag) => normalizeQuestionText(tag).toLowerCase()).filter(Boolean)
+      : [],
+  };
+}
+
 export function validateLegacyQuestion(question) {
   const errors = [];
   if (!question || typeof question !== "object") {
@@ -49,10 +82,8 @@ export function normalizeQuestions(items = []) {
   return dedupeById(items)
     .filter((item) => validateLegacyQuestion(item).valid)
     .map((item) => ({
-      ...item,
+      ...normalizeQuestionRecord(item),
       difficulty: Number(item.difficulty),
-      options: Array.isArray(item.options) ? item.options : [],
-      tags: Array.isArray(item.tags) ? item.tags : [],
     }));
 }
 

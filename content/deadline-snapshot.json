@@ -1,0 +1,204 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-05-12T22:12:45.721Z",
+  "items": {
+    "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region": {
+      "id": "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region",
+      "name": "Find Scholarships in 2026 (Full Directory) | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/find-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-scholarships-for-international-students-in-2026": {
+      "id": "scholarship-region-list-of-scholarships-for-international-students-in-2026",
+      "name": "List of Scholarships for International Students in 2026",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-ongoing-fellowships-awards-2026-scholarship-region": {
+      "id": "scholarship-region-ongoing-fellowships-awards-2026-scholarship-region",
+      "name": "Ongoing Fellowships Awards 2026 | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/fellowships/",
+      "urgency": "green"
+    },
+    "scholarship-region-secondary-school-and-high-school-scholarships-2026": {
+      "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
+      "name": "Secondary School and High School Scholarships 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/high-school-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-masters-scholarships-2026": {
+      "id": "scholarship-region-list-of-ongoing-masters-scholarships-2026",
+      "name": "List of Ongoing Masters Scholarships 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/masters-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-phd-scholarships-2026": {
+      "id": "scholarship-region-list-of-ongoing-phd-scholarships-2026",
+      "name": "List of Ongoing PhD Scholarships 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/phd-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-popular-scholarships-in-2026-scholarship-region": {
+      "id": "scholarship-region-popular-scholarships-in-2026-scholarship-region",
+      "name": "Popular Scholarships in 2026 | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/popular-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-postgraduate-scholarships-2026": {
+      "id": "scholarship-region-list-of-ongoing-postgraduate-scholarships-2026",
+      "name": "List of Ongoing Postgraduate Scholarships 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/postgraduate-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-africa-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-africa-2026",
+      "name": "List of Ongoing Scholarships in Africa 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-africa/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-asia-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-asia-2026",
+      "name": "List of Ongoing Scholarships in Asia 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-asia/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-australia-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-australia-2026",
+      "name": "List of Ongoing Scholarships in Australia 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-australia/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-canada-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-canada-2026",
+      "name": "List of Ongoing Scholarships in Canada 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-canada/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-europe-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-europe-2026",
+      "name": "List of Ongoing Scholarships in Europe 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-europe/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-nigeria-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-nigeria-2026",
+      "name": "List of Ongoing Scholarships in Nigeria 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-nigeria/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-uk-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-uk-2026",
+      "name": "List of Ongoing Scholarships in UK 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-uk/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-scholarships-in-usa-2026": {
+      "id": "scholarship-region-list-of-ongoing-scholarships-in-usa-2026",
+      "name": "List of Ongoing Scholarships in USA 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/scholarships-in-usa/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-ongoing-undergraduate-scholarships-2026": {
+      "id": "scholarship-region-list-of-ongoing-undergraduate-scholarships-2026",
+      "name": "List of Ongoing Undergraduate Scholarships 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/undergraduate-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-ministry-of-finance-and-commerce-mofcom-scholarship-for-kenya": {
+      "id": "scholarship-region-ministry-of-finance-and-commerce-mofcom-scholarship-for-kenya",
+      "name": "Ministry of Finance and Commerce MOFCOM Scholarship For Kenyans | Fully Funded | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/mofcom-scholarship-for-kenyans/",
+      "urgency": "green"
+    },
+    "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol": {
+      "id": "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol",
+      "name": "2026 Chinese Government MOFCOM Scholarship | Fully Funded | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/chinese-government-mofcom-scholarship/",
+      "urgency": "green"
+    },
+    "scholarship-region-mr-macaroni-tech-scholarship-for-nigerians-2026-fully-funded-": {
+      "id": "scholarship-region-mr-macaroni-tech-scholarship-for-nigerians-2026-fully-funded-",
+      "name": "Mr Macaroni Tech Scholarship For Nigerians 2026 | Fully Funded | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/mr-macaroni-tech-scholarship/",
+      "urgency": "green"
+    },
+    "scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op": {
+      "id": "scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
+      "name": "Scholarships Cafe - Connecting qualified candidates to global opportunities in academia",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://scholarshipscafe.com/positions?page=96",
+      "urgency": "green"
+    },
+    "scholarships-cafe-position-detail": {
+      "id": "scholarships-cafe-position-detail",
+      "name": "Position Detail",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://scholarshipscafe.com/position-detail?id=15499",
+      "urgency": "green"
+    }
+  }
+}

@@ -1,30 +1,132 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-04-16T00:00:00.000Z",
+  "updated_at": "2026-05-01T00:00:00.000Z",
   "sources": [
     {
-      "label": "University of Glasgow",
-      "url": "https://www.gla.ac.uk/",
-      "country": "UK",
-      "city": "Glasgow",
-      "currency": "GBP",
-      "notes": "Use the site root as a crawl starting point and follow scholarship/funding/bursary links on the same domain."
+      "label": "Scholarship Region",
+      "url": "https://www.scholarshipregion.com/find-scholarships/",
+      "country": "Global",
+      "city": "Online",
+      "currency": "USD",
+      "strategy": {
+        "entryPaths": ["/find-scholarships/", "/category/scholarships/"],
+        "followPatterns": ["scholar", "fund", "award", "grant", "fellow", "studentship", "bursary", "position", "opportunity"],
+        "priorityPatterns": ["international", "global", "overseas", "abroad", "open to all", "graduate trainee", "graduate program", "graduate scheme", "management trainee", "early career"],
+        "applicationPatterns": ["apply", "application", "view scholarship", "open scholarship", "read more"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 24,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages."
     },
     {
-      "label": "University of Edinburgh",
-      "url": "https://www.ed.ac.uk/",
-      "country": "UK",
-      "city": "Edinburgh",
-      "currency": "GBP",
-      "notes": "Use the site root as a crawl starting point and follow scholarship/funding/bursary links on the same domain."
+      "label": "Scholarships Cafe",
+      "url": "https://scholarshipscafe.com/positions",
+      "country": "Global",
+      "city": "Online",
+      "currency": "USD",
+      "strategy": {
+        "entryPaths": ["/positions", "/positions/"],
+        "followPatterns": ["position-detail", "scholar", "fund", "award", "grant", "fellow", "studentship", "opportunity"],
+        "priorityPatterns": ["graduate trainee", "graduate program", "graduate scheme", "management trainee", "internship", "early career", "international", "overseas", "global"],
+        "applicationPatterns": ["apply", "application", "view scholarship", "open position", "details"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 24,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Crawl the scholarship positions feed, follow position-detail pages, and capture the visible application link from each detail page, with extra weight for graduate trainee and international opportunities."
     },
     {
-      "label": "University of Sheffield",
-      "url": "https://www.sheffield.ac.uk/",
-      "country": "UK",
-      "city": "Sheffield",
+      "label": "Chevening",
+      "url": "https://www.chevening.org/scholarships/",
+      "country": "United Kingdom",
+      "city": "Online",
       "currency": "GBP",
-      "notes": "Use the site root as a crawl starting point and follow scholarship/funding/bursary links on the same domain."
+      "strategy": {
+        "entryPaths": ["/scholarships/", "/scholarship/"],
+        "followPatterns": ["scholarship", "fellowship", "apply", "eligibility", "who can apply", "award"],
+        "priorityPatterns": ["international", "global", "fully funded", "leaders", "world"],
+        "applicationPatterns": ["apply", "application", "how to apply", "who can apply", "eligibility"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 20,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official UK government international scholarships and fellowships programme. Prioritize awards that are open to applicants from many countries."
+    },
+    {
+      "label": "DAAD Scholarships",
+      "url": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+      "country": "Germany",
+      "city": "Online",
+      "currency": "EUR",
+      "strategy": {
+        "entryPaths": ["/en/studying-in-germany/scholarships/daad-scholarships/", "/deutschland/stipendium/datenbank/"],
+        "followPatterns": ["scholarship", "funding", "database", "study", "research", "international"],
+        "priorityPatterns": ["international", "master", "phd", "developing", "emerging", "global"],
+        "applicationPatterns": ["apply", "application", "details", "requirements", "deadlines"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 24,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official DAAD scholarship overview and database. Prioritize detailed programme pages for international students and researchers."
+    },
+    {
+      "label": "Mastercard Foundation Scholars",
+      "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/",
+      "country": "Global",
+      "city": "Online",
+      "currency": "USD",
+      "strategy": {
+        "entryPaths": ["/en/what-we-do/our-programs/mastercard-foundation-scholars-program/", "/en/what-we-do/our-programs/mastercard-foundation-scholars-program-at-makerere-university/"],
+        "followPatterns": ["scholar", "scholars", "program", "leadership", "education", "partner"],
+        "priorityPatterns": ["africa", "international", "leadership", "higher education", "global", "young leaders"],
+        "applicationPatterns": ["apply", "application", "where to apply", "learn more", "eligibility"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 18,
+        "maxDepth": 1,
+        "priorityBonus": 1
+      },
+      "notes": "Official Scholars Program pages from Mastercard Foundation. Prioritize partner-university opportunities and leadership-focused scholarship routes."
+    },
+    {
+      "label": "Unilever Early Careers",
+      "url": "https://careers.unilever.com/en/early-careers",
+      "country": "Global",
+      "city": "Online",
+      "currency": "USD",
+      "strategy": {
+        "entryPaths": ["/en/early-careers", "/en/job/", "/early-careers-at-unilever"],
+        "followPatterns": ["graduate trainee", "graduate programme", "graduate program", "early careers", "internship", "apprenticeship", "trainee"],
+        "priorityPatterns": ["graduate trainee", "graduate programme", "graduate program", "management trainee", "early careers", "future leaders", "internship"],
+        "applicationPatterns": ["apply", "application", "learn more", "open role", "job details"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 18,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official Unilever early-career and graduate programme pages. Prioritize graduate trainee and future leaders roles over generic company pages."
+    },
+    {
+      "label": "KPMG Graduates",
+      "url": "https://kpmg.com/sg/en/home/careers/graduates.html",
+      "country": "Singapore",
+      "city": "Online",
+      "currency": "SGD",
+      "strategy": {
+        "entryPaths": ["/en/home/careers/graduates.html", "/en/home/careers/early-careers-programmes.html"],
+        "followPatterns": ["graduate", "graduates", "early careers", "programme", "program", "apply"],
+        "priorityPatterns": ["graduate programme", "graduate program", "early careers", "university graduate", "fresh graduates"],
+        "applicationPatterns": ["apply", "application", "learn more", "job opportunities"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 18,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official KPMG graduate and early-career pages. Prioritize programmes designed for fresh graduates and early-career candidates."
     }
   ]
 }

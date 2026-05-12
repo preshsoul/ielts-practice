@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-05-12T22:36:06.839Z",
+  "total": 1,
+  "deadLinks": [
+    {
+      "url": "https://www.chevening.org/sids-chevening-scholarship/who-can-apply-for-a-chevening-sids-scholarship",
+      "sourceLabel": "Chevening",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.chevening.org/sids-chevening-scholarship/who-can-apply-for-a-chevening-sids-scholarship\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "capturedAt": "2026-05-12T22:34:32.360Z"
+    }
+  ]
+}

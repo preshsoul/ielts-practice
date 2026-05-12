@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx esbuild src/index.jsx --bundle --format=esm --outfile=dist/assets/index.js --minify && node scripts/copy-html.mjs",
+    "build": "npx esbuild src/index.jsx --bundle --splitting --format=esm --outdir=dist/assets --entry-names=index --chunk-names=chunks/[name]-[hash] --asset-names=assets/[name]-[hash] --loader:.png=file --loader:.jpg=file --loader:.jpeg=file --loader:.gif=file --loader:.svg=file --loader:.webp=file --minify && node scripts/copy-html.mjs",
     "preview": "vite preview",
-    "content:refresh": "node scripts/refresh-content.mjs",
-    "content:scrape-scholarships": "node scripts/scrape-scholarships.mjs",
-    "content:scrape-questions": "node scripts/scrape-questions.mjs",
-    "content:review-questions": "node scripts/review-questions.mjs",
-    "test:parser": "node scripts/test-backend-parser.mjs"
+    "content:refresh": "node --use-system-ca scripts/refresh-content.mjs",
+    "content:sync-scholarship-catalog": "node --use-system-ca scripts/sync-scholarship-embeddings.mjs",
+    "content:backfill-candidate-semantics": "node --use-system-ca scripts/backfill-candidate-semantics.mjs",
+    "content:scrape-scholarships": "node --use-system-ca scripts/scrape-scholarships.mjs",
+    "content:review-scholarships": "node --use-system-ca scripts/review-scholarships.mjs",
+    "content:scrape-questions": "node --use-system-ca scripts/scrape-questions.mjs",
+    "content:review-questions": "node --use-system-ca scripts/review-questions.mjs",
+    "test:parser": "node --use-system-ca scripts/test-backend-parser.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.2",

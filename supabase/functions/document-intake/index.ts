@@ -1,22 +1,68 @@
 import { parseAndValidateDocumentIntake, StrictJsonError } from "../_shared/json-parser.js";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+const allowedOrigins = String(Deno.env.get("APP_ORIGIN") || Deno.env.get("SITE_URL") || "")
+  .split(",")
+  .map((value) => value.trim())
+  .filter(Boolean);
 
-function jsonResponse(body: unknown, status = 200) {
+function corsHeaders(origin: string | null) {
+  return {
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    Vary: "Origin",
+    ...(origin && (!allowedOrigins.length || allowedOrigins.includes(origin))
+      ? { "Access-Control-Allow-Origin": origin }
+      : {}),
+  };
+}
+
+function jsonResponse(body: unknown, status = 200, origin: string | null = null) {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
-      ...corsHeaders,
+      ...corsHeaders(origin),
       "Content-Type": "application/json",
     },
   });
 }
 
-function errorResponse(error: unknown) {
+async function requireAuthenticatedUser(req: Request) {
+  const authHeader = req.headers.get("authorization");
+  if (!authHeader) {
+    throw new Response("Missing authorization header", { status: 401 });
+  }
+
+  const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+  const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || "";
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Response("Supabase auth is not configured", { status: 500 });
+  }
+
+  const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/auth/v1/user`, {
+    headers: {
+      Authorization: authHeader,
+      apikey: supabaseAnonKey,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Response("Unauthorized", { status: 401 });
+  }
+
+  return response.json();
+}
+
+function errorResponse(error: unknown, origin: string | null = null) {
+  if (error instanceof Response) {
+    return new Response(error.body, {
+      status: error.status,
+      headers: {
+        ...corsHeaders(origin),
+        "Content-Type": "text/plain; charset=utf-8",
+      },
+    });
+  }
+
   if (error instanceof StrictJsonError) {
     return jsonResponse({
       ok: false,
@@ -27,7 +73,7 @@ function errorResponse(error: unknown) {
         column: error.column,
         path: error.path,
       },
-    }, 400);
+    }, 400, origin);
   }
 
   const message = error instanceof Error ? error.message : "Unexpected parser failure";
@@ -37,26 +83,32 @@ function errorResponse(error: unknown) {
       name: "ParserError",
       message,
     },
-  }, 500);
+  }, 500, origin);
 }
 
 Deno.serve(async (req: Request) => {
+  const origin = req.headers.get("origin");
+  if (origin && (!allowedOrigins.length || !allowedOrigins.includes(origin))) {
+    return new Response("Origin not allowed", { status: 403 });
+  }
+
   if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
+    return new Response("ok", { headers: corsHeaders(origin) });
   }
 
   if (req.method !== "POST") {
-    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405);
+    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, origin);
   }
 
-  const authHeader = req.headers.get("authorization");
-  if (!authHeader) {
-    return jsonResponse({ ok: false, error: { message: "Missing authorization header" } }, 401);
+  try {
+    await requireAuthenticatedUser(req);
+  } catch (error) {
+    return errorResponse(error, origin);
   }
 
   const raw = await req.text();
   if (!raw.trim()) {
-    return jsonResponse({ ok: false, error: { message: "Empty request body" } }, 400);
+    return jsonResponse({ ok: false, error: { message: "Empty request body" } }, 400, origin);
   }
 
   try {
@@ -75,8 +127,8 @@ Deno.serve(async (req: Request) => {
         nestedDepthLimit: 32,
         maxBytes: 256_000,
       },
-    });
+    }, 200, origin);
   } catch (error) {
-    return errorResponse(error);
+    return errorResponse(error, origin);
   }
 });

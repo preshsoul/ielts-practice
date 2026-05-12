@@ -1,4 +1,147 @@
-import React from "react";
+import React, { useMemo, useRef } from "react";
+import {
+  getProfileCompletion,
+  getProfileCompletionLabel,
+  getProfileSectionCompletion,
+} from "../lib/profileCompletion.js";
+
+const NATIONALITY_OPTIONS = [
+  "Nigerian",
+  "Ghanaian",
+  "Kenyan",
+  "Ugandan",
+  "Cameroonian",
+  "South African",
+  "Rwandan",
+  "Zambian",
+  "Tanzanian",
+  "United Kingdom",
+  "Canada",
+  "Australia",
+  "International",
+];
+
+const DEGREE_CLASS_OPTIONS = [
+  { value: "", label: "Select degree class" },
+  { value: "first", label: "First class" },
+  { value: "2:1", label: "2:1" },
+  { value: "2:2", label: "2:2" },
+  { value: "third", label: "Third class" },
+];
+
+const CGPA_SCALE_OPTIONS = [
+  { value: "", label: "Select scale" },
+  { value: "4", label: "4.0 scale" },
+  { value: "5", label: "5.0 scale" },
+  { value: "7", label: "7.0 scale" },
+  { value: "100", label: "Percentage" },
+];
+
+const EMPLOYMENT_OPTIONS = [
+  { value: "", label: "Select status" },
+  { value: "yes", label: "Yes" },
+  { value: "no", label: "No" },
+];
+
+const DEGREE_LEVEL_OPTIONS = [
+  { value: "", label: "Select level" },
+  { value: "Master's", label: "Master's" },
+  { value: "PhD", label: "PhD" },
+  { value: "MBA", label: "MBA" },
+  { value: "Postgraduate", label: "Postgraduate" },
+];
+
+function getValueAtPath(source, path) {
+  return path.reduce((value, key) => (value && typeof value === "object" ? value[key] : undefined), source);
+}
+
+function setValueAtPath(source, path, nextValue) {
+  if (!path.length) return source;
+  const [head, ...rest] = path;
+
+  if (!rest.length) {
+    return { ...source, [head]: nextValue };
+  }
+
+  return {
+    ...source,
+    [head]: setValueAtPath(source?.[head] || {}, rest, nextValue),
+  };
+}
+
+function formatFieldValue(value) {
+  if (value === null || value === undefined) return "";
+  return String(value);
+}
+
+function buildFieldId(sectionKey, field) {
+  return `profile-${sectionKey}-${field.path.join("-")}`;
+}
+
+function renderOptions(options, includeBlank = true) {
+  const list = Array.isArray(options) ? options : [];
+  return includeBlank ? list : list.slice(1);
+}
+
+function SectionField({
+  sectionKey,
+  field,
+  value,
+  onChange,
+  onFieldFocus,
+}) {
+  const fieldId = buildFieldId(sectionKey, field);
+  const commonProps = {
+    id: fieldId,
+    value: formatFieldValue(value),
+    onChange,
+    onFocus: onFieldFocus,
+    className: "profile-field-control",
+  };
+
+  return (
+    <label className={`profile-field profile-field-${field.type === "textarea" ? "textarea" : "input"}`} htmlFor={fieldId}>
+      <span className="profile-field-label">{field.label}</span>
+      {field.type === "select" ? (
+        <select {...commonProps}>
+          {(Array.isArray(field.options) && field.options.some((option) => (typeof option === "string" ? option === "" : option.value === "")))
+            ? null
+            : <option value="">{`Select ${field.label.toLowerCase()}`}</option>}
+          {renderOptions(field.options).map((option) => {
+            const optionValue = typeof option === "string" ? option : option.value;
+            const optionLabel = typeof option === "string" ? option : option.label;
+            return (
+              <option key={optionValue || optionLabel} value={optionValue}>
+                {optionLabel}
+              </option>
+            );
+          })}
+        </select>
+      ) : field.type === "textarea" ? (
+        <textarea
+          id={fieldId}
+          value={formatFieldValue(value)}
+          onChange={onChange}
+          onFocus={onFieldFocus}
+          rows={field.rows || 3}
+          placeholder={field.placeholder}
+          className="profile-field-control profile-field-textarea"
+        />
+      ) : (
+        <input
+          {...commonProps}
+          type={field.type === "number" ? "number" : "text"}
+          min={field.min}
+          max={field.max}
+          step={field.step}
+          placeholder={field.placeholder}
+          inputMode={field.type === "number" ? "decimal" : undefined}
+        />
+      )}
+      <span className="profile-field-hint">{field.hint}</span>
+    </label>
+  );
+}
 
 export default function AccountProfileForm({
   profile,
@@ -8,143 +151,164 @@ export default function AccountProfileForm({
   profileMessage,
   saveProfileDraft,
   authUser,
-  sessions,
 }) {
-  const updateDraftField = (section, field, value) => {
-    setProfileDraft((current) => ({
-      ...current,
-      [section]: {
-        ...current[section],
-        [field]: value,
-      },
-    }));
+  const completion = getProfileCompletion(profileDraft);
+  const sections = useMemo(() => getProfileSectionCompletion(profileDraft), [profileDraft]);
+  const sectionRefs = useRef({});
+
+  const updateDraftField = (path, value) => {
+    setProfileDraft((current) => setValueAtPath(current, path, value));
   };
 
-  const updateTopLevelField = (field, value) => {
-    setProfileDraft((current) => ({
-      ...current,
-      [field]: value,
-    }));
+  const focusField = (sectionKey, field) => {
+    const fieldId = buildFieldId(sectionKey, field);
+    const element = document.getElementById(fieldId);
+    if (!element) return;
+    element.scrollIntoView({ behavior: "smooth", block: "center" });
+    window.requestAnimationFrame(() => {
+      element.focus({ preventScroll: true });
+    });
+  };
+
+  const jumpToSection = (sectionKey) => {
+    const element = sectionRefs.current[sectionKey];
+    if (!element) return;
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const saveSection = async () => {
+    await saveProfileDraft();
   };
 
   return (
-    <div className="account-card" style={{ marginTop: 16 }}>
-      <div className="empty-state-title">Candidate profile</div>
-      <div className="empty-state-copy">
-        Fill the fields that matter for scholarship matching. The scorer will read these values directly.
-      </div>
+    <div className="profile-workspace">
+      <aside className="profile-workspace-sidebar">
+        <div className="profile-readiness-card">
+          <div className="profile-readiness-kicker">Profile readiness</div>
+          <div className="profile-readiness-title">{getProfileCompletionLabel(completion.percent)}</div>
+          <div className="profile-readiness-copy">
+            Section-by-section readiness shows what the matching engine can use right now.
+          </div>
+          <div
+            className="profile-readiness-track"
+            role="progressbar"
+            aria-label="Profile readiness"
+            aria-valuemin={0}
+            aria-valuemax={completion.total}
+            aria-valuenow={completion.filled}
+          >
+            <div className="profile-readiness-fill" style={{ width: `${completion.percent}%` }} />
+          </div>
+          <div className="profile-readiness-meta">
+            <strong>{completion.percent}%</strong>
+            <span>{completion.filled} of {completion.total} fields complete</span>
+          </div>
+        </div>
 
-      <div className="profile-grid">
-        <label className="profile-field">
-          <span>Nationality</span>
-          <input value={profileDraft.identity.nationality} onChange={(e) => updateDraftField("identity", "nationality", e.target.value)} placeholder="Nigerian" />
-        </label>
-        <label className="profile-field">
-          <span>Country of residence</span>
-          <input value={profileDraft.identity.countryOfResidence} onChange={(e) => updateDraftField("identity", "countryOfResidence", e.target.value)} placeholder="Nigeria" />
-        </label>
-        <label className="profile-field">
-          <span>Age at application cycle</span>
-          <input value={profileDraft.identity.ageAtApplicationCycle} onChange={(e) => updateDraftField("identity", "ageAtApplicationCycle", e.target.value)} placeholder="24" />
-        </label>
+        <div className="profile-section-nav-card">
+          <div className="profile-section-nav-title">Sections</div>
+          <div className="profile-section-nav">
+            {sections.map((section) => (
+              <button
+                key={section.key}
+                type="button"
+                className="profile-section-nav-item"
+                onClick={() => jumpToSection(section.key)}
+              >
+                <span>{section.title}</span>
+                <strong>{section.percent}%</strong>
+              </button>
+            ))}
+          </div>
+        </div>
 
-        <label className="profile-field">
-          <span>Degree class</span>
-          <select value={profileDraft.academic.degreeClass} onChange={(e) => updateDraftField("academic", "degreeClass", e.target.value)}>
-            <option value="">Select degree class</option>
-            <option value="first">First class</option>
-            <option value="2:1">2:1</option>
-            <option value="2:2">2:2</option>
-            <option value="third">Third class</option>
-          </select>
-        </label>
-        <label className="profile-field">
-          <span>Institution</span>
-          <input value={profileDraft.academic.institution} onChange={(e) => updateDraftField("academic", "institution", e.target.value)} placeholder="University of Lagos" />
-        </label>
-        <label className="profile-field">
-          <span>Institution country</span>
-          <input value={profileDraft.academic.institutionCountry} onChange={(e) => updateDraftField("academic", "institutionCountry", e.target.value)} placeholder="Nigeria" />
-        </label>
-        <label className="profile-field">
-          <span>Discipline</span>
-          <input value={profileDraft.academic.discipline} onChange={(e) => updateDraftField("academic", "discipline", e.target.value)} placeholder="Education" />
-        </label>
-        <label className="profile-field">
-          <span>Discipline category</span>
-          <input value={profileDraft.academic.disciplineCategory} onChange={(e) => updateDraftField("academic", "disciplineCategory", e.target.value)} placeholder="Humanities" />
-        </label>
-        <label className="profile-field">
-          <span>Graduation year</span>
-          <input value={profileDraft.academic.graduationYear} onChange={(e) => updateDraftField("academic", "graduationYear", e.target.value)} placeholder="2024" />
-        </label>
-        <label className="profile-field">
-          <span>CGPA</span>
-          <input value={profileDraft.academic.cgpa} onChange={(e) => updateDraftField("academic", "cgpa", e.target.value)} placeholder="4.32" />
-        </label>
-        <label className="profile-field">
-          <span>CGPA scale</span>
-          <input value={profileDraft.academic.cgpaScale} onChange={(e) => updateDraftField("academic", "cgpaScale", e.target.value)} placeholder="5" />
-        </label>
+        <div className="profile-session-card">
+          <div className="profile-section-nav-title">Account</div>
+          <div className="profile-session-copy">
+            {profile?.tier ? `Plan: ${profile.tier}` : "Plan: free"}
+          </div>
+          <div className="profile-session-copy">
+            {authUser ? `Signed in as ${authUser.email || "your account"}.` : "Sign in to save your profile."}
+          </div>
+        </div>
+      </aside>
 
-        <label className="profile-field">
-          <span>Work experience years</span>
-          <input value={profileDraft.professional.workExperienceYears} onChange={(e) => updateDraftField("professional", "workExperienceYears", e.target.value)} placeholder="2" />
-        </label>
-        <label className="profile-field">
-          <span>Currently employed</span>
-          <select value={profileDraft.professional.currentlyEmployed} onChange={(e) => updateDraftField("professional", "currentlyEmployed", e.target.value)}>
-            <option value="">Select status</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </label>
-        <label className="profile-field">
-          <span>Sector</span>
-          <input value={profileDraft.professional.sector} onChange={(e) => updateDraftField("professional", "sector", e.target.value)} placeholder="Education" />
-        </label>
+      <div className="profile-workspace-main">
+        {sections.map((section) => (
+          <section
+            key={section.key}
+            ref={(node) => {
+              if (node) {
+                sectionRefs.current[section.key] = node;
+              }
+            }}
+            className="loci-card loci-card--utilitarian profile-section-card"
+            id={`profile-section-${section.key}`}
+          >
+            <div className="profile-section-head">
+              <div>
+                <div className="profile-section-title">{section.title}</div>
+                <div className="profile-section-copy">{section.description}</div>
+              </div>
+              <div className="profile-section-actions">
+                <span className={`profile-section-state profile-section-state-${section.percent === 100 ? "complete" : section.percent > 0 ? "partial" : "missing"}`}>
+                  {section.percent === 100 ? "Complete" : section.percent > 0 ? "Partial" : "Missing"}
+                </span>
+                <button type="button" className="ghost-btn" onClick={saveSection} disabled={profileBusy || !authUser}>
+                  {profileBusy ? "Saving..." : section.saveLabel}
+                </button>
+              </div>
+            </div>
 
-        <label className="profile-field">
-          <span>IELTS score</span>
-          <input value={profileDraft.languageTests.ielts} onChange={(e) => updateDraftField("languageTests", "ielts", e.target.value)} placeholder="6.5" />
-        </label>
-        <label className="profile-field">
-          <span>TOEFL score</span>
-          <input value={profileDraft.languageTests.toefl} onChange={(e) => updateDraftField("languageTests", "toefl", e.target.value)} placeholder="95" />
-        </label>
-        <label className="profile-field">
-          <span>CELPIP score</span>
-          <input value={profileDraft.languageTests.celpip} onChange={(e) => updateDraftField("languageTests", "celpip", e.target.value)} placeholder="9" />
-        </label>
+            <div className="profile-field-grid">
+              {section.fields.map((field) => {
+                const value = getValueAtPath(profileDraft, field.path);
+                return (
+                  <SectionField
+                    key={field.path.join(".")}
+                    sectionKey={section.key}
+                    field={field}
+                    value={value}
+                    onChange={(event) => updateDraftField(field.path, event.target.value)}
+                    onFieldFocus={() => {}}
+                  />
+                );
+              })}
+            </div>
 
-        <label className="profile-field">
-          <span>Application cycle</span>
-          <input value={profileDraft.applicationCycle} onChange={(e) => updateTopLevelField("applicationCycle", e.target.value)} placeholder="2026" />
-        </label>
-        <label className="profile-field">
-          <span>Target degree level</span>
-          <input value={profileDraft.targetDegreeLevel} onChange={(e) => updateTopLevelField("targetDegreeLevel", e.target.value)} placeholder="Master's" />
-        </label>
-        <label className="profile-field">
-          <span>Target disciplines</span>
-          <input value={profileDraft.targetDisciplines} onChange={(e) => updateTopLevelField("targetDisciplines", e.target.value)} placeholder="Education, Linguistics" />
-        </label>
-        <label className="profile-field">
-          <span>Target countries</span>
-          <input value={profileDraft.targetCountries} onChange={(e) => updateTopLevelField("targetCountries", e.target.value)} placeholder="UK, Canada" />
-        </label>
-      </div>
+            <div className="profile-section-footer">
+              <div className="profile-section-missing-title">
+                {section.missing.length ? "Still missing" : "Ready"}
+              </div>
+              <div className="profile-section-missing-list">
+                {section.missing.length ? section.missing.map((field) => (
+                  <button
+                    key={field.path.join(".")}
+                    type="button"
+                    className="profile-missing-chip"
+                    onClick={() => focusField(section.key, field)}
+                  >
+                    {field.label}
+                  </button>
+                )) : (
+                  <span className="profile-section-ready-copy">This section is complete and ready for matching.</span>
+                )}
+              </div>
+            </div>
+          </section>
+        ))}
 
-      <div className="profile-actions">
-        <button className="primary-btn" onClick={saveProfileDraft} disabled={profileBusy || !authUser}>
-          {profileBusy ? "Saving..." : "Save profile"}
-        </button>
-        {profile?.tier && <div className="empty-state-meta">Plan: {profile.tier}</div>}
-        <div className="empty-state-meta">{sessions.length} locally stored session{sessions.length !== 1 ? "s" : ""}</div>
-      </div>
-      {profileMessage && <div className="empty-state-meta" style={{ textTransform: "none", letterSpacing: 0 }}>{profileMessage}</div>}
-      <div className="empty-state-meta" style={{ textTransform: "none", letterSpacing: 0, marginTop: 10 }}>
-        The Scholarships page now handles document intake for PDFs and DOC/DOCX files. Parsed details can be projected back into these fields after backend extraction and confirmation.
+        <div className="profile-actions">
+          <button className="primary-btn" onClick={saveProfileDraft} disabled={profileBusy || !authUser}>
+            {profileBusy ? "Saving..." : "Save profile"}
+          </button>
+          {profile?.tier && <div className="profile-pill">Plan: {profile.tier}</div>}
+        </div>
+
+        {profileMessage && <div className="profile-message" role="status" aria-live="polite">{profileMessage}</div>}
+        <div className="profile-note">
+          Document intake stays on the Scholarships page. Confirmed values from a document can flow back into these fields after review.
+        </div>
       </div>
     </div>
   );

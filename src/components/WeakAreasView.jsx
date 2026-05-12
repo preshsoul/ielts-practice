@@ -1,23 +1,16 @@
 import React from 'react';
+import { collectSectionStats } from "../lib/sessionStats.js";
 
 export default function WeakAreasView({ sessions, C, Chip, computeWeakSections }) {
   const weak = computeWeakSections(sessions);
-
-  const sectionAcc = {};
-  sessions.forEach(s =>
-    s.results.forEach(r => {
-      if (!sectionAcc[r.section]) sectionAcc[r.section] = { c: 0, t: 0 };
-      sectionAcc[r.section].t++;
-      if (r.correct) sectionAcc[r.section].c++;
-    })
-  );
+  const sectionAcc = collectSectionStats(sessions);
 
   if (!sessions.length || Object.keys(sectionAcc).length === 0) {
     return (
       <div className="empty-state">
         <div className="empty-state-title">No weak areas yet</div>
         <div className="empty-state-copy">
-          Complete at least one practice session and we'll surface the sections that need the most attention.
+          Complete at least one practice session and the sections that need the most attention will appear here.
         </div>
       </div>
     );
@@ -34,7 +27,7 @@ export default function WeakAreasView({ sessions, C, Chip, computeWeakSections }
             {weak.map(s => <Chip key={s} label={s} color={C.red} />)}
           </div>
           <div className="muted" style={{ marginTop: 10 }}>
-            These sections are weighted higher in your next practice session. Open the Learning Path tab
+            These sections are weighted higher in your next practice session. Open the learning path tab
             to study targeted guidance for each one.
           </div>
         </div>
@@ -42,9 +35,9 @@ export default function WeakAreasView({ sessions, C, Chip, computeWeakSections }
 
       <div className="weak-list">
         {Object.entries(sectionAcc)
-          .sort((a, b) => (a[1].c / a[1].t) - (b[1].c / b[1].t))
+          .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))
           .map(([sec, d]) => {
-            const acc = Math.round((d.c / d.t) * 100);
+            const acc = Math.round((d.correct / d.total) * 100);
             const col = acc >= 80 ? C.green : acc >= 60 ? C.amber : C.red;
             const isWeak = weak.includes(sec);
             return (
@@ -59,7 +52,7 @@ export default function WeakAreasView({ sessions, C, Chip, computeWeakSections }
                 <div className="accuracy-bar">
                   <div className="accuracy-fill" style={{ width: `${acc}%`, ['--fill-color']: col }} />
                 </div>
-                <div className="small-muted">{d.c} correct of {d.t} questions attempted</div>
+                <div className="small-muted">{d.correct} correct of {d.total} questions attempted</div>
               </div>
             );
           })}

@@ -1,4 +1,12 @@
 import React from 'react';
+import { collectModuleStats, collectSectionStats } from "../lib/sessionStats.js";
+
+function safePercent(score, total) {
+  const safeTotal = Number(total);
+  const safeScore = Number(score);
+  if (!Number.isFinite(safeTotal) || safeTotal <= 0 || !Number.isFinite(safeScore)) return 0;
+  return Math.round((safeScore / safeTotal) * 100);
+}
 
 export default function ProgressView({ sessions, C, Chip, EXAM_COLOR }) {
   if (!sessions.length) {
@@ -6,26 +14,18 @@ export default function ProgressView({ sessions, C, Chip, EXAM_COLOR }) {
       <div className="empty-state">
         <div className="empty-state-title">No sessions recorded yet</div>
         <div className="empty-state-copy">
-          Complete your first practice session to see score history, section accuracy,
-          and recent session trends here.
+          Start a practice session to see score history, section accuracy, and recent trends here.
         </div>
       </div>
     );
   }
 
   const last10 = sessions.slice(-10);
-
-  const sectionAcc = {};
-  sessions.forEach(s =>
-    s.results.forEach(r => {
-      if (!sectionAcc[r.section]) sectionAcc[r.section] = { c: 0, t: 0 };
-      sectionAcc[r.section].t++;
-      if (r.correct) sectionAcc[r.section].c++;
-    })
-  );
+  const moduleStats = collectModuleStats(sessions);
+  const sectionAcc = collectSectionStats(sessions);
 
   const sectionList = Object.entries(sectionAcc)
-    .map(([s, d]) => ({ section: s, acc: Math.round((d.c / d.t) * 100), total: d.t }))
+    .map(([section, data]) => ({ section, acc: Math.round((data.correct / data.total) * 100), total: data.total }))
     .sort((a, b) => a.acc - b.acc);
 
   return (
@@ -33,7 +33,7 @@ export default function ProgressView({ sessions, C, Chip, EXAM_COLOR }) {
       <div className="score-history-label">Score History (last {last10.length} sessions)</div>
       <div className="score-columns">
         {last10.map((s, i) => {
-          const pct = Math.round((s.score / s.total) * 100);
+          const pct = safePercent(s.score, s.total);
           const col = pct >= 80 ? C.green : pct >= 60 ? C.amber : C.red;
           return (
             <div key={i} className="score-col">
@@ -42,6 +42,26 @@ export default function ProgressView({ sessions, C, Chip, EXAM_COLOR }) {
               <div style={{ fontSize: 10, color: C.muted, fontFamily: 'var(--font-ui)' }}>
                 {new Date(s.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}
               </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="score-history-label">Module coverage</div>
+      <div className="module-coverage-grid">
+        {Object.entries(moduleStats).map(([module, stats]) => {
+          const accuracy = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0;
+          const latest = stats.latest;
+          const col = accuracy >= 80 ? C.green : accuracy >= 60 ? C.amber : C.red;
+          return (
+            <div key={module} className="module-coverage-card">
+              <div className="module-coverage-label">{module}</div>
+              <div className="module-coverage-value" style={{ color: col }}>{stats.attempts} sessions</div>
+              <div className="module-coverage-meta">{latest ? `Latest: ${new Date(latest.date).toLocaleDateString('en-GB')}` : "No attempts yet"}</div>
+              <div className="module-coverage-bar">
+                <div className="module-coverage-fill" style={{ width: `${accuracy}%`, background: col }} />
+              </div>
+              <div className="module-coverage-meta">{accuracy}% accuracy proxy</div>
             </div>
           );
         })}
@@ -71,9 +91,10 @@ export default function ProgressView({ sessions, C, Chip, EXAM_COLOR }) {
             <div className="date">
               {new Date(s.date).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
             </div>
+            <Chip label={String(s.module || "reading")} color={EXAM_COLOR[s.exam] || C.accent} small />
             <Chip label={s.exam} color={EXAM_COLOR[s.exam] || C.accent} small />
-            <div style={{ fontSize: 12, color: Math.round((s.score / s.total) * 100) >= 70 ? C.green : C.amber }}>
-              {s.score}/{s.total} · {Math.round((s.score / s.total) * 100)}%
+            <div style={{ fontSize: 12, color: safePercent(s.score, s.total) >= 70 ? C.green : C.amber }}>
+              {Number(s.score) || 0}/{Number(s.total) || 0} · {safePercent(s.score, s.total)}%
             </div>
           </div>
         ))}

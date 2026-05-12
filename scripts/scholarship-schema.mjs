@@ -2,21 +2,30 @@ export function createEmptyScholarship() {
   return {
     id: null,
     name: null,
+    nameFull: null,
+    name_full: null,
+    displayName: null,
     awardingBody: null,
     coverage: {
+      type: "unknown",
       tuition: false,
       tuitionCovered: false,
       livingCovered: false,
       flightsCovered: false,
       visaFees: false,
       numericAmount: null,
+      amountGBP: null,
+      amountType: null,
       rawAmountString: "",
+      rawAmount: null,
       currency: "GBP",
     },
     eligibility: {
       nationalities: [],
+      nationalityIsOpen: true,
       disciplines: [],
       degreeClassMin: "",
+      degreeClassRequired: null,
       ageLimitMin: null,
       ageLimitMax: null,
       workExperienceYearsMin: 0,
@@ -39,9 +48,13 @@ export function createEmptyScholarship() {
       deadline: null,
       deadlineType: "fixed",
       deadlineRaw: null,
+      deadlineIsApproximate: false,
+      deadlineApproximationConfidence: 0,
       applicationOpensAt: null,
       requiredDocuments: [],
       essayPrompts: [],
+      pageType: null,
+      pageTitle: null,
     },
     provenance: {
       sourceUrl: "",
@@ -55,6 +68,7 @@ export function createEmptyScholarship() {
     },
     source: {
       sourceUrl: "",
+      sourceLabel: "",
       scrapedAt: null,
       verified: true,
       needsVerification: [],
@@ -64,7 +78,7 @@ export function createEmptyScholarship() {
     awardeeContributions: [],
     tags: [],
     fit_score_default: null,
-    source: "static",
+    sourceKind: "static",
     verified: true,
     active: true,
   };
@@ -78,5 +92,7 @@ export function validateScholarship(obj) {
   if (!obj?.application?.url) errors.push("missing application.url");
   if (!obj?.provenance?.sourceUrl) errors.push("missing provenance.sourceUrl");
   if (typeof obj?.provenance?.confidenceScore !== "number") errors.push("confidenceScore must be number");
+  if (!obj?.coverage?.type) errors.push("missing coverage.type");
+  if (!obj?.source?.sourceUrl) errors.push("missing source.sourceUrl");
   return { valid: errors.length === 0, errors };
 }

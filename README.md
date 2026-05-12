@@ -103,7 +103,7 @@ Today the matching model expects pasted profile text because it is the simplest 
 - the backend extracts text and maps it into the structured profile model
 - parsing should happen server-side so private documents are not exposed to the client unnecessarily
 - extracted fields should be shown back to the user for confirmation before scoring changes
-- if parsing fails, the system should fall back to pasted text rather than block the workflow
+- if parsing fails, the import stops and the user retries with a cleaner file instead of silently downgrading the validation path
 
 The goal is not just file upload. It is turning unstructured documents into a transparent candidate profile that can be scored, audited, and reused.
 

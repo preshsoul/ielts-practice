@@ -1,4 +1,11 @@
 import { supabase } from "./supabaseClient.js";
+import {
+  cleanCandidateProfile,
+  cleanApplicationTracking,
+  cleanCvProfile,
+  cleanProfilePatch,
+  cleanText,
+} from "../lib/security.js";
 
 const CONTENT_BASE = "/data";
 
@@ -10,17 +17,67 @@ async function fetchJson(path) {
   return response.json();
 }
 
+async function fetchJsonOptional(path) {
+  try {
+    return await fetchJson(path);
+  } catch {
+    return null;
+  }
+}
+
+function isMissingRelationError(error) {
+  const message = String(error?.message || "").toLowerCase();
+  return error?.code === "42P01" || (message.includes("relation") && message.includes("does not exist"));
+}
+
+async function updateProfileRecord(profileId, payload) {
+  if (!supabase || !profileId) return null;
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({
+      ...cleanProfilePatch(payload),
+      last_seen_at: new Date().toISOString(),
+    })
+    .eq("id", profileId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
 export async function loadPublicContent() {
-  const [questionsData, passagesData, scholarshipsData] = await Promise.all([
+  const [contentManifestData, notificationsData, scholarshipsData] = await Promise.all([
+    fetchJsonOptional("content-manifest.json"),
+    fetchJsonOptional("notifications.json"),
+    fetchJsonOptional("scholarships.json"),
+  ]);
+
+  const legacyScholarships = Array.isArray(scholarshipsData?.institutions) ? scholarshipsData.institutions : [];
+  const normalizedScholarships = Array.isArray(scholarshipsData?.records) ? scholarshipsData.records : [];
+
+  return {
+    contentManifest: contentManifestData || null,
+    notifications: Array.isArray(notificationsData?.notifications) ? notificationsData.notifications : [],
+    scholarships: legacyScholarships,
+    institutions: legacyScholarships,
+    scholarshipRecords: normalizedScholarships,
+    scholarshipCatalog: normalizedScholarships.length ? normalizedScholarships : legacyScholarships,
+    questions: [],
+    passages: {},
+  };
+}
+
+export async function loadPracticeContent() {
+  const [questionsData, passagesData] = await Promise.all([
     fetchJson("questions.json"),
     fetchJson("passages.json"),
-    fetchJson("scholarships.json"),
   ]);
 
   return {
     questions: Array.isArray(questionsData?.questions) ? questionsData.questions : [],
     passages: passagesData?.passages || {},
-    institutions: Array.isArray(scholarshipsData?.institutions) ? scholarshipsData.institutions : [],
   };
 }
 
@@ -31,33 +88,48 @@ export async function ensureProfile(user) {
 
   const profile = {
     id: user.id,
-    display_name:
+    display_name: cleanText(
       user.user_metadata?.full_name ||
-      user.user_metadata?.name ||
-      user.email?.split("@")?.[0] ||
-      null,
+        user.user_metadata?.name ||
+        user.email?.split("@")?.[0] ||
+        null,
+      { maxLength: 120 }
+    ) || null,
     email_hash: emailHash,
     is_anonymous: false,
     last_seen_at: new Date().toISOString(),
   };
 
-  const { data, error } = await supabase.from("profiles").upsert(profile).select().single();
+  const { data, error } = await supabase
+    .from("profiles")
+    .upsert(profile, { onConflict: "id", ignoreDuplicates: false })
+    .select()
+    .single();
   if (error) throw error;
   return data;
 }
 
 export async function saveStructuredProfile(profileId, structuredProfile) {
+  return updateProfileRecord(profileId, structuredProfile);
+}
+
+export async function saveOnboardingProfile(profileId, onboardingProfile) {
+  return updateProfileRecord(profileId, onboardingProfile);
+}
+
+export async function saveCvProfile(profileId, cvProfile) {
   if (!supabase || !profileId) return null;
 
-  const payload = {
-    ...structuredProfile,
-    last_seen_at: new Date().toISOString(),
-  };
+  const payload = cleanCvProfile({
+    profile_id: profileId,
+    label: cvProfile?.label || null,
+    keywords: Array.isArray(cvProfile?.keywords) ? cvProfile.keywords : [],
+    raw_text_hash: cvProfile?.raw_text_hash || cvProfile?.rawTextHash || null,
+  });
 
   const { data, error } = await supabase
-    .from("profiles")
-    .update(payload)
-    .eq("id", profileId)
+    .from("cv_profiles")
+    .upsert(payload, { onConflict: "profile_id,raw_text_hash" })
     .select()
     .single();
 
@@ -65,30 +137,98 @@ export async function saveStructuredProfile(profileId, structuredProfile) {
   return data;
 }
 
-export async function saveCvProfile(profileId, cvProfile) {
+export async function loadLatestCvProfile(profileId) {
+  if (!supabase || !profileId) return null;
+
+  const { data, error } = await supabase
+    .from("cv_profiles")
+    .select("id, profile_id, label, keywords, raw_text_hash, created_at, updated_at")
+    .eq("profile_id", profileId)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data || null;
+}
+
+export async function saveCandidateProfileSnapshot(profileId, snapshot = {}) {
+  if (!supabase || !profileId) return null;
+
+  const payload = cleanCandidateProfile({
+    profile_id: profileId,
+    source_type: snapshot.sourceType || snapshot.source_type || "merged",
+    semantic_text: snapshot.semanticText || snapshot.semantic_text || null,
+    canonical_json: snapshot.canonicalJson || snapshot.canonical_json || {},
+    confidence_json: snapshot.confidenceJson || snapshot.confidence_json || {},
+    embedding_model: snapshot.embeddingModel || snapshot.embedding_model || null,
+    embedding: Array.isArray(snapshot.embedding) ? snapshot.embedding : null,
+    last_cv_profile_id: snapshot.lastCvProfileId || snapshot.last_cv_profile_id || null,
+    source_fingerprint: snapshot.sourceFingerprint || snapshot.source_fingerprint || null,
+  });
+
+  const { data, error } = await supabase
+    .from("candidate_profiles")
+    .upsert(payload, { onConflict: "profile_id" })
+    .select()
+    .single();
+
+  if (error) {
+    if (isMissingRelationError(error)) return null;
+    throw error;
+  }
+  return data;
+}
+
+export async function generateSemanticProfile(text, options = {}) {
+  if (!supabase?.functions?.invoke) return null;
+  const payload = {
+    text: cleanText(text, { maxLength: 12000, allowNewlines: true }) || "",
+    model: cleanText(options.model || "claude-3-5-haiku-20241022", { maxLength: 120 }) || "claude-3-5-haiku-20241022",
+  };
+
+  if (!payload.text) return null;
+
+  const { data, error } = await supabase.functions.invoke("generate-semantic-profile", {
+    body: payload,
+  });
+
+  if (error) {
+    return null;
+  }
+
+  return {
+    semanticText: cleanText(data?.semantic_text || data?.summary || payload.text, { maxLength: 12000, allowNewlines: true }) || payload.text,
+    keywords: Array.isArray(data?.keywords) ? data.keywords.map((value) => cleanText(value, { maxLength: 64 })).filter(Boolean) : [],
+    summary: cleanText(data?.summary || null, { maxLength: 1200, allowNewlines: true }) || null,
+    confidence: Number.isFinite(Number(data?.confidence)) ? Number(data.confidence) : null,
+    model: data?.model || payload.model,
+    usage: data?.usage || null,
+  };
+}
+
+export async function saveMatchEvent(profileId, event = {}) {
   if (!supabase || !profileId) return null;
 
   const payload = {
     profile_id: profileId,
-    label: cvProfile?.label || null,
-    source_filename: cvProfile?.sourceFilename || null,
-    mime_type: cvProfile?.mimeType || null,
-    document_type: cvProfile?.documentType || null,
-    keywords: Array.isArray(cvProfile?.keywords) ? cvProfile.keywords : [],
-    raw_text_hash: cvProfile?.raw_text_hash || null,
-    extracted_excerpt: cvProfile?.extractedExcerpt || null,
-    extracted_text: cvProfile?.extractedText || null,
-    parsed_profile: cvProfile?.parsedProfile || {},
-    confidence: cvProfile?.confidence ?? null,
+    candidate_profile_id: event.candidateProfileId || event.candidate_profile_id || null,
+    scholarship_id: event.scholarshipId || event.scholarship_id || null,
+    match_id: event.matchId || event.match_id || null,
+    event_type: cleanText(event.eventType || event.event_type || "impression", { maxLength: 40 }) || "impression",
+    context_json: event.contextJson && typeof event.contextJson === "object" ? event.contextJson : (event.context_json && typeof event.context_json === "object" ? event.context_json : {}),
   };
 
   const { data, error } = await supabase
-    .from("cv_profiles")
+    .from("match_events")
     .insert(payload)
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    if (isMissingRelationError(error)) return null;
+    throw error;
+  }
   return data;
 }
 
@@ -153,7 +293,7 @@ export async function saveApplicationTracking(profileId, scholarship, state = "s
   const checklist = buildApplicationChecklist(scholarship);
   const { data: existing, error: fetchError } = await supabase
     .from("application_tracking")
-    .select("state_history")
+    .select("state, state_history, documents_checklist, referees, notes")
     .eq("candidate_id", profileId)
     .eq("scholarship_id", scholarship.id)
     .maybeSingle();
@@ -184,7 +324,7 @@ export async function saveApplicationTracking(profileId, scholarship, state = "s
 
   const { data, error } = await supabase
     .from("application_tracking")
-    .upsert(payload, { onConflict: "candidate_id,scholarship_id" })
+    .upsert(cleanApplicationTracking(payload), { onConflict: "candidate_id,scholarship_id" })
     .select()
     .single();
 
@@ -217,11 +357,11 @@ export async function updateApplicationTracking(profileId, scholarshipId, nextSt
 
   const { data, error } = await supabase
     .from("application_tracking")
-    .update({
+    .update(cleanApplicationTracking({
       state: normalizedNextState,
       state_history: stateHistory,
       state_updated_at: new Date().toISOString(),
-    })
+    }))
     .eq("candidate_id", profileId)
     .eq("scholarship_id", scholarshipId)
     .select()
@@ -258,11 +398,11 @@ export async function updateApplicationChecklist(profileId, scholarshipId, check
 
   const { data, error } = await supabase
     .from("application_tracking")
-    .update({
+    .update(cleanApplicationTracking({
       documents_checklist: documents,
       referees,
       state_updated_at: new Date().toISOString(),
-    })
+    }))
     .eq("candidate_id", profileId)
     .eq("scholarship_id", scholarshipId)
     .select()
@@ -294,10 +434,14 @@ export async function loadPracticeSessions(profileId) {
     id: row.client_session_id || row.started_at,
     date: row.completed_at || row.started_at,
     exam: row.exam,
+    module: row.session_data?.module || "reading",
+    mode: row.session_data?.mode || "practice",
+    component: row.session_data?.component || (row.session_data?.module || "reading"),
     score: row.score,
     total: row.total,
     durationSecs: row.duration_secs || null,
     results: row.session_data?.results || [],
+    sessionData: row.session_data || {},
   }));
 }
 
@@ -312,7 +456,14 @@ export async function savePracticeSession(profileId, session) {
     started_at: session.date,
     completed_at: session.date,
     duration_secs: session.durationSecs || null,
-    session_data: { results: session.results || [] },
+    session_data: {
+      results: session.results || [],
+      module: session.module || session.exam || "reading",
+      mode: session.mode || "practice",
+      component: cleanText(session.component || session.module || session.exam || "reading", { maxLength: 64 }) || "reading",
+      summary: cleanText(session.summary || null, { maxLength: 1200, allowNewlines: true }) || null,
+      promptCount: Number(session.promptCount) || null,
+    },
   };
 
   const { data, error } = await supabase

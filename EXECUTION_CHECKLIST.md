@@ -34,12 +34,13 @@
 - [x] Implement urgency scoring and sorting.
 
 ## Loci Phase 4
-- [ ] Expand the practice bank into component-based IELTS coverage.
-- [ ] Extend practice sessions with component metadata.
-- [ ] Add progress/history views for the expanded practice model.
+- [x] Expand the practice bank into component-based IELTS coverage.
+- [x] Extend practice sessions with component metadata.
+- [x] Add progress/history views for the expanded practice model.
 
 ## Loci Phase 5
-- [ ] Add content refresh automation.
-- [ ] Add deadline-change detection and notifications.
-- [ ] Split the app cleanly into Home, Scholarships, Practice, and Account.
+- [x] Add content refresh automation.
+- [x] Add deadline-change detection and notifications.
+- [x] Split the app cleanly into Home, Scholarships, Practice, and Account.
+- [x] Add scholarship review queue and approval workflow.
 - [ ] Add freemium checks and analytics only after the core flows are stable.

@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, access, cp } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -27,6 +27,7 @@ async function main() {
   }
 
   await writeFile(path.join(distDir, 'index.html'), html, 'utf8');
+  await cp(path.join(root, 'public', 'data'), path.join(distDir, 'data'), { recursive: true });
 }
 
 main().catch(err => {
