@@ -127,6 +127,96 @@
         "priorityBonus": 1
       },
       "notes": "Official KPMG graduate and early-career pages. Prioritize programmes designed for fresh graduates and early-career candidates."
+    },
+    {
+      "label": "Oxford Graduate Scholarships",
+      "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "country": "United Kingdom",
+      "city": "Oxford",
+      "currency": "GBP",
+      "strategy": {
+        "entryPaths": ["/admissions/graduate/fees-and-funding/funding/scholarships", "/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search"],
+        "followPatterns": ["scholarship", "studentship", "funding", "graduate", "external", "award"],
+        "priorityPatterns": ["international", "overseas", "world", "graduate", "masters", "phd", "fully funded"],
+        "applicationPatterns": ["apply", "application", "funding", "scholarship", "how to apply"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 18,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants."
+    },
+    {
+      "label": "Cambridge Trust Scholarships",
+      "url": "https://www.cambridgetrust.org/scholarships",
+      "country": "United Kingdom",
+      "city": "Cambridge",
+      "currency": "GBP",
+      "strategy": {
+        "entryPaths": ["/scholarships", "/scholarships/p", "/scholarship/"],
+        "followPatterns": ["scholarship", "trust", "funding", "degree level", "country"],
+        "priorityPatterns": ["international", "overseas", "masters", "phd", "undergraduate", "worldwide", "any subject"],
+        "applicationPatterns": ["apply", "application", "scholarship", "search our scholarships", "find a scholarship"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 24,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official Cambridge Trust scholarship search. Prioritize scholarship listings that are open to international applicants and broad subject areas."
+    },
+    {
+      "label": "Edinburgh Scholarship Search",
+      "url": "https://www.edscholar.is.ed.ac.uk/scholarship_search",
+      "country": "United Kingdom",
+      "city": "Edinburgh",
+      "currency": "GBP",
+      "strategy": {
+        "entryPaths": ["/scholarship_search", "/scholarship_search?"],
+        "followPatterns": ["scholarship", "funding", "bursary", "aid", "international", "postgraduate", "undergraduate"],
+        "priorityPatterns": ["international", "postgraduate", "undergraduate", "masters", "phd", "open to", "funding opportunities"],
+        "applicationPatterns": ["apply", "application", "search", "scholarship", "funding"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 18,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "Official University of Edinburgh scholarship search. Prioritize international and programme-specific awards."
+    },
+    {
+      "label": "KU Leuven Scholarships",
+      "url": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
+      "country": "Belgium",
+      "city": "Leuven",
+      "currency": "EUR",
+      "strategy": {
+        "entryPaths": ["/scholarships/year/2026-2027/science-leuven-scholarship", "/scholarships/year/2026-2027", "/scholarships"],
+        "followPatterns": ["scholarship", "international", "master", "phd", "science", "leuven", "funding"],
+        "priorityPatterns": ["international", "masters", "phd", "eu", "world", "outstanding", "students"],
+        "applicationPatterns": ["apply", "application", "scholarship", "eligibility", "deadline"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 20,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "KU Leuven scholarship pages for international students and masters/PhD routes in a NATO country. Prioritize international and merit-based awards."
+    },
+    {
+      "label": "KTH Scholarships",
+      "url": "https://www.kth.se/en/om/2.239/stipendieutlysningar",
+      "country": "Sweden",
+      "city": "Stockholm",
+      "currency": "SEK",
+      "strategy": {
+        "entryPaths": ["/en/om/2.239/stipendieutlysningar", "/en/student/stod/studier/stipendier/stipendieutlysningar"],
+        "followPatterns": ["scholarship", "stipend", "funding", "student", "international", "master"],
+        "priorityPatterns": ["international", "master", "graduate", "phd", "exchange", "fee-paying", "study"],
+        "applicationPatterns": ["apply", "application", "scholarship", "deadline", "call"],
+        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "maxPages": 20,
+        "maxDepth": 2,
+        "priorityBonus": 1
+      },
+      "notes": "KTH scholarship announcements and grants in Sweden, a NATO member country. Prioritize scholarships open to fee-paying international students."
     }
   ]
 }
