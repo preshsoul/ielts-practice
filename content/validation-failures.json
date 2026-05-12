@@ -1,8 +1,17 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T23:24:33.572Z",
-  "total": 2,
+  "updated_at": "2026-05-12T23:55:16.209Z",
+  "total": 3,
   "failures": [
+    {
+      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding",
+      "sourceLabel": "Oxford Graduate Scholarships",
+      "title": "Funding | Oxford University",
+      "errors": [
+        "confidence below threshold"
+      ],
+      "capturedAt": "2026-05-12T23:54:27.184Z"
+    },
     {
       "sourceUrl": "https://www.kuleuven.be/scholarships/en/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
       "sourceLabel": "KU Leuven Scholarships",
@@ -10,7 +19,7 @@
       "errors": [
         "confidence below threshold"
       ],
-      "capturedAt": "2026-05-12T23:24:07.760Z"
+      "capturedAt": "2026-05-12T23:54:50.850Z"
     },
     {
       "sourceUrl": "https://www.kuleuven.be/scholarships/oud/en/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
@@ -19,7 +28,7 @@
       "errors": [
         "confidence below threshold"
       ],
-      "capturedAt": "2026-05-12T23:24:10.161Z"
+      "capturedAt": "2026-05-12T23:54:53.115Z"
     }
   ]
 }

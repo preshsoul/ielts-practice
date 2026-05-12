@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-05-12T23:24:36.300Z",
+  "updated_at": "2026-05-12T23:55:18.620Z",
   "total": 95,
   "scholarships": [
     {
@@ -2638,7 +2638,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year/2025-2026/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
-        "scrapedAt": "2026-05-12T23:24:11.076Z",
+        "scrapedAt": "2026-05-12T23:54:54.111Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -2653,7 +2653,7 @@
       "source": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year/2025-2026/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
         "sourceLabel": "KU Leuven Scholarships",
-        "scrapedAt": "2026-05-12T23:24:11.076Z",
+        "scrapedAt": "2026-05-12T23:54:54.111Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -2678,8 +2678,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -2688,7 +2688,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "erasmus mundus master of theoretical chemistry and computational modelling (tccm) scholarship::ku leuven scholarships::https://www.kuleuven.be/scholarships/year/2025-2026/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Field: Sciences"
     },
     {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-funding-options",
@@ -2749,7 +2750,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
-        "scrapedAt": "2026-05-12T23:22:55.955Z",
+        "scrapedAt": "2026-05-12T23:53:38.942Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -2764,7 +2765,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:22:55.955Z",
+        "scrapedAt": "2026-05-12T23:53:38.942Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -2789,8 +2790,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -2799,7 +2800,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "funding options::daad scholarships::https://www.boell.de/en/application"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-funding-programmes-hilde-domin-programme",
@@ -2860,7 +2862,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-funding-programmes/hilde-domin-programme",
-        "scrapedAt": "2026-05-12T23:22:52.557Z",
+        "scrapedAt": "2026-05-12T23:53:35.703Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -2875,7 +2877,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-funding-programmes/hilde-domin-programme",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:22:52.557Z",
+        "scrapedAt": "2026-05-12T23:53:35.703Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -2900,8 +2902,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -2910,7 +2912,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "hilde domin programme::daad scholarships::https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/philipp-schwartz-initiative"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-information-for-scholarship-applicants",
@@ -2971,7 +2974,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/information-for-scholarship-applicants",
-        "scrapedAt": "2026-05-12T23:22:54.060Z",
+        "scrapedAt": "2026-05-12T23:53:36.993Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -2986,7 +2989,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/information-for-scholarship-applicants",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:22:54.060Z",
+        "scrapedAt": "2026-05-12T23:53:36.993Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -3011,8 +3014,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -3021,7 +3024,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "information for scholarship applicants::daad scholarships::https://www.daad.de/en/studying-in-germany/scholarships/information-for-scholarship-applicants"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "kpmg.com_kpmg-graduates_sg-en-careers-graduates-html",
@@ -3313,7 +3317,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
-        "scrapedAt": "2026-05-12T23:24:02.216Z",
+        "scrapedAt": "2026-05-12T23:54:45.442Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -3328,7 +3332,7 @@
       "source": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
         "sourceLabel": "KU Leuven Scholarships",
-        "scrapedAt": "2026-05-12T23:24:02.216Z",
+        "scrapedAt": "2026-05-12T23:54:45.442Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -3353,8 +3357,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -3363,7 +3367,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "science@leuven scholarship::ku leuven scholarships::https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Field: Sciences"
     },
     {
       "id": "www.cambridgetrust.org_cambridge-trust-scholarships_find-a-scholarship",
@@ -3426,7 +3431,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
-        "scrapedAt": "2026-05-12T23:23:58.451Z",
+        "scrapedAt": "2026-05-12T23:54:42.017Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -3441,7 +3446,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
         "sourceLabel": "Cambridge Trust Scholarships",
-        "scrapedAt": "2026-05-12T23:23:58.451Z",
+        "scrapedAt": "2026-05-12T23:54:42.017Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -3466,8 +3471,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -3476,7 +3481,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "the cambridge trust::cambridge trust scholarships::https://www.cambridgetrust.org/find-a-scholarship"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Field: Arts and Humanities"
     },
     {
       "id": "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars",
@@ -3539,7 +3545,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/current-scholars",
-        "scrapedAt": "2026-05-12T23:24:00.936Z",
+        "scrapedAt": "2026-05-12T23:54:43.931Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -3554,7 +3560,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/current-scholars",
         "sourceLabel": "Cambridge Trust Scholarships",
-        "scrapedAt": "2026-05-12T23:24:00.936Z",
+        "scrapedAt": "2026-05-12T23:54:43.931Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -3579,8 +3585,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -3589,7 +3595,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "the cambridge trust::cambridge trust scholarships::https://www.undergraduate.study.cam.ac.uk/apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Field: Arts and Humanities"
     },
     {
       "id": "scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
@@ -3754,7 +3761,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/articles/a-decade-of-impact-mastercard-foundation-scholars-program-celebrates-10-years-at-knust",
-        "scrapedAt": "2026-05-12T23:23:11.568Z",
+        "scrapedAt": "2026-05-12T23:53:54.452Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -3769,7 +3776,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/articles/a-decade-of-impact-mastercard-foundation-scholars-program-celebrates-10-years-at-knust",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:11.568Z",
+        "scrapedAt": "2026-05-12T23:53:54.452Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -3794,8 +3801,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -3804,7 +3811,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "a decade of impact: mastercard foundation scholars program celebrates 10 years at knust::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/kwame-nkrumah-university-of-science-and-technology-knust"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_scholarships-application-timeline",
@@ -3865,7 +3873,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/scholarships/application-timeline",
-        "scrapedAt": "2026-05-12T23:22:24.411Z",
+        "scrapedAt": "2026-05-12T23:53:07.830Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -3880,7 +3888,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/scholarships/application-timeline",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:24.411Z",
+        "scrapedAt": "2026-05-12T23:53:07.830Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -3905,8 +3913,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -3915,7 +3923,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "application timeline::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-appli",
@@ -3976,7 +3985,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/application-tips-series",
-        "scrapedAt": "2026-05-12T23:23:05.473Z",
+        "scrapedAt": "2026-05-12T23:53:48.455Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -3991,7 +4000,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/application-tips-series",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:05.473Z",
+        "scrapedAt": "2026-05-12T23:53:48.455Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4016,8 +4025,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4026,7 +4035,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "application tips series::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/application-tips-series/7-insider-tips-for-a-strong-scholarship-application"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_asean-chevening-scholarship",
@@ -4087,7 +4097,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
-        "scrapedAt": "2026-05-12T23:22:40.457Z",
+        "scrapedAt": "2026-05-12T23:53:23.096Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4102,7 +4112,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:40.457Z",
+        "scrapedAt": "2026-05-12T23:53:23.096Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4127,8 +4137,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4137,7 +4147,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "chevening asean scholarship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowship-chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fell",
@@ -4198,7 +4209,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowship/chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fellowship",
-        "scrapedAt": "2026-05-12T23:22:43.651Z",
+        "scrapedAt": "2026-05-12T23:53:26.601Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4213,7 +4224,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowship/chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fellowship",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:43.651Z",
+        "scrapedAt": "2026-05-12T23:53:26.601Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4238,8 +4249,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4248,7 +4259,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "chevening overseas territories in the atlantic and caribbean british library fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_sids-chevening-scholarship",
@@ -4309,7 +4321,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
-        "scrapedAt": "2026-05-12T23:22:37.456Z",
+        "scrapedAt": "2026-05-12T23:53:20.242Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4324,7 +4336,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:37.456Z",
+        "scrapedAt": "2026-05-12T23:53:20.242Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4349,8 +4361,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4359,7 +4371,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "chevening sids scholarship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowship-chevening-southeast-europe-british-library-fellowship",
@@ -4420,7 +4433,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowship/chevening-southeast-europe-british-library-fellowship",
-        "scrapedAt": "2026-05-12T23:22:44.491Z",
+        "scrapedAt": "2026-05-12T23:53:28.960Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4435,7 +4448,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowship/chevening-southeast-europe-british-library-fellowship",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:44.491Z",
+        "scrapedAt": "2026-05-12T23:53:28.960Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4460,8 +4473,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4470,7 +4483,344 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "chevening southeast europe british library fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-clarendon",
+      "name": "Clarendon Fund",
+      "nameFull": "Clarendon Fund",
+      "name_full": "Clarendon Fund",
+      "displayName": "Clarendon Fund",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
+        "portal": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon/scholar-class-lists",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "unknown",
+        "pageTitle": "Clarendon Fund | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
+        "scrapedAt": "2026-05-12T23:54:34.032Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:34.032Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Clarendon Fund | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. The UK Government has introduced an 18 month suspension on student visa applications from nationals of Afghanistan, Cameroon, Myanm",
+        "pageType": "unknown",
+        "pageTitle": "Clarendon Fund | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 8,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "clarendon fund::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon/scholar-class-lists"
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-fees",
+      "name": "Course Fees",
+      "nameFull": "Course fees",
+      "name_full": "Course fees",
+      "displayName": "Course Fees",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/fees",
+        "portal": "https://www.ox.ac.uk/students/fees-funding/international",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "Course fees | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/fees",
+        "scrapedAt": "2026-05-12T23:54:12.851Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 6
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/fees",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:12.851Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Course fees | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or search for undergrad",
+        "pageType": "news",
+        "pageTitle": "Course fees | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 6,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "course fees::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-fees-and-other-charges-course-fees-and-fe",
+      "name": "Course Fees And Fee Liability",
+      "nameFull": "Course fees and fee liability",
+      "name_full": "Course fees and fee liability",
+      "displayName": "Course Fees And Fee Liability",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability",
+        "portal": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/visiting-recognised-and-matriculated-non-award-students",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "unknown",
+        "pageTitle": "Course fees and fee liability | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability",
+        "scrapedAt": "2026-05-12T23:54:29.833Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:29.833Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Course fees and fee liability | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. The UK Government has introduced an 18 month suspension on student visa applications from nationals of Afghanistan,",
+        "pageType": "unknown",
+        "pageTitle": "Course fees and fee liability | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 8,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "course fees and fee liability::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/visiting-recognised-and-matriculated-non-award-students"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-academic-declared-awards",
@@ -4531,7 +4881,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.ox.ac.uk/students/academic/declared-awards",
-        "scrapedAt": "2026-05-12T23:23:24.239Z",
+        "scrapedAt": "2026-05-12T23:54:08.937Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4546,7 +4896,7 @@
       "source": {
         "sourceUrl": "https://www.ox.ac.uk/students/academic/declared-awards",
         "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:24.239Z",
+        "scrapedAt": "2026-05-12T23:54:08.937Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4571,8 +4921,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4581,7 +4931,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "declared awards::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility",
@@ -4642,7 +4993,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
-        "scrapedAt": "2026-05-12T23:22:47.361Z",
+        "scrapedAt": "2026-05-12T23:53:30.669Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4657,7 +5008,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:47.361Z",
+        "scrapedAt": "2026-05-12T23:53:30.669Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4682,8 +5033,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4692,7 +5043,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "eligibility for a chevening fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-undergraduate-fees-and-funding",
@@ -4753,7 +5105,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
-        "scrapedAt": "2026-05-12T23:23:20.148Z",
+        "scrapedAt": "2026-05-12T23:54:04.985Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4768,7 +5120,7 @@
       "source": {
         "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
         "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:20.148Z",
+        "scrapedAt": "2026-05-12T23:54:04.985Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4793,8 +5145,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4803,7 +5155,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "fees and funding::oxford graduate scholarships::https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-bursaries-and-scholarships"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding",
@@ -4864,7 +5217,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.ox.ac.uk/students/fees-funding",
-        "scrapedAt": "2026-05-12T23:23:26.641Z",
+        "scrapedAt": "2026-05-12T23:54:10.904Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4879,7 +5232,7 @@
       "source": {
         "sourceUrl": "https://www.ox.ac.uk/students/fees-funding",
         "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:26.641Z",
+        "scrapedAt": "2026-05-12T23:54:10.904Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4904,8 +5257,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -4914,7 +5267,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "fees and funding::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowships",
@@ -4970,12 +5324,12 @@
         "applicationOpensAt": null,
         "requiredDocuments": [],
         "essayPrompts": [],
-        "pageType": "unknown",
+        "pageType": "faq",
         "pageTitle": "Fellowships | Chevening"
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowships",
-        "scrapedAt": "2026-05-12T23:22:27.607Z",
+        "scrapedAt": "2026-05-12T23:53:11.216Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -4990,7 +5344,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowships",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:27.607Z",
+        "scrapedAt": "2026-05-12T23:53:11.216Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -4998,7 +5352,7 @@
         ],
         "confidence": 0.38,
         "rawText": "Fellowships | Chevening End Facebook Pixel Code --> Skip to content End Google Tag Manager (noscript) --> Resource Hub Application guidance Scholar support Alumni resources Scholarships Why study in the UK? Who can apply? Application timeline Find a course FAQ",
-        "pageType": "unknown",
+        "pageType": "faq",
         "pageTitle": "Fellowships | Chevening",
         "discoveryNotes": "Official UK government international scholarships and fellowships programme. Prioritize awards that are open to applicants from many countries.",
         "discoveryScore": 6,
@@ -5015,8 +5369,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5025,7 +5379,120 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "fellowships::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-assistance",
+      "name": "Financial Assistance And Support",
+      "nameFull": "Financial assistance and support",
+      "name_full": "Financial assistance and support",
+      "displayName": "Financial Assistance And Support",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/assistance",
+        "portal": "https://www.ox.ac.uk/students/fees-funding/international",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "Financial assistance and support | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/assistance",
+        "scrapedAt": "2026-05-12T23:54:23.002Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 6
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/assistance",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:23.002Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Financial assistance and support | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or",
+        "pageType": "news",
+        "pageTitle": "Financial assistance and support | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 6,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "financial assistance and support::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_scholarships-find-a-course",
@@ -5086,7 +5553,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/scholarships/find-a-course",
-        "scrapedAt": "2026-05-12T23:22:26.407Z",
+        "scrapedAt": "2026-05-12T23:53:09.952Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5101,7 +5568,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/scholarships/find-a-course",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:26.407Z",
+        "scrapedAt": "2026-05-12T23:53:09.952Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5126,8 +5593,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5136,7 +5603,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "find a course::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowships-find-a-programme",
@@ -5197,7 +5665,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowships/find-a-programme",
-        "scrapedAt": "2026-05-12T23:22:29.378Z",
+        "scrapedAt": "2026-05-12T23:53:12.692Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5212,7 +5680,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowships/find-a-programme",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:29.378Z",
+        "scrapedAt": "2026-05-12T23:53:12.692Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5237,8 +5705,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5247,7 +5715,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "find a programme::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier-faq-1-1011047",
@@ -5303,12 +5772,12 @@
         "applicationOpensAt": null,
         "requiredDocuments": [],
         "essayPrompts": [],
-        "pageType": "unknown",
+        "pageType": "faq",
         "pageTitle": "Frequently asked questions about scholarships | Student"
       },
       "provenance": {
         "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/faq-1.1011047",
-        "scrapedAt": "2026-05-12T23:24:32.551Z",
+        "scrapedAt": "2026-05-12T23:55:15.123Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5323,7 +5792,7 @@
       "source": {
         "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/faq-1.1011047",
         "sourceLabel": "KTH Scholarships",
-        "scrapedAt": "2026-05-12T23:24:32.551Z",
+        "scrapedAt": "2026-05-12T23:55:15.123Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5331,7 +5800,7 @@
         ],
         "confidence": 0.38,
         "rawText": "Frequently asked questions about scholarships | Student Skip to main content Studies Studies close Support and guidance Support and guidance close IT and digital services IT and digital services close Contact Contact close Close Studies Close Support and guida",
-        "pageType": "unknown",
+        "pageType": "faq",
         "pageTitle": "Frequently asked questions about scholarships | Student",
         "discoveryNotes": "KTH scholarship announcements and grants in Sweden, a NATO member country. Prioritize scholarships open to fee-paying international students.",
         "discoveryScore": 6,
@@ -5348,8 +5817,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5358,7 +5827,120 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "frequently asked questions about scholarships | student::kth scholarships::https://www.kth.se/en/student/stod/studier/stipendier/faq-1.1011047"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-under-represented-groups",
+      "name": "Funding For Under-represented Groups",
+      "nameFull": "Funding for under-represented groups",
+      "name_full": "Funding for under-represented groups",
+      "displayName": "Funding For Under-represented Groups",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups",
+        "portal": "https://www.medsci.ox.ac.uk/study/graduateschool/application-process/funding/the-june-ilott-fund",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "unknown",
+        "pageTitle": "Funding for under-represented groups | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups",
+        "scrapedAt": "2026-05-12T23:54:31.905Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:31.905Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Funding for under-represented groups | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. The UK Government has introduced an 18 month suspension on student visa applications from nationals of Afghan",
+        "pageType": "unknown",
+        "pageTitle": "Funding for under-represented groups | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 8,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "funding for under-represented groups::oxford graduate scholarships::https://www.medsci.ox.ac.uk/study/graduateschool/application-process/funding/the-june-ilott-fund"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowships-host-a-fellowship",
@@ -5419,7 +6001,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowships/host-a-fellowship",
-        "scrapedAt": "2026-05-12T23:22:32.660Z",
+        "scrapedAt": "2026-05-12T23:53:16.643Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5434,7 +6016,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowships/host-a-fellowship",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:32.660Z",
+        "scrapedAt": "2026-05-12T23:53:16.643Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5459,8 +6041,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5469,7 +6051,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "host a chevening fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where",
@@ -5530,7 +6113,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply",
-        "scrapedAt": "2026-05-12T23:23:04.463Z",
+        "scrapedAt": "2026-05-12T23:53:47.456Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5545,7 +6128,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:04.463Z",
+        "scrapedAt": "2026-05-12T23:53:47.456Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5570,8 +6153,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5580,7 +6163,232 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "institutions::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-international",
+      "name": "International Opportunities",
+      "nameFull": "International opportunities",
+      "name_full": "International opportunities",
+      "displayName": "International Opportunities",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/international",
+        "portal": "https://www.ox.ac.uk/students/fees-funding/international/scholarships-exchanges",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "International opportunities | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/international",
+        "scrapedAt": "2026-05-12T23:54:21.013Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/international",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:21.013Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "International opportunities | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or sear",
+        "pageType": "news",
+        "pageTitle": "International opportunities | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 8,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "international opportunities::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international/scholarships-exchanges"
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-living-costs",
+      "name": "Living Costs",
+      "nameFull": "Living costs",
+      "name_full": "Living costs",
+      "displayName": "Living Costs",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/living-costs",
+        "portal": "https://www.ox.ac.uk/students/fees-funding/international",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "Living costs | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/living-costs",
+        "scrapedAt": "2026-05-12T23:54:25.173Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 6
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/living-costs",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:25.173Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Living costs | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or search for undergra",
+        "pageType": "news",
+        "pageTitle": "Living costs | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 6,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "living costs::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-news-mastercard-foundation-scholars-impress-at-the-2024-resolution-s",
@@ -5641,7 +6449,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/news/mastercard-foundation-scholars-impress-at-the-2024-resolution-social-venture-challenge",
-        "scrapedAt": "2026-05-12T23:23:08.589Z",
+        "scrapedAt": "2026-05-12T23:53:51.484Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5656,7 +6464,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/news/mastercard-foundation-scholars-impress-at-the-2024-resolution-social-venture-challenge",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:08.589Z",
+        "scrapedAt": "2026-05-12T23:53:51.484Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5681,8 +6489,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5691,7 +6499,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "mastercard foundation scholars impress at the 2024 resolution social venture challenge::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/united-states-international-university-africa-usiu-a"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program",
@@ -5752,7 +6561,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program",
-        "scrapedAt": "2026-05-12T23:23:04.069Z",
+        "scrapedAt": "2026-05-12T23:53:47.089Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5767,7 +6576,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:04.069Z",
+        "scrapedAt": "2026-05-12T23:53:47.089Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5792,8 +6601,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5802,7 +6611,120 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "mastercard foundation scholars program::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-otherfunding",
+      "name": "Other Graduate Funding Sources",
+      "nameFull": "Other graduate funding sources",
+      "name_full": "Other graduate funding sources",
+      "displayName": "Other Graduate Funding Sources",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/otherfunding",
+        "portal": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "Other graduate funding sources | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/otherfunding",
+        "scrapedAt": "2026-05-12T23:54:16.917Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/otherfunding",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:16.917Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Other graduate funding sources | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or s",
+        "pageType": "news",
+        "pageTitle": "Other graduate funding sources | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 8,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "other graduate funding sources::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kth.se_kth-scholarships_en-om-2-239-stipendieutlysningar",
@@ -5863,7 +6785,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kth.se/en/om/2.239/stipendieutlysningar",
-        "scrapedAt": "2026-05-12T23:24:12.658Z",
+        "scrapedAt": "2026-05-12T23:54:55.376Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5878,7 +6800,7 @@
       "source": {
         "sourceUrl": "https://www.kth.se/en/om/2.239/stipendieutlysningar",
         "sourceLabel": "KTH Scholarships",
-        "scrapedAt": "2026-05-12T23:24:12.658Z",
+        "scrapedAt": "2026-05-12T23:54:55.376Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -5903,8 +6825,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -5913,7 +6835,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarship announcements | kth::kth scholarships::https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar-1.1080824"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier-stipendieutlysningar-1-1080824",
@@ -5974,7 +6897,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar-1.1080824",
-        "scrapedAt": "2026-05-12T23:24:17.497Z",
+        "scrapedAt": "2026-05-12T23:55:00.052Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -5989,7 +6912,7 @@
       "source": {
         "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar-1.1080824",
         "sourceLabel": "KTH Scholarships",
-        "scrapedAt": "2026-05-12T23:24:17.497Z",
+        "scrapedAt": "2026-05-12T23:55:00.052Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6014,8 +6937,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6024,7 +6947,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarship announcements | student::kth scholarships::https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar-1.1080824"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_scholarships",
@@ -6085,7 +7009,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/scholarships",
-        "scrapedAt": "2026-05-12T23:22:20.374Z",
+        "scrapedAt": "2026-05-12T23:53:02.766Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6100,7 +7024,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/scholarships",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:20.374Z",
+        "scrapedAt": "2026-05-12T23:53:02.766Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6125,8 +7049,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6135,7 +7059,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
@@ -6196,7 +7121,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-        "scrapedAt": "2026-05-12T23:23:18.236Z",
+        "scrapedAt": "2026-05-12T23:54:03.386Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6211,7 +7136,7 @@
       "source": {
         "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
         "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:18.236Z",
+        "scrapedAt": "2026-05-12T23:54:03.386Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6236,8 +7161,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6246,7 +7171,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships::oxford graduate scholarships::https://eit.org/ellisonscholars/graduate-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year",
@@ -6307,7 +7233,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year",
-        "scrapedAt": "2026-05-12T23:24:03.209Z",
+        "scrapedAt": "2026-05-12T23:54:46.419Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6322,7 +7248,7 @@
       "source": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year",
         "sourceLabel": "KU Leuven Scholarships",
-        "scrapedAt": "2026-05-12T23:24:03.209Z",
+        "scrapedAt": "2026-05-12T23:54:46.419Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6347,8 +7273,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6357,7 +7283,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships::ku leuven scholarships::https://www.kuleuven.be/scholarships/year"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-facetednav",
@@ -6418,7 +7345,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year/facetednav",
-        "scrapedAt": "2026-05-12T23:24:08.051Z",
+        "scrapedAt": "2026-05-12T23:54:51.024Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6433,7 +7360,7 @@
       "source": {
         "sourceUrl": "https://www.kuleuven.be/scholarships/year/facetednav",
         "sourceLabel": "KU Leuven Scholarships",
-        "scrapedAt": "2026-05-12T23:24:08.051Z",
+        "scrapedAt": "2026-05-12T23:54:51.024Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6458,8 +7385,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6468,7 +7395,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships::ku leuven scholarships::https://www.kuleuven.be/scholarships/year/facetednav"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kth.se_kth-scholarships_en-om-2-239-stipendier-1-1115700",
@@ -6529,7 +7457,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kth.se/en/om/2.239/stipendier-1.1115700",
-        "scrapedAt": "2026-05-12T23:24:33.534Z",
+        "scrapedAt": "2026-05-12T23:55:16.159Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6544,7 +7472,7 @@
       "source": {
         "sourceUrl": "https://www.kth.se/en/om/2.239/stipendier-1.1115700",
         "sourceLabel": "KTH Scholarships",
-        "scrapedAt": "2026-05-12T23:24:33.534Z",
+        "scrapedAt": "2026-05-12T23:55:16.159Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6569,8 +7497,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6579,7 +7507,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships from kth for students | kth::kth scholarships::https://www.kth.se/en/om/2.239/sok-stipendium"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.kth.se_kth-scholarships_en-student-stod-studier-stipendier-stipendier-1-1115700",
@@ -6640,7 +7569,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/stipendier-1.1115700",
-        "scrapedAt": "2026-05-12T23:24:31.511Z",
+        "scrapedAt": "2026-05-12T23:55:14.048Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6655,7 +7584,7 @@
       "source": {
         "sourceUrl": "https://www.kth.se/en/student/stod/studier/stipendier/stipendier-1.1115700",
         "sourceLabel": "KTH Scholarships",
-        "scrapedAt": "2026-05-12T23:24:31.511Z",
+        "scrapedAt": "2026-05-12T23:55:14.048Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6680,8 +7609,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6690,7 +7619,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships from kth for students | student::kth scholarships::https://www.kth.se/en/student/stod/studier/stipendier/sok-stipendium"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-the-m",
@@ -6751,7 +7681,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/the-mastercard-foundation-alumni-network",
-        "scrapedAt": "2026-05-12T23:23:06.768Z",
+        "scrapedAt": "2026-05-12T23:53:49.449Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6766,7 +7696,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/the-mastercard-foundation-alumni-network",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:06.768Z",
+        "scrapedAt": "2026-05-12T23:53:49.449Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6791,8 +7721,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6801,7 +7731,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "the mastercard foundation alumni network::mastercard foundation scholars::https://docs.google.com/forms/d/e/1FAIpQLScerHu-1JvtUXIaRWT_EWkZQUvGmdVtPWsTI-9o0EXbvzdZtQ/viewform"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-articles-the-mastercard-foundation-scholars-program-accelerates-impa",
@@ -6862,7 +7793,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/articles/the-mastercard-foundation-scholars-program-accelerates-impact-with-three-new-partnerships-in-africa",
-        "scrapedAt": "2026-05-12T23:23:12.569Z",
+        "scrapedAt": "2026-05-12T23:53:55.471Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6877,7 +7808,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/articles/the-mastercard-foundation-scholars-program-accelerates-impact-with-three-new-partnerships-in-africa",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:12.569Z",
+        "scrapedAt": "2026-05-12T23:53:55.471Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -6902,8 +7833,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -6912,7 +7843,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "the mastercard foundation scholars program accelerates impact with three new partnerships in africa::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/university-of-global-health-equity"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-news-the-mastercard-foundation-scholars-program-expands-to-universit",
@@ -6973,7 +7905,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/news/the-mastercard-foundation-scholars-program-expands-to-university-of-the-western-cape",
-        "scrapedAt": "2026-05-12T23:23:10.520Z",
+        "scrapedAt": "2026-05-12T23:53:53.469Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -6988,7 +7920,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/news/the-mastercard-foundation-scholars-program-expands-to-university-of-the-western-cape",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:10.520Z",
+        "scrapedAt": "2026-05-12T23:53:53.469Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -7013,8 +7945,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -7023,7 +7955,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "the mastercard foundation scholars program expands to university of the western cape::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/university-of-the-western-cape"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "scholarshipscafe.com_scholarships-cafe_position-detail",
@@ -7137,6 +8070,230 @@
       }
     },
     {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-ug-funding",
+      "name": "Undergraduate Funding",
+      "nameFull": "Undergraduate funding",
+      "name_full": "Undergraduate funding",
+      "displayName": "Undergraduate Funding",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/ug-funding",
+        "portal": "https://www.ox.ac.uk/students/fees-funding/ug-funding/external-scholarships",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "Undergraduate funding | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/ug-funding",
+        "scrapedAt": "2026-05-12T23:54:14.865Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/ug-funding",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:14.865Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Undergraduate funding | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or search for",
+        "pageType": "news",
+        "pageTitle": "Undergraduate funding | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 8,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "undergraduate funding::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/ug-funding/external-scholarships"
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-us-canadiantaxcredits",
+      "name": "US And Canadian Tax Credits",
+      "nameFull": "US and Canadian tax credits",
+      "name_full": "US and Canadian tax credits",
+      "displayName": "US And Canadian Tax Credits",
+      "awardingBody": "Oxford Graduate Scholarships",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits",
+        "portal": "https://www.ox.ac.uk/students/fees-funding/international",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "news",
+        "pageTitle": "US and Canadian tax credits | Oxford University"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits",
+        "scrapedAt": "2026-05-12T23:54:18.950Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 6
+      },
+      "source": {
+        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits",
+        "sourceLabel": "Oxford Graduate Scholarships",
+        "scrapedAt": "2026-05-12T23:54:18.950Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "US and Canadian tax credits | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or sear",
+        "pageType": "news",
+        "pageTitle": "US and Canadian tax credits | Oxford University",
+        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
+        "discoveryScore": 6,
+        "discoveryDepth": 1
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "unknown",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "us and canadian tax credits::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
+      },
+      "requirementsSummary": "Open to international applicants"
+    },
+    {
       "id": "www.chevening.org_chevening_asean-chevening-scholarship-who-can-apply-for-a-chevening-asean-scholarship",
       "name": "Who Can Apply For A Chevening ASEAN Scholarship?",
       "nameFull": "Who can apply for a Chevening ASEAN Scholarship? | Chevening",
@@ -7195,7 +8352,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship/who-can-apply-for-a-chevening-asean-scholarship",
-        "scrapedAt": "2026-05-12T23:22:48.869Z",
+        "scrapedAt": "2026-05-12T23:53:31.664Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -7210,7 +8367,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship/who-can-apply-for-a-chevening-asean-scholarship",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:48.869Z",
+        "scrapedAt": "2026-05-12T23:53:31.664Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -7235,8 +8392,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -7245,7 +8402,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "who can apply for a chevening asean scholarship?::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_fellowships-who-can-apply",
@@ -7306,7 +8464,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply",
-        "scrapedAt": "2026-05-12T23:22:31.084Z",
+        "scrapedAt": "2026-05-12T23:53:14.375Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -7321,7 +8479,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:31.084Z",
+        "scrapedAt": "2026-05-12T23:53:14.375Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -7346,8 +8504,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -7356,7 +8514,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "who can apply for a chevening fellowship?::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_sids-chevening-scholarship-who-can-apply-for-a-chevening-sids-scholarship",
@@ -7528,7 +8687,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/scholarships/who-can-apply",
-        "scrapedAt": "2026-05-12T23:22:35.407Z",
+        "scrapedAt": "2026-05-12T23:53:18.961Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -7543,7 +8702,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/scholarships/who-can-apply",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:35.407Z",
+        "scrapedAt": "2026-05-12T23:53:18.961Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -7568,8 +8727,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -7578,7 +8737,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "who can apply?::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.chevening.org_chevening_scholarships-why-study-in-the-uk",
@@ -7639,7 +8799,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/scholarships/why-study-in-the-uk",
-        "scrapedAt": "2026-05-12T23:22:21.605Z",
+        "scrapedAt": "2026-05-12T23:53:05.204Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -7654,7 +8814,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/scholarships/why-study-in-the-uk",
         "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:22:21.605Z",
+        "scrapedAt": "2026-05-12T23:53:05.204Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -7679,8 +8839,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -7689,7 +8849,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "why study in the uk?::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "scholarships-cafe-position-detail",
@@ -7855,7 +9016,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
-        "scrapedAt": "2026-05-12T23:22:50.538Z",
+        "scrapedAt": "2026-05-12T23:53:33.794Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -7870,7 +9031,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:22:50.538Z",
+        "scrapedAt": "2026-05-12T23:53:33.794Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -7895,8 +9056,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -7905,7 +9066,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "daad-scholarships::daad scholarships::https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-music-art",
@@ -7966,7 +9128,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/music-art",
-        "scrapedAt": "2026-05-12T23:22:54.969Z",
+        "scrapedAt": "2026-05-12T23:53:37.999Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -7981,7 +9143,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/music-art",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:22:54.969Z",
+        "scrapedAt": "2026-05-12T23:53:37.999Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -8006,8 +9168,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -8016,7 +9178,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "funding programmes for musicians and artists::daad scholarships::https://www.daad.de/en/studying-in-germany/scholarships/music-art"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "www.daad.de_daad-scholarships_en-report-an-accessibility-issue",
@@ -8077,7 +9240,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/report-an-accessibility-issue/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
-        "scrapedAt": "2026-05-12T23:23:01.854Z",
+        "scrapedAt": "2026-05-12T23:53:44.635Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -8092,7 +9255,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/report-an-accessibility-issue/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:23:01.854Z",
+        "scrapedAt": "2026-05-12T23:53:44.635Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -8117,8 +9280,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -8127,7 +9290,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "report an accessibility issue::daad scholarships::https://www.daad.de/en/report-an-accessibility-issue/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/funding-options"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships",
@@ -8188,7 +9352,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships",
-        "scrapedAt": "2026-05-12T23:22:51.187Z",
+        "scrapedAt": "2026-05-12T23:53:34.347Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.55,
@@ -8203,7 +9367,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:22:51.187Z",
+        "scrapedAt": "2026-05-12T23:53:34.347Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -8228,8 +9392,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -8238,7 +9402,8 @@
         ],
         "confidence": 0.55,
         "duplicateKey": "scholarships and funding::daad scholarships::https://www.daad.de/en/studying-in-germany/scholarships"
-      }
+      },
+      "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
       "id": "www.daad.de_daad-scholarships_de-barriere-melden",
@@ -8299,7 +9464,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.daad.de/de/barriere-melden/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
-        "scrapedAt": "2026-05-12T23:23:02.875Z",
+        "scrapedAt": "2026-05-12T23:53:45.700Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -8314,7 +9479,7 @@
       "source": {
         "sourceUrl": "https://www.daad.de/de/barriere-melden/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
         "sourceLabel": "DAAD Scholarships",
-        "scrapedAt": "2026-05-12T23:23:02.875Z",
+        "scrapedAt": "2026-05-12T23:53:45.700Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -8339,8 +9504,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -8349,7 +9514,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "barriere melden::daad scholarships::https://www.daad.de/de/barriere-melden/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.cambridgetrust.org_cambridge-trust-scholarships_wp-content-uploads-2026-03-ctaddfundform-additional-funding-form-v1-",
@@ -8632,7 +9798,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program",
-        "scrapedAt": "2026-05-12T23:23:09.549Z",
+        "scrapedAt": "2026-05-12T23:53:52.513Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -8647,7 +9813,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:09.549Z",
+        "scrapedAt": "2026-05-12T23:53:52.513Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -8672,8 +9838,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -8682,1117 +9848,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "hsrc screens the spirit of kanju: leaders transforming africa - a documentary film created by alumni of the mastercard foundation scholars program::mastercard foundation scholars::https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-clarendon",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
       },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon?__cf_chl_rt_tk=nRKhOwLYTffp.4kqmdXUCLmZNbxF.U0q2TXe9j3YE7k-1778628229-1.0.1.1-odF6jQdi4dMfR5Sg9GWEfEUxrJpg1SlavAcUEcqLavE",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon?__cf_chl_rt_tk=nRKhOwLYTffp.4kqmdXUCLmZNbxF.U0q2TXe9j3YE7k-1778628229-1.0.1.1-odF6jQdi4dMfR5Sg9GWEfEUxrJpg1SlavAcUEcqLavE",
-        "scrapedAt": "2026-05-12T23:23:49.415Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon?__cf_chl_rt_tk=nRKhOwLYTffp.4kqmdXUCLmZNbxF.U0q2TXe9j3YE7k-1778628229-1.0.1.1-odF6jQdi4dMfR5Sg9GWEfEUxrJpg1SlavAcUEcqLavE",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:49.415Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon?__cf_chl_rt_tk=nRKhOwLYTffp.4kqmdXUCLmZNbxF.U0q2TXe9j3YE7k-1778628229-1.0.1.1-odF6jQdi4dMfR5Sg9GWEfEUxrJpg1SlavAcUEcqLavE"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-fees",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/fees?__cf_chl_rt_tk=mrDNG7hs1rCwQ5rGJqZ0yPdSYksCt1zDXxWDxmW4o_4-1778628208-1.0.1.1-qzVnwTfCG312Q3jddOiqLss6IhJrrL2GAzQwESyMRk0",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/fees?__cf_chl_rt_tk=mrDNG7hs1rCwQ5rGJqZ0yPdSYksCt1zDXxWDxmW4o_4-1778628208-1.0.1.1-qzVnwTfCG312Q3jddOiqLss6IhJrrL2GAzQwESyMRk0",
-        "scrapedAt": "2026-05-12T23:23:29.552Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/fees?__cf_chl_rt_tk=mrDNG7hs1rCwQ5rGJqZ0yPdSYksCt1zDXxWDxmW4o_4-1778628208-1.0.1.1-qzVnwTfCG312Q3jddOiqLss6IhJrrL2GAzQwESyMRk0",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:29.552Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/fees?__cf_chl_rt_tk=mrDNG7hs1rCwQ5rGJqZ0yPdSYksCt1zDXxWDxmW4o_4-1778628208-1.0.1.1-qzVnwTfCG312Q3jddOiqLss6IhJrrL2GAzQwESyMRk0"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-fees-and-other-charges-course-fees-and-fe",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability?__cf_chl_rt_tk=dxjsv0zuZhGi5FTILXGHzeqTpTtqLthmw79oO6vgREc-1778628225-1.0.1.1-5.7fCRqjsGK5caGzf6h6T084WHmEJ2V6xE65o8aJqZ8",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability?__cf_chl_rt_tk=dxjsv0zuZhGi5FTILXGHzeqTpTtqLthmw79oO6vgREc-1778628225-1.0.1.1-5.7fCRqjsGK5caGzf6h6T084WHmEJ2V6xE65o8aJqZ8",
-        "scrapedAt": "2026-05-12T23:23:45.286Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability?__cf_chl_rt_tk=dxjsv0zuZhGi5FTILXGHzeqTpTtqLthmw79oO6vgREc-1778628225-1.0.1.1-5.7fCRqjsGK5caGzf6h6T084WHmEJ2V6xE65o8aJqZ8",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:45.286Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-and-other-charges/course-fees-and-fee-liability?__cf_chl_rt_tk=dxjsv0zuZhGi5FTILXGHzeqTpTtqLthmw79oO6vgREc-1778628225-1.0.1.1-5.7fCRqjsGK5caGzf6h6T084WHmEJ2V6xE65o8aJqZ8"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-assistance",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/assistance?__cf_chl_rt_tk=Erw7FYVldoMRuVmjyoNnzTtjR1SGeVswFw3qBc8aHt0-1778628219-1.0.1.1-mAfe3C9BE5C2eg_RS6TNSYFwvh4pO30KGaNhl8te0Tk",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/assistance?__cf_chl_rt_tk=Erw7FYVldoMRuVmjyoNnzTtjR1SGeVswFw3qBc8aHt0-1778628219-1.0.1.1-mAfe3C9BE5C2eg_RS6TNSYFwvh4pO30KGaNhl8te0Tk",
-        "scrapedAt": "2026-05-12T23:23:39.253Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/assistance?__cf_chl_rt_tk=Erw7FYVldoMRuVmjyoNnzTtjR1SGeVswFw3qBc8aHt0-1778628219-1.0.1.1-mAfe3C9BE5C2eg_RS6TNSYFwvh4pO30KGaNhl8te0Tk",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:39.253Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/assistance?__cf_chl_rt_tk=Erw7FYVldoMRuVmjyoNnzTtjR1SGeVswFw3qBc8aHt0-1778628219-1.0.1.1-mAfe3C9BE5C2eg_RS6TNSYFwvh4pO30KGaNhl8te0Tk"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-under-represented-groups",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups?__cf_chl_rt_tk=JnQ_PMe.3Z4RYrzRmuDELpm4Uxu__O4I7DAz..vgih8-1778628227-1.0.1.1-OMOChbuHr5GV4iOaq8M._MXuIyWCjMT71yN.EjOXEwU",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups?__cf_chl_rt_tk=JnQ_PMe.3Z4RYrzRmuDELpm4Uxu__O4I7DAz..vgih8-1778628227-1.0.1.1-OMOChbuHr5GV4iOaq8M._MXuIyWCjMT71yN.EjOXEwU",
-        "scrapedAt": "2026-05-12T23:23:47.285Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups?__cf_chl_rt_tk=JnQ_PMe.3Z4RYrzRmuDELpm4Uxu__O4I7DAz..vgih8-1778628227-1.0.1.1-OMOChbuHr5GV4iOaq8M._MXuIyWCjMT71yN.EjOXEwU",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:47.285Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/under-represented-groups?__cf_chl_rt_tk=JnQ_PMe.3Z4RYrzRmuDELpm4Uxu__O4I7DAz..vgih8-1778628227-1.0.1.1-OMOChbuHr5GV4iOaq8M._MXuIyWCjMT71yN.EjOXEwU"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-international",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/international?__cf_chl_rt_tk=dDgfnIk8dOw83Di5fEOjpZn1dt1eg1dja4Yz3SnWDc8-1778628217-1.0.1.1-HiusxEzKS9rwLMe5e7VVVSq74biLo1WqZ5XALbOiPF4",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/international?__cf_chl_rt_tk=dDgfnIk8dOw83Di5fEOjpZn1dt1eg1dja4Yz3SnWDc8-1778628217-1.0.1.1-HiusxEzKS9rwLMe5e7VVVSq74biLo1WqZ5XALbOiPF4",
-        "scrapedAt": "2026-05-12T23:23:37.222Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/international?__cf_chl_rt_tk=dDgfnIk8dOw83Di5fEOjpZn1dt1eg1dja4Yz3SnWDc8-1778628217-1.0.1.1-HiusxEzKS9rwLMe5e7VVVSq74biLo1WqZ5XALbOiPF4",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:37.222Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international?__cf_chl_rt_tk=dDgfnIk8dOw83Di5fEOjpZn1dt1eg1dja4Yz3SnWDc8-1778628217-1.0.1.1-HiusxEzKS9rwLMe5e7VVVSq74biLo1WqZ5XALbOiPF4"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-living-costs",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/living-costs?__cf_chl_rt_tk=UF5PNuwbeAnO.u1Hghxp10ZaRI6fL9T6Ef3yEI1M1Zg-1778628221-1.0.1.1-yYsAZI82KEWolQkMLYxNgImBxEq6X4gjYo7L2D7Tpo0",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/living-costs?__cf_chl_rt_tk=UF5PNuwbeAnO.u1Hghxp10ZaRI6fL9T6Ef3yEI1M1Zg-1778628221-1.0.1.1-yYsAZI82KEWolQkMLYxNgImBxEq6X4gjYo7L2D7Tpo0",
-        "scrapedAt": "2026-05-12T23:23:41.238Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/living-costs?__cf_chl_rt_tk=UF5PNuwbeAnO.u1Hghxp10ZaRI6fL9T6Ef3yEI1M1Zg-1778628221-1.0.1.1-yYsAZI82KEWolQkMLYxNgImBxEq6X4gjYo7L2D7Tpo0",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:41.238Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/living-costs?__cf_chl_rt_tk=UF5PNuwbeAnO.u1Hghxp10ZaRI6fL9T6Ef3yEI1M1Zg-1778628221-1.0.1.1-yYsAZI82KEWolQkMLYxNgImBxEq6X4gjYo7L2D7Tpo0"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-otherfunding",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/otherfunding?__cf_chl_rt_tk=TtJWFR3LgejeonPBymb961cshfraMzZusUhp6kUk5TQ-1778628213-1.0.1.1-WaA_FWXcykUbMCdeP7zgQFi73lL0lI2NciXN5QOJmGw",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/otherfunding?__cf_chl_rt_tk=TtJWFR3LgejeonPBymb961cshfraMzZusUhp6kUk5TQ-1778628213-1.0.1.1-WaA_FWXcykUbMCdeP7zgQFi73lL0lI2NciXN5QOJmGw",
-        "scrapedAt": "2026-05-12T23:23:33.429Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/otherfunding?__cf_chl_rt_tk=TtJWFR3LgejeonPBymb961cshfraMzZusUhp6kUk5TQ-1778628213-1.0.1.1-WaA_FWXcykUbMCdeP7zgQFi73lL0lI2NciXN5QOJmGw",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:33.429Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/otherfunding?__cf_chl_rt_tk=TtJWFR3LgejeonPBymb961cshfraMzZusUhp6kUk5TQ-1778628213-1.0.1.1-WaA_FWXcykUbMCdeP7zgQFi73lL0lI2NciXN5QOJmGw"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-ug-funding",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/ug-funding?__cf_chl_rt_tk=l2nKdMWfV.Psk_eOJtqhx_e9bdyui1QVBwyyDz88H60-1778628211-1.0.1.1-I6ZtBGrJmH6G4nUTPGiBOcXISM3whHJruY_EpsA1Fr4",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/ug-funding?__cf_chl_rt_tk=l2nKdMWfV.Psk_eOJtqhx_e9bdyui1QVBwyyDz88H60-1778628211-1.0.1.1-I6ZtBGrJmH6G4nUTPGiBOcXISM3whHJruY_EpsA1Fr4",
-        "scrapedAt": "2026-05-12T23:23:31.528Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/ug-funding?__cf_chl_rt_tk=l2nKdMWfV.Psk_eOJtqhx_e9bdyui1QVBwyyDz88H60-1778628211-1.0.1.1-I6ZtBGrJmH6G4nUTPGiBOcXISM3whHJruY_EpsA1Fr4",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:31.528Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/ug-funding?__cf_chl_rt_tk=l2nKdMWfV.Psk_eOJtqhx_e9bdyui1QVBwyyDz88H60-1778628211-1.0.1.1-I6ZtBGrJmH6G4nUTPGiBOcXISM3whHJruY_EpsA1Fr4"
-      }
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-us-canadiantaxcredits",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits?__cf_chl_rt_tk=SoKZByQiKyOr2NMq6q1WfdHonwc8TVnT9ib596QOcVw-1778628215-1.0.1.1-QaiLJEktPGIA1UMijXwiY86SF9PXnGHhsggMGp.eyJc",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits?__cf_chl_rt_tk=SoKZByQiKyOr2NMq6q1WfdHonwc8TVnT9ib596QOcVw-1778628215-1.0.1.1-QaiLJEktPGIA1UMijXwiY86SF9PXnGHhsggMGp.eyJc",
-        "scrapedAt": "2026-05-12T23:23:35.226Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits?__cf_chl_rt_tk=SoKZByQiKyOr2NMq6q1WfdHonwc8TVnT9ib596QOcVw-1778628215-1.0.1.1-QaiLJEktPGIA1UMijXwiY86SF9PXnGHhsggMGp.eyJc",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:35.226Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/us-canadiantaxcredits?__cf_chl_rt_tk=SoKZByQiKyOr2NMq6q1WfdHonwc8TVnT9ib596QOcVw-1778628215-1.0.1.1-QaiLJEktPGIA1UMijXwiY86SF9PXnGHhsggMGp.eyJc"
-      }
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-veterans-affairs",
@@ -9838,7 +9895,7 @@
         "notes": ""
       },
       "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=bn7_pyZPMUxhOyxIwHlcLEH88KwTWXBvlGDYJFQE2yA-1778628233-1.0.1.1-koUf0UYfwVcyccPdnD21bnk0j0g9PwNQjC_rMY8dPqQ",
+        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
         "portal": null,
         "deadline": null,
         "deadlineType": "unknown",
@@ -9852,8 +9909,8 @@
         "pageTitle": "Just a moment..."
       },
       "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=bn7_pyZPMUxhOyxIwHlcLEH88KwTWXBvlGDYJFQE2yA-1778628233-1.0.1.1-koUf0UYfwVcyccPdnD21bnk0j0g9PwNQjC_rMY8dPqQ",
-        "scrapedAt": "2026-05-12T23:23:53.373Z",
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
+        "scrapedAt": "2026-05-12T23:54:37.284Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -9866,9 +9923,9 @@
         "discoveryScore": 8
       },
       "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=bn7_pyZPMUxhOyxIwHlcLEH88KwTWXBvlGDYJFQE2yA-1778628233-1.0.1.1-koUf0UYfwVcyccPdnD21bnk0j0g9PwNQjC_rMY8dPqQ",
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
         "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:53.373Z",
+        "scrapedAt": "2026-05-12T23:54:37.284Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -9893,8 +9950,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -9902,8 +9959,9 @@
           "deadline"
         ],
         "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=bn7_pyZPMUxhOyxIwHlcLEH88KwTWXBvlGDYJFQE2yA-1778628233-1.0.1.1-koUf0UYfwVcyccPdnD21bnk0j0g9PwNQjC_rMY8dPqQ"
-      }
+        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding",
@@ -10060,7 +10118,7 @@
         "notes": ""
       },
       "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=3a1mYSEdY0veUtxOchF5lcWbN6hNqJyA0.Tf9KgwUY4-1778628231-1.0.1.1-oWiAq41MgMtFlDgAJ9WVodYIrz32r9bS4GP7VlJDdgA",
+        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=UBw1myKp2NwguKZRI3aateMLZCDMcKipe8yhVft3FC0-1778630075-1.0.1.1-atmrWoxS_e2W_mhJps0twqwSsrqklPewgw3ISJWkwuw",
         "portal": null,
         "deadline": null,
         "deadlineType": "unknown",
@@ -10074,8 +10132,8 @@
         "pageTitle": "Just a moment..."
       },
       "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=3a1mYSEdY0veUtxOchF5lcWbN6hNqJyA0.Tf9KgwUY4-1778628231-1.0.1.1-oWiAq41MgMtFlDgAJ9WVodYIrz32r9bS4GP7VlJDdgA",
-        "scrapedAt": "2026-05-12T23:23:51.512Z",
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=UBw1myKp2NwguKZRI3aateMLZCDMcKipe8yhVft3FC0-1778630075-1.0.1.1-atmrWoxS_e2W_mhJps0twqwSsrqklPewgw3ISJWkwuw",
+        "scrapedAt": "2026-05-12T23:54:35.496Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -10088,9 +10146,9 @@
         "discoveryScore": 8
       },
       "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=3a1mYSEdY0veUtxOchF5lcWbN6hNqJyA0.Tf9KgwUY4-1778628231-1.0.1.1-oWiAq41MgMtFlDgAJ9WVodYIrz32r9bS4GP7VlJDdgA",
+        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=UBw1myKp2NwguKZRI3aateMLZCDMcKipe8yhVft3FC0-1778630075-1.0.1.1-atmrWoxS_e2W_mhJps0twqwSsrqklPewgw3ISJWkwuw",
         "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:51.512Z",
+        "scrapedAt": "2026-05-12T23:54:35.496Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -10115,8 +10173,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -10124,8 +10182,9 @@
           "deadline"
         ],
         "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=3a1mYSEdY0veUtxOchF5lcWbN6hNqJyA0.Tf9KgwUY4-1778628231-1.0.1.1-oWiAq41MgMtFlDgAJ9WVodYIrz32r9bS4GP7VlJDdgA"
-      }
+        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=UBw1myKp2NwguKZRI3aateMLZCDMcKipe8yhVft3FC0-1778630075-1.0.1.1-atmrWoxS_e2W_mhJps0twqwSsrqklPewgw3ISJWkwuw"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac",
@@ -10186,7 +10245,7 @@
       },
       "provenance": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories",
-        "scrapedAt": "2026-05-12T23:23:07.516Z",
+        "scrapedAt": "2026-05-12T23:53:50.454Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.38,
@@ -10201,7 +10260,7 @@
       "source": {
         "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories",
         "sourceLabel": "Mastercard Foundation Scholars",
-        "scrapedAt": "2026-05-12T23:23:07.516Z",
+        "scrapedAt": "2026-05-12T23:53:50.454Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -10226,8 +10285,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
+      "reviewedAt": "2026-05-12T23:55:18.620Z",
+      "promotedAt": "2026-05-12T23:55:18.620Z",
       "reviewChecks": {
         "valid": true,
         "flaggedFields": [
@@ -10236,7 +10295,8 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "stories of impact | mastercard foundation scholars program::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories"
-      }
+      },
+      "requirementsSummary": "Open to international applicants"
     }
   ]
 }

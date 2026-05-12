@@ -46,6 +46,27 @@ function getLocationLabel(record = {}) {
   return pieces.length ? pieces.join(", ") : "International route";
 }
 
+function getRequirementsSummary(record = {}) {
+  const requirements = toText(record?.requirements_summary || record?.requirementsSummary);
+  if (requirements) return requirements;
+  const parts = [];
+  const eligibility = record?.eligibility || {};
+  const application = record?.application || {};
+  const languageReqs = eligibility?.languageReqs || {};
+
+  if (!eligibility?.nationalityIsOpen && Array.isArray(eligibility?.nationalities) && eligibility.nationalities.length) {
+    parts.push(`Open to ${eligibility.nationalities.slice(0, 2).join(", ")}`);
+  } else {
+    parts.push("Open to international applicants");
+  }
+  if (eligibility?.degreeClassMin) parts.push(`Degree class ${eligibility.degreeClassMin}`);
+  if (Array.isArray(eligibility?.disciplines) && eligibility.disciplines.length) parts.push(eligibility.disciplines.slice(0, 2).join(", "));
+  if (Number.isFinite(Number(languageReqs?.ielts)) && Number(languageReqs.ielts) > 0) parts.push(`IELTS ${Number(languageReqs.ielts).toFixed(Number.isInteger(Number(languageReqs.ielts)) ? 0 : 1)}`);
+  if (eligibility?.workExperienceYearsMin) parts.push(`${eligibility.workExperienceYearsMin}+ years experience`);
+  if (Array.isArray(application?.requiredDocuments) && application.requiredDocuments.length) parts.push(`${application.requiredDocuments.slice(0, 2).join(", ")}`);
+  return parts.join(" • ") || "Requirements not yet captured";
+}
+
 function getKey(record = {}) {
   return [
     record?.id,
@@ -92,6 +113,7 @@ export function buildScholarshipFeed(records = [], options = {}) {
       title: getTitle(record),
       sourceLabel: getSourceLabel(record),
       locationLabel: getLocationLabel(record),
+      requirementsSummary: getRequirementsSummary(record),
       date: getRecordDate(record),
       website: record?.website || record?.source_url || record?.sourceUrl || "",
       audienceScope: record?.audience_scope || record?.audienceScope || "unknown",
@@ -105,4 +127,3 @@ export function getLatestScholarshipFeed(records = [], options = {}) {
   const feed = buildScholarshipFeed(records, options);
   return feed.slice(0, Number.isFinite(Number(options.limit)) ? Number(options.limit) : 6);
 }
-

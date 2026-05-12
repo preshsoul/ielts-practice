@@ -364,12 +364,8 @@ export default function ScholarshipPage(props) {
 
   const maxFeeNum = parseMaxFee(maxFee);
   const catalog = useMemo(() => {
-    const combined = [
-      ...(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : []),
-      ...(Array.isArray(scholarships) ? scholarships : []),
-    ];
     const map = new Map();
-    for (const record of combined) {
+    for (const record of Array.isArray(scholarshipCatalog) ? scholarshipCatalog : []) {
       if (!record) continue;
       const key = record.id || record.slug || record.source_url || record.website || record.name || record.title;
       if (!key) continue;
@@ -378,7 +374,7 @@ export default function ScholarshipPage(props) {
       }
     }
     return [...map.values()];
-  }, [scholarshipCatalog, scholarships]);
+  }, [scholarshipCatalog]);
   const regionCount = new Set((Array.isArray(catalog) ? catalog : []).map((item) => item?.country).filter(Boolean)).size;
 
   const scored = useMemo(() => {

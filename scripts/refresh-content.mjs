@@ -2,7 +2,6 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { INSTITUTIONS } from "../src/data/institutions.js";
 import { buildScholarshipEmbeddingText, buildScholarshipSemanticTags } from "../src/lib/embeddingText.js";
 import { classifyOpportunityFocus } from "../src/lib/opportunitySignals.js";
 import {
@@ -163,8 +162,9 @@ function isPublishableScholarshipRecord(item = {}) {
 function isPublishablePublicRecord(record = {}) {
   const sourceUrl = String(record?.source_url || "").toLowerCase();
   const title = String(record?.name || record?.name_full || "").toLowerCase();
+  const pageType = String(record?.page_type || "").toLowerCase();
   const scholarshipSignal = /\bscholar|fund|funding|award|grant|fellow|fellowship|studentship|bursar|opportunity|position\b/.test(title);
-  const genericTitle = /^(position detail|find scholarships in \d{4}|list of scholarships for international students in \d{4}|scholarships cafe - connecting qualified candidates to global opportunities in academia)$/i.test(String(record?.name || "").trim());
+  const genericTitle = /^(position detail|find scholarships in \d{4}|list of scholarships for international students in \d{4}|scholarships cafe - connecting qualified candidates to global opportunities in academia|frequently asked questions about scholarships|faq)$/i.test(String(record?.name || "").trim());
   const focus = classifyOpportunityFocus(record);
   const audienceScope = String(record?.audience_scope || focus.audienceScope || "").toLowerCase();
   const hasEvidence = Boolean(
@@ -177,6 +177,7 @@ function isPublishablePublicRecord(record = {}) {
   const hasPriorityFocus = focus.internationalSignal || focus.graduateTraineeSignal || focus.priorityScore >= 0.35;
 
   if (!sourceUrl) return false;
+  if (pageType === "faq" || pageType === "listing" || pageType === "news") return false;
   if (isListingSourceUrl(sourceUrl)) return false;
   if (genericTitle) return false;
   if (focus.nigeriaOnlySignal || audienceScope === "nigeria_only") return false;
@@ -191,6 +192,7 @@ function toPublicScholarshipRecord(item = {}) {
   const eligibility = item?.eligibility || {};
   const application = item?.application || {};
   const coverage = item?.coverage || {};
+  const pageType = String(item?.source?.pageType || item?.application?.pageType || item?.pageType || "").toLowerCase();
   const name = cleanScholarshipName(item?.name || item?.scholarship?.name || "", item?.awardingBody || item?.source?.sourceLabel || "");
   const fullName = normalizeText(item?.nameFull || item?.name_full || item?.name || item?.scholarship?.name || name);
   const degree = normalizeText(eligibility.degreeClassMin || eligibility.degreeClassRequired || "");
@@ -210,9 +212,11 @@ function toPublicScholarshipRecord(item = {}) {
     slug,
     name: truncateName(name || fullName || "Untitled Scholarship"),
     name_full: fullName || null,
+    requirements_summary: normalizeText(item?.requirementsSummary || item?.requirements_summary || "") || null,
     awardingBody: item?.awardingBody || item?.scholarship?.awardingBody || null,
     source_url: sourceUrl,
     source_type: sourceType,
+    page_type: pageType || null,
     provenance_confidence: Number(item?.provenance?.confidenceScore ?? item?.source?.confidence ?? 0),
     last_verified_at: item?.provenance?.lastVerifiedAt || item?.source?.scrapedAt || item?.provenance?.scrapedAt || null,
     opportunity_type: focus.opportunityType,
@@ -488,7 +492,7 @@ export async function refreshContentFiles() {
   const publishableV2 = scrapedScholarshipsV2.filter(isPublishableScholarshipRecord);
   const scrapedV2AsLegacy = publishableV2.map(v2ToLegacy);
   const allScraped = mergeScholarshipLists(publishableLegacy, scrapedV2AsLegacy);
-  const institutions = mergeScholarshipLists(INSTITUTIONS, allScraped).map(toPublicScholarshipRecord).filter(isPublishablePublicRecord);
+  const institutions = [];
   const rankPublicRecord = (recordA, recordB) => {
     const priorityDelta = Number(recordB?.priority_score || 0) - Number(recordA?.priority_score || 0);
     if (priorityDelta) return priorityDelta;
@@ -500,7 +504,6 @@ export async function refreshContentFiles() {
     .map(toPublicScholarshipRecord)
     .filter(isPublishablePublicRecord)
     .sort(rankPublicRecord);
-  institutions.sort(rankPublicRecord);
   const deadlineComparison = compareDeadlines(previousDeadlineSnapshot, scrapedScholarshipsV2);
   const deadlineChanges = deadlineComparison.changes;
   const deadlineAware = scrapedScholarshipsV2.filter((item) => item?.application?.deadline || item?.application?.deadlineRaw || String(item?.application?.deadlineType || "").toLowerCase() !== "unknown");
@@ -542,7 +545,7 @@ export async function refreshContentFiles() {
       {
         version: "1.0.0",
         updated_at: new Date().toISOString(),
-        total: institutions.length,
+        total: records.length,
         institutions,
         records,
       },

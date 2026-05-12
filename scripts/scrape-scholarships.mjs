@@ -711,8 +711,9 @@ async function main() {
         matchesPatternList(haystack, strategy.priorityPatterns) ? 2 : 0,
         pathMatches(canonicalPageUrl, strategy.entryPaths) ? 1 : 0,
       ].reduce((sum, value) => sum + value, 0);
-      if (pageType === "login" || pageType === "listing" && pageScore < 5) continue;
-      if (pageScore < 3 && pageType !== "detail") continue;
+      if (pageType === "login" || pageType === "faq" || pageType === "listing" || pageType === "news") continue;
+      if (pageType !== "detail") continue;
+      if (pageScore < 3) continue;
 
       const applicationLink = await collectApplicationLink(page.html, canonicalPageUrl, source, strategy);
       const v2 = extractScholarship({

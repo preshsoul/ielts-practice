@@ -30,6 +30,7 @@ const DEADLINE_PATTERNS = [
   /\b(?:open until|applications?\s+are open until)\b/i,
 ];
 
+const FAQ_CUES = /\b(frequently asked questions?|faq|questions? and answers?)\b/i;
 const ROLLING_CUES = /\b(rolling|ongoing|year[- ]round|continuous|no deadline|applications? are open all year|open until filled)\b/i;
 const CLOSED_CUES = /\b(applications?\s+(?:are\s+)?closed|closed for applications|deadline passed|now closed)\b/i;
 const TBC_CUES = /\b(tbc|to be confirmed|to be announced|forthcoming|pending)\b/i;
@@ -282,6 +283,43 @@ function extractEligibility(text) {
   };
 }
 
+function summarizeRequirements(eligibility = {}, application = {}) {
+  const parts = [];
+  const nationalities = Array.isArray(eligibility.nationalities) ? eligibility.nationalities.filter(Boolean) : [];
+  const disciplines = Array.isArray(eligibility.disciplines) ? eligibility.disciplines.filter(Boolean) : [];
+  const docs = Array.isArray(application.requiredDocuments) ? application.requiredDocuments.filter(Boolean) : [];
+  const languageReqs = eligibility.languageReqs || {};
+
+  if (!eligibility.nationalityIsOpen && nationalities.length) {
+    parts.push(`Open to ${nationalities.slice(0, 3).join(", ")}`);
+  } else {
+    parts.push("Open to international applicants");
+  }
+
+  if (eligibility.degreeClassMin) {
+    parts.push(`Degree class: ${eligibility.degreeClassMin}`);
+  }
+
+  if (disciplines.length) {
+    parts.push(`Field: ${disciplines.slice(0, 3).join(", ")}`);
+  }
+
+  if (Number.isFinite(Number(languageReqs.ielts)) && Number(languageReqs.ielts) > 0) {
+    const band = Number(languageReqs.ielts);
+    parts.push(`IELTS ${Number.isInteger(band) ? band.toFixed(0) : band.toFixed(1)}`);
+  }
+
+  if (eligibility.workExperienceYearsMin) {
+    parts.push(`Experience: ${eligibility.workExperienceYearsMin}+ years`);
+  }
+
+  if (docs.length) {
+    parts.push(`Documents: ${docs.slice(0, 3).join(", ")}`);
+  }
+
+  return parts.join(" • ");
+}
+
 function extractExperience(text) {
   const lowered = text.toLowerCase();
   const yearsMatch = lowered.match(/\b(?:at least|minimum|min\.?|with)?\s*(\d{1,2})\s+(?:years?|yrs?)\s+(?:of\s+)?(?:work|research|relevant)?\s*experience\b/i);
@@ -367,6 +405,7 @@ function extractDeadline(text) {
 function classifyPageType({ title, bodyText, sourceUrl }) {
   const haystack = `${title} ${bodyText.slice(0, 1000)} ${sourceUrl}`.toLowerCase();
   if (/\blogin\b|\bsign up\b|\bregister\b/.test(haystack)) return "login";
+  if (FAQ_CUES.test(haystack)) return "faq";
   if (ROLLING_CUES.test(haystack)) return "detail";
   if (/\bapply now\b|\bdeadline\b|\beligibility\b|\bfunding\b|\baward\b/.test(haystack) && /\brequirements?\b/.test(haystack)) return "detail";
   if (/\bcategory\b|\ball scholarships\b|\bfind scholarships\b|\blist of scholarships\b|\bpositions\b/.test(haystack)) return "listing";
@@ -505,6 +544,7 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title, applic
   record.application.deadlineApproximationConfidence = deadline.approximationConfidence;
   record.application.pageType = pageType;
   record.application.pageTitle = nameSignals.title || null;
+  record.requirementsSummary = summarizeRequirements(record.eligibility, record.application);
 
   record.id = generateScholarshipId(sourceNormalized, awardingBody) || record.id;
   record.nameFull = rawName;

@@ -183,10 +183,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
   const completionFilled = profileFields.filter((value) => hasValue(value)).length;
   const completionPercent = Math.round((completionFilled / profileFields.length) * 100);
   const [animatedPercent, setAnimatedPercent] = useState(0);
-  const latestScholarships = getLatestScholarshipFeed([
-    ...(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : []),
-    ...(Array.isArray(scholarships) ? scholarships : []),
-  ], {
+  const latestScholarships = getLatestScholarshipFeed(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : [], {
     limit: 4,
     referenceDate: contentManifest?.updated_at || new Date(),
     recentDays: 10,
@@ -332,6 +329,9 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
                   <Link className="ghost-btn link-button" to="/scholarships/weekly" style={{ alignSelf: "flex-start", textDecoration: "none", padding: "8px 12px" }}>
                     Weekly feed
                   </Link>
+                </div>
+                <div style={{ fontSize: 13, lineHeight: 1.7, color: "var(--text-2)", marginTop: 10 }}>
+                  <strong>Requirements:</strong> {item.requirementsSummary}
                 </div>
               </div>
             )) : (

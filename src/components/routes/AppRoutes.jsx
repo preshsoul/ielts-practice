@@ -118,7 +118,7 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
               ? "Your shortlist is tracked in the scholarship workspace for now."
               : isWeeklyFeed
                 ? `${freshness}. This week's scholarship additions are curated here before they appear in matching surfaces.`
-                : `${freshness}. Match your profile to institutions and keep a shortlist of viable options.`}
+                : `${freshness}. Match your profile to scholarships and keep a shortlist of viable options.`}
           </div>
         </div>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>

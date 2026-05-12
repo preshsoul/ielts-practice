@@ -23,16 +23,12 @@ export default function ScholarshipFeedPage({
   Chip,
 }) {
   const feed = useMemo(() => {
-    const combined = [
-      ...(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : []),
-      ...(Array.isArray(scholarships) ? scholarships : []),
-    ];
-    return getLatestScholarshipFeed(combined, {
+    return getLatestScholarshipFeed(Array.isArray(scholarshipCatalog) ? scholarshipCatalog : [], {
       limit: 24,
       referenceDate: contentManifest?.updated_at || new Date(),
       recentDays: 10,
     });
-  }, [scholarshipCatalog, scholarships, contentManifest?.updated_at]);
+  }, [scholarshipCatalog, contentManifest?.updated_at]);
 
   return (
     <div className="scholarship-page">
@@ -91,6 +87,9 @@ export default function ScholarshipFeedPage({
                     {item.reasons.join(" ")}
                   </div>
                 )}
+                <div style={{ fontSize: 13, lineHeight: 1.7, color: C.text, marginTop: 10 }}>
+                  <strong>Requirements:</strong> {cleanText(item.requirementsSummary, { maxLength: 220 })}
+                </div>
                 {website && (
                   <a
                     href={website}
