@@ -1,48 +1,13 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T22:12:45.802Z",
+  "updated_at": "2026-05-12T22:44:24.246Z",
   "notifications": [
     {
       "id": "content-refresh",
       "type": "info",
       "title": "Content refreshed",
-      "body": "Question bank and scholarship catalogue were refreshed at 12/05/2026, 23:12:45.",
+      "body": "Question bank and scholarship catalogue were refreshed at 12/05/2026, 23:44:24.",
       "target": "/admin"
-    },
-    {
-      "id": "deadline-scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
-      "type": "warning",
-      "title": "Scholarships Cafe - Connecting qualified candidates to global opportunities in academia deadline updated",
-      "body": "Deadline moved from unknown to Rolling.",
-      "target": "/scholarships"
-    },
-    {
-      "id": "deadline-scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
-      "type": "warning",
-      "title": "Scholarships Cafe - Connecting qualified candidates to global opportunities in academia deadline updated",
-      "body": "Deadline moved from unknown to Rolling.",
-      "target": "/scholarships"
-    },
-    {
-      "id": "deadline-scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
-      "type": "warning",
-      "title": "Scholarships Cafe - Connecting qualified candidates to global opportunities in academia deadline updated",
-      "body": "Deadline moved from unknown to Rolling.",
-      "target": "/scholarships"
-    },
-    {
-      "id": "deadline-scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
-      "type": "warning",
-      "title": "Scholarships Cafe - Connecting qualified candidates to global opportunities in academia deadline updated",
-      "body": "Deadline moved from unknown to 15 May 2026.",
-      "target": "/scholarships"
-    },
-    {
-      "id": "deadline-scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op",
-      "type": "warning",
-      "title": "Scholarships Cafe - Connecting qualified candidates to global opportunities in academia deadline updated",
-      "body": "Deadline moved from unknown to Rolling.",
-      "target": "/scholarships"
     }
   ]
 }

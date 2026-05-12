@@ -1,41 +1,23 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T22:12:45.721Z",
+  "updated_at": "2026-05-12T22:44:24.239Z",
   "items": {
-    "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region": {
-      "id": "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region",
-      "name": "Find Scholarships in 2026 (Full Directory) | Scholarship Region",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.scholarshipregion.com/find-scholarships/",
-      "urgency": "green"
+    "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship",
+      "name": "Scholarship Region",
+      "deadline": "2026-04-30",
+      "deadlineRaw": "april 30, 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.scholarshipregion.com/british-council-stem-scholarship",
+      "urgency": "black"
     },
-    "scholarship-region-list-of-scholarships-for-international-students-in-2026": {
-      "id": "scholarship-region-list-of-scholarships-for-international-students-in-2026",
-      "name": "List of Scholarships for International Students in 2026",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/",
-      "urgency": "green"
-    },
-    "scholarship-region-ongoing-fellowships-awards-2026-scholarship-region": {
-      "id": "scholarship-region-ongoing-fellowships-awards-2026-scholarship-region",
-      "name": "Ongoing Fellowships Awards 2026 | Scholarship Region",
+    "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol": {
+      "id": "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol",
+      "name": "2026 Chinese Government MOFCOM Scholarship | Fully Funded | Scholarship Region",
       "deadline": null,
       "deadlineRaw": "Rolling",
       "deadlineType": "rolling",
-      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/fellowships/",
-      "urgency": "green"
-    },
-    "scholarship-region-secondary-school-and-high-school-scholarships-2026": {
-      "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
-      "name": "Secondary School and High School Scholarships 2026",
-      "deadline": null,
-      "deadlineRaw": "Rolling",
-      "deadlineType": "rolling",
-      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/high-school-scholarships/",
+      "sourceUrl": "https://www.scholarshipregion.com/chinese-government-mofcom-scholarship/",
       "urgency": "green"
     },
     "scholarship-region-list-of-ongoing-masters-scholarships-2026": {
@@ -54,15 +36,6 @@
       "deadlineRaw": "Rolling",
       "deadlineType": "rolling",
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/phd-scholarships/",
-      "urgency": "green"
-    },
-    "scholarship-region-popular-scholarships-in-2026-scholarship-region": {
-      "id": "scholarship-region-popular-scholarships-in-2026-scholarship-region",
-      "name": "Popular Scholarships in 2026 | Scholarship Region",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/popular-scholarships/",
       "urgency": "green"
     },
     "scholarship-region-list-of-ongoing-postgraduate-scholarships-2026": {
@@ -164,15 +137,6 @@
       "sourceUrl": "https://www.scholarshipregion.com/mofcom-scholarship-for-kenyans/",
       "urgency": "green"
     },
-    "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol": {
-      "id": "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol",
-      "name": "2026 Chinese Government MOFCOM Scholarship | Fully Funded | Scholarship Region",
-      "deadline": null,
-      "deadlineRaw": "Rolling",
-      "deadlineType": "rolling",
-      "sourceUrl": "https://www.scholarshipregion.com/chinese-government-mofcom-scholarship/",
-      "urgency": "green"
-    },
     "scholarship-region-mr-macaroni-tech-scholarship-for-nigerians-2026-fully-funded-": {
       "id": "scholarship-region-mr-macaroni-tech-scholarship-for-nigerians-2026-fully-funded-",
       "name": "Mr Macaroni Tech Scholarship For Nigerians 2026 | Fully Funded | Scholarship Region",
@@ -180,6 +144,141 @@
       "deadlineRaw": "Rolling",
       "deadlineType": "rolling",
       "sourceUrl": "https://www.scholarshipregion.com/mr-macaroni-tech-scholarship/",
+      "urgency": "green"
+    },
+    "scholarship-region-ongoing-fellowships-awards-2026-scholarship-region": {
+      "id": "scholarship-region-ongoing-fellowships-awards-2026-scholarship-region",
+      "name": "Ongoing Fellowships Awards 2026 | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/fellowships/",
+      "urgency": "green"
+    },
+    "www.scholarshipregion.com_scholarship-region_ashesi-eth-masters-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_ashesi-eth-masters-scholarship",
+      "name": "Scholarship Region",
+      "deadline": "2026-06-30",
+      "deadlineRaw": "june 30, 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.scholarshipregion.com/ashesi-eth-masters-scholarship",
+      "urgency": "red"
+    },
+    "www.scholarshipregion.com_scholarship-region_mandela-rhodes-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_mandela-rhodes-scholarship",
+      "name": "Scholarship Region",
+      "deadline": "2026-04-14",
+      "deadlineRaw": "april 14, 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.scholarshipregion.com/mandela-rhodes-scholarship",
+      "urgency": "black"
+    },
+    "scholarship-region-secondary-school-and-high-school-scholarships-2026": {
+      "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
+      "name": "Secondary School and High School Scholarships 2026",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/high-school-scholarships/",
+      "urgency": "green"
+    },
+    "www.scholarshipregion.com_scholarship-region_netherlands-government-nl-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_netherlands-government-nl-scholarship",
+      "name": "Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/netherlands-government-nl-scholarship",
+      "urgency": "green"
+    },
+    "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship",
+      "name": "Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/mext-teachers-training-scholarship",
+      "urgency": "green"
+    },
+    "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region": {
+      "id": "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region",
+      "name": "Find Scholarships in 2026 (Full Directory) | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/find-scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-list-of-scholarships-for-international-students-in-2026": {
+      "id": "scholarship-region-list-of-scholarships-for-international-students-in-2026",
+      "name": "List of Scholarships for International Students in 2026",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/",
+      "urgency": "green"
+    },
+    "scholarship-region-popular-scholarships-in-2026-scholarship-region": {
+      "id": "scholarship-region-popular-scholarships-in-2026-scholarship-region",
+      "name": "Popular Scholarships in 2026 | Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/popular-scholarships/",
+      "urgency": "green"
+    },
+    "www.scholarshipregion.com_scholarship-region_ptdf-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_ptdf-scholarship",
+      "name": "Scholarship Region",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.scholarshipregion.com/university-of-bradford-scholarship",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-funding-options": {
+      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-funding-options",
+      "name": "Funding Options",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-funding-programmes-hilde-domin-programme": {
+      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-funding-programmes-hilde-domin-programme",
+      "name": "Hilde Domin Programme",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-funding-programmes/hilde-domin-programme",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-information-for-scholarship-applicants": {
+      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-information-for-scholarship-applicants",
+      "name": "Information For Scholarship Applicants",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/information-for-scholarship-applicants",
+      "urgency": "green"
+    },
+    "kpmg.com_kpmg-graduates_sg-en-careers-graduates-html": {
+      "id": "kpmg.com_kpmg-graduates_sg-en-careers-graduates-html",
+      "name": "KPMG In Singapore",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://kpmg.com/sg/en/careers/graduates.html",
+      "urgency": "green"
+    },
+    "scholarshipscafe.com_scholarships-cafe_positions": {
+      "id": "scholarshipscafe.com_scholarships-cafe_positions",
+      "name": "Scholarships Cafe",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://scholarshipscafe.com/positions",
       "urgency": "green"
     },
     "scholarships-cafe-scholarships-cafe-connecting-qualified-candidates-to-global-op": {
@@ -191,6 +290,231 @@
       "sourceUrl": "https://scholarshipscafe.com/positions?page=96",
       "urgency": "green"
     },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c",
+      "name": "A Decade Of Impact: Mastercard Foundation Scholars Program Celebrates 10 Years At KNUST",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/articles/a-decade-of-impact-mastercard-foundation-scholars-program-celebrates-10-years-at-knust",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_scholarships-application-timeline": {
+      "id": "www.chevening.org_chevening_scholarships-application-timeline",
+      "name": "Application Timeline",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/scholarships/application-timeline",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-appli": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-appli",
+      "name": "Application Tips Series",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/application-tips-series",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_asean-chevening-scholarship": {
+      "id": "www.chevening.org_chevening_asean-chevening-scholarship",
+      "name": "Chevening ASEAN Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowship-chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fell": {
+      "id": "www.chevening.org_chevening_fellowship-chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fell",
+      "name": "Chevening Overseas Territories In The Atlantic And Caribbean British Library Fellowship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowship/chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fellowship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_sids-chevening-scholarship": {
+      "id": "www.chevening.org_chevening_sids-chevening-scholarship",
+      "name": "Chevening SIDS Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowship-chevening-southeast-europe-british-library-fellowship": {
+      "id": "www.chevening.org_chevening_fellowship-chevening-southeast-europe-british-library-fellowship",
+      "name": "Chevening Southeast Europe British Library Fellowship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowship/chevening-southeast-europe-british-library-fellowship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility": {
+      "id": "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility",
+      "name": "Eligibility For A Chevening Fellowship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowships": {
+      "id": "www.chevening.org_chevening_fellowships",
+      "name": "Fellowships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowships",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_scholarships-find-a-course": {
+      "id": "www.chevening.org_chevening_scholarships-find-a-course",
+      "name": "Find A Course",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/scholarships/find-a-course",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowships-find-a-programme": {
+      "id": "www.chevening.org_chevening_fellowships-find-a-programme",
+      "name": "Find A Programme",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowships/find-a-programme",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowships-host-a-fellowship": {
+      "id": "www.chevening.org_chevening_fellowships-host-a-fellowship",
+      "name": "Host A Chevening Fellowship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowships/host-a-fellowship",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where",
+      "name": "Institutions",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-news-mastercard-foundation-scholars-impress-at-the-2024-resolution-s": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-news-mastercard-foundation-scholars-impress-at-the-2024-resolution-s",
+      "name": "Mastercard Foundation Scholars Impress At The 2024 Resolution Social Venture Challenge",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/news/mastercard-foundation-scholars-impress-at-the-2024-resolution-social-venture-challenge",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program",
+      "name": "Mastercard Foundation Scholars Program",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_scholarships": {
+      "id": "www.chevening.org_chevening_scholarships",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/scholarships",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-the-m": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-the-m",
+      "name": "The Mastercard Foundation Alumni Network",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/the-mastercard-foundation-alumni-network",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-articles-the-mastercard-foundation-scholars-program-accelerates-impa": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-articles-the-mastercard-foundation-scholars-program-accelerates-impa",
+      "name": "The Mastercard Foundation Scholars Program Accelerates Impact With Three New Partnerships In Africa",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/articles/the-mastercard-foundation-scholars-program-accelerates-impact-with-three-new-partnerships-in-africa",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-news-the-mastercard-foundation-scholars-program-expands-to-universit": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-news-the-mastercard-foundation-scholars-program-expands-to-universit",
+      "name": "The Mastercard Foundation Scholars Program Expands To University Of The Western Cape",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/news/the-mastercard-foundation-scholars-program-expands-to-university-of-the-western-cape",
+      "urgency": "green"
+    },
+    "scholarshipscafe.com_scholarships-cafe_position-detail": {
+      "id": "scholarshipscafe.com_scholarships-cafe_position-detail",
+      "name": "The Women In Conflict Fellowship Program, Scotland",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://scholarshipscafe.com/position-detail?id=15721",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_asean-chevening-scholarship-who-can-apply-for-a-chevening-asean-scholarship": {
+      "id": "www.chevening.org_chevening_asean-chevening-scholarship-who-can-apply-for-a-chevening-asean-scholarship",
+      "name": "Who Can Apply For A Chevening ASEAN Scholarship?",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship/who-can-apply-for-a-chevening-asean-scholarship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_fellowships-who-can-apply": {
+      "id": "www.chevening.org_chevening_fellowships-who-can-apply",
+      "name": "Who Can Apply For A Chevening Fellowship?",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_sids-chevening-scholarship-who-can-apply-for-a-chevening-sids-scholarship": {
+      "id": "www.chevening.org_chevening_sids-chevening-scholarship-who-can-apply-for-a-chevening-sids-scholarship",
+      "name": "Who Can Apply For A Chevening SIDS Scholarship?",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship/who-can-apply-for-a-chevening-sids-scholarship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_scholarships-who-can-apply": {
+      "id": "www.chevening.org_chevening_scholarships-who-can-apply",
+      "name": "Who Can Apply?",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/scholarships/who-can-apply",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_scholarships-why-study-in-the-uk": {
+      "id": "www.chevening.org_chevening_scholarships-why-study-in-the-uk",
+      "name": "Why Study In The Uk?",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/scholarships/why-study-in-the-uk",
+      "urgency": "green"
+    },
     "scholarships-cafe-position-detail": {
       "id": "scholarships-cafe-position-detail",
       "name": "Position Detail",
@@ -198,6 +522,78 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://scholarshipscafe.com/position-detail?id=15499",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-scholarships": {
+      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-scholarships",
+      "name": "Daad-scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-music-art": {
+      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-music-art",
+      "name": "Funding Programmes For Musicians And Artists",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/music-art",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-report-an-accessibility-issue": {
+      "id": "www.daad.de_daad-scholarships_en-report-an-accessibility-issue",
+      "name": "Report An Accessibility Issue",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/report-an-accessibility-issue/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships": {
+      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships",
+      "name": "Scholarships And Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships",
+      "urgency": "green"
+    },
+    "www.daad.de_daad-scholarships_de-barriere-melden": {
+      "id": "www.daad.de_daad-scholarships_de-barriere-melden",
+      "name": "Barriere Melden",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.daad.de/de/barriere-melden/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
+      "urgency": "green"
+    },
+    "careers.unilever.com_unilever-early-careers_en-early-careers": {
+      "id": "careers.unilever.com_unilever-early-careers_en-early-careers",
+      "name": "Early Careers",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://careers.unilever.com/en/early-careers",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-news-hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-news-hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-",
+      "name": "HSRC Screens The Spirit Of Kanju: Leaders Transforming Africa - A Documentary Film Created By Alumni Of The Mastercard Foundation Scholars Program",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program",
+      "urgency": "green"
+    },
+    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac": {
+      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac",
+      "name": "Stories Of Impact | Mastercard Foundation Scholars Program",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories",
       "urgency": "green"
     }
   }
