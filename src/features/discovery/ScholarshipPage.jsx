@@ -102,6 +102,179 @@ function getScholarshipTuition(scholarship) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function formatScholarshipDate(value) {
+  if (!value) return "Open";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Open";
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
+
+function isGenericScholarshipTitle(value) {
+  const title = String(value || "").toLowerCase();
+  if (!title) return true;
+  const noiseFragments = [
+    "faq",
+    "funding body",
+    "scholarships",
+    "scholarship region",
+    "scholarship announcements",
+    "scholarship applicants",
+    "information for scholarship",
+    "funding options",
+    "student",
+    "application form",
+  ];
+  if (noiseFragments.some((fragment) => title === fragment || title.includes(fragment))) return true;
+  if (title.length < 18) return true;
+  return false;
+}
+
+function normalizeRequirementsSummary(value) {
+  const text = String(value || "").trim();
+  if (!text) return "Requirements are listed on the source page.";
+  if (/eligibility details were extracted/i.test(text)) return "Requirements are listed on the source page.";
+  if (text.length < 32) return "Requirements are listed on the source page.";
+  return text;
+}
+
+function ScholarshipResultCard({
+  scholarship,
+  analysis,
+  tracked,
+  shortlistSaved,
+  authUser,
+  profileId,
+  matchingProfile,
+  C,
+  toggleShortlist,
+  trackApplication,
+  openIntelPanel,
+  handleOpenWebsite,
+  shortlistBusy,
+  toggleRequiredDocument,
+  removeReferee,
+  advanceApplication,
+  addReferee,
+  refereeInputs,
+  setRefereeInputs,
+  onRefereeInputChange,
+  getScholarshipTitle,
+  getScholarshipTuition,
+  getScholarshipProvider,
+}) {
+  const topCriteria = analysis.criteria.slice(0, 2);
+  const checklist = tracked?.documents_checklist || {};
+  const requiredDocuments = Array.isArray(checklist.requiredDocuments) ? checklist.requiredDocuments : [];
+  const completedDocuments = Array.isArray(checklist.completedDocuments) ? checklist.completedDocuments : [];
+  const referees = Array.isArray(tracked?.referees) ? tracked.referees : [];
+  const refereeCount = referees.length;
+  const refereesRequired = Number(checklist.refereesRequired || 0);
+  const initials = String(getScholarshipTitle(scholarship))
+    .split(" ")
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+  const requirementsSummary = normalizeRequirementsSummary(scholarship.requirementsSummary || scholarship.notes || scholarship.summary);
+  const provider = getScholarshipProvider(scholarship);
+  const applyUrl = cleanUrl(scholarship?.application?.url || scholarship?.website);
+
+  return (
+    <article className="scholarship-result-card">
+      <div className="scholarship-result-card__top">
+        <div className="scholarship-result-card__mark">{initials}</div>
+        <div className="scholarship-result-card__status">
+          <span className="scholarship-result-card__flag">{analysis.score >= 80 ? "Urgent" : analysis.score >= 60 ? "Open" : "Soon"}</span>
+          <span className="scholarship-result-card__dots" aria-hidden="true">
+            <span className={analysis.provenanceConfidence >= 0.8 ? "is-on" : "is-off"} />
+            <span className={analysis.provenanceConfidence >= 0.6 ? "is-on" : "is-off"} />
+            <span className={analysis.provenanceConfidence >= 0.4 ? "is-on" : "is-off"} />
+          </span>
+        </div>
+      </div>
+      <div className="scholarship-result-card__body">
+        {provider && provider.toLowerCase() !== "funding body" && (
+          <div className="scholarship-result-card__label">{provider}</div>
+        )}
+        <h3 className="scholarship-result-card__title">{cleanText(getScholarshipTitle(scholarship), { maxLength: 140 })}</h3>
+        <div className="scholarship-result-card__meta">
+          <span>{cleanText(scholarship.city, { maxLength: 40 })}, {cleanText(scholarship.country, { maxLength: 40 })}</span>
+          <span>Deadline {formatScholarshipDate(scholarship.deadline)}</span>
+        </div>
+        <div className="scholarship-result-card__summary">
+          <strong>Requirements</strong> {cleanText(requirementsSummary, { maxLength: 220 })}
+        </div>
+        <div className="scholarship-result-card__criteria">
+          <span className="scholarship-result-card__chip scholarship-result-card__chip--accent">Fit {analysis.score}/100</span>
+          <span className="scholarship-result-card__chip">Profile {Math.round((analysis.retrievalScore || 0) * 100)}%</span>
+        </div>
+      </div>
+
+      <div className="scholarship-result-card__footer">
+        <button type="button" onClick={() => toggleShortlist(scholarship.id)} className="ghost-btn scholarship-result-card__button" disabled={!authUser || shortlistBusy}>
+          {shortlistSaved ? "Remove" : "Shortlist"}
+        </button>
+        <button type="button" onClick={() => trackApplication(scholarship)} className="ghost-btn scholarship-result-card__button" disabled={!authUser || !profileId}>
+          {tracked ? "Track" : "Apply tracker"}
+        </button>
+        <button
+          type="button"
+          className="ghost-btn scholarship-result-card__button"
+          onClick={() => openIntelPanel({
+            eyebrow: "Why this match",
+            title: getScholarshipTitle(scholarship),
+            summary: `${analysis.score}/100 fit`,
+            details: buildPlainMatchReasons({ analysis, profile: matchingProfile, scholarship }).join(" ") || "It is one of the closest matches for your current profile.",
+            metrics: [
+              { label: "Deadline", value: formatScholarshipDate(scholarship.deadline) },
+              { label: "IELTS", value: formatIeltsScore(matchingProfile) || "Not added" },
+              { label: "Confidence", value: `${Math.round((analysis.provenanceConfidence || 0) * 100)}%` },
+            ],
+            links: scholarship.website ? [{ label: "Open website", href: cleanUrl(scholarship.website) }] : [],
+          })}
+        >
+          Why chosen
+        </button>
+        {applyUrl ? (
+          <button
+            type="button"
+            className="ghost-btn scholarship-result-card__button scholarship-result-card__button--primary"
+            onClick={() => handleOpenWebsite(scholarship, applyUrl)}
+          >
+            Open apply link
+          </button>
+        ) : (
+          <span className="scholarship-result-card__button scholarship-result-card__button--disabled">Website unavailable</span>
+        )}
+      </div>
+
+      {tracked && (
+        <div className="scholarship-result-card__tracking">
+          <div className="scholarship-result-card__tracking-row">
+            <span>Tracking</span>
+            <strong>{tracked.state}</strong>
+          </div>
+          <div className="scholarship-result-card__tracking-row">
+            <span>Update state</span>
+            <label className="scholarship-control scholarship-control--compact">
+              <select value={tracked.state} onChange={(e) => advanceApplication(scholarship.id, e.target.value)}>
+                <option value={tracked.state}>{STATE_LABELS[tracked.state] || tracked.state}</option>
+                {getAllowedApplicationTransitions(tracked.state).map((state) => (
+                  <option key={state} value={state}>{STATE_LABELS[state] || state}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
 export default function ScholarshipPage(props) {
   const { C, Chip } = props;
   const {
@@ -362,6 +535,10 @@ export default function ScholarshipPage(props) {
     await updateChecklist(scholarshipId, { referees: nextReferees });
   };
 
+  const handleRefereeInputChange = (scholarshipId, value) => {
+    setRefereeInputs((current) => ({ ...current, [scholarshipId]: value }));
+  };
+
   const maxFeeNum = parseMaxFee(maxFee);
   const catalog = useMemo(() => {
     const map = new Map();
@@ -400,6 +577,21 @@ export default function ScholarshipPage(props) {
         return String(a.scholarship.id || "").localeCompare(String(b.scholarship.id || ""));
       });
   }, [catalog, region, maxFeeNum, matchingProfile]);
+  const visibleScored = useMemo(() => {
+    const seen = new Set();
+    return scored
+      .filter(({ scholarship, analysis }) => {
+        if (analysis?.blocked) return false;
+        const title = String(getScholarshipTitle(scholarship) || "").trim().toLowerCase().replace(/\s+/g, " ");
+        if (!title || isGenericScholarshipTitle(title)) return false;
+        const applyUrl = cleanUrl(scholarship?.application?.url || scholarship?.website);
+        if (!applyUrl) return false;
+        if (seen.has(title)) return false;
+        seen.add(title);
+        return true;
+      })
+      .slice(0, 8);
+  }, [scored]);
 
   const contentSignals = buildContentSignals(contentManifest, notifications);
   const latestNotification = Array.isArray(notifications) && notifications.length ? notifications[0] : null;
@@ -431,23 +623,13 @@ export default function ScholarshipPage(props) {
   }, [profile?.id, authUser, scored]);
 
   return (
-    <div className="scholarship-page">
-      <div className="scholarship-signal-strip">
-        {contentSignals.map((signal) => (
-          <div key={signal.label} className={`scholarship-signal-card scholarship-signal-${signal.tone}`}>
-            <span className="scholarship-signal-label">{signal.label}</span>
-            <strong className="scholarship-signal-value">{signal.value}</strong>
-            {signal.note && <span className="scholarship-signal-note">{signal.note}</span>}
-          </div>
-        ))}
-      </div>
-
+    <div className="scholarship-page scholarship-workspace">
       <div className="scholarship-hero">
         <div className="scholarship-hero-main">
-          <div className="scholarship-kicker">Scholarships surface</div>
-          <h2 className="scholarship-title">Scholarships ranked against your profile.</h2>
+          <div className="scholarship-kicker">Scholarship catalog</div>
+          <h2 className="scholarship-title">Postgraduate Funding UK</h2>
           <p className="scholarship-copy">
-            Ranking uses your CV, IELTS score, degree class, discipline, destination goals, and the opportunity details. Upload a document, confirm the extracted fields, and we’ll show the best matches in plain language.
+            Refine your search across premium UK and international funding bodies. High-fit opportunities are ranked by eligibility confidence and deadline pressure.
           </p>
           {isEmptyProfile && (
             <div className="scholarship-alert" role="status" aria-live="polite">
@@ -463,35 +645,18 @@ export default function ScholarshipPage(props) {
               <div className="scholarship-alert-body">{latestNotification.body}</div>
             </div>
           )}
-          <div className="scholarship-metrics">
-            <div className="scholarship-metric">
-              <span className="scholarship-metric-label">Matched</span>
-              <span className="scholarship-metric-value">{scored.length}</span>
-            </div>
-            <div className="scholarship-metric">
-              <span className="scholarship-metric-label">Regions</span>
-              <span className="scholarship-metric-value">{regionCount}</span>
-            </div>
-            <div className="scholarship-metric">
-              <span className="scholarship-metric-label">Profile mode</span>
-              <span className="scholarship-metric-value">{profile?.tier || "free"}</span>
-            </div>
-            <div className="scholarship-metric">
-              <span className="scholarship-metric-label">Tracked</span>
-              <span className="scholarship-metric-value">{Object.keys(trackedApplications).length}</span>
-            </div>
-            <div className="scholarship-metric">
-              <span className="scholarship-metric-label">Shortlist</span>
-              <span className="scholarship-metric-value">{shortlist.length}</span>
-            </div>
+          <div className="scholarship-intro-chips">
+            <Chip label={`Matched ${scored.length}`} color={C.green} small />
+            <Chip label={`Shortlist ${shortlist.length}`} color={C.accent} small />
+            <Chip label={`Tracked ${Object.keys(trackedApplications).length}`} color={C.amber} small />
           </div>
         </div>
         <div className="scholarship-hero-side">
-          <ScholarshipMatchSummary profile={matchingProfile} scored={scored} shortlist={shortlist} C={C} Chip={Chip} />
+          <ScholarshipMatchSummary profile={matchingProfile} scored={visibleScored} shortlist={shortlist} C={C} Chip={Chip} />
         </div>
       </div>
 
-      <div className="layout-grid" style={{ ["--grid-cols"]: 12, ["--grid-gap"]: "24px" }}>
+      <div className="scholarship-surface-grid">
         <ScholarshipDocumentImport
           authUser={authUser}
           profile={profile}
@@ -541,213 +706,38 @@ export default function ScholarshipPage(props) {
       </div>
 
       <div className="scholarship-results-label">
-        {scored.length} scholarships matched
+        {visibleScored.length} scholarships matched
       </div>
 
-      <div className="scholarship-results">
-        {scored.length > 0 ? scored.map(({ scholarship, analysis }) => {
-          const ihsTotal = Math.round(((scholarship.IHS_per_year || scholarship.ihsPerYear || 0) * Math.ceil((scholarship.typical_program_length_months || 12) / 12)) || 0);
-          const initials = String(getScholarshipTitle(scholarship))
-            .split(" ")
-            .slice(0, 2)
-            .map((part) => part[0])
-            .join("")
-            .toUpperCase();
-          const topCriteria = analysis.criteria.slice(0, 3);
+      <div className="scholarship-results-grid">
+        {visibleScored.length > 0 ? visibleScored.map(({ scholarship, analysis }) => {
           const tracked = trackedApplications[scholarship.id];
-          const allowedStates = tracked ? getAllowedApplicationTransitions(tracked.state) : [];
-          const checklist = tracked?.documents_checklist || {};
-          const requiredDocuments = Array.isArray(checklist.requiredDocuments) ? checklist.requiredDocuments : [];
-          const completedDocuments = Array.isArray(checklist.completedDocuments) ? checklist.completedDocuments : [];
-          const refereesRequired = Number(checklist.refereesRequired || 0);
-          const referees = Array.isArray(tracked?.referees) ? tracked.referees : [];
-          const refereeCount = referees.length;
-
           return (
-            <article key={scholarship.id} className="loci-card loci-card--editorial">
-              <div className="sch-avatar">{initials}</div>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8, gap: 12, flexWrap: "wrap" }}>
-                  <div>
-                    <div style={{ fontSize: 17, fontWeight: 700, fontFamily: "var(--font-serif)", letterSpacing: "-0.02em" }}>
-                      {cleanText(getScholarshipTitle(scholarship), { maxLength: 160 })}
-                    </div>
-                    <div style={{ fontSize: 12, color: C.muted, fontFamily: "var(--font-ui)" }}>
-                      {cleanText(scholarship.city, { maxLength: 80 })}, {cleanText(scholarship.country, { maxLength: 80 })}
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
-                    <Chip label={`Fit ${analysis.score}/100`} color={analysis.fallback ? C.accent : C.green} small />
-                    <Chip label={`CV match ${Math.round((analysis.semanticScore || 0) * 100)}/100`} color={C.accent} small />
-                    {analysis.fallback && <Chip label="Fallback ranking" color={C.accent} small />}
-                    {tracked && <Chip label={`Tracked: ${tracked.state}`} color={C.accent} small />}
-                    <div style={{ fontSize: 13, fontFamily: "var(--font-ui)" }}>{scholarship.currency || "GBP"} {getScholarshipTuition(scholarship).toLocaleString()}</div>
-                    <div style={{ fontSize: 12, color: C.muted, fontFamily: "var(--font-ui)" }}>IHS est: {scholarship.currency || "GBP"} {ihsTotal}</div>
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
-                  {topCriteria.map((criterion) => (
-                    <Chip key={criterion.key} label={`${criterion.label}: ${criterion.score}/${criterion.max}`} color={criterion.score > 0 ? C.green : C.amber} small />
-                  ))}
-                  <Chip label={`Profile match ${Math.round((analysis.retrievalScore || 0) * 100)}/100`} color={C.accent} small />
-                  {analysis.semanticExplanation?.source && (
-                    <Chip label={`Why it matched: ${analysis.semanticExplanation.source}`} color={C.accent} small />
-                  )}
-                </div>
-
-                {analysis.blockedReasons.length > 0 && (
-                  <div style={{ fontSize: 12, color: C.red, fontFamily: "var(--font-ui)", lineHeight: 1.7, marginBottom: 8 }}>
-                    Blocked: {joinReasons(analysis.blockedReasons)}
-                  </div>
-                )}
-
-                <div style={{ fontSize: 13, color: C.muted, marginBottom: 8, fontFamily: "var(--font-ui)", lineHeight: 1.7 }}>
-                  {cleanText(scholarship.notes, { maxLength: 500 })}
-                </div>
-
-                {tracked && (
-                  <div style={{ display: "grid", gap: 8, marginBottom: 10, padding: "12px", border: "1px solid var(--border)", borderRadius: "14px", background: "var(--color-bg-surface)" }}>
-                    <div style={{ fontSize: 12, fontFamily: "var(--font-ui)", color: C.text }}>
-                      Checklist: {requiredDocuments.length ? `${completedDocuments.length}/${requiredDocuments.length} complete` : "No checklist loaded"}
-                    </div>
-                    {requiredDocuments.length > 0 && (
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                        {requiredDocuments.map((documentName) => {
-                          const done = completedDocuments.includes(documentName);
-                          return (
-                            <button
-                              key={documentName}
-                              type="button"
-                              onClick={() => toggleRequiredDocument(scholarship.id, documentName)}
-                              className="ghost-btn"
-                              style={{
-                                padding: "7px 10px",
-                                borderRadius: "999px",
-                                borderColor: done ? C.green : "var(--border)",
-                                background: done ? "var(--green-bg)" : "transparent",
-                                color: done ? C.text : C.muted,
-                              }}
-                            >
-                              {done ? "[x] " : ""}{documentName}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                    <div style={{ fontSize: 12, fontFamily: "var(--font-ui)", color: C.text }}>
-                      Referees: {refereeCount}/{refereesRequired || 0}
-                    </div>
-                    {referees.length > 0 && (
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                        {referees.map((referee, index) => {
-                          const name = typeof referee === "string" ? referee : referee?.name || `Referee ${index + 1}`;
-                          const status = typeof referee === "object" && referee?.status ? referee.status : "pending";
-                          return (
-                            <button
-                              key={`${name}-${index}`}
-                              type="button"
-                              onClick={() => removeReferee(scholarship.id, index)}
-                              className="ghost-btn"
-                              style={{
-                                padding: "7px 10px",
-                                borderRadius: "999px",
-                                borderColor: "var(--border)",
-                                color: C.text,
-                              }}
-                              title="Remove referee"
-                            >
-                              {name} · {status} ×
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-                      <label className="scholarship-control" style={{ margin: 0, minWidth: "180px" }}>
-                        <span>Update state</span>
-                        <select value={tracked.state} onChange={(e) => advanceApplication(scholarship.id, e.target.value)}>
-                          <option value={tracked.state}>{STATE_LABELS[tracked.state] || tracked.state}</option>
-                          {allowedStates.map((state) => (
-                            <option key={state} value={state}>{STATE_LABELS[state] || state}</option>
-                          ))}
-                        </select>
-                      </label>
-                      <label className="scholarship-control" style={{ margin: 0, minWidth: "220px", flex: 1 }}>
-                        <span>Add referee</span>
-                        <input
-                          value={refereeInputs[scholarship.id] || ""}
-                          onChange={(e) => setRefereeInputs((current) => ({ ...current, [scholarship.id]: e.target.value }))}
-                          placeholder="Enter referee name"
-                        />
-                      </label>
-                      <button
-                        type="button"
-                        className="ghost-btn"
-                        style={{ padding: "9px 14px" }}
-                        onClick={() => addReferee(scholarship.id)}
-                      >
-                        Add referee
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                <div className="sch-actions">
-                  <button type="button" onClick={() => toggleShortlist(scholarship.id)} className="ghost-btn" style={{ padding: "9px 14px" }} disabled={!authUser || shortlistBusy}>
-                    {shortlist.includes(scholarship.id) ? "Remove from shortlist" : "Save to shortlist"}
-                  </button>
-                  <button type="button" onClick={() => trackApplication(scholarship)} className="ghost-btn" style={{ padding: "9px 14px" }} disabled={!authUser || !profile?.id}>
-                    {tracked ? "Update tracker" : "Track application"}
-                  </button>
-                    <button
-                      type="button"
-                      className="ghost-btn"
-                      style={{ padding: "9px 14px" }}
-                      onClick={() => openIntelPanel({
-                        eyebrow: "Why this match",
-                        title: getScholarshipTitle(scholarship),
-                        summary: `${analysis.score}/100 fit · ${cleanText(scholarship.city, { maxLength: 40 })}, ${cleanText(scholarship.country, { maxLength: 40 })}`,
-                        details: [
-                          `Why it was chosen: ${buildPlainMatchReasons({ analysis, profile: matchingProfile, scholarship }).join(" ") || "It is one of the closest matches for your current profile."}`,
-                          analysis.blockedReasons.length ? `What still needs attention: ${joinReasons(analysis.blockedReasons)}.` : "Nothing critical is blocking this application right now.",
-                        ].filter(Boolean).join(" "),
-                        metrics: [
-                          { label: "Fit", value: `${analysis.score}/100` },
-                          { label: "IELTS", value: formatIeltsScore(matchingProfile) || "Not added" },
-                          { label: "Profile match", value: `${Math.round((analysis.retrievalScore || 0) * 100)}%` },
-                          { label: "Tuition", value: `${scholarship.currency || "GBP"} ${getScholarshipTuition(scholarship).toLocaleString()}` },
-                          { label: "Confidence", value: `${Math.round((analysis.provenanceConfidence || 0) * 100)}%` },
-                          { label: "Deadline", value: scholarship.deadline ? new Date(scholarship.deadline).toLocaleDateString("en-GB") : "Open" },
-                        ],
-                        expert: `We compare your CV, IELTS score, degree class, subject area, destination goal, and deadline to choose matches. ${buildPlainMatchReasons({ analysis, profile: matchingProfile, scholarship }).join(" ")} ${analysis.blockedReasons.length ? `One thing still needs attention: ${joinReasons(analysis.blockedReasons)}.` : ""}`,
-                        links: safeWebsiteUrl(scholarship.website) ? [{ label: "Open website", href: safeWebsiteUrl(scholarship.website) }] : [],
-                      })}
-                    >
-                    Inspect intel
-                  </button>
-                  {safeWebsiteUrl(scholarship.website) ? (
-                    <a
-                      href={safeWebsiteUrl(scholarship.website)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ghost-btn"
-                      style={{ padding: "9px 14px", textDecoration: "none", display: "inline-flex", alignItems: "center" }}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        handleOpenWebsite(scholarship, safeWebsiteUrl(scholarship.website));
-                      }}
-                    >
-                      Open website
-                    </a>
-                  ) : (
-                    <span className="ghost-btn" style={{ padding: "9px 14px", display: "inline-flex", alignItems: "center", opacity: 0.55, cursor: "not-allowed" }}>
-                      Website unavailable
-                    </span>
-                  )}
-                </div>
-              </div>
-            </article>
+            <ScholarshipResultCard
+              key={scholarship.id}
+              scholarship={scholarship}
+              analysis={analysis}
+              tracked={tracked}
+              shortlistSaved={shortlist.includes(scholarship.id)}
+              authUser={authUser}
+              profileId={profile?.id}
+              matchingProfile={matchingProfile}
+              C={C}
+              toggleShortlist={toggleShortlist}
+              trackApplication={trackApplication}
+              openIntelPanel={openIntelPanel}
+              handleOpenWebsite={handleOpenWebsite}
+              shortlistBusy={shortlistBusy}
+              advanceApplication={advanceApplication}
+              removeReferee={removeReferee}
+              addReferee={addReferee}
+              refereeInputs={refereeInputs}
+              setRefereeInputs={setRefereeInputs}
+              onRefereeInputChange={handleRefereeInputChange}
+              getScholarshipTitle={getScholarshipTitle}
+              getScholarshipTuition={getScholarshipTuition}
+              getScholarshipProvider={(item) => item?.awardingBody || item?.sourceLabel || item?.provider || "Funding body"}
+            />
           );
         }) : (
           <div className="empty-state" role="status" aria-live="polite">

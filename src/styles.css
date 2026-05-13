@@ -2094,6 +2094,1108 @@ a.mobile-nav-btn{
   max-width:64ch;
 }
 
+/* Wireframe refresh: dashboard, scholarships, and account */
+body{
+  background:
+    linear-gradient(180deg, #f3eee5 0%, #f7f3ea 30%, #f2ece1 100%);
+}
+
+.workspace-shell{
+  max-width:none;
+  gap:0;
+  background:linear-gradient(180deg, #f3eee5 0%, #f7f3ea 100%);
+}
+
+.workspace-sidebar{
+  background:linear-gradient(180deg, #121423 0%, #17192c 100%);
+  color:#e7e8f3;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+
+.workspace-sidebar .sidebar-title,
+.workspace-sidebar .sidebar-subtitle,
+.workspace-sidebar .mini-profile-band,
+.workspace-sidebar .mini-profile-status,
+.workspace-sidebar .session-count,
+.workspace-sidebar .system-status span,
+.workspace-sidebar .sidebar-nav-item,
+.workspace-sidebar .sidebar-reset-btn,
+.workspace-sidebar .sidebar-collapse-btn{
+  color:inherit;
+}
+
+.workspace-sidebar .sidebar-logo{
+  color:#e7ecff;
+  background:transparent;
+  border:none;
+  font:700 16px/1 var(--font-serif);
+  letter-spacing:0.08em;
+}
+
+.workspace-sidebar .sidebar-title{
+  font:700 16px/1.1 var(--font-serif);
+  letter-spacing:-0.03em;
+}
+
+.workspace-sidebar .sidebar-subtitle,
+.workspace-sidebar .mini-profile-status,
+.workspace-sidebar .system-status span,
+.workspace-sidebar .session-count{
+  color:rgba(231,232,243,0.72);
+}
+
+.workspace-sidebar .sidebar-nav-item{
+  border-color:transparent;
+  background:transparent;
+}
+
+.workspace-sidebar .sidebar-nav-item.active{
+  background:#4f73f0;
+  color:#fff;
+  box-shadow:0 14px 28px rgba(79,115,240,0.28);
+}
+
+.workspace-sidebar .sidebar-collapse-btn,
+.workspace-sidebar .sidebar-reset-btn{
+  border-color:rgba(231,232,243,0.14);
+  background:rgba(255,255,255,0.03);
+}
+
+.workspace-main{
+  padding:0;
+  min-width:0;
+  background:#f3eee5;
+}
+
+.workspace-header{
+  margin-bottom:0;
+  padding:18px 32px;
+  min-height:88px;
+  background:#121423;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  color:#f4f1ea;
+  position:sticky;
+  top:0;
+  z-index:25;
+  backdrop-filter:blur(14px);
+}
+
+.workspace-header__kicker{
+  color:rgba(244,241,234,0.62);
+}
+
+.workspace-header__title{
+  color:#f7f4ef;
+  font:700 20px/1.1 var(--font-serif);
+}
+
+.workspace-header__profile{
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(255,255,255,0.08);
+}
+
+.workspace-header__label{
+  color:rgba(244,241,234,0.58);
+}
+
+.workspace-stage{
+  padding:24px 32px 56px;
+}
+
+.topbar{
+  padding:0 0 18px;
+  margin-bottom:20px;
+  border-bottom:1px solid rgba(23,25,33,0.08);
+}
+
+.page-title{
+  font:700 clamp(40px, 4.6vw, 68px)/0.96 var(--font-serif);
+  letter-spacing:-0.05em;
+  margin:0 0 10px;
+}
+
+.page-subtitle{
+  max-width:68ch;
+  color:var(--text-2);
+}
+
+.dashboard-page,
+.scholarship-workspace,
+.account-workspace{
+  display:grid;
+  gap:20px;
+}
+
+.dashboard-wireframe-grid,
+.scholarship-surface-grid{
+  grid-template-columns:repeat(12, minmax(0, 1fr));
+}
+
+.dashboard-hero-wireframe,
+.dashboard-feature-card,
+.dashboard-intelligence-card,
+.dashboard-mini-grid,
+.dashboard-scholarship-feed,
+.dashboard-rail-card,
+.scholarship-hero-main,
+.scholarship-hero-side,
+.scholarship-card,
+.account-hero-main,
+.account-summary-card,
+.account-status-card{
+  border-radius:28px;
+  border:1px solid rgba(23,25,33,0.12);
+  box-shadow:0 18px 40px rgba(23,25,33,0.06);
+}
+
+.dashboard-hero-wireframe{
+  min-height:520px;
+  background:
+    linear-gradient(180deg, #bec6ff 0%, #b6c0ff 34%, #aeb7ff 100%);
+  color:#18318d;
+  padding:30px;
+}
+
+.dashboard-kicker,
+.scholarship-kicker,
+.account-summary-kicker,
+.page-kicker{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(24,49,141,0.72);
+}
+
+.dashboard-hero-wireframe-title{
+  margin:16px 0 18px;
+  max-width:11ch;
+  font:700 clamp(42px, 5.8vw, 74px)/0.96 var(--font-display);
+  letter-spacing:-0.05em;
+  color:#153197;
+}
+
+.dashboard-hero-wireframe-copy,
+.dashboard-intelligence-copy,
+.dashboard-feature-copy,
+.dashboard-feature-summary,
+.scholarship-copy,
+.scholarship-intro-copy,
+.account-summary-copy,
+.page-copy{
+  font:400 15px/1.8 var(--font-ui);
+  color:rgba(24,49,141,0.92);
+}
+
+.dashboard-hero-alert{
+  margin-top:20px;
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.28);
+  border:1px solid rgba(255,255,255,0.42);
+  color:#18318d;
+}
+
+.dashboard-pill-row,
+.dashboard-drill-stack,
+.dashboard-intelligence-metrics,
+.scholarship-intro-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.dashboard-pill{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.24);
+  border:1px solid rgba(255,255,255,0.3);
+  color:#18318d;
+  font:600 12px/1.2 var(--font-ui);
+}
+
+.dashboard-pill--accent{
+  background:#c72222;
+  border-color:rgba(255,255,255,0.18);
+  color:#fff;
+}
+
+.dashboard-cta-row,
+.dashboard-feature-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+
+.dashboard-rail{
+  display:grid;
+  gap:12px;
+  align-content:start;
+}
+
+.dashboard-rail-card{
+  padding:18px;
+  background:linear-gradient(180deg, #ffffff 0%, #f7f4ee 100%);
+}
+
+.dashboard-rail-card--dark{
+  background:linear-gradient(180deg, #171a2d 0%, #0f1120 100%);
+  color:#eef0ff;
+}
+
+.dashboard-rail-card--dark .dashboard-kicker,
+.dashboard-rail-card--dark .dashboard-signal-label,
+.dashboard-rail-card--dark .dashboard-source-list span,
+.dashboard-rail-card--dark .dashboard-source-list li{
+  color:rgba(238,240,255,0.72);
+}
+
+.dashboard-dial{
+  display:grid;
+  justify-items:center;
+  gap:14px;
+  padding:18px 0 10px;
+}
+
+.dashboard-dial__ring{
+  width:240px;
+  aspect-ratio:1;
+  border-radius:50%;
+  padding:20px;
+  box-shadow:inset 0 0 0 1px rgba(23,25,33,0.05);
+}
+
+.dashboard-dial__hole{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#f7f4ed;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:#172158;
+}
+
+.dashboard-dial__value{
+  font:700 54px/1 var(--font-display);
+  letter-spacing:-0.05em;
+}
+
+.dashboard-dial__label{
+  margin-top:4px;
+  font:600 12px/1.4 var(--font-ui);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(23,33,88,0.58);
+}
+
+.dashboard-dial__caption{
+  color:rgba(23,25,33,0.66);
+  font:400 13px/1.6 var(--font-ui);
+  text-align:center;
+}
+
+.dashboard-progress-track--wireframe{
+  margin-top:8px;
+  background:rgba(23,25,33,0.08);
+}
+
+.dashboard-signal-list{
+  display:grid;
+  gap:12px;
+  margin-top:12px;
+}
+
+.dashboard-signal-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.dashboard-signal-label,
+.dashboard-source-list span{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+.dashboard-signal-note,
+.dashboard-source-list li{
+  font:400 13px/1.6 var(--font-ui);
+  color:rgba(238,240,255,0.62);
+}
+
+.dashboard-signal-value{
+  font:700 18px/1 var(--font-display);
+  color:#a9f0b6;
+  align-self:center;
+}
+
+.dashboard-source-list{
+  margin-top:16px;
+  display:grid;
+  gap:8px;
+}
+
+.dashboard-source-list ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.dashboard-feature-card{
+  padding:24px;
+  background:linear-gradient(180deg, #fffaf1 0%, #f6f1e8 100%);
+}
+
+.dashboard-feature-title{
+  margin:10px 0 8px;
+  font:700 clamp(28px, 3vw, 42px)/1.02 var(--font-display);
+  letter-spacing:-0.04em;
+  color:#16161e;
+}
+
+.dashboard-feature-summary{
+  margin-top:10px;
+  color:#3d3a44;
+}
+
+.dashboard-drill-pill{
+  padding:11px 14px;
+  border-radius:14px;
+  border:1px solid rgba(23,25,33,0.12);
+  background:#fff;
+  color:#1d1e2a;
+  font:500 13px/1.4 var(--font-ui);
+}
+
+.dashboard-intelligence-card{
+  padding:24px;
+  background:#fbf7ef;
+}
+
+.dashboard-intelligence-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap:20px;
+  align-items:stretch;
+}
+
+.dashboard-intelligence-title{
+  margin:0 0 12px;
+  font:700 clamp(28px, 3vw, 40px)/1.02 var(--font-display);
+  letter-spacing:-0.04em;
+  color:#191a26;
+}
+
+.dashboard-intelligence-metrics{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-map-card{
+  display:grid;
+  gap:14px;
+  align-content:space-between;
+}
+
+.dashboard-map-card__frame{
+  position:relative;
+  min-height:320px;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 40% 30%, rgba(87, 185, 255, 0.32), transparent 18%),
+    radial-gradient(circle at 62% 45%, rgba(68, 146, 255, 0.28), transparent 16%),
+    linear-gradient(180deg, #181a2f 0%, #0f1222 100%);
+  border:1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+}
+
+.dashboard-map-card__glow{
+  position:absolute;
+  inset:auto 22% 18% 16%;
+  height:110px;
+  background:radial-gradient(circle, rgba(255, 184, 112, 0.55) 0%, rgba(255, 184, 112, 0.0) 70%);
+  filter:blur(6px);
+}
+
+.dashboard-map-card__dot{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#4fd28d;
+  box-shadow:0 0 0 7px rgba(79,210,141,0.12);
+}
+
+.dashboard-map-card__dot--one{ top:20%; left:18%; }
+.dashboard-map-card__dot--two{ top:48%; left:52%; background:#ffb14d; box-shadow:0 0 0 7px rgba(255,177,77,0.12); }
+.dashboard-map-card__dot--three{ bottom:18%; right:22%; }
+
+.dashboard-map-card__meta{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:8px 12px;
+  color:#2a2d3f;
+}
+
+.dashboard-map-card__meta span{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(42,45,63,0.56);
+}
+
+.dashboard-map-card__meta strong{
+  font:700 14px/1.4 var(--font-ui);
+}
+
+.dashboard-mini-grid{
+  padding:22px;
+  background:#f7f2e9;
+}
+
+.dashboard-scholarship-list{
+  display:grid;
+  gap:12px;
+  margin-top:16px;
+}
+
+.dashboard-scholarship-item{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  padding:16px 0;
+  border-top:1px solid rgba(23,25,33,0.08);
+}
+
+.dashboard-scholarship-item__source{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(23,25,33,0.54);
+}
+
+.dashboard-scholarship-item__title{
+  margin-top:6px;
+  font:700 18px/1.2 var(--font-display);
+  color:#16161e;
+}
+
+.dashboard-scholarship-item__meta,
+.dashboard-scholarship-item__requirements{
+  font:400 13px/1.7 var(--font-ui);
+  color:var(--text-2);
+  margin-top:4px;
+}
+
+.scholarship-workspace{
+  gap:22px;
+}
+
+.scholarship-hero{
+  display:grid;
+  grid-template-columns:minmax(0, 1.2fr) minmax(330px, 0.8fr);
+  gap:16px;
+  align-items:stretch;
+}
+
+.scholarship-hero-main{
+  padding:28px;
+  background:linear-gradient(180deg, #f4efe7 0%, #efeadf 100%);
+}
+
+.scholarship-title{
+  max-width:12ch;
+  margin:12px 0 12px;
+  font:700 clamp(38px, 4.8vw, 64px)/0.96 var(--font-display);
+  letter-spacing:-0.05em;
+  color:#17192a;
+}
+
+.scholarship-hero-side{
+  padding:0;
+  overflow:hidden;
+  background:#191b29;
+  color:#eceeff;
+}
+
+.scholarship-hero-side .scholarship-sidebar{
+  padding:18px;
+}
+
+.scholarship-surface-grid{
+  display:grid;
+  grid-template-columns:repeat(12, minmax(0, 1fr));
+  gap:16px;
+  align-items:start;
+}
+
+.scholarship-surface-grid > *{
+  grid-column:span 4;
+}
+
+.scholarship-card{
+  padding:18px;
+  background:linear-gradient(180deg, #fffdf9 0%, #f6f1e8 100%);
+}
+
+.scholarship-card-label{
+  color:rgba(23,25,33,0.58);
+}
+
+.scholarship-filter-stack{
+  margin-top:12px;
+}
+
+.scholarship-control span{
+  color:var(--text-2);
+}
+
+.scholarship-control select,
+.scholarship-control input{
+  border-radius:14px;
+  background:#fff;
+}
+
+.scholarship-results-label{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(23,25,33,0.58);
+}
+
+.scholarship-results-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+}
+
+.scholarship-result-card{
+  padding:18px;
+  border-radius:26px;
+  border:1px solid rgba(23,25,33,0.12);
+  background:linear-gradient(180deg, #fffdf9 0%, #f6f1e8 100%);
+  box-shadow:0 12px 28px rgba(23,25,33,0.06);
+  display:grid;
+  gap:14px;
+}
+
+.scholarship-result-card__top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.scholarship-result-card__mark{
+  width:48px;
+  height:48px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:#2f5bdc;
+  color:#fff;
+  font:700 16px/1 var(--font-ui);
+}
+
+.scholarship-result-card__status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.scholarship-result-card__flag{
+  padding:7px 10px;
+  border-radius:8px;
+  background:#b92c2c;
+  color:#fff;
+  font:700 10px/1 var(--font-ui);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+.scholarship-result-card__dots{
+  display:inline-flex;
+  gap:4px;
+}
+
+.scholarship-result-card__dots span{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(23,25,33,0.18);
+}
+
+.scholarship-result-card__dots span.is-on{
+  background:#23b26d;
+}
+
+.scholarship-result-card__label{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(23,25,33,0.58);
+}
+
+.scholarship-result-card__title{
+  margin:8px 0 6px;
+  font:700 24px/1.08 var(--font-display);
+  letter-spacing:-0.04em;
+  color:#171a29;
+}
+
+.scholarship-result-card__meta{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  font:600 12px/1.5 var(--font-ui);
+  color:rgba(23,25,33,0.66);
+}
+
+.scholarship-result-card__summary{
+  font:400 14px/1.7 var(--font-ui);
+  color:#434655;
+}
+
+.scholarship-result-card__criteria{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.scholarship-result-card__chip{
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(47,91,220,0.08);
+  color:#173cad;
+  font:600 11px/1.3 var(--font-ui);
+}
+
+.scholarship-result-card__chip--accent{
+  background:rgba(35,178,109,0.12);
+  color:#146b3e;
+}
+
+.scholarship-result-card__footer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.scholarship-result-card__button{
+  padding:10px 12px;
+}
+
+.scholarship-result-card__button--primary{
+  background:#4159d4;
+  color:#fff;
+  border-color:#4159d4;
+}
+
+.scholarship-result-card__button--disabled{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid rgba(23,25,33,0.14);
+  border-radius:14px;
+  color:rgba(23,25,33,0.4);
+}
+
+.scholarship-result-card__tracking{
+  display:grid;
+  gap:10px;
+  padding-top:10px;
+  border-top:1px solid rgba(23,25,33,0.08);
+}
+
+.scholarship-result-card__tracking-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font:600 12px/1.4 var(--font-ui);
+  color:rgba(23,25,33,0.72);
+}
+
+.scholarship-result-card__chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.scholarship-result-card__chip-btn{
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(23,25,33,0.14);
+  background:#fff;
+  color:#1b1b1f;
+  font:500 12px/1.3 var(--font-ui);
+}
+
+.scholarship-result-card__chip-btn.is-done{
+  background:#eaf7ef;
+  border-color:#8ed0a9;
+}
+
+.scholarship-result-card__tracking-form{
+  display:grid;
+  grid-template-columns:minmax(140px, 0.8fr) minmax(180px, 1fr) auto;
+  gap:10px;
+}
+
+.scholarship-control--grow{
+  flex:1;
+}
+
+.account-page{
+  gap:22px;
+}
+
+.account-hero{
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap:16px;
+  align-items:start;
+}
+
+.account-hero-main{
+  padding:28px;
+  background:linear-gradient(180deg, #fffef9 0%, #f4efe5 100%);
+}
+
+.account-hero-main .page-title{
+  max-width:12ch;
+}
+
+.account-summary-card,
+.account-status-card{
+  padding:22px;
+  background:linear-gradient(180deg, #fffdf8 0%, #f5f0e7 100%);
+}
+
+.account-summary-card{
+  display:grid;
+  gap:12px;
+}
+
+.account-summary-title{
+  font:700 clamp(28px, 3vw, 42px)/1.04 var(--font-display);
+  letter-spacing:-0.04em;
+  color:#171a29;
+}
+
+.account-summary-metrics{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+}
+
+.account-summary-metrics strong{
+  display:block;
+  font:700 22px/1 var(--font-display);
+  color:#171a29;
+}
+
+.account-summary-metrics span{
+  font:400 12px/1.4 var(--font-ui);
+  color:var(--text-2);
+}
+
+.account-summary-footer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.account-summary-note{
+  font:400 13px/1.5 var(--font-ui);
+  color:var(--text-2);
+}
+
+.account-status-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.account-status-kicker{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(23,25,33,0.54);
+}
+
+.account-status-title{
+  font:700 24px/1.08 var(--font-display);
+  letter-spacing:-0.04em;
+  color:#171a29;
+}
+
+.account-status-chip{
+  padding:6px 10px;
+  border-radius:999px;
+  background:#ebefff;
+  color:#18318d;
+  font:600 11px/1.2 var(--font-ui);
+}
+
+.account-status-copy{
+  font:400 14px/1.7 var(--font-ui);
+  color:var(--text-2);
+}
+
+.account-status-footer{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.account-status-email{
+  font:600 13px/1.4 var(--font-ui);
+  color:#171a29;
+  word-break:break-word;
+}
+
+.profile-workspace{
+  display:grid;
+  grid-template-columns:minmax(250px, 280px) minmax(0, 1fr);
+  gap:18px;
+  align-items:start;
+}
+
+.profile-workspace-sidebar{
+  position:sticky;
+  top:114px;
+  display:grid;
+  gap:14px;
+  align-content:start;
+}
+
+.profile-readiness-card,
+.profile-section-nav-card,
+.profile-session-card,
+.profile-section-card{
+  border-radius:24px;
+  background:linear-gradient(180deg, #fffdf9 0%, #f6f1e8 100%);
+  border:1px solid rgba(23,25,33,0.12);
+  box-shadow:0 16px 32px rgba(23,25,33,0.06);
+}
+
+.profile-readiness-card{
+  padding:18px;
+}
+
+.profile-readiness-title{
+  font:700 28px/1.02 var(--font-display);
+  letter-spacing:-0.04em;
+}
+
+.profile-readiness-copy,
+.profile-session-copy,
+.profile-section-copy,
+.profile-section-ready-copy{
+  font:400 14px/1.7 var(--font-ui);
+  color:var(--text-2);
+}
+
+.profile-readiness-track{
+  margin-top:14px;
+  height:10px;
+  border-radius:999px;
+  background:rgba(23,25,33,0.08);
+  overflow:hidden;
+}
+
+.profile-readiness-fill{
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #2f5bdc, #6f89ff);
+}
+
+.profile-section-nav-card,
+.profile-session-card{
+  padding:16px;
+}
+
+.profile-section-nav{
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+
+.profile-section-nav-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-radius:16px;
+  border:1px solid rgba(23,25,33,0.08);
+  background:#fff;
+  color:#171a29;
+}
+
+.profile-section-card{
+  padding:22px;
+}
+
+.profile-section-head{
+  gap:16px;
+}
+
+.profile-field-grid{
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+}
+
+.profile-field-label{
+  font:600 11px/1.4 var(--font-ui);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:rgba(23,25,33,0.58);
+}
+
+.profile-field-control,
+.profile-field-textarea{
+  border-radius:14px;
+  background:#fff;
+}
+
+.profile-field-hint{
+  color:var(--text-3);
+}
+
+.profile-section-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.profile-section-state{
+  padding:7px 10px;
+  border-radius:999px;
+  font:600 11px/1.2 var(--font-ui);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+}
+
+.profile-section-state-complete{
+  background:#e9f8ef;
+  color:#146b3e;
+}
+
+.profile-section-state-partial{
+  background:#fff3e7;
+  color:#8b5408;
+}
+
+.profile-section-state-missing{
+  background:#f5f1eb;
+  color:#61574f;
+}
+
+.profile-actions{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.profile-message{
+  padding:12px 14px;
+  border-radius:16px;
+  background:#eef5ff;
+  color:#18318d;
+}
+
+.profile-note{
+  font:400 13px/1.7 var(--font-ui);
+  color:var(--text-2);
+}
+
+@media (max-width: 1023px){
+  .workspace-shell{
+    grid-template-columns:1fr;
+  }
+  .workspace-sidebar{
+    position:relative;
+    height:auto;
+  }
+  .workspace-main{
+    padding:0;
+  }
+  .workspace-header{
+    position:relative;
+    top:auto;
+  }
+  .workspace-stage{
+    padding:20px 16px 40px;
+  }
+  .dashboard-wireframe-grid,
+  .scholarship-surface-grid,
+  .scholarship-results-grid,
+  .dashboard-intelligence-grid,
+  .profile-workspace,
+  .account-hero,
+  .scholarship-hero{
+    grid-template-columns:1fr;
+  }
+  .dashboard-wireframe-grid > *,
+  .scholarship-surface-grid > *{
+    grid-column:1 / -1;
+  }
+  .dashboard-intelligence-metrics{
+    grid-template-columns:1fr;
+  }
+  .scholarship-results-grid{
+    grid-template-columns:1fr;
+  }
+  .profile-workspace-sidebar{
+    position:relative;
+    top:auto;
+  }
+}
+
+@media (max-width: 767px){
+  .workspace-header{
+    padding:16px;
+  }
+  .dashboard-hero-wireframe,
+  .dashboard-feature-card,
+  .dashboard-intelligence-card,
+  .scholarship-hero-main,
+  .account-hero-main{
+    padding:20px;
+  }
+  .dashboard-dial__ring{
+    width:200px;
+  }
+  .scholarship-title,
+  .dashboard-hero-wireframe-title,
+  .account-summary-title{
+    max-width:none;
+  }
+  .profile-field-grid{
+    grid-template-columns:1fr;
+  }
+  .profile-actions,
+  .account-status-footer,
+  .account-summary-footer,
+  .scholarship-result-card__tracking-form{
+    grid-template-columns:1fr;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .scholarship-result-card__tracking-form{
+    display:grid;
+  }
+}
+
 .auth-stack{
   display:grid;
   gap:12px;

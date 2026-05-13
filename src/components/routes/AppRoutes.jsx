@@ -129,36 +129,34 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
           )}
         </div>
       </div>
-      <section className="panel-card">
-        <Suspense fallback={<RouteFallback label="Loading scholarships" />}>
-          {isWeeklyFeed ? (
-            <ScholarshipFeedPage
-              scholarships={scholarships}
-              scholarshipCatalog={scholarshipCatalog}
-              contentManifest={contentManifest}
-              C={C}
-              Chip={Chip}
-            />
-          ) : (
-            <ScholarshipPage
-              sessions={sessions}
-              authUser={authUser}
-              profile={profile}
-              profileDraft={profileDraft}
-              onImportCv={onImportCv}
-              cvImportBusy={cvImportBusy}
-              cvImportMessage={cvImportMessage}
-              contentManifest={contentManifest}
-              notifications={notifications}
-              scholarships={scholarships}
-              scholarshipCatalog={scholarshipCatalog}
-              C={C}
-              Chip={Chip}
-              PrimaryBtn={PrimaryBtn}
-            />
-          )}
-        </Suspense>
-      </section>
+      <Suspense fallback={<RouteFallback label="Loading scholarships" />}>
+        {isWeeklyFeed ? (
+          <ScholarshipFeedPage
+            scholarships={scholarships}
+            scholarshipCatalog={scholarshipCatalog}
+            contentManifest={contentManifest}
+            C={C}
+            Chip={Chip}
+          />
+        ) : (
+          <ScholarshipPage
+            sessions={sessions}
+            authUser={authUser}
+            profile={profile}
+            profileDraft={profileDraft}
+            onImportCv={onImportCv}
+            cvImportBusy={cvImportBusy}
+            cvImportMessage={cvImportMessage}
+            contentManifest={contentManifest}
+            notifications={notifications}
+            scholarships={scholarships}
+            scholarshipCatalog={scholarshipCatalog}
+            C={C}
+            Chip={Chip}
+            PrimaryBtn={PrimaryBtn}
+          />
+        )}
+      </Suspense>
     </>
   );
 }
