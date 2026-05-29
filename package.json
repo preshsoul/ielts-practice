@@ -10,6 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "security:scan-client": "node scripts/scan-client-secrets.mjs",
+    "security:gitleaks": "powershell -ExecutionPolicy Bypass -File scripts/run-gitleaks.ps1 -Mode git",
+    "security:gitleaks:git": "powershell -ExecutionPolicy Bypass -File scripts/run-gitleaks.ps1 -Mode git",
     "security:verify-csp": "node scripts/verify-csp-browser.mjs",
     "content:refresh": "node --use-system-ca scripts/refresh-content.mjs",
     "content:sync-scholarship-catalog": "node --use-system-ca scripts/sync-scholarship-embeddings.mjs",
@@ -25,6 +27,7 @@
     "test:pipeline": "node --use-system-ca scripts/test-pipeline-light.mjs",
     "test:parser": "node --use-system-ca scripts/test-backend-parser.mjs",
     "test:load": "npx artillery run load-tests/artillery.yml",
+    "context7": "ctx7",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"

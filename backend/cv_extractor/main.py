@@ -7,6 +7,7 @@ import secrets
 from typing import AsyncIterator
 from uuid import uuid4
 
+import sentry_sdk
 from fastapi import Cookie, FastAPI, File, Form, Request, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -61,6 +62,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 APP_VERSION = "2.0.0"
+SENTRY_DSN = os.getenv("SENTRY_DSN", "").strip()
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        environment=os.getenv("SENTRY_ENVIRONMENT", "local"),
+        traces_sample_rate=float(os.getenv("SENTRY_TRACES_SAMPLE_RATE", "0.1")),
+        send_default_pii=False,
+        release=os.getenv("SENTRY_RELEASE") or None,
+    )
 SESSION_COOKIE_NAME = "cv_parse_session"
 MAX_UPLOAD_BYTES = int(os.getenv("CV_MAX_UPLOAD_BYTES", str(5 * 1024 * 1024)))
 SESSION_TTL_MINUTES = int(os.getenv("CV_STAGE_TTL_MINUTES", "60"))

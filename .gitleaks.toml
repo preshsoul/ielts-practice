@@ -1,0 +1,28 @@
+title = "Loci Gitleaks Configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allow documented placeholder values only."
+paths = [
+  '''(^|/)\.env\.example$''',
+  '''(^|/)\.env\.local\.example$''',
+  '''(^|/)supabase/\.env\.functions\.example$''',
+  '''(^|/)docs/.*\.md$''',
+  '''(^|/)backend/cv_extractor/README\.md$''',
+  '''(^|/)cloudflare/README\.md$''',
+  '''(^|/)CLAUDE\.md$''',
+  '''(^|/)\.agents/skills/.*/references/.*''',
+  '''(^|/)\.codex/skills/.*/references/.*''',
+  '''(^|/)\.junie/skills/.*/references/.*''',
+  '''(^|/)\.windsurf/skills/.*/references/.*''',
+  '''(^|/)\.zencoder/skills/.*/references/.*''',
+  '''(^|/)skills/.*/references/.*''',
+  '''(^|/)logs/.*''',
+]
+regexes = [
+  '''your-[a-z0-9-]+''',
+  '''postgresql://postgres:password@db\.host:5432/postgres''',
+  '''https://your-[a-z0-9.-]+''',
+]

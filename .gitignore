@@ -45,6 +45,7 @@ desktop.ini
 # Load test artifacts
 load-tests/reports/
 load-tests/output/
+tools/
 
 # Service account keys & certs
 *.pem
