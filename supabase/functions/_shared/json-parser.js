@@ -407,6 +407,113 @@ function normalizeParsedProfile(value, path) {
   };
 }
 
+// ── Canonical contract validators (cv-parser-v2) ──
+
+function normalizeControlledValue(value, path) {
+  if (value === null) return null;
+  const obj = ensureObject(value, path);
+  validateKnownKeys(obj, path, ["id", "label", "raw_text"]);
+  return {
+    id: ensureString(obj.id ?? null, `${path}.id`, { nullable: true, maxLength: 80 }),
+    label: ensureString(obj.label ?? null, `${path}.label`, { nullable: true, maxLength: 120 }),
+    raw_text: ensureString(obj.raw_text ?? null, `${path}.raw_text`, { nullable: true, maxLength: 200 }),
+  };
+}
+
+function normalizeAcademicRecord(value, path) {
+  const obj = ensureObject(value, path);
+  validateKnownKeys(obj, path, [
+    "institution", "institution_country", "degree_type",
+    "academic_discipline", "degree_class", "graduation_date",
+    "graduation_year", "cgpa", "cgpa_scale",
+  ]);
+  return {
+    institution: ensureString(obj.institution ?? null, `${path}.institution`, { nullable: true, maxLength: 160 }),
+    institution_country: ensureString(obj.institution_country ?? null, `${path}.institution_country`, { nullable: true, maxLength: 80 }),
+    degree_type: ensureString(obj.degree_type ?? null, `${path}.degree_type`, { nullable: true, maxLength: 40 }),
+    academic_discipline: ensureString(obj.academic_discipline ?? null, `${path}.academic_discipline`, { nullable: true, maxLength: 120 }),
+    degree_class: normalizeControlledValue(obj.degree_class ?? null, `${path}.degree_class`),
+    graduation_date: ensureString(obj.graduation_date ?? null, `${path}.graduation_date`, { nullable: true, maxLength: 24 }),
+    graduation_year: ensureNumber(obj.graduation_year ?? null, `${path}.graduation_year`, { nullable: true, integer: true, min: 1950, max: 2100 }),
+    cgpa: ensureNumber(obj.cgpa ?? null, `${path}.cgpa`, { nullable: true, min: 0, max: 100 }),
+    cgpa_scale: ensureNumber(obj.cgpa_scale ?? 5, `${path}.cgpa_scale`, { min: 1, max: 10 }),
+  };
+}
+
+function normalizeGradeEvidence(value, path) {
+  const obj = ensureObject(value, path);
+  validateKnownKeys(obj, path, ["scheme", "normalized", "raw", "cgpa", "scale"]);
+  const scheme = ensureString(obj.scheme ?? "other", `${path}.scheme`, { maxLength: 24 });
+  return {
+    scheme: ["degree_class", "cgpa", "other"].includes(scheme) ? scheme : "other",
+    normalized: ensureString(obj.normalized ?? null, `${path}.normalized`, { nullable: true, maxLength: 80 }),
+    raw: ensureString(obj.raw ?? null, `${path}.raw`, { nullable: true, maxLength: 40 }),
+    cgpa: ensureNumber(obj.cgpa ?? null, `${path}.cgpa`, { nullable: true, min: 0, max: 100 }),
+    scale: ensureNumber(obj.scale ?? null, `${path}.scale`, { nullable: true, min: 1, max: 10 }),
+  };
+}
+
+function normalizePersonalDetails(value, path) {
+  const obj = ensureObject(value, path);
+  validateKnownKeys(obj, path, [
+    "full_legal_name", "email", "phone",
+    "nationality", "country_of_residence",
+  ]);
+  return {
+    full_legal_name: ensureString(obj.full_legal_name ?? null, `${path}.full_legal_name`, { nullable: true, maxLength: 160 }),
+    email: ensureString(obj.email ?? null, `${path}.email`, { nullable: true, maxLength: 254 }),
+    phone: ensureString(obj.phone ?? null, `${path}.phone`, { nullable: true, maxLength: 40 }),
+    nationality: normalizeControlledValue(obj.nationality ?? null, `${path}.nationality`),
+    country_of_residence: normalizeControlledValue(obj.country_of_residence ?? null, `${path}.country_of_residence`),
+  };
+}
+
+function normalizeLanguageTestScores(value, path) {
+  const obj = normalizeNullableObject(value, path) || {};
+  validateKnownKeys(obj, path, ["ielts_band_score", "toefl_score", "celpip_score"]);
+  return {
+    ielts_band_score: ensureNumber(obj.ielts_band_score ?? null, `${path}.ielts_band_score`, { nullable: true, min: 0, max: 9 }),
+    toefl_score: ensureNumber(obj.toefl_score ?? null, `${path}.toefl_score`, { nullable: true, min: 0, max: 120 }),
+    celpip_score: ensureNumber(obj.celpip_score ?? null, `${path}.celpip_score`, { nullable: true, min: 0, max: 12 }),
+  };
+}
+
+function normalizeParsedCandidateProfile(value, path) {
+  const obj = normalizeNullableObject(value, path) || {};
+  validateKnownKeys(obj, path, [
+    "personal_details", "academic_history", "professional_experience_years",
+    "international_exams", "grade", "keywords", "raw_text_snippet",
+  ]);
+  return {
+    personal_details: normalizePersonalDetails(obj.personal_details ?? {}, `${path}.personal_details`),
+    academic_history: ensureArray(obj.academic_history ?? [], `${path}.academic_history`, { maxLength: 16 })
+      .map((entry, i) => normalizeAcademicRecord(entry, `${path}.academic_history[${i}]`)),
+    professional_experience_years: ensureNumber(
+      obj.professional_experience_years ?? null,
+      `${path}.professional_experience_years`,
+      { nullable: true, integer: false, min: 0, max: 80 },
+    ),
+    international_exams: normalizeLanguageTestScores(
+      obj.international_exams ?? {},
+      `${path}.international_exams`,
+    ),
+    grade: normalizeGradeEvidence(obj.grade ?? {}, `${path}.grade`),
+    keywords: normalizeStringArray(obj.keywords ?? [], `${path}.keywords`, { maxLength: 64 }),
+    raw_text_snippet: ensureString(obj.raw_text_snippet ?? null, `${path}.raw_text_snippet`, { nullable: true, maxLength: 2000 }),
+  };
+}
+
+function normalizeProvenance(value, path) {
+  const obj = normalizeNullableObject(value, path) || {};
+  validateKnownKeys(obj, path, ["parser_version", "method", "model", "parsed_at"]);
+  return {
+    parser_version: ensureString(obj.parser_version ?? "cv-parser-v2", `${path}.parser_version`, { maxLength: 40 }),
+    method: ensureString(obj.method ?? "llm_parse", `${path}.method`, { maxLength: 40 }),
+    model: ensureString(obj.model ?? null, `${path}.model`, { nullable: true, maxLength: 80 }),
+    parsed_at: ensureString(obj.parsed_at ?? new Date().toISOString(), `${path}.parsed_at`, { maxLength: 32 }),
+  };
+}
+
 export function validateDocumentIntake(value) {
   const obj = ensureObject(value, "$");
   validateKnownKeys(obj, "$", [
@@ -419,8 +526,14 @@ export function validateDocumentIntake(value) {
     "extractedText",
     "keywords",
     "parsedProfile",
+    "parsedCandidateProfile",
+    "provenance",
     "confidence",
   ]);
+  const legacyProfile = obj.parsedProfile && typeof obj.parsedProfile === "object" && Object.keys(obj.parsedProfile).length
+    ? normalizeParsedProfile(obj.parsedProfile, "$.parsedProfile")
+    : {};
+
   return {
     label: ensureString(obj.label ?? null, "$.label", { nullable: true, maxLength: 240 }),
     sourceFilename: ensureString(obj.sourceFilename ?? null, "$.sourceFilename", { nullable: true, maxLength: 240 }),
@@ -430,7 +543,9 @@ export function validateDocumentIntake(value) {
     extractedExcerpt: ensureString(obj.extractedExcerpt ?? null, "$.extractedExcerpt", { nullable: true, maxLength: 2000 }),
     extractedText: ensureString(obj.extractedText ?? null, "$.extractedText", { nullable: true, maxLength: 200000 }),
     keywords: normalizeStringArray(obj.keywords ?? [], "$.keywords", { maxLength: 64 }),
-    parsedProfile: normalizeParsedProfile(obj.parsedProfile ?? {}, "$.parsedProfile"),
+    parsedProfile: legacyProfile,
+    parsedCandidateProfile: normalizeParsedCandidateProfile(obj.parsedCandidateProfile ?? {}, "$.parsedCandidateProfile"),
+    provenance: normalizeProvenance(obj.provenance ?? {}, "$.provenance"),
     confidence: ensureNumber(obj.confidence ?? 0, "$.confidence", { min: 0, max: 1 }),
   };
 }

@@ -54,21 +54,19 @@ function InterfaceIcon({ name }) {
           <path d="M9 17h6" />
         </svg>
       );
+    case "readiness":
+      return (
+        <svg {...iconProps}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 3" />
+          <path d="M16.5 7.5l1-1" />
+        </svg>
+      );
     case "account":
       return (
         <svg {...iconProps}>
           <circle cx="12" cy="8" r="4" />
           <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-        </svg>
-      );
-    case "admin":
-      return (
-        <svg {...iconProps}>
-          <circle cx="12" cy="12" r="3" />
-          <path d="M19.4 15a7.96 7.96 0 0 0 .6-3 7.96 7.96 0 0 0-.6-3" />
-          <path d="M4.6 9a7.96 7.96 0 0 0-.6 3 7.96 7.96 0 0 0 .6 3" />
-          <path d="M9.5 19.4a8 8 0 0 0 5 0" />
-          <path d="M9.5 4.6a8 8 0 0 0 5 0" />
         </svg>
       );
     default:
@@ -123,9 +121,11 @@ function CommandPalette() {
 
   const items = useMemo(() => ([
     { label: "Home", description: "Open the dashboard", to: "/" },
+    { label: "Onboarding", description: "Open the profile setup flow", to: "/onboarding" },
     { label: "Practice", description: "Jump into IELTS training", to: "/practice" },
     { label: "Scholarships", description: "Open matching and shortlist", to: "/scholarships" },
     { label: "Weekly scholarships", description: "See this week’s new additions", to: "/scholarships/weekly" },
+    { label: "Readiness", description: "View your IELTS readiness score", to: "/readiness" },
     { label: "Account", description: "Review your profile", to: "/account" },
   ]), []);
 
@@ -257,7 +257,7 @@ function IntelDrawer() {
   );
 }
 
-function ShellFrame({ sessions, onRefresh, children, authUser, profile, isAdmin = false }) {
+function ShellFrame({ sessions, onRefresh, children, authUser, profile }) {
   const location = useLocation();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -270,19 +270,17 @@ function ShellFrame({ sessions, onRefresh, children, authUser, profile, isAdmin 
       { to: "/", label: "Home", icon: "home", end: true },
       { to: "/practice", label: "Practice", icon: "practice" },
       { to: "/scholarships", label: "Scholarships", icon: "scholarships" },
+      { to: "/readiness", label: "Readiness", icon: "readiness" },
       { to: "/account", label: "Account", icon: "account" },
     ];
 
-    if (isAdmin) {
-      items.push({ to: "/admin", label: "Admin", icon: "admin" });
-    }
-
     return items;
-  }, [isAdmin]);
+  }, []);
 
   const targetBand = profile?.target_band || "Set goal";
   const deepWorkMode = location.pathname.startsWith("/practice");
-  const sidebarWidth = sidebarCollapsed || deepWorkMode ? "92px" : "280px";
+  const isSidebarCollapsed = sidebarCollapsed;
+  const sidebarWidth = isSidebarCollapsed ? "64px" : "240px";
   const shellSummary = profile
     ? `${profile.first_name || profile.display_name || "Candidate"} · ${targetBand}`
     : "Candidate intelligence workspace";
@@ -303,23 +301,22 @@ function ShellFrame({ sessions, onRefresh, children, authUser, profile, isAdmin 
 
   return (
     <div className={`workspace-shell${deepWorkMode ? " workspace-shell--deep-work" : ""}`} style={{ "--sidebar-width": sidebarWidth }}>
-        <aside className={`workspace-sidebar${sidebarCollapsed || deepWorkMode ? " collapsed" : ""}`}>
+        <aside className={`workspace-sidebar${isSidebarCollapsed ? " collapsed" : ""}`}>
           <div className="sidebar-header">
             <div className="sidebar-brand">
               <div className="sidebar-brand-row">
-                <div className="sidebar-logo" aria-label="Loci brand mark">{sidebarCollapsed || deepWorkMode ? "L" : "LOCI"}</div>
+                <div className="sidebar-logo" aria-label="Loci brand mark">L</div>
                 <button
                   type="button"
                   className="sidebar-collapse-btn"
                   onClick={() => setSidebarCollapsed((current) => !current)}
-                  aria-label={sidebarCollapsed || deepWorkMode ? "Expand sidebar" : "Collapse sidebar"}
-                  aria-expanded={!(sidebarCollapsed || deepWorkMode)}
-                  disabled={deepWorkMode}
+                  aria-label={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+                  aria-expanded={!isSidebarCollapsed}
                 >
-                  <span aria-hidden="true">{sidebarCollapsed || deepWorkMode ? "›" : "‹"}</span>
+                  <span aria-hidden="true">{isSidebarCollapsed ? "›" : "‹"}</span>
                 </button>
               </div>
-              {!sidebarCollapsed && !deepWorkMode && (
+              {!isSidebarCollapsed && (
                 <>
                   <div className="sidebar-title">Loci</div>
                   <div className="sidebar-subtitle">Candidate intelligence and scholarship flow</div>
@@ -327,19 +324,9 @@ function ShellFrame({ sessions, onRefresh, children, authUser, profile, isAdmin 
               )}
             </div>
 
-            <div className="mini-profile">
-              <div className="mini-profile-avatar">{authUser?.email?.[0]?.toUpperCase() || "A"}</div>
-              {!sidebarCollapsed && !deepWorkMode && (
-                <div className="mini-profile-info">
-                  <div className="mini-profile-band">Goal: {targetBand}</div>
-                  <div className="mini-profile-status">Sync ready</div>
-                </div>
-              )}
-            </div>
-
             <div className="system-status">
               <div className="status-indicator active" />
-              {!sidebarCollapsed && !deepWorkMode && <span>Relevance engine running</span>}
+              {!isSidebarCollapsed && <span>Relevance engine running</span>}
             </div>
           </div>
 
@@ -350,22 +337,22 @@ function ShellFrame({ sessions, onRefresh, children, authUser, profile, isAdmin 
                 to={item.to}
                 end={item.end}
                 className={({ isActive }) => `sidebar-nav-item${isActive ? " active" : ""}`}
-                title={sidebarCollapsed || deepWorkMode ? item.label : undefined}
+                title={isSidebarCollapsed ? item.label : undefined}
               >
                 <span className="nav-icon"><InterfaceIcon name={item.icon} /></span>
-                {!sidebarCollapsed && !deepWorkMode && <span className="nav-label">{item.label}</span>}
+                {!isSidebarCollapsed && <span className="nav-label">{item.label}</span>}
               </NavLink>
             ))}
           </nav>
 
           <div className="sidebar-footer">
             <div className="session-info">
-              {!sidebarCollapsed && !deepWorkMode && (
+              {!isSidebarCollapsed && (
                 <div className="session-count">{sessions.length} session{sessions.length !== 1 ? "s" : ""}</div>
               )}
               <button onClick={onRefresh} className="sidebar-reset-btn" title="Refresh data" type="button">
                 <span aria-hidden="true">↻</span>
-                {!sidebarCollapsed && !deepWorkMode && <span>Sync</span>}
+                {!isSidebarCollapsed && <span>Sync</span>}
               </button>
             </div>
           </div>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c6c4df",
+                    "confidence-medium": "#D4A373",
+                    "surface-bright": "#fcf8fa",
+                    "surface-variant": "#e5e1e3",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1a1a2e",
+                    "outline": "#78767d",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1c1b1d",
+                    "on-primary-container": "#83829b",
+                    "primary-fixed": "#e2e0fc",
+                    "outline-variant": "#c8c5cd",
+                    "background": "#fcf8fa",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#1c1c17",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#231b02",
+                    "on-secondary-container": "#66645e",
+                    "error": "#ba1a1a",
+                    "confidence-low": "#BC4749",
+                    "on-background": "#1c1b1d",
+                    "tertiary-fixed": "#f2e1b7",
+                    "surface-container-low": "#f6f2f4",
+                    "tertiary": "#695d3c",
+                    "inverse-surface": "#313032",
+                    "surface-dim": "#ddd9db",
+                    "tertiary-fixed-dim": "#d5c59d",
+                    "on-secondary-fixed-variant": "#484741",
+                    "inverse-on-surface": "#f4f0f2",
+                    "surface": "#fcf8fa",
+                    "primary-fixed-dim": "#c6c4df",
+                    "tertiary-container": "#b9aa83",
+                    "secondary-fixed": "#e6e2da",
+                    "surface-container-highest": "#e5e1e3",
+                    "secondary": "#605e58",
+                    "border-subtle": "#E5E1D9",
+                    "ink-navy": "#1A1A2E",
+                    "on-error-container": "#93000a",
+                    "surface-sand": "#F4F0E8",
+                    "confidence-high": "#2D6A4F",
+                    "secondary-container": "#e6e2da",
+                    "on-surface-variant": "#47464c",
+                    "on-tertiary-container": "#493f20",
+                    "on-primary-fixed-variant": "#45455b",
+                    "on-primary-fixed": "#1a1a2e",
+                    "surface-tint": "#5d5c74",
+                    "on-tertiary-fixed-variant": "#514627",
+                    "surface-container": "#f1edef",
+                    "secondary-fixed-dim": "#c9c6bf",
+                    "primary": "#00000b",
+                    "surface-container-high": "#ebe7e9",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": ["IBM Plex Sans"],
+                    "headline-lg": ["Newsreader"],
+                    "mono-data": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "headline-lg-mobile": ["Newsreader"],
+                    "display-lg": ["Newsreader"],
+                    "headline-md": ["Newsreader"],
+                    "body-md": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "mono-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab { font-variation-settings: 'FILL' 1; }
+        body { background-color: #F4F0E8; color: #1A1A2E; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface-sand dark:bg-ink-navy border-b border-border-subtle dark:border-outline-variant fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-4 py-4 max-w-container-max mx-auto">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-ink-navy dark:text-surface-sand">VERDICT</h1>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-ink-navy dark:text-surface-sand">notifications</span>
+<span class="material-symbols-outlined text-ink-navy dark:text-surface-sand">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-20 pb-24 px-4 max-w-md mx-auto w-full">
+<!-- Readiness Verdict Hero -->
+<section class="mb-gutter">
+<div class="bg-primary-container p-6 rounded-lg text-surface-sand shadow-sm">
+<p class="font-label-sm text-label-sm text-on-primary-container mb-2 uppercase tracking-widest">Global Readiness</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-4">Alignment: Optimised</h2>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-full bg-confidence-high"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-confidence-high"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-confidence-medium"></span>
+<span class="ml-2 font-label-sm text-label-sm text-on-primary-container">Confidence: High</span>
+</div>
+</div>
+</section>
+<!-- Candidate Profile Toggle (Mobile Specific) -->
+<section class="mb-gutter">
+<button class="w-full flex items-center justify-between bg-surface-bright border border-border-subtle p-4 rounded-lg shadow-sm" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-ink-navy">person</span>
+<span class="font-label-md text-label-md text-ink-navy">Candidate Profile</span>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="hidden mt-2 p-4 bg-surface-container-low rounded-lg border border-border-subtle space-y-4">
+<div>
+<p class="font-label-sm text-label-sm text-secondary">Academic Standing</p>
+<p class="font-body-md text-body-md font-semibold">1st Class Hons, Data Science</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary">Leadership Indicator</p>
+<p class="font-body-md text-body-md font-semibold">Project Lead, AI for Social Good</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary">Research Experience</p>
+<p class="font-body-md text-body-md font-semibold">3 Publications in ML Journals</p>
+</div>
+</div>
+</section>
+<!-- Extracted Discipline Card -->
+<section class="mb-gutter">
+<div class="bg-surface-bright border border-border-subtle p-6 rounded-lg">
+<span class="font-label-sm text-label-sm text-secondary uppercase mb-2 block">Detected Intent</span>
+<h3 class="font-headline-md text-headline-md text-ink-navy mb-4">Interdisciplinary Governance &amp; AI Ethics</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-sand p-3 rounded-sm">
+<span class="font-label-sm text-label-sm block text-secondary">Domain</span>
+<span class="font-label-md text-label-md">Policy &amp; Tech</span>
+</div>
+<div class="bg-surface-sand p-3 rounded-sm">
+<span class="font-label-sm text-label-sm block text-secondary">Target Year</span>
+<span class="font-label-md text-label-md">2025/26</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Scholarship Match Cards -->
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md text-ink-navy uppercase tracking-widest border-b border-border-subtle pb-2">Priority Targets</h4>
+<!-- Chevening Card -->
+<article class="bg-surface-bright border border-border-subtle p-5 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-headline-md text-headline-md text-ink-navy">Chevening Scholarship</h5>
+<p class="font-label-sm text-label-sm text-confidence-high">92% Alignment</p>
+</div>
+<div class="h-10 w-10 flex items-center justify-center bg-surface-sand rounded-sm border border-border-subtle">
+<span class="material-symbols-outlined text-ink-navy" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Eligibility Sparkline -->
+<div class="mb-6">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span>Eligibility Match</span>
+<span>High</span>
+</div>
+<div class="flex h-1.5 w-full bg-surface-sand rounded-full overflow-hidden">
+<div class="bg-confidence-high w-[92%] h-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-sm border-l-4 border-ink-navy">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Strategic Insight</p>
+<p class="font-body-md text-body-md italic text-ink-navy leading-relaxed">
+                        "Candidate's leadership in the regional data consortium aligns perfectly with the FCDO's focus on technological governance in Southeast Asia."
+                    </p>
+</div>
+</article>
+<!-- Commonwealth Card -->
+<article class="bg-surface-bright border border-border-subtle p-5 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-headline-md text-headline-md text-ink-navy">Commonwealth Masters</h5>
+<p class="font-label-sm text-label-sm text-confidence-medium">78% Alignment</p>
+</div>
+<div class="h-10 w-10 flex items-center justify-center bg-surface-sand rounded-sm border border-border-subtle">
+<span class="material-symbols-outlined text-secondary">account_balance</span>
+</div>
+</div>
+<!-- Eligibility Sparkline -->
+<div class="mb-6">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span>Eligibility Match</span>
+<span>Medium-High</span>
+</div>
+<div class="flex h-1.5 w-full bg-surface-sand rounded-full overflow-hidden">
+<div class="bg-confidence-medium w-[78%] h-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-sm border-l-4 border-confidence-medium">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Strategic Insight</p>
+<p class="font-body-md text-body-md italic text-ink-navy leading-relaxed">
+                        "Requires stronger emphasis on developmental impact for the home country. Recommend pivoting the AI ethics proposal toward public sector implementation."
+                    </p>
+</div>
+</article>
+<!-- Gates Cambridge Card -->
+<article class="bg-surface-bright border border-border-subtle p-5 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-headline-md text-headline-md text-ink-navy">Gates Cambridge</h5>
+<p class="font-label-sm text-label-sm text-confidence-low">64% Alignment</p>
+</div>
+<div class="h-10 w-10 flex items-center justify-center bg-surface-sand rounded-sm border border-border-subtle">
+<span class="material-symbols-outlined text-secondary">school</span>
+</div>
+</div>
+<!-- Eligibility Sparkline -->
+<div class="mb-6">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span>Eligibility Match</span>
+<span>Aspirational</span>
+</div>
+<div class="flex h-1.5 w-full bg-surface-sand rounded-full overflow-hidden">
+<div class="bg-confidence-low w-[64%] h-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-sm border-l-4 border-outline">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Strategic Insight</p>
+<p class="font-body-md text-body-md italic text-ink-navy leading-relaxed">
+                        "Strong academic profile, but mission alignment is loose. Need to demonstrate more significant social commitment beyond technical research."
+                    </p>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-sand dark:bg-ink-navy fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 md:hidden border-t border-border-subtle dark:border-outline-variant shadow-sm rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-navy dark:text-surface-sand scale-110 font-bold" href="#">
+<span class="material-symbols-outlined active-tab">insights</span>
+<span class="font-label-sm text-label-sm mt-1">Intel</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-sm text-label-sm mt-1">Prep</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

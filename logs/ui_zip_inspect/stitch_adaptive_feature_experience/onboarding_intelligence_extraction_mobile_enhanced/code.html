@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f1edef",
+                        "on-primary-container": "#83829b",
+                        "on-secondary-fixed": "#1c1c17",
+                        "error-container": "#ffdad6",
+                        "primary": "#00000b",
+                        "inverse-on-surface": "#f4f0f2",
+                        "inverse-surface": "#313032",
+                        "background": "#fcf8fa",
+                        "surface-container-high": "#ebe7e9",
+                        "on-secondary-fixed-variant": "#484741",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#fcf8fa",
+                        "inverse-primary": "#c6c4df",
+                        "secondary-fixed-dim": "#c9c6bf",
+                        "surface-container-low": "#f6f2f4",
+                        "surface-container-highest": "#e5e1e3",
+                        "surface-sand": "#F4F0E8",
+                        "outline": "#78767d",
+                        "confidence-high": "#2D6A4F",
+                        "on-background": "#1c1b1d",
+                        "primary-fixed": "#e2e0fc",
+                        "on-tertiary-fixed-variant": "#514627",
+                        "on-tertiary-fixed": "#231b02",
+                        "surface-tint": "#5d5c74",
+                        "surface": "#fcf8fa",
+                        "on-primary-fixed": "#1a1a2e",
+                        "on-tertiary-container": "#493f20",
+                        "on-primary-fixed-variant": "#45455b",
+                        "ink-navy": "#1A1A2E",
+                        "border-subtle": "#E5E1D9",
+                        "secondary-fixed": "#e6e2da",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e6e2da",
+                        "outline-variant": "#c8c5cd",
+                        "confidence-medium": "#D4A373",
+                        "tertiary-container": "#b9aa83",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#695d3c",
+                        "on-surface-variant": "#47464c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#f2e1b7",
+                        "on-surface": "#1c1b1d",
+                        "on-secondary-container": "#66645e",
+                        "on-error-container": "#93000a",
+                        "secondary": "#605e58",
+                        "surface-variant": "#e5e1e3",
+                        "primary-fixed-dim": "#c6c4df",
+                        "tertiary-fixed-dim": "#d5c59d",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#ddd9db",
+                        "primary-container": "#1a1a2e",
+                        "confidence-low": "#BC4749"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Newsreader"],
+                        "label-md": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"],
+                        "mono-data": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "label-sm": ["IBM Plex Sans"],
+                        "headline-lg": ["Newsreader"],
+                        "display-lg": ["Newsreader"],
+                        "headline-lg-mobile": ["Newsreader"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "mono-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-sand text-ink-navy min-h-screen font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar (Mobile) -->
+<header class="sticky top-0 z-50 bg-surface-sand/80 glass-blur px-margin-mobile py-4 flex items-center justify-between border-b border-border-subtle">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-ink-navy">fingerprint</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-ink-navy">VERDICT</h1>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="px-margin-mobile py-base space-y-gutter pb-24 max-w-md mx-auto">
+<!-- Hero Header -->
+<section class="mt-6">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-ink-navy mb-2">Core Pedigree Scan</h2>
+<p class="font-body-md text-secondary leading-relaxed">Extracting your dossier's DNA. Upload academic transcripts, professional certifications, or CVs for instant verification.</p>
+</section>
+<!-- Intelligence Dossier Drop Area -->
+<section class="relative group">
+<div class="border-2 border-dashed border-border-subtle bg-surface-container-low rounded-lg p-gutter flex flex-col items-center justify-center text-center space-y-4 min-h-[220px]">
+<div class="w-16 h-16 bg-ink-navy text-surface-sand rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">document_scanner</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-ink-navy uppercase">Drop Intelligence Dossier</p>
+<p class="font-body-md text-secondary text-sm mt-1">Tap to scan or select PDF/Image</p>
+</div>
+<div class="flex gap-3 w-full">
+<button class="flex-1 bg-ink-navy text-white font-label-md py-3 rounded-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+                        Camera
+                    </button>
+<button class="flex-1 border border-border-subtle bg-white font-label-md py-3 rounded-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">upload_file</span>
+                        Upload
+                    </button>
+</div>
+</div>
+</section>
+<!-- Parsing Engine Status -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-label-md text-label-md text-ink-navy uppercase tracking-widest">Parsing Engine Status</h3>
+<span class="text-xs font-mono-data text-secondary">V.4.2 Active</span>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<!-- Academic Pedigree -->
+<div class="bg-white border border-border-subtle p-4 rounded-sm shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-ink-navy">school</span>
+<div>
+<p class="font-label-md text-label-md">Academic Pedigree</p>
+<p class="font-body-md text-xs text-secondary">Analyzing Tier-1 Data</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-ink-navy font-bold">88%</span>
+<div class="flex gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-border-subtle"></span>
+</div>
+</div>
+</div>
+<!-- Professional Tenacity -->
+<div class="bg-white border border-border-subtle p-4 rounded-sm shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-ink-navy">work_history</span>
+<div>
+<p class="font-label-md text-label-md">Professional Tenacity</p>
+<p class="font-body-md text-xs text-secondary">Mapping Career Trajectory</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-ink-navy font-bold">42%</span>
+<div class="flex gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-confidence-medium"></span>
+<span class="w-2 h-2 rounded-full bg-border-subtle"></span>
+<span class="w-2 h-2 rounded-full bg-border-subtle"></span>
+</div>
+</div>
+</div>
+<!-- Global Perspective -->
+<div class="bg-white border border-border-subtle p-4 rounded-sm shadow-sm flex items-center justify-between opacity-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-ink-navy">public</span>
+<div>
+<p class="font-label-md text-label-md">Global Perspective</p>
+<p class="font-body-md text-xs text-secondary">Pending extraction...</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-secondary font-bold">0%</span>
+<div class="flex gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-border-subtle"></span>
+<span class="w-2 h-2 rounded-full bg-border-subtle"></span>
+<span class="w-2 h-2 rounded-full bg-border-subtle"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Parsing Edge Cases Section -->
+<section class="mt-8">
+<h3 class="font-headline-md text-headline-md text-ink-navy mb-4">Parsing Edge Cases</h3>
+<div class="space-y-4">
+<!-- Low Confidence Alert -->
+<div class="bg-white border-l-4 border-error p-4 rounded-sm shadow-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error">blur_on</span>
+<div class="flex-1">
+<h4 class="font-label-md text-ink-navy">Low Confidence Alert</h4>
+<p class="font-body-md text-sm text-secondary mt-1">Legibility is below minimum threshold for OCR precision.</p>
+<button class="mt-3 text-error font-label-md flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-sm">camera_alt</span>
+                                RETRY WITH CAMERA
+                            </button>
+</div>
+</div>
+</div>
+<!-- Missing Metadata Flag -->
+<div class="bg-white border-l-4 border-confidence-medium p-4 rounded-sm shadow-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-confidence-medium">label_off</span>
+<div class="flex-1">
+<h4 class="font-label-md text-ink-navy">Missing Metadata</h4>
+<p class="font-body-md text-sm text-secondary mt-1">Untagged PDF structure detected. Origin data missing.</p>
+<button class="mt-3 text-confidence-medium font-label-md flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+                                MANUAL VERIFICATION
+                            </button>
+</div>
+</div>
+</div>
+<!-- Format Conflict Warning -->
+<div class="bg-white border-l-4 border-ink-navy p-4 rounded-sm shadow-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-ink-navy">lock_reset</span>
+<div class="flex-1">
+<h4 class="font-label-md text-ink-navy">Format Conflict</h4>
+<p class="font-body-md text-sm text-secondary mt-1">Encrypted or password-protected file detected.</p>
+<div class="mt-3 flex items-center bg-surface-sand p-2 rounded-sm">
+<input class="bg-transparent border-none text-xs w-full focus:ring-0 placeholder:text-secondary-fixed-dim" placeholder="Enter file password" type="password"/>
+<span class="material-symbols-outlined text-ink-navy text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Aesthetic Imagery Component -->
+<section class="mt-12 opacity-80 grayscale">
+<div class="w-full aspect-video rounded-lg overflow-hidden relative border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A macro close-up of high-quality ivory cardstock paper with fine textured fibers. Sharp shadows cast across the surface from a vintage magnifying glass handle, creating an atmosphere of deep academic inquiry. The lighting is soft and golden, characteristic of a prestigious university library. The overall mood is serious and intellectual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByfir1sCDoPPtLZlKyAmDpUE5kYoLM8uSMTK1tBgjfa3ZkRJ6BIxfO24wS8trtxX_It4YenJxIDejI_phyun72t0kxk_GI8yk5SDQD-EFqqBEiATDqkvSSxEPn7YBw2zn_SSOzJfMLyyx39JEaJ_rnYwNX3fV-gwlLA0iDPI7uJPz2xRW5t8RUHfj5dWNCeZMBZcI_5lG-y3HeIlp8gjG9keHXPCM9UhGch1pRltueGOTLG9fF6UEpAegfj98OjKpHdy6SAhQr3tU"/>
+<div class="absolute inset-0 bg-ink-navy/10 flex items-center justify-center">
+<div class="bg-surface-sand/90 px-4 py-2 rounded-full border border-ink-navy/20">
+<p class="font-label-sm text-label-sm text-ink-navy tracking-[0.2em]">INTELLECTUAL RIGOR</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 md:hidden bg-surface-sand border-t border-border-subtle shadow-sm">
+<div class="flex flex-col items-center justify-center text-secondary opacity-70">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-navy scale-110 font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-label-sm text-label-sm mt-1">Intel</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary opacity-70">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-sm text-label-sm mt-1">Prep</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary opacity-70">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</div>
+</nav>
+<!-- Modal Indicator Overlay (Implicitly active based on prompt requirements) -->
+<div class="fixed inset-0 bg-ink-navy/20 glass-blur z-50 flex items-end justify-center pointer-events-none opacity-0">
+<!-- This is a placeholder for the modal state described in edge cases -->
+<div class="bg-surface-sand w-full max-w-md rounded-t-xl p-gutter shadow-2xl space-y-4 translate-y-full transition-transform duration-300">
+<div class="w-12 h-1.5 bg-border-subtle rounded-full mx-auto mb-4"></div>
+<h3 class="font-headline-md text-headline-md">Clarification Required</h3>
+<p class="font-body-md text-secondary">The scanning engine requires manual input to finalize your Global Perspective metrics.</p>
+<div class="space-y-3">
+<button class="w-full bg-ink-navy text-surface-sand font-label-md py-4 rounded-sm">BEGIN MANUAL VERIFICATION</button>
+<button class="w-full border border-border-subtle text-ink-navy font-label-md py-4 rounded-sm">DISMISS</button>
+</div>
+</div>
+</div>
+</body></html>

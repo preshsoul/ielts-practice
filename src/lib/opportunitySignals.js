@@ -1,8 +1,4 @@
-function toText(value) {
-  return String(value ?? "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+import { toText, unique } from "./textUtils.js";
 
 function normalizeSignalText(value) {
   return toText(value)
@@ -11,10 +7,6 @@ function normalizeSignalText(value) {
     .replace(/['’"`]/g, "")
     .replace(/\s+/g, " ")
     .trim();
-}
-
-function unique(values) {
-  return [...new Set(values.filter(Boolean))];
 }
 
 const NATO_COUNTRIES = new Set([

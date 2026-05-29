@@ -1,0 +1,63 @@
+# Artillery full-stack load test — LOCI App (Frontend + Edge Functions)
+# Run:  npx artillery run load-tests/artillery-fullstack.yml
+# Prerequisites: dev server on :5173, Edge Functions deployed, Python backend on :8000
+
+config:
+  target: "http://127.0.0.1:5173"
+  phases:
+    - duration: 30
+      arrivalRate: 1
+      name: warmup
+    - duration: 60
+      arrivalRate: 3
+      rampTo: 6
+      name: steady
+    - duration: 30
+      arrivalRate: 10
+      name: spike
+  defaults:
+    headers:
+      Accept: "application/json, text/html"
+
+scenarios:
+  - name: browse-static-pages
+    weight: 4
+    flow:
+      - get:
+          url: "/"
+      - get:
+          url: "/scholarships"
+      - get:
+          url: "/practice"
+
+  - name: load-static-assets
+    weight: 3
+    flow:
+      - get:
+          url: "/data/scholarships.json"
+          headers:
+            Accept: "application/json"
+      - get:
+          url: "/data/questions.json"
+          headers:
+            Accept: "application/json"
+      - get:
+          url: "/data/passages.json"
+          headers:
+            Accept: "application/json"
+
+  - name: auth-session-check
+    weight: 2
+    flow:
+      - get:
+          url: "/api/auth?action=session"
+          headers:
+            Accept: "application/json"
+
+  - name: health-check
+    weight: 1
+    flow:
+      - get:
+          url: "http://127.0.0.1:8000/healthz"
+          headers:
+            Accept: "application/json"

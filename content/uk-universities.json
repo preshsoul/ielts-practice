@@ -1,0 +1,1614 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-05-18T20:19:08.167Z",
+  "generated_from": {
+    "england_workbook": "C:\\Users\\Preshsoul\\OneDrive\\Desktop\\IELTS\\tmp\\ofs-register.xlsx",
+    "authorities": {
+      "England": {
+        "sourceName": "Office for Students Register",
+        "sourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/"
+      },
+      "Scotland": {
+        "sourceName": "Scottish Government Recognised Bodies",
+        "sourceUrl": "https://www.gov.scot/policies/universities/"
+      },
+      "Wales": {
+        "sourceName": "Universities Wales",
+        "sourceUrl": "https://uniswales.ac.uk/"
+      },
+      "Northern Ireland": {
+        "sourceName": "Department for the Economy / nidirect",
+        "sourceUrl": "https://www.economy-ni.gov.uk/articles/higher-education-division"
+      }
+    }
+  },
+  "total": 158,
+  "totals_by_nation": {
+    "England": 125,
+    "Northern Ireland": 5,
+    "Scotland": 19,
+    "Wales": 9
+  },
+  "universities": [
+    {
+      "slug": "amity-university-in-london",
+      "name": "Amity University [IN] London",
+      "website": "https://www.amity.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "anglia-ruskin-university",
+      "name": "Anglia Ruskin University",
+      "website": "https://www.anglia.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "arden-university",
+      "name": "Arden University",
+      "website": "https://www.arden.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "arts-university-plymouth",
+      "name": "Arts University Plymouth",
+      "website": "https://www.aup.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "aston-university",
+      "name": "Aston University",
+      "website": "https://www.aston.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "bath-spa-university",
+      "name": "Bath Spa University",
+      "website": "https://www.bathspa.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "bimm-university-limited",
+      "name": "BIMM University Limited",
+      "website": "https://www.bimm.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "birkbeck-university-of-london",
+      "name": "Birkbeck, University of London",
+      "website": "https://www.bbk.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "birmingham-city-university",
+      "name": "Birmingham City University",
+      "website": "https://www.bcu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "birmingham-newman-university",
+      "name": "Birmingham Newman University",
+      "website": "https://www.newman.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "bournemouth-university",
+      "name": "Bournemouth University",
+      "website": "https://www.bournemouth.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "bpp-university",
+      "name": "BPP University",
+      "website": "https://www.bpp.com",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "brunel-university-london",
+      "name": "Brunel University London",
+      "website": "https://www.brunel.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "buckinghamshire-new-university",
+      "name": "Buckinghamshire New University",
+      "website": "https://www.bucks.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "canterbury-christ-church-university",
+      "name": "Canterbury Christ Church University",
+      "website": "https://www.canterbury.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "city-st-georges-university-of-london",
+      "name": "City St George's, University of London",
+      "website": "https://www.citystgeorges.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "coventry-university",
+      "name": "Coventry University",
+      "website": "https://www.coventry.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "cranfield-university",
+      "name": "Cranfield University",
+      "website": "https://www.cranfield.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "de-montfort-university",
+      "name": "De Montfort University",
+      "website": "https://www.dmu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "durham-university",
+      "name": "Durham University",
+      "website": "https://www.durham.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "edge-hill-university",
+      "name": "Edge Hill University",
+      "website": "https://www.edgehill.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "falmouth-university",
+      "name": "Falmouth University",
+      "website": "https://www.falmouth.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "goldsmiths-university-of-london-south-east-london-teaching-partnership",
+      "name": "Goldsmiths, University of London South East London Teaching Partnership",
+      "website": "https://www.gold.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "harper-adams-university",
+      "name": "Harper Adams University",
+      "website": "https://www.harper-adams.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "hartpury-university",
+      "name": "Hartpury University",
+      "website": "https://www.hartpury.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "health-sciences-university",
+      "name": "Health Sciences University",
+      "website": "https://www.aecc.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "imperial-college-london",
+      "name": "Imperial College London",
+      "website": "https://www.imperial.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "into-university-partnerships-limited",
+      "name": "INTO University Partnerships Limited",
+      "website": "https://intoglobal.com",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "keele-university",
+      "name": "Keele University",
+      "website": "https://www.keele.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "kingston-university",
+      "name": "Kingston University",
+      "website": "https://www.kingston.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "lancaster-university",
+      "name": "Lancaster University",
+      "website": "https://www.lancaster.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "leeds-arts-university",
+      "name": "Leeds Arts University",
+      "website": "https://www.leeds-art.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "leeds-beckett-university",
+      "name": "Leeds Beckett University",
+      "website": "https://www.leedsbeckett.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "leeds-trinity-university",
+      "name": "Leeds Trinity University",
+      "website": "https://www.leedstrinity.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "lincoln-bishop-university",
+      "name": "Lincoln Bishop University",
+      "website": "https://www.bishopg.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "liverpool-hope-university",
+      "name": "Liverpool Hope University",
+      "website": "https://www.hope.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "liverpool-john-moores-university",
+      "name": "Liverpool John Moores University",
+      "website": "https://www.ljmu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "london-metropolitan-university",
+      "name": "London Metropolitan University",
+      "website": "https://www.londonmet.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "loughborough-university",
+      "name": "Loughborough University",
+      "website": "https://www.lboro.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "lsbu",
+      "name": "LSBU",
+      "website": "https://www.lsbu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "manchester-metropolitan-university",
+      "name": "Manchester Metropolitan University",
+      "website": "https://www2.mmu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "middlesex-university",
+      "name": "Middlesex University",
+      "website": "https://www.mdx.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "newcastle-university",
+      "name": "Newcastle University",
+      "website": "https://www.ncl.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "northeastern-university-london-new-college-of-the-humanities",
+      "name": "Northeastern University London New College of the Humanities",
+      "website": "https://www.nchlondon.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "northumbria-university",
+      "name": "Northumbria University",
+      "website": "https://www.northumbria.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "norwich-university-of-the-arts",
+      "name": "Norwich University of the Arts",
+      "website": "https://www.norwichuni.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "nottingham-trent-university",
+      "name": "Nottingham Trent University",
+      "website": "https://www.ntu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "oxford-brookes-university",
+      "name": "Oxford Brookes University",
+      "website": "https://www.brookes.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "oxford-university-the-university-of-oxford",
+      "name": "Oxford University The University of Oxford",
+      "website": "https://www.ox.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "plymouth-marjon-university",
+      "name": "Plymouth Marjon University",
+      "website": "https://www.marjon.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "queen-mary-university-of-london",
+      "name": "Queen Mary University of London",
+      "website": "https://www.qmul.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "ravensbourne-university-london",
+      "name": "Ravensbourne University London",
+      "website": "https://www.ravensbourne.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "regents-university-london",
+      "name": "Regent's University London",
+      "website": "https://www.regents.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "richmond-the-american-international-university-in-london-inc",
+      "name": "Richmond, the American International University in London, Inc.",
+      "website": "https://www.richmond.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "royal-holloway-university-of-london",
+      "name": "Royal Holloway, University of London",
+      "website": "https://www.rhul.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "school-of-oriental-and-african-studies-soas-university-of-london",
+      "name": "School of Oriental and African Studies SOAS University of London",
+      "website": "https://www.soas.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "sheffield-hallam-university",
+      "name": "Sheffield Hallam University",
+      "website": "https://www.shu.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "southampton-solent-university",
+      "name": "Southampton Solent University",
+      "website": "https://www.solent.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "st-marys-university-twickenham-london",
+      "name": "St Mary’s University, Twickenham, London",
+      "website": "https://www.stmarys.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "teesside-university",
+      "name": "Teesside University",
+      "website": "https://www.tees.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-arts-university-bournemouth",
+      "name": "The Arts University Bournemouth",
+      "website": "https://www.aub.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-london-school-of-economics-and-political-science",
+      "name": "The London School of Economics and Political Science",
+      "website": "https://www.lse.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-open-university",
+      "name": "The Open University",
+      "website": "https://www.open.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-royal-agricultural-university",
+      "name": "The Royal Agricultural University",
+      "website": "https://www.rau.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-bradford",
+      "name": "The University of Bradford",
+      "website": "https://www.brad.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-cambridge-cambridge-university",
+      "name": "The University of Cambridge Cambridge University",
+      "website": "https://www.cam.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-cumbria",
+      "name": "The University of Cumbria",
+      "website": "https://www.cumbria.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-east-london-the-university-of-east-london-higher-education-corporation",
+      "name": "The University of East London The University of East London Higher Education Corporation",
+      "website": "https://www.uel.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-essex",
+      "name": "The University of Essex",
+      "website": "https://www.essex.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-kent",
+      "name": "The University of Kent",
+      "website": "https://www.kent.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-law",
+      "name": "The University of Law",
+      "website": "https://www.law.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-liverpool",
+      "name": "The University of Liverpool",
+      "website": "https://www.liverpool.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-northampton-university-of-northampton",
+      "name": "The University of Northampton University of Northampton",
+      "website": "https://www.northampton.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-salford",
+      "name": "The University of Salford",
+      "website": "https://www.salford.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-surrey",
+      "name": "The University of Surrey",
+      "website": "https://www.surrey.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-west-london",
+      "name": "The University of West London",
+      "website": "https://www.uwl.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-university-of-westminster",
+      "name": "The University of Westminster",
+      "website": "https://www.westminster.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "ua92",
+      "name": "UA92",
+      "website": "https://www.ua92.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "ucl",
+      "name": "UCL",
+      "website": "https://www.ucl.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "uea-university-of-east-anglia",
+      "name": "UEA University of East Anglia",
+      "website": "https://www.uea.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-college-birmingham",
+      "name": "University College Birmingham",
+      "website": "https://www.ucb.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-for-the-creative-arts",
+      "name": "University for the Creative Arts",
+      "website": "https://www.uca.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-bath",
+      "name": "University of Bath",
+      "website": "https://www.bath.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-bedfordshire",
+      "name": "University of Bedfordshire",
+      "website": "https://www.beds.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-birmingham",
+      "name": "University of Birmingham",
+      "website": "https://www.birmingham.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-brighton",
+      "name": "University of Brighton",
+      "website": "https://www.brighton.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-bristol",
+      "name": "University of Bristol",
+      "website": "https://www.bristol.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-buckingham",
+      "name": "University of Buckingham",
+      "website": "https://www.buckingham.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-chester",
+      "name": "University of Chester",
+      "website": "https://www.chester.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-chichester",
+      "name": "University of Chichester",
+      "website": "https://www.chi.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-derby",
+      "name": "University of Derby",
+      "website": "https://www.derby.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-essex-online",
+      "name": "University of Essex Online",
+      "website": "https://www.kaplan.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-exeter",
+      "name": "University of Exeter",
+      "website": "https://www.exeter.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-gloucestershire",
+      "name": "University of Gloucestershire",
+      "website": "https://www.glos.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-greater-manchester",
+      "name": "University of Greater Manchester",
+      "website": "https://www.bolton.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-greenwich",
+      "name": "University of Greenwich",
+      "website": "https://www.gre.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-hertfordshire-uh",
+      "name": "University of Hertfordshire UH",
+      "website": "https://www.herts.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-huddersfield",
+      "name": "University of Huddersfield",
+      "website": "https://www.hud.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-hull",
+      "name": "University of Hull",
+      "website": "https://www.hull.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-lancashire",
+      "name": "University of Lancashire",
+      "website": "https://www.lancashire.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-leeds",
+      "name": "University of Leeds",
+      "website": "https://www.leeds.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-leicester",
+      "name": "University of Leicester",
+      "website": "https://www.le.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-lincoln",
+      "name": "University of Lincoln",
+      "website": "https://www.lincoln.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-london",
+      "name": "University of London",
+      "website": "https://www.london.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-manchester",
+      "name": "University of Manchester",
+      "website": "https://www.manchester.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-nottingham-the",
+      "name": "University of Nottingham, the",
+      "website": "https://www.nottingham.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-plymouth",
+      "name": "University of Plymouth",
+      "website": "https://www.plymouth.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-portsmouth-portsmouth-university",
+      "name": "University of Portsmouth Portsmouth University",
+      "website": "https://www.port.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-reading",
+      "name": "University of Reading",
+      "website": "https://www.reading.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-roehampton",
+      "name": "University of Roehampton",
+      "website": "https://www.roehampton.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-sheffield",
+      "name": "University of Sheffield",
+      "website": "https://www.sheffield.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-southampton",
+      "name": "University of Southampton",
+      "website": "https://www.southampton.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-staffordshire",
+      "name": "University of Staffordshire",
+      "website": "https://www.staffs.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-suffolk",
+      "name": "University of Suffolk",
+      "website": "https://www.uos.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-sunderland",
+      "name": "University of Sunderland",
+      "website": "https://www.sunderland.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-sussex",
+      "name": "University of Sussex",
+      "website": "https://www.sussex.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-the-arts-london",
+      "name": "University of the Arts, London",
+      "website": "https://www.arts.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-the-built-environment-the-london-school-of-architecture",
+      "name": "University of the Built Environment The London School of Architecture",
+      "website": "http://www.ube.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-the-west-of-england-bristol",
+      "name": "University of the West of England, Bristol",
+      "website": "https://www.uwe.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-warwick",
+      "name": "University of Warwick",
+      "website": "https://www.warwick.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-winchester",
+      "name": "University of Winchester",
+      "website": "https://www.winchester.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-wolverhampton",
+      "name": "University of Wolverhampton",
+      "website": "https://www.wlv.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-worcester",
+      "name": "University of Worcester",
+      "website": "https://www.worcester.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-york",
+      "name": "University of York",
+      "website": "https://www.york.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "york-st-john-university",
+      "name": "York St John University",
+      "website": "https://www.yorksj.ac.uk",
+      "nation": "England",
+      "country": "United Kingdom",
+      "registrySource": "Office for Students Register",
+      "registrySourceUrl": "https://register-api.officeforstudents.org.uk/api/Download/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "queens-university-belfast",
+      "name": "Queen's University Belfast",
+      "website": "https://www.qub.ac.uk",
+      "nation": "Northern Ireland",
+      "country": "United Kingdom",
+      "registrySource": "Department for the Economy / nidirect",
+      "registrySourceUrl": "https://www.economy-ni.gov.uk/articles/higher-education-division",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "st-marys-university-college",
+      "name": "St Mary's University College",
+      "website": "https://www.stmarys-belfast.ac.uk",
+      "nation": "Northern Ireland",
+      "country": "United Kingdom",
+      "registrySource": "Department for the Economy / nidirect",
+      "registrySourceUrl": "https://www.economy-ni.gov.uk/articles/higher-education-division",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "stranmillis-university-college",
+      "name": "Stranmillis University College",
+      "website": "https://www.stran.ac.uk",
+      "nation": "Northern Ireland",
+      "country": "United Kingdom",
+      "registrySource": "Department for the Economy / nidirect",
+      "registrySourceUrl": "https://www.economy-ni.gov.uk/articles/higher-education-division",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-open-university-in-northern-ireland",
+      "name": "The Open University in Northern Ireland",
+      "website": "https://www.open.ac.uk/northern-ireland",
+      "nation": "Northern Ireland",
+      "country": "United Kingdom",
+      "registrySource": "Department for the Economy / nidirect",
+      "registrySourceUrl": "https://www.economy-ni.gov.uk/articles/higher-education-division",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "ulster-university",
+      "name": "Ulster University",
+      "website": "https://www.ulster.ac.uk",
+      "nation": "Northern Ireland",
+      "country": "United Kingdom",
+      "registrySource": "Department for the Economy / nidirect",
+      "registrySourceUrl": "https://www.economy-ni.gov.uk/articles/higher-education-division",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "abertay-university",
+      "name": "Abertay University",
+      "website": "https://www.abertay.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "edinburgh-napier-university",
+      "name": "Edinburgh Napier University",
+      "website": "https://www.napier.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "glasgow-caledonian-university",
+      "name": "Glasgow Caledonian University",
+      "website": "https://www.gcu.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "heriot-watt-university",
+      "name": "Heriot-Watt University",
+      "website": "https://www.hw.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "queen-margaret-university",
+      "name": "Queen Margaret University",
+      "website": "https://www.qmu.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "robert-gordon-university",
+      "name": "Robert Gordon University",
+      "website": "https://www.rgu.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "royal-conservatoire-of-scotland",
+      "name": "Royal Conservatoire of Scotland",
+      "website": "https://www.rcs.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "scotlands-rural-college",
+      "name": "Scotland's Rural College",
+      "website": "https://www.sruc.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-glasgow-school-of-art",
+      "name": "The Glasgow School of Art",
+      "website": "https://www.gsa.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-open-university-in-scotland",
+      "name": "The Open University in Scotland",
+      "website": "https://www.open.ac.uk/scotland",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-aberdeen",
+      "name": "University of Aberdeen",
+      "website": "https://www.abdn.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-dundee",
+      "name": "University of Dundee",
+      "website": "https://www.dundee.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-edinburgh",
+      "name": "University of Edinburgh",
+      "website": "https://www.ed.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-glasgow",
+      "name": "University of Glasgow",
+      "website": "https://www.gla.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-st-andrews",
+      "name": "University of St Andrews",
+      "website": "https://www.st-andrews.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-stirling",
+      "name": "University of Stirling",
+      "website": "https://www.stir.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-strathclyde",
+      "name": "University of Strathclyde",
+      "website": "https://www.strath.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-the-highlands-and-islands",
+      "name": "University of the Highlands and Islands",
+      "website": "https://www.uhi.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-the-west-of-scotland",
+      "name": "University of the West of Scotland",
+      "website": "https://www.uws.ac.uk",
+      "nation": "Scotland",
+      "country": "United Kingdom",
+      "registrySource": "Scottish Government Recognised Bodies",
+      "registrySourceUrl": "https://www.gov.scot/policies/universities/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "aberystwyth-university",
+      "name": "Aberystwyth University",
+      "website": "https://www.aber.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "bangor-university",
+      "name": "Bangor University",
+      "website": "https://www.bangor.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "cardiff-metropolitan-university",
+      "name": "Cardiff Metropolitan University",
+      "website": "https://www.cardiffmet.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "cardiff-university",
+      "name": "Cardiff University",
+      "website": "https://www.cardiff.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "swansea-university",
+      "name": "Swansea University",
+      "website": "https://www.swansea.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "the-open-university-in-wales",
+      "name": "The Open University in Wales",
+      "website": "https://www.open.ac.uk/wales",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-south-wales",
+      "name": "University of South Wales",
+      "website": "https://www.southwales.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "university-of-wales-trinity-saint-david",
+      "name": "University of Wales Trinity Saint David",
+      "website": "https://www.uwtsd.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    },
+    {
+      "slug": "wrexham-university",
+      "name": "Wrexham University",
+      "website": "https://wrexham.ac.uk",
+      "nation": "Wales",
+      "country": "United Kingdom",
+      "registrySource": "Universities Wales",
+      "registrySourceUrl": "https://uniswales.ac.uk/",
+      "verifiedOfficial": true
+    }
+  ]
+}

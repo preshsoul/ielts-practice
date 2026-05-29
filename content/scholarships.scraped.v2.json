@@ -1,117 +1,8 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-05-12T23:55:18.620Z",
-  "total": 95,
+  "updated_at": "2026-05-18T20:10:43.001Z",
+  "total": 99,
   "scholarships": [
-    {
-      "id": "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship",
-      "name": "Scholarship Region",
-      "nameFull": "Scholarship Region",
-      "name_full": "Scholarship Region",
-      "displayName": "Scholarship Region",
-      "awardingBody": "Scholarship Region",
-      "coverage": {
-        "type": "full",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": true,
-        "flightsCovered": true,
-        "visaFees": false,
-        "numericAmount": 40000,
-        "amountGBP": 40000,
-        "amountType": "annual",
-        "currency": "GBP",
-        "rawAmountString": "£40,000",
-        "rawAmount": "£40,000"
-      },
-      "eligibility": {
-        "nationalities": [
-          "Commonwealth countries"
-        ],
-        "nationalityIsOpen": false,
-        "disciplines": [
-          "Engineering",
-          "Education",
-          "Linguistics",
-          "Sciences"
-        ],
-        "degreeClassMin": "1st",
-        "degreeClassRequired": "1st",
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.scholarshipregion.com/british-council-stem-scholarship",
-        "portal": "https://www.aru.ac.uk/blogs/top-tips-for-women-thinking-about-applying-for-the-women-in-stem-scholarship",
-        "deadline": "2026-04-30",
-        "deadlineType": "fixed",
-        "deadlineRaw": "april 30, 2026",
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 1,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "2026 British Council STEM Scholarship | Fully Funded"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.scholarshipregion.com/british-council-stem-scholarship",
-        "scrapedAt": "2026-05-12T22:39:03.061Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 1,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.scholarshipregion.com/british-council-stem-scholarship",
-        "sourceLabel": "Scholarship Region",
-        "scrapedAt": "2026-05-12T22:39:03.061Z",
-        "verified": false,
-        "needsVerification": [],
-        "confidence": 1,
-        "rawText": "@media (max-width:767px){.tdi_144{margin-right:-10px!important;margin-left:-10px!important}} .tdb_single_content{margin-bottom:0;*zoom:1}.tdb_single_content:before,.tdb_single_content:after{display:table;content:'';line-height:0}.tdb_single_content:after{clear:both}.tdb_single_content .tdb-block-inner>*:not(.wp-block-quote):not(.alignwide):not(.alignfull.wp-block-cover.has-parallax):not(.td-a-ad){margin-left:auto;margin-right:auto}.tdb_single_content a{pointer-events:auto}.tdb_single_content .td-spot-id-top_ad .tdc-placeholder-title:before{content:'Article Top Ad'!important}.tdb_single_content .td-spot-id-inline_ad0 .tdc-placeholder-title:before{content:'Article Inline Ad 1'!important}.tdb_single_content .td-spot-id-inline_ad1 .tdc-placeholder-title:before{content:'Article Inline Ad 2'!important}.tdb_single_content .td-spot-id-inline_ad2 .tdc-placeholder-title:before{content:'Article Inline Ad 3'!important}.tdb_single_content .td-spot-id-bottom_ad .tdc-placeholder-title:before{content:'Article Bottom Ad'!important}.tdb_single_content .id_top_ad,.tdb_single_content .id_bottom_ad{clear:both;margin-bottom:21px;text-align:center}.tdb_single_content .id_top_ad img,.tdb_single_content .id_bottom_ad img{margin-bottom:0}.tdb_single_content .id_top_ad .adsbygoogle,.tdb_single_content .id_bottom_ad .adsbygoogle{position:relative}.tdb_single_content .id_ad_content-horiz-left,.tdb_single_content .id_ad_content-horiz-right,.tdb_single_content .id_ad_content-horiz-center{margin-bottom:15px}.tdb_single_content .id_ad_content-horiz-left img,.tdb_single_content .id_ad_content-horiz-right img,.tdb_single_content .id_ad_content-horiz-center img{margin-bottom:0}.tdb_single_content .id_ad_content-horiz-center{text-align:center}.tdb_single_content .id_ad_content-horiz-center img{margin-right:auto;margin-left:auto}.tdb_single_content .id_ad_content-horiz-left{float:left;margin-top:9px;margin-right:21px}.tdb_single_content .id_ad_content-horiz-right{float:right;margin-top:6px;margin-left:2",
-        "pageType": "unknown",
-        "pageTitle": "2026 British Council STEM Scholarship | Fully Funded",
-        "discoveryNotes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "open",
-      "urgency": "black",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T22:44:23.895Z",
-      "promotedAt": "2026-05-12T22:44:23.895Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [],
-        "confidence": 1,
-        "duplicateKey": "scholarship region::scholarship region::https://www.aru.ac.uk/blogs/top-tips-for-women-thinking-about-applying-for-the-women-in-stem-scholarship"
-      }
-    },
     {
       "id": "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol",
       "name": "2026 Chinese Government MOFCOM Scholarship | Fully Funded | Scholarship Region",
@@ -1633,215 +1524,6 @@
       }
     },
     {
-      "id": "www.scholarshipregion.com_scholarship-region_ashesi-eth-masters-scholarship",
-      "name": "Scholarship Region",
-      "nameFull": "Scholarship Region",
-      "name_full": "Scholarship Region",
-      "displayName": "Scholarship Region",
-      "awardingBody": "Scholarship Region",
-      "coverage": {
-        "type": "full",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": true,
-        "flightsCovered": true,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Engineering",
-          "Sciences"
-        ],
-        "degreeClassMin": "1st",
-        "degreeClassRequired": "1st",
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.scholarshipregion.com/ashesi-eth-masters-scholarship",
-        "portal": "https://ashesi.dreamapply.com/courses/course/241-mscmas-mechatronics-engineering",
-        "deadline": "2026-06-30",
-        "deadlineType": "fixed",
-        "deadlineRaw": "june 30, 2026",
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 1,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Switzerland Ashesi-ETH Masters Scholarship 2026 | Fully Funded"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.scholarshipregion.com/ashesi-eth-masters-scholarship",
-        "scrapedAt": "2026-05-12T22:38:44.587Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.75,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.scholarshipregion.com/ashesi-eth-masters-scholarship",
-        "sourceLabel": "Scholarship Region",
-        "scrapedAt": "2026-05-12T22:38:44.587Z",
-        "verified": false,
-        "needsVerification": [],
-        "confidence": 0.75,
-        "rawText": "@media (max-width:767px){.tdi_144{margin-right:-10px!important;margin-left:-10px!important}} .tdb_single_content{margin-bottom:0;*zoom:1}.tdb_single_content:before,.tdb_single_content:after{display:table;content:'';line-height:0}.tdb_single_content:after{clear:both}.tdb_single_content .tdb-block-inner>*:not(.wp-block-quote):not(.alignwide):not(.alignfull.wp-block-cover.has-parallax):not(.td-a-ad){margin-left:auto;margin-right:auto}.tdb_single_content a{pointer-events:auto}.tdb_single_content .td-spot-id-top_ad .tdc-placeholder-title:before{content:'Article Top Ad'!important}.tdb_single_content .td-spot-id-inline_ad0 .tdc-placeholder-title:before{content:'Article Inline Ad 1'!important}.tdb_single_content .td-spot-id-inline_ad1 .tdc-placeholder-title:before{content:'Article Inline Ad 2'!important}.tdb_single_content .td-spot-id-inline_ad2 .tdc-placeholder-title:before{content:'Article Inline Ad 3'!important}.tdb_single_content .td-spot-id-bottom_ad .tdc-placeholder-title:before{content:'Article Bottom Ad'!important}.tdb_single_content .id_top_ad,.tdb_single_content .id_bottom_ad{clear:both;margin-bottom:21px;text-align:center}.tdb_single_content .id_top_ad img,.tdb_single_content .id_bottom_ad img{margin-bottom:0}.tdb_single_content .id_top_ad .adsbygoogle,.tdb_single_content .id_bottom_ad .adsbygoogle{position:relative}.tdb_single_content .id_ad_content-horiz-left,.tdb_single_content .id_ad_content-horiz-right,.tdb_single_content .id_ad_content-horiz-center{margin-bottom:15px}.tdb_single_content .id_ad_content-horiz-left img,.tdb_single_content .id_ad_content-horiz-right img,.tdb_single_content .id_ad_content-horiz-center img{margin-bottom:0}.tdb_single_content .id_ad_content-horiz-center{text-align:center}.tdb_single_content .id_ad_content-horiz-center img{margin-right:auto;margin-left:auto}.tdb_single_content .id_ad_content-horiz-left{float:left;margin-top:9px;margin-right:21px}.tdb_single_content .id_ad_content-horiz-right{float:right;margin-top:6px;margin-left:2",
-        "pageType": "unknown",
-        "pageTitle": "Switzerland Ashesi-ETH Masters Scholarship 2026 | Fully Funded",
-        "discoveryNotes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "open",
-      "urgency": "red",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T22:44:23.895Z",
-      "promotedAt": "2026-05-12T22:44:23.895Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [],
-        "confidence": 0.75,
-        "duplicateKey": "scholarship region::scholarship region::https://ashesi.dreamapply.com/courses/course/241-mscmas-mechatronics-engineering"
-      }
-    },
-    {
-      "id": "www.scholarshipregion.com_scholarship-region_mandela-rhodes-scholarship",
-      "name": "Scholarship Region",
-      "nameFull": "Scholarship Region",
-      "name_full": "Scholarship Region",
-      "displayName": "Scholarship Region",
-      "awardingBody": "Scholarship Region",
-      "coverage": {
-        "type": "full",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": true,
-        "flightsCovered": true,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Education"
-        ],
-        "degreeClassMin": "1st",
-        "degreeClassRequired": "1st",
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.scholarshipregion.com/mandela-rhodes-scholarship",
-        "portal": "https://www.mandelarhodes.org/scholarship/apply",
-        "deadline": "2026-04-14",
-        "deadlineType": "fixed",
-        "deadlineRaw": "april 14, 2026",
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 1,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Mandela Rhodes Scholarship 2027 For Africans | Step-by-Step Process"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.scholarshipregion.com/mandela-rhodes-scholarship",
-        "scrapedAt": "2026-05-12T22:39:22.289Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.75,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.scholarshipregion.com/mandela-rhodes-scholarship",
-        "sourceLabel": "Scholarship Region",
-        "scrapedAt": "2026-05-12T22:39:22.289Z",
-        "verified": false,
-        "needsVerification": [],
-        "confidence": 0.75,
-        "rawText": "@media (max-width:767px){.tdi_144{margin-right:-10px!important;margin-left:-10px!important}} .tdb_single_content{margin-bottom:0;*zoom:1}.tdb_single_content:before,.tdb_single_content:after{display:table;content:'';line-height:0}.tdb_single_content:after{clear:both}.tdb_single_content .tdb-block-inner>*:not(.wp-block-quote):not(.alignwide):not(.alignfull.wp-block-cover.has-parallax):not(.td-a-ad){margin-left:auto;margin-right:auto}.tdb_single_content a{pointer-events:auto}.tdb_single_content .td-spot-id-top_ad .tdc-placeholder-title:before{content:'Article Top Ad'!important}.tdb_single_content .td-spot-id-inline_ad0 .tdc-placeholder-title:before{content:'Article Inline Ad 1'!important}.tdb_single_content .td-spot-id-inline_ad1 .tdc-placeholder-title:before{content:'Article Inline Ad 2'!important}.tdb_single_content .td-spot-id-inline_ad2 .tdc-placeholder-title:before{content:'Article Inline Ad 3'!important}.tdb_single_content .td-spot-id-bottom_ad .tdc-placeholder-title:before{content:'Article Bottom Ad'!important}.tdb_single_content .id_top_ad,.tdb_single_content .id_bottom_ad{clear:both;margin-bottom:21px;text-align:center}.tdb_single_content .id_top_ad img,.tdb_single_content .id_bottom_ad img{margin-bottom:0}.tdb_single_content .id_top_ad .adsbygoogle,.tdb_single_content .id_bottom_ad .adsbygoogle{position:relative}.tdb_single_content .id_ad_content-horiz-left,.tdb_single_content .id_ad_content-horiz-right,.tdb_single_content .id_ad_content-horiz-center{margin-bottom:15px}.tdb_single_content .id_ad_content-horiz-left img,.tdb_single_content .id_ad_content-horiz-right img,.tdb_single_content .id_ad_content-horiz-center img{margin-bottom:0}.tdb_single_content .id_ad_content-horiz-center{text-align:center}.tdb_single_content .id_ad_content-horiz-center img{margin-right:auto;margin-left:auto}.tdb_single_content .id_ad_content-horiz-left{float:left;margin-top:9px;margin-right:21px}.tdb_single_content .id_ad_content-horiz-right{float:right;margin-top:6px;margin-left:2",
-        "pageType": "unknown",
-        "pageTitle": "Mandela Rhodes Scholarship 2027 For Africans | Step-by-Step Process",
-        "discoveryNotes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "open",
-      "urgency": "black",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T22:44:23.895Z",
-      "promotedAt": "2026-05-12T22:44:23.895Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [],
-        "confidence": 0.75,
-        "duplicateKey": "scholarship region::scholarship region::https://www.mandelarhodes.org/scholarship/apply"
-      }
-    },
-    {
       "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
       "name": "Secondary School and High School Scholarships 2026",
       "awardingBody": "Scholarship Region",
@@ -1934,230 +1616,6 @@
         "flaggedFields": [],
         "confidence": 0.75,
         "duplicateKey": "secondary school and high school scholarships 2026::scholarship region::https://www.scholarshipregion.com/educationusa-opportunity-funds-program"
-      }
-    },
-    {
-      "id": "www.scholarshipregion.com_scholarship-region_netherlands-government-nl-scholarship",
-      "name": "Scholarship Region",
-      "nameFull": "Scholarship Region",
-      "name_full": "Scholarship Region",
-      "displayName": "Scholarship Region",
-      "awardingBody": "Scholarship Region",
-      "coverage": {
-        "type": "tuition_only",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Education",
-          "Arts and Humanities",
-          "Sciences"
-        ],
-        "degreeClassMin": "1st",
-        "degreeClassRequired": "1st",
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.scholarshipregion.com/netherlands-government-nl-scholarship",
-        "portal": "https://www.thuas.com/study-choice/applications-finances-and-moving-here/finance-your-study",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Netherlands Government NL Scholarship 2026 | Step-by-Step Process"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.scholarshipregion.com/netherlands-government-nl-scholarship",
-        "scrapedAt": "2026-05-12T22:39:09.764Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.55,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.scholarshipregion.com/netherlands-government-nl-scholarship",
-        "sourceLabel": "Scholarship Region",
-        "scrapedAt": "2026-05-12T22:39:09.764Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.55,
-        "rawText": "@media (max-width:767px){.tdi_144{margin-right:-10px!important;margin-left:-10px!important}} .tdb_single_content{margin-bottom:0;*zoom:1}.tdb_single_content:before,.tdb_single_content:after{display:table;content:'';line-height:0}.tdb_single_content:after{clear:both}.tdb_single_content .tdb-block-inner>*:not(.wp-block-quote):not(.alignwide):not(.alignfull.wp-block-cover.has-parallax):not(.td-a-ad){margin-left:auto;margin-right:auto}.tdb_single_content a{pointer-events:auto}.tdb_single_content .td-spot-id-top_ad .tdc-placeholder-title:before{content:'Article Top Ad'!important}.tdb_single_content .td-spot-id-inline_ad0 .tdc-placeholder-title:before{content:'Article Inline Ad 1'!important}.tdb_single_content .td-spot-id-inline_ad1 .tdc-placeholder-title:before{content:'Article Inline Ad 2'!important}.tdb_single_content .td-spot-id-inline_ad2 .tdc-placeholder-title:before{content:'Article Inline Ad 3'!important}.tdb_single_content .td-spot-id-bottom_ad .tdc-placeholder-title:before{content:'Article Bottom Ad'!important}.tdb_single_content .id_top_ad,.tdb_single_content .id_bottom_ad{clear:both;margin-bottom:21px;text-align:center}.tdb_single_content .id_top_ad img,.tdb_single_content .id_bottom_ad img{margin-bottom:0}.tdb_single_content .id_top_ad .adsbygoogle,.tdb_single_content .id_bottom_ad .adsbygoogle{position:relative}.tdb_single_content .id_ad_content-horiz-left,.tdb_single_content .id_ad_content-horiz-right,.tdb_single_content .id_ad_content-horiz-center{margin-bottom:15px}.tdb_single_content .id_ad_content-horiz-left img,.tdb_single_content .id_ad_content-horiz-right img,.tdb_single_content .id_ad_content-horiz-center img{margin-bottom:0}.tdb_single_content .id_ad_content-horiz-center{text-align:center}.tdb_single_content .id_ad_content-horiz-center img{margin-right:auto;margin-left:auto}.tdb_single_content .id_ad_content-horiz-left{float:left;margin-top:9px;margin-right:21px}.tdb_single_content .id_ad_content-horiz-right{float:right;margin-top:6px;margin-left:2",
-        "pageType": "unknown",
-        "pageTitle": "Netherlands Government NL Scholarship 2026 | Step-by-Step Process",
-        "discoveryNotes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T22:44:23.895Z",
-      "promotedAt": "2026-05-12T22:44:23.895Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "confidence": 0.55,
-        "duplicateKey": "scholarship region::scholarship region::https://www.thuas.com/study-choice/applications-finances-and-moving-here/finance-your-study"
-      }
-    },
-    {
-      "id": "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship",
-      "name": "Scholarship Region",
-      "nameFull": "Scholarship Region",
-      "name_full": "Scholarship Region",
-      "displayName": "Scholarship Region",
-      "awardingBody": "Scholarship Region",
-      "coverage": {
-        "type": "full",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": true,
-        "flightsCovered": true,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Computer Science",
-          "Education",
-          "Linguistics"
-        ],
-        "degreeClassMin": "1st",
-        "degreeClassRequired": "1st",
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.scholarshipregion.com/mext-teachers-training-scholarship",
-        "portal": "https://www.studyinjapan.go.jp/en/smap-stopj-applications-specialized.html",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Japan Government MEXT Teachers Training Scholarship 2027 | Step-by-Step Process"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.scholarshipregion.com/mext-teachers-training-scholarship",
-        "scrapedAt": "2026-05-12T22:40:35.546Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.55,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.scholarshipregion.com/mext-teachers-training-scholarship",
-        "sourceLabel": "Scholarship Region",
-        "scrapedAt": "2026-05-12T22:40:35.546Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.55,
-        "rawText": "@media (max-width:767px){.tdi_144{margin-right:-10px!important;margin-left:-10px!important}} .tdb_single_content{margin-bottom:0;*zoom:1}.tdb_single_content:before,.tdb_single_content:after{display:table;content:'';line-height:0}.tdb_single_content:after{clear:both}.tdb_single_content .tdb-block-inner>*:not(.wp-block-quote):not(.alignwide):not(.alignfull.wp-block-cover.has-parallax):not(.td-a-ad){margin-left:auto;margin-right:auto}.tdb_single_content a{pointer-events:auto}.tdb_single_content .td-spot-id-top_ad .tdc-placeholder-title:before{content:'Article Top Ad'!important}.tdb_single_content .td-spot-id-inline_ad0 .tdc-placeholder-title:before{content:'Article Inline Ad 1'!important}.tdb_single_content .td-spot-id-inline_ad1 .tdc-placeholder-title:before{content:'Article Inline Ad 2'!important}.tdb_single_content .td-spot-id-inline_ad2 .tdc-placeholder-title:before{content:'Article Inline Ad 3'!important}.tdb_single_content .td-spot-id-bottom_ad .tdc-placeholder-title:before{content:'Article Bottom Ad'!important}.tdb_single_content .id_top_ad,.tdb_single_content .id_bottom_ad{clear:both;margin-bottom:21px;text-align:center}.tdb_single_content .id_top_ad img,.tdb_single_content .id_bottom_ad img{margin-bottom:0}.tdb_single_content .id_top_ad .adsbygoogle,.tdb_single_content .id_bottom_ad .adsbygoogle{position:relative}.tdb_single_content .id_ad_content-horiz-left,.tdb_single_content .id_ad_content-horiz-right,.tdb_single_content .id_ad_content-horiz-center{margin-bottom:15px}.tdb_single_content .id_ad_content-horiz-left img,.tdb_single_content .id_ad_content-horiz-right img,.tdb_single_content .id_ad_content-horiz-center img{margin-bottom:0}.tdb_single_content .id_ad_content-horiz-center{text-align:center}.tdb_single_content .id_ad_content-horiz-center img{margin-right:auto;margin-left:auto}.tdb_single_content .id_ad_content-horiz-left{float:left;margin-top:9px;margin-right:21px}.tdb_single_content .id_ad_content-horiz-right{float:right;margin-top:6px;margin-left:2",
-        "pageType": "unknown",
-        "pageTitle": "Japan Government MEXT Teachers Training Scholarship 2027 | Step-by-Step Process",
-        "discoveryNotes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages.",
-        "discoveryScore": 6,
-        "discoveryDepth": 2
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T22:44:23.895Z",
-      "promotedAt": "2026-05-12T22:44:23.895Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "confidence": 0.55,
-        "duplicateKey": "scholarship region::scholarship region::https://www.studyinjapan.go.jp/en/smap-stopj-applications-specialized.html"
       }
     },
     {
@@ -2464,7 +1922,7 @@
       }
     },
     {
-      "id": "www.scholarshipregion.com_scholarship-region_ptdf-scholarship",
+      "id": "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship",
       "name": "Scholarship Region",
       "nameFull": "Scholarship Region",
       "name_full": "Scholarship Region",
@@ -2531,8 +1989,8 @@
         "confidenceScore": 0.55,
         "confidenceDecayRatePerDay": 0.001,
         "flaggedFields": [
-          "amount",
-          "deadline"
+          "deadline",
+          "amount"
         ],
         "sourceType": "scraped",
         "discoveryScore": 8
@@ -2543,8 +2001,8 @@
         "scrapedAt": "2026-05-12T22:40:39.585Z",
         "verified": false,
         "needsVerification": [
-          "amount",
-          "deadline"
+          "deadline",
+          "amount"
         ],
         "confidence": 0.55,
         "rawText": "@media (max-width:767px){.tdi_144{margin-right:-10px!important;margin-left:-10px!important}} .tdb_single_content{margin-bottom:0;*zoom:1}.tdb_single_content:before,.tdb_single_content:after{display:table;content:'';line-height:0}.tdb_single_content:after{clear:both}.tdb_single_content .tdb-block-inner>*:not(.wp-block-quote):not(.alignwide):not(.alignfull.wp-block-cover.has-parallax):not(.td-a-ad){margin-left:auto;margin-right:auto}.tdb_single_content a{pointer-events:auto}.tdb_single_content .td-spot-id-top_ad .tdc-placeholder-title:before{content:'Article Top Ad'!important}.tdb_single_content .td-spot-id-inline_ad0 .tdc-placeholder-title:before{content:'Article Inline Ad 1'!important}.tdb_single_content .td-spot-id-inline_ad1 .tdc-placeholder-title:before{content:'Article Inline Ad 2'!important}.tdb_single_content .td-spot-id-inline_ad2 .tdc-placeholder-title:before{content:'Article Inline Ad 3'!important}.tdb_single_content .td-spot-id-bottom_ad .tdc-placeholder-title:before{content:'Article Bottom Ad'!important}.tdb_single_content .id_top_ad,.tdb_single_content .id_bottom_ad{clear:both;margin-bottom:21px;text-align:center}.tdb_single_content .id_top_ad img,.tdb_single_content .id_bottom_ad img{margin-bottom:0}.tdb_single_content .id_top_ad .adsbygoogle,.tdb_single_content .id_bottom_ad .adsbygoogle{position:relative}.tdb_single_content .id_ad_content-horiz-left,.tdb_single_content .id_ad_content-horiz-right,.tdb_single_content .id_ad_content-horiz-center{margin-bottom:15px}.tdb_single_content .id_ad_content-horiz-left img,.tdb_single_content .id_ad_content-horiz-right img,.tdb_single_content .id_ad_content-horiz-center img{margin-bottom:0}.tdb_single_content .id_ad_content-horiz-center{text-align:center}.tdb_single_content .id_ad_content-horiz-center img{margin-right:auto;margin-left:auto}.tdb_single_content .id_ad_content-horiz-left{float:left;margin-top:9px;margin-right:21px}.tdb_single_content .id_ad_content-horiz-right{float:right;margin-top:6px;margin-left:2",
@@ -2576,6 +2034,126 @@
         "confidence": 0.55,
         "duplicateKey": "scholarship region::scholarship region::https://www.scholarshipregion.com/western-union-foundation-fellowship"
       }
+    },
+    {
+      "id": "www.chevening.org_chevening_sids-chevening-scholarship",
+      "name": "Chevening SIDS Scholarship",
+      "nameFull": "Chevening SIDS Scholarship",
+      "name_full": "Chevening SIDS Scholarship",
+      "displayName": "Chevening SIDS Scholarship",
+      "awardingBody": "Chevening",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "Commonwealth countries"
+        ],
+        "nationalityIsOpen": false,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.chevening.org/apply",
+        "portal": "https://www.chevening.org/apply",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Chevening SIDS Scholarship",
+        "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
+        "scrapedAt": "2026-05-18T19:57:45.868Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.6000000000000001,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 6
+      },
+      "source": {
+        "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
+        "sourceLabel": "Chevening Scholarships",
+        "scrapedAt": "2026-05-18T19:57:45.868Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.6000000000000001,
+        "rawText": "Applying for a Chevening Scholarship from a Commonwealth Small Island Developing State (SIDS)? Read on to find out more about the SIDS Chevening Scholarship and its benefits.",
+        "pageType": "unknown",
+        "pageTitle": "Chevening SIDS Scholarship",
+        "discoveryNotes": "Official flagship UK government scholarship scheme. Keep to award pages and eligibility routes; exclude navigation pages.",
+        "discoveryScore": 6,
+        "discoveryDepth": 0,
+        "sourceBrand": "Chevening",
+        "registrySourceType": "official_programme_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Online"
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "government",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.6000000000000001,
+        "duplicateKey": "chevening sids scholarship::chevening::https://www.chevening.org/apply"
+      },
+      "requirementsSummary": "Open to Commonwealth countries"
     },
     {
       "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co",
@@ -3371,120 +2949,6 @@
       "requirementsSummary": "Open to international applicants • Field: Sciences"
     },
     {
-      "id": "www.cambridgetrust.org_cambridge-trust-scholarships_find-a-scholarship",
-      "name": "The Cambridge Trust",
-      "nameFull": "The Cambridge Trust",
-      "name_full": "The Cambridge Trust",
-      "displayName": "The Cambridge Trust",
-      "awardingBody": "Cambridge Trust Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Arts and Humanities"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.cambridgetrust.org/find-a-scholarship",
-        "portal": "https://www.cambridgetrust.org/find-a-scholarship",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Find a scholarship - The Cambridge Trust"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
-        "scrapedAt": "2026-05-12T23:54:42.017Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.55,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
-        "sourceLabel": "Cambridge Trust Scholarships",
-        "scrapedAt": "2026-05-12T23:54:42.017Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.55,
-        "rawText": "Find a scholarship - The Cambridge Trust Skip to main content Scholarships Find a scholarship Postgraduate applicants Undergraduate applicants Guidance for awardees Vision &#038; Impact Our mission Impact About History and governance Meet the team Publications",
-        "pageType": "unknown",
-        "pageTitle": "Find a scholarship - The Cambridge Trust",
-        "discoveryNotes": "Official Cambridge Trust scholarship search. Prioritize scholarship listings that are open to international applicants and broad subject areas.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "foundation",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.55,
-        "duplicateKey": "the cambridge trust::cambridge trust scholarships::https://www.cambridgetrust.org/find-a-scholarship"
-      },
-      "requirementsSummary": "Open to international applicants • Field: Arts and Humanities"
-    },
-    {
       "id": "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars",
       "name": "The Cambridge Trust",
       "nameFull": "The Cambridge Trust",
@@ -3701,6 +3165,124 @@
         "confidence": 0.5,
         "duplicateKey": "scholarships cafe connecting qualified candidates to global opportunities in academia::scholarships cafe::https://scholarshipscafe.com/position-detail?id=5024"
       }
+    },
+    {
+      "id": "www.chevening.org_chevening_asean-chevening-scholarship",
+      "name": "Chevening ASEAN Scholarship",
+      "nameFull": "Chevening ASEAN Scholarship",
+      "name_full": "Chevening ASEAN Scholarship",
+      "displayName": "Chevening ASEAN Scholarship",
+      "awardingBody": "Chevening",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.chevening.org/apply",
+        "portal": "https://www.chevening.org/apply",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Chevening ASEAN Scholarship",
+        "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
+        "scrapedAt": "2026-05-18T19:57:38.886Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.43,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 6
+      },
+      "source": {
+        "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
+        "sourceLabel": "Chevening Scholarships",
+        "scrapedAt": "2026-05-18T19:57:38.886Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.43,
+        "rawText": "Applying for a Chevening Scholarship from an ASEAN member state or Timor-Leste? Read on to find out more about the ASEAN Chevening Scholarship and its benefits.",
+        "pageType": "unknown",
+        "pageTitle": "Chevening ASEAN Scholarship",
+        "discoveryNotes": "Official flagship UK government scholarship scheme. Keep to award pages and eligibility routes; exclude navigation pages.",
+        "discoveryScore": 6,
+        "discoveryDepth": 0,
+        "sourceBrand": "Chevening",
+        "registrySourceType": "official_programme_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Online"
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "government",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.43,
+        "duplicateKey": "chevening asean scholarship::chevening::https://www.chevening.org/apply"
+      },
+      "requirementsSummary": "Open to international applicants"
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c",
@@ -4039,118 +3621,6 @@
       "requirementsSummary": "Open to international applicants"
     },
     {
-      "id": "www.chevening.org_chevening_asean-chevening-scholarship",
-      "name": "Chevening ASEAN Scholarship",
-      "nameFull": "Chevening ASEAN Scholarship | Chevening",
-      "name_full": "Chevening ASEAN Scholarship | Chevening",
-      "displayName": "Chevening ASEAN Scholarship",
-      "awardingBody": "Chevening",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.chevening.org/asean-chevening-scholarship",
-        "portal": "https://www.chevening.org/fellowships/who-can-apply",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Chevening ASEAN Scholarship | Chevening"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
-        "scrapedAt": "2026-05-12T23:53:23.096Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
-        "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:53:23.096Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Chevening ASEAN Scholarship | Chevening End Facebook Pixel Code --> Skip to content End Google Tag Manager (noscript) --> Resource Hub Application guidance Scholar support Alumni resources Scholarships Why study in the UK? Who can apply? Application timeline F",
-        "pageType": "unknown",
-        "pageTitle": "Chevening ASEAN Scholarship | Chevening",
-        "discoveryNotes": "Official UK government international scholarships and fellowships programme. Prioritize awards that are open to applicants from many countries.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "government",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "chevening asean scholarship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      },
-      "requirementsSummary": "Open to international applicants"
-    },
-    {
       "id": "www.chevening.org_chevening_fellowship-chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fell",
       "name": "Chevening Overseas Territories In The Atlantic And Caribbean British Library Fellowship",
       "nameFull": "Chevening Overseas Territories in the Atlantic and Caribbean British Library Fellowship | Chevening",
@@ -4259,118 +3729,6 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "chevening overseas territories in the atlantic and caribbean british library fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply"
-      },
-      "requirementsSummary": "Open to international applicants"
-    },
-    {
-      "id": "www.chevening.org_chevening_sids-chevening-scholarship",
-      "name": "Chevening SIDS Scholarship",
-      "nameFull": "Chevening SIDS Scholarship | Chevening",
-      "name_full": "Chevening SIDS Scholarship | Chevening",
-      "displayName": "Chevening SIDS Scholarship",
-      "awardingBody": "Chevening",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.chevening.org/sids-chevening-scholarship",
-        "portal": "https://www.chevening.org/fellowships/who-can-apply",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Chevening SIDS Scholarship | Chevening"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
-        "scrapedAt": "2026-05-12T23:53:20.242Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
-        "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:53:20.242Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Chevening SIDS Scholarship | Chevening End Facebook Pixel Code --> Skip to content End Google Tag Manager (noscript) --> Resource Hub Application guidance Scholar support Alumni resources Scholarships Why study in the UK? Who can apply? Application timeline Fi",
-        "pageType": "unknown",
-        "pageTitle": "Chevening SIDS Scholarship | Chevening",
-        "discoveryNotes": "Official UK government international scholarships and fellowships programme. Prioritize awards that are open to applicants from many countries.",
-        "discoveryScore": 6,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "government",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "chevening sids scholarship::chevening::https://www.chevening.org/fellowships/who-can-apply"
       },
       "requirementsSummary": "Open to international applicants"
     },
@@ -4931,230 +4289,6 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "declared awards::oxford graduate scholarships::https://www.ox.ac.uk/students/fees-funding/international"
-      },
-      "requirementsSummary": "Open to international applicants"
-    },
-    {
-      "id": "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility",
-      "name": "Eligibility For A Chevening Fellowship",
-      "nameFull": "Eligibility for a Chevening Fellowship | Chevening",
-      "name_full": "Eligibility for a Chevening Fellowship | Chevening",
-      "displayName": "Eligibility For A Chevening Fellowship",
-      "awardingBody": "Chevening",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
-        "portal": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Eligibility for a Chevening Fellowship | Chevening"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
-        "scrapedAt": "2026-05-12T23:53:30.669Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 6
-      },
-      "source": {
-        "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
-        "sourceLabel": "Chevening",
-        "scrapedAt": "2026-05-12T23:53:30.669Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Eligibility for a Chevening Fellowship | Chevening End Facebook Pixel Code --> Skip to content End Google Tag Manager (noscript) --> Resource Hub Application guidance Scholar support Alumni resources Scholarships Why study in the UK? Who can apply? Application",
-        "pageType": "unknown",
-        "pageTitle": "Eligibility for a Chevening Fellowship | Chevening",
-        "discoveryNotes": "Official UK government international scholarships and fellowships programme. Prioritize awards that are open to applicants from many countries.",
-        "discoveryScore": 6,
-        "discoveryDepth": 2
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "government",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "eligibility for a chevening fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility"
-      },
-      "requirementsSummary": "Open to international applicants"
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-undergraduate-fees-and-funding",
-      "name": "Fees And Funding",
-      "nameFull": "Fees and funding",
-      "name_full": "Fees and funding",
-      "displayName": "Fees And Funding",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
-        "portal": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-bursaries-and-scholarships",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "news",
-        "pageTitle": "Fees and funding | Oxford University"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
-        "scrapedAt": "2026-05-12T23:54:04.985Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:54:04.985Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Fees and funding | Oxford University Skip to main content Please enable JavaScript in your web browser to get the best experience. Supplementary navigation Admissions News Research Search Search Oxford Search the University of Oxford website or search for unde",
-        "pageType": "news",
-        "pageTitle": "Fees and funding | Oxford University",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "fees and funding::oxford graduate scholarships::https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-bursaries-and-scholarships"
       },
       "requirementsSummary": "Open to international applicants"
     },
@@ -6053,6 +5187,124 @@
         "duplicateKey": "host a chevening fellowship::chevening::https://www.chevening.org/fellowships/who-can-apply"
       },
       "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www2.daad.de_alexander-von-humboldt-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database",
+      "name": "Humboldt Research Fellowship for Experienced Researchers",
+      "nameFull": "Alexander von Humboldt Foundation: Humboldt Research Fellowship for Experienced Researchers",
+      "name_full": "Alexander von Humboldt Foundation: Humboldt Research Fellowship for Experienced Researchers",
+      "displayName": "Humboldt Research Fellowship for Experienced Researchers",
+      "awardingBody": "Alexander von Humboldt Foundation",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": "https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/humboldt-research-fellowship",
+        "portal": "https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/humboldt-research-fellowship",
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Alexander von Humboldt Foundation: Humboldt Research Fellowship for Experienced Researchers",
+        "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000169"
+      },
+      "provenance": {
+        "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000169",
+        "scrapedAt": "2026-05-18T19:56:57.588Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.38,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000169",
+        "sourceLabel": "DAAD Scholarship Database",
+        "scrapedAt": "2026-05-18T19:56:57.588Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "rawText": "Alexander von Humboldt Foundation: Humboldt Research Fellowship for Experienced Researchers",
+        "pageType": "unknown",
+        "pageTitle": "Alexander von Humboldt Foundation: Humboldt Research Fellowship for Experienced Researchers",
+        "discoveryNotes": "Highest-priority official scholarship database for Germany. Prefer programme detail pages over news and overview pages.",
+        "sourceBrand": "DAAD",
+        "registrySourceType": "official_programme_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "Germany",
+        "registryCity": "Online",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.38,
+        "duplicateKey": "humboldt research fellowship for experienced researchers::alexander von humboldt foundation::https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/humboldt-research-fellowship"
+      }
     },
     {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where",
@@ -7171,118 +6423,6 @@
         ],
         "confidence": 0.38,
         "duplicateKey": "scholarships::oxford graduate scholarships::https://eit.org/ellisonscholars/graduate-apply"
-      },
-      "requirementsSummary": "Open to international applicants"
-    },
-    {
-      "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year",
-      "name": "Scholarships",
-      "nameFull": "Scholarships",
-      "name_full": "Scholarships",
-      "displayName": "Scholarships",
-      "awardingBody": "KU Leuven Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.kuleuven.be/scholarships/year",
-        "portal": "https://www.kuleuven.be/scholarships/year",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Scholarships"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.kuleuven.be/scholarships/year",
-        "scrapedAt": "2026-05-12T23:54:46.419Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 9
-      },
-      "source": {
-        "sourceUrl": "https://www.kuleuven.be/scholarships/year",
-        "sourceLabel": "KU Leuven Scholarships",
-        "scrapedAt": "2026-05-12T23:54:46.419Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Scholarships KU Leuven Home Scholarships Home Toggle nav --> Scholarships Explore scholarships at KU Leuven in Belgium: find funding opportunities for international and domestic students to support your studies and research. https://www.kuleuven.be/scholarship",
-        "pageType": "unknown",
-        "pageTitle": "Scholarships",
-        "discoveryNotes": "KU Leuven scholarship pages for international students and masters/PhD routes in a NATO country. Prioritize international and merit-based awards.",
-        "discoveryScore": 9,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "scholarships::ku leuven scholarships::https://www.kuleuven.be/scholarships/year"
       },
       "requirementsSummary": "Open to international applicants"
     },
@@ -9852,229 +8992,6 @@
       "requirementsSummary": "Open to international applicants"
     },
     {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-veterans-affairs",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
-        "scrapedAt": "2026-05-12T23:54:37.284Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:54:37.284Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:55:18.620Z",
-      "promotedAt": "2026-05-12T23:55:18.620Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns"
-      },
-      "requirementsSummary": "Open to international applicants"
-    },
-    {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding",
-      "name": "Just A Moment...",
-      "nameFull": "Just a moment...",
-      "name_full": "Just a moment...",
-      "displayName": "Just A Moment...",
-      "awardingBody": "Oxford Graduate Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding?__cf_chl_rt_tk=V5B58Db2lBsQvjuXh5AbuA2V5IcNGHUHloyVMtLOnQ4-1778628223-1.0.1.1-Z7oWcFiQ.jljM1SglANWbufav6I5I3eWEdvzM8GsJWo",
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "unknown",
-        "pageTitle": "Just a moment..."
-      },
-      "provenance": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding?__cf_chl_rt_tk=V5B58Db2lBsQvjuXh5AbuA2V5IcNGHUHloyVMtLOnQ4-1778628223-1.0.1.1-Z7oWcFiQ.jljM1SglANWbufav6I5I3eWEdvzM8GsJWo",
-        "scrapedAt": "2026-05-12T23:23:43.260Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.38,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 8
-      },
-      "source": {
-        "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding?__cf_chl_rt_tk=V5B58Db2lBsQvjuXh5AbuA2V5IcNGHUHloyVMtLOnQ4-1778628223-1.0.1.1-Z7oWcFiQ.jljM1SglANWbufav6I5I3eWEdvzM8GsJWo",
-        "sourceLabel": "Oxford Graduate Scholarships",
-        "scrapedAt": "2026-05-12T23:23:43.260Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "rawText": "Just a moment... Enable JavaScript and cookies to continue",
-        "pageType": "unknown",
-        "pageTitle": "Just a moment...",
-        "discoveryNotes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants.",
-        "discoveryScore": 8,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "unknown",
-      "status": "unknown",
-      "urgency": "green",
-      "reviewStatus": "approved",
-      "reviewNotes": "",
-      "reviewedAt": "2026-05-12T23:24:36.300Z",
-      "promotedAt": "2026-05-12T23:24:36.300Z",
-      "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.38,
-        "duplicateKey": "just a moment...::oxford graduate scholarships::https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding?__cf_chl_rt_tk=V5B58Db2lBsQvjuXh5AbuA2V5IcNGHUHloyVMtLOnQ4-1778628223-1.0.1.1-Z7oWcFiQ.jljM1SglANWbufav6I5I3eWEdvzM8GsJWo"
-      }
-    },
-    {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-employment",
       "name": "Just A Moment...",
       "nameFull": "Just a moment...",
@@ -10297,6 +9214,1665 @@
         "duplicateKey": "stories of impact | mastercard foundation scholars program::mastercard foundation scholars::https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories"
       },
       "requirementsSummary": "Open to international applicants"
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-marshall-phd-scholarship",
+      "name": "Cambridge Marshall PhD Scholarship",
+      "nameFull": "Cambridge Marshall PhD Scholarship",
+      "name_full": "Cambridge Marshall PhD Scholarship",
+      "displayName": "Cambridge Marshall PhD Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": true,
+        "visaFees": false,
+        "numericAmount": 3000,
+        "amountGBP": 3000,
+        "amountType": "annual",
+        "currency": "GBP",
+        "rawAmountString": "£3,000 ",
+        "rawAmount": "£3,000 "
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Business"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Cambridge Marshall PhD Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
+        "scrapedAt": "2026-05-18T20:00:29.286Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.78,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:29.286Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.78,
+        "rawText": "Scholarship information The Cambridge Marshall PhD Scholarship is available to PhD applicants from the USA who are recipients of a two-year Marshall Scholarship. The scholarship funds the third year of a three-year PhD course in any subject excluding premium rate courses and is tenable at any College of the University of Cambridge. Offered in partnership with The Marshall Commission. See here for more information on Marshall Scholarships. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. An economy airfare to the UK, and an economy airfare from the UK to the student’s country of residence, by the lowest cost available route Additional allowances: Transport allowance. Academic allowance. Leadership allowance. Other benefits up to £3,000 in excess of the maintenance. Conditions Applicants should be US citizens who are recipients of a two-year Marshall Scholarship which they intend to apply to fund a PhD course at the University of Cambridge. This scholarship is not available for the Doctor of Business course. How to apply To ensure that they are considered for this scholarship, applicants must follow both of the following steps: Be a recipient of a two-year Marshall Scholarship, for which a separate application is required; AND Apply for admission to the University of Cambridge by the funding deadline specific to their course (please refer to the Postgraduate Course Directory) and have a conditional offer of admission. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Cambridge Marshall PhD Scholarship The Marshall Commission is responsible for the Marshall Scholarship Programme, named in honour of George C Marshall, US Secretary of State from 1950 to 1951. Marshall Scholarships finance young Americans of high ability to study for a degree in the UK. The Cambridge Marshall Scholarship is co-funded by the Mars",
+        "pageType": "detail",
+        "pageTitle": "Cambridge Marshall PhD Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Business",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.78,
+        "duplicateKey": "cambridge marshall phd scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
+      "name": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+      "nameFull": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+      "name_full": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+      "displayName": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "partial",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": true,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": 42620,
+        "amountGBP": 42620,
+        "amountType": "annual",
+        "currency": "GBP",
+        "rawAmountString": "£42,620 ",
+        "rawAmount": "£42,620 "
+      },
+      "eligibility": {
+        "nationalities": [
+          "Commonwealth countries"
+        ],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education",
+          "Business"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
+        "scrapedAt": "2026-05-18T20:00:31.872Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.78,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:31.872Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.78,
+        "rawText": "Scholarship information Cambridge Opportunity Studentships are for Masters students from low-income households with experience of educational disadvantage who are set at the Home rate for fees. Get In Cambridge Studentships follow the same criteria and are reserved to address under-representation of students from Black, British Bangladeshi or British Pakistani backgrounds. Value Both studentships are intended to cover University fees and living expenses when the maximum postgraduate grant/loan is taken with government student finance. For more information about postgraduate loans, please visit https://www.postgraduate.study.cam.ac.uk/funding/external-funding Conditions Essential criteria: Applicants must not already be qualified at Masters level or higher, nor currently undertaking postgraduate study. You must also be able to agree with the following statement, and to provide evidence on request: I do not have the existing financial means (in the form of savings, assets, other awards, or an income independent of hours worked) to finance the proposed course of study Additional criteria: In addition to the essential criteria above, one or more of the following should apply to you. If there are other challenging life circumstances you feel should be taken into account, for example, educational disruption due to moving school or illness, doing paid work during full-time undergraduate study, circumstances that limited your choice of undergraduate university, an unusual route to postgraduate study, or anything else, then you may be eligible. Please detail this in the relevant section on the questionnaire. You have Refugee status or humanitarian protection in the UK. At secondary school: You were in receipt of Free Schools Meals. You spent time in local authority care or as a Foyer resident. You were a young carer with caring responsibilities for a family member who could not cope without your practical support. You lived in one of the most deprived areas of the country. (",
+        "pageType": "detail",
+        "pageTitle": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education, Business",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.78,
+        "duplicateKey": "cambridge opportunity studentships and get in cambridge studentships::cambridge trust::https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships"
+      }
+    },
+    {
+      "id": "foreign.fulbrightonline.org_fulbright_about-foreign-student-program",
+      "name": "Fulbright Foreign Student Program",
+      "nameFull": "Fulbright Foreign Student Program",
+      "name_full": "Fulbright Foreign Student Program",
+      "displayName": "Fulbright Foreign Student Program",
+      "awardingBody": "Fulbright",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Foreign Fulbright Program - Foreign Student Program",
+        "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program"
+      },
+      "provenance": {
+        "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
+        "scrapedAt": "2026-05-18T19:57:52.206Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.5800000000000001,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 7
+      },
+      "source": {
+        "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
+        "sourceLabel": "Fulbright Foreign Student Program",
+        "scrapedAt": "2026-05-18T19:57:52.206Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.5800000000000001,
+        "rawText": "I am: Choose... Non-U.S. Student Current U.S. Student U.S. Citizen but not a student U.S. Professor Non-U.S. Professor Non-U.S. Student If you are a non-U.S. citizen looking to applying for a Fulbright grant to study in the United States you will apply to the Fulbright Commissions/Foundations or U.S. Embassy in your home country. Current U.S. Student If you are a U.S. citizen currently enrolled in an undergraduate or graduate degree program, please visit our Fulbright U.S. Student Program site. U.S. Citizen but not a Student If you are a U.S. citizen, hold a bachelor’s degree, and do not have a PhD degree then you could be eligible for certain awards within the Fulbright U.S. Student Program. Please review the program summary for the country where you would like to apply. U.S. Professor If you are a U.S. citizen and a professor at a U.S. institution and are interested in applying for a Fulbright Scholar Award you will need to apply through fulbrightscholars.org. Non-U.S. Professor If you are a non-U.S. citizen and a professor interested in applying for a Fulbright Scholar Award in the United States you need to apply through the Fulbright Commission or U.S. Embassy in your home country. Find out more information on the Fulbright Visiting Scholar Program. Contact Us AboutHistoryForeign Student ProgramFLTA ProgramPartner AgenciesFulbrighter BlogContact UsApplyHost InstitutionsForeign Student ProgramVisiting Student ResearchersFLTA ProgramFLTA - Thinking of ApplyingFLTA - Pre-Arrival InformationFLTA - During the ProgramFLTA - Best PracticesFLTA - Policies & ProceduresFLTA - Help Your FLTA Navigate Common IssuesFLTA - Working with the IIE AdvisorFLTA - ResourcesFLTA - WebinarsCandidatesCurrent FulbrightersCommissions & PostsECAAlumniGrantee Directory Foreign Fulbright Program - Foreign Student Program HistoryForeign Student ProgramFLTA ProgramPartner AgenciesFulbrighter BlogContact Us Fulbright Foreign Student Program The Fulbright Foreign Student Program enables graduat",
+        "pageType": "detail",
+        "pageTitle": "Foreign Fulbright Program - Foreign Student Program",
+        "discoveryNotes": "Official international Fulbright route. Prioritize country application pages and direct eligibility guidance.",
+        "sourceBrand": "Fulbright",
+        "registrySourceType": "official_programme_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United States",
+        "registryCity": "Online",
+        "discoveryScore": 7,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "government",
+      "requirementsSummary": "Open to international applicants • Field: Education",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.5800000000000001,
+        "duplicateKey": "fulbright foreign student program::fulbright::https://foreign.fulbrightonline.org/about/foreign-student-program"
+      }
+    },
+    {
+      "id": "www.studyinjapan.go.jp_mext_en-planning-scholarships-mext-scholarships",
+      "name": "Japanese Government (MEXT) Scholarship",
+      "nameFull": "Japanese Government (MEXT) Scholarship",
+      "name_full": "Japanese Government (MEXT) Scholarship",
+      "displayName": "Japanese Government (MEXT) Scholarship",
+      "awardingBody": "MEXT",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": true,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education",
+          "Health Sciences",
+          "Linguistics",
+          "Agriculture",
+          "Sciences"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Japanese Government (MEXT) Scholarship",
+        "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
+        "scrapedAt": "2026-05-18T19:58:01.468Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.5800000000000001,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 8
+      },
+      "source": {
+        "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
+        "sourceLabel": "MEXT Scholarships",
+        "scrapedAt": "2026-05-18T19:58:01.468Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.5800000000000001,
+        "rawText": "Planning to Study in Japan Scholarships HOME Planning to Study in Japan Scholarships Japanese Government (MEXT) Scholarship Table of contents Types Types and Their Status Eligibility Examinations Required for Embassy Recommendation Application Process 1. Embassy recommendation 2. University recommendation Japanese Government (MEXT) Scholarship Applicant Qualifying Examinations - Subject Test Questions Japanese Government (MEXT) Scholarship Types As seen in the chart below, there are seven types of the Japanese Government (Monbukagakusho) Scholarship program. They are Research students, Teacher training students, Undergraduate students, Japanese studies students, college of technology students, Specialized training college students, and Young Leaders Program (YLP) students.Those who wish to study abroad are required to apply in one of two ways: embassy recommendation or university recommendation. Please see the application selection process for details. With regard to application qualifications and procedures, in addition to the actual contents, there are also cases when detailed requirements are established. Because of this, be sure to confirm the latest edition of the application guidelines. If the application qualifications differ from the application guidelines, the contents of the guidelines should be followed. Types and Their Status Research students Teacher training students Undergraduate students Japanese studies students College of technology students Specialized training college students Young leaders program (YLP) students (*2) Embassy recommendation Yes Yes Yes Yes Yes Yes No University recommendation (*1) Yes No Yes Yes Yes (Recommendation by College of technology) No No Level of studies Graduate school level Undergraduate level Graduate school level Duration [Embassy Recommendation] Irregular course: within 2 years Regular course: standard school year (when necessary, 6 months preliminary education will be added)[University Recommendation] Duration depe",
+        "pageType": "detail",
+        "pageTitle": "Japanese Government (MEXT) Scholarship",
+        "discoveryNotes": "Official Japanese government scholarship source. Best for structured MEXT routes and application-path modelling.",
+        "sourceBrand": "MEXT",
+        "registrySourceType": "official_programme_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "Japan",
+        "registryCity": "Online",
+        "discoveryScore": 8,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "government",
+      "requirementsSummary": "Open to international applicants • Field: Education, Health Sciences, Linguistics",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.5800000000000001,
+        "duplicateKey": "japanese government (mext) scholarship::mext::https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-aker-scholarship-at-university-of-cambridge",
+      "name": "Aker Cambridge Scholarship",
+      "nameFull": "Aker Cambridge Scholarship",
+      "name_full": "Aker Cambridge Scholarship",
+      "displayName": "Aker Cambridge Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": true,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Aker Cambridge Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
+        "scrapedAt": "2026-05-18T20:00:08.088Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:08.088Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information The Aker Cambridge Scholarship is available to Masters and PhD applicants from Norway or with a strong link to Norway. The scholarship is tenable at any College of the University of Cambridge and in any subject. Offered in partnership with Anne Grete Eidsvig and Kjell Inge Røkkes Charitable Foundation for Education, Norway. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. An economy airfare to the UK at the start of study, and an economy airfare from the UK to the student’s country of residence at the end of study, by the lowest cost available route. Conditions Successful applicants will have to agree to Aker Scholarship’s terms and conditions. How to apply To ensure that they are considered for this scholarship, applicants must follow both of the following steps: Apply direct to the Aker Scholarship in the year before that in which they wish to start their studies in Cambridge; AND Apply for admission to the University of Cambridge by the funding deadline specific to their course. Please refer to the Postgraduate Course Directory. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Aker Cambridge Scholarship The Aker Scholarship was established in 2015 by the ‘Anne Grete Eidsvig and Kjell Inge Røkke Charitable Foundation for Education’ in cooperation with Aker ASA. The programme supports top Norwegian students so that they can learn from the best in the world, regardless of their family or financial situation. Scholarships are awarded to students in all fields of study. Its aim is to give talented and ambitious young Norwegian students the opportunity to gain knowledge, inspiration and experience by taking postgraduate degrees at the world’s leading universities.",
+        "pageType": "detail",
+        "pageTitle": "Aker Cambridge Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "aker cambridge scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-beit-cambridge-scholarship",
+      "name": "Beit Cambridge Scholarship",
+      "nameFull": "Beit Cambridge Scholarship",
+      "name_full": "Beit Cambridge Scholarship",
+      "displayName": "Beit Cambridge Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": true,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education",
+          "Business"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Beit Cambridge Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
+        "scrapedAt": "2026-05-18T20:00:10.834Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:10.834Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information The Beit Cambridge Scholarship is available to Masters applicants normally resident in Zambia, Zimbabwe or Malawi. The scholarship is tenable at any College and in any subject excluding premium rate courses. Offered in partnership with The Beit Trust. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. TB and biometric costs. An economy airfare to the UK, and an economy airfare from the UK to the student’s country of residence, by the lowest cost available route. An allowance package (arrival allowance and departure allowance). Laptop allowance, where requested by the scholar. Conditions Applicants must: Show evidence of intention to return to their home country at the end of the period of study. Meet the Beit Trust’s eligibility requirements. Hold a degree equivalent to at least a good undergraduate degree from a recognised university. Priority will be given to candidates who already have some work experience. Employees or employees’ relatives of the Beit Trust or the University of Cambridge (or former employees who have left employment less than two years before) will not be eligible to apply for these awards. This scholarship is not available for students taking the following courses: Master of Business (MBA) Executive Master of Business Administration (EMBA) Global Executive Master of Business Administration (Global EMBA) Master of Finance (MFin) Master of Accounting (MAcc) How to apply To ensure that they are considered for this scholarship, applicants must follow both of the following steps: Apply for admission to the University of Cambridge by the funding deadline specific to their course (please refer to the Postgraduate Course Directory) and get a conditional offer of admission; AND Check with The Beit Trust for funding call deadlines and details of the application process, and apply accordingly. For more information please visit o",
+        "pageType": "detail",
+        "pageTitle": "Beit Cambridge Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education, Business",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "beit cambridge scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-bhutan-kings-scholarship-at-the-university-of-cambridge",
+      "name": "Bhutan King’s Scholarship at the University of Cambridge",
+      "nameFull": "Bhutan King’s Scholarship at the University of Cambridge",
+      "name_full": "Bhutan King’s Scholarship at the University of Cambridge",
+      "displayName": "Bhutan King’s Scholarship at the University of Cambridge",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Engineering",
+          "Education",
+          "Health Sciences",
+          "Business",
+          "Economics",
+          "Law",
+          "Arts and Humanities",
+          "Sciences"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Bhutan King’s Scholarship at the University of Cambridge",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
+        "scrapedAt": "2026-05-18T20:00:16.006Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:16.006Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information The Bhutan King’s Scholarship is available to Masters applicants who are resident citizens of Bhutan. The scholarship is tenable at any College within the University of Cambridge. Offered in partnership with The Kidu Foundation. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. Travel expenses. Conditions Applicants should show a firm commitment to return to work in Bhutan after completion of the degree. Priority will be given to those applying for courses within the fields of: Economics Education Engineering Environmental Studies International Relations Law Management Mathematics and Science Political Science Public Health and Medicine Public Policy How to apply No separate application is required for this scholarship, only the application for admission to the University of Cambridge, which must be submitted by the funding deadline specific to your course. Please refer to the Postgraduate Course Directory. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Bhutan King’s Scholarship at the University of Cambridge The Kidu Foundation began with an incredible act of kindness. When natural disasters struck Bhutan in 2009, people from all over responded with an outpouring of donations – both money and supplies – to help those affected. This generosity was so overwhelming that it led to the creation of the Kidu Foundation. Today, the foundation works hand-in-hand with the Bhutanese government to tackle some of the country’s most important challenges. They focus on areas including education, rule of law and democracy, sustainable economic development and environmental and cultural protection. What makes this foundation special is its deep roots in Bhutan’s culture. The word ‘Kidu’ means ‘wellbeing’ – and taking care of people’s wellbeing has always been something special about Bhutan’s king",
+        "pageType": "detail",
+        "pageTitle": "Bhutan King’s Scholarship at the University of Cambridge",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Engineering, Education, Health Sciences",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "bhutan kings scholarship at the university of cambridge::cambridge trust::https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-brockmann-cambridge-scholarship-2",
+      "name": "Brockmann Cambridge Scholarship",
+      "nameFull": "Brockmann Cambridge Scholarship",
+      "name_full": "Brockmann Cambridge Scholarship",
+      "displayName": "Brockmann Cambridge Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education",
+          "Business"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Brockmann Cambridge Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
+        "scrapedAt": "2026-05-18T20:00:18.555Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:18.555Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information The Brockmann Cambridge Scholarship is available to Masters applicants from Mexico, in any subject except Master of Business, Executive Master of Business Administation and Global EMBA, Master of Finance and Executive Master of Accounting, which are not supported under this award. The scholarship is tenable at any College and is offered in partnership with The Becas Magdalena O.Vda de Brockmann Foundation. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. Conditions Applicants must have completed a four-year undergraduate degree in any field, terminating with a diploma, showing good academic progress. Successful applicants must: Agree to Brockmann Foundation’s terms and conditions including the requirement to return and work in Mexico within six months of completing the degree at the University, or within one year if the recipient is authorised in writing by the Brockmann Foundation to stay in the UK for professional practices related to his/her Masters degree. Agree to accept the Brockmann Foundation’s terms of support which require repayment of 30% of the Brockmann Foundation’s portion of the scholarship interest free on return to Mexico after completion of studies. This scholarship is not available for students taking the following courses: Master of Business (MBA) Executive Master of Business Administration (EMBA) Global Executive Master of Business Administration (Global EMBA) Master of Finance (MFin) Master of Accounting (MAcc) How to apply To ensure that they are considered for this scholarship, applicants must follow both of the following steps: Check with Becas Magdalena O.Vda de Brockmann for funding call deadlines and details of the application process, and apply accordingly; AND Apply for admission to the University of Cambridge by the funding deadline specific to their course. Please refer to the Postgraduate Course Directory",
+        "pageType": "detail",
+        "pageTitle": "Brockmann Cambridge Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education, Business",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "brockmann cambridge scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-bseisu-university-of-cambridge-scholarship",
+      "name": "Bseisu-University of Cambridge Scholarship",
+      "nameFull": "Bseisu-University of Cambridge Scholarship",
+      "name_full": "Bseisu-University of Cambridge Scholarship",
+      "displayName": "Bseisu-University of Cambridge Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education",
+          "Business",
+          "Economics",
+          "Arts and Humanities"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Bseisu-University of Cambridge Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
+        "scrapedAt": "2026-05-18T20:00:21.189Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:21.189Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information This scholarship is available to Masters applicants who are citizens of Lebanon, Jordan, Palestine or Syria. It is tenable at any College. This scholarship is offered in partnership with The Amjad & Suha Bseisu Foundation. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. Conditions Priority will be given to candidates studying STEM subjects. This scholarship is not available for students taking the following courses: Master of Business (MBA) Executive Master of Business Administration (EMBA) Global Executive Master of Business Administration (Global EMBA) Master of Finance (MFin) Master of Accounting (MAcc) Any subjects offered by the School of Arts & Humanities. Any subjects offered by the School of Humanities & Social Sciences. How to apply No separate application is required for this scholarship; only the application for admission to the University of Cambridge, which must be submitted by the funding deadline specific to your course. Please refer to the Postgraduate Course Directory. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Bseisu-University of Cambridge Scholarship The mission of The Bseisu Foundation is to break down financial barriers that prevent talented young people in the Levant region – particularly Palestine, Syria, Lebanon and Jordan – from accessing higher education. They believe that the cornerstone of human development is empowering youth through access to education at the world’s best universities. With a primary focus on STEM degrees at the postgraduate level, they work with leading institutions such as the University of Cambridge, Oxford, Imperial College London and the London School of Economics to name a few. The programme expands into partnerships with the best universities in Malaysia and Palestine.",
+        "pageType": "detail",
+        "pageTitle": "Bseisu-University of Cambridge Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education, Business, Economics",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "bseisu-university of cambridge scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-africa-changemakers-scholarship",
+      "name": "Cambridge Africa Changemakers Scholarship",
+      "nameFull": "Cambridge Africa Changemakers Scholarship",
+      "name_full": "Cambridge Africa Changemakers Scholarship",
+      "displayName": "Cambridge Africa Changemakers Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "Commonwealth countries"
+        ],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education",
+          "Business"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Cambridge Africa Changemakers Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
+        "scrapedAt": "2026-05-18T20:00:13.425Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:13.425Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information The Cambridge Africa Changemakers Scholarship is a programme of full-cost scholarships for PhD students in any subject excluding premium rate courses, open to applicants from any country in Africa. It is tenable at any College within the University of Cambridge. It aims to provide support to talented students who require financial assistance to take up their places at the University, whose research contributes to the development of the continent and to climate-resilient and sustainable futures for Africa and the world. This scholarship programme is closely affiliated with the Mastercard Foundation scholars programme. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. Travel and research costs. Conditions Research area must contribute to the development of the African continent and to climate-resilient and sustainable futures for Africa and the world. This scholarship is not available for the Doctor of Business course. How to apply No separate application is required for this scholarship, only the application for admission to the University of Cambridge, which must be submitted by the funding deadline specific to your course. Please refer to the Postgraduate Course Directory. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Cambridge Africa Changemakers Scholarship The Cambridge Trust (Cambridge Commonwealth, European & International Trust) is an independent UK charity providing scholarships for outstanding international students to study at the University of Cambridge. It offers full-cost funding for PhD, Master’s and undergraduate studies to those with financial need, supporting diverse students from around the world to access education regardless of background, working with numerous partners. They award hundreds of scholarships annually, aiming to empower students and foster a glob",
+        "pageType": "detail",
+        "pageTitle": "Cambridge Africa Changemakers Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education, Business",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "cambridge africa changemakers scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-caribbean-scholarship",
+      "name": "Cambridge Caribbean Scholarship",
+      "nameFull": "Cambridge Caribbean Scholarship",
+      "name_full": "Cambridge Caribbean Scholarship",
+      "displayName": "Cambridge Caribbean Scholarship",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [
+          "Commonwealth countries"
+        ],
+        "nationalityIsOpen": true,
+        "disciplines": [
+          "Education"
+        ],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Cambridge Caribbean Scholarship",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
+        "scrapedAt": "2026-05-18T20:00:26.719Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.53,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:26.719Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "rawText": "Scholarship information The Cambridge Caribbean Scholarship is available to Masters and PhD applicants from the Caribbean. The Scholarship is tenable at any College of the University of Cambridge and in any subject. The Programme supports students of outstanding academic ability and it is hoped that alumni will form a cohort of talented people who contribute to the future development of the Caribbean region. Offered in partnership with the University of Cambridge and Trinity College. Value University tuition fee (International rate). Annual maintenance (sufficient for a single person). Student visa. Student Immigration Health Surcharge. Research allowance (PhD only). Conditions Research area must contribute to the future development of the Caribbean. How to apply No separate application is required for this scholarship, only the application for admission to the University of Cambridge, which must be submitted by the funding deadline specific to your course. Please refer to the Postgraduate Course Directory. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Cambridge Caribbean Scholarship The Cambridge Trust (Cambridge Commonwealth, European & International Trust) is an independent UK charity providing scholarships for outstanding international students to study at the University of Cambridge. It offers full-cost funding for PhD, Master’s and undergraduate studies to those with financial need, supporting diverse students from around the world to access education regardless of background, working with numerous partners. They award hundreds of scholarships annually, aiming to empower students and foster a global community of scholars.",
+        "pageType": "detail",
+        "pageTitle": "Cambridge Caribbean Scholarship",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants • Field: Education",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.53,
+        "duplicateKey": "cambridge caribbean scholarship::cambridge trust::https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship"
+      }
+    },
+    {
+      "id": "study.ed.ac.uk_university-of-edinburgh_postgraduate-fees-funding-funding-studies-scholarships",
+      "name": "University of Edinburgh Postgraduate Scholarships",
+      "nameFull": "University of Edinburgh Postgraduate Scholarships",
+      "name_full": "University of Edinburgh Postgraduate Scholarships",
+      "displayName": "University of Edinburgh Postgraduate Scholarships",
+      "awardingBody": "University of Edinburgh",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Scholarships",
+        "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships"
+      },
+      "provenance": {
+        "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
+        "scrapedAt": "2026-05-18T20:00:42.856Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.39,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
+        "sourceLabel": "University of Edinburgh Scholarships",
+        "scrapedAt": "2026-05-18T20:00:42.856Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.39,
+        "rawText": "Scholarships The University of Edinburgh and other institutions offer scholarships you can apply for to cover some or all of your postgraduate study costs. Scholarship providers You can apply for scholarships from a variety of institutions, including: the University of Edinburghgovernment agenciesresearch councilscharitable trustsexternal bodies like private companies Combining scholarships with other sources of funding Some scholarships will cover tuition fees and living costs, while others only cover full or partial tuition fees. If your scholarship only partially covers your study costs, you can combine it with funding from other sources, such as a postgraduate loan or personal savings. Educational loans for postgraduate study Other sources of funding for postgraduate study When to apply for scholarships You usually need to apply for your degree programme at the University of Edinburgh before you apply for scholarships that provide funding from the start of your studies. You should check scholarship application criteria carefully. Funding opportunities for current students become available throughout the year. Scholarships and funding opportunities Scholarship information by fee status or programme type We provide information on scholarships and funding opportunities depending on your fee status, school and degree programme. What fee status meansFunding for UK students Funding for international students Online learning scholarships Edinburgh 4 Learning funding opportunities for students at Edinburgh This article was published on 2025-10-07",
+        "pageType": "detail",
+        "pageTitle": "Scholarships",
+        "discoveryNotes": "Official university funding surface with postgraduate and research scholarship routes.",
+        "sourceBrand": "University of Edinburgh",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Edinburgh",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "university",
+      "requirementsSummary": "Open to international applicants",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.39,
+        "duplicateKey": "university of edinburgh postgraduate scholarships::university of edinburgh::https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships"
+      }
+    },
+    {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship",
+      "name": "Cambridge Australia Scholarships",
+      "nameFull": "Cambridge Australia Scholarships",
+      "name_full": "Cambridge Australia Scholarships",
+      "displayName": "Cambridge Australia Scholarships",
+      "awardingBody": "Cambridge Trust",
+      "coverage": {
+        "type": "tuition_only",
+        "tuition": true,
+        "tuitionCovered": true,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Cambridge Australia Scholarships",
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship"
+      },
+      "provenance": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
+        "scrapedAt": "2026-05-18T20:00:23.951Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.36,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
+        "sourceLabel": "Cambridge Trust Scholarship Search",
+        "scrapedAt": "2026-05-18T20:00:23.951Z",
+        "verified": false,
+        "needsVerification": [
+          "deadline"
+        ],
+        "confidence": 0.36,
+        "rawText": "Scholarship information The Cambridge Australia Scholarships are available to Masters and PhD applicants from Australia in all subjects. They are tenable at any College of the University of Cambridge. Offered in partnership with Cambridge Australia Scholarships. Value Masters: Part-cost scholarship. PhD: Full-cost scholarship, covering: University tuition fee (International rate). Annual maintenance (sufficient for a single person). Contribution towards student Immigration Health Surcharge. Contribution towards travel. How to apply No separate application is required for this scholarship, only the application for admission to the University of Cambridge, which must be submitted by the funding deadline specific to your course. Please refer to the Postgraduate Course Directory. For more information please visit our Postgraduate applicants page. Funding Partner: View Partner Profile Cambridge Australia Scholarships Cambridge Australia Scholarships (CAS) is a not-for-profit organisation that provides scholarships for outstanding Australian graduates to undertake Masters and PhD degrees at the University of Cambridge. Since its establishment in the 1980s (as the Cambridge Australia Trust), over 350 scholarships have been awarded in partnership with the Cambridge Trust under a variety of schemes, many of them named after donors or eminent Australian alumni. CAS relies on the generosity of its donors, and all of its scholarships are funded by private philanthropic gifts. In recognition of its generosity in funding Australian students at Cambridge, in 2011 CAS was inducted into the University’s Guild of Benefactors. Cambridge Australia Scholarships are funded jointly by CAS and the Cambridge Trust, and are available to Australian applicants at Masters and PhD level.",
+        "pageType": "detail",
+        "pageTitle": "Cambridge Australia Scholarships",
+        "discoveryNotes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality.",
+        "sourceBrand": "Cambridge Trust",
+        "registrySourceType": "official_university_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "United Kingdom",
+        "registryCity": "Cambridge",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "deadline"
+        ],
+        "confidence": 0.36,
+        "duplicateKey": "cambridge australia scholarships::cambridge trust::https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship"
+      }
+    },
+    {
+      "id": "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database",
+      "name": "Scholarship for International Students",
+      "nameFull": "Friedrich Ebert Foundation: Scholarship for International Students",
+      "name_full": "Friedrich Ebert Foundation: Scholarship for International Students",
+      "displayName": "Scholarship for International Students",
+      "awardingBody": "Friedrich Ebert Foundation",
+      "coverage": {
+        "type": "unknown",
+        "tuition": false,
+        "tuitionCovered": false,
+        "livingCovered": false,
+        "flightsCovered": false,
+        "visaFees": false,
+        "numericAmount": null,
+        "amountGBP": null,
+        "amountType": null,
+        "currency": "GBP",
+        "rawAmountString": null,
+        "rawAmount": null
+      },
+      "eligibility": {
+        "nationalities": [],
+        "nationalityIsOpen": true,
+        "disciplines": [],
+        "degreeClassMin": "",
+        "degreeClassRequired": null,
+        "ageLimitMin": null,
+        "ageLimitMax": null,
+        "workExperienceYearsMin": 0,
+        "employmentStatusAtApplication": null,
+        "languageReqs": {
+          "ielts": null,
+          "toefl": null,
+          "celpip": null,
+          "exemptions": []
+        },
+        "refereesRequired": 0,
+        "refereeCategories": [],
+        "targetInstitutions": [],
+        "targetProgrammes": [],
+        "notes": ""
+      },
+      "application": {
+        "url": null,
+        "portal": null,
+        "deadline": null,
+        "deadlineType": "unknown",
+        "deadlineRaw": null,
+        "deadlineIsApproximate": false,
+        "deadlineApproximationConfidence": 0,
+        "applicationOpensAt": null,
+        "requiredDocuments": [],
+        "essayPrompts": [],
+        "pageType": "detail",
+        "pageTitle": "Friedrich Ebert Foundation: Scholarship for International Students",
+        "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153"
+      },
+      "provenance": {
+        "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
+        "scrapedAt": "2026-05-18T19:56:53.125Z",
+        "lastVerifiedAt": null,
+        "verifiedBy": "",
+        "confidenceScore": 0.36,
+        "confidenceDecayRatePerDay": 0.001,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "sourceType": "scraped",
+        "discoveryScore": 9
+      },
+      "source": {
+        "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
+        "sourceLabel": "DAAD Scholarship Database",
+        "scrapedAt": "2026-05-18T19:56:53.125Z",
+        "verified": false,
+        "needsVerification": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.36,
+        "rawText": "Friedrich Ebert Foundation: Scholarship for International Students",
+        "pageType": "detail",
+        "pageTitle": "Friedrich Ebert Foundation: Scholarship for International Students",
+        "discoveryNotes": "Highest-priority official scholarship database for Germany. Prefer programme detail pages over news and overview pages.",
+        "sourceBrand": "DAAD",
+        "registrySourceType": "official_programme_directory",
+        "registryTrustTier": "tier_1",
+        "registryCountry": "Germany",
+        "registryCity": "Online",
+        "discoveryScore": 9,
+        "discoveryDepth": 0
+      },
+      "awardeeContributions": [],
+      "tags": [],
+      "fit_score_default": null,
+      "sourceKind": "static",
+      "verified": true,
+      "active": true,
+      "sourceType": "foundation",
+      "requirementsSummary": "Open to international applicants",
+      "status": "unknown",
+      "urgency": "green",
+      "reviewStatus": "approved",
+      "reviewNotes": "",
+      "reviewedAt": "2026-05-18T20:10:43.001Z",
+      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewChecks": {
+        "valid": true,
+        "flaggedFields": [
+          "amount",
+          "deadline"
+        ],
+        "confidence": 0.36,
+        "duplicateKey": "scholarship for international students::friedrich ebert foundation::https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153"
+      }
     }
   ]
 }

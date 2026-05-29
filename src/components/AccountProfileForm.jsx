@@ -4,6 +4,7 @@ import {
   getProfileCompletionLabel,
   getProfileSectionCompletion,
 } from "../lib/profileCompletion.js";
+import { resolveCandidateProfile } from "../lib/candidateProfile.js";
 
 const NATIONALITY_OPTIONS = [
   "Nigerian",
@@ -50,6 +51,22 @@ const DEGREE_LEVEL_OPTIONS = [
   { value: "MBA", label: "MBA" },
   { value: "Postgraduate", label: "Postgraduate" },
 ];
+
+const RESOLVED_FIELD_SECTION = {
+  nationality: "identity",
+  discipline: "academic",
+  degreeClass: "academic",
+  languageTests: "language",
+  workExpYears: "professional",
+};
+
+const RESOLVED_FIELD_LABEL = {
+  nationality: "Nationality",
+  discipline: "Discipline",
+  degreeClass: "Degree class",
+  languageTests: "Language scores",
+  workExpYears: "Work experience",
+};
 
 function getValueAtPath(source, path) {
   return path.reduce((value, key) => (value && typeof value === "object" ? value[key] : undefined), source);
@@ -152,8 +169,18 @@ export default function AccountProfileForm({
   saveProfileDraft,
   authUser,
 }) {
+  const currentProfile = useMemo(() => ({
+    ...(profile || {}),
+    ...(profileDraft || {}),
+    candidateProfile: profileDraft?.candidateProfile || profile?.candidateProfile || null,
+  }), [profile, profileDraft]);
   const completion = getProfileCompletion(profileDraft);
   const sections = useMemo(() => getProfileSectionCompletion(profileDraft), [profileDraft]);
+  const candidateResolution = useMemo(() => resolveCandidateProfile(currentProfile, {
+    candidateId: profile?.id || authUser?.id || "anonymous",
+  }), [authUser?.id, currentProfile, profile?.id]);
+  const verificationGaps = candidateResolution?.resolved?.verificationGaps || [];
+  const unresolvedConflicts = candidateResolution?.resolved?.unresolvedConflicts || [];
   const sectionRefs = useRef({});
 
   const updateDraftField = (path, value) => {
@@ -230,6 +257,58 @@ export default function AccountProfileForm({
           <div className="profile-session-copy">
             {authUser ? `Signed in as ${authUser.email || "your account"}.` : "Sign in to save your profile."}
           </div>
+        </div>
+
+        <div className="profile-verification-card">
+          <div className="profile-section-nav-title">Verification Signals</div>
+          <div className="profile-verification-copy">
+            CV-derived fields are treated as provisional until they agree with your profile or you confirm them here.
+          </div>
+          <div className="profile-verification-stats">
+            <div className="profile-verification-stat">
+              <strong>{unresolvedConflicts.length}</strong>
+              <span>Conflicts</span>
+            </div>
+            <div className="profile-verification-stat">
+              <strong>{verificationGaps.length}</strong>
+              <span>Needs verification</span>
+            </div>
+          </div>
+          {unresolvedConflicts.length > 0 && (
+            <div className="profile-verification-list">
+              {unresolvedConflicts.map((item) => (
+                <button
+                  key={`conflict-${item.field}`}
+                  type="button"
+                  className="profile-verification-item is-conflict"
+                  onClick={() => jumpToSection(RESOLVED_FIELD_SECTION[item.field] || "identity")}
+                >
+                  <span>{RESOLVED_FIELD_LABEL[item.field] || item.field}</span>
+                  <strong>Conflict</strong>
+                </button>
+              ))}
+            </div>
+          )}
+          {verificationGaps.length > 0 && (
+            <div className="profile-verification-list">
+              {verificationGaps.map((item) => (
+                <button
+                  key={`gap-${item.field}`}
+                  type="button"
+                  className="profile-verification-item"
+                  onClick={() => jumpToSection(RESOLVED_FIELD_SECTION[item.field] || "identity")}
+                >
+                  <span>{RESOLVED_FIELD_LABEL[item.field] || item.field}</span>
+                  <strong>Review</strong>
+                </button>
+              ))}
+            </div>
+          )}
+          {!unresolvedConflicts.length && !verificationGaps.length && (
+            <div className="profile-verification-ok">
+              Your confirmed profile and latest CV extraction are aligned on the fields the matcher is using.
+            </div>
+          )}
         </div>
       </aside>
 

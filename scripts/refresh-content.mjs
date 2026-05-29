@@ -5,7 +5,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { buildScholarshipEmbeddingText, buildScholarshipSemanticTags } from "../src/lib/embeddingText.js";
 import { classifyOpportunityFocus } from "../src/lib/opportunitySignals.js";
 import {
+  canonicalizeScholarshipName,
   cleanScholarshipName,
+  isGenericScholarshipName,
   normalizeText,
   normalizeUrl,
   titleCase,
@@ -79,6 +81,60 @@ function inferLanguageRequirement(eligibility = {}) {
   return null;
 }
 
+function isTrustedPublishedApplicationUrl(candidateUrl, sourceUrl) {
+  const href = normalizeUrl(candidateUrl || "");
+  const source = normalizeUrl(sourceUrl || "");
+  if (!href) return null;
+  try {
+    const url = new URL(href);
+    const sourceParsed = source ? new URL(source) : null;
+    const sameUrl = source && href === source;
+    const sameHost = sourceParsed ? url.hostname === sourceParsed.hostname : false;
+    const signal = `${url.hostname} ${url.pathname}`.toLowerCase();
+    const blacklist = /\b(blog|blogs|news|article|articles|timeline|current-scholars|who-can-apply|funding-options|find-a-scholarship)\b/;
+    const strongPathSignal = /\b(apply|application|admission|admissions|portal|register|registration|login|signup|sign-up|dreamapply|applynow|enroll)\b/;
+    if (sameUrl || blacklist.test(signal)) return null;
+    if (strongPathSignal.test(signal)) return href;
+    if (!sameHost) return null;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function inferPublishedCountry(item = {}) {
+  const values = [
+    item?.country,
+    item?.city,
+    item?.location,
+    item?.name,
+    item?.nameFull,
+    item?.name_full,
+    item?.awardingBody,
+    item?.source?.sourceLabel,
+    item?.source?.sourceUrl,
+    item?.application?.sourceUrl,
+    item?.application_url,
+    item?.application_portal,
+    item?.sourceUrl,
+    item?.source_url,
+  ]
+    .map((value) => normalizeText(value).toLowerCase())
+    .filter(Boolean)
+    .join(" ");
+
+  const mappings = [
+    { pattern: /\b(uk|united kingdom|britain|british|england|scotland|wales|oxford|cambridge|chevening)\b/, value: "UK" },
+    { pattern: /\b(usa|us|united states|american|fulbright)\b/, value: "US" },
+    { pattern: /\bcanada|canadian|ubc|mcgill\b/, value: "Canada" },
+    { pattern: /\baustralia|australian\b/, value: "Australia" },
+    { pattern: /\beurope|european|germany|france|netherlands|sweden|norway|denmark|ireland|daad\b/, value: "Europe" },
+  ];
+
+  const match = mappings.find((entry) => entry.pattern.test(values));
+  return match?.value || null;
+}
+
 function inferDisciplineRequirements(eligibility = {}) {
   return [...new Set([
     ...(Array.isArray(eligibility.disciplines) ? eligibility.disciplines : []),
@@ -147,6 +203,7 @@ function isPublishableScholarshipRecord(item = {}) {
   const reviewStatus = String(item?.reviewStatus || item?.scholarship?.reviewStatus || "").toLowerCase();
   const verified = item?.source?.verified === true || item?.scholarship?.source?.verified === true || item?.verified === true;
   const isApproved = reviewStatus === "approved";
+  const registrySourceType = String(item?.source?.registrySourceType || item?.scholarship?.source?.registrySourceType || "").toLowerCase();
   const hasDetailSignals = Boolean(
     item?.application?.deadline ||
       item?.application?.portal ||
@@ -154,6 +211,7 @@ function isPublishableScholarshipRecord(item = {}) {
       item?.scholarship?.application?.portal
   );
 
+  if (registrySourceType === "discovery_directory" && !isApproved && !verified) return false;
   if (isApproved || verified) return true;
   if (pageType === "detail" && hasDetailSignals && !isListingSourceUrl(sourceUrl)) return true;
   return false;
@@ -164,7 +222,7 @@ function isPublishablePublicRecord(record = {}) {
   const title = String(record?.name || record?.name_full || "").toLowerCase();
   const pageType = String(record?.page_type || "").toLowerCase();
   const scholarshipSignal = /\bscholar|fund|funding|award|grant|fellow|fellowship|studentship|bursar|opportunity|position\b/.test(title);
-  const genericTitle = /^(position detail|find scholarships in \d{4}|list of scholarships for international students in \d{4}|scholarships cafe - connecting qualified candidates to global opportunities in academia|frequently asked questions about scholarships|faq)$/i.test(String(record?.name || "").trim());
+  const genericTitle = /^(position detail|find scholarships in \d{4}|list of scholarships for international students in \d{4}|scholarships cafe - connecting qualified candidates to global opportunities in academia|frequently asked questions about scholarships|faq|application timeline|find a course)$/i.test(String(record?.name || "").trim());
   const focus = classifyOpportunityFocus(record);
   const audienceScope = String(record?.audience_scope || focus.audienceScope || "").toLowerCase();
   const hasEvidence = Boolean(
@@ -179,6 +237,7 @@ function isPublishablePublicRecord(record = {}) {
   if (!sourceUrl) return false;
   if (pageType === "faq" || pageType === "listing" || pageType === "news") return false;
   if (isListingSourceUrl(sourceUrl)) return false;
+  if (isGenericScholarshipName(record?.name, record?.awardingBody) || isGenericScholarshipName(record?.name_full, record?.awardingBody)) return false;
   if (genericTitle) return false;
   if (focus.nigeriaOnlySignal || audienceScope === "nigeria_only") return false;
   if (!scholarshipSignal && !hasEvidence && !hasPriorityFocus) return false;
@@ -198,6 +257,16 @@ function toPublicScholarshipRecord(item = {}) {
   const degree = normalizeText(eligibility.degreeClassMin || eligibility.degreeClassRequired || "");
   const languageRequirement = inferLanguageRequirement(eligibility);
   const disciplineRequirement = inferDisciplineRequirements(eligibility);
+  const sourcePageUrl = normalizeUrl(application.sourceUrl || item?.source?.sourceUrl || item?.provenance?.sourceUrl || "");
+  const applicationUrl = isTrustedPublishedApplicationUrl(application.url || "", sourcePageUrl);
+  const applicationPortal = isTrustedPublishedApplicationUrl(application.portal || application.url || "", sourcePageUrl);
+  const country = inferPublishedCountry({
+    ...item,
+    source_url: sourcePageUrl,
+    application_url: applicationUrl,
+    application_portal: applicationPortal,
+  });
+  const city = item?.source?.verified === true ? item?.city || null : null;
   const searchText = buildScholarshipEmbeddingText(item);
   const semanticTags = buildScholarshipSemanticTags(item);
   const contentFingerprint = createHash("sha256").update(searchText).digest("hex");
@@ -214,9 +283,13 @@ function toPublicScholarshipRecord(item = {}) {
     name_full: fullName || null,
     requirements_summary: normalizeText(item?.requirementsSummary || item?.requirements_summary || "") || null,
     awardingBody: item?.awardingBody || item?.scholarship?.awardingBody || null,
-    source_url: sourceUrl,
+    source_url: sourcePageUrl || sourceUrl,
+    application_url: applicationUrl || null,
+    application_portal: applicationPortal || null,
     source_type: sourceType,
     page_type: pageType || null,
+    country: country || null,
+    city,
     provenance_confidence: Number(item?.provenance?.confidenceScore ?? item?.source?.confidence ?? 0),
     last_verified_at: item?.provenance?.lastVerifiedAt || item?.source?.scrapedAt || item?.provenance?.scrapedAt || null,
     opportunity_type: focus.opportunityType,
@@ -286,9 +359,48 @@ function normalizeScholarshipUrl(rawUrl) {
   }
 }
 
+function publicScholarshipKey(record = {}) {
+  const name = canonicalizeScholarshipName(record?.name || record?.name_full, record?.awardingBody);
+  const body = normalizeText(record?.awardingBody).toLowerCase();
+  const sourceUrl = normalizeScholarshipUrl(record?.source_url || "");
+  let host = "";
+  try {
+    host = sourceUrl ? new URL(sourceUrl).hostname.replace(/^www\./, "") : "";
+  } catch {
+    host = "";
+  }
+  return [name, body, host || sourceUrl].filter(Boolean).join("::");
+}
+
+function publicRecordCompleteness(record = {}) {
+  let score = 0;
+  if (record?.name) score += 2;
+  if (record?.awardingBody) score += 1;
+  if (record?.source_url) score += 2;
+  if (record?.deadline) score += 1;
+  if (record?.funding_type && record.funding_type !== "unknown") score += 1;
+  if (Array.isArray(record?.discipline_requirement) && record.discipline_requirement.length) score += 0.5;
+  if (Array.isArray(record?.nationality_requirement) && record.nationality_requirement.length) score += 0.5;
+  if (typeof record?.provenance_confidence === "number") score += record.provenance_confidence;
+  return score;
+}
+
+function dedupePublicScholarshipRecords(records = []) {
+  const map = new Map();
+  for (const record of records) {
+    const key = publicScholarshipKey(record) || record?.id;
+    if (!key) continue;
+    const current = map.get(key);
+    if (!current || publicRecordCompleteness(record) >= publicRecordCompleteness(current)) {
+      map.set(key, record);
+    }
+  }
+  return [...map.values()];
+}
+
 function scholarshipKey(item = {}) {
   const record = item?.scholarship || item;
-  const name = normalizeText(record?.name || item?.name).toLowerCase();
+  const name = canonicalizeScholarshipName(record?.name || item?.name, record?.awardingBody || item?.awardingBody);
   const body = normalizeText(record?.awardingBody || item?.awardingBody).toLowerCase();
   const portal = normalizeUrl(
     record?.application?.portal ||
@@ -298,7 +410,13 @@ function scholarshipKey(item = {}) {
       record?.provenance?.sourceUrl ||
       record?.source?.sourceUrl
   );
-  return [name, body, portal].filter(Boolean).join("::");
+  let host = "";
+  try {
+    host = portal ? new URL(portal).hostname.replace(/^www\./, "") : "";
+  } catch {
+    host = "";
+  }
+  return [name, body, host || portal].filter(Boolean).join("::");
 }
 
 function scholarshipCompleteness(item = {}) {
@@ -427,8 +545,8 @@ function v2ToLegacy(v2) {
     id: v2.id,
     name: v2.name,
     awardingBody: v2.awardingBody || null,
-    country: "UK",
-    city: "Online",
+    country: v2.country || null,
+    city: v2.city || null,
     tuition_international_yearly: 0,
     currency: v2.coverage?.currency || "GBP",
     typical_program_length_months: 12,
@@ -436,7 +554,7 @@ function v2ToLegacy(v2) {
     IHS_per_year: 0,
     CAS_issuance_speed: "unknown",
     research_areas: ["scholarship", "funding"],
-    website: v2.application?.url || v2.source?.sourceUrl,
+    website: v2.application?.url || v2.application?.sourceUrl || v2.source?.sourceUrl,
     notes: v2.source?.rawText ? v2.source.rawText.slice(0, 260) : "",
     source: "scraped",
     verified: v2.source?.verified ?? false,
@@ -500,9 +618,9 @@ export async function refreshContentFiles() {
     if (confidenceDelta) return confidenceDelta;
     return String(recordA?.name || "").localeCompare(String(recordB?.name || ""));
   };
-  const records = mergeScholarshipLists(publishableV2, allScraped)
+  const records = dedupePublicScholarshipRecords(mergeScholarshipLists(publishableV2, allScraped)
     .map(toPublicScholarshipRecord)
-    .filter(isPublishablePublicRecord)
+    .filter(isPublishablePublicRecord))
     .sort(rankPublicRecord);
   const deadlineComparison = compareDeadlines(previousDeadlineSnapshot, scrapedScholarshipsV2);
   const deadlineChanges = deadlineComparison.changes;

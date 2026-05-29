@@ -1,30 +1,21 @@
 import { createOpenAIEmbeddings, DEFAULT_EMBEDDING_DIMENSIONS, DEFAULT_EMBEDDING_MODEL } from "../_shared/openai.ts";
+import {
+  corsHeaders,
+  enforceRateLimit,
+  ensureObject,
+  getAllowedOrigins,
+  jsonResponse,
+  readSupabaseAnonKey,
+  readSupabaseUrl,
+  readNumber,
+  readOptionalString,
+  readString,
+  readStringArray,
+  rejectUnexpectedFields,
+  rememberJson,
+} from "../_shared/security.ts";
 
-const allowedOrigins = String(Deno.env.get("APP_ORIGIN") || Deno.env.get("SITE_URL") || "")
-  .split(",")
-  .map((value) => value.trim())
-  .filter(Boolean);
-
-function corsHeaders(origin: string | null) {
-  return {
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    Vary: "Origin",
-    ...(origin && (!allowedOrigins.length || allowedOrigins.includes(origin))
-      ? { "Access-Control-Allow-Origin": origin }
-      : {}),
-  };
-}
-
-function jsonResponse(body: unknown, status = 200, origin: string | null = null) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      ...corsHeaders(origin),
-      "Content-Type": "application/json",
-    },
-  });
-}
+const allowedOrigins = getAllowedOrigins();
 
 async function requireAuthenticatedUser(req: Request) {
   const authHeader = req.headers.get("authorization");
@@ -32,8 +23,8 @@ async function requireAuthenticatedUser(req: Request) {
     throw new Response("Missing authorization header", { status: 401 });
   }
 
-  const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
-  const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || "";
+  const supabaseUrl = readSupabaseUrl();
+  const supabaseAnonKey = readSupabaseAnonKey();
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Response("Supabase auth is not configured", { status: 500 });
   }
@@ -70,7 +61,7 @@ function errorResponse(error: unknown, origin: string | null = null) {
       name: "EmbeddingError",
       message,
     },
-  }, 500, origin);
+  }, 500, { origin, methods: "POST, OPTIONS", allowedOrigins });
 }
 
 Deno.serve(async (req: Request) => {
@@ -84,29 +75,68 @@ Deno.serve(async (req: Request) => {
   }
 
   if (req.method !== "POST") {
-    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, origin);
+    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   try {
     const user = await requireAuthenticatedUser(req);
-    const body = await req.json().catch(() => ({}));
-    const texts = Array.isArray(body?.texts)
-      ? body.texts.map((item: unknown) => String(item ?? "").trim()).filter(Boolean)
-      : [];
-    const text = String(body?.text ?? "").trim();
-    const model = String(body?.model || DEFAULT_EMBEDDING_MODEL).trim() || DEFAULT_EMBEDDING_MODEL;
-    const dimensions = Number.isFinite(Number(body?.dimensions)) ? Number(body?.dimensions) : DEFAULT_EMBEDDING_DIMENSIONS;
+    const rateLimit = await enforceRateLimit(req, {
+      namespace: "embedding",
+      subject: String(user?.id || "anonymous"),
+      maxRequests: 30,
+      windowSeconds: 5 * 60,
+      origin,
+      methods: "POST, OPTIONS",
+      allowedOrigins,
+    });
+    if (rateLimit instanceof Response) return rateLimit;
+
+    // Content-Length guard before reading the body (OWASP: prevent memory exhaustion)
+    const contentLength = Number(req.headers.get("content-length") || 0);
+    if (contentLength > 256_000) {
+      return jsonResponse({ ok: false, error: { message: "Request body too large" } }, 413, { origin, methods: "POST, OPTIONS", allowedOrigins });
+    }
+
+    const body = ensureObject(await req.json().catch(() => ({})));
+    rejectUnexpectedFields(body, ["text", "texts", "model", "dimensions"], "embedding request");
+    const texts = body.texts ? readStringArray(body.texts, {
+      fieldName: "texts",
+      maxItems: 16,
+      maxLength: 8_000,
+    }) : [];
+    const text = body.text ? readString(body.text, {
+      fieldName: "text",
+      minLength: 1,
+      maxLength: 8_000,
+    }) : "";
+    const model = readOptionalString(body.model, {
+      fieldName: "model",
+      maxLength: 120,
+    }) || DEFAULT_EMBEDDING_MODEL;
+    const dimensions = body.dimensions === undefined
+      ? DEFAULT_EMBEDDING_DIMENSIONS
+      : readNumber(body.dimensions, {
+          fieldName: "dimensions",
+          integer: true,
+          min: 1,
+          max: 3072,
+        });
     const input = texts.length ? texts : text;
 
     if (!input || (Array.isArray(input) && !input.length)) {
-      return jsonResponse({ ok: false, error: { message: "Empty embedding input" } }, 400, origin);
+      return jsonResponse({ ok: false, error: { message: "Empty embedding input" } }, 400, { origin, methods: "POST, OPTIONS", allowedOrigins });
     }
 
-    const result = await createOpenAIEmbeddings(input as string | string[], {
-      model,
-      dimensions,
-      user: user?.id ? String(user.id) : undefined,
-    });
+    const result = await rememberJson(
+      "embeddings",
+      { input, model, dimensions, userId: user?.id || null },
+      6 * 60 * 60,
+      async () => createOpenAIEmbeddings(input as string | string[], {
+        model,
+        dimensions,
+        user: user?.id ? String(user.id) : undefined,
+      }),
+    );
 
     return jsonResponse({
       ok: true,
@@ -115,9 +145,13 @@ Deno.serve(async (req: Request) => {
       embedding: result.embeddings[0] || null,
       usage: result.usage,
       dimensions,
-    }, 200, origin);
+    }, 200, {
+      origin,
+      methods: "POST, OPTIONS",
+      headers: rateLimit,
+      allowedOrigins,
+    });
   } catch (error) {
     return errorResponse(error, origin);
   }
 });
-

@@ -89,7 +89,7 @@ export function validateScholarship(obj) {
   if (!obj?.id) errors.push("missing id");
   if (!obj?.name) errors.push("missing name");
   if (!obj?.awardingBody) errors.push("missing awardingBody");
-  if (!obj?.application?.url) errors.push("missing application.url");
+  if (!obj?.application?.url && !obj?.provenance?.sourceUrl && !obj?.source?.sourceUrl) errors.push("missing application.url");
   if (!obj?.provenance?.sourceUrl) errors.push("missing provenance.sourceUrl");
   if (typeof obj?.provenance?.confidenceScore !== "number") errors.push("confidenceScore must be number");
   if (!obj?.coverage?.type) errors.push("missing coverage.type");

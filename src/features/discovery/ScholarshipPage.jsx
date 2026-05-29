@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { rankScholarships } from "../../services/scoringEngine.js";
-import ScholarshipMatchSummary from "./ScholarshipMatchSummary.jsx";
-import ScholarshipDocumentImport from "./ScholarshipDocumentImport.jsx";
+import { buildCorpusIdf, rankScholarships } from "../../services/scoringEngine.js";
+import ScholarshipMatchSummary from "../../components/ScholarshipMatchSummary.jsx";
+import ScholarshipDocumentImport from "../../components/ScholarshipDocumentImport.jsx";
 import {
   getAllowedApplicationTransitions,
   loadApplicationTracking,
@@ -10,12 +10,12 @@ import {
   saveApplicationTracking,
   saveMatchEvent,
   saveShortlist,
-  updateApplicationChecklist,
   updateApplicationTracking,
 } from "../../services/supabaseData.js";
 import { cleanText, cleanUrl } from "../../lib/security.js";
 import { getProfileCompletion } from "../../lib/profileCompletion.js";
 import { useWorkspace } from "../../components/layout/WorkspaceContext.jsx";
+import { logAppError } from "../../lib/appErrors.js";
 import {
   buildPlainMatchReasons,
   formatIeltsScore,
@@ -25,14 +25,6 @@ function parseMaxFee(value) {
   const num = Number(value);
   if (!Number.isFinite(num) || num < 0) return 999999;
   return Math.min(num, 1000000);
-}
-
-function joinReasons(reasons) {
-  return Array.isArray(reasons) && reasons.length ? reasons.join(" • ") : "";
-}
-
-function safeWebsiteUrl(value) {
-  return cleanUrl(value) || "";
 }
 
 function formatManifestDate(value) {
@@ -56,6 +48,7 @@ function buildContentSignals(contentManifest, notifications) {
       label: "Content refreshed",
       value: formatManifestDate(contentManifest?.updated_at),
       tone: "neutral",
+      note: Number(sources?.scholarships?.v2 || 0) > 0 ? `${Number(sources.scholarships.v2)} v2 entries` : "No content feed yet",
     },
     {
       label: "Deadline changes",
@@ -64,7 +57,7 @@ function buildContentSignals(contentManifest, notifications) {
       note: changeCount > 0 ? "Review flagged items before saving" : "No changes detected",
     },
     {
-      label: "Deadline coverage",
+      label: "Coverage",
       value: `${Number(deadlines.tracked || 0)} tracked`,
       tone: Number(deadlines.unknown || 0) > 0 ? "warning" : "success",
       note: `${Number(deadlines.rolling || 0)} rolling · ${Number(deadlines.unknown || 0)} unknown`,
@@ -73,7 +66,7 @@ function buildContentSignals(contentManifest, notifications) {
       label: "Review feed",
       value: `${notificationCount} notice${notificationCount === 1 ? "" : "s"}`,
       tone: notificationCount > 0 ? "neutral" : "success",
-      note: Number(sources?.scholarships?.v2 || 0) > 0 ? `${Number(sources.scholarships.v2)} v2 entries` : "No content feed yet",
+      note: notificationCount > 0 ? "Newest review is highlighted below" : "No fresh review notices",
     },
   ];
 }
@@ -88,7 +81,111 @@ const STATE_LABELS = {
 };
 
 function getScholarshipTitle(scholarship) {
-  return scholarship?.name || scholarship?.title || scholarship?.awardingBody || "Scholarship";
+  const candidates = [
+    scholarship?.title,
+    scholarship?.name,
+    scholarship?.nameFull,
+    scholarship?.name_full,
+    scholarship?.awardingBody,
+    scholarship?.sourceLabel,
+  ].map((value) => String(value || "").trim()).filter(Boolean);
+  const specific = candidates.find((value) => !isGenericScholarshipTitle(value));
+  return specific || candidates[0] || "Scholarship";
+}
+
+function getScholarshipProvider(scholarship) {
+  return scholarship?.awardingBody || scholarship?.sourceLabel || scholarship?.provider || "Funding body";
+}
+
+function getScholarshipWebsite(scholarship) {
+  return cleanUrl(
+    scholarship?.application?.portal ||
+    scholarship?.application_portal ||
+    scholarship?.application?.url ||
+    scholarship?.application_url ||
+    scholarship?.website ||
+    scholarship?.source_url ||
+    scholarship?.sourceUrl
+  ) || "";
+}
+
+function getScholarshipWebsiteHost(scholarship) {
+  const website = getScholarshipWebsite(scholarship);
+  if (!website) return "";
+  try {
+    return new URL(website).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+function getScholarshipWebsiteActionLabel(scholarship) {
+  const applicationUrl = cleanUrl(
+    scholarship?.application?.portal ||
+    scholarship?.application_portal ||
+    scholarship?.application?.url ||
+    scholarship?.application_url ||
+    ""
+  );
+  return applicationUrl ? "Open application portal" : "Open source page";
+}
+
+function getScholarshipRequirementsSummary(scholarship) {
+  return normalizeRequirementsSummary(
+    scholarship?.requirementsSummary ||
+    scholarship?.requirements_summary ||
+    scholarship?.notes ||
+    scholarship?.summary,
+  );
+}
+
+function getScholarshipLocationLabel(scholarship) {
+  const city = cleanText(scholarship?.city || "", { maxLength: 40 });
+  const country = cleanText(scholarship?.country || "", { maxLength: 40 });
+  if (city && country) return `${city}, ${country}`;
+  if (country) return country;
+
+  const audienceScope = String(scholarship?.audienceScope || scholarship?.audience_scope || "").toLowerCase();
+  if (audienceScope === "international") return "International route";
+  if (audienceScope === "outside_country") return "Outside home country";
+
+  const website = getScholarshipWebsite(scholarship);
+  if (website) {
+    try {
+      return new URL(website).hostname.replace(/^www\./, "");
+    } catch {
+      return "Source page";
+    }
+  }
+
+  return "Location not listed";
+}
+
+const REGION_HINTS = {
+  UK: [" uk ", " united kingdom ", " britain ", " british ", " england ", " scotland ", " wales ", " chevening ", " cambridge ", " oxford "],
+  US: [" us ", " usa ", " united states ", " american ", " fulbright "],
+  Canada: [" canada ", " canadian "],
+  Europe: [" europe ", " european ", " germany ", " france ", " netherlands ", " sweden ", " norway ", " denmark ", " ireland ", " daad "],
+  Australia: [" australia ", " australian "],
+};
+
+function scholarshipMatchesRegion(scholarship, region) {
+  if (region === "All") return true;
+  const haystack = ` ${[
+    scholarship?.country,
+    scholarship?.city,
+    scholarship?.title,
+    scholarship?.name,
+    scholarship?.nameFull,
+    scholarship?.name_full,
+    scholarship?.awardingBody,
+    scholarship?.sourceLabel,
+    scholarship?.website,
+    scholarship?.source_url,
+    scholarship?.audienceScope,
+    scholarship?.audience_scope,
+  ].map((value) => String(value || "").toLowerCase()).join(" ")} `;
+  return (REGION_HINTS[region] || []).some((hint) => haystack.includes(hint));
 }
 
 function getScholarshipTuition(scholarship) {
@@ -141,6 +238,38 @@ function normalizeRequirementsSummary(value) {
   return text;
 }
 
+function getDaysUntilDeadline(deadline) {
+  if (!deadline) return null;
+  const date = new Date(deadline);
+  if (Number.isNaN(date.getTime())) return null;
+  return Math.ceil((date - Date.now()) / (1000 * 60 * 60 * 24));
+}
+
+function getUrgencyInfo(daysLeft) {
+  if (daysLeft === null) return { badge: null, tone: "open" };
+  if (daysLeft < 0) return { badge: "Deadline passed", tone: "passed" };
+  if (daysLeft <= 14) return { badge: `Closing in ${daysLeft} day${daysLeft === 1 ? "" : "s"}`, tone: "urgent" };
+  if (daysLeft <= 45) return { badge: `Deadline: ${daysLeft} days`, tone: "soon" };
+  return { badge: null, tone: "open" };
+}
+
+function getCoverageLabel(scholarship) {
+  const type = String(scholarship?.coverage?.type || scholarship?.coverage_type || "").toLowerCase();
+  if (type.includes("full")) return "Full Funding";
+  const amount = scholarship?.coverage?.numericAmount || scholarship?.amountGBP;
+  if (amount) return `£${Number(amount).toLocaleString()}`;
+  if (scholarship?.coverage?.stipend) return "Includes Stipend";
+  return "";
+}
+
+function BookmarkIcon({ filled }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+    </svg>
+  );
+}
+
 function ScholarshipResultCard({
   scholarship,
   analysis,
@@ -149,77 +278,99 @@ function ScholarshipResultCard({
   authUser,
   profileId,
   matchingProfile,
-  C,
   toggleShortlist,
   trackApplication,
   openIntelPanel,
   handleOpenWebsite,
   shortlistBusy,
-  toggleRequiredDocument,
-  removeReferee,
   advanceApplication,
-  addReferee,
-  refereeInputs,
-  setRefereeInputs,
-  onRefereeInputChange,
-  getScholarshipTitle,
-  getScholarshipTuition,
-  getScholarshipProvider,
 }) {
-  const topCriteria = analysis.criteria.slice(0, 2);
-  const checklist = tracked?.documents_checklist || {};
-  const requiredDocuments = Array.isArray(checklist.requiredDocuments) ? checklist.requiredDocuments : [];
-  const completedDocuments = Array.isArray(checklist.completedDocuments) ? checklist.completedDocuments : [];
-  const referees = Array.isArray(tracked?.referees) ? tracked.referees : [];
-  const refereeCount = referees.length;
-  const refereesRequired = Number(checklist.refereesRequired || 0);
+  const provider = getScholarshipProvider(scholarship);
+  const requirementsSummary = getScholarshipRequirementsSummary(scholarship);
+  const applyUrl = getScholarshipWebsite(scholarship);
+  const websiteHost = getScholarshipWebsiteHost(scholarship);
   const initials = String(getScholarshipTitle(scholarship))
     .split(" ")
     .slice(0, 2)
     .map((part) => part[0])
     .join("")
     .toUpperCase();
-  const requirementsSummary = normalizeRequirementsSummary(scholarship.requirementsSummary || scholarship.notes || scholarship.summary);
-  const provider = getScholarshipProvider(scholarship);
-  const applyUrl = cleanUrl(scholarship?.application?.url || scholarship?.website);
+
+  const daysLeft = getDaysUntilDeadline(scholarship.deadline);
+  const { badge: urgencyBadge, tone: urgencyTone } = getUrgencyInfo(daysLeft);
+  const coverageLabel = getCoverageLabel(scholarship);
+  const conf = analysis.provenanceConfidence || 0;
+  const confLabel = conf >= 0.7 ? "High Confidence" : conf >= 0.5 ? "Moderate Confidence" : "Low Confidence";
+  const fitScore = Math.min(100, Math.max(0, Math.round(analysis.score)));
 
   return (
     <article className="scholarship-result-card">
+      {/* Row 1: urgency badge + bookmark */}
       <div className="scholarship-result-card__top">
-        <div className="scholarship-result-card__mark">{initials}</div>
-        <div className="scholarship-result-card__status">
-          <span className="scholarship-result-card__flag">{analysis.score >= 80 ? "Urgent" : analysis.score >= 60 ? "Open" : "Soon"}</span>
-          <span className="scholarship-result-card__dots" aria-hidden="true">
-            <span className={analysis.provenanceConfidence >= 0.8 ? "is-on" : "is-off"} />
-            <span className={analysis.provenanceConfidence >= 0.6 ? "is-on" : "is-off"} />
-            <span className={analysis.provenanceConfidence >= 0.4 ? "is-on" : "is-off"} />
+        {urgencyBadge ? (
+          <span className={`scholarship-result-card__urgency scholarship-result-card__urgency--${urgencyTone}`}>
+            {urgencyBadge}
           </span>
-        </div>
+        ) : (
+          <span className="scholarship-result-card__urgency scholarship-result-card__urgency--open">
+            Deadline: {formatScholarshipDate(scholarship.deadline)}
+          </span>
+        )}
+        <button
+          type="button"
+          className={`scholarship-result-card__bookmark${shortlistSaved ? " is-saved" : ""}`}
+          onClick={() => toggleShortlist(scholarship.id)}
+          disabled={!authUser || shortlistBusy}
+          aria-label={shortlistSaved ? "Remove from shortlist" : "Save to shortlist"}
+        >
+          <BookmarkIcon filled={shortlistSaved} />
+        </button>
       </div>
+
+      {/* Row 2: provider + title + location */}
       <div className="scholarship-result-card__body">
         {provider && provider.toLowerCase() !== "funding body" && (
-          <div className="scholarship-result-card__label">{provider}</div>
+          <div className="scholarship-result-card__provider">{provider}</div>
         )}
-        <h3 className="scholarship-result-card__title">{cleanText(getScholarshipTitle(scholarship), { maxLength: 140 })}</h3>
+        <h3 className="scholarship-result-card__title">{cleanText(getScholarshipTitle(scholarship), { maxLength: 120 })}</h3>
         <div className="scholarship-result-card__meta">
-          <span>{cleanText(scholarship.city, { maxLength: 40 })}, {cleanText(scholarship.country, { maxLength: 40 })}</span>
-          <span>Deadline {formatScholarshipDate(scholarship.deadline)}</span>
-        </div>
-        <div className="scholarship-result-card__summary">
-          <strong>Requirements</strong> {cleanText(requirementsSummary, { maxLength: 220 })}
-        </div>
-        <div className="scholarship-result-card__criteria">
-          <span className="scholarship-result-card__chip scholarship-result-card__chip--accent">Fit {analysis.score}/100</span>
-          <span className="scholarship-result-card__chip">Profile {Math.round((analysis.retrievalScore || 0) * 100)}%</span>
+          <span>{getScholarshipLocationLabel(scholarship)}</span>
         </div>
       </div>
 
+      {/* Row 3: fit score bar */}
+      <div className="scholarship-result-card__fit">
+        <div className="scholarship-result-card__fit-header">
+          <span className="scholarship-result-card__fit-label">Profile fit score</span>
+          <span className="scholarship-result-card__fit-pct">{fitScore}%</span>
+        </div>
+        <div className="scholarship-result-card__fit-track">
+          <div className="scholarship-result-card__fit-fill" style={{ width: `${fitScore}%` }} />
+        </div>
+      </div>
+
+      {/* Row 4: confidence dots + coverage */}
       <div className="scholarship-result-card__footer">
-        <button type="button" onClick={() => toggleShortlist(scholarship.id)} className="ghost-btn scholarship-result-card__button" disabled={!authUser || shortlistBusy}>
-          {shortlistSaved ? "Remove" : "Shortlist"}
-        </button>
-        <button type="button" onClick={() => trackApplication(scholarship)} className="ghost-btn scholarship-result-card__button" disabled={!authUser || !profileId}>
-          {tracked ? "Track" : "Apply tracker"}
+        <div className="scholarship-result-card__confidence">
+          <span className="scholarship-result-card__dots" aria-hidden="true">
+            <span className={conf >= 0.4 ? "is-on" : "is-off"} />
+            <span className={conf >= 0.6 ? "is-on" : "is-off"} />
+            <span className={conf >= 0.8 ? "is-on" : "is-off"} />
+          </span>
+          <span>{confLabel}</span>
+        </div>
+        {coverageLabel && <span className="scholarship-result-card__coverage">{coverageLabel}</span>}
+      </div>
+
+      {/* Row 5: actions */}
+      <div className="scholarship-result-card__actions">
+        <button
+          type="button"
+          onClick={() => trackApplication(scholarship)}
+          className="ghost-btn scholarship-result-card__button"
+          disabled={!authUser || !profileId}
+        >
+          {tracked ? "Open tracker" : "Start tracking"}
         </button>
         <button
           type="button"
@@ -227,14 +378,14 @@ function ScholarshipResultCard({
           onClick={() => openIntelPanel({
             eyebrow: "Why this match",
             title: getScholarshipTitle(scholarship),
-            summary: `${analysis.score}/100 fit`,
+            summary: `${fitScore}/100 fit`,
             details: buildPlainMatchReasons({ analysis, profile: matchingProfile, scholarship }).join(" ") || "It is one of the closest matches for your current profile.",
             metrics: [
               { label: "Deadline", value: formatScholarshipDate(scholarship.deadline) },
               { label: "IELTS", value: formatIeltsScore(matchingProfile) || "Not added" },
-              { label: "Confidence", value: `${Math.round((analysis.provenanceConfidence || 0) * 100)}%` },
+              { label: "Confidence", value: `${Math.round(conf * 100)}%` },
             ],
-            links: scholarship.website ? [{ label: "Open website", href: cleanUrl(scholarship.website) }] : [],
+            links: applyUrl ? [{ label: getScholarshipWebsiteActionLabel(scholarship), href: applyUrl }] : [],
           })}
         >
           Why chosen
@@ -245,10 +396,10 @@ function ScholarshipResultCard({
             className="ghost-btn scholarship-result-card__button scholarship-result-card__button--primary"
             onClick={() => handleOpenWebsite(scholarship, applyUrl)}
           >
-            Open apply link
+            {getScholarshipWebsiteActionLabel(scholarship)}
           </button>
         ) : (
-          <span className="scholarship-result-card__button scholarship-result-card__button--disabled">Website unavailable</span>
+          <span className="scholarship-result-card__button scholarship-result-card__button--disabled">No link available</span>
         )}
       </div>
 
@@ -256,7 +407,7 @@ function ScholarshipResultCard({
         <div className="scholarship-result-card__tracking">
           <div className="scholarship-result-card__tracking-row">
             <span>Tracking</span>
-            <strong>{tracked.state}</strong>
+            <strong>{STATE_LABELS[tracked.state] || tracked.state}</strong>
           </div>
           <div className="scholarship-result-card__tracking-row">
             <span>Update state</span>
@@ -275,18 +426,156 @@ function ScholarshipResultCard({
   );
 }
 
+function ScholarshipDetailCard({
+  scholarship,
+  analysis,
+  tracked,
+  shortlistSaved,
+  authUser,
+  profileId,
+  matchingProfile,
+  toggleShortlist,
+  trackApplication,
+  handleOpenWebsite,
+  openIntelPanel,
+  shortlistBusy,
+}) {
+  const provider = getScholarshipProvider(scholarship);
+  const applyUrl = getScholarshipWebsite(scholarship);
+  const websiteHost = getScholarshipWebsiteHost(scholarship);
+  const reasons = buildPlainMatchReasons({
+    analysis,
+    profile: matchingProfile,
+    scholarship,
+  }).slice(0, 4);
+  const requirementsSummary = getScholarshipRequirementsSummary(scholarship);
+
+  return (
+    <section className="scholarship-detail-card">
+      <div className="scholarship-detail-head">
+        <div>
+          <div className="scholarship-detail-kicker">Top match and why it was chosen</div>
+          <div className="scholarship-detail-title">{cleanText(getScholarshipTitle(scholarship), { maxLength: 160 })}</div>
+          <div className="scholarship-detail-provider">{cleanText(provider, { maxLength: 90 })}</div>
+        </div>
+        <div className="scholarship-detail-score">
+          <strong>{analysis.score}/100</strong>
+          <span>Fit score</span>
+        </div>
+      </div>
+
+      <div className="scholarship-detail-grid">
+        <div className="scholarship-detail-main">
+          <div className="scholarship-detail-meta">
+            <span>{getScholarshipLocationLabel(scholarship)}</span>
+            <span>Deadline {formatScholarshipDate(scholarship.deadline)}</span>
+            <span>{formatIeltsScore(matchingProfile) || "IELTS not added"}</span>
+            {websiteHost && <span>{websiteHost}</span>}
+          </div>
+          <div className="scholarship-detail-summary">
+            <strong>Requirements</strong>
+            {cleanText(requirementsSummary, { maxLength: 360 })}
+          </div>
+          {reasons.length > 0 && (
+            <div className="scholarship-detail-reasons">
+              {reasons.map((reason) => (
+                <span key={reason} className="scholarship-detail-reason">
+                  {cleanText(reason, { maxLength: 140 })}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="scholarship-detail-track">
+          <div className="scholarship-detail-track-title">Tracking</div>
+          <div className="scholarship-detail-track-row">
+            <span>Shortlist</span>
+            <strong>{shortlistSaved ? "Saved" : "Not yet"}</strong>
+          </div>
+          <div className="scholarship-detail-track-row">
+            <span>Application</span>
+            <strong>{tracked ? (STATE_LABELS[tracked.state] || tracked.state) : "Not started"}</strong>
+          </div>
+          <div className="scholarship-detail-track-row">
+            <span>Required docs</span>
+            <strong>{Array.isArray(tracked?.documents_checklist?.requiredDocuments) ? tracked.documents_checklist.requiredDocuments.length : "None listed"}</strong>
+          </div>
+          <div className="scholarship-detail-track-row">
+            <span>Completed docs</span>
+            <strong>{Array.isArray(tracked?.documents_checklist?.completedDocuments) ? tracked.documents_checklist.completedDocuments.length : 0}</strong>
+          </div>
+
+          <div className="scholarship-detail-step-list">
+            <div className="scholarship-detail-step">Review the source page</div>
+            <div className="scholarship-detail-step">Check the apply link</div>
+            <div className="scholarship-detail-step">Confirm the deadline</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="scholarship-detail-actions">
+        <button
+          type="button"
+          onClick={() => toggleShortlist(scholarship.id)}
+          className="ghost-btn scholarship-result-card__button"
+          disabled={!authUser || shortlistBusy}
+        >
+          {shortlistSaved ? "Remove from shortlist" : "Save shortlist"}
+        </button>
+        <button
+          type="button"
+          onClick={() => trackApplication(scholarship)}
+          className="ghost-btn scholarship-result-card__button"
+          disabled={!authUser || !profileId}
+        >
+          {tracked ? "Open tracker" : "Start tracking"}
+        </button>
+        <button
+          type="button"
+          className="ghost-btn scholarship-result-card__button"
+          onClick={() => openIntelPanel({
+            eyebrow: "Why this match",
+            title: getScholarshipTitle(scholarship),
+            summary: `${analysis.score}/100 fit`,
+            details: reasons.join(" ") || "It is one of the closest matches for your current profile.",
+            metrics: [
+              { label: "Deadline", value: formatScholarshipDate(scholarship.deadline) },
+              { label: "IELTS", value: formatIeltsScore(matchingProfile) || "Not added" },
+              { label: "Confidence", value: `${Math.round((analysis.provenanceConfidence || 0) * 100)}%` },
+            ],
+            links: applyUrl ? [{ label: getScholarshipWebsiteActionLabel(scholarship), href: applyUrl }] : [],
+          })}
+        >
+          Why chosen
+        </button>
+        {applyUrl ? (
+          <button
+            type="button"
+            className="ghost-btn scholarship-result-card__button scholarship-result-card__button--primary"
+            onClick={() => handleOpenWebsite(scholarship, applyUrl)}
+          >
+            {getScholarshipWebsiteActionLabel(scholarship)}
+          </button>
+        ) : (
+          <span className="scholarship-result-card__button scholarship-result-card__button--disabled">Website unavailable</span>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function ScholarshipPage(props) {
   const { C, Chip } = props;
   const {
+    authUser,
     profile,
     profileDraft,
     onImportCv,
     cvImportBusy,
     cvImportMessage,
-    authUser,
     contentManifest,
     notifications,
-    scholarships = [],
     scholarshipCatalog = [],
   } = props;
   const { openIntelPanel } = useWorkspace();
@@ -298,12 +587,10 @@ export default function ScholarshipPage(props) {
   const [shortlistMessage, setShortlistMessage] = useState("");
   const [clearShortlistArmed, setClearShortlistArmed] = useState(false);
   const [trackedApplications, setTrackedApplications] = useState({});
-  const [refereeInputs, setRefereeInputs] = useState({});
   const clearShortlistTimerRef = useRef(null);
   const loggedImpressionsRef = useRef(new Set());
 
   const matchingProfile = profileDraft || profile || {};
-
   const profileCompletion = getProfileCompletion(matchingProfile || {});
   const isEmptyProfile = profileCompletion.filled === 0;
 
@@ -391,7 +678,7 @@ export default function ScholarshipPage(props) {
         }).catch(() => {});
       })
       .catch((error) => {
-        console.error(error);
+        logAppError(error, { event: "SHORTLIST_TOGGLE", scholarshipId: id, profileId: profile.id });
         setShortlist((current) => (isSaved ? [...current, id] : current.filter((item) => item !== id)));
       })
       .finally(() => {
@@ -416,7 +703,7 @@ export default function ScholarshipPage(props) {
       await Promise.all(previous.map((id) => removeShortlist(profile.id, id)));
       setShortlistMessage("Shortlist cleared from this account.");
     } catch (error) {
-      console.error(error);
+      logAppError(error, { event: "SHORTLIST_CLEAR", profileId: profile.id, scholarshipCount: previous.length });
       setShortlist(previous);
       setShortlistMessage("Unable to clear shortlist right now.");
     } finally {
@@ -443,7 +730,7 @@ export default function ScholarshipPage(props) {
         }).catch(() => {});
       }
     } catch (error) {
-      console.error(error);
+      logAppError(error, { event: "APPLICATION_TRACK_START", profileId: profile.id, scholarshipId: scholarship?.id });
     }
   };
 
@@ -458,22 +745,7 @@ export default function ScholarshipPage(props) {
         }));
       }
     } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const updateChecklist = async (scholarshipId, nextChecklistPatch) => {
-    if (!profile?.id || !authUser) return;
-    try {
-      const saved = await updateApplicationChecklist(profile.id, scholarshipId, nextChecklistPatch);
-      if (saved) {
-        setTrackedApplications((current) => ({
-          ...current,
-          [scholarshipId]: saved,
-        }));
-      }
-    } catch (error) {
-      console.error(error);
+      logAppError(error, { event: "APPLICATION_TRACK_UPDATE", profileId: profile.id, scholarshipId, nextState });
     }
   };
 
@@ -492,53 +764,6 @@ export default function ScholarshipPage(props) {
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  const toggleRequiredDocument = async (scholarshipId, documentName) => {
-    const tracked = trackedApplications[scholarshipId];
-    if (!tracked) return;
-    const existingChecklist = tracked.documents_checklist || {};
-    const completedDocuments = Array.isArray(existingChecklist.completedDocuments)
-      ? existingChecklist.completedDocuments
-      : [];
-    const normalizedName = String(documentName || "").trim();
-    if (!normalizedName) return;
-    const nextCompleted = completedDocuments.includes(normalizedName)
-      ? completedDocuments.filter((item) => item !== normalizedName)
-      : [...completedDocuments, normalizedName];
-    await updateChecklist(scholarshipId, {
-      documents_checklist: {
-        ...existingChecklist,
-        completedDocuments: nextCompleted,
-      },
-    });
-  };
-
-  const addReferee = async (scholarshipId) => {
-    const nextReferee = String(refereeInputs[scholarshipId] || "").trim();
-    if (!nextReferee) return;
-    const tracked = trackedApplications[scholarshipId];
-    if (!tracked) return;
-    const currentReferees = Array.isArray(tracked.referees) ? tracked.referees : [];
-    if (currentReferees.some((referee) => String(referee?.name || referee).trim().toLowerCase() === nextReferee.toLowerCase())) {
-      setRefereeInputs((current) => ({ ...current, [scholarshipId]: "" }));
-      return;
-    }
-    const nextReferees = [...currentReferees, { name: nextReferee, status: "pending" }];
-    await updateChecklist(scholarshipId, { referees: nextReferees });
-    setRefereeInputs((current) => ({ ...current, [scholarshipId]: "" }));
-  };
-
-  const removeReferee = async (scholarshipId, refereeIndex) => {
-    const tracked = trackedApplications[scholarshipId];
-    if (!tracked) return;
-    const currentReferees = Array.isArray(tracked.referees) ? tracked.referees : [];
-    const nextReferees = currentReferees.filter((_, index) => index !== refereeIndex);
-    await updateChecklist(scholarshipId, { referees: nextReferees });
-  };
-
-  const handleRefereeInputChange = (scholarshipId, value) => {
-    setRefereeInputs((current) => ({ ...current, [scholarshipId]: value }));
-  };
-
   const maxFeeNum = parseMaxFee(maxFee);
   const catalog = useMemo(() => {
     const map = new Map();
@@ -552,17 +777,19 @@ export default function ScholarshipPage(props) {
     }
     return [...map.values()];
   }, [scholarshipCatalog]);
-  const regionCount = new Set((Array.isArray(catalog) ? catalog : []).map((item) => item?.country).filter(Boolean)).size;
+
+  // Build TF-IDF weights from scholarship corpus (offline, no API)
+  const idfWeights = useMemo(() => buildCorpusIdf(catalog), [catalog]);
 
   const scored = useMemo(() => {
-    const regionFiltered = (Array.isArray(catalog) ? catalog : [])
-      .filter((scholarship) => region === "All" || scholarship?.country === region || scholarship?.city === region)
+    const regionFiltered = catalog
+      .filter((scholarship) => scholarshipMatchesRegion(scholarship, region))
       .filter((scholarship) => {
         const tuition = getScholarshipTuition(scholarship);
         return !Number.isFinite(tuition) || tuition <= maxFeeNum;
       });
 
-    const ranked = rankScholarships(regionFiltered, matchingProfile, { limit: 150 });
+    const ranked = rankScholarships(regionFiltered, matchingProfile, { limit: 150, idfWeights });
     return ranked.scored
       .filter(({ analysis }) => !analysis.blocked)
       .sort((a, b) => {
@@ -577,30 +804,28 @@ export default function ScholarshipPage(props) {
         return String(a.scholarship.id || "").localeCompare(String(b.scholarship.id || ""));
       });
   }, [catalog, region, maxFeeNum, matchingProfile]);
-  const visibleScored = useMemo(() => {
+
+  const rankedMatches = useMemo(() => {
     const seen = new Set();
-    return scored
-      .filter(({ scholarship, analysis }) => {
-        if (analysis?.blocked) return false;
-        const title = String(getScholarshipTitle(scholarship) || "").trim().toLowerCase().replace(/\s+/g, " ");
-        if (!title || isGenericScholarshipTitle(title)) return false;
-        const applyUrl = cleanUrl(scholarship?.application?.url || scholarship?.website);
-        if (!applyUrl) return false;
-        if (seen.has(title)) return false;
-        seen.add(title);
-        return true;
-      })
-      .slice(0, 8);
+    return scored.filter(({ scholarship }) => {
+      const title = String(getScholarshipTitle(scholarship) || "").trim().toLowerCase().replace(/\s+/g, " ");
+      if (!title || isGenericScholarshipTitle(title)) return false;
+      if (seen.has(title)) return false;
+      seen.add(title);
+      return true;
+    }).slice(0, 8);
   }, [scored]);
 
+  const primaryMatch = rankedMatches[0] || null;
+  const secondaryMatches = rankedMatches.slice(1);
   const contentSignals = buildContentSignals(contentManifest, notifications);
   const latestNotification = Array.isArray(notifications) && notifications.length ? notifications[0] : null;
 
   useEffect(() => {
-    if (!profile?.id || !authUser || !scored.length) return;
+    if (!profile?.id || !authUser || !rankedMatches.length) return;
 
     const currentImpressions = loggedImpressionsRef.current;
-    const topImpressions = scored.slice(0, 3);
+    const topImpressions = rankedMatches.slice(0, 3);
 
     for (const [index, entry] of topImpressions.entries()) {
       const scholarshipId = entry?.scholarship?.id;
@@ -620,7 +845,7 @@ export default function ScholarshipPage(props) {
         },
       }).catch(() => {});
     }
-  }, [profile?.id, authUser, scored]);
+  }, [profile?.id, authUser, rankedMatches]);
 
   return (
     <div className="scholarship-page scholarship-workspace">
@@ -631,32 +856,53 @@ export default function ScholarshipPage(props) {
           <p className="scholarship-copy">
             Refine your search across premium UK and international funding bodies. High-fit opportunities are ranked by eligibility confidence and deadline pressure.
           </p>
-          {isEmptyProfile && (
-            <div className="scholarship-alert" role="status" aria-live="polite">
-              <div className="scholarship-alert-label">Profile incomplete</div>
-              <div className="scholarship-alert-title">Add the missing profile fields to see more matches.</div>
-              <div className="scholarship-alert-body">This list stays conservative until the matching engine has enough verified data.</div>
-            </div>
-          )}
-          {latestNotification && (
+
+          {latestNotification ? (
             <div className="scholarship-alert" role="status" aria-live="polite">
               <div className="scholarship-alert-label">{latestNotification.type || "content"}</div>
               <div className="scholarship-alert-title">{latestNotification.title}</div>
               <div className="scholarship-alert-body">{latestNotification.body}</div>
             </div>
+          ) : (
+            <div className="scholarship-alert" role="status" aria-live="polite">
+              <div className="scholarship-alert-label">Info</div>
+              <div className="scholarship-alert-title">{contentSignals[0].label}</div>
+              <div className="scholarship-alert-body">
+                {contentSignals[0].note ? `${contentSignals[0].note}. ` : ""}
+                Deadline coverage and review signals are reflected in the ranking.
+              </div>
+            </div>
           )}
+
+          {isEmptyProfile && (
+            <div className="scholarship-alert" role="status" aria-live="polite">
+              <div className="scholarship-alert-label">Profile incomplete</div>
+              <div className="scholarship-alert-title">Add the missing profile fields to see sharper matches.</div>
+              <div className="scholarship-alert-body">
+                This list stays conservative until the matching engine has enough verified data from your profile or CV.
+              </div>
+            </div>
+          )}
+
           <div className="scholarship-intro-chips">
-            <Chip label={`Matched ${scored.length}`} color={C.green} small />
+            <Chip label={`Matched ${rankedMatches.length}`} color={C.green} small />
             <Chip label={`Shortlist ${shortlist.length}`} color={C.accent} small />
             <Chip label={`Tracked ${Object.keys(trackedApplications).length}`} color={C.amber} small />
           </div>
         </div>
+
         <div className="scholarship-hero-side">
-          <ScholarshipMatchSummary profile={matchingProfile} scored={visibleScored} shortlist={shortlist} C={C} Chip={Chip} />
+          <ScholarshipMatchSummary
+            profile={matchingProfile}
+            scored={rankedMatches}
+            shortlist={shortlist}
+            C={C}
+            Chip={Chip}
+          />
         </div>
       </div>
 
-      <div className="scholarship-surface-grid">
+      <div className="scholarship-surface-grid scholarship-surface-grid--priority">
         <ScholarshipDocumentImport
           authUser={authUser}
           profile={profile}
@@ -664,6 +910,23 @@ export default function ScholarshipPage(props) {
           busy={cvImportBusy}
           message={cvImportMessage}
         />
+
+        {primaryMatch && (
+          <ScholarshipDetailCard
+            scholarship={primaryMatch.scholarship}
+            analysis={primaryMatch.analysis}
+            tracked={trackedApplications[primaryMatch.scholarship.id]}
+            shortlistSaved={shortlist.includes(primaryMatch.scholarship.id)}
+            authUser={authUser}
+            profileId={profile?.id}
+            matchingProfile={matchingProfile}
+            toggleShortlist={toggleShortlist}
+            trackApplication={trackApplication}
+            handleOpenWebsite={handleOpenWebsite}
+            openIntelPanel={openIntelPanel}
+            shortlistBusy={shortlistBusy}
+          />
+        )}
 
         <div className="scholarship-card scholarship-filter-card">
           <div className="scholarship-card-label">Filters</div>
@@ -706,11 +969,11 @@ export default function ScholarshipPage(props) {
       </div>
 
       <div className="scholarship-results-label">
-        {visibleScored.length} scholarships matched
+        {rankedMatches.length} scholarship{rankedMatches.length === 1 ? "" : "s"} matched
       </div>
 
       <div className="scholarship-results-grid">
-        {visibleScored.length > 0 ? visibleScored.map(({ scholarship, analysis }) => {
+        {secondaryMatches.length > 0 ? secondaryMatches.map(({ scholarship, analysis }) => {
           const tracked = trackedApplications[scholarship.id];
           return (
             <ScholarshipResultCard
@@ -722,30 +985,23 @@ export default function ScholarshipPage(props) {
               authUser={authUser}
               profileId={profile?.id}
               matchingProfile={matchingProfile}
-              C={C}
               toggleShortlist={toggleShortlist}
               trackApplication={trackApplication}
               openIntelPanel={openIntelPanel}
               handleOpenWebsite={handleOpenWebsite}
               shortlistBusy={shortlistBusy}
               advanceApplication={advanceApplication}
-              removeReferee={removeReferee}
-              addReferee={addReferee}
-              refereeInputs={refereeInputs}
-              setRefereeInputs={setRefereeInputs}
-              onRefereeInputChange={handleRefereeInputChange}
-              getScholarshipTitle={getScholarshipTitle}
-              getScholarshipTuition={getScholarshipTuition}
-              getScholarshipProvider={(item) => item?.awardingBody || item?.sourceLabel || item?.provider || "Funding body"}
             />
           );
         }) : (
           <div className="empty-state" role="status" aria-live="polite">
-            <div className="empty-state-title">No eligible scholarships found</div>
+            <div className="empty-state-title">{primaryMatch ? "Top match ready" : "No eligible scholarships found"}</div>
             <div className="empty-state-copy">
-              {isEmptyProfile
-                ? "Add nationality, degree class, and discipline to compare more scholarships."
-                : "No scholarship survived the current filters. Check nationality, discipline, degree class, and deadline constraints."}
+              {primaryMatch
+                ? "The strongest opportunity is featured above. Add more profile detail or widen the filters to surface more alternatives."
+                : isEmptyProfile
+                  ? "Add nationality, degree class, and discipline to compare more scholarships."
+                  : "No scholarship survived the current filters. Check nationality, discipline, degree class, and deadline constraints."}
             </div>
           </div>
         )}

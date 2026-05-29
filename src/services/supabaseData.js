@@ -6,8 +6,12 @@ import {
   cleanProfilePatch,
   cleanText,
 } from "../lib/security.js";
+import { cachedFetch } from "./dataCache.js";
 
 const CONTENT_BASE = "/data";
+
+// Static JSON assets cached with TTL (in-memory); cache busted on redeploy
+const STATIC_TTL_SECONDS = 3600; // 1 hour
 
 async function fetchJson(path) {
   const response = await fetch(`${CONTENT_BASE}/${path}`, { cache: "no-store" });
@@ -15,6 +19,10 @@ async function fetchJson(path) {
     throw new Error(`Failed to load ${path}`);
   }
   return response.json();
+}
+
+async function fetchJsonCached(path) {
+  return cachedFetch(`${CONTENT_BASE}/${path}`, { ttlSeconds: STATIC_TTL_SECONDS });
 }
 
 async function fetchJsonOptional(path) {
@@ -48,31 +56,39 @@ async function updateProfileRecord(profileId, payload) {
 }
 
 export async function loadPublicContent() {
-  const [contentManifestData, notificationsData, scholarshipsData] = await Promise.all([
+  const [contentManifestData, notificationsData] = await Promise.all([
     fetchJsonOptional("content-manifest.json"),
     fetchJsonOptional("notifications.json"),
-    fetchJsonOptional("scholarships.json"),
   ]);
-
-  const legacyScholarships = Array.isArray(scholarshipsData?.institutions) ? scholarshipsData.institutions : [];
-  const normalizedScholarships = Array.isArray(scholarshipsData?.records) ? scholarshipsData.records : [];
 
   return {
     contentManifest: contentManifestData || null,
     notifications: Array.isArray(notificationsData?.notifications) ? notificationsData.notifications : [],
-    scholarships: legacyScholarships,
-    institutions: legacyScholarships,
-    scholarshipRecords: normalizedScholarships,
-    scholarshipCatalog: normalizedScholarships.length ? normalizedScholarships : legacyScholarships,
+    scholarships: [],
+    institutions: [],
+    scholarshipRecords: [],
+    scholarshipCatalog: [],
     questions: [],
     passages: {},
   };
 }
 
+export async function loadScholarshipContent() {
+  const scholarshipsData = await fetchJsonCached("scholarships.json");
+  const legacyScholarships = Array.isArray(scholarshipsData?.institutions) ? scholarshipsData.institutions : [];
+  const normalizedScholarships = Array.isArray(scholarshipsData?.records) ? scholarshipsData.records : [];
+  return {
+    scholarships: legacyScholarships,
+    institutions: legacyScholarships,
+    scholarshipRecords: normalizedScholarships,
+    scholarshipCatalog: normalizedScholarships.length ? normalizedScholarships : legacyScholarships,
+  };
+}
+
 export async function loadPracticeContent() {
   const [questionsData, passagesData] = await Promise.all([
-    fetchJson("questions.json"),
-    fetchJson("passages.json"),
+    fetchJsonCached("questions.json"),
+    fetchJsonCached("passages.json"),
   ]);
 
   return {
@@ -123,13 +139,50 @@ export async function saveCvProfile(profileId, cvProfile) {
   const payload = cleanCvProfile({
     profile_id: profileId,
     label: cvProfile?.label || null,
+    source_filename: cvProfile?.source_filename || cvProfile?.sourceFilename || null,
+    mime_type: cvProfile?.mime_type || cvProfile?.mimeType || null,
+    document_type: cvProfile?.document_type || cvProfile?.documentType || null,
     keywords: Array.isArray(cvProfile?.keywords) ? cvProfile.keywords : [],
     raw_text_hash: cvProfile?.raw_text_hash || cvProfile?.rawTextHash || null,
+    extracted_excerpt: cvProfile?.extracted_excerpt || cvProfile?.extractedExcerpt || null,
+    extracted_text: cvProfile?.extracted_text || cvProfile?.extractedText || null,
+    parsed_profile: cvProfile?.parsed_profile || cvProfile?.parsedProfile || {},
+    parsed_candidate_profile: cvProfile?.parsed_candidate_profile || cvProfile?.parsedCandidateProfile || {},
+    provenance: cvProfile?.provenance || null,
+    confidence: cvProfile?.confidence ?? null,
   });
 
   const { data, error } = await supabase
     .from("cv_profiles")
     .upsert(payload, { onConflict: "profile_id,raw_text_hash" })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function updateCvProfileMetadata(profileId, rawTextHash, patch = {}) {
+  if (!supabase || !profileId || !rawTextHash) return null;
+
+  const updatePayload = {};
+  if (patch.label !== undefined) {
+    updatePayload.label = cleanText(patch.label, { maxLength: 120 }) || null;
+  }
+  if (Array.isArray(patch.keywords)) {
+    updatePayload.keywords = cleanList(patch.keywords, { maxItems: 40, maxLength: 64 });
+  }
+  updatePayload.updated_at = new Date().toISOString();
+
+  if (!Object.keys(updatePayload).filter((k) => k !== "updated_at").length) {
+    return null;
+  }
+
+  const { data, error } = await supabase
+    .from("cv_profiles")
+    .update(updatePayload)
+    .eq("profile_id", profileId)
+    .eq("raw_text_hash", rawTextHash)
     .select()
     .single();
 
@@ -149,6 +202,24 @@ export async function loadLatestCvProfile(profileId) {
     .maybeSingle();
 
   if (error) throw error;
+  return data || null;
+}
+
+export async function loadLatestCandidateProfileSnapshot(profileId) {
+  if (!supabase || !profileId) return null;
+
+  const { data, error } = await supabase
+    .from("candidate_profiles")
+    .select("id, profile_id, semantic_text, canonical_json, confidence_json, embedding, embedding_model, last_cv_profile_id, source_fingerprint, created_at, updated_at")
+    .eq("profile_id", profileId)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    if (isMissingRelationError(error)) return null;
+    throw error;
+  }
   return data || null;
 }
 
@@ -182,9 +253,11 @@ export async function saveCandidateProfileSnapshot(profileId, snapshot = {}) {
 
 export async function generateSemanticProfile(text, options = {}) {
   if (!supabase?.functions?.invoke) return null;
+  const normalizedText = cleanText(text, { maxLength: 12000, allowNewlines: true }) || "";
+  const requestedModel = cleanText(options.model || null, { maxLength: 120 }) || null;
   const payload = {
-    text: cleanText(text, { maxLength: 12000, allowNewlines: true }) || "",
-    model: cleanText(options.model || "claude-3-5-haiku-20241022", { maxLength: 120 }) || "claude-3-5-haiku-20241022",
+    text: normalizedText,
+    ...(requestedModel ? { model: requestedModel } : {}),
   };
 
   if (!payload.text) return null;
@@ -202,7 +275,7 @@ export async function generateSemanticProfile(text, options = {}) {
     keywords: Array.isArray(data?.keywords) ? data.keywords.map((value) => cleanText(value, { maxLength: 64 })).filter(Boolean) : [],
     summary: cleanText(data?.summary || null, { maxLength: 1200, allowNewlines: true }) || null,
     confidence: Number.isFinite(Number(data?.confidence)) ? Number(data.confidence) : null,
-    model: data?.model || payload.model,
+    model: data?.model || requestedModel,
     usage: data?.usage || null,
   };
 }

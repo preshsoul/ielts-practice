@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Loci Intelligence - Target Alignment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fcf8fa",
+                    "on-primary-container": "#83829b",
+                    "primary-fixed": "#e2e0fc",
+                    "surface-variant": "#e5e1e3",
+                    "tertiary": "#695d3c",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#d5c59d",
+                    "primary": "#00000b",
+                    "surface": "#fcf8fa",
+                    "outline-variant": "#c8c5cd",
+                    "on-background": "#1c1b1d",
+                    "inverse-primary": "#c6c4df",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#484741",
+                    "on-surface": "#1c1b1d",
+                    "on-primary-fixed-variant": "#45455b",
+                    "surface-container-highest": "#e5e1e3",
+                    "surface-container": "#f1edef",
+                    "border-subtle": "#E5E1D9",
+                    "primary-fixed-dim": "#c6c4df",
+                    "confidence-low": "#BC4749",
+                    "secondary-fixed": "#e6e2da",
+                    "confidence-medium": "#D4A373",
+                    "on-tertiary-fixed-variant": "#514627",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#e6e2da",
+                    "inverse-on-surface": "#f4f0f2",
+                    "primary-container": "#1a1a2e",
+                    "on-secondary-container": "#66645e",
+                    "on-tertiary-container": "#493f20",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#313032",
+                    "on-error": "#ffffff",
+                    "ink-navy": "#1A1A2E",
+                    "tertiary-fixed": "#f2e1b7",
+                    "secondary-fixed-dim": "#c9c6bf",
+                    "secondary": "#605e58",
+                    "surface-container-low": "#f6f2f4",
+                    "on-secondary-fixed": "#1c1c17",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#231b02",
+                    "surface-container-high": "#ebe7e9",
+                    "outline": "#78767d",
+                    "confidence-high": "#2D6A4F",
+                    "tertiary-container": "#b9aa83",
+                    "on-primary-fixed": "#1a1a2e",
+                    "surface-tint": "#5d5c74",
+                    "surface-sand": "#F4F0E8",
+                    "background": "#fcf8fa",
+                    "on-surface-variant": "#47464c",
+                    "surface-dim": "#ddd9db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Newsreader"],
+                    "body-md": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "label-sm": ["IBM Plex Sans"],
+                    "headline-lg-mobile": ["Newsreader"],
+                    "mono-data": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"],
+                    "display-lg": ["Newsreader"],
+                    "headline-lg": ["Newsreader"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sparkline-segment {
+            height: 4px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-surface-sand font-body-md text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-ink-navy flex flex-col py-base gap-gutter">
+<div class="px-6 py-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary-fixed">Loci Workspace</h1>
+<p class="font-label-sm text-on-primary-fixed-variant opacity-80">Graduate Intelligence</p>
+</div>
+<nav class="flex-1 flex flex-col px-3 gap-2">
+<!-- Command (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-sm text-on-primary-fixed-variant font-medium hover:bg-on-primary-fixed-variant/10 hover:text-primary-fixed transition-colors transition-all scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Command</span>
+</a>
+<!-- Discovery (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-sm text-primary-fixed font-bold border-l-4 border-primary-fixed bg-on-primary-fixed-variant/20 transition-all scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="search_insight">HeartStraight</span>
+<span class="font-label-md text-label-md">Discovery</span>
+</a>
+<!-- Practice -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-sm text-on-primary-fixed-variant font-medium hover:bg-on-primary-fixed-variant/10 hover:text-primary-fixed transition-colors transition-all scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-md text-label-md">Practice</span>
+</a>
+<!-- Readiness -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-sm text-on-primary-fixed-variant font-medium hover:bg-on-primary-fixed-variant/10 hover:text-primary-fixed transition-colors transition-all scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_late">assignment_late</span>
+<span class="font-label-md text-label-md">Readiness</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-sm text-on-primary-fixed-variant font-medium hover:bg-on-primary-fixed-variant/10 hover:text-primary-fixed transition-colors transition-all scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="px-3 flex flex-col gap-2 mb-8">
+<button class="bg-primary-fixed text-ink-navy font-label-md py-3 px-4 rounded-sm mb-4 font-bold">
+                Submit Application
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-on-primary-fixed-variant font-medium hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-primary-fixed-variant font-medium hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-20 ml-64 max-w-[calc(100%-16rem)] docked full-width top-0 sticky z-40 bg-surface-sand border-b border-border-subtle">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-semibold text-ink-navy">Loci Intelligence</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-sm text-secondary font-medium hover:text-ink-navy transition-all opacity-90 active:opacity-100" href="#">Deadlines</a>
+<a class="font-label-sm text-secondary font-medium hover:text-ink-navy transition-all opacity-90 active:opacity-100" href="#">Scores</a>
+<a class="font-label-sm text-secondary font-medium hover:text-ink-navy transition-all opacity-90 active:opacity-100" href="#">Funding</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-ink-navy text-white px-6 py-2 rounded-sm font-label-sm font-bold uppercase tracking-wider">
+                Check Readiness
+            </button>
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined cursor-pointer" data-icon="notifications_active">notifications_active</span>
+<span class="material-symbols-outlined cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-margin-desktop">
+<div class="max-w-container-max mx-auto flex flex-col lg:flex-row gap-gutter">
+<!-- Left: Selection Flow -->
+<div class="flex-1">
+<!-- Header Section -->
+<section class="mb-12">
+<h2 class="font-headline-lg text-headline-lg text-ink-navy mb-4">Target Alignment</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl">
+                        Verify your academic focus and select the high-impact scholarship tracks that align with your professional trajectory in the United Kingdom.
+                    </p>
+</section>
+<!-- Discipline Confirmation -->
+<div class="bg-white p-8 rounded-sm border border-border-subtle mb-10">
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-sm text-secondary uppercase tracking-widest">Extracted Discipline</span>
+<span class="flex items-center gap-1 text-confidence-high font-label-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Verified
+                        </span>
+</div>
+<div class="flex items-center justify-between border-b border-border-subtle pb-4">
+<h3 class="font-headline-md text-headline-md text-ink-navy italic">Sustainable Development</h3>
+<button class="text-ink-navy font-label-md border-b border-ink-navy">Modify Extraction</button>
+</div>
+<div class="mt-6 flex gap-4">
+<span class="bg-surface-sand px-3 py-1 font-label-sm rounded-full text-secondary">Urban Governance</span>
+<span class="bg-surface-sand px-3 py-1 font-label-sm rounded-full text-secondary">Climate Resilience</span>
+<span class="bg-surface-sand px-3 py-1 font-label-sm rounded-full text-secondary">Public Policy</span>
+</div>
+</div>
+<!-- Scholarship Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Chevening Card -->
+<div class="bg-white border border-border-subtle p-6 rounded-sm flex flex-col transition-all hover:border-ink-navy group">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-headline-md text-headline-md text-ink-navy mb-1">Chevening</h4>
+<p class="font-label-sm text-secondary">UK Government Scholarship</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="font-headline-md text-ink-navy">88%</div>
+<div class="font-label-sm text-secondary">Fit Score</div>
+</div>
+</div>
+<div class="mb-8">
+<div class="flex justify-between mb-2">
+<span class="font-label-sm text-secondary">Eligibility Sparkline</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-medium"></span>
+</div>
+</div>
+<div class="flex gap-1">
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+<div class="flex-1 bg-confidence-medium sparkline-segment"></div>
+<div class="flex-1 bg-surface-variant sparkline-segment"></div>
+</div>
+</div>
+<div class="bg-surface-sand p-4 mb-6 border-l-2 border-ink-navy">
+<span class="font-label-sm text-ink-navy font-bold block mb-1">Strategic Insight</span>
+<p class="font-body-md text-body-md italic text-secondary">"Matches your focus on Urban Governance and proven leadership in local NGOs."</p>
+</div>
+<button class="mt-auto w-full py-3 border border-ink-navy text-ink-navy font-label-md hover:bg-ink-navy hover:text-white transition-colors">
+                            Select Track
+                        </button>
+</div>
+<!-- Commonwealth Card -->
+<div class="bg-white border border-border-subtle p-6 rounded-sm flex flex-col transition-all hover:border-ink-navy group">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-headline-md text-headline-md text-ink-navy mb-1">Commonwealth</h4>
+<p class="font-label-sm text-secondary">Development Focus</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="font-headline-md text-ink-navy">94%</div>
+<div class="font-label-sm text-secondary">Fit Score</div>
+</div>
+</div>
+<div class="mb-8">
+<div class="flex justify-between mb-2">
+<span class="font-label-sm text-secondary">Eligibility Sparkline</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+</div>
+</div>
+<div class="flex gap-1">
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+</div>
+</div>
+<div class="bg-surface-sand p-4 mb-6 border-l-2 border-ink-navy">
+<span class="font-label-sm text-ink-navy font-bold block mb-1">Strategic Insight</span>
+<p class="font-body-md text-body-md italic text-secondary">"High correlation with Sustainable Development objectives in the Commonwealth region."</p>
+</div>
+<button class="mt-auto w-full py-3 bg-ink-navy text-white font-label-md">
+                            Selected
+                        </button>
+</div>
+<!-- Gates Cambridge Card -->
+<div class="bg-white border border-border-subtle p-6 rounded-sm flex flex-col transition-all hover:border-ink-navy group md:col-span-2">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
+<div class="flex gap-6 items-center">
+<div class="w-16 h-16 bg-surface-sand flex items-center justify-center rounded-sm">
+<span class="material-symbols-outlined text-ink-navy text-4xl" data-icon="school">school</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-ink-navy mb-1">Gates Cambridge</h4>
+<p class="font-label-sm text-secondary">Global Leadership &amp; Academic Excellence</p>
+</div>
+</div>
+<div class="flex gap-12">
+<div class="flex flex-col items-center">
+<div class="font-headline-md text-ink-navy">72%</div>
+<div class="font-label-sm text-secondary">Fit Score</div>
+</div>
+<div class="flex flex-col items-start w-48">
+<span class="font-label-sm text-secondary mb-2">Academic Alignment</span>
+<div class="w-full flex gap-1">
+<div class="flex-1 bg-confidence-high sparkline-segment"></div>
+<div class="flex-1 bg-confidence-medium sparkline-segment"></div>
+<div class="flex-1 bg-surface-variant sparkline-segment"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-sand p-4 mb-6 border-l-2 border-ink-navy">
+<span class="font-label-sm text-ink-navy font-bold block mb-1">Strategic Insight</span>
+<p class="font-body-md text-body-md italic text-secondary">"Your research proposal on 'Coastal Urbanism' strongly resonates with Cambridge's current Department of Geography focus."</p>
+</div>
+<button class="w-full md:w-auto md:self-end px-12 py-3 border border-ink-navy text-ink-navy font-label-md hover:bg-ink-navy hover:text-white transition-colors">
+                            Select Track
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Candidate Summary -->
+<aside class="w-full lg:w-80 flex flex-col gap-gutter">
+<div class="bg-white p-8 border border-border-subtle rounded-sm">
+<h3 class="font-label-sm text-secondary uppercase tracking-widest mb-8">Candidate Profile</h3>
+<div class="flex flex-col items-center mb-8">
+<img alt="Profile" class="w-24 h-24 rounded-sm object-cover mb-4 border border-border-subtle" data-alt="A professional portrait of a focused woman in her late twenties, wearing a minimalist black blazer, standing against a clean, soft-lit architectural background with neutral tones. The lighting is editorial and high-key, reflecting a sophisticated, academic, and professional environment. The composition is centered and clean, echoing the minimalist intelligence dashboard style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_9CntItrfGQyy8fxK8FdcKchRLhaWbfE80OhdKapwrOHtLoenw1vAf7_RQ_vjdA3W2mA53h2Swd33_yg1Ng7RxhM3Q2GxJjpFU9U7Hrl19oHhf73jx6zXznSCX2p5A3aTKa9-Y4kgdFezAFe0kYMByHZCyZEaE48wwFRZByL8WwB_p2CA7cXZRKUy4wqhCyITl1l5rXyVDyy4ZFM_Vour6CgyHeHof5_SaDxg9iq2WH9uSI2K4RzJuQeRDDij-w3VphXNA-Ab-fI"/>
+<h4 class="font-headline-md text-headline-md text-ink-navy">Amara Okoro</h4>
+<p class="font-label-sm text-secondary">Lagos, Nigeria</p>
+</div>
+<div class="space-y-6">
+<div>
+<span class="font-label-sm text-secondary block mb-1">Current Status</span>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-ink-navy">Track Alignment Phase</span>
+</div>
+</div>
+<div class="pt-6 border-t border-border-subtle">
+<span class="font-label-sm text-secondary block mb-3">Intelligence Metrics</span>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface">Data Reliability</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface">Experience Depth</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-medium"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface">Network Strength</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-low"></span>
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-border-subtle">
+<span class="font-label-sm text-secondary block mb-2">Readiness Verdict</span>
+<div class="bg-confidence-high/10 p-4 rounded-sm">
+<p class="font-headline-md text-headline-md text-confidence-high leading-tight italic">"Exceptional alignment for development-led tracks."</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-ink-navy text-white p-6 rounded-sm">
+<span class="font-label-sm text-primary-fixed opacity-70 block mb-2">Next Step</span>
+<h4 class="font-headline-md text-headline-md mb-4">Strategic Mapping</h4>
+<p class="font-body-md text-body-md opacity-80 mb-6">Build your narrative arc by mapping past projects to scholarship priorities.</p>
+<button class="w-full bg-primary-fixed text-ink-navy font-label-md py-3 font-bold">
+                        Continue to Strategy
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+</body></html>

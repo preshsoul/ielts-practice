@@ -15,6 +15,16 @@ function safeWebsiteUrl(value) {
   return cleanUrl(value) || "";
 }
 
+function getWebsiteHost(value) {
+  const website = safeWebsiteUrl(value);
+  if (!website) return "";
+  try {
+    return new URL(website).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
 export default function ScholarshipFeedPage({
   scholarships = [],
   scholarshipCatalog = [],
@@ -63,6 +73,7 @@ export default function ScholarshipFeedPage({
         <div style={{ display: "grid", gap: 12, marginTop: 14 }}>
           {feed.length ? feed.map((item) => {
             const website = safeWebsiteUrl(item.website);
+            const websiteHost = getWebsiteHost(item.website);
             return (
               <article key={item.id} style={{ padding: 14, border: "1px solid var(--border)", borderRadius: 12, background: "var(--color-bg-surface)" }}>
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
@@ -76,6 +87,11 @@ export default function ScholarshipFeedPage({
                     <div style={{ fontSize: 12, color: C.muted, fontFamily: "var(--font-ui)", marginTop: 4 }}>
                       {cleanText(item.locationLabel, { maxLength: 80 })} · {item.date ? formatDate(item.date) : "Recently added"}
                     </div>
+                    {websiteHost && (
+                      <div style={{ fontSize: 12, color: C.muted, fontFamily: "var(--font-ui)", marginTop: 4 }}>
+                        {websiteHost}
+                      </div>
+                    )}
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
                     <Chip label={`Priority ${Math.round(item.priorityScore * 100)}/100`} color={C.green} small />
@@ -98,7 +114,7 @@ export default function ScholarshipFeedPage({
                     className="ghost-btn"
                     style={{ marginTop: 12, display: "inline-flex", padding: "8px 12px", textDecoration: "none" }}
                   >
-                    Open source
+                    Open source page
                   </a>
                 )}
               </article>

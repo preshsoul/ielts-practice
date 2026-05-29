@@ -1,7 +1,9 @@
 import { createEmptyScholarship } from "./scholarship-schema.mjs";
 import {
+  canonicalizeScholarshipName,
   cleanScholarshipName,
   generateScholarshipId,
+  isGenericScholarshipName,
   normalizeText,
   normalizeUrl,
   pickFirst,
@@ -187,10 +189,10 @@ function extractCoverage(text) {
 function normalizeDegreeClass(input) {
   const text = compactText(input).toLowerCase();
   if (!text) return "";
-  if (/first|1st/.test(text)) return "1st";
-  if (/2[:.]1|upper\s+second/.test(text)) return "2:1";
-  if (/2[:.]2|lower\s+second/.test(text)) return "2:2";
-  if (/third/.test(text)) return "third";
+  if (/\b(first class|1st class|first-class|1st)\b/.test(text)) return "1st";
+  if (/\b(2[:.]1|2\/1|upper second|upper-second)\b/.test(text)) return "2:1";
+  if (/\b(2[:.]2|2\/2|lower second|lower-second)\b/.test(text)) return "2:2";
+  if (/\bthird class\b/.test(text)) return "third";
   return "";
 }
 
@@ -405,13 +407,30 @@ function extractDeadline(text) {
 function classifyPageType({ title, bodyText, sourceUrl }) {
   const haystack = `${title} ${bodyText.slice(0, 1000)} ${sourceUrl}`.toLowerCase();
   if (/\blogin\b|\bsign up\b|\bregister\b/.test(haystack)) return "login";
-  if (FAQ_CUES.test(haystack)) return "faq";
   if (ROLLING_CUES.test(haystack)) return "detail";
-  if (/\bapply now\b|\bdeadline\b|\beligibility\b|\bfunding\b|\baward\b/.test(haystack) && /\brequirements?\b/.test(haystack)) return "detail";
+  if (/\b(apply now|application process|how to apply|deadline|eligibility|funding|award|scholarship)\b/.test(haystack) && /\b(requirements?|guidelines?|students?|programme|program|study)\b/.test(haystack)) return "detail";
+  if (/\bapplication process\b|\bembassy recommendation\b|\buniversity recommendation\b|\bscholarship providers\b|\bfunding opportunities\b/.test(haystack)) return "detail";
+  if (FAQ_CUES.test(haystack) && !/\bscholarship\b|\beligibility\b|\bapplication process\b/.test(haystack)) return "faq";
   if (/\bcategory\b|\ball scholarships\b|\bfind scholarships\b|\blist of scholarships\b|\bpositions\b/.test(haystack)) return "listing";
   if (/\bnews\b|\bblog\b|\bannouncement\b/.test(haystack) && !/\bapply\b/.test(haystack)) return "news";
   if (/\bpdf\b/.test(sourceUrl)) return "pdf";
   return "unknown";
+}
+
+function inferSourceKind(sourceUrl = "", sourceLabel = "") {
+  const haystack = `${sourceUrl} ${sourceLabel}`.toLowerCase();
+  if (haystack.includes("daad.de") || haystack.includes("daad")) return "daad";
+  if (haystack.includes("chevening.org") || haystack.includes("chevening")) return "chevening";
+  if (haystack.includes("cambridgetrust.org") || haystack.includes("cambridge trust")) return "cambridge-trust";
+  if (haystack.includes("fulbright")) return "fulbright";
+  if (haystack.includes("studyinjapan.go.jp") || haystack.includes("mext")) return "mext";
+  if (haystack.includes("study.ed.ac.uk") || haystack.includes("edinburgh")) return "edinburgh";
+  if (haystack.includes("ox.ac.uk") || haystack.includes("university of oxford") || haystack.includes("oxford graduate scholarships")) return "oxford";
+  return "generic";
+}
+
+function hasActionableSourcePage(record) {
+  return Boolean(record?.source?.sourceUrl || record?.application?.sourceUrl) && String(record?.application?.pageType || record?.source?.pageType || "").toLowerCase() === "detail";
 }
 
 function extractNameSignals(html, sourceUrl, sourceLabel, title) {
@@ -443,6 +462,24 @@ function cleanApplicationLink(link) {
   return normalizeUrl(link || "");
 }
 
+function isTrustedApplicationUrl(candidateUrl, sourceUrl) {
+  const href = normalizeUrl(candidateUrl || "");
+  const source = normalizeUrl(sourceUrl || "");
+  if (!href) return null;
+  try {
+    const url = new URL(href);
+    const sourceParsed = source ? new URL(source) : null;
+    const sameHost = sourceParsed ? url.hostname === sourceParsed.hostname : false;
+    const signal = `${url.hostname} ${url.pathname}`.toLowerCase();
+    const strongPathSignal = /\b(apply|application|admission|admissions|portal|register|registration|login|signup|sign-up|dreamapply|applynow|enroll)\b/.test(signal);
+    if (strongPathSignal) return href;
+    if (!sameHost) return null;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 function extractApplicationLink(html, baseUrl) {
   const links = [];
   const anchorRe = /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
@@ -469,7 +506,8 @@ function extractApplicationLink(html, baseUrl) {
     }))
     .sort((a, b) => b.score - a.score)[0];
 
-  return best?.href || null;
+  if (!best?.href || best.score < 3) return null;
+  return isTrustedApplicationUrl(best.href, baseUrl);
 }
 
 function computeConfidence(record) {
@@ -479,6 +517,9 @@ function computeConfidence(record) {
   if (record.application.deadline || record.application.deadlineType === "rolling") c += 0.2;
   if (record.eligibility.degreeClassMin || record.eligibility.nationalities.length || record.eligibility.disciplines.length) c += 0.17;
   if (record.application.url) c += 0.2;
+  else if (hasActionableSourcePage(record)) c += 0.18;
+  if (String(record.sourceType || "").toLowerCase() === "government") c += 0.05;
+  if (String(record.sourceType || "").toLowerCase() === "university") c += 0.03;
   return Math.min(1, c);
 }
 
@@ -487,7 +528,7 @@ function computeNeedsVerification(record) {
   if (!record.coverage.amountGBP && record.coverage.type === "unknown") missing.push("amount");
   if (!record.application.deadline && record.application.deadlineType !== "rolling" && record.application.deadlineType !== "closed") missing.push("deadline");
   if (!record.eligibility.nationalityIsOpen && !record.eligibility.nationalities.length) missing.push("eligibility");
-  if (!record.application.url) missing.push("applicationUrl");
+  if (!record.application.url && !hasActionableSourcePage(record)) missing.push("applicationUrl");
   return missing;
 }
 
@@ -510,14 +551,32 @@ function classifyAwardingBody(body) {
   return "unknown";
 }
 
+function tidyScholarshipTitle(value = "") {
+  return compactText(String(value || ""))
+    .replace(/\s+[|:-]\s+(Chevening|The Cambridge Trust|DAAD - Deutscher Akademischer Austauschdienst)$/i, "")
+    .replace(/\s+-\s+DAAD\s+-\s+Deutscher Akademischer Austauschdienst$/i, "")
+    .replace(/\s+[|:-]\s+University of Oxford$/i, "")
+    .replace(/^University of Oxford\s*[|:-]\s*/i, "")
+    .trim();
+}
+
 export function extractScholarship({ html, sourceUrl, sourceLabel, title, applicationLink = null, contentText = null }) {
   const record = createEmptyScholarship();
   const htmlText = stripTags(html);
   const scopedText = compactText(contentText || htmlText);
+  const sourceKind = inferSourceKind(sourceUrl, sourceLabel);
   const pageType = classifyPageType({ title: title || "", bodyText: scopedText, sourceUrl });
   const nameSignals = extractNameSignals(html, sourceUrl, sourceLabel, title);
   const rawName = nameSignals.raw || nameSignals.fallback || sourceLabel || sourceUrl;
-  const name = cleanScholarshipName(rawName, sourceLabel) || titleCase(nameSignals.urlPathName || sourceLabel || "Untitled Scholarship");
+  const cleanedRawName = cleanScholarshipName(rawName, sourceLabel);
+  const canonicalRawName = canonicalizeScholarshipName(rawName, sourceLabel);
+  const cleanedUrlPathName = cleanScholarshipName(nameSignals.urlPathName, sourceLabel);
+  const name = (
+    (!isGenericScholarshipName(cleanedRawName, sourceLabel) ? cleanedRawName : "") ||
+    (!isGenericScholarshipName(canonicalRawName, sourceLabel) ? titleCase(canonicalRawName) : "") ||
+    (!isGenericScholarshipName(cleanedUrlPathName, sourceLabel) ? cleanedUrlPathName : "") ||
+    titleCase(nameSignals.urlPathName || sourceLabel || "Untitled Scholarship")
+  );
   const sourceNormalized = normalizeUrl(sourceUrl);
   const awardingBody = cleanScholarshipName(sourceLabel || new URL(sourceNormalized).hostname.replace(/^www\./, ""), "") || sourceLabel || new URL(sourceNormalized).hostname.replace(/^www\./, "");
 
@@ -532,11 +591,15 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title, applic
   };
 
   const deadline = extractDeadline(scopedText);
-  const applicationUrl = sourceNormalized;
-  const portal = cleanApplicationLink(applicationLink || extractApplicationLink(html, sourceNormalized) || "");
+  const sourcePageUrl = sourceNormalized;
+  const portal = isTrustedApplicationUrl(
+    cleanApplicationLink(applicationLink || extractApplicationLink(html, sourceNormalized) || ""),
+    sourceNormalized
+  );
 
-  record.application.url = applicationUrl;
+  record.application.url = portal || null;
   record.application.portal = portal || null;
+  record.application.sourceUrl = sourcePageUrl;
   record.application.deadline = deadline.iso;
   record.application.deadlineType = deadline.type;
   record.application.deadlineRaw = deadline.raw;
@@ -550,6 +613,91 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title, applic
   record.nameFull = rawName;
   record.name_full = rawName;
   record.displayName = titleCase(record.name);
+
+  if (sourceKind === "fulbright") {
+    record.name = "Fulbright Foreign Student Program";
+    record.displayName = record.name;
+    record.nameFull = record.name;
+    record.name_full = record.name;
+    record.awardingBody = "Fulbright";
+    record.sourceType = "government";
+  }
+
+  if (sourceKind === "daad") {
+    const daadTitle = tidyScholarshipTitle(nameSignals.h2 || nameSignals.h1 || title || record.name);
+    const [possibleBody, ...rest] = daadTitle.split(":");
+    if (rest.length && possibleBody.trim()) {
+      record.awardingBody = possibleBody.trim();
+      record.name = rest.join(":").trim();
+    } else {
+      record.name = daadTitle || record.name;
+      record.awardingBody = "DAAD";
+    }
+    record.displayName = record.name;
+    record.nameFull = daadTitle || record.name;
+    record.name_full = record.nameFull;
+    record.sourceType = classifyAwardingBody(record.awardingBody);
+    record.application.pageType = "detail";
+  }
+
+  if (sourceKind === "chevening") {
+    const cheveningTitle = tidyScholarshipTitle(nameSignals.h1 || title || record.name);
+    record.name = cheveningTitle || record.name;
+    record.displayName = record.name;
+    record.nameFull = record.name;
+    record.name_full = record.name;
+    record.awardingBody = "Chevening";
+    record.sourceType = "government";
+    record.application.pageType = "detail";
+  }
+
+  if (sourceKind === "cambridge-trust") {
+    const cambridgeTitle = tidyScholarshipTitle(nameSignals.h1 || title || record.name);
+    record.name = cambridgeTitle || record.name;
+    record.displayName = record.name;
+    record.nameFull = record.name;
+    record.name_full = record.name;
+    record.awardingBody = "Cambridge Trust";
+    record.sourceType = "foundation";
+    record.application.pageType = "detail";
+  }
+
+  if (sourceKind === "mext") {
+    record.name = "Japanese Government (MEXT) Scholarship";
+    record.displayName = record.name;
+    record.nameFull = record.name;
+    record.name_full = record.name;
+    record.awardingBody = "MEXT";
+    record.sourceType = "government";
+    record.application.pageType = "detail";
+  }
+
+  if (sourceKind === "edinburgh") {
+    record.name = "University of Edinburgh Postgraduate Scholarships";
+    record.displayName = record.name;
+    record.nameFull = record.name;
+    record.name_full = record.name;
+    record.awardingBody = "University of Edinburgh";
+    record.sourceType = "university";
+    record.application.pageType = "detail";
+  }
+
+  if (sourceKind === "oxford") {
+    const oxfordTitle = tidyScholarshipTitle(nameSignals.h1 || title || record.name)
+      .replace(/^Fees and funding\s*[|:-]\s*/i, "")
+      .replace(/^Funding\s*[|:-]\s*/i, "")
+      .trim();
+    record.name = oxfordTitle || record.name;
+    record.displayName = record.name;
+    record.nameFull = record.name;
+    record.name_full = record.name;
+    record.awardingBody = "University of Oxford";
+    record.sourceType = "university";
+    record.application.pageType = "detail";
+  }
+
+  record.id = generateScholarshipId(sourceNormalized, record.awardingBody) || record.id;
+  record.requirementsSummary = summarizeRequirements(record.eligibility, record.application);
 
   const now = new Date().toISOString();
   const confidence = computeConfidence(record);

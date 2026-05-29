@@ -1,22 +1,22 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useMemo } from "react";
+import { useUiStore } from "../../stores/uiStore.js";
 
 const WorkspaceContext = createContext(null);
 
 export function WorkspaceProvider({ children }) {
-  const [intelPanel, setIntelPanel] = useState(null);
-  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const intelPanel = useUiStore((s) => s.intelPanel);
+  const commandPaletteOpen = useUiStore((s) => s.commandPaletteOpen);
+  const setCommandPaletteOpen = useUiStore((s) => s.setCommandPaletteOpen);
+  const openIntelPanel = useUiStore((s) => s.openIntelPanel);
+  const closeIntelPanel = useUiStore((s) => s.closeIntelPanel);
 
   const value = useMemo(() => ({
     intelPanel,
     commandPaletteOpen,
     setCommandPaletteOpen,
-    openIntelPanel(panel) {
-      setIntelPanel(panel);
-    },
-    closeIntelPanel() {
-      setIntelPanel(null);
-    },
-  }), [intelPanel, commandPaletteOpen]);
+    openIntelPanel,
+    closeIntelPanel,
+  }), [intelPanel, commandPaletteOpen, setCommandPaletteOpen, openIntelPanel, closeIntelPanel]);
 
   return <WorkspaceContext.Provider value={value}>{children}</WorkspaceContext.Provider>;
 }
@@ -28,4 +28,3 @@ export function useWorkspace() {
   }
   return value;
 }
-

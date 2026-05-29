@@ -53,7 +53,7 @@ export function buildNotificationFeed({ profile = {}, sessions = [], contentMani
       type: "info",
       title: "Content snapshot",
       body: `Catalogue refreshed ${contentManifest.updated_at ? `at ${new Date(contentManifest.updated_at).toLocaleString("en-GB")}` : "recently"}. Deadlines tracked: ${contentManifest.deadlines?.tracked ?? 0}, changes: ${contentManifest.deadlines?.changes ?? 0}.`,
-      target: "/admin",
+      target: "/scholarships/weekly",
     });
   }
 
@@ -63,7 +63,7 @@ export function buildNotificationFeed({ profile = {}, sessions = [], contentMani
       type: item.type || "info",
       title: item.title || "Update",
       body: item.body || "",
-      target: item.target || "/admin",
+      target: item.target || "/scholarships/weekly",
     });
   }
 

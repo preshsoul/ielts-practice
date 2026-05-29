@@ -1,30 +1,33 @@
 import { createClaudeMessage, DEFAULT_ANTHROPIC_MODEL } from "../_shared/anthropic.ts";
+import {
+  corsHeaders,
+  enforceRateLimit,
+  ensureObject,
+  getAllowedOrigins,
+  jsonResponse,
+  readSupabaseAnonKey,
+  readSupabaseUrl,
+  readOptionalString,
+  readString,
+  rejectUnexpectedFields,
+  rememberJson,
+} from "../_shared/security.ts";
 
-const allowedOrigins = String(Deno.env.get("APP_ORIGIN") || Deno.env.get("SITE_URL") || "")
-  .split(",")
-  .map((value) => value.trim())
-  .filter(Boolean);
+const allowedOrigins = getAllowedOrigins();
+const DEEPSEEK_API_BASE = "https://api.deepseek.com/v1/chat/completions";
 
-function corsHeaders(origin: string | null) {
-  return {
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    Vary: "Origin",
-    ...(origin && (!allowedOrigins.length || allowedOrigins.includes(origin))
-      ? { "Access-Control-Allow-Origin": origin }
-      : {}),
-  };
-}
+const ALLOWED_ANTHROPIC_MODELS = new Set([
+  "claude-3-5-haiku-20241022",
+  "claude-3-5-sonnet-20241022",
+  "claude-3-7-sonnet-20250219",
+  "claude-haiku-4-5-20251001",
+  "claude-sonnet-4-6",
+]);
 
-function jsonResponse(body: unknown, status = 200, origin: string | null = null) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      ...corsHeaders(origin),
-      "Content-Type": "application/json",
-    },
-  });
-}
+const ALLOWED_DEEPSEEK_MODELS = new Set([
+  "deepseek-chat",
+  "deepseek-reasoner",
+]);
 
 async function requireAuthenticatedUser(req: Request) {
   const authHeader = req.headers.get("authorization");
@@ -32,8 +35,8 @@ async function requireAuthenticatedUser(req: Request) {
     throw new Response("Missing authorization header", { status: 401 });
   }
 
-  const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
-  const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || "";
+  const supabaseUrl = readSupabaseUrl();
+  const supabaseAnonKey = readSupabaseAnonKey();
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Response("Supabase auth is not configured", { status: 500 });
   }
@@ -70,13 +73,11 @@ function extractJsonPayload(text: string) {
 
 function errorResponse(error: unknown, origin: string | null = null) {
   if (error instanceof Response) {
-    return new Response(error.body, {
-      status: error.status,
-      headers: {
-        ...corsHeaders(origin),
-        "Content-Type": "text/plain; charset=utf-8",
-      },
-    });
+    const status = error.status;
+    const message = status === 401 ? "Unauthorized"
+      : status === 400 ? "Bad request"
+      : "Service temporarily unavailable";
+    return jsonResponse({ ok: false, error: { name: "SemanticProfileError", message } }, status >= 400 && status < 500 ? status : 500, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   const message = error instanceof Error ? error.message : "Unexpected semantic-profile failure";
@@ -86,12 +87,53 @@ function errorResponse(error: unknown, origin: string | null = null) {
       name: "SemanticProfileError",
       message,
     },
-  }, 500, origin);
+  }, 500, { origin, methods: "POST, OPTIONS", allowedOrigins });
+}
+
+async function callDeepseek(prompt: string) {
+  const apiKey = Deno.env.get("DEEPSEEK_API_KEY") || "";
+  const model = Deno.env.get("DEEPSEEK_MODEL") || "deepseek-chat";
+  if (!apiKey) throw new Response("Deepseek API key is not configured", { status: 500 });
+
+  const response = await fetch(DEEPSEEK_API_BASE, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: "You are a strict JSON-only normalization engine." },
+        { role: "user", content: prompt },
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    const message = await response.text().catch(() => "");
+    throw new Response(message || "Deepseek semantic profile request failed", { status: response.status });
+  }
+
+  const payload = await response.json();
+  const content = payload?.choices?.[0]?.message?.content;
+  const text = typeof content === "string" ? content : "";
+
+  return {
+    model: String(payload?.model || model),
+    text,
+    usage: payload?.usage || null,
+  };
 }
 
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get("origin");
-  if (origin && (!allowedOrigins.length || !allowedOrigins.includes(origin))) {
+  if (!allowedOrigins.length) {
+    return new Response("Server misconfiguration: APP_ORIGIN is not set", { status: 500 });
+  }
+  if (origin && !allowedOrigins.includes(origin)) {
     return new Response("Origin not allowed", { status: 403 });
   }
 
@@ -100,18 +142,50 @@ Deno.serve(async (req: Request) => {
   }
 
   if (req.method !== "POST") {
-    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, origin);
+    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   try {
     const user = await requireAuthenticatedUser(req);
-    const body = await req.json().catch(() => ({}));
-    const text = String(body?.text || "").trim();
-    const model = String(body?.model || DEFAULT_ANTHROPIC_MODEL).trim() || DEFAULT_ANTHROPIC_MODEL;
+    const rateLimit = await enforceRateLimit(req, {
+      namespace: "semantic-profile",
+      subject: String(user?.id || "anonymous"),
+      maxRequests: 20,
+      windowSeconds: 5 * 60,
+      origin,
+      methods: "POST, OPTIONS",
+      allowedOrigins,
+    });
+    if (rateLimit instanceof Response) return rateLimit;
 
-    if (!text) {
-      return jsonResponse({ ok: false, error: { message: "Empty semantic input" } }, 400, origin);
+    // Content-Length guard before reading the body
+    const contentLength = Number(req.headers.get("content-length") || 0);
+    if (contentLength > 256_000) {
+      return jsonResponse({ ok: false, error: { message: "Request body too large" } }, 413, { origin, methods: "POST, OPTIONS", allowedOrigins });
     }
+
+    const body = ensureObject(await req.json().catch(() => ({})));
+    rejectUnexpectedFields(body, ["text", "model"], "semantic profile request");
+    const text = readString(body.text || "", {
+      fieldName: "text",
+      minLength: 1,
+      maxLength: 12_000,
+    });
+    const requestedModel = readOptionalString(body.model, {
+      fieldName: "model",
+      maxLength: 120,
+    }) || "";
+
+    // Determine provider from requested model or env
+    const providerEnv = String(Deno.env.get("LLM_PROVIDER") || "").toLowerCase();
+    const hasDeepseek = Boolean(Deno.env.get("DEEPSEEK_API_KEY"));
+    const hasAnthropic = Boolean(Deno.env.get("ANTHROPIC_API_KEY"));
+    const provider = ALLOWED_DEEPSEEK_MODELS.has(requestedModel) ? "deepseek"
+      : ALLOWED_ANTHROPIC_MODELS.has(requestedModel) ? "anthropic"
+      : providerEnv === "deepseek" ? "deepseek"
+      : providerEnv === "anthropic" ? "anthropic"
+      : hasDeepseek && !hasAnthropic ? "deepseek"
+      : "anthropic";
 
     const prompt = `
 You normalize scholarship candidate information for a recommendation engine.
@@ -134,12 +208,35 @@ Input:
 ${text}
 `.trim();
 
-    const result = await createClaudeMessage(prompt, {
-      model,
-      maxTokens: 512,
-      temperature: 0,
-      system: "You are a strict JSON-only normalization engine.",
-    });
+    let result: { model: string; text: string; usage: unknown };
+
+    if (provider === "deepseek") {
+      const deepseekModel = ALLOWED_DEEPSEEK_MODELS.has(requestedModel) ? requestedModel : (Deno.env.get("DEEPSEEK_MODEL") || "deepseek-chat");
+      result = await rememberJson(
+        "semantic-profile",
+        { provider: "deepseek", model: deepseekModel, text, userId: user?.id || null },
+        60 * 60,
+        async () => callDeepseek(prompt),
+      );
+    } else {
+      const anthropicModel = ALLOWED_ANTHROPIC_MODELS.has(requestedModel) ? requestedModel : DEFAULT_ANTHROPIC_MODEL;
+      const rawResult = await rememberJson(
+        "semantic-profile",
+        { provider: "anthropic", model: anthropicModel, text, userId: user?.id || null },
+        60 * 60,
+        async () => createClaudeMessage(prompt, {
+          model: anthropicModel,
+          maxTokens: 512,
+          temperature: 0,
+          system: "You are a strict JSON-only normalization engine.",
+        }),
+      );
+      result = {
+        model: rawResult.model || anthropicModel,
+        text: rawResult.text,
+        usage: rawResult.usage || null,
+      };
+    }
 
     const parsed = extractJsonPayload(result.text);
     const semanticText = String(parsed?.semantic_text || "").trim() || text;
@@ -156,9 +253,13 @@ ${text}
       confidence,
       usage: result.usage,
       userId: user?.id || null,
-    }, 200, origin);
+    }, 200, {
+      origin,
+      methods: "POST, OPTIONS",
+      headers: rateLimit,
+      allowedOrigins,
+    });
   } catch (error) {
     return errorResponse(error, origin);
   }
 });
-

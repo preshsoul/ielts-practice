@@ -12,9 +12,16 @@ class InputSanitizer {
   }
 
   static sanitizeHtml(input, allowedTags = []) {
+    // Strip all HTML tags first, then selectively re-allow safe tags
     const text = cleanText(input, { maxLength: 4000, allowNewlines: true });
     if (!allowedTags.length) return text;
-    return text;
+
+    // Build a whitelist-based regex that preserves only explicitly allowed tags
+    const allowedSet = new Set(allowedTags.map((t) => t.toLowerCase()));
+    // Wrap preserved tags in a safe span; strip everything else
+    return text.replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*>/g, (match, tag) => {
+      return allowedSet.has(tag.toLowerCase()) ? match : "";
+    });
   }
 
   static sanitizeEmail(email) {

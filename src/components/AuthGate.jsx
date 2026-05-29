@@ -38,11 +38,6 @@ export default function AuthGate() {
     setSubmitted(true);
     setMessage("");
 
-    if (!supabase) {
-      setMessage("Supabase is not configured yet.");
-      return;
-    }
-
     if (validation.email || validation.password) {
       return;
     }

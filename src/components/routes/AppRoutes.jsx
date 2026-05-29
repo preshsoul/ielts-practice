@@ -1,18 +1,16 @@
 import React, { Suspense, lazy } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PracticeShell } from "../layout/AppShell.jsx";
 import { computeWeakSections, selectQueue } from "../../lib/sessionTools.js";
 
-const PracticeView = lazy(() => import("../../features/training/PracticeView.jsx"));
+const PracticeView = lazy(() => import("../PracticeView.jsx"));
 const PracticeHub = lazy(() => import("../../features/training/PracticeHub.jsx"));
-const ModulePracticeScreen = lazy(() => import("../../features/training/ModulePracticeScreen.jsx"));
-const ProgressView = lazy(() => import("../../features/training/ProgressView.jsx"));
-const WeakAreasView = lazy(() => import("../../features/training/WeakAreasView.jsx"));
-const LearningPathView = lazy(() => import("../../features/training/LearningPathView.jsx"));
+const ModulePracticeScreen = lazy(() => import("../ModulePracticeScreen.jsx"));
+const ProgressView = lazy(() => import("../ProgressView.jsx"));
+const WeakAreasView = lazy(() => import("../WeakAreasView.jsx"));
+const LearningPathView = lazy(() => import("../LearningPathView.jsx"));
 const ScholarshipPage = lazy(() => import("../../features/discovery/ScholarshipPage.jsx"));
 const ScholarshipFeedPage = lazy(() => import("../../features/discovery/ScholarshipFeedPage.jsx"));
-const AdminContentScreen = lazy(() => import("../AdminContentScreen.jsx"));
-
 function RouteFallback({ label = "Loading route" }) {
   return (
     <div className="empty-state" role="status" aria-live="polite">
@@ -20,11 +18,6 @@ function RouteFallback({ label = "Loading route" }) {
       <div className="empty-state-copy">Fetching the next screen without loading the entire app bundle.</div>
     </div>
   );
-}
-
-export function ProtectedRoute({ component: Component, authUser, isAdmin, ...rest }) {
-  if (!authUser || !isAdmin) return <Navigate to="/account" replace />;
-  return <Component authUser={authUser} {...rest} />;
 }
 
 export function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, passages, learningPath, practiceLoaded, C, PrimaryBtn, GhostBtn, Chip, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR }) {
@@ -109,7 +102,7 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
 
   return (
     <>
-      <div className="topbar">
+      <div className="topbar topbar--scholarships">
         <div>
           <div style={{ font: "600 11px/1.4 var(--font-ui)", color: "var(--text-3)", letterSpacing: "0.14em", textTransform: "uppercase" }}>Workspace</div>
           <div className="page-title" style={{ marginBottom: 8 }}>Scholarships</div>

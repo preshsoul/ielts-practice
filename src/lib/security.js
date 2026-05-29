@@ -118,7 +118,12 @@ export function cleanProfilePatch(payload = {}) {
   }
 
   if (next.targetDegreeLevel !== undefined) {
-    next.targetDegreeLevel = cleanText(next.targetDegreeLevel, { maxLength: 64 }) || null;
+    next.targetdegreelevel = cleanText(next.targetDegreeLevel, { maxLength: 64 }) || null;
+    delete next.targetDegreeLevel;
+  }
+
+  if (next.targetdegreelevel !== undefined) {
+    next.targetdegreelevel = cleanText(next.targetdegreelevel, { maxLength: 64 }) || null;
   }
 
   if (next.targetDisciplines !== undefined) {
@@ -163,7 +168,27 @@ export function cleanCvProfile(payload = {}) {
   return {
     profile_id: cleanText(payload.profile_id, { maxLength: 64 }) || null,
     label: cleanText(payload.label, { maxLength: 120 }) || null,
-    raw_text_hash: cleanText(payload.raw_text_hash, { maxLength: 128 }) || null,
+    source_filename: cleanText(payload.source_filename || payload.sourceFilename, { maxLength: 180 }) || null,
+    mime_type: cleanText(payload.mime_type || payload.mimeType, { maxLength: 120 }) || null,
+    document_type: cleanText(payload.document_type || payload.documentType, { maxLength: 40 }) || null,
+    raw_text_hash: cleanText(payload.raw_text_hash || payload.rawTextHash, { maxLength: 128 }) || null,
+    extracted_excerpt: cleanText(payload.extracted_excerpt || payload.extractedExcerpt, { maxLength: 1200, allowNewlines: true }) || null,
+    extracted_text: cleanText(payload.extracted_text || payload.extractedText, { maxLength: 20000, allowNewlines: true }) || null,
+    parsed_profile: payload.parsed_profile && typeof payload.parsed_profile === "object"
+      ? payload.parsed_profile
+      : payload.parsedProfile && typeof payload.parsedProfile === "object"
+        ? payload.parsedProfile
+        : {},
+    parsed_candidate_profile: payload.parsed_candidate_profile && typeof payload.parsed_candidate_profile === "object"
+      ? payload.parsed_candidate_profile
+      : payload.parsedCandidateProfile && typeof payload.parsedCandidateProfile === "object"
+        ? payload.parsedCandidateProfile
+        : {},
+    parser_version: cleanText(payload.parser_version || (payload.provenance?.parser_version), { maxLength: 40 }) || null,
+    parser_method: cleanText(payload.parser_method || (payload.provenance?.method), { maxLength: 40 }) || null,
+    parser_model: cleanText(payload.parser_model || (payload.provenance?.model), { maxLength: 80 }) || null,
+    parsed_at: cleanText(payload.parsed_at || (payload.provenance?.parsed_at), { maxLength: 32 }) || null,
+    confidence: cleanNumber(payload.confidence, { min: 0, max: 1, integer: false }),
     keywords: cleanList(payload.keywords, { maxItems: 40, maxLength: 64 }),
   };
 }

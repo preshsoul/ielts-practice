@@ -1,14 +1,20 @@
 import { createClient } from "@supabase/supabase-js";
+import {
+  appendSecurityHeaders,
+  enforceRateLimit,
+  ensureObject,
+  getClientIp,
+  jsonResponse,
+  readJsonBody,
+  readString,
+  rejectUnexpectedFields,
+} from "./security.js";
 
 const ACCESS_COOKIE = "loci-sb-access-token";
 const LEGACY_REFRESH_COOKIE = "loci-sb-refresh-token";
 const REFRESH_COOKIE = "__Host-loci-refresh-token";
 const OAUTH_NONCE_COOKIE = "loci-oauth-nonce";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
-const LOGIN_WINDOW_MS = 10 * 60 * 1000;
-const LOGIN_MAX_ATTEMPTS = 8;
-const loginAttempts = new Map();
-
 function isProduction() {
   return String(process.env.NODE_ENV || "").toLowerCase() === "production";
 }
@@ -64,7 +70,6 @@ function resolveAuthConfig(config = {}) {
     supabaseUrl:
       config.supabaseUrl ||
       process.env.SUPABASE_URL ||
-      process.env.NEXT_PUBLIC_SUPABASE_URL ||
       process.env.VITE_SUPABASE_URL ||
       "",
     supabaseAnonKey:
@@ -72,7 +77,6 @@ function resolveAuthConfig(config = {}) {
       config.supabasePublishableKey ||
       process.env.SUPABASE_ANON_KEY ||
       process.env.SUPABASE_PUBLISHABLE_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
       process.env.VITE_SUPABASE_ANON_KEY ||
       "",
   };
@@ -99,59 +103,11 @@ function safeNextPath(value) {
   return next;
 }
 
+const UUID_V4_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 function safeNonce(value) {
   const nonce = String(value || "").trim();
-  return /^[a-f0-9-]{16,128}$/i.test(nonce) ? nonce : "";
-}
-
-function getClientIp(request) {
-  const forwarded = request.headers.get("x-forwarded-for") || "";
-  const firstForwarded = forwarded.split(",").map((entry) => entry.trim()).filter(Boolean)[0];
-  return (
-    request.headers.get("cf-connecting-ip") ||
-    request.headers.get("x-real-ip") ||
-    firstForwarded ||
-    "unknown"
-  );
-}
-
-function getRateLimitKey(request, email) {
-  return `${getClientIp(request)}:${String(email || "").toLowerCase()}`;
-}
-
-function pruneLoginAttempts(now = Date.now()) {
-  for (const [key, record] of loginAttempts.entries()) {
-    if (!record || now - record.updatedAt > LOGIN_WINDOW_MS) {
-      loginAttempts.delete(key);
-    }
-  }
-}
-
-function getLoginRateLimitState(key, now = Date.now()) {
-  pruneLoginAttempts(now);
-  const record = loginAttempts.get(key);
-  if (!record) return { attempts: 0, blocked: false, retryAfter: 0 };
-
-  const elapsed = now - record.updatedAt;
-  if (elapsed > LOGIN_WINDOW_MS) {
-    loginAttempts.delete(key);
-    return { attempts: 0, blocked: false, retryAfter: 0 };
-  }
-
-  const blocked = record.attempts >= LOGIN_MAX_ATTEMPTS;
-  const retryAfter = blocked ? Math.max(1, Math.ceil((LOGIN_WINDOW_MS - elapsed) / 1000)) : 0;
-  return { attempts: record.attempts, blocked, retryAfter };
-}
-
-function recordLoginFailure(key, now = Date.now()) {
-  const current = loginAttempts.get(key);
-  const nextAttempts = current && now - current.updatedAt <= LOGIN_WINDOW_MS ? current.attempts + 1 : 1;
-  loginAttempts.set(key, { attempts: nextAttempts, updatedAt: now });
-  return getLoginRateLimitState(key, now);
-}
-
-function clearLoginAttempts(key) {
-  loginAttempts.delete(key);
+  return UUID_V4_RE.test(nonce) ? nonce : "";
 }
 
 function assertSameOrigin(request) {
@@ -236,59 +192,62 @@ export async function handleAuthBridge(request, config = {}) {
   const action = url.searchParams.get("action") || "session";
   const supabase = createAuthClient(config);
   const cookies = parseCookies(request.headers.get("cookie") || "");
+  const ip = getClientIp(request);
+
+  async function applyRateLimit(label, subject, maxRequests, windowSeconds) {
+    const state = await enforceRateLimit({
+      namespace: `auth:${label}`,
+      key: `${ip}:${subject || "anonymous"}`,
+      maxRequests,
+      windowSeconds,
+    });
+    if (!state.allowed) {
+      return jsonResponse(
+        {
+          error: "Too many requests. Please slow down and try again shortly.",
+          code: "RATE_LIMITED",
+        },
+        429,
+        { headers: state.headers }
+      );
+    }
+    return state.headers;
+  }
 
   if (action === "login") {
     if (request.method !== "POST") {
-      return new Response(JSON.stringify({ error: "Method not allowed" }), {
-        status: 405,
-        headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
-      });
+      return jsonResponse({ error: "Method not allowed" }, 405);
     }
 
     assertSameOrigin(request);
 
-    const body = await request.json().catch(() => ({}));
-    const email = String(body?.email || "").trim().toLowerCase();
-    const password = String(body?.password || "");
-    const rateLimitKey = getRateLimitKey(request, email || "missing");
-    const rateState = getLoginRateLimitState(rateLimitKey);
+    const body = ensureObject(await readJsonBody(request));
+    rejectUnexpectedFields(body, ["email", "password"], "login request");
+    const email = readString(body.email || "", {
+      fieldName: "email",
+      minLength: 3,
+      maxLength: 254,
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    }).toLowerCase();
+    const password = readString(body.password || "", {
+      fieldName: "password",
+      minLength: 1,
+      maxLength: 512,
+      allowEmpty: false,
+    });
 
-    if (rateState.blocked) {
-      return new Response(JSON.stringify({ error: "Too many login attempts. Please try again later." }), {
-        status: 429,
-        headers: {
-          "Content-Type": "application/json",
-          "Cache-Control": "no-store",
-          "Retry-After": String(rateState.retryAfter || 60),
-        },
-      });
-    }
-
-    if (!email || !password) {
-      return new Response(JSON.stringify({ error: "Email and password are required." }), {
-        status: 400,
-        headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
-      });
-    }
+    const loginRateLimit = await applyRateLimit("login", email, 8, 10 * 60);
+    if (loginRateLimit instanceof Response) return loginRateLimit;
 
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error || !data?.session) {
-      const updatedState = recordLoginFailure(rateLimitKey);
-      return new Response(JSON.stringify({ error: "Invalid email or password." }), {
-        status: 401,
-        headers: {
-          "Content-Type": "application/json",
-          "Cache-Control": "no-store",
-          ...(updatedState.blocked ? { "Retry-After": String(updatedState.retryAfter || 60) } : {}),
-        },
+      return jsonResponse({ error: "Invalid email or password." }, 401, {
+        headers: loginRateLimit,
       });
     }
 
-    clearLoginAttempts(rateLimitKey);
-    const headers = new Headers({
-      "Content-Type": "application/json",
-      "Cache-Control": "no-store",
-    });
+    const headers = appendSecurityHeaders(new Headers(loginRateLimit));
+    headers.set("Content-Type", "application/json; charset=utf-8");
     setAuthCookies(headers, data.session);
 
     return new Response(JSON.stringify(buildSessionResponse(data.session)), {
@@ -302,19 +261,21 @@ export async function handleAuthBridge(request, config = {}) {
     const next = safeNextPath(url.searchParams.get("next"));
     const callbackNonce = safeNonce(url.searchParams.get("nonce"));
     const cookieNonce = safeNonce(cookies[OAUTH_NONCE_COOKIE] || "");
+    const callbackRateLimit = await applyRateLimit("callback", callbackNonce || "missing", 20, 10 * 60);
+    if (callbackRateLimit instanceof Response) return callbackRateLimit;
 
     if (!code) {
       return new Response("Missing authorization code.", {
         status: 400,
-        headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
+        headers: appendSecurityHeaders({
+          "Content-Type": "text/plain; charset=utf-8",
+        }),
       });
     }
 
     if (!callbackNonce || !cookieNonce || callbackNonce !== cookieNonce) {
-      const headers = new Headers({
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      });
+      const headers = appendSecurityHeaders(new Headers(callbackRateLimit));
+      headers.set("Content-Type", "text/plain; charset=utf-8");
       clearAuthCookies(headers);
       headers.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0, sameSite: "Lax" }));
       return new Response("Invalid sign-in state.", {
@@ -325,10 +286,8 @@ export async function handleAuthBridge(request, config = {}) {
 
     const { data, error } = await supabase.auth.exchangeCodeForSession(code);
     if (error || !data?.session) {
-      const headers = new Headers({
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      });
+      const headers = appendSecurityHeaders(new Headers(callbackRateLimit));
+      headers.set("Content-Type", "text/plain; charset=utf-8");
       headers.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0, sameSite: "Lax" }));
       return new Response("Unable to complete sign in.", {
         status: 401,
@@ -336,10 +295,8 @@ export async function handleAuthBridge(request, config = {}) {
       });
     }
 
-    const headers = new Headers({
-      Location: next,
-      "Cache-Control": "no-store",
-    });
+    const headers = appendSecurityHeaders(new Headers(callbackRateLimit));
+    headers.set("Location", next);
     setAuthCookies(headers, data.session);
     headers.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0, sameSite: "Lax" }));
 
@@ -351,23 +308,22 @@ export async function handleAuthBridge(request, config = {}) {
 
   if (action === "logout") {
     if (request.method !== "POST") {
-      return new Response(JSON.stringify({ error: "Method not allowed" }), {
-        status: 405,
-        headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
-      });
+      return jsonResponse({ error: "Method not allowed" }, 405);
     }
 
     assertSameOrigin(request);
+    const logoutRateLimit = await applyRateLimit("logout", cookies[REFRESH_COOKIE] || ip, 30, 5 * 60);
+    if (logoutRateLimit instanceof Response) return logoutRateLimit;
 
-    const headers = new Headers({
-      "Content-Type": "application/json",
-      "Cache-Control": "no-store",
-    });
+    const headers = appendSecurityHeaders(new Headers(logoutRateLimit));
+    headers.set("Content-Type", "application/json; charset=utf-8");
     clearAuthCookies(headers);
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
   }
 
   if (action === "session") {
+    const sessionRateLimit = await applyRateLimit("session", cookies[REFRESH_COOKIE] || ip, 120, 60);
+    if (sessionRateLimit instanceof Response) return sessionRateLimit;
     const session = await getVerifiedSession(
       supabase,
       cookies[ACCESS_COOKIE] || "",
@@ -375,18 +331,14 @@ export async function handleAuthBridge(request, config = {}) {
     );
 
     if (!session) {
-      const headers = new Headers({
-        "Content-Type": "application/json",
-        "Cache-Control": "no-store",
-      });
+      const headers = appendSecurityHeaders(new Headers(sessionRateLimit));
+      headers.set("Content-Type", "application/json; charset=utf-8");
       clearAuthCookies(headers);
       return new Response(JSON.stringify({ session: null, user: null }), { status: 200, headers });
     }
 
-    const headers = new Headers({
-      "Content-Type": "application/json",
-      "Cache-Control": "no-store",
-    });
+    const headers = appendSecurityHeaders(new Headers(sessionRateLimit));
+    headers.set("Content-Type", "application/json; charset=utf-8");
 
     if (session.refresh_token) {
       setAuthCookies(headers, {
@@ -399,10 +351,7 @@ export async function handleAuthBridge(request, config = {}) {
     return new Response(JSON.stringify(buildSessionResponse(session)), { status: 200, headers });
   }
 
-  return new Response(JSON.stringify({ error: "Not found" }), {
-    status: 404,
-    headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
-  });
+  return jsonResponse({ error: "Not found" }, 404);
 }
 
 export function withAuthBridge(handler) {
@@ -410,10 +359,9 @@ export function withAuthBridge(handler) {
     try {
       return await handler(request);
     } catch (error) {
-      return new Response(JSON.stringify({ error: error?.message || "Auth bridge failed" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
-      });
+      const message = error?.message || "Auth bridge failed";
+      const status = /required|invalid|unexpected field|must be/i.test(message) ? 400 : 500;
+      return jsonResponse({ error: message }, status);
     }
   };
 }

@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile, rename, unlink } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { normalizeText, normalizeUrl } from "../../../src/lib/scholarshipContract.js";
+import { canonicalizeScholarshipName, normalizeText, normalizeUrl } from "../../../src/lib/scholarshipContract.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..");
@@ -46,6 +46,25 @@ function scholarshipFingerprint(scholarship = {}) {
       scholarship?.scraped_from
   );
   return [name, body, portal].filter(Boolean).join("::");
+}
+
+function scholarshipFamilyKey(scholarship = {}) {
+  const title = canonicalizeScholarshipName(scholarship.name, scholarship.awardingBody);
+  const body = normalizeText(scholarship.awardingBody).toLowerCase();
+  const sourceUrl = normalizeUrl(
+    scholarship?.application?.url ||
+      scholarship?.provenance?.sourceUrl ||
+      scholarship?.source?.sourceUrl ||
+      scholarship?.website ||
+      scholarship?.scraped_from
+  );
+  let host = "";
+  try {
+    host = sourceUrl ? new URL(sourceUrl).hostname.replace(/^www\./, "") : "";
+  } catch {
+    host = "";
+  }
+  return [title, body, host].filter(Boolean).join("::");
 }
 
 function completenessScore(scholarship = {}) {
@@ -112,13 +131,19 @@ function mergeScholarships(existing = {}, incoming = {}) {
 function dedupeScholarships(scholarships = []) {
   const byId = new Map();
   const byFingerprint = new Map();
+  const byFamily = new Map();
   for (const scholarship of scholarships) {
     if (!scholarship?.id) continue;
     const fingerprint = scholarshipFingerprint(scholarship);
-    const current = byId.get(scholarship.id) || (fingerprint ? byFingerprint.get(fingerprint) : null);
+    const familyKey = scholarshipFamilyKey(scholarship);
+    const current =
+      byId.get(scholarship.id) ||
+      (fingerprint ? byFingerprint.get(fingerprint) : null) ||
+      (familyKey ? byFamily.get(familyKey) : null);
     if (!current) {
       byId.set(scholarship.id, scholarship);
       if (fingerprint) byFingerprint.set(fingerprint, scholarship);
+      if (familyKey) byFamily.set(familyKey, scholarship);
       continue;
     }
     const merged = mergeScholarships(current, scholarship);
@@ -128,6 +153,7 @@ function dedupeScholarships(scholarships = []) {
     merged.id = chosenId;
     byId.set(chosenId, merged);
     if (fingerprint) byFingerprint.set(fingerprint, merged);
+    if (familyKey) byFamily.set(familyKey, merged);
   }
   return [...new Map([...byId.entries()]).values()].sort((a, b) => {
     const aScore = completenessScore(a);

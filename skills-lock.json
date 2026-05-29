@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "agents-sdk": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "computedHash": "01515ef239bee4ab1464d0eb735a857de3832a304fccd9315bf439837c053e62"
+    },
+    "cloudflare": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "computedHash": "4fabe7c7ae55f456647409361e7140bdff92d3ba2520034ebd5846e8aeab5caf"
+    }
+  }
+}

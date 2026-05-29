@@ -1,29 +1,5 @@
 import { classifyOpportunityFocus } from "./opportunitySignals.js";
-
-function toText(value) {
-  return String(value ?? "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function toList(value) {
-  if (Array.isArray(value)) {
-    return value.map(toText).filter(Boolean);
-  }
-
-  if (typeof value === "string") {
-    return value
-      .split(",")
-      .map((item) => item.trim())
-      .filter(Boolean);
-  }
-
-  return [];
-}
-
-function unique(values) {
-  return [...new Set(values.filter(Boolean))];
-}
+import { toText, toList, unique } from "./textUtils.js";
 
 function pushSection(parts, label, value) {
   const text = toText(value);

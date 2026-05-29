@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scholarship Detail - Loci</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Domine:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dce1ff",
+                    "on-primary-fixed": "#001452",
+                    "surface-variant": "#e2e1ee",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#001551",
+                    "on-tertiary-fixed": "#360f00",
+                    "secondary": "#4b5b98",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191b24",
+                    "tertiary": "#993900",
+                    "inverse-surface": "#2e3039",
+                    "on-secondary-container": "#394985",
+                    "inverse-primary": "#b7c4ff",
+                    "primary-fixed": "#dde1ff",
+                    "on-surface-variant": "#434655",
+                    "on-background": "#191b24",
+                    "error": "#ba1a1a",
+                    "surface-container": "#ededf9",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "tertiary-container": "#c14a00",
+                    "secondary-container": "#abbbff",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-primary-container": "#f6f4ff",
+                    "inverse-on-surface": "#f0f0fc",
+                    "primary": "#0d47db",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#b7c4ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#1c4fe1",
+                    "surface-dim": "#d9d9e5",
+                    "surface-container-low": "#f3f2ff",
+                    "surface-container-high": "#e7e7f4",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c4c5d8",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed-variant": "#33437f",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e2e1ee",
+                    "outline": "#747687",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-tertiary-container": "#fff3ef",
+                    "on-primary-fixed-variant": "#0038b7",
+                    "primary-container": "#3863f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-desktop": "32px",
+                    "base": "8px",
+                    "intel-sidebar-width": "270px",
+                    "container-padding-mobile": "16px",
+                    "sidebar-collapsed": "64px",
+                    "sidebar-width": "240px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["JetBrains Mono"],
+                    "body-base": ["IBM Plex Sans"],
+                    "label-caps": ["Domine"],
+                    "data-mono": ["JetBrains Mono"],
+                    "hero-display": ["JetBrains Mono"],
+                    "headline-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "body-base": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                    "data-mono": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "hero-display": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "headline-sm": ["16px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet-active {
+            height: 90vh;
+            border-radius: 2rem 2rem 0 0;
+            box-shadow: 0 -10px 40px rgba(117, 122, 131, 0.15);
+        }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #faf8ff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- Background Content: Scholarship List (Mobile View) -->
+<div class="flex flex-col h-screen md:hidden">
+<!-- Minimal Header for background context -->
+<header class="h-16 px-4 flex items-center justify-between bg-surface">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Loci</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">terminal</span>
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</div>
+</header>
+<main class="p-4 flex-1 overflow-y-auto">
+<h1 class="font-headline-lg text-headline-lg mb-6">Scholarships</h1>
+<div class="space-y-4">
+<!-- List Items (Background) -->
+<div class="p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl">
+<p class="font-label-caps text-label-caps text-primary mb-1">STEM EXCELLENCE</p>
+<h3 class="font-headline-sm text-headline-sm mb-2">Global Innovators Fund</h3>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-data-mono text-data-mono">$25,000</span>
+<span class="font-body-base text-body-base">Due Sep 12</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl opacity-60">
+<p class="font-label-caps text-label-caps text-primary mb-1">DATA SCIENCE</p>
+<h3 class="font-headline-sm text-headline-sm mb-2">Future Analysts Grant</h3>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-data-mono text-data-mono">$10,000</span>
+<span class="font-body-base text-body-base">Due Oct 05</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (JSON Mapping) -->
+<nav class="flex justify-around items-center h-16 bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="text-[10px] font-medium">Scholarships</span>
+</div>
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="text-[10px] font-medium">Practice</span>
+</div>
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Account</span>
+</div>
+</nav>
+</div>
+<!-- Scrim / Backdrop -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-[2px] z-40"></div>
+<!-- Mobile Intelligence Bottom Sheet (90vh) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest bottom-sheet-active flex flex-col overflow-hidden">
+<!-- Drag Handle -->
+<div class="flex justify-center p-3">
+<div class="w-10 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Sheet Header -->
+<div class="px-6 pb-4 border-b border-outline-variant/10">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-tertiary bg-tertiary-fixed/30 px-2 py-1 rounded">MATCH: 98%</span>
+<button class="material-symbols-outlined text-on-surface-variant">close</button>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">The Rhodes Scholarship</h2>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-body-base text-body-base text-on-surface-variant">Oxford University, UK</span>
+</div>
+</div>
+<!-- Sheet Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto px-6 py-4 space-y-8 pb-32">
+<!-- Quick Stats Bento Section -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/10">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">EST. VALUE</p>
+<p class="font-data-mono text-headline-sm text-primary font-bold">Full Ride</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/10">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">DEADLINE</p>
+<p class="font-data-mono text-headline-sm text-error font-bold">Oct 02</p>
+</div>
+</div>
+<!-- Intelligence Insight Section -->
+<section>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm">Intelligence Summary</h3>
+</div>
+<div class="bg-primary-container/10 p-4 rounded-xl border-l-4 border-primary">
+<p class="font-body-base text-body-base text-on-surface-variant leading-relaxed">
+                        Your profile matches the <span class="font-semibold text-on-surface">Academic Excellence</span> and <span class="font-semibold text-on-surface">Leadership</span> criteria perfectly. The selection committee prioritizes cross-disciplinary research, which aligns with your dual-major history.
+                    </p>
+</div>
+</section>
+<!-- Coverage Details Section -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-4">Coverage Details</h3>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="h-10 w-10 flex-shrink-0 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<div>
+<p class="font-headline-sm text-[14px]">Full Tuition &amp; Fees</p>
+<p class="font-body-base text-on-surface-variant text-[13px]">Covers all university and college fees directly to Oxford.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="h-10 w-10 flex-shrink-0 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">house</span>
+</div>
+<div>
+<p class="font-headline-sm text-[14px]">Living Stipend</p>
+<p class="font-body-base text-on-surface-variant text-[13px]">£18,118 per annum paid in monthly installments.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="h-10 w-10 flex-shrink-0 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">flight_takeoff</span>
+</div>
+<div>
+<p class="font-headline-sm text-[14px]">Travel Grant</p>
+<p class="font-body-base text-on-surface-variant text-[13px]">Two economy class flights at the start and end of tenure.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Eligibility Grid -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-4">Full Eligibility</h3>
+<div class="bg-surface p-4 rounded-xl space-y-3">
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-2">
+<span class="font-body-base text-on-surface-variant">Age Requirement</span>
+<span class="font-data-mono text-on-surface">18-24 years</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-2">
+<span class="font-body-base text-on-surface-variant">Minimum GPA</span>
+<span class="font-data-mono text-on-surface">3.7 / 4.0</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-2">
+<span class="font-body-base text-on-surface-variant">Degree Level</span>
+<span class="font-data-mono text-on-surface">Undergrad/Masters</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-base text-on-surface-variant">Citizenship</span>
+<span class="font-data-mono text-on-surface">50+ Countries</span>
+</div>
+</div>
+</section>
+<!-- Visual Context Image -->
+<div class="rounded-2xl overflow-hidden aspect-video relative group">
+<img alt="Oxford University Grounds" class="w-full h-full object-cover" data-alt="A cinematic, high-definition photograph of the historic Oxford University cloisters during a soft golden hour. The ancient limestone architecture glows with warmth, surrounded by meticulously manicured green lawns and ivy-covered stone walls. The atmosphere is quiet, prestigious, and academic, reflecting a modern light-mode aesthetic with clean lines and sophisticated natural lighting. The mood is inspiring and serene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEOjljvzQPCc0dP4SFT3StxYyBc1Mt3B656TeSds9bAsgsVqCVPynM7BHyFidzrVw3LGbvA6KvjRrmGsmRA3jQdM3Gitj-qBntpbiioCe8f-4LseH9zyICuZ4TguDQu8URXHZT0MnWHGd98bCCRsqVwq9Uw4CCC6eAy5ODAlBI7vagJz8KPlei7J6NFTpbOVqKPQTp3RMKPf0DDQeWiGQ4PWun5UC5RzcWkGbGl1k9g6ZMo_0pvymbxbRvY_QRjh13llP_jSduD8DJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="absolute bottom-0 left-0 right-0 bg-surface-container-lowest p-6 border-t border-outline-variant/10 shadow-[0_-8px_24px_rgba(0,0,0,0.04)]">
+<button class="w-full h-14 bg-primary text-on-primary font-headline-sm rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                Start Application
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -252,68 +252,68 @@ grant select, insert, update, delete on public.application_tracking to authentic
 drop policy if exists "Profiles are owned by the authenticated user" on public.profiles;
 create policy "Profiles are owned by the authenticated user"
   on public.profiles
-  to authenticated
   for all
+  to authenticated
   using ((select auth.uid()) is not null and (select auth.uid()) = id)
   with check ((select auth.uid()) is not null and (select auth.uid()) = id);
 
 drop policy if exists "Passages are publicly readable" on public.passages;
 create policy "Passages are publicly readable"
   on public.passages
-  to anon, authenticated
   for select
+  to anon, authenticated
   using (active = true);
 
 drop policy if exists "Questions are publicly readable" on public.questions;
 create policy "Questions are publicly readable"
   on public.questions
-  to anon, authenticated
   for select
+  to anon, authenticated
   using (active = true and verified = true);
 
 drop policy if exists "Scholarships are publicly readable" on public.scholarships;
 create policy "Scholarships are publicly readable"
   on public.scholarships
-  to anon, authenticated
   for select
+  to anon, authenticated
   using (active = true);
 
 drop policy if exists "Universities are publicly readable" on public.universities;
 create policy "Universities are publicly readable"
   on public.universities
-  to anon, authenticated
   for select
+  to anon, authenticated
   using (true);
 
 drop policy if exists "Users own their sessions" on public.practice_sessions;
 create policy "Users own their sessions"
   on public.practice_sessions
-  to authenticated
   for all
+  to authenticated
   using ((select auth.uid()) is not null and (select auth.uid()) = profile_id)
   with check ((select auth.uid()) is not null and (select auth.uid()) = profile_id);
 
 drop policy if exists "Users own their shortlists" on public.shortlists;
 create policy "Users own their shortlists"
   on public.shortlists
-  to authenticated
   for all
+  to authenticated
   using ((select auth.uid()) is not null and (select auth.uid()) = profile_id)
   with check ((select auth.uid()) is not null and (select auth.uid()) = profile_id);
 
 drop policy if exists "Users own their CV profiles" on public.cv_profiles;
 create policy "Users own their CV profiles"
   on public.cv_profiles
-  to authenticated
   for all
+  to authenticated
   using ((select auth.uid()) is not null and (select auth.uid()) = profile_id)
   with check ((select auth.uid()) is not null and (select auth.uid()) = profile_id);
 
 drop policy if exists "Users own their application tracking" on public.application_tracking;
 create policy "Users own their application tracking"
   on public.application_tracking
-  to authenticated
   for all
+  to authenticated
   using ((select auth.uid()) is not null and (select auth.uid()) = candidate_id)
   with check ((select auth.uid()) is not null and (select auth.uid()) = candidate_id);
 

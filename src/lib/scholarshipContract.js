@@ -28,6 +28,30 @@ const NOISE_SUFFIXES = [
   " - scholarships cafe",
 ];
 
+const GENERIC_TITLE_EXACT = new Set([
+  "scholarship",
+  "scholarships",
+  "scholarship region",
+  "funding options",
+  "current scholars",
+  "faq",
+  "application timeline",
+  "find a course",
+]);
+
+const GENERIC_TITLE_FRAGMENTS = [
+  "who can apply",
+  "eligibility for",
+  "host a chevening fellowship",
+  "application form",
+  "scholarship announcements",
+  "information for scholarship",
+  "frequently asked questions",
+  "where to apply",
+  "application timeline",
+  "find a course",
+];
+
 function normalizeText(input) {
   return String(input || "")
     .replace(/&amp;|&#38;|&#038;/g, "&")
@@ -110,6 +134,26 @@ function cleanScholarshipName(rawName, sourceLabel = "") {
   return titleCase(value);
 }
 
+function isGenericScholarshipName(rawName, sourceLabel = "") {
+  const value = normalizeText(rawName).toLowerCase();
+  const label = normalizeText(sourceLabel).toLowerCase();
+  if (!value) return true;
+  if (GENERIC_TITLE_EXACT.has(value)) return true;
+  if (label && value === label) return true;
+  if (GENERIC_TITLE_FRAGMENTS.some((fragment) => value.includes(fragment))) return true;
+  return false;
+}
+
+function canonicalizeScholarshipName(rawName, sourceLabel = "") {
+  const cleaned = cleanScholarshipName(rawName, sourceLabel).toLowerCase();
+  if (!cleaned) return "";
+  return cleaned
+    .replace(/^(who can apply for|eligibility for|apply for|information about)\s+/i, "")
+    .replace(/\?+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function slugify(input) {
   return normalizeText(input)
     .toLowerCase()
@@ -149,8 +193,10 @@ function pickFirst(...values) {
 }
 
 export {
+  canonicalizeScholarshipName,
   cleanScholarshipName,
   generateScholarshipId,
+  isGenericScholarshipName,
   normalizeText,
   normalizeUrl,
   pickFirst,

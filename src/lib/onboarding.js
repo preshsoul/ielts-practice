@@ -32,6 +32,24 @@ function toModules(value) {
   return [];
 }
 
+function toList(value) {
+  return toModules(value);
+}
+
+function toNestedObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+
+function mergeDefined(base = {}, patch = {}) {
+  const next = { ...base };
+  Object.entries(patch || {}).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && String(value).trim?.() !== "") {
+      next[key] = value;
+    }
+  });
+  return next;
+}
+
 function hashSeed(value = "") {
   let hash = 0;
   for (const char of String(value)) {
@@ -87,28 +105,95 @@ export function buildOnboardingGreeting(profile = {}, now = new Date()) {
 
 export function createOnboardingDraft(profile = {}) {
   const selfAssessment = profile.self_assessment || profile.selfAssessment || {};
+  const academic = toNestedObject(profile.academic);
+  const identity = toNestedObject(profile.identity);
+  const professional = toNestedObject(profile.professional);
+  const languageTests = toNestedObject(profile.languageTests);
 
   return {
+    displayName: getDisplayName(profile),
     targetBand: profile.target_band ?? profile.targetBand ?? "",
     currentLevel: toSkillBands(selfAssessment),
     testDate: profile.test_date ? String(profile.test_date).slice(0, 10) : String(profile.testDate || "").slice(0, 10),
     targetModules: toModules(profile.target_modules || profile.targetModules),
+    identity: {
+      nationality: toStringOrEmpty(identity.nationality),
+      countryOfResidence: toStringOrEmpty(identity.countryOfResidence),
+    },
+    academic: {
+      degreeClass: toStringOrEmpty(academic.degreeClass),
+      institution: toStringOrEmpty(academic.institution),
+      institutionCountry: toStringOrEmpty(academic.institutionCountry),
+      discipline: toStringOrEmpty(academic.discipline),
+      disciplineCategory: toStringOrEmpty(academic.disciplineCategory),
+      graduationYear: toStringOrEmpty(academic.graduationYear),
+      cgpa: toStringOrEmpty(academic.cgpa),
+      cgpaScale: toStringOrEmpty(academic.cgpaScale || "5"),
+    },
+    professional: {
+      workExperienceYears: professional.workExperienceYears ?? "",
+      currentlyEmployed: toStringOrEmpty(professional.currentlyEmployed),
+      sector: toStringOrEmpty(professional.sector),
+    },
+    languageTests: {
+      ielts: languageTests.ielts ?? "",
+      toefl: languageTests.toefl ?? "",
+      celpip: languageTests.celpip ?? "",
+    },
+    applicationCycle: toStringOrEmpty(profile.applicationCycle || profile.applicationcycle),
+    targetDegreeLevel: toStringOrEmpty(profile.targetDegreeLevel || profile.targetdegreelevel),
+    targetDisciplines: toList(profile.targetDisciplines || profile.targetdisciplines),
+    targetCountries: toList(profile.targetCountries || profile.targetcountries),
+    targetTracks: toList(profile.targetTracks || profile.target_tracks || academic.targetScholarships),
+    dossier: null,
   };
 }
 
 export function serializeOnboardingDraft(draft = {}) {
   const currentLevel = toSkillBands(draft.currentLevel || {});
   const targetModules = toModules(draft.targetModules);
+  const parsedProfile = toNestedObject(draft.dossier?.parsedProfile);
+  const parsedAcademic = toNestedObject(parsedProfile.academic);
+  const parsedIdentity = toNestedObject(parsedProfile.identity);
+  const parsedProfessional = toNestedObject(parsedProfile.professional);
+  const parsedLanguageTests = toNestedObject(parsedProfile.languageTests);
+  const identity = mergeDefined(parsedIdentity, toNestedObject(draft.identity));
+  const academic = mergeDefined(parsedAcademic, {
+    ...toNestedObject(draft.academic),
+    targetScholarships: toList(draft.targetTracks),
+  });
+  const professional = mergeDefined(parsedProfessional, toNestedObject(draft.professional));
+  const languageTests = mergeDefined(parsedLanguageTests, toNestedObject(draft.languageTests));
+  const targetDisciplines = toList(draft.targetDisciplines).length
+    ? toList(draft.targetDisciplines)
+    : toList(parsedProfile.targetDisciplines);
+  const targetCountries = toList(draft.targetCountries).length
+    ? toList(draft.targetCountries)
+    : toList(parsedProfile.targetCountries);
+  const targetDegreeLevel = toStringOrEmpty(draft.targetDegreeLevel) || toStringOrEmpty(parsedProfile.targetDegreeLevel);
+  const applicationCycle = toStringOrEmpty(draft.applicationCycle) || toStringOrEmpty(parsedProfile.applicationCycle);
 
   return {
+    display_name: toStringOrEmpty(draft.displayName) || null,
     target_band: toNumberOrNull(draft.targetBand),
     self_assessment: currentLevel,
     test_date: toStringOrEmpty(draft.testDate) || null,
     target_modules: targetModules,
+    identity,
+    academic,
+    professional,
+    languageTests,
+    applicationCycle,
+    targetDegreeLevel,
+    targetDisciplines,
+    targetCountries,
     onboarding_completed: Boolean(
       toNumberOrNull(draft.targetBand) !== null &&
       toStringOrEmpty(draft.testDate) &&
-      Object.values(currentLevel).every((value) => value !== "")
+      Object.values(currentLevel).every((value) => value !== "") &&
+      toStringOrEmpty(academic.discipline) &&
+      targetDegreeLevel &&
+      targetCountries.length
     ),
   };
 }

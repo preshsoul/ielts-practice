@@ -13,6 +13,8 @@ const sourcesPath = join(root, "content", "scholarship-sources.json");
 const reviewQueuePath = join(root, "content", "scholarships.review.json");
 const validationFailuresPath = join(root, "content", "validation-failures.json");
 const deadLinksPath = join(root, "content", "dead-links.json");
+const candidateBankPath = join(root, "content", "scholarship-candidates.json");
+const sourceMetricsPath = join(root, "content", "scholarship-source-metrics.json");
 const wanted = /scholar|fund|funding|award|bursar|grant|fellow|fellowship|studentship|position|opportunity/i;
 const blockedPathPatterns = [
   "/login",
@@ -66,6 +68,7 @@ function getSourceProfile(source = {}, currentUrl = "") {
   if (hostname === "scholarshipregion.com") {
     return {
       kind: "scholarshipregion",
+      brand: "Scholarship Region",
       listingContainer: ".tdb_module_loop, .td-module-container",
       listingLink: ".td-module-title a, .td-module-thumb a, a[rel='bookmark']",
       title: ".tdb-title-text, .entry-title a",
@@ -73,6 +76,104 @@ function getSourceProfile(source = {}, currentUrl = "") {
       content: ".td-post-content, .elementor-widget-text-editor",
       deadline: ".elementor-widget-text-editor li",
       applyLink: "a[href*='apply'], a[href*='application']",
+    };
+  }
+
+  if (hostname === "chevening.org") {
+    return {
+      kind: "chevening",
+      brand: "Chevening",
+      listingContainer: "main",
+      listingLink: "a[href*='/scholarship'], a[href*='/fellowship/']",
+      title: ".pagehero-title, h1",
+      provider: ".pagehero-kicker, .site-header__logo-text",
+      content: ".pagehero-summary, .accordion-description.content, .page-content, main",
+      applyLink: "a.btn.button[href*='/apply'], a[href*='/apply']",
+      useSourcePageAsApplication: true,
+    };
+  }
+
+  if (hostname === "cambridgetrust.org") {
+    return {
+      kind: "cambridge-trust",
+      brand: "Cambridge Trust",
+      listingContainer: ".scholarship-card, .scholarships-listing, main",
+      listingLink: ".scholarship-info h3 a, a[href*='/scholarship/']",
+      title: ".scholarship-info h3, h1",
+      provider: "h1",
+      content: ".scholarship-info p, .scholarships-listing, main",
+      applyLink: "a[href*='postgraduate-applicants'], a[href*='undergraduate-applicants'], a[href*='/apply']",
+      useSourcePageAsApplication: true,
+    };
+  }
+
+  if (hostname === "www2.daad.de" || hostname === "daad.de") {
+    return {
+      kind: "daad",
+      brand: "DAAD",
+      listingContainer: "main, body",
+      listingLink: "a[href*='detail=']",
+      title: "h2.title, h1",
+      provider: "meta[name='author']",
+      content: "h2.title, .tab-content, #select-application-info, main, body",
+      applyLink: "a[href*='bewerbung'], a[href*='application'], a[href*='stipdb'], a[href*='apply']",
+      applyForm: "#select-application-info-form",
+      useSourcePageAsApplication: true,
+    };
+  }
+
+  if (hostname === "foreign.fulbrightonline.org") {
+    return {
+      kind: "fulbright",
+      brand: "Fulbright",
+      listingContainer: "main, body",
+      listingLink: "a[href*='/apply'], a[href*='embassy'], a[href*='commission']",
+      title: "h1, .page-title",
+      provider: "h1",
+      content: "main, .content, body",
+      applyLink: "a[href*='/apply'], a[href*='embassy'], a[href*='commission']",
+    };
+  }
+
+  if (hostname === "studyinjapan.go.jp") {
+    return {
+      kind: "mext",
+      brand: "MEXT",
+      listingContainer: "main, body",
+      listingLink: "a[href*='embassy'], a[href*='university'], a[href*='guideline']",
+      title: "h2, h1",
+      provider: "h2, h1",
+      content: "main, .contents, body",
+      applyLink: "a[href*='embassy'], a[href*='university'], a[href*='guideline']",
+      useSourcePageAsApplication: true,
+    };
+  }
+
+  if (hostname === "study.ed.ac.uk") {
+    return {
+      kind: "edinburgh",
+      brand: "University of Edinburgh",
+      listingContainer: "main, article, body",
+      listingLink: "a[href*='scholarship'], a[href*='student-funding'], a[href*='funding']",
+      title: "h1",
+      provider: "h1",
+      content: "main, article, body",
+      applyLink: "a[href*='student-funding'], a[href*='scholarship'], a[href*='funding']",
+      useSourcePageAsApplication: true,
+    };
+  }
+
+  if (String(source?.source_type || "").toLowerCase() === "official_university_directory") {
+    return {
+      kind: "generic-university",
+      brand: source.label || hostname,
+      listingContainer: "main, article, body",
+      listingLink: "a[href*='scholarship'], a[href*='funding'], a[href*='studentship'], a[href*='bursary'], a[href*='award'], a[href*='fellowship']",
+      title: "h1, .page-title, .hero__title",
+      provider: "h1, .page-title, .hero__title",
+      content: "main, article, body",
+      applyLink: "a[href*='apply'], a[href*='application'], a[href*='admission'], a[href*='funding'], a[href*='scholarship']",
+      useSourcePageAsApplication: true,
     };
   }
 
@@ -120,7 +221,7 @@ async function parseDocumentWithProfile(html, baseUrl, source) {
       profile: null,
       title: extractTitle(html),
       provider: "",
-      contentText: textSnippet(html, 260),
+      contentText: bodyText(html, 6000),
       primaryLink: null,
       deadlineText: "",
       candidateLinks: [],
@@ -179,7 +280,12 @@ async function parseDocumentWithProfile(html, baseUrl, source) {
           }
         }
         const primaryLinkNode = first(profile.applyLink) || first(profile.listingLink) || null;
-        const primaryLink = primaryLinkNode ? normalize(primaryLinkNode.getAttribute("href")) : null;
+        const formNode = first(profile.applyForm) || null;
+        const primaryLink = primaryLinkNode
+          ? normalize(primaryLinkNode.getAttribute("href"))
+          : formNode
+            ? normalize(formNode.getAttribute("action"))
+            : null;
         return {
           profile,
           title,
@@ -223,6 +329,10 @@ function textSnippet(html, max = 220) {
   return decodeEntities(stripTags(html).replace(/\s+/g, " ").trim()).slice(0, max);
 }
 
+function bodyText(html, max = 6000) {
+  return decodeEntities(stripTags(html).replace(/\s+/g, " ").trim()).slice(0, max);
+}
+
 function absoluteUrl(href, base) {
   try {
     return new URL(href, base).href;
@@ -249,10 +359,15 @@ function getSourceStrategy(source = {}) {
   const strategy = source.strategy || {};
   return {
     entryPaths: toPatternList(strategy.entryPaths),
+    entryUrls: toPatternList(strategy.entryUrls),
     followPatterns: toPatternList(strategy.followPatterns),
     applicationPatterns: toPatternList(strategy.applicationPatterns),
     priorityPatterns: toPatternList(strategy.priorityPatterns),
     ignorePatterns: toPatternList(strategy.ignorePatterns),
+    allowUrlPatterns: toPatternList(strategy.allowUrlPatterns),
+    denyUrlPatterns: toPatternList(strategy.denyUrlPatterns),
+    allowPathPatterns: toPatternList(strategy.allowPathPatterns),
+    denyPathPatterns: toPatternList(strategy.denyPathPatterns),
     maxPages: Number.isFinite(Number(strategy.maxPages)) ? Number(strategy.maxPages) : 20,
     maxDepth: Number.isFinite(Number(strategy.maxDepth)) ? Number(strategy.maxDepth) : 2,
     priorityBonus: Number.isFinite(Number(strategy.priorityBonus)) ? Number(strategy.priorityBonus) : 0,
@@ -260,6 +375,11 @@ function getSourceStrategy(source = {}) {
 }
 
 function matchesPatternList(value, patterns = []) {
+  const text = String(value || "").toLowerCase();
+  return patterns.some((pattern) => text.includes(String(pattern || "").toLowerCase()));
+}
+
+function urlMatchesPatternList(value, patterns = []) {
   const text = String(value || "").toLowerCase();
   return patterns.some((pattern) => text.includes(String(pattern || "").toLowerCase()));
 }
@@ -274,6 +394,23 @@ function pathMatches(url, patterns = []) {
   } catch {
     return false;
   }
+}
+
+function matchesUrlPolicy(url, strategy = {}) {
+  if (!url) return false;
+  if (Array.isArray(strategy.denyUrlPatterns) && strategy.denyUrlPatterns.length && urlMatchesPatternList(url, strategy.denyUrlPatterns)) {
+    return false;
+  }
+  if (Array.isArray(strategy.denyPathPatterns) && strategy.denyPathPatterns.length && pathMatches(url, strategy.denyPathPatterns)) {
+    return false;
+  }
+  if (Array.isArray(strategy.allowUrlPatterns) && strategy.allowUrlPatterns.length) {
+    return urlMatchesPatternList(url, strategy.allowUrlPatterns) || pathMatches(url, strategy.entryPaths);
+  }
+  if (Array.isArray(strategy.allowPathPatterns) && strategy.allowPathPatterns.length) {
+    return pathMatches(url, strategy.allowPathPatterns) || pathMatches(url, strategy.entryPaths);
+  }
+  return true;
 }
 
 function normalizeQueuedUrl(rawUrl, baseUrl) {
@@ -302,8 +439,18 @@ function isBlockedPath(url) {
   }
 }
 
+function isPermanentDeadLinkEntry(entry = {}) {
+  const errorText = String(entry?.error || "").toLowerCase();
+  if (!errorText) return false;
+  if (/timeout|err_connection_reset|err_http2_protocol_error|err_internet_disconnected|err_cert_date_invalid|access denied|bot traffic blocked/.test(errorText)) {
+    return false;
+  }
+  return /404|410|not found|unsupported content-type|known-dead-link|download is starting/.test(errorText);
+}
+
 function isDeadLinkUrl(url) {
-  return deadLinkState.has(url);
+  const entry = deadLinkState.get(url);
+  return Boolean(entry && isPermanentDeadLinkEntry(entry));
 }
 
 async function loadDeadLinkState() {
@@ -484,6 +631,7 @@ async function collectApplicationLink(html, baseUrl, source = {}, strategy = {})
 
   const candidates = discoverLinksFromHtml(html, baseUrl)
     .filter((link) => !matchesPatternList(`${link.href} ${link.text}`, strategy.ignorePatterns))
+    .filter((link) => matchesUrlPolicy(link.href, strategy))
     .filter((link) => isValidScholarshipCandidate(link.text, link.href, origin))
     .map((link) => ({
       ...link,
@@ -511,15 +659,80 @@ function scoreCandidateLink(link, strategy = {}) {
   return score;
 }
 
+async function fetchCambridgeScholarshipCards(strategy = {}) {
+  const ajaxUrl = "https://www.cambridgetrust.org/wp-admin/admin-ajax.php";
+  const pageLimit = Math.max(1, Math.min(6, Number(strategy.maxPages || 6)));
+  const cards = [];
+
+  for (let page = 1; page <= pageLimit; page += 1) {
+    let payload = null;
+    try {
+      await paceDomain(ajaxUrl);
+      const response = await fetch(ajaxUrl, {
+        method: "POST",
+        headers: {
+          "user-agent": "Mozilla/5.0 (Codex Scholarship Crawler; +https://openai.com)",
+          accept: "application/json,text/plain,*/*",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+        body: new URLSearchParams({
+          action: "ct_fetch_scholarships",
+          page: String(page),
+        }),
+      });
+      if (!response.ok) break;
+      payload = await response.json().catch(() => null);
+    } catch {
+      const context = await ensureBrowserContext();
+      const browserPage = await context.newPage();
+      try {
+        await browserPage.goto("https://www.cambridgetrust.org/find-a-scholarship/", { waitUntil: "domcontentloaded", timeout: 90000 });
+        payload = await browserPage.evaluate(async (currentPage) => {
+          const response = await fetch("/wp-admin/admin-ajax.php", {
+            method: "POST",
+            headers: {
+              "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+              accept: "application/json,text/plain,*/*",
+            },
+            body: new URLSearchParams({
+              action: "ct_fetch_scholarships",
+              page: String(currentPage),
+            }),
+          });
+          if (!response.ok) return null;
+          return await response.json().catch(() => null);
+        }, page);
+      } finally {
+        await browserPage.close();
+      }
+    }
+    const html = payload?.data?.html || "";
+    if (!html) break;
+    cards.push(
+      ...discoverLinksFromHtml(html, "https://www.cambridgetrust.org/find-a-scholarship/")
+        .filter((link) => /\/scholarship\//i.test(link.href))
+        .map((link) => ({ href: link.href, text: link.text, containerText: link.text }))
+    );
+  }
+
+  return cards;
+}
+
 async function discoverCandidateUrls(source, html, currentUrl, strategy = {}) {
   const current = new URL(currentUrl);
   const origin = current.origin;
   const structured = await parseDocumentWithProfile(html, currentUrl, source);
+  const profile = structured?.profile || getSourceProfile(source, currentUrl);
+  const ajaxCandidateLinks = profile?.kind === "cambridge-trust" && /find-a-scholarship/i.test(currentUrl)
+    ? await fetchCambridgeScholarshipCards(strategy)
+    : [];
   const links = (structured?.candidateLinks?.length
     ? structured.candidateLinks
     : discoverLinksFromHtml(html, currentUrl).map((link) => ({ ...link, containerText: link.text })))
+    .concat(ajaxCandidateLinks)
     .filter((link) => sameOrigin(link.href, origin))
     .filter((link) => !matchesPatternList(`${link.href} ${link.text} ${link.containerText || ""}`, strategy.ignorePatterns))
+    .filter((link) => matchesUrlPolicy(link.href, strategy))
     .filter((link) => isValidScholarshipCandidate(link.text || link.containerText, link.href, origin))
     .map((link) => ({ ...link, score: scoreCandidateLink(link, strategy) }));
 
@@ -573,11 +786,29 @@ async function fetchPage(url) {
     const page = await browserContext.newPage();
     try {
       await paceDomain(url);
-      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
       const html = await page.content();
       return { html, contentType: "text/html", finalUrl: page.url(), source: "browser" };
     } finally {
       await page.close();
+    }
+  }
+}
+
+async function enqueueDiscoveredUrls({ source, html, canonicalPageUrl, strategy, depth, candidateQueue, seen, queued }) {
+  if (depth >= strategy.maxDepth || candidateQueue.length >= strategy.maxPages) {
+    return;
+  }
+
+  const discovered = await discoverCandidateUrls(source, html, canonicalPageUrl, strategy);
+  for (const discoveredUrl of discovered) {
+    const normalizedDiscoveredUrl = normalizeQueuedUrl(discoveredUrl);
+    if (!normalizedDiscoveredUrl) continue;
+    if (!seen.has(normalizedDiscoveredUrl) && !queued.has(normalizedDiscoveredUrl)) {
+      const discoveredGate = await canFetchUrl(normalizedDiscoveredUrl);
+      if (!discoveredGate.allowed) continue;
+      queued.add(normalizedDiscoveredUrl);
+      candidateQueue.push({ url: normalizedDiscoveredUrl, depth: depth + 1 });
     }
   }
 }
@@ -599,6 +830,63 @@ function classifyPageType(title, bodyText, sourceUrl) {
   return "unknown";
 }
 
+function isBlockedScholarshipPage(title = "", bodyText = "", sourceUrl = "") {
+  const haystack = `${title} ${bodyText} ${sourceUrl}`.toLowerCase();
+  return (
+    /\baccess denied\b/.test(haystack) ||
+    /\b403 forbidden\b/.test(haystack) ||
+    /\bbot traffic blocked\b/.test(haystack) ||
+    /\byou don't have permission\b/.test(haystack) ||
+    /\berrors\.edgesuite\.net\b/.test(haystack) ||
+    /\battention required\b/.test(haystack) ||
+    /\btemporarily unavailable\b/.test(haystack) ||
+    /\bjust a moment\b/.test(haystack) ||
+    /\benable javascript and cookies to continue\b/.test(haystack) ||
+    /\bcf[- ]?challenge\b/.test(haystack)
+  );
+}
+
+function isDirectExtractionSource(source = {}) {
+  return String(source?.source_type || "").toLowerCase() !== "discovery_directory";
+}
+
+function isLowValueScholarshipCandidate({ title = "", summary = "", url = "", source = {} } = {}) {
+  const haystack = `${title} ${summary} ${url}`.toLowerCase();
+  const sourceType = String(source?.source_type || "").toLowerCase();
+  if (/\bcurrent scholars\b/.test(haystack)) return true;
+  if (/\b(application timeline|find a course|who can apply|how to apply|funding your studies|fees and funding|living costs|tuition fees)\b/.test(haystack)) {
+    return true;
+  }
+  if (/\b(history, funding and future|funding opportunities)\b/.test(haystack)) return true;
+  if (sourceType === "discovery_directory" && /\bguide\b|\bguides\b/.test(haystack)) {
+    return true;
+  }
+  return false;
+}
+
+function createSourceMetric(label = "") {
+  return {
+    sourceLabel: label,
+    sourceUrl: null,
+    sourceType: null,
+    trustTier: null,
+    seedCount: 0,
+    pagesVisited: 0,
+    reviewReady: 0,
+    validationFailures: 0,
+    blockedPages: 0,
+    skippedPages: 0,
+    deadLinks: 0,
+  };
+}
+
+function pushCandidateCandidate(store = [], entry = {}) {
+  store.push({
+    capturedAt: new Date().toISOString(),
+    ...entry,
+  });
+}
+
 function parseSourceList(raw) {
   const parsed = JSON.parse(raw);
   return Array.isArray(parsed?.sources) ? parsed.sources : [];
@@ -609,17 +897,29 @@ async function main() {
   const sources = parseSourceList(rawSources);
   const resultsV2 = [];
   const validationFailures = [];
+  const candidateBank = [];
+  const sourceMetrics = new Map();
   const seen = new Set();
   await loadDeadLinkState();
 
   for (const source of sources) {
     if (!source?.url) continue;
+    if (!isDirectExtractionSource(source)) {
+      console.log(`[skip] ${source.label}: discovery-only source retained for future lead resolution, not direct extraction`);
+      continue;
+    }
     const strategy = getSourceStrategy(source);
     const normalizedSourceUrl = normalizeQueuedUrl(source.url);
     if (!normalizedSourceUrl) continue;
+    const metric = sourceMetrics.get(source.label) || createSourceMetric(source.label);
+    metric.sourceUrl = normalizedSourceUrl;
+    metric.sourceType = source.source_type || null;
+    metric.trustTier = source.trust_tier || null;
+    sourceMetrics.set(source.label, metric);
 
     const sourceGate = await canFetchUrl(normalizedSourceUrl);
     if (!sourceGate.allowed) {
+      metric.skippedPages += 1;
       console.error(`[skip] ${source.label}: ${sourceGate.reason} ${normalizedSourceUrl}`);
       continue;
     }
@@ -628,6 +928,7 @@ async function main() {
     try {
       rootPage = await fetchPage(normalizedSourceUrl);
     } catch (error) {
+      metric.deadLinks += 1;
       console.error(`[skip] ${source.label}: ${error.message}`);
       deadLinks.push({
         url: normalizedSourceUrl,
@@ -644,15 +945,27 @@ async function main() {
       continue;
     }
 
-    const candidateQueue = [{ url: normalizedSourceUrl, depth: 0 }];
-    const queued = new Set([normalizedSourceUrl]);
+    const seedUrls = [normalizedSourceUrl, ...strategy.entryUrls.map((url) => normalizeQueuedUrl(url)).filter(Boolean)];
+    metric.seedCount = seedUrls.length;
+    const candidateQueue = [...new Set(seedUrls)].map((url) => ({ url, depth: 0 }));
+    const queued = new Set(seedUrls);
     for (let cursor = 0; cursor < candidateQueue.length && cursor < strategy.maxPages; cursor += 1) {
       const { url: pageUrl, depth } = candidateQueue[cursor];
       if (seen.has(pageUrl)) continue;
       seen.add(pageUrl);
+      metric.pagesVisited += 1;
 
       const gate = await canFetchUrl(pageUrl);
       if (!gate.allowed) {
+        metric.skippedPages += 1;
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          depth,
+          status: "skipped",
+          reason: gate.reason || "blocked",
+        });
         continue;
       }
 
@@ -660,6 +973,7 @@ async function main() {
       try {
         page = pageUrl === normalizedSourceUrl ? rootPage : await fetchPage(pageUrl);
       } catch (error) {
+        metric.deadLinks += 1;
         console.error(`[skip] ${pageUrl}: ${error.message}`);
         deadLinks.push({
           url: pageUrl,
@@ -673,13 +987,35 @@ async function main() {
           error: error.message,
           capturedAt: new Date().toISOString(),
         });
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          depth,
+          status: "dead_link",
+          reason: error.message,
+        });
         continue;
       }
 
       const canonicalPageUrl = normalizeQueuedUrl(page.finalUrl || pageUrl) || pageUrl;
+      if (!matchesUrlPolicy(canonicalPageUrl, strategy)) {
+        metric.skippedPages += 1;
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          canonicalUrl: canonicalPageUrl,
+          depth,
+          status: "skipped",
+          reason: "url-policy",
+        });
+        continue;
+      }
       if (canonicalPageUrl !== pageUrl) {
         const redirectGate = await canFetchUrl(canonicalPageUrl);
         if (!redirectGate.allowed) {
+          metric.skippedPages += 1;
           deadLinks.push({
             url: canonicalPageUrl,
             sourceLabel: source.label,
@@ -692,17 +1028,49 @@ async function main() {
             error: redirectGate.reason || "redirect-blocked",
             capturedAt: new Date().toISOString(),
           });
+          pushCandidateCandidate(candidateBank, {
+            sourceLabel: source.label,
+            sourceUrl: normalizedSourceUrl,
+            url: pageUrl,
+            canonicalUrl: canonicalPageUrl,
+            depth,
+            status: "skipped",
+            reason: redirectGate.reason || "redirect-blocked",
+          });
           continue;
         }
       }
 
       if (!page.contentType || (!/html/i.test(page.contentType) && !/pdf/i.test(page.contentType))) {
+        metric.skippedPages += 1;
         continue;
       }
 
       const structured = await parseDocumentWithProfile(page.html, canonicalPageUrl, source);
       const title = structured.title || extractTitle(page.html);
       const summary = textSnippet(structured.contentText || page.html, 260);
+      if (isBlockedScholarshipPage(title, summary, canonicalPageUrl)) {
+        metric.blockedPages += 1;
+        validationFailures.push({
+          sourceUrl: pageUrl,
+          sourceLabel: source.label,
+          title,
+          errors: ["blocked or access-denied page"],
+          capturedAt: new Date().toISOString(),
+        });
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          canonicalUrl: canonicalPageUrl,
+          depth,
+          title,
+          pageType: "blocked",
+          status: "blocked",
+          reason: "blocked or access-denied page",
+        });
+        continue;
+      }
       const haystack = `${title} ${summary} ${canonicalPageUrl}`.toLowerCase();
       const pageType = classifyPageType(title, summary, canonicalPageUrl);
       const pageScore = [
@@ -711,21 +1079,67 @@ async function main() {
         matchesPatternList(haystack, strategy.priorityPatterns) ? 2 : 0,
         pathMatches(canonicalPageUrl, strategy.entryPaths) ? 1 : 0,
       ].reduce((sum, value) => sum + value, 0);
-      if (pageType === "login" || pageType === "faq" || pageType === "listing" || pageType === "news") continue;
-      if (pageType !== "detail") continue;
-      if (pageScore < 3) continue;
+      const canExtractRecord =
+        pageType !== "login" &&
+        pageType !== "faq" &&
+        pageType !== "listing" &&
+        pageType !== "news" &&
+        pageType === "detail" &&
+        pageScore >= 3 &&
+        !isLowValueScholarshipCandidate({ title, summary, url: canonicalPageUrl, source });
+
+      if (!canExtractRecord) {
+        metric.skippedPages += 1;
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          canonicalUrl: canonicalPageUrl,
+          depth,
+          title,
+          pageType,
+          pageScore,
+          status: "discovered",
+          reason: "not-extractable-yet",
+        });
+        await enqueueDiscoveredUrls({
+          source,
+          html: page.html,
+          canonicalPageUrl,
+          strategy,
+          depth,
+          candidateQueue,
+          seen,
+          queued,
+        });
+        continue;
+      }
 
       const applicationLink = await collectApplicationLink(page.html, canonicalPageUrl, source, strategy);
+      const extractionLabel = structured?.profile?.brand || structured.provider || source.label;
+      const fallbackApplicationLink = applicationLink || (structured?.profile?.useSourcePageAsApplication ? canonicalPageUrl : null);
       const v2 = extractScholarship({
         html: page.html,
         sourceUrl: canonicalPageUrl,
-        sourceLabel: source.label,
+        sourceLabel: extractionLabel,
         title,
-        applicationLink,
+        applicationLink: fallbackApplicationLink,
         contentText: structured.contentText || page.html,
       });
+      if (structured?.profile?.kind === "daad" && /:/.test(v2.name || "")) {
+        const [body, ...rest] = String(v2.name).split(":");
+        const nextName = rest.join(":").trim();
+        if (body.trim() && nextName) {
+          v2.awardingBody = body.trim();
+          v2.name = nextName;
+          v2.displayName = nextName;
+        }
+      }
+      v2.source.sourceLabel = source.label;
+      v2.source.sourceBrand = extractionLabel;
       const validation = validateScholarship(v2);
       if (!validation.valid) {
+        metric.validationFailures += 1;
         validationFailures.push({
           sourceUrl: pageUrl,
           sourceLabel: source.label,
@@ -733,18 +1147,49 @@ async function main() {
           errors: validation.errors,
           capturedAt: new Date().toISOString(),
         });
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          canonicalUrl: canonicalPageUrl,
+          depth,
+          title,
+          pageType,
+          pageScore,
+          status: "validation_failure",
+          reason: validation.errors.join("; "),
+        });
         continue;
       }
 
       v2.source.pageTitle = title;
+      v2.source.registrySourceType = source.source_type || null;
+      v2.source.registryTrustTier = source.trust_tier || null;
+      v2.source.registryCountry = source.country || null;
+      v2.source.registryCity = source.city || null;
       v2.source.discoveryScore = pageScore;
       v2.source.discoveryDepth = depth;
       v2.source.discoveryNotes = source.notes || "";
       v2.provenance.discoveryScore = pageScore;
 
       if (typeof v2.source.confidence === "number" && v2.source.confidence >= 0.35) {
+        metric.reviewReady += 1;
         resultsV2.push(v2);
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          canonicalUrl: canonicalPageUrl,
+          depth,
+          title: v2.name,
+          pageType,
+          pageScore,
+          status: "review_ready",
+          confidence: v2.source.confidence,
+          awardingBody: v2.awardingBody,
+        });
       } else {
+        metric.validationFailures += 1;
         validationFailures.push({
           sourceUrl: pageUrl,
           sourceLabel: source.label,
@@ -752,21 +1197,30 @@ async function main() {
           errors: ["confidence below threshold"],
           capturedAt: new Date().toISOString(),
         });
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label,
+          sourceUrl: normalizedSourceUrl,
+          url: pageUrl,
+          canonicalUrl: canonicalPageUrl,
+          depth,
+          title,
+          pageType,
+          pageScore,
+          status: "validation_failure",
+          reason: "confidence below threshold",
+        });
       }
 
-      if (depth < strategy.maxDepth && candidateQueue.length < strategy.maxPages) {
-        const discovered = await discoverCandidateUrls(source, page.html, canonicalPageUrl, strategy);
-        for (const discoveredUrl of discovered) {
-          const normalizedDiscoveredUrl = normalizeQueuedUrl(discoveredUrl);
-          if (!normalizedDiscoveredUrl) continue;
-          if (!seen.has(normalizedDiscoveredUrl) && !queued.has(normalizedDiscoveredUrl)) {
-            const discoveredGate = await canFetchUrl(normalizedDiscoveredUrl);
-            if (!discoveredGate.allowed) continue;
-            queued.add(normalizedDiscoveredUrl);
-            candidateQueue.push({ url: normalizedDiscoveredUrl, depth: depth + 1 });
-          }
-        }
-      }
+      await enqueueDiscoveredUrls({
+        source,
+        html: page.html,
+        canonicalPageUrl,
+        strategy,
+        depth,
+        candidateQueue,
+        seen,
+        queued,
+      });
     }
   }
 
@@ -795,6 +1249,42 @@ async function main() {
         updated_at: new Date().toISOString(),
         total: deadLinkState.size,
         deadLinks: Array.from(deadLinkState.values()),
+      },
+      null,
+      2
+    ),
+    "utf8"
+  );
+
+  const candidateMap = new Map();
+  for (const entry of candidateBank) {
+    const key = `${entry.canonicalUrl || entry.url || ""}::${entry.sourceLabel || ""}`;
+    candidateMap.set(key, entry);
+  }
+
+  await writeFile(
+    candidateBankPath,
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        updated_at: new Date().toISOString(),
+        total: candidateMap.size,
+        candidates: [...candidateMap.values()],
+      },
+      null,
+      2
+    ),
+    "utf8"
+  );
+
+  await writeFile(
+    sourceMetricsPath,
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        updated_at: new Date().toISOString(),
+        total: sourceMetrics.size,
+        sources: [...sourceMetrics.values()].sort((a, b) => b.reviewReady - a.reviewReady || b.pagesVisited - a.pagesVisited),
       },
       null,
       2

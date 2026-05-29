@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F4F0E8; /* surface-sand */
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#e6e2da",
+                    "background": "#fcf8fa",
+                    "surface-container": "#f1edef",
+                    "on-primary-fixed": "#1a1a2e",
+                    "on-tertiary": "#ffffff",
+                    "confidence-medium": "#D4A373",
+                    "on-tertiary-fixed-variant": "#514627",
+                    "on-secondary-fixed": "#1c1c17",
+                    "tertiary-container": "#b9aa83",
+                    "primary-fixed": "#e2e0fc",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#313032",
+                    "tertiary": "#695d3c",
+                    "surface-container-high": "#ebe7e9",
+                    "surface-bright": "#fcf8fa",
+                    "outline": "#78767d",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#47464c",
+                    "surface-variant": "#e5e1e3",
+                    "on-primary-container": "#83829b",
+                    "secondary": "#605e58",
+                    "surface-container-lowest": "#ffffff",
+                    "border-subtle": "#E5E1D9",
+                    "on-tertiary-fixed": "#231b02",
+                    "tertiary-fixed-dim": "#d5c59d",
+                    "on-background": "#1c1b1d",
+                    "on-surface": "#1c1b1d",
+                    "on-primary-fixed-variant": "#45455b",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#66645e",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#c9c6bf",
+                    "secondary-fixed": "#e6e2da",
+                    "surface-dim": "#ddd9db",
+                    "primary-fixed-dim": "#c6c4df",
+                    "ink-navy": "#1A1A2E",
+                    "tertiary-fixed": "#f2e1b7",
+                    "outline-variant": "#c8c5cd",
+                    "on-tertiary-container": "#493f20",
+                    "surface-tint": "#5d5c74",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e5e1e3",
+                    "on-secondary-fixed-variant": "#484741",
+                    "primary-container": "#1a1a2e",
+                    "primary": "#00000b",
+                    "surface-sand": "#F4F0E8",
+                    "confidence-low": "#BC4749",
+                    "inverse-on-surface": "#f4f0f2",
+                    "surface": "#fcf8fa",
+                    "confidence-high": "#2D6A4F",
+                    "surface-container-low": "#f6f2f4",
+                    "inverse-primary": "#c6c4df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "mono-data": ["IBM Plex Sans"],
+                    "headline-md": ["Newsreader"],
+                    "display-lg": ["Newsreader"],
+                    "headline-lg": ["Newsreader"],
+                    "label-sm": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"],
+                    "body-md": ["IBM Plex Sans"],
+                    "headline-lg-mobile": ["Newsreader"]
+            },
+            "fontSize": {
+                    "mono-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-ink-navy selection:bg-tertiary-fixed">
+<!-- TopAppBar (Suppressed navigation items for focus) -->
+<header class="bg-surface-sand border-b border-border-subtle docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold tracking-tight text-ink-navy">VERDICT</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-ink-navy p-2 hover:bg-secondary-container/50 rounded-DEFAULT transition-all" data-icon="notifications">notifications</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-border-subtle">
+<img alt="Profile" data-alt="A professional headshot of a young, ambitious graduate in a well-lit academic setting. The individual is wearing a smart-casual blazer, looking directly at the camera with a confident expression. The background is a soft-focus library with warm, golden wood tones and rows of books, maintaining the scholarly and premium aesthetic of the VERDICT platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYIyMbOEijbPHXiSxqwvwB0B3fxGOHYvzCO7OAYArt6BRjB69EpkBJfApGYPBz5oO_j0NhpSu-vgrZFkU3KC3qKHubq-iLWEh7vQH-3ADkCEq46twJyRIcBUhwq_WZwbEnxb_ONpBHPG7CGGqh5drB6X3uzXLTYkULpNOhGET1QO9vMX1PT-CxVCGj2v7EOU9cS0_mxzfZvjdY8RChGSd0xePOqTHfQ1gaznL1XHslqTH0B3IvZpwxsVu5hZxY-epBe502OahbHRQ"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<!-- Progress Stepper -->
+<div class="w-full max-w-2xl mb-12 flex items-center justify-center gap-4">
+<div class="flex items-center gap-2">
+<div class="h-2 w-12 bg-ink-navy rounded-full"></div>
+<span class="font-label-md text-label-md text-ink-navy">IDENTITY</span>
+</div>
+<div class="h-px w-8 bg-border-subtle"></div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-12 bg-border-subtle rounded-full"></div>
+<span class="font-label-md text-label-md text-secondary">ALIGNMENT</span>
+</div>
+<div class="h-px w-8 bg-border-subtle"></div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-12 bg-border-subtle rounded-full"></div>
+<span class="font-label-md text-label-md text-secondary">VERDICT</span>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="max-w-3xl w-full text-center mb-16">
+<h1 class="font-display-lg text-display-lg text-ink-navy mb-6">Extract Your Intellectual Capital</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl mx-auto">Upload your CV to begin the intelligence synthesis. We analyze your trajectory to map your readiness against the world's most elite opportunities.</p>
+</section>
+<div class="w-full max-w-container-max grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Bento Module: Upload Zone -->
+<div class="bg-white p-12 border border-border-subtle rounded-lg flex flex-col items-center justify-center min-h-[400px] group cursor-pointer hover:border-ink-navy transition-colors lg:col-span-5">
+<div class="w-20 h-20 mb-8 rounded-full bg-surface-sand flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-4xl text-ink-navy" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-ink-navy mb-2">Drop your curriculum vitae here</h3>
+<p class="font-body-md text-body-md text-secondary mb-8">PDF, DOCX up to 10MB</p>
+<button class="bg-ink-navy text-on-tertiary px-8 py-3 rounded-sm font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">SELECT FILE</button>
+<div class="mt-8 pt-8 border-t border-border-subtle w-full flex justify-center gap-12">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-confidence-high" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm text-secondary">Secure Parsing</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-confidence-high" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-sm text-label-sm text-secondary">Instant Extraction</span>
+</div>
+</div>
+</div>
+<!-- Bento Module: Extraction Intelligence (Simulated State) -->
+<div class="flex flex-col gap-gutter lg:col-span-4">
+<div class="bg-ink-navy p-8 rounded-lg text-white h-full flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-12">
+<div>
+<span class="font-label-md text-label-md text-secondary-fixed-dim uppercase tracking-widest mb-2 block">System Status</span>
+<h3 class="font-headline-md text-headline-md">Parsing Intelligence...</h3>
+</div>
+<div class="animate-pulse">
+<span class="material-symbols-outlined text-tertiary-fixed text-4xl" data-icon="psychology">psychology</span>
+</div>
+</div>
+<!-- Progress Bars -->
+<div class="space-y-8">
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm uppercase">
+<span class="text-secondary-fixed-dim">Academic Pedigree</span>
+<span class="text-tertiary-fixed">85%</span>
+</div>
+<div class="h-1 w-full bg-on-primary-fixed-variant overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[85%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm uppercase">
+<span class="text-secondary-fixed-dim">Professional Tenacity</span>
+<span class="text-tertiary-fixed">42%</span>
+</div>
+<div class="h-1 w-full bg-on-primary-fixed-variant overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[42%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm uppercase">
+<span class="text-secondary-fixed-dim">Core Competencies</span>
+<span class="text-secondary-fixed-dim italic">Awaiting sync</span>
+</div>
+<div class="h-1 w-full bg-on-primary-fixed-variant overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-0"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-on-primary-fixed-variant">
+<div class="flex items-center gap-3">
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-confidence-high"></span>
+<span class="w-2 h-2 rounded-full bg-on-primary-fixed-variant"></span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim">Synthesis Confidence: Medium</span>
+</div>
+</div>
+</div>
+<!-- Secondary Info Card -->
+<div class="bg-surface-sand p-8 border border-border-subtle rounded-lg flex items-center gap-6">
+<span class="material-symbols-outlined text-ink-navy text-3xl" data-icon="history_edu">history_edu</span>
+<div>
+<h4 class="font-label-md text-label-md text-ink-navy">Editorial Review</h4>
+<p class="font-body-md text-body-md text-secondary">Our AI matches your vocabulary against Ivy League and elite corporate standards.</p>
+</div>
+</div>
+</div><div class="lg:col-span-3 flex flex-col gap-gutter bg-surface-sand p-6 border border-border-subtle rounded-lg">
+<h3 class="font-label-md text-label-md text-ink-navy uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="error_outline">error_outline</span>
+        Edge Case Resolution
+    </h3>
+<div class="space-y-6">
+<!-- Scenario 1 -->
+<div class="p-4 border border-border-subtle bg-white/50 rounded-sm">
+<p class="font-label-md text-label-md text-ink-navy mb-1">Resolution Required: Low OCR Confidence</p>
+<p class="font-body-md text-secondary text-sm mb-3">The scan quality is insufficient for accurate extraction.</p>
+<button class="w-full py-2 bg-ink-navy text-white font-label-sm text-label-sm rounded-sm hover:opacity-90 transition-all">RE-UPLOAD</button>
+</div>
+<!-- Scenario 2 -->
+<div class="p-4 border border-border-subtle bg-white/50 rounded-sm">
+<p class="font-label-md text-label-md text-ink-navy mb-1">Ambiguous Trajectory</p>
+<p class="font-body-md text-secondary text-sm mb-3">Overlapping dates detected in your work history.</p>
+<button class="w-full py-2 border border-ink-navy text-ink-navy font-label-sm text-label-sm rounded-sm hover:bg-ink-navy/5 transition-all">EDIT TIMELINE</button>
+</div>
+<!-- Scenario 3 -->
+<div class="p-4 border border-border-subtle bg-white/50 rounded-sm">
+<p class="font-label-md text-label-md text-ink-navy mb-1">Missing Credential Proof</p>
+<p class="font-body-md text-secondary text-sm mb-3">No explicit mention of a degree was found in the CV.</p>
+<a class="block text-center font-label-sm text-label-sm text-secondary underline hover:text-ink-navy transition-colors" href="#">Skip &amp; Add Later</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer (Floating on mobile, anchored on desktop) -->
+<div class="fixed bottom-12 right-12 flex items-center gap-4">
+<button class="bg-white border border-border-subtle px-6 py-3 rounded-sm font-label-md text-label-md text-secondary hover:bg-surface-sand transition-colors">SKIP FOR NOW</button>
+<button class="bg-ink-navy text-on-tertiary px-10 py-3 rounded-sm font-label-md text-label-md flex items-center gap-2 hover:shadow-lg transition-all opacity-50 cursor-not-allowed">
+                PROCEED TO ALIGNMENT
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 w-1/3 h-full bg-gradient-to-l from-secondary-fixed/20 to-transparent pointer-events-none"></div>
+</body></html>

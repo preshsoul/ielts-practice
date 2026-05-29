@@ -1,0 +1,36 @@
+# Artillery load test — LOCI App
+# Run:  npx artillery run load-tests/artillery.yml
+# Docs: https://www.artillery.io/docs
+
+config:
+  target: "http://127.0.0.1:8000"
+  phases:
+    - duration: 60
+      arrivalRate: 2
+      name: warmup
+    - duration: 120
+      arrivalRate: 8
+      rampTo: 16
+      name: sustained-load
+  defaults:
+    headers:
+      Accept: "application/json"
+
+scenarios:
+  - name: health-and-status
+    flow:
+      - get:
+          url: "/healthz"
+
+  - name: match-cv
+    flow:
+      - post:
+          url: "/api/v1/extractor/match-cv"
+          json:
+            raw_cv_text: "BSc in Computer Science, First Class, IELTS 8.0, graduated in 2024."
+            criteria:
+              min_graduation_year: 2022
+              acceptable_degree_classes:
+                - "first_class"
+                - "second_upper"
+              job_or_scholarship_description: "Scholarship for STEM graduates with strong English proficiency."

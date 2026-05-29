@@ -1,132 +1,249 @@
 {
-  "version": "1.0.0",
-  "updated_at": "2026-05-01T00:00:00.000Z",
+  "version": "2.0.0",
+  "updated_at": "2026-05-15T00:00:00.000Z",
   "sources": [
     {
-      "label": "Scholarship Region",
-      "url": "https://www.scholarshipregion.com/find-scholarships/",
-      "country": "Global",
+      "label": "DAAD Scholarship Database",
+      "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database//",
+      "country": "Germany",
       "city": "Online",
-      "currency": "USD",
+      "currency": "EUR",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/find-scholarships/", "/category/scholarships/"],
-        "followPatterns": ["scholar", "fund", "award", "grant", "fellow", "studentship", "bursary", "position", "opportunity"],
-        "priorityPatterns": ["international", "global", "overseas", "abroad", "open to all", "graduate trainee", "graduate program", "graduate scheme", "management trainee", "early career"],
-        "applicationPatterns": ["apply", "application", "view scholarship", "open scholarship", "read more"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 24,
+        "entryPaths": [
+          "/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
+          "/en/studying-in-germany/scholarships/",
+          "/en/study-and-research-in-germany/scholarships/daad-scholarships/"
+        ],
+        "entryUrls": [
+          "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
+          "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000133&page=1",
+          "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000169&page=1"
+        ],
+        "followPatterns": ["scholarship", "funding", "programme", "study", "research", "postgraduate", "doctor", "master"],
+        "priorityPatterns": ["international", "master", "phd", "research", "graduates", "developing countries", "fully funded"],
+        "applicationPatterns": ["apply", "application", "requirements", "deadline", "programme details"],
+        "allowUrlPatterns": ["detail="],
+        "denyUrlPatterns": ["back=1&type=print"],
+        "ignorePatterns": ["cookie", "privacy", "login", "search", "news", "event", "alumni"],
+        "maxPages": 60,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Crawl scholarship categories, post pages, and paginated category feeds. Prefer pages that mention international, overseas, open-to-all, or graduate trainee opportunities before local list pages."
+      "notes": "Highest-priority official scholarship database for Germany. Prefer programme detail pages over news and overview pages."
     },
     {
-      "label": "Scholarships Cafe",
-      "url": "https://scholarshipscafe.com/positions",
-      "country": "Global",
+      "label": "Erasmus Mundus Joint Masters",
+      "url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+      "country": "Europe",
       "city": "Online",
-      "currency": "USD",
+      "currency": "EUR",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/positions", "/positions/"],
-        "followPatterns": ["position-detail", "scholar", "fund", "award", "grant", "fellow", "studentship", "opportunity"],
-        "priorityPatterns": ["graduate trainee", "graduate program", "graduate scheme", "management trainee", "internship", "early career", "international", "overseas", "global"],
-        "applicationPatterns": ["apply", "application", "view scholarship", "open position", "details"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 24,
+        "entryPaths": [
+          "/opportunities/individuals/students/erasmus-mundus-joint-masters"
+        ],
+        "followPatterns": ["erasmus", "mundus", "master", "catalogue", "programme", "scholarship"],
+        "priorityPatterns": ["full scholarships", "students from all over the world", "joint master", "international master"],
+        "applicationPatterns": ["apply", "application", "course catalogue", "entry requirements", "scholarship"],
+        "allowPathPatterns": ["/opportunities/individuals/students/erasmus-mundus-joint-masters"],
+        "denyPathPatterns": ["/about-erasmus/", "/funding-calls", "/contacts", "/how-erasmus-is-managed", "/what-is-erasmus"],
+        "ignorePatterns": ["cookie", "privacy", "news", "press", "faq"],
+        "maxPages": 40,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Crawl the scholarship positions feed, follow position-detail pages, and capture the visible application link from each detail page, with extra weight for graduate trainee and international opportunities."
+      "notes": "Top-tier EU scholarship source. Follow programme catalogue and institution-run course pages with direct application details."
     },
     {
-      "label": "Chevening",
+      "label": "Chevening Scholarships",
       "url": "https://www.chevening.org/scholarships/",
       "country": "United Kingdom",
       "city": "Online",
       "currency": "GBP",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/scholarships/", "/scholarship/"],
-        "followPatterns": ["scholarship", "fellowship", "apply", "eligibility", "who can apply", "award"],
-        "priorityPatterns": ["international", "global", "fully funded", "leaders", "world"],
-        "applicationPatterns": ["apply", "application", "how to apply", "who can apply", "eligibility"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 20,
+        "entryPaths": [
+          "/scholarships/"
+        ],
+        "entryUrls": [
+          "https://www.chevening.org/asean-chevening-scholarship/",
+          "https://www.chevening.org/sids-chevening-scholarship/"
+        ],
+        "followPatterns": ["scholarship", "standard chevening", "sids", "asean", "participating countries"],
+        "priorityPatterns": ["fully-funded", "one-year master", "emerging leaders", "international", "participating countries"],
+        "applicationPatterns": ["apply", "who can apply", "application timeline", "guidance", "participating countries"],
+        "allowPathPatterns": ["/asean-chevening-scholarship", "/sids-chevening-scholarship", "/fellowship/"],
+        "denyPathPatterns": ["/resource-hub/", "/scholarships/who-can-apply", "/scholarships/application-timeline", "/scholarships/find-a-course", "/scholarships/why-study-in-the-uk", "/fellowships/who-can-apply", "/fellowships/find-a-programme", "/fellowships/host-a-fellowship"],
+        "ignorePatterns": ["cookie", "privacy", "login", "resource hub", "news", "blog", "find a course", "application timeline"],
+        "maxPages": 30,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Official UK government international scholarships and fellowships programme. Prioritize awards that are open to applicants from many countries."
+      "notes": "Official flagship UK government scholarship scheme. Keep to award pages and eligibility routes; exclude navigation pages."
     },
     {
-      "label": "DAAD Scholarships",
-      "url": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
-      "country": "Germany",
+      "label": "Fulbright Foreign Student Program",
+      "url": "https://foreign.fulbrightonline.org/about/foreign-student-program",
+      "country": "United States",
       "city": "Online",
-      "currency": "EUR",
+      "currency": "USD",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/en/studying-in-germany/scholarships/daad-scholarships/", "/deutschland/stipendium/datenbank/"],
-        "followPatterns": ["scholarship", "funding", "database", "study", "research", "international"],
-        "priorityPatterns": ["international", "master", "phd", "developing", "emerging", "global"],
-        "applicationPatterns": ["apply", "application", "details", "requirements", "deadlines"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "entryPaths": [
+          "/about/foreign-student-program",
+          "/apply"
+        ],
+        "followPatterns": ["foreign student program", "country", "apply", "eligibility", "commission", "embassy"],
+        "priorityPatterns": ["graduate students", "young professionals", "artists", "country", "embassy", "master", "doctorate"],
+        "applicationPatterns": ["apply", "eligibility", "application guidelines", "country", "embassy"],
+        "ignorePatterns": ["cookie", "privacy", "login", "news", "report", "flta"],
+        "maxPages": 35,
+        "maxDepth": 2,
+        "priorityBonus": 4
+      },
+      "notes": "Official international Fulbright route. Prioritize country application pages and direct eligibility guidance."
+    },
+    {
+      "label": "MEXT Scholarships",
+      "url": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/",
+      "country": "Japan",
+      "city": "Online",
+      "currency": "JPY",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
+      "strategy": {
+        "entryPaths": [
+          "/en/planning/scholarships/mext-scholarships/",
+          "/en/faq/mext-scholarship/"
+        ],
+        "followPatterns": ["mext", "scholarship", "embassy recommendation", "university recommendation", "research student", "young leaders"],
+        "priorityPatterns": ["research students", "university recommendation", "embassy recommendation", "international students"],
+        "applicationPatterns": ["application process", "apply", "recommendation", "requirements"],
+        "allowPathPatterns": ["/en/planning/scholarships/mext-scholarships"],
+        "denyPathPatterns": ["/examination.html", "/about-scholarships", "/jasso-scholarships", "/other-scholarships"],
+        "ignorePatterns": ["cookie", "privacy", "faq", "life in japan"],
         "maxPages": 24,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Official DAAD scholarship overview and database. Prioritize detailed programme pages for international students and researchers."
+      "notes": "Official Japanese government scholarship source. Best for structured MEXT routes and application-path modelling."
     },
     {
-      "label": "Mastercard Foundation Scholars",
-      "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/",
-      "country": "Global",
+      "label": "Swedish Institute Scholarships",
+      "url": "https://si.se/en/apply/scholarships/",
+      "country": "Sweden",
       "city": "Online",
-      "currency": "USD",
+      "currency": "SEK",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/en/what-we-do/our-programs/mastercard-foundation-scholars-program/", "/en/what-we-do/our-programs/mastercard-foundation-scholars-program-at-makerere-university/"],
-        "followPatterns": ["scholar", "scholars", "program", "leadership", "education", "partner"],
-        "priorityPatterns": ["africa", "international", "leadership", "higher education", "global", "young leaders"],
-        "applicationPatterns": ["apply", "application", "where to apply", "learn more", "eligibility"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "entryPaths": [
+          "/en/apply/scholarships/"
+        ],
+        "followPatterns": ["scholarship", "global professionals", "women in stem", "master", "eligibility"],
+        "priorityPatterns": ["fully funded", "master’s level", "professionals", "global professionals", "women in stem"],
+        "applicationPatterns": ["apply", "who can apply", "eligibility", "programmes"],
+        "ignorePatterns": ["cookie", "privacy", "stories", "news", "network"],
+        "maxPages": 24,
+        "maxDepth": 2,
+        "priorityBonus": 4
+      },
+      "notes": "Official Sweden-funded scholarship source. Focus on live scholarship programme pages, not alumni stories."
+    },
+    {
+      "label": "Australia Awards Africa",
+      "url": "https://australiaawardsafrica.org/about/australia-in-africa/",
+      "country": "Australia",
+      "city": "Online",
+      "currency": "AUD",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
+      "strategy": {
+        "entryPaths": [
+          "/about/australia-in-africa/",
+          "/awards/apply/"
+        ],
+        "followPatterns": ["australia awards", "africa", "masters", "short course", "eligibility", "apply"],
+        "priorityPatterns": ["africa", "masters", "eligible countries", "development", "leadership"],
+        "applicationPatterns": ["apply", "eligibility", "priority fields", "how to apply"],
+        "ignorePatterns": ["cookie", "privacy", "resource", "brochure", "faq pdf"],
+        "maxPages": 24,
+        "maxDepth": 2,
+        "priorityBonus": 4
+      },
+      "notes": "Official Australia Awards regional programme with strong Africa relevance. Prioritize Masters awards and eligible-country pages."
+    },
+    {
+      "label": "Study UK GREAT Scholarships",
+      "url": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships",
+      "country": "United Kingdom",
+      "city": "Online",
+      "currency": "GBP",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
+      "strategy": {
+        "entryPaths": [
+          "/scholarships-funding/great-scholarships",
+          "/scholarships-funding/great-scholarships/great-scholarships-science-technology"
+        ],
+        "followPatterns": ["great scholarships", "country", "university", "postgraduate", "science and technology"],
+        "priorityPatterns": ["one-year taught postgraduate", "10,000", "international", "country page", "science and technology"],
+        "applicationPatterns": ["apply", "country", "courses covered", "how to apply"],
+        "ignorePatterns": ["cookie", "privacy", "news", "guide"],
+        "maxPages": 30,
+        "maxDepth": 2,
+        "priorityBonus": 4
+      },
+      "notes": "Official UK-wide scholarship scheme run through Study UK. Excellent for scalable university-linked postgraduate awards."
+    },
+    {
+      "label": "Study UK Commonwealth Scholarships",
+      "url": "https://study-uk.britishcouncil.org/scholarships-funding/commonwealth-scholarships",
+      "country": "United Kingdom",
+      "city": "Online",
+      "currency": "GBP",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
+      "strategy": {
+        "entryPaths": [
+          "/scholarships-funding/commonwealth-scholarships"
+        ],
+        "followPatterns": ["commonwealth scholarship", "postgraduate", "master", "phd", "csc"],
+        "priorityPatterns": ["unable to afford", "commonwealth country", "postgraduate", "development", "master", "phd"],
+        "applicationPatterns": ["apply", "eligibility", "how to apply", "commonwealth scholarship"],
+        "ignorePatterns": ["cookie", "privacy", "news", "guide"],
         "maxPages": 18,
         "maxDepth": 1,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Official Scholars Program pages from Mastercard Foundation. Prioritize partner-university opportunities and leadership-focused scholarship routes."
+      "notes": "Use Study UK as the stable official entry layer for Commonwealth routes where the CSC site is JS-heavy."
     },
     {
-      "label": "Unilever Early Careers",
-      "url": "https://careers.unilever.com/en/early-careers",
-      "country": "Global",
+      "label": "British Council Women in STEM",
+      "url": "https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem",
+      "country": "United Kingdom",
       "city": "Online",
-      "currency": "USD",
+      "currency": "GBP",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/en/early-careers", "/en/job/", "/early-careers-at-unilever"],
-        "followPatterns": ["graduate trainee", "graduate programme", "graduate program", "early careers", "internship", "apprenticeship", "trainee"],
-        "priorityPatterns": ["graduate trainee", "graduate programme", "graduate program", "management trainee", "early careers", "future leaders", "internship"],
-        "applicationPatterns": ["apply", "application", "learn more", "open role", "job details"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 18,
+        "entryPaths": [
+          "/study-work-abroad/in-uk/scholarship-women-stem"
+        ],
+        "followPatterns": ["women in stem", "scholarship", "eligibility", "apply", "master"],
+        "priorityPatterns": ["fully funded", "women", "stem", "master’s degree", "disadvantaged contexts"],
+        "applicationPatterns": ["apply", "eligibility", "university", "master’s program"],
+        "ignorePatterns": ["cookie", "privacy", "story", "news", "alumni"],
+        "maxPages": 24,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Official Unilever early-career and graduate programme pages. Prioritize graduate trainee and future leaders roles over generic company pages."
-    },
-    {
-      "label": "KPMG Graduates",
-      "url": "https://kpmg.com/sg/en/home/careers/graduates.html",
-      "country": "Singapore",
-      "city": "Online",
-      "currency": "SGD",
-      "strategy": {
-        "entryPaths": ["/en/home/careers/graduates.html", "/en/home/careers/early-careers-programmes.html"],
-        "followPatterns": ["graduate", "graduates", "early careers", "programme", "program", "apply"],
-        "priorityPatterns": ["graduate programme", "graduate program", "early careers", "university graduate", "fresh graduates"],
-        "applicationPatterns": ["apply", "application", "learn more", "job opportunities"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 18,
-        "maxDepth": 2,
-        "priorityBonus": 1
-      },
-      "notes": "Official KPMG graduate and early-career pages. Prioritize programmes designed for fresh graduates and early-career candidates."
+      "notes": "High-value niche programme with strong structure and high trust. Exclude story pages."
     },
     {
       "label": "Oxford Graduate Scholarships",
@@ -134,89 +251,189 @@
       "country": "United Kingdom",
       "city": "Oxford",
       "currency": "GBP",
+      "source_type": "official_university_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/admissions/graduate/fees-and-funding/funding/scholarships", "/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search"],
-        "followPatterns": ["scholarship", "studentship", "funding", "graduate", "external", "award"],
-        "priorityPatterns": ["international", "overseas", "world", "graduate", "masters", "phd", "fully funded"],
-        "applicationPatterns": ["apply", "application", "funding", "scholarship", "how to apply"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 18,
+        "entryPaths": [
+          "/admissions/graduate/fees-and-funding/funding/scholarships",
+          "/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/scholarships-a-z-listing"
+        ],
+        "entryUrls": [
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/crankstart-graduate-scholarship",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/felix-scholarships",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/optiver-foundation-scholarships",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/oxford-centre-islamic-studies-ocis-scholarships",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/university-oxford-croucher-scholarships",
+          "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/weidenfeld-hoffmann-scholarships-and-leadership-programme"
+        ],
+        "followPatterns": ["scholarship", "graduate", "funding", "award", "clarendon", "international", "a-z"],
+        "priorityPatterns": ["course fees", "living costs", "international", "graduate", "master", "dphil"],
+        "applicationPatterns": ["apply", "how do i apply", "deadline", "selection", "eligibility"],
+        "allowPathPatterns": ["/admissions/graduate/fees-and-funding/funding/clarendon/"],
+        "denyPathPatterns": ["/admissions/graduate/fees-and-funding/funding/scholarships", "/scholarships-a-z-listing", "/admissions/graduate/fees-and-funding", "/research/", "/students/"],
+        "ignorePatterns": ["cookie", "privacy", "news", "event", "guide pdf"],
+        "maxPages": 80,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 5
       },
-      "notes": "Official Oxford graduate scholarships and funding search. Prioritize awards open to overseas and international applicants."
+      "notes": "One of the strongest university-owned scholarship systems. Prioritize scholarship detail blocks and country-specific awards."
     },
     {
-      "label": "Cambridge Trust Scholarships",
-      "url": "https://www.cambridgetrust.org/scholarships",
+      "label": "Cambridge Trust Scholarship Search",
+      "url": "https://www.cambridgetrust.org/find-a-scholarship/",
       "country": "United Kingdom",
       "city": "Cambridge",
       "currency": "GBP",
+      "source_type": "official_university_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/scholarships", "/scholarships/p", "/scholarship/"],
-        "followPatterns": ["scholarship", "trust", "funding", "degree level", "country"],
-        "priorityPatterns": ["international", "overseas", "masters", "phd", "undergraduate", "worldwide", "any subject"],
-        "applicationPatterns": ["apply", "application", "scholarship", "search our scholarships", "find a scholarship"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 24,
+        "entryPaths": [
+          "/find-a-scholarship/",
+          "/scholarships/",
+          "/scholarship/"
+        ],
+        "entryUrls": [
+          "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge/",
+          "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship/",
+          "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship/",
+          "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge/",
+          "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2/",
+          "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship/",
+          "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship/",
+          "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship/",
+          "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship/",
+          "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships/"
+        ],
+        "followPatterns": ["find a scholarship", "scholarship", "phd", "masters", "undergraduate", "funding partner"],
+        "priorityPatterns": ["full-cost", "part-cost", "international", "masters", "phd", "country"],
+        "applicationPatterns": ["apply", "postgraduate applicants", "undergraduate applicants", "eligibility"],
+        "allowUrlPatterns": ["/find-a-scholarship/", "/scholarship/"],
+        "denyUrlPatterns": ["/current-scholars", "/wp-content/uploads/", "/news/"],
+        "ignorePatterns": ["cookie", "privacy", "news", "impact", "story"],
+        "maxPages": 70,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 5
       },
-      "notes": "Official Cambridge Trust scholarship search. Prioritize scholarship listings that are open to international applicants and broad subject areas."
+      "notes": "Official Cambridge Trust search tool. Use Playwright rendering and capture scholarship cards by degree level and nationality."
     },
     {
-      "label": "Edinburgh Scholarship Search",
-      "url": "https://www.edscholar.is.ed.ac.uk/scholarship_search",
+      "label": "Imperial Scholarship Search",
+      "url": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/",
+      "country": "United Kingdom",
+      "city": "London",
+      "currency": "GBP",
+      "source_type": "official_university_directory",
+      "trust_tier": "tier_1",
+      "strategy": {
+        "entryPaths": [
+          "/study/fees-and-funding/scholarships-search/",
+          "/study/fees-and-funding/postgraduate-taught/grants-scholarships/"
+        ],
+        "followPatterns": ["scholarship", "funding", "postgraduate taught", "master’s research", "doctoral", "award value"],
+        "priorityPatterns": ["overseas", "full tuition fees", "maintenance grant", "women in stem", "international"],
+        "applicationPatterns": ["apply", "application deadline", "available to", "award value"],
+        "allowPathPatterns": ["/scholarships-search/"],
+        "denyPathPatterns": ["/postgraduate-taught/grants-scholarships/"],
+        "ignorePatterns": ["cookie", "privacy", "student terms", "news", "blog"],
+        "maxPages": 70,
+        "maxDepth": 2,
+        "priorityBonus": 5
+      },
+      "notes": "Rich official scholarship search with hundreds of results. Strong for taught postgraduate and doctoral funding."
+    },
+    {
+      "label": "University of Edinburgh Scholarships",
+      "url": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
       "country": "United Kingdom",
       "city": "Edinburgh",
       "currency": "GBP",
+      "source_type": "official_university_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/scholarship_search", "/scholarship_search?"],
-        "followPatterns": ["scholarship", "funding", "bursary", "aid", "international", "postgraduate", "undergraduate"],
-        "priorityPatterns": ["international", "postgraduate", "undergraduate", "masters", "phd", "open to", "funding opportunities"],
-        "applicationPatterns": ["apply", "application", "search", "scholarship", "funding"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 18,
+        "entryPaths": [
+          "/postgraduate/fees-funding/funding-studies/scholarships",
+          "/postgraduate/applying/research-degrees/funding"
+        ],
+        "followPatterns": ["scholarship", "funding", "postgraduate", "research", "international", "degree programme"],
+        "priorityPatterns": ["international students", "cover some or all", "postgraduate study", "research degree"],
+        "applicationPatterns": ["apply", "scholarship application criteria", "funding opportunities"],
+        "allowPathPatterns": ["/postgraduate/fees-funding/funding-studies/scholarships"],
+        "denyPathPatterns": ["/living-costs", "/tuition-fees", "/educational-loans", "/fee-funding/", "/research-degrees/funding"],
+        "ignorePatterns": ["cookie", "privacy", "news", "booklet pdf", "current students"],
+        "maxPages": 50,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "Official University of Edinburgh scholarship search. Prioritize international and programme-specific awards."
+      "notes": "Official university funding surface with postgraduate and research scholarship routes."
     },
     {
-      "label": "KU Leuven Scholarships",
-      "url": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
-      "country": "Belgium",
-      "city": "Leuven",
-      "currency": "EUR",
+      "label": "Mastercard Foundation Scholars Program",
+      "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/",
+      "country": "Global",
+      "city": "Online",
+      "currency": "USD",
+      "source_type": "official_programme_directory",
+      "trust_tier": "tier_1",
       "strategy": {
-        "entryPaths": ["/scholarships/year/2026-2027/science-leuven-scholarship", "/scholarships/year/2026-2027", "/scholarships"],
-        "followPatterns": ["scholarship", "international", "master", "phd", "science", "leuven", "funding"],
-        "priorityPatterns": ["international", "masters", "phd", "eu", "world", "outstanding", "students"],
-        "applicationPatterns": ["apply", "application", "scholarship", "eligibility", "deadline"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
-        "maxPages": 20,
+        "entryPaths": [
+          "/en/what-we-do/our-programs/mastercard-foundation-scholars-program/"
+        ],
+        "followPatterns": ["scholars program", "where to apply", "partner", "university", "young leaders"],
+        "priorityPatterns": ["where to apply", "africa", "higher education", "scholars", "leadership"],
+        "applicationPatterns": ["where to apply", "eligibility", "apply", "partner university"],
+        "allowPathPatterns": ["/where-to-apply/"],
+        "denyPathPatterns": ["/news/"],
+        "ignorePatterns": ["cookie", "privacy", "article", "articles", "story", "celebrates", "impact"],
+        "maxPages": 30,
         "maxDepth": 2,
-        "priorityBonus": 1
+        "priorityBonus": 4
       },
-      "notes": "KU Leuven scholarship pages for international students and masters/PhD routes in a NATO country. Prioritize international and merit-based awards."
+      "notes": "Official programme source. Prioritize live 'where to apply' partner routes, not news articles about the programme."
     },
     {
-      "label": "KTH Scholarships",
-      "url": "https://www.kth.se/en/om/2.239/stipendieutlysningar",
-      "country": "Sweden",
-      "city": "Stockholm",
-      "currency": "SEK",
+      "label": "FindAMasters Scholarship Search",
+      "url": "https://www.findamasters.com/scholarships/",
+      "country": "Global",
+      "city": "Online",
+      "currency": "Mixed",
+      "source_type": "discovery_directory",
+      "trust_tier": "tier_3",
       "strategy": {
-        "entryPaths": ["/en/om/2.239/stipendieutlysningar", "/en/student/stod/studier/stipendier/stipendieutlysningar"],
-        "followPatterns": ["scholarship", "stipend", "funding", "student", "international", "master"],
-        "priorityPatterns": ["international", "master", "graduate", "phd", "exchange", "fee-paying", "study"],
-        "applicationPatterns": ["apply", "application", "scholarship", "deadline", "call"],
-        "ignorePatterns": ["cookie", "privacy", "login", "subscribe", "search", "advertise", "contact"],
+        "entryPaths": [
+          "/scholarships/"
+        ],
+        "followPatterns": ["scholarship", "master", "university", "grant"],
+        "priorityPatterns": ["provided by university", "deadline", "award value", "international"],
+        "applicationPatterns": ["read more about eligibility", "scholarship details"],
+        "ignorePatterns": ["cookie", "privacy", "account", "newsletter", "survey"],
         "maxPages": 20,
-        "maxDepth": 2,
+        "maxDepth": 1,
         "priorityBonus": 1
       },
-      "notes": "KTH scholarship announcements and grants in Sweden, a NATO member country. Prioritize scholarships open to fee-paying international students."
+      "notes": "Discovery-only source for lead generation. Do not publish records from here without resolving them to the official sponsor page."
+    },
+    {
+      "label": "Mastersportal Scholarships",
+      "url": "https://www.mastersportal.com/scholarships/",
+      "country": "Global",
+      "city": "Online",
+      "currency": "Mixed",
+      "source_type": "discovery_directory",
+      "trust_tier": "tier_3",
+      "strategy": {
+        "entryPaths": [
+          "/scholarships/"
+        ],
+        "followPatterns": ["scholarship", "provided by university", "independent provider", "deadline"],
+        "priorityPatterns": ["provided by university", "european commission", "uk government", "international"],
+        "applicationPatterns": ["read more about eligibility", "deadline", "provider"],
+        "ignorePatterns": ["cookie", "privacy", "account", "student loan", "studyportals scholarship"],
+        "maxPages": 20,
+        "maxDepth": 1,
+        "priorityBonus": 1
+      },
+      "notes": "Discovery-only source for breadth. Use it to find leads, then canonicalize to the official scholarship or university page before publication."
     }
   ]
 }

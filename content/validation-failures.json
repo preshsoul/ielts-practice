@@ -1,34 +1,34 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T23:55:16.209Z",
+  "updated_at": "2026-05-18T20:00:46.564Z",
   "total": 3,
   "failures": [
     {
-      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding",
-      "sourceLabel": "Oxford Graduate Scholarships",
-      "title": "Funding | Oxford University",
+      "sourceUrl": "https://si.se/en/apply/scholarships",
+      "sourceLabel": "Swedish Institute Scholarships",
+      "title": "403 Forbidden - Bot Traffic Blocked",
       "errors": [
-        "confidence below threshold"
+        "blocked or access-denied page"
       ],
-      "capturedAt": "2026-05-12T23:54:27.184Z"
+      "capturedAt": "2026-05-18T19:58:03.731Z"
     },
     {
-      "sourceUrl": "https://www.kuleuven.be/scholarships/en/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
-      "sourceLabel": "KU Leuven Scholarships",
-      "title": "facebook",
+      "sourceUrl": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships",
+      "sourceLabel": "Study UK GREAT Scholarships",
+      "title": "Access Denied",
       "errors": [
-        "confidence below threshold"
+        "blocked or access-denied page"
       ],
-      "capturedAt": "2026-05-12T23:54:50.850Z"
+      "capturedAt": "2026-05-18T19:59:36.959Z"
     },
     {
-      "sourceUrl": "https://www.kuleuven.be/scholarships/oud/en/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
-      "sourceLabel": "KU Leuven Scholarships",
-      "title": "facebook",
+      "sourceUrl": "https://study-uk.britishcouncil.org/scholarships-funding/commonwealth-scholarships",
+      "sourceLabel": "Study UK Commonwealth Scholarships",
+      "title": "Access Denied",
       "errors": [
-        "confidence below threshold"
+        "blocked or access-denied page"
       ],
-      "capturedAt": "2026-05-12T23:54:53.115Z"
+      "capturedAt": "2026-05-18T19:59:38.512Z"
     }
   ]
 }

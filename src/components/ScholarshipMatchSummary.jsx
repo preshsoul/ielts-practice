@@ -3,6 +3,10 @@ import LociCard from "./common/LociCard.jsx";
 import { buildProfileKeywords } from "../services/scoringEngine.js";
 import { buildPlainMatchReasons, formatIeltsBands, formatIeltsScore } from "../lib/opportunitySignals.js";
 
+function getScholarshipTitle(scholarship = {}) {
+  return scholarship?.title || scholarship?.name || scholarship?.nameFull || scholarship?.awardingBody || "Scholarship";
+}
+
 export default function ScholarshipMatchSummary({ profile, scored = [], shortlist = [], C, Chip }) {
   const profileKeywords = buildProfileKeywords(profile || {});
   const topFit = scored[0];
@@ -42,7 +46,7 @@ export default function ScholarshipMatchSummary({ profile, scored = [], shortlis
         variant="utilitarian"
         tone="default"
         eyebrow="At a glance"
-        title={topScholarship ? `${topScholarship.name || topScholarship.title} · ${topScore}/100` : "No matches yet"}
+        title={topScholarship ? `${getScholarshipTitle(topScholarship)} · ${topScore}/100` : "No matches yet"}
         copy={`Your current IELTS status: ${ieltsSummary}${ieltsBands ? ` (${ieltsBands})` : ""}. Saved items, urgency, and confidence are shown below.`}
         className="scholarship-sidebar-card scholarship-sidebar-stats"
       >
@@ -97,7 +101,7 @@ export default function ScholarshipMatchSummary({ profile, scored = [], shortlis
               });
               return (
                 <div key={scholarship.id} style={{ padding: 12, border: "1px solid var(--border)", borderRadius: 12, background: "var(--color-bg-surface)" }}>
-                  <div style={{ fontWeight: 700, marginBottom: 6 }}>{scholarship.name || scholarship.title}</div>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>{getScholarshipTitle(scholarship)}</div>
                   <div style={{ fontSize: 12, color: "var(--text-3)", marginBottom: 8 }}>{analysis.score}/100 fit</div>
                   <div style={{ display: "grid", gap: 6 }}>
                     {reasons.slice(0, 3).map((reason) => (

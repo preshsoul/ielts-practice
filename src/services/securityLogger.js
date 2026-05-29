@@ -17,7 +17,9 @@ class SecurityLogger {
 
   log(level, event, details = {}) {
     const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : 'node';
-    const url = typeof window !== 'undefined' && window.location ? window.location.href : 'node';
+    const url = typeof window !== 'undefined' && window.location
+      ? `${window.location.pathname || ''}${window.location.hash || ''}`
+      : 'node';
     const logEntry = {
       timestamp: new Date().toISOString(),
       level,
@@ -41,8 +43,8 @@ class SecurityLogger {
       console.debug(`[${level}] ${event}`, details);
     }
 
-    // In production, this would send to a logging service
-    // this.sendToLoggingService(logEntry);
+    // Ship to server-side logging endpoint when configured (OWASP: audit trail)
+    this.sendToLoggingService(logEntry);
   }
 
   // Generate or retrieve session ID
@@ -124,12 +126,32 @@ class SecurityLogger {
     return this.events.slice(-50);
   }
 
-  // Export logs for admin review
+  // Ship logs to server-side aggregation endpoint
+  sendToLoggingService(logEntry) {
+    try {
+      const endpoint = typeof window !== 'undefined'
+        ? (window.__LOCI_ENV__?.VITE_LOG_ENDPOINT || "")
+        : "";
+      if (!endpoint) return;
+
+      // Fire-and-forget; don't block on logging
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(logEntry),
+        keepalive: true,
+      }).catch(() => { /* Log delivery is best-effort */ });
+    } catch {
+      // Never let logging failures break the app
+    }
+  }
+
+  // Export logs for admin review (always available for debugging)
   exportLogs() {
     return {
-      events: this.events,
+      events: [...this.events],
       exportedAt: new Date().toISOString(),
-      totalEvents: this.events.length
+      totalEvents: this.events.length,
     };
   }
 }

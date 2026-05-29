@@ -1,0 +1,43 @@
+# Artillery load test — Supabase Edge Functions (Production)
+# Run:  npx artillery run load-tests/artillery-edge.yml
+# These test the deployed Edge Functions directly
+
+config:
+  target: "https://bnttvgrqyxxhsdmpvkfz.supabase.co"
+  phases:
+    - duration: 30
+      arrivalRate: 1
+      name: warmup
+    - duration: 60
+      arrivalRate: 3
+      rampTo: 6
+      name: steady
+  defaults:
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+      apikey: "{{ $env.SUPABASE_ANON_KEY }}"
+
+scenarios:
+  - name: document-intake
+    weight: 2
+    flow:
+      - post:
+          url: "/functions/v1/document-intake"
+          headers:
+            Authorization: "Bearer {{ $env.TEST_AUTH_TOKEN }}"
+          json:
+            sourceFilename: "test-cv.pdf"
+            extractedText: "Sample CV text for load testing purposes only."
+            documentType: "pdf"
+
+  - name: generate-embedding
+    weight: 1
+    flow:
+      - post:
+          url: "/functions/v1/generate-embedding"
+          headers:
+            Authorization: "Bearer {{ $env.TEST_AUTH_TOKEN }}"
+          json:
+            text: "MSc Computer Science candidate from Nigeria with IELTS 8.0 and 3 years of teaching experience."
+            model: "text-embedding-3-small"

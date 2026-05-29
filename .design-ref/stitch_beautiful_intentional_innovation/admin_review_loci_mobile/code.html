@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Domine:wght@700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dce1ff",
+                    "on-primary-fixed": "#001452",
+                    "surface-variant": "#e2e1ee",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#001551",
+                    "on-tertiary-fixed": "#360f00",
+                    "secondary": "#4b5b98",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191b24",
+                    "tertiary": "#993900",
+                    "inverse-surface": "#2e3039",
+                    "on-secondary-container": "#394985",
+                    "inverse-primary": "#b7c4ff",
+                    "primary-fixed": "#dde1ff",
+                    "on-surface-variant": "#434655",
+                    "on-background": "#191b24",
+                    "error": "#ba1a1a",
+                    "surface-container": "#ededf9",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "tertiary-container": "#c14a00",
+                    "secondary-container": "#abbbff",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-primary-container": "#f6f4ff",
+                    "inverse-on-surface": "#f0f0fc",
+                    "primary": "#0d47db",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#b7c4ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#1c4fe1",
+                    "surface-dim": "#d9d9e5",
+                    "surface-container-low": "#f3f2ff",
+                    "surface-container-high": "#e7e7f4",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c4c5d8",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed-variant": "#33437f",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e2e1ee",
+                    "outline": "#747687",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-tertiary-container": "#fff3ef",
+                    "on-primary-fixed-variant": "#0038b7",
+                    "primary-container": "#3863f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-desktop": "32px",
+                    "base": "8px",
+                    "intel-sidebar-width": "270px",
+                    "container-padding-mobile": "16px",
+                    "sidebar-collapsed": "64px",
+                    "sidebar-width": "240px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["JetBrains Mono"],
+                    "body-base": ["IBM Plex Sans"],
+                    "label-caps": ["Domine"],
+                    "data-mono": ["JetBrains Mono"],
+                    "hero-display": ["JetBrains Mono"],
+                    "headline-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "body-base": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                    "data-mono": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "hero-display": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "headline-sm": ["16px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #faf8ff;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top Navigation Bar (Mobile Optimized) -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface shadow-sm h-16 flex items-center px-4 border-b border-outline-variant/10">
+<div class="flex items-center gap-3 w-full">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Loci Admin</span>
+<span class="text-[10px] uppercase tracking-widest font-label-caps text-primary">Content Review</span>
+</div>
+<div class="ml-auto flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined text-on-surface-variant">terminal</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-container flex items-center justify-center">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="A detailed professional headshot of a software administrator in a modern, well-lit tech environment. The image uses a clean, light-mode aesthetic with soft blue and white tones. The lighting is bright and even, conveying a sense of precision and professional authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyaRI9BOnSF40avTdBVyxlN3RD0O5fT_MKNy_rZKv1sMbhv8hiDBOHfyZ93PIw4QvcO8cLbDpK2XhNR4Hria157IrHfOnyXQi4RK_pPIOB8PtpAJHyTeZ7h6P5z7QCXlmnDwxRt4FaM2O7jmuiRTA2OZv2pKGwywhi-Bq21cpDDgBE0SmBP0CoC73qSClQFrFfgAY2XKXuuHXZ-cv3Ej9-rp1Q7SqfLBaPIxiPJLZRSAJF7-2kRzSBDJ91EPxGyFRjqzlyvEC5JqBj"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto">
+<!-- Dashboard Summary Mini-Bento -->
+<section class="mb-6">
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/20 shadow-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">PENDING</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">1,248</h3>
+</div>
+<div class="bg-error-container p-4 rounded-xl border border-error/10 shadow-sm">
+<p class="font-label-caps text-label-caps text-on-error-container mb-1">FLAGGED</p>
+<h3 class="font-headline-sm text-headline-sm text-on-error-container">42</h3>
+</div>
+</div>
+</section>
+<!-- Filters & Search -->
+<section class="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap">All Queue</button>
+<button class="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap">High Confidence</button>
+<button class="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap">Requires Human</button>
+<button class="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap">Flagged</button>
+</section>
+<!-- Extraction Review List -->
+<section class="space-y-4">
+<!-- Review Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 overflow-hidden shadow-[0_2px_8px_rgba(117,122,131,0.08)]">
+<div class="p-4 border-b border-outline-variant/10 flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary">ID: SCH-8829-X</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight">National STEM Grant 2024</h4>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-[10px] font-bold">
+                        PENDING
+                    </div>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant font-medium">Confidence Score</span>
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[94%]"></div>
+</div>
+<span class="font-data-mono text-data-mono text-primary">94%</span>
+</div>
+</div>
+<div class="bg-surface-container p-3 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">school</span>
+<div class="text-xs">
+<p class="text-on-surface-variant">Extracted Provider</p>
+<p class="font-semibold text-on-surface">Federal Education Bureau</p>
+</div>
+</div>
+</div>
+<div class="p-3 bg-surface-bright flex gap-2">
+<button class="flex-1 bg-surface-variant text-on-surface-variant py-2.5 rounded-lg text-xs font-bold hover:bg-outline-variant transition-colors">Discard</button>
+<button class="flex-1 bg-primary text-on-primary py-2.5 rounded-lg text-xs font-bold shadow-md shadow-primary/20">Approve</button>
+</div>
+</div>
+<!-- Review Card 2 (Flagged) -->
+<div class="bg-surface-container-lowest rounded-xl border border-error/20 overflow-hidden shadow-[0_2px_8px_rgba(117,122,131,0.08)]">
+<div class="p-4 border-b border-outline-variant/10 flex justify-between items-start bg-error-container/10">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-error">ID: SCH-9104-F</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Global Women in Tech Fellowship</h4>
+</div>
+<div class="bg-error text-on-error px-2 py-1 rounded text-[10px] font-bold">
+                        FLAGGED
+                    </div>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant font-medium">Confidence Score</span>
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-error h-full w-[42%]"></div>
+</div>
+<span class="font-data-mono text-data-mono text-error">42%</span>
+</div>
+</div>
+<div class="p-3 border border-error/20 rounded-lg bg-error-container/5">
+<p class="text-[10px] font-bold text-error uppercase mb-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Logic Collision
+                        </p>
+<p class="text-xs text-on-surface-variant italic leading-relaxed">
+                            "Extracted deadline (2023-12-01) is in the past for a 2024 grant cycle. User validation required."
+                        </p>
+</div>
+</div>
+<div class="p-3 bg-surface-bright flex gap-2">
+<button class="flex-[1] bg-surface-variant text-on-surface-variant py-2.5 rounded-lg text-xs font-bold">Edit</button>
+<button class="flex-[2] bg-error text-on-error py-2.5 rounded-lg text-xs font-bold">Delete Record</button>
+</div>
+</div>
+<!-- Review Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 overflow-hidden shadow-[0_2px_8px_rgba(117,122,131,0.08)]">
+<div class="p-4 border-b border-outline-variant/10 flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary">ID: SCH-7731-M</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Merit Scholarship for Design</h4>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-[10px] font-bold">
+                        PENDING
+                    </div>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant font-medium">Confidence Score</span>
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[81%]"></div>
+</div>
+<span class="font-data-mono text-data-mono text-primary">81%</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container p-2 rounded-lg text-center">
+<p class="text-[10px] text-on-surface-variant">Amount</p>
+<p class="text-xs font-bold text-on-surface">$5,000</p>
+</div>
+<div class="bg-surface-container p-2 rounded-lg text-center">
+<p class="text-[10px] text-on-surface-variant">Renewable</p>
+<p class="text-xs font-bold text-on-surface">Yes</p>
+</div>
+</div>
+</div>
+<div class="p-3 bg-surface-bright flex gap-2">
+<button class="flex-1 bg-surface-variant text-on-surface-variant py-2.5 rounded-lg text-xs font-bold">Discard</button>
+<button class="flex-1 bg-primary text-on-primary py-2.5 rounded-lg text-xs font-bold">Approve</button>
+</div>
+</div>
+</section>
+<!-- Pagination / Load More -->
+<div class="mt-8 text-center">
+<button class="text-primary font-bold text-xs flex items-center gap-2 mx-auto py-2 px-6 rounded-full border border-primary/20 hover:bg-primary/5">
+                Load More Extractions
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Navigation Footer (BottomNavBar Mock) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/10 h-16 flex items-center justify-around px-2">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] font-bold">Scholarships</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<div class="relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="text-[10px] font-bold">Admin</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Account</span>
+</button>
+</nav>
+<!-- Floating Action Button (Only on main lists) -->
+<button class="fixed bottom-20 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-2xl shadow-xl flex items-center justify-center z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

@@ -1,30 +1,53 @@
-node_modules/
-dist/
-coverage/
-.DS_Store
-*.log
+# Environment & secrets
 .env
 .env.local
-.env.*.local
-esbuild-check.js
-esbuild-check.css
-out.js
-out_app.js
-tmp_scholarship.js
-/.vite/
-/.vercel/
-/.netlify/
-supabase/.branches/
-*.backup
-*.tmp
-*.png
-check_console.mjs
-security-test.html
-security_rls_fixes.sql
-"# Code Citations.md"
-.agents/
-.junie/
-.windsurf/
-.zencoder/
-skills/
-skills-lock.json
+.env.*
+!.env.example
+!.env.local.example
+supabase/.env.functions.local
+supabase/.env.functions.*
+!supabase/.env.functions.example
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+storybook-static/
+
+# Supabase local
+.supabase/
+
+# Python
+backend/cv_extractor/data/
+backend/cv_extractor/__pycache__/
+backend/cv_extractor/services/__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Claude Code local settings (may contain secrets)
+.claude/
+
+# Load test artifacts
+load-tests/reports/
+load-tests/output/
+
+# Service account keys & certs
+*.pem
+*.key
+*-service-account.json
+credentials.json

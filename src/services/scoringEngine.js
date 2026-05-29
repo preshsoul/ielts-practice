@@ -1,66 +1,20 @@
 import { getProfileCompletion } from "../lib/profileCompletion.js";
 import { classifyOpportunityFocus } from "../lib/opportunitySignals.js";
-
+import { getResolvedFieldValue, resolveCandidateProfile } from "../lib/candidateProfile.js";
+import {
+  cgpaToDegreeClass,
+  normalizeCountryValue,
+  normalizeDegreeClassValue,
+  normalizeDisciplineValue,
+  normalizeLanguageScore,
+  normalizeNationalityValue,
+} from "../lib/ontologyNormalizer.js";
 const DEGREE_RANK = {
   first: 4,
   "2:1": 3,
   "2:2": 2,
   third: 1,
 };
-
-const DEGREE_ALIASES = {
-  "1": "first",
-  "1st": "first",
-  "first class": "first",
-  first: "first",
-  "2:1": "2:1",
-  "2.1": "2:1",
-  "upper second": "2:1",
-  "upper second class": "2:1",
-  "2:2": "2:2",
-  "2.2": "2:2",
-  "lower second": "2:2",
-  "lower second class": "2:2",
-  third: "third",
-};
-
-const NATIONALITY_ALIASES = {
-  nigeria: "Nigerian",
-  nigerian: "Nigerian",
-  ng: "Nigerian",
-  ghana: "Ghanaian",
-  ghanaian: "Ghanaian",
-  kenya: "Kenyan",
-  kenyan: "Kenyan",
-  uk: "United Kingdom",
-  "united kingdom": "United Kingdom",
-  england: "United Kingdom",
-  scotland: "United Kingdom",
-  wales: "United Kingdom",
-  canada: "Canada",
-  canadian: "Canadian",
-  australia: "Australia",
-  australian: "Australian",
-  international: "International",
-  any: "Any",
-  "any nationality": "Any",
-  "open to all": "Any",
-};
-
-const DISCIPLINE_TAXONOMY = [
-  { category: "Education", patterns: [/education/i, /teaching/i, /literacy/i] },
-  { category: "Computer Science", patterns: [/computer science/i, /software/i, /data science/i, /\bai\b/i, /machine learning/i, /information systems/i] },
-  { category: "Engineering", patterns: [/engineering/i, /mechanical/i, /electrical/i, /civil/i, /chemical/i, /aerospace/i, /material engineering/i] },
-  { category: "Health Sciences", patterns: [/public health/i, /nursing/i, /medicine/i, /health/i, /pharmacy/i, /biomedical/i] },
-  { category: "Business", patterns: [/business/i, /management/i, /finance/i, /accounting/i, /marketing/i, /supply chain/i, /entrepreneurship/i] },
-  { category: "Law", patterns: [/\blaw\b/i, /legal/i] },
-  { category: "Economics", patterns: [/economics?/i] },
-  { category: "Psychology", patterns: [/psychology/i] },
-  { category: "Linguistics", patterns: [/linguistics/i, /language/i, /translation/i] },
-  { category: "Sciences", patterns: [/\bscience\b/i, /biology/i, /chemistry/i, /physics/i, /mathematics?/i] },
-  { category: "Arts and Humanities", patterns: [/arts?/i, /humanities/i, /history/i, /literature/i, /philosophy/i, /anthropology/i] },
-  { category: "Agriculture", patterns: [/agricultur/i, /horticulture/i, /forestry/i, /veterinary/i] },
-];
 
 const DOCUMENT_BURDEN_WEIGHTS = {
   "research proposal": 1,
@@ -76,6 +30,17 @@ const DOCUMENT_BURDEN_WEIGHTS = {
   cv: 0.1,
   resume: 0.1,
 };
+
+const PROVISIONAL_FIELD_WEIGHTS = {
+  nationality: 1,
+  discipline: 0.6,
+  degree: 0.75,
+  language: 0.9,
+  experience: 0.4,
+};
+
+const GAP_PENALTY_UNIT = 0.12;
+const MAX_TOTAL_PROVISIONAL_PENALTY = 0.45;
 
 const DEFAULT_COVERAGE_WEIGHTS = {
   funding: 0.6,
@@ -111,22 +76,8 @@ function cosineSimilarity(left = [], right = []) {
   return dot / (Math.sqrt(leftNorm) * Math.sqrt(rightNorm));
 }
 
-function toText(value) {
-  return typeof value === "string" ? value.trim() : "";
-}
-
-function toList(value) {
-  if (Array.isArray(value)) {
-    return value.map(toText).filter(Boolean);
-  }
-  if (typeof value === "string") {
-    return value
-      .split(",")
-      .map((item) => item.trim())
-      .filter(Boolean);
-  }
-  return [];
-}
+import { toText, toList, unique } from "../lib/textUtils.js";
+import { expandKeywordList } from "../lib/disciplineSynonyms.js";
 
 function toMaybeNumber(value) {
   if (value === null || value === undefined || value === "") return null;
@@ -144,49 +95,24 @@ function normalizeBooleanInput(value) {
 }
 
 function normalizeNationality(value) {
-  const text = toText(value).toLowerCase();
-  if (!text) return "";
-  return NATIONALITY_ALIASES[text] || toText(value);
+  return normalizeNationalityValue(value)?.resolved || toText(value);
 }
 
 function normalizeDisciplineCategory(value) {
-  const text = toText(value);
-  if (!text) return "";
-  const matched = DISCIPLINE_TAXONOMY.find((entry) => entry.patterns.some((pattern) => pattern.test(text)));
-  return matched ? matched.category : text;
+  return normalizeDisciplineValue(value)?.resolved || toText(value);
 }
 
-function normalizeDegreeClass(value) {
-  const text = toText(value).toLowerCase();
-  if (!text) return "";
-  return DEGREE_ALIASES[text] || text;
+function normalizeDegreeClass(value, options = {}) {
+  return normalizeDegreeClassValue(value, options)?.resolved || "";
 }
 
 function rankDegreeClass(value) {
   return DEGREE_RANK[normalizeDegreeClass(value)] || 0;
 }
 
-function cgpaToDegreeClass(cgpa, scale = 5) {
-  const value = toMaybeNumber(cgpa);
-  const numericScale = toMaybeNumber(scale) || 5;
-  if (value === null || !numericScale || numericScale <= 0) return "";
-
-  if (numericScale >= 5) {
-    if (value >= 4.5) return "first";
-    if (value >= 3.5) return "2:1";
-    if (value >= 2.4) return "2:2";
-    if (value >= 1.5) return "third";
-    return "";
-  }
-
-  const normalized = (value / numericScale) * 5;
-  return cgpaToDegreeClass(normalized, 5);
-}
-
-function normalizeLanguageTest(value) {
-  if (value === null || value === undefined || value === "") return null;
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
+function normalizeLanguageTest(value, test = "IELTS") {
+  const normalized = normalizeLanguageScore(test, value);
+  return normalized ? normalized.score : null;
 }
 
 function tokenize(value) {
@@ -195,10 +121,6 @@ function tokenize(value) {
     .replace(/[^a-z0-9]+/g, " ")
     .split(/\s+/)
     .filter(Boolean);
-}
-
-function unique(values) {
-  return [...new Set(values.filter(Boolean))];
 }
 
 export function createStructuredProfileDraft(profile = {}) {
@@ -250,11 +172,11 @@ export function normalizeStructuredProfile(profile = {}) {
   return {
     identity: {
       nationality: normalizeNationality(profile.identity?.nationality) || null,
-      countryOfResidence: normalizeNationality(profile.identity?.countryOfResidence) || toText(profile.identity?.countryOfResidence) || null,
+      countryOfResidence: normalizeCountryValue(profile.identity?.countryOfResidence)?.resolved || toText(profile.identity?.countryOfResidence) || null,
       ageAtApplicationCycle: toMaybeNumber(profile.identity?.ageAtApplicationCycle),
     },
     academic: {
-      degreeClass: normalizeDegreeClass(profile.academic?.degreeClass) || normalizeDegreeClass(cgpaToDegreeClass(profile.academic?.cgpa, profile.academic?.cgpaScale)) || null,
+      degreeClass: normalizeDegreeClass(profile.academic?.degreeClass, { cgpa: profile.academic?.cgpa, cgpaScale: profile.academic?.cgpaScale }) || normalizeDegreeClass(cgpaToDegreeClass(profile.academic?.cgpa, profile.academic?.cgpaScale)) || null,
       institution: toText(profile.academic?.institution) || null,
       institutionCountry: toText(profile.academic?.institutionCountry) || null,
       discipline: toText(profile.academic?.discipline) || null,
@@ -269,9 +191,9 @@ export function normalizeStructuredProfile(profile = {}) {
       sector: toText(profile.professional?.sector) || null,
     },
     languageTests: {
-      ielts: toMaybeNumber(profile.languageTests?.ielts),
-      toefl: toMaybeNumber(profile.languageTests?.toefl),
-      celpip: toMaybeNumber(profile.languageTests?.celpip),
+      ielts: normalizeLanguageTest(profile.languageTests?.ielts, "IELTS"),
+      toefl: normalizeLanguageTest(profile.languageTests?.toefl, "TOEFL"),
+      celpip: normalizeLanguageTest(profile.languageTests?.celpip, "CELPIP"),
       ieltsBands: profile.languageTests?.ieltsBands && typeof profile.languageTests.ieltsBands === "object"
         ? {
             listening: toMaybeNumber(profile.languageTests.ieltsBands.listening),
@@ -297,7 +219,7 @@ export function serializeStructuredProfileDraft(draft = {}) {
       ageAtApplicationCycle: toMaybeNumber(draft.identity?.ageAtApplicationCycle),
     },
     academic: {
-      degreeClass: normalizeDegreeClass(draft.academic?.degreeClass) || null,
+      degreeClass: normalizeDegreeClass(draft.academic?.degreeClass, { cgpa: draft.academic?.cgpa, cgpaScale: draft.academic?.cgpaScale }) || null,
       institution: toText(draft.academic?.institution) || null,
       institutionCountry: toText(draft.academic?.institutionCountry) || null,
       discipline: toText(draft.academic?.discipline) || null,
@@ -312,9 +234,9 @@ export function serializeStructuredProfileDraft(draft = {}) {
       sector: toText(draft.professional?.sector) || null,
     },
     languageTests: {
-      ielts: toMaybeNumber(draft.languageTests?.ielts),
-      toefl: toMaybeNumber(draft.languageTests?.toefl),
-      celpip: toMaybeNumber(draft.languageTests?.celpip),
+      ielts: normalizeLanguageTest(draft.languageTests?.ielts, "IELTS"),
+      toefl: normalizeLanguageTest(draft.languageTests?.toefl, "TOEFL"),
+      celpip: normalizeLanguageTest(draft.languageTests?.celpip, "CELPIP"),
       ieltsBands: draft.languageTests?.ieltsBands && typeof draft.languageTests.ieltsBands === "object"
         ? {
             listening: toMaybeNumber(draft.languageTests.ieltsBands.listening),
@@ -339,6 +261,7 @@ export function serializeStructuredProfileDraft(draft = {}) {
 
 export function buildProfileKeywords(profile = {}) {
   const normalized = normalizeStructuredProfile(profile);
+  const candidateProfile = resolveCandidateProfile(profile);
   const keywords = [
     toText(profile.semanticText),
     toText(profile.semantic_text),
@@ -354,6 +277,7 @@ export function buildProfileKeywords(profile = {}) {
     normalized.targetDegreeLevel,
     ...normalized.targetDisciplines,
     ...normalized.targetCountries,
+    ...(Array.isArray(candidateProfile?.resolved?.profileKeywords) ? candidateProfile.resolved.profileKeywords : []),
   ];
   return unique(keywords.flatMap(tokenize));
 }
@@ -366,8 +290,8 @@ function normalizeScholarshipDisciplines(values = []) {
   const output = [];
   for (const value of toList(values)) {
     output.push(value);
-    const matched = DISCIPLINE_TAXONOMY.find((entry) => entry.patterns.some((pattern) => pattern.test(value)));
-    if (matched) output.push(matched.category);
+    const result = normalizeDisciplineValue(value);
+    if (result.resolved && result.resolved !== value) output.push(result.resolved);
   }
   return unique(output);
 }
@@ -396,6 +320,21 @@ function getCandidateDisciplineSignals(profile = {}) {
     if (category) taxonomized.push(category);
   }
   return unique(taxonomized);
+}
+
+function getResolvedCandidateSignals(profile = {}) {
+  const candidateProfile = resolveCandidateProfile(profile);
+  const resolved = candidateProfile?.resolved || null;
+  if (!resolved) return null;
+
+  return {
+    resolved,
+    nationality: getResolvedFieldValue(resolved.nationality),
+    discipline: getResolvedFieldValue(resolved.discipline),
+    degreeClass: getResolvedFieldValue(resolved.degreeClass),
+    languageTests: getResolvedFieldValue(resolved.languageTests),
+    workExpYears: getResolvedFieldValue(resolved.workExpYears),
+  };
 }
 
 function getRequiredDocumentsWeight(documents = []) {
@@ -485,14 +424,42 @@ function computeOpportunityPriority(scholarship = {}) {
   return { ...focus, score, signals };
 }
 
-function computeEligibilityScore(candidate = {}, scholarship = {}) {
+function computeEligibilityScore(candidate = {}, scholarship = {}, resolvedSignals = null) {
   const blockedReasons = [];
   const criteria = [];
+  const provisionalGaps = [];
+  let provisionalPenalty = 0;
 
-  const candidateNationality = getCandidateNationality(candidate);
+  const scholarshipEligibility = scholarship.eligibility || {};
+  const addGap = (field, detail, confidence = null, multiplier = 1) => {
+    provisionalGaps.push(detail);
+    provisionalPenalty += GAP_PENALTY_UNIT * (PROVISIONAL_FIELD_WEIGHTS[field] || 0.5) * multiplier;
+    return confidence;
+  };
+  const conflictFields = Object.entries({
+    nationality: resolvedSignals?.nationality,
+    discipline: resolvedSignals?.discipline,
+    degree: resolvedSignals?.degreeClass,
+    language: resolvedSignals?.languageTests,
+    experience: resolvedSignals?.workExpYears,
+  }).filter(([, signal]) => signal?.reason === "conflict");
+
+  if (conflictFields.length) {
+    return {
+      score: 0,
+      blockedReasons: conflictFields.map(([field]) => `${field} needs verification before matching can continue`),
+      criteria,
+      blocked: true,
+      provisionalGaps,
+      provisionalPenalty: 0,
+    };
+  }
+
+  const candidateNationality = resolvedSignals?.nationality?.available
+    ? normalizeNationality(resolvedSignals.nationality.value)
+    : getCandidateNationality(candidate);
   const scholarshipNationalities = normalizeScholarshipNationalityList(scholarship.eligibility?.nationalities);
   const candidateCountry = normalizeNationality(candidate.identity?.countryOfResidence || "");
-  const scholarshipEligibility = scholarship.eligibility || {};
   const nationalityOpen = isOpenNationalityRequirement(scholarshipNationalities, scholarshipEligibility);
   const allowedNationalities = scholarshipNationalities.map((value) => normalizeNationality(value).toLowerCase()).filter(Boolean);
   const candidateNationalityKey = candidateNationality.toLowerCase();
@@ -502,22 +469,38 @@ function computeEligibilityScore(candidate = {}, scholarship = {}) {
     (onlyNigerianEligible ? candidateNationalityKey === "nigerian" : false) ||
     (candidateNationalityKey && allowedNationalities.includes(candidateNationalityKey)) ||
     (candidateCountryKey && allowedNationalities.includes(candidateCountryKey));
-  const nationalityScore = nationalityOpen ? 1 : nationalityMatch ? 1 : 0;
-  if (scholarshipEligibility.nigerianEligible === false && candidateNationalityKey === "nigerian") {
+  const nationalityFromExtraction = resolvedSignals?.nationality?.source === "extracted";
+  const nationalityScore = nationalityMatch ? 1 : 0;
+
+  if (resolvedSignals?.nationality && !resolvedSignals.nationality.available && !nationalityOpen && (allowedNationalities.length > 0 || onlyNigerianEligible)) {
+    addGap(
+      "nationality",
+      resolvedSignals.nationality.reason === "low_confidence"
+        ? "Nationality was detected from the CV at low confidence."
+        : "Nationality is missing and should be verified.",
+      resolvedSignals.nationality.confidence,
+      resolvedSignals.nationality.reason === "low_confidence" ? 0.5 : 1,
+    );
+  } else if (scholarshipEligibility.nigerianEligible === false && candidateNationalityKey === "nigerian" && !nationalityFromExtraction) {
     blockedReasons.push("scholarship excludes Nigerian candidates");
-  } else if (onlyNigerianEligible && !candidateNationalityKey) {
+  } else if (onlyNigerianEligible && !candidateNationalityKey && !resolvedSignals) {
     blockedReasons.push("nationality missing");
-  } else if (onlyNigerianEligible && candidateNationalityKey !== "nigerian") {
+  } else if (onlyNigerianEligible && candidateNationalityKey !== "nigerian" && !nationalityFromExtraction) {
     blockedReasons.push("scholarship requires Nigerian nationality");
   }
-  if (!candidateNationality && !nationalityOpen && (allowedNationalities.length > 0 || onlyNigerianEligible)) {
+
+  if (!candidateNationality && !nationalityOpen && (allowedNationalities.length > 0 || onlyNigerianEligible) && !resolvedSignals) {
     blockedReasons.push("nationality missing");
+  } else if (!nationalityMatch && nationalityFromExtraction) {
+    addGap("nationality", "The CV-detected nationality may not meet this scholarship's requirement.", resolvedSignals?.nationality?.confidence);
   } else if (!nationalityMatch) {
     blockedReasons.push("nationality requirement not met");
   }
-  criteria.push({ key: "nationality", label: "Nationality fit", score: nationalityScore, max: 1, reason: nationalityMatch ? "open or matched" : "candidate nationality does not match scholarship" });
+  criteria.push({ key: "nationality", label: "Nationality fit", score: nationalityScore, max: 1, reason: nationalityMatch ? "open or matched" : nationalityFromExtraction ? "cv-detected nationality needs verification" : "candidate nationality does not match scholarship" });
 
-  const candidateDisciplines = getCandidateDisciplineSignals(candidate);
+  const candidateDisciplines = resolvedSignals?.discipline?.available
+    ? unique([resolvedSignals.discipline.value, normalizeDisciplineCategory(resolvedSignals.discipline.value)])
+    : getCandidateDisciplineSignals(candidate);
   const scholarshipDisciplines = normalizeScholarshipDisciplines([
     ...(scholarshipEligibility.disciplines || []),
     ...(scholarshipEligibility.targetProgrammes || []),
@@ -532,51 +515,103 @@ function computeEligibilityScore(candidate = {}, scholarship = {}) {
       return candidateNormalized === scholarshipNormalized || normalizeDisciplineCategory(candidateValue).toLowerCase() === normalizeDisciplineCategory(discipline).toLowerCase();
     });
   });
-  if (!candidateDisciplines.length && !disciplineOpen) {
+  const disciplineFromExtraction = resolvedSignals?.discipline?.source === "extracted";
+  if (resolvedSignals?.discipline && !resolvedSignals.discipline.available && !disciplineOpen) {
+    addGap(
+      "discipline",
+      resolvedSignals.discipline.reason === "low_confidence"
+        ? "Discipline was detected from the CV at low confidence."
+        : "Discipline is missing and should be verified.",
+      resolvedSignals.discipline.confidence,
+      resolvedSignals.discipline.reason === "low_confidence" ? 0.5 : 1,
+    );
+  } else if (!candidateDisciplines.length && !disciplineOpen && !resolvedSignals) {
     blockedReasons.push("discipline missing");
   }
-  if (!disciplineMatch) {
+  if (!disciplineMatch && disciplineFromExtraction) {
+    addGap("discipline", "The CV-detected discipline may not align with the scholarship taxonomy.", resolvedSignals?.discipline?.confidence);
+  } else if (!disciplineMatch) {
     blockedReasons.push("discipline requirement not met");
   }
-  criteria.push({ key: "discipline", label: "Discipline fit", score: disciplineMatch ? 1 : 0, max: 1, reason: disciplineOpen ? "open discipline" : disciplineMatch ? "matches taxonomy" : "no taxonomy overlap" });
+  criteria.push({ key: "discipline", label: "Discipline fit", score: disciplineMatch ? 1 : 0, max: 1, reason: disciplineOpen ? "open discipline" : disciplineMatch ? "matches taxonomy" : disciplineFromExtraction ? "cv-detected discipline needs verification" : "no taxonomy overlap" });
 
   const degreeRequired = rankDegreeClass(scholarship.degreeClassMin || scholarshipEligibility.degreeClassMin || scholarshipEligibility.degreeClassRequired);
-  const candidateDegreeClass = candidate.academic?.degreeClass || cgpaToDegreeClass(candidate.academic?.cgpa, candidate.academic?.cgpaScale);
+  const candidateDegreeClass = resolvedSignals?.degreeClass?.available
+    ? normalizeDegreeClass(resolvedSignals.degreeClass.value)
+    : candidate.academic?.degreeClass || cgpaToDegreeClass(candidate.academic?.cgpa, candidate.academic?.cgpaScale);
   const degreeCandidate = rankDegreeClass(candidateDegreeClass);
   const degreeOpen = !degreeRequired;
   const degreeMatch = degreeOpen || (degreeCandidate && degreeCandidate >= degreeRequired);
-  if (degreeRequired && !candidateDegreeClass) {
+  const degreeFromExtraction = resolvedSignals?.degreeClass?.source === "extracted";
+  if (resolvedSignals?.degreeClass && !resolvedSignals.degreeClass.available && degreeRequired) {
+    addGap(
+      "degree",
+      resolvedSignals.degreeClass.reason === "low_confidence"
+        ? "Degree class was detected from the CV at low confidence."
+        : "Degree class is missing and should be verified.",
+      resolvedSignals.degreeClass.confidence,
+      resolvedSignals.degreeClass.reason === "low_confidence" ? 0.5 : 1,
+    );
+  } else if (degreeRequired && !candidateDegreeClass && !resolvedSignals) {
     blockedReasons.push("degree class missing");
+  } else if (degreeRequired && degreeCandidate < degreeRequired && degreeFromExtraction) {
+    addGap("degree", `CV-detected degree class may be below ${scholarship.degreeClassMin || scholarshipEligibility.degreeClassMin || scholarshipEligibility.degreeClassRequired}.`, resolvedSignals?.degreeClass?.confidence);
   } else if (degreeRequired && degreeCandidate < degreeRequired) {
     blockedReasons.push(`requires at least ${scholarship.degreeClassMin || scholarshipEligibility.degreeClassMin || scholarshipEligibility.degreeClassRequired} degree class`);
   }
-  criteria.push({ key: "degree", label: "Degree readiness", score: degreeMatch ? 1 : 0, max: 1, reason: degreeOpen ? "no minimum stated" : degreeMatch ? "meets minimum" : "below minimum" });
+  criteria.push({ key: "degree", label: "Degree readiness", score: degreeMatch ? 1 : 0, max: 1, reason: degreeOpen ? "no minimum stated" : degreeMatch ? "meets minimum" : degreeFromExtraction ? "cv-detected degree class needs verification" : "below minimum" });
 
-  const candidateIelts = toMaybeNumber(candidate.languageTests?.ielts);
-  const candidateToefl = toMaybeNumber(candidate.languageTests?.toefl);
-  const candidateCelpip = toMaybeNumber(candidate.languageTests?.celpip);
+  const candidateLanguageTests = resolvedSignals?.languageTests?.available ? resolvedSignals.languageTests.value || {} : candidate.languageTests || {};
+  const candidateIelts = toMaybeNumber(candidateLanguageTests?.ielts);
+  const candidateToefl = toMaybeNumber(candidateLanguageTests?.toefl);
+  const candidateCelpip = toMaybeNumber(candidateLanguageTests?.celpip);
   const requiredIelts = toMaybeNumber(scholarship.languageIelts || scholarshipEligibility.languageReqs?.ielts);
   const requiredToefl = toMaybeNumber(scholarship.languageToefl || scholarshipEligibility.languageReqs?.toefl);
   const requiredCelpip = toMaybeNumber(scholarship.languageCelpip || scholarshipEligibility.languageReqs?.celpip);
   let languageMatch = true;
   let languageScore = 1;
+  const languageFromExtraction = resolvedSignals?.languageTests?.source === "extracted";
   if (requiredIelts !== null) {
-    if (candidateIelts === null) {
+    if (resolvedSignals?.languageTests && !resolvedSignals.languageTests.available) {
+      languageMatch = false;
+      addGap("language", resolvedSignals.languageTests.reason === "low_confidence" ? "IELTS was detected from the CV at low confidence." : "IELTS score is missing and should be verified.", resolvedSignals.languageTests.confidence, resolvedSignals.languageTests.reason === "low_confidence" ? 0.5 : 1);
+    } else if (candidateIelts === null) {
       languageMatch = false;
       blockedReasons.push("IELTS score missing");
+    } else if (candidateIelts < requiredIelts && languageFromExtraction) {
+      languageMatch = false;
+      addGap("language", `CV-detected IELTS score may be below the required ${requiredIelts}.`, resolvedSignals?.languageTests?.confidence);
     } else if (candidateIelts < requiredIelts) {
       languageMatch = false;
       blockedReasons.push(`IELTS ${requiredIelts} required`);
     }
     languageScore = candidateIelts !== null ? Math.min(1, candidateIelts / Math.max(requiredIelts || 1, 1)) : 0;
   } else if (requiredToefl !== null) {
-    if (candidateToefl === null || candidateToefl < requiredToefl) {
+    if (resolvedSignals?.languageTests && !resolvedSignals.languageTests.available) {
+      languageMatch = false;
+      addGap("language", resolvedSignals.languageTests.reason === "low_confidence" ? "TOEFL was detected from the CV at low confidence." : "TOEFL score is missing and should be verified.", resolvedSignals.languageTests.confidence, resolvedSignals.languageTests.reason === "low_confidence" ? 0.5 : 1);
+    } else if (candidateToefl === null) {
+      languageMatch = false;
+      blockedReasons.push(`TOEFL ${requiredToefl} required`);
+    } else if (candidateToefl < requiredToefl && languageFromExtraction) {
+      languageMatch = false;
+      addGap("language", `CV-detected TOEFL score may be below the required ${requiredToefl}.`, resolvedSignals?.languageTests?.confidence);
+    } else if (candidateToefl < requiredToefl) {
       languageMatch = false;
       blockedReasons.push(`TOEFL ${requiredToefl} required`);
     }
     languageScore = candidateToefl !== null ? Math.min(1, candidateToefl / Math.max(requiredToefl || 1, 1)) : 0;
   } else if (requiredCelpip !== null) {
-    if (candidateCelpip === null || candidateCelpip < requiredCelpip) {
+    if (resolvedSignals?.languageTests && !resolvedSignals.languageTests.available) {
+      languageMatch = false;
+      addGap("language", resolvedSignals.languageTests.reason === "low_confidence" ? "CELPIP was detected from the CV at low confidence." : "CELPIP score is missing and should be verified.", resolvedSignals.languageTests.confidence, resolvedSignals.languageTests.reason === "low_confidence" ? 0.5 : 1);
+    } else if (candidateCelpip === null) {
+      languageMatch = false;
+      blockedReasons.push(`CELPIP ${requiredCelpip} required`);
+    } else if (candidateCelpip < requiredCelpip && languageFromExtraction) {
+      languageMatch = false;
+      addGap("language", `CV-detected CELPIP score may be below the required ${requiredCelpip}.`, resolvedSignals?.languageTests?.confidence);
+    } else if (candidateCelpip < requiredCelpip) {
       languageMatch = false;
       blockedReasons.push(`CELPIP ${requiredCelpip} required`);
     }
@@ -584,16 +619,23 @@ function computeEligibilityScore(candidate = {}, scholarship = {}) {
   } else {
     languageScore = 1;
   }
-  criteria.push({ key: "language", label: "Language readiness", score: languageScore, max: 1, reason: languageMatch ? "meets or exceeds requirement" : "language requirement missing or unmet" });
+  criteria.push({ key: "language", label: "Language readiness", score: languageScore, max: 1, reason: languageMatch ? "meets or exceeds requirement" : languageFromExtraction ? "cv-detected language score needs verification" : "language requirement missing or unmet" });
 
   const requiredExperience = toMaybeNumber(scholarship.eligibility?.workExperienceYearsMin);
-  const candidateExperience = toMaybeNumber(candidate.professional?.workExperienceYears);
+  const candidateExperience = resolvedSignals?.workExpYears?.available
+    ? toMaybeNumber(resolvedSignals.workExpYears.value)
+    : toMaybeNumber(candidate.professional?.workExperienceYears);
   const experienceOpen = requiredExperience === null || requiredExperience === undefined;
   const experienceMatch = experienceOpen || (candidateExperience !== null && candidateExperience >= requiredExperience);
-  if (!experienceMatch && !experienceOpen) {
+  const experienceFromExtraction = resolvedSignals?.workExpYears?.source === "extracted";
+  if (resolvedSignals?.workExpYears && !resolvedSignals.workExpYears.available && !experienceOpen) {
+    addGap("experience", resolvedSignals.workExpYears.reason === "low_confidence" ? "Work experience was detected from the CV at low confidence." : "Work experience is missing and should be verified.", resolvedSignals.workExpYears.confidence, resolvedSignals.workExpYears.reason === "low_confidence" ? 0.5 : 1);
+  } else if (!experienceMatch && !experienceOpen && experienceFromExtraction) {
+    addGap("experience", "CV-detected work experience may be below the requirement.", resolvedSignals?.workExpYears?.confidence);
+  } else if (!experienceMatch && !experienceOpen) {
     blockedReasons.push("work experience requirement not met");
   }
-  criteria.push({ key: "experience", label: "Experience fit", score: experienceMatch ? 1 : 0, max: 1, reason: experienceOpen ? "no minimum stated" : experienceMatch ? "meets minimum" : "below minimum" });
+  criteria.push({ key: "experience", label: "Experience fit", score: experienceMatch ? 1 : 0, max: 1, reason: experienceOpen ? "no minimum stated" : experienceMatch ? "meets minimum" : experienceFromExtraction ? "cv-detected work experience needs verification" : "below minimum" });
 
   const eligibilityScore = (
     nationalityScore * 0.25 +
@@ -608,6 +650,8 @@ function computeEligibilityScore(candidate = {}, scholarship = {}) {
     blockedReasons,
     criteria,
     blocked: blockedReasons.length > 0,
+    provisionalGaps,
+    provisionalPenalty: Math.min(provisionalPenalty, MAX_TOTAL_PROVISIONAL_PENALTY),
   };
 }
 
@@ -620,6 +664,49 @@ function toRecordList(record, keys) {
   );
 }
 
+function humanizeSlug(value) {
+  return toText(value)
+    .replace(/[-_]+/g, " ")
+    .replace(/\bhtml?\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function extractTitleFromUrl(value) {
+  const url = toText(value);
+  if (!url) return "";
+  try {
+    const parsed = new URL(url);
+    const segments = parsed.pathname.split("/").map((segment) => segment.trim()).filter(Boolean);
+    for (let index = segments.length - 1; index >= 0; index -= 1) {
+      const candidate = humanizeSlug(segments[index]);
+      if (candidate && candidate.length > 8) {
+        return candidate;
+      }
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}
+
+function isGenericScholarshipLabel(value, provider = "") {
+  const text = toText(value).toLowerCase();
+  const providerText = toText(provider).toLowerCase();
+  if (!text) return true;
+  if (text === providerText) return true;
+  if (text.length < 12) return true;
+  return [
+    "scholarship region",
+    "funding options",
+    "scholarship",
+    "current scholars",
+    "who can apply",
+    "students",
+  ].some((fragment) => text === fragment || text.includes(fragment));
+}
+
 function normalizeScholarship(record = {}) {
   const eligibility = record.eligibility || {};
   const application = record.application || {};
@@ -627,21 +714,81 @@ function normalizeScholarship(record = {}) {
   const source = record.source || {};
   const coverage = record.coverage || {};
   const focus = classifyOpportunityFocus(record);
-
-  const title = toText(record.name);
   const country = toText(record.country || application.country || record.institutionCountry);
+  const website = toText(
+    record.application_portal ||
+    record.application_url ||
+    application.portal ||
+    application.url ||
+    record.website ||
+    record.source_url ||
+    record.sourceUrl
+  );
+  const sourceUrl = toText(record.source_url || record.sourceUrl || application.sourceUrl || application.url);
+  const providerLabel = toText(record.awardingBody || source.sourceLabel);
+  const rawTitle = toText(record.name || record.title || record.name_full || record.nameFull || providerLabel);
+  const recoveredTitle = extractTitleFromUrl(website);
+  const title = isGenericScholarshipLabel(rawTitle, providerLabel)
+    ? (recoveredTitle || rawTitle || providerLabel)
+    : rawTitle;
+  const requirementsSummary = toText(record.requirementsSummary || record.requirements_summary || record.summary || record.notes);
+  const normalizedApplication = {
+    ...application,
+    url: toText(application.url || record.application_url || website) || null,
+    portal: toText(application.portal || record.application_portal || record.application_url) || null,
+    sourceUrl: sourceUrl || null,
+    deadline: application.deadline || record.deadline || null,
+    deadlineType: application.deadlineType || (record.deadline ? "exact" : "unknown"),
+    requiredDocuments: Array.isArray(application.requiredDocuments) && application.requiredDocuments.length
+      ? application.requiredDocuments.slice()
+      : Array.isArray(record.documents_required)
+        ? record.documents_required.slice()
+        : [],
+  };
+  const normalizedEligibility = {
+    ...eligibility,
+    nationalities: normalizeScholarshipNationalityList(eligibility.nationalities || record.nationality_requirement || []),
+    disciplines: normalizeScholarshipDisciplines(eligibility.disciplines || record.discipline_requirement || []),
+    targetProgrammes: normalizeScholarshipDisciplines(eligibility.targetProgrammes || []),
+    disciplineCategories: normalizeScholarshipDisciplines(eligibility.disciplineCategories || [eligibility.disciplineCategory].filter(Boolean)),
+    degreeClassMin: normalizeDegreeClass(eligibility.degreeClassMin || eligibility.degreeClassRequired),
+    degreeClassRequired: normalizeDegreeClass(eligibility.degreeClassRequired || eligibility.degreeClassMin),
+    languageReqs: {
+      ielts: toMaybeNumber(eligibility.languageReqs?.ielts) ?? toMaybeNumber(toText(eligibility.languageReqs?.ielts).match(/\d(?:\.\d)?/)?.[0]) ?? toMaybeNumber(toText(eligibility.englishTestRequired).match(/\d(?:\.\d)?/)?.[0]),
+      toefl: toMaybeNumber(eligibility.languageReqs?.toefl),
+      celpip: toMaybeNumber(eligibility.languageReqs?.celpip),
+      exemptions: Array.isArray(eligibility.languageReqs?.exemptions) ? eligibility.languageReqs.exemptions.slice() : [],
+    },
+    workExperienceYearsMin: toMaybeNumber(eligibility.workExperienceYearsMin ?? record.experience_years_required),
+    nigerianEligible: eligibility.nigerianEligible === true ? true : eligibility.nigerianEligible === false ? false : null,
+    nationalityIsOpen: record.nationality_is_open === true || eligibility.nationalityIsOpen === true,
+    disciplineIsOpen: record.discipline_is_open === true || eligibility.disciplineIsOpen === true,
+  };
+  const normalizedCoverage = {
+    ...coverage,
+    type: toText(coverage.type || record.funding_type) || "",
+    stipend: coverage.stipend === true || coverage.stipendCovered === true || record.stipend === true,
+    stipendAmount: toMaybeNumber(coverage.stipendAmount ?? record.stipend_amount),
+    travelGrant: coverage.travelGrant === true || coverage.travelCovered === true || record.travel_grant === true,
+    accommodationCovered: coverage.accommodationCovered === true || coverage.livingCovered === true || record.accommodation_covered === true,
+    numericAmount: toMaybeNumber(coverage.numericAmount ?? record.amountGBP ?? record.tuition_international_yearly),
+    currency: toText(coverage.currency || record.currency || "GBP") || "GBP",
+  };
   const researchAreas = toRecordList(record, ["research_areas"]);
-  const targetCountries = toRecordList(eligibility, ["targetCountries", "nationalities"]);
-  const targetDisciplines = toRecordList(eligibility, ["disciplines", "targetProgrammes"]);
+  const targetCountries = toRecordList(normalizedEligibility, ["targetCountries", "nationalities"]);
+  const targetDisciplines = toRecordList(normalizedEligibility, ["disciplines", "targetProgrammes"]);
   const directKeywords = unique(
     [
       title,
+      toText(record.name_full),
+      toText(record.awardingBody),
       toText(record.notes),
-      toText(record.website),
+      website,
+      requirementsSummary,
       toText(record.search_text),
-      toText(application.portal),
-      toText(application.url),
-      toText(eligibility.notes),
+      toText(normalizedApplication.portal),
+      toText(normalizedApplication.url),
+      toText(normalizedEligibility.notes),
       ...toList(record.semantic_tags || []),
       ...researchAreas,
       ...targetCountries,
@@ -653,48 +800,44 @@ function normalizeScholarship(record = {}) {
   return {
     id: record.id || title,
     title,
+    name: toText(record.name) || title,
+    nameFull: toText(record.name_full || record.nameFull) || null,
+    awardingBody: providerLabel || null,
+    sourceLabel: toText(source.sourceLabel || record.awardingBody) || null,
     country,
     city: toText(record.city),
-    eligibility: {
-      nationalities: normalizeScholarshipNationalityList(eligibility.nationalities),
-      disciplines: normalizeScholarshipDisciplines(eligibility.disciplines || []),
-      targetProgrammes: normalizeScholarshipDisciplines(eligibility.targetProgrammes || []),
-      disciplineCategories: normalizeScholarshipDisciplines(eligibility.disciplineCategories || [eligibility.disciplineCategory].filter(Boolean)),
-      degreeClassMin: normalizeDegreeClass(eligibility.degreeClassMin || eligibility.degreeClassRequired),
-      degreeClassRequired: normalizeDegreeClass(eligibility.degreeClassRequired || eligibility.degreeClassMin),
-      languageReqs: {
-        ielts: toMaybeNumber(eligibility.languageReqs?.ielts) ?? toMaybeNumber(toText(eligibility.languageReqs?.ielts).match(/\d(?:\.\d)?/)?.[0]) ?? toMaybeNumber(toText(eligibility.englishTestRequired).match(/\d(?:\.\d)?/)?.[0]),
-        toefl: toMaybeNumber(eligibility.languageReqs?.toefl),
-        celpip: toMaybeNumber(eligibility.languageReqs?.celpip),
-        exemptions: Array.isArray(eligibility.languageReqs?.exemptions) ? eligibility.languageReqs.exemptions.slice() : [],
-      },
-      workExperienceYearsMin: toMaybeNumber(eligibility.workExperienceYearsMin),
-      nigerianEligible: eligibility.nigerianEligible === true ? true : eligibility.nigerianEligible === false ? false : null,
-    },
-    tuition: toMaybeNumber(record.tuition_international_yearly ?? coverage.numericAmount),
-    currency: toText(record.currency || coverage.currency || "GBP") || "GBP",
+    website,
+    source_url: toText(record.source_url || record.sourceUrl || website) || null,
+    requirementsSummary,
+    audienceScope: toText(record.audience_scope || record.audienceScope) || "unknown",
+    priorityScore: clamp01(toMaybeNumber(record.priority_score ?? record.priorityScore) ?? 0),
+    priorityReasons: Array.isArray(record.priority_reasons) ? record.priority_reasons.slice() : [],
+    eligibility: normalizedEligibility,
+    tuition: toMaybeNumber(record.tuition_international_yearly ?? normalizedCoverage.numericAmount),
+    currency: toText(record.currency || normalizedCoverage.currency || "GBP") || "GBP",
     researchAreas,
     targetCountries,
     targetDisciplines,
-    degreeClassMin: normalizeDegreeClass(eligibility.degreeClassMin || eligibility.degreeClassRequired),
+    degreeClassMin: normalizeDegreeClass(normalizedEligibility.degreeClassMin || normalizedEligibility.degreeClassRequired),
     languageIelts:
-      toMaybeNumber(eligibility.languageReqs?.ielts) ??
-      toMaybeNumber(toText(eligibility.languageReqs?.ielts).match(/\d(?:\.\d)?/)?.[0]) ??
-      toMaybeNumber(toText(eligibility.englishTestRequired).match(/\d(?:\.\d)?/)?.[0]),
-    languageToefl: toMaybeNumber(eligibility.languageReqs?.toefl),
-    languageCelpip: toMaybeNumber(eligibility.languageReqs?.celpip),
-    deadline: application.deadline || null,
-    deadlineType: application.deadlineType || "unknown",
-    coverage,
+      toMaybeNumber(normalizedEligibility.languageReqs?.ielts) ??
+      toMaybeNumber(toText(normalizedEligibility.languageReqs?.ielts).match(/\d(?:\.\d)?/)?.[0]) ??
+      toMaybeNumber(toText(normalizedEligibility.englishTestRequired).match(/\d(?:\.\d)?/)?.[0]),
+    languageToefl: toMaybeNumber(normalizedEligibility.languageReqs?.toefl),
+    languageCelpip: toMaybeNumber(normalizedEligibility.languageReqs?.celpip),
+    deadline: normalizedApplication.deadline || null,
+    deadlineType: normalizedApplication.deadlineType || "unknown",
+    coverage: normalizedCoverage,
     focus,
-    application,
+    application: normalizedApplication,
     provenance: {
       confidenceScore:
         toMaybeNumber(provenance.confidenceScore) ??
+        toMaybeNumber(record.provenance_confidence) ??
         toMaybeNumber(source.confidence) ??
         0.5,
       sourceType: toText(provenance.sourceType || source.sourceType || record.source || "scraped") || "scraped",
-      lastVerifiedAt: provenance.lastVerifiedAt || null,
+      lastVerifiedAt: provenance.lastVerifiedAt || record.last_verified_at || null,
       scrapedAt: provenance.scrapedAt || source.scrapedAt || null,
     },
     keywords: directKeywords,
@@ -704,6 +847,55 @@ function normalizeScholarship(record = {}) {
 
 export function buildScholarshipKeywords(record = {}) {
   return normalizeScholarship(record).keywords;
+}
+
+// ── TF-IDF (offline semantic matching — replaces embedding API calls) ──
+
+// Build inverse document frequency weights from a corpus of scholarship keyword sets.
+// Terms that appear in many scholarships get low weight; rare terms get boosted.
+export function buildCorpusIdf(scholarships) {
+  const docCount = scholarships.length;
+  if (!docCount) return {};
+
+  const docFrequency = {};
+  for (const record of scholarships) {
+    const keywords = unique(expandKeywordList(
+      toList(record?.keywords || record?.semantic_tags || [])
+    ));
+    const seen = new Set();
+    for (const kw of keywords) {
+      if (!seen.has(kw)) {
+        docFrequency[kw] = (docFrequency[kw] || 0) + 1;
+        seen.add(kw);
+      }
+    }
+  }
+
+  const idf = {};
+  for (const [term, freq] of Object.entries(docFrequency)) {
+    idf[term] = Math.log((docCount + 1) / (freq + 1)) + 1; // +1 smoothing
+  }
+  return idf;
+}
+
+// IDF-weighted token overlap score. Returns 0-1.
+function scoreTfIdfMatch(haystackTokens, needleTokens, idfWeights = {}) {
+  if (!needleTokens.length || !haystackTokens.length) return 0;
+
+  const haystack = new Set(haystackTokens);
+  let weightedOverlap = 0;
+  let weightedTotal = 0;
+
+  for (const token of needleTokens) {
+    const weight = idfWeights[token] || 0.5; // default weight for OOV terms
+    weightedTotal += weight;
+    if (haystack.has(token)) {
+      weightedOverlap += weight;
+    }
+  }
+
+  if (!weightedTotal) return 0;
+  return Math.min(1, weightedOverlap / weightedTotal);
 }
 
 function scoreTextMatch(haystackTokens, needleTokens) {
@@ -832,14 +1024,20 @@ function computeUrgencyScore(deadline, confidence = 0.5) {
   return { score: Math.max(1, Math.min(10, Math.round(raw))), daysRemaining };
 }
 
-export function scoreScholarship(record, profile) {
+export function scoreScholarship(record, profile, { idfWeights = null } = {}) {
   const candidate = normalizeStructuredProfile(profile);
+  const resolvedSignals = getResolvedCandidateSignals(profile);
   const scholarship = normalizeScholarship(record);
-  const candidateKeywords = buildProfileKeywords(candidate);
-  const scholarshipKeywords = scholarship.keywords || [];
+  const candidateKeywords = expandKeywordList(buildProfileKeywords(candidate));
+  const scholarshipKeywords = expandKeywordList(scholarship.keywords || []);
   const profileCompletion = getProfileCompletion(profile || {});
   const isEmptyProfile = profileCompletion.filled === 0;
-  const textSemanticScore = clamp01(scoreTextMatch(scholarshipKeywords, candidateKeywords));
+
+  // Use TF-IDF weighted match when available (offline), fall back to raw token overlap
+  const textSemanticScore = idfWeights
+    ? clamp01(scoreTfIdfMatch(scholarshipKeywords, candidateKeywords, idfWeights))
+    : clamp01(scoreTextMatch(scholarshipKeywords, candidateKeywords));
+
   const candidateEmbedding = Array.isArray(profile?.embedding) ? profile.embedding : Array.isArray(profile?.candidate_embedding) ? profile.candidate_embedding : null;
   const vectorSimilarity = cosineSimilarity(candidateEmbedding, scholarship.contentEmbedding || []);
   const vectorSemanticScore = vectorSimilarity === null ? null : clamp01((vectorSimilarity + 1) / 2);
@@ -891,6 +1089,7 @@ export function scoreScholarship(record, profile) {
         deadline_pressure: deadline.pressure,
         document_burden: documentBurden,
         opportunity_priority: opportunityPriority.score,
+        provisional_penalty: 0,
       },
       provenanceConfidence: provenance.value,
       fallback: true,
@@ -908,7 +1107,7 @@ export function scoreScholarship(record, profile) {
     };
   }
 
-  const eligibility = computeEligibilityScore(candidate, scholarship);
+  const eligibility = computeEligibilityScore(candidate, scholarship, resolvedSignals);
   const blockedReasons = [...eligibility.blockedReasons];
   if (deadline.blocked) {
     blockedReasons.push("deadline has passed");
@@ -931,6 +1130,7 @@ export function scoreScholarship(record, profile) {
         deadline_pressure: deadline.pressure,
         document_burden: documentBurden,
         opportunity_priority: opportunityPriority.score,
+        provisional_penalty: eligibility.provisionalPenalty || 0,
       },
       provenanceConfidence: provenance.value,
       fallback: false,
@@ -949,7 +1149,7 @@ export function scoreScholarship(record, profile) {
     };
   }
 
-  const composite = clamp01(
+  const compositeBase = clamp01(
     semanticScore * 0.35 +
     eligibility.score * 0.3 +
     coverage.score * 0.15 +
@@ -958,6 +1158,7 @@ export function scoreScholarship(record, profile) {
     (1 - documentBurden) * 0.05 +
     opportunityPriority.score * 0.15
   ) * provenance.value;
+  const composite = Math.max(0, compositeBase - (eligibility.provisionalPenalty || 0));
   const total = Math.round(composite * 100);
   const criteria = [
     {
@@ -994,11 +1195,12 @@ export function scoreScholarship(record, profile) {
       deadline_pressure: deadline.pressure,
       document_burden: documentBurden,
       opportunity_priority: opportunityPriority.score,
+      provisional_penalty: eligibility.provisionalPenalty || 0,
     },
     provenanceConfidence: provenance.value,
     fallback: false,
     semanticScore,
-    matchStatus: eligibility.score >= 0.75 ? "eligible" : "possible",
+    matchStatus: eligibility.provisionalGaps?.length ? "provisional" : eligibility.score >= 0.75 ? "eligible" : "possible",
     semanticExplanation,
     eligibilityExplanation: buildEligibilityExplanation(eligibility.criteria, []),
     whyThisMatched: buildMatchNarrative({
@@ -1007,23 +1209,27 @@ export function scoreScholarship(record, profile) {
       retrievalScore: null,
       provenance,
       fallback: false,
-      matchStatus: eligibility.score >= 0.75 ? "eligible" : "possible",
+      matchStatus: eligibility.provisionalGaps?.length ? "provisional" : eligibility.score >= 0.75 ? "eligible" : "possible",
     }),
   };
 }
 
-export function rankScholarships(records = [], profile = {}, { limit = 150 } = {}) {
-  const profileKeywords = buildProfileKeywords(profile || {});
+export function rankScholarships(records = [], profile = {}, { limit = 150, idfWeights = null } = {}) {
+  const profileKeywords = expandKeywordList(buildProfileKeywords(profile || {}));
   const retrievalSet = [];
 
   for (const record of Array.isArray(records) ? records : []) {
     const normalized = normalizeScholarship(record);
-    const semanticScore = scoreTextMatch(normalized.keywords || [], profileKeywords);
+    const scholarshipKeywords = expandKeywordList(normalized.keywords || []);
+    // Use TF-IDF in retrieval pass when available
+    const retrievalTextScore = idfWeights
+      ? scoreTfIdfMatch(scholarshipKeywords, profileKeywords, idfWeights)
+      : scoreTextMatch(scholarshipKeywords, profileKeywords);
     const titleTokens = scoreTextMatch(tokenize(normalized.title || normalized.name || ""), profileKeywords);
     const embeddingSimilarity = cosineSimilarity(Array.isArray(profile?.embedding) ? profile.embedding : null, normalized.contentEmbedding || []);
-    const vectorRetrieval = embeddingSimilarity === null ? semanticScore : clamp01((embeddingSimilarity + 1) / 2);
+    const vectorRetrieval = embeddingSimilarity === null ? retrievalTextScore : clamp01((embeddingSimilarity + 1) / 2);
     const opportunityPriority = computeOpportunityPriority(normalized);
-    const retrievalScore = clamp01(Math.max(vectorRetrieval, semanticScore) * 0.6 + titleTokens * 0.2 + opportunityPriority.score * 0.2);
+    const retrievalScore = clamp01(Math.max(vectorRetrieval, retrievalTextScore) * 0.6 + titleTokens * 0.2 + opportunityPriority.score * 0.2);
     retrievalSet.push({
       record,
       normalized,
@@ -1040,7 +1246,7 @@ export function rankScholarships(records = [], profile = {}, { limit = 150 } = {
     ? retrievalSet.slice(0, Math.max(1, limit))
     : retrievalSet;
   const scored = retrieved.map(({ record, normalized, retrievalScore }) => {
-    const analysis = scoreScholarship(record, profile || {});
+    const analysis = scoreScholarship(record, profile || {}, { idfWeights });
     return {
       scholarship: analysis.normalized || normalized || record,
       analysis: {

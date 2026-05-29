@@ -1,30 +1,7 @@
 import { parseAndValidateDocumentIntake, StrictJsonError } from "../_shared/json-parser.js";
+import { corsHeaders, enforceRateLimit, getAllowedOrigins, jsonResponse, readSupabaseAnonKey, readSupabaseUrl } from "../_shared/security.ts";
 
-const allowedOrigins = String(Deno.env.get("APP_ORIGIN") || Deno.env.get("SITE_URL") || "")
-  .split(",")
-  .map((value) => value.trim())
-  .filter(Boolean);
-
-function corsHeaders(origin: string | null) {
-  return {
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    Vary: "Origin",
-    ...(origin && (!allowedOrigins.length || allowedOrigins.includes(origin))
-      ? { "Access-Control-Allow-Origin": origin }
-      : {}),
-  };
-}
-
-function jsonResponse(body: unknown, status = 200, origin: string | null = null) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      ...corsHeaders(origin),
-      "Content-Type": "application/json",
-    },
-  });
-}
+const allowedOrigins = getAllowedOrigins();
 
 async function requireAuthenticatedUser(req: Request) {
   const authHeader = req.headers.get("authorization");
@@ -32,8 +9,8 @@ async function requireAuthenticatedUser(req: Request) {
     throw new Response("Missing authorization header", { status: 401 });
   }
 
-  const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
-  const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || "";
+  const supabaseUrl = readSupabaseUrl();
+  const supabaseAnonKey = readSupabaseAnonKey();
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Response("Supabase auth is not configured", { status: 500 });
   }
@@ -73,7 +50,7 @@ function errorResponse(error: unknown, origin: string | null = null) {
         column: error.column,
         path: error.path,
       },
-    }, 400, origin);
+    }, 400, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   const message = error instanceof Error ? error.message : "Unexpected parser failure";
@@ -83,7 +60,7 @@ function errorResponse(error: unknown, origin: string | null = null) {
       name: "ParserError",
       message,
     },
-  }, 500, origin);
+  }, 500, { origin, methods: "POST, OPTIONS", allowedOrigins });
 }
 
 Deno.serve(async (req: Request) => {
@@ -97,18 +74,35 @@ Deno.serve(async (req: Request) => {
   }
 
   if (req.method !== "POST") {
-    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, origin);
+    return jsonResponse({ ok: false, error: { message: "Method not allowed" } }, 405, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   try {
-    await requireAuthenticatedUser(req);
+    const user = await requireAuthenticatedUser(req);
+    const rateLimit = await enforceRateLimit(req, {
+      namespace: "document-intake",
+      subject: String(user?.id || "anonymous"),
+      maxRequests: 30,
+      windowSeconds: 5 * 60,
+      origin,
+      methods: "POST, OPTIONS",
+      allowedOrigins,
+    });
+    if (rateLimit instanceof Response) return rateLimit;
   } catch (error) {
     return errorResponse(error, origin);
   }
 
+  // Content-Length guard before reading the body (OWASP: prevent memory exhaustion)
+  const maxBodyBytes = 512_000; // 512 KB — document intake JSON payload limit
+  const contentLength = Number(req.headers.get("content-length") || 0);
+  if (contentLength > maxBodyBytes) {
+    return jsonResponse({ ok: false, error: { message: "Request body too large" } }, 413, { origin, methods: "POST, OPTIONS", allowedOrigins });
+  }
+
   const raw = await req.text();
   if (!raw.trim()) {
-    return jsonResponse({ ok: false, error: { message: "Empty request body" } }, 400, origin);
+    return jsonResponse({ ok: false, error: { message: "Empty request body" } }, 400, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   try {
@@ -127,7 +121,7 @@ Deno.serve(async (req: Request) => {
         nestedDepthLimit: 32,
         maxBytes: 256_000,
       },
-    }, 200, origin);
+    }, 200, { origin, methods: "POST, OPTIONS", allowedOrigins });
   } catch (error) {
     return errorResponse(error, origin);
   }

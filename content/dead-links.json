@@ -1,49 +1,19 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T23:55:16.211Z",
-  "total": 7,
+  "updated_at": "2026-05-18T20:00:46.565Z",
+  "total": 2,
   "deadLinks": [
     {
-      "url": "https://www.chevening.org/sids-chevening-scholarship/who-can-apply-for-a-chevening-sids-scholarship",
-      "sourceLabel": "Chevening",
-      "error": "known-dead-link",
-      "capturedAt": "2026-05-12T23:53:21.875Z"
+      "url": "https://australiaawardsafrica.org/alumniupdate/login/?redirect_to=https%3A%2F%2Faustraliaawardsafrica.org%2Falumniupdate%2F",
+      "sourceLabel": "Australia Awards Africa",
+      "error": "blocked-path",
+      "capturedAt": "2026-05-18T19:58:27.876Z"
     },
     {
-      "url": "https://www.scholarshipregion.com/find-scholarships",
-      "sourceLabel": "Scholarship Region",
-      "error": "page.goto: net::ERR_CONNECTION_RESET at https://www.scholarshipregion.com/find-scholarships\nCall log:\n\u001b[2m  - navigating to \"https://www.scholarshipregion.com/find-scholarships\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-05-12T22:59:41.815Z"
-    },
-    {
-      "url": "https://www.cambridgetrust.org/wp-content/uploads/2026/03/CTConfForm-Conference-Funding-Form-Feb26.docx",
-      "sourceLabel": "Cambridge Trust Scholarships",
-      "error": "page.goto: Download is starting\nCall log:\n\u001b[2m  - navigating to \"https://www.cambridgetrust.org/wp-content/uploads/2026/03/CTConfForm-Conference-Funding-Form-Feb26.docx\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-05-12T23:01:48.040Z"
-    },
-    {
-      "url": "https://www.edscholar.is.ed.ac.uk/scholarship_search",
-      "sourceLabel": "Edinburgh Scholarship Search",
-      "error": "page.goto: net::ERR_CERT_DATE_INVALID at https://www.edscholar.is.ed.ac.uk/scholarship_search\nCall log:\n\u001b[2m  - navigating to \"https://www.edscholar.is.ed.ac.uk/scholarship_search\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-05-12T23:01:51.143Z"
-    },
-    {
-      "url": "https://www.kth.se/en/om/2.239/faq-1.1011047",
-      "sourceLabel": "KTH Scholarships",
-      "error": "page.goto: net::ERR_INTERNET_DISCONNECTED at https://www.kth.se/en/om/2.239/faq-1.1011047\nCall log:\n\u001b[2m  - navigating to \"https://www.kth.se/en/om/2.239/faq-1.1011047\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-05-12T23:02:39.061Z"
-    },
-    {
-      "url": "https://www.kth.se/en/student/stod/studier/stipendier/sok-stipendium/hur-du-soker-stipendium-1.1011018",
-      "sourceLabel": "KTH Scholarships",
-      "error": "page.goto: net::ERR_INTERNET_DISCONNECTED at https://www.kth.se/en/student/stod/studier/stipendier/sok-stipendium/hur-du-soker-stipendium-1.1011018\nCall log:\n\u001b[2m  - navigating to \"https://www.kth.se/en/student/stod/studier/stipendier/sok-stipendium/hur-du-soker-stipendium-1.1011018\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-05-12T23:02:41.108Z"
-    },
-    {
-      "url": "https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar",
-      "sourceLabel": "KTH Scholarships",
-      "error": "page.goto: net::ERR_INTERNET_DISCONNECTED at https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar\nCall log:\n\u001b[2m  - navigating to \"https://www.kth.se/en/student/stod/studier/stipendier/stipendieutlysningar\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-05-12T23:03:01.835Z"
+      "url": "https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem",
+      "sourceLabel": "British Council Women in STEM",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem\nCall log:\n\u001b[2m  - navigating to \"https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "capturedAt": "2026-05-18T19:59:40.203Z"
     }
   ]
 }

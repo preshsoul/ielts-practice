@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;family=Domine:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #11131b; }
+        ::-webkit-scrollbar-thumb { background: #33343e; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffb596",
+                        "on-surface-variant": "#c4c5d8",
+                        "on-background": "#e2e1ee",
+                        "background": "#11131b",
+                        "on-tertiary-container": "#fff3ef",
+                        "inverse-on-surface": "#2e3039",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-dim": "#11131b",
+                        "on-secondary": "#1a2c67",
+                        "outline": "#8e90a1",
+                        "on-tertiary-fixed": "#360f00",
+                        "inverse-surface": "#e2e1ee",
+                        "primary-container": "#3863f4",
+                        "on-tertiary": "#581e00",
+                        "surface-bright": "#373942",
+                        "primary": "#b7c4ff",
+                        "primary-fixed": "#dde1ff",
+                        "surface-variant": "#33343e",
+                        "tertiary-container": "#c14a00",
+                        "surface-container-low": "#191b24",
+                        "surface-container-high": "#282933",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "on-surface": "#e2e1ee",
+                        "secondary-fixed": "#dce1ff",
+                        "surface-tint": "#b7c4ff",
+                        "on-secondary-fixed-variant": "#33437f",
+                        "secondary-fixed-dim": "#b7c4ff",
+                        "on-secondary-fixed": "#001551",
+                        "on-primary-fixed-variant": "#0038b7",
+                        "secondary": "#b7c4ff",
+                        "surface-container-highest": "#33343e",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary-container": "#f6f4ff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-error": "#690005",
+                        "outline-variant": "#434655",
+                        "surface-container": "#1d1f28",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001452",
+                        "surface": "#11131b",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0c0e16",
+                        "secondary-container": "#33437f",
+                        "on-secondary-container": "#a2b2f6",
+                        "on-primary": "#002583",
+                        "inverse-primary": "#1c4fe1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "intel-sidebar-width": "270px",
+                        "sidebar-collapsed": "64px",
+                        "gutter": "24px",
+                        "container-padding-desktop": "32px",
+                        "base": "8px",
+                        "sidebar-width": "240px",
+                        "container-padding-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-base": ["IBM Plex Sans"],
+                        "label-caps": ["Domine"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "data-mono": ["JetBrains Mono"],
+                        "hero-display": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-base": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "data-mono": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "hero-display": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "headline-sm": ["16px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-base">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-sidebar border-r border-outline-variant/20 bg-surface-container flex flex-col p-4 gap-2 z-50">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Loci</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Candidate Intelligence</p>
+</div>
+</div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-base text-body-base">Home</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-base text-body-base">Scholarships</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-body-base text-body-base">Practice</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-body-base text-body-base">Readiness</span>
+</a>
+<a class="flex items-center gap-3 p-3 bg-secondary-container text-on-secondary-container rounded-lg font-semibold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-body-base text-body-base">Account</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">shield_person</span>
+<span class="font-body-base text-body-base">Admin</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-variant/30 rounded-xl border border-outline-variant/10">
+<p class="text-[11px] font-bold text-primary mb-2 uppercase tracking-tighter">Pro Plan</p>
+<p class="text-xs text-on-surface-variant mb-3">Unlock advanced university matching AI.</p>
+<button class="w-full py-2 bg-primary text-on-primary font-bold text-xs rounded uppercase tracking-wide hover:brightness-110 transition-all">
+                Upgrade to Pro
+            </button>
+</div>
+</aside>
+<!-- Top App Bar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface border-b border-outline-variant/20 flex justify-between items-center px-6 z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full py-1.5 pl-10 pr-4 text-sm focus:outline-2 focus:outline-primary transition-all" placeholder="Search resources or records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young West African woman with short hair, smiling confidently against a minimalist, warm-toned studio background. The lighting is soft and cinematic, emphasizing a polished and technical editorial feel. The image has a high-quality, high-resolution aesthetic with subtle color grading to match a sophisticated candidate-intelligence platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe5gP3YMbqp-D1j6ingPfGZC5vgN19YWmWLmB0Fcx2soP0we8ODSN6NqvLEC2M1vwnSLIOITM-qwfbsFzwY7ppx6HzCb5t6-QZkI94NKMBKQSyr42n9gYhZ2pjEDUSv4lwSRtbOuC3zqtU2-atw_SNkaZozt4OBTP5970xeoF1dtBQbVnA-e0snHdoOCmlwOctZZ8gtdr6g6yaNqVbp9ozXVjXKZmDTQ22lDFEVQ0MJc1z-u3SS6poCM1RTS1WB78peQkJ3b8kYs3M"/>
+</div>
+</div>
+</header>
+<!-- Main Content Plane -->
+<main class="pt-16 pl-[240px] pr-[270px] min-h-screen">
+<div class="p-gutter max-w-5xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Account Verification</h2>
+<p class="text-on-surface-variant font-body-base">Review and validate your candidate profile. The system has inferred several data points from your activity.</p>
+</div>
+<!-- Horizontal Section Tabs -->
+<div class="flex gap-1 border-b border-outline-variant/20 mb-8 sticky top-16 bg-background/80 backdrop-blur-md z-30">
+<button class="px-6 py-3 text-primary border-b-2 border-primary font-medium text-sm">Verification</button>
+<button class="px-6 py-3 text-on-surface-variant hover:text-on-surface font-medium text-sm transition-colors">Settings</button>
+<button class="px-6 py-3 text-on-surface-variant hover:text-on-surface font-medium text-sm transition-colors">Security</button>
+<button class="px-6 py-3 text-on-surface-variant hover:text-on-surface font-medium text-sm transition-colors">Billing</button>
+</div>
+<!-- Verification Surface (Bento Layout) -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Identity Section (Manual) -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container-high rounded-xl p-6 border border-outline-variant/20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">id_card</span>
+<h3 class="font-headline-sm text-headline-sm">Identity Profile</h3>
+</div>
+<div class="space-y-4">
+<div class="group relative">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Full Legal Name</label>
+<input class="w-full bg-surface-container border border-outline-variant/40 rounded px-4 py-3 text-sm focus:border-primary focus:ring-0" type="text" value="Amaka Nkiruka"/>
+<span class="absolute right-3 bottom-3 text-[10px] text-on-surface-variant italic opacity-0 group-hover:opacity-100 transition-opacity">Manual Entry</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Degree Class</label>
+<select class="w-full bg-surface-container border border-outline-variant/40 rounded px-4 py-3 text-sm focus:border-primary focus:ring-0 appearance-none">
+<option>First Class</option>
+<option selected="">Second Class Upper (2:1)</option>
+<option>Second Class Lower (2:2)</option>
+<option>Third Class</option>
+</select>
+</div>
+<div class="group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Nationality</label>
+<input class="w-full bg-surface-container border border-outline-variant/40 rounded px-4 py-3 text-sm focus:border-primary focus:ring-0" type="text" value="Nigerian"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Academic Section (Inferred) -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container-high rounded-xl p-6 border border-outline-variant/20">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">school</span>
+<h3 class="font-headline-sm text-headline-sm">Academic Background</h3>
+</div>
+<span class="flex gap-1">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+</span>
+</div>
+<div class="space-y-6">
+<div class="border-l-2 border-primary/30 pl-4 py-1">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">Inferred Discipline</p>
+<p class="text-sm font-semibold text-on-surface">Computer Engineering</p>
+<p class="text-[10px] text-primary/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">description</span> From CV: amaka_resume_2023.pdf
+                            </p>
+</div>
+<div class="border-l-2 border-primary/30 pl-4 py-1">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">Graduation Date</p>
+<p class="text-sm font-semibold text-on-surface">June 2022</p>
+<p class="text-[10px] text-primary/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">description</span> From CV: amaka_resume_2023.pdf
+                            </p>
+</div>
+</div>
+</section>
+<!-- Language Section (Practice History) -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container-high rounded-xl p-6 border border-outline-variant/20">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">translate</span>
+<h3 class="font-headline-sm text-headline-sm">IELTS Intelligence</h3>
+</div>
+<div class="text-[10px] font-mono bg-surface px-2 py-1 rounded border border-outline-variant/30 text-on-surface-variant">
+                            Sourced: Practice sessions (3 May)
+                        </div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-background/40 p-4 rounded-lg border border-outline-variant/10 text-center">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mb-2">Listening</p>
+<p class="text-2xl font-headline-sm text-primary">8.5</p>
+</div>
+<div class="bg-background/40 p-4 rounded-lg border border-outline-variant/10 text-center">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mb-2">Reading</p>
+<p class="text-2xl font-headline-sm text-primary">6.0</p>
+</div>
+<div class="bg-background/40 p-4 rounded-lg border border-outline-variant/10 text-center">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mb-2">Writing</p>
+<p class="text-2xl font-headline-sm text-primary">7.5</p>
+</div>
+<div class="bg-background/40 p-4 rounded-lg border border-outline-variant/10 text-center">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mb-2">Speaking</p>
+<p class="text-2xl font-headline-sm text-primary">7.0</p>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-3 p-3 bg-tertiary-container/10 border border-tertiary/20 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-sm">priority_high</span>
+<p class="text-xs text-on-tertiary-container">Reading score is below typical Tier-1 thresholds (7.0+). Recommended practice: Academic Passage Analysis.</p>
+</div>
+</section>
+<!-- CV Section (File Area) -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container-high rounded-xl p-6 border border-outline-variant/20 flex flex-col">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant">upload_file</span>
+<h3 class="font-headline-sm text-headline-sm">Core CV</h3>
+</div>
+<div class="flex-1 border-2 border-dashed border-outline-variant/40 rounded-xl flex flex-col items-center justify-center p-6 text-center hover:border-primary/50 transition-colors group cursor-pointer mb-4">
+<span class="material-symbols-outlined text-4xl text-outline mb-2 group-hover:scale-110 transition-transform">cloud_upload</span>
+<p class="text-xs font-semibold mb-1">Update Curriculum Vitae</p>
+<p class="text-[10px] text-on-surface-variant">PDF, DOCX up to 10MB</p>
+</div>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between border border-outline-variant/20">
+<div class="flex items-center gap-3 overflow-hidden">
+<span class="material-symbols-outlined text-primary">description</span>
+<div class="truncate">
+<p class="text-xs font-bold truncate">amaka_resume_2023.pdf</p>
+<p class="text-[10px] text-on-surface-variant">Parsed 2h ago</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+<span class="text-[10px] font-mono text-green-500">Live</span>
+</div>
+</div>
+</section>
+<!-- Documents Checklist -->
+<section class="col-span-12 bg-surface-container-high rounded-xl p-6 border border-outline-variant/20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">inventory</span>
+<h3 class="font-headline-sm text-headline-sm">Application Dossier Checklist</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex items-start gap-4 p-4 rounded-lg bg-background/20 border border-outline-variant/10">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-green-500" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface mb-0.5">International Passport</p>
+<p class="text-[10px] text-on-surface-variant leading-tight">Exp: Oct 2028. Verified via upload on 12 Jan.</p>
+<button class="mt-2 text-[10px] text-primary hover:underline uppercase tracking-widest font-bold">Update File</button>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-lg bg-background/20 border border-outline-variant/10">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-orange-400">pending</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface mb-0.5">Academic Transcripts</p>
+<p class="text-[10px] text-on-surface-variant leading-tight">Pending official stamp from Unilag Registry.</p>
+<button class="mt-2 text-[10px] text-primary hover:underline uppercase tracking-widest font-bold">Resolve Action</button>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-lg bg-background/20 border border-outline-variant/10 opacity-60">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-on-surface-variant">radio_button_unchecked</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface mb-0.5">Reference Letters</p>
+<p class="text-[10px] text-on-surface-variant leading-tight">2 Academic, 1 Professional required.</p>
+<button class="mt-2 text-[10px] text-primary hover:underline uppercase tracking-widest font-bold">Request now</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Intelligence Layer (Right) -->
+<aside class="fixed right-0 top-16 h-[calc(100%-64px)] w-[270px] border-l border-outline-variant/20 bg-surface-container-low p-6 overflow-y-auto">
+<div class="mb-8">
+<h4 class="font-headline-sm text-[12px] uppercase tracking-widest text-on-surface-variant mb-6 border-b border-outline-variant/20 pb-2">Intelligence Feed</h4>
+<div class="space-y-6">
+<!-- AI Feedback Item -->
+<div class="relative pl-6 border-l border-primary/20">
+<span class="absolute -left-[5px] top-0 w-[9px] h-[9px] rounded-full bg-primary ring-4 ring-background"></span>
+<p class="text-[10px] font-mono text-primary mb-1">PROVENANCE: CV_PARSER_V2</p>
+<p class="text-xs font-medium text-on-surface leading-normal">"Candidate demonstrates strong technical aptitude but lacks extracurricular leadership signals for Commonwealth scholarships."</p>
+</div>
+<div class="relative pl-6 border-l border-tertiary/20">
+<span class="absolute -left-[5px] top-0 w-[9px] h-[9px] rounded-full bg-tertiary ring-4 ring-background"></span>
+<p class="text-[10px] font-mono text-tertiary mb-1">SCORE_ANALYSIS</p>
+<p class="text-xs font-medium text-on-surface leading-normal">IELTS Reading (6.0) is the primary bottleneck for UK Top 10 admission. Recommend intensive technical reading practice.</p>
+</div>
+<!-- Confidence Cluster -->
+<div class="bg-surface-container-high rounded-lg p-4 border border-outline-variant/20">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase mb-3">Verification Confidence</p>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] text-on-surface">Academic</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+</div>
+</div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] text-on-surface">Financial</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 bg-orange-400 rounded-full"></span>
+<span class="w-2 h-2 bg-orange-400 rounded-full"></span>
+<span class="w-2 h-2 border border-outline-variant rounded-full"></span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-on-surface">Experience</span>
+<div class="flex gap-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="w-2 h-2 border border-outline-variant rounded-full"></span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-primary-container/10 rounded-lg border border-primary/20">
+<p class="text-[11px] font-bold text-primary uppercase mb-1">System Action</p>
+<p class="text-xs text-on-surface-variant">Loci is currently tracking 14 matching scholarship deadlines for your profile.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Contextual FAB (Suppressed on Account Page as per instructions) -->
+</body></html>

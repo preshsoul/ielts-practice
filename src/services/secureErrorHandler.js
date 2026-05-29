@@ -99,7 +99,9 @@ class SecureErrorHandler {
       // Don't log error.message as it might contain sensitive info
     };
 
-    console.error('Secure Error Log:', safeContext);
+    if (typeof import.meta !== 'undefined' && import.meta.env?.DEV) {
+      console.error('Secure Error Log:', safeContext);
+    }
 
     // In production, send to error monitoring service
     // this.sendToErrorMonitoring(safeContext);

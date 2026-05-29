@@ -1,16 +1,7 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-12T23:57:06.322Z",
+  "updated_at": "2026-05-18T20:10:43.665Z",
   "items": {
-    "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship": {
-      "id": "www.scholarshipregion.com_scholarship-region_british-council-stem-scholarship",
-      "name": "Scholarship Region",
-      "deadline": "2026-04-30",
-      "deadlineRaw": "april 30, 2026",
-      "deadlineType": "fixed",
-      "sourceUrl": "https://www.scholarshipregion.com/british-council-stem-scholarship",
-      "urgency": "black"
-    },
     "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol": {
       "id": "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol",
       "name": "2026 Chinese Government MOFCOM Scholarship | Fully Funded | Scholarship Region",
@@ -155,24 +146,6 @@
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/fellowships/",
       "urgency": "green"
     },
-    "www.scholarshipregion.com_scholarship-region_ashesi-eth-masters-scholarship": {
-      "id": "www.scholarshipregion.com_scholarship-region_ashesi-eth-masters-scholarship",
-      "name": "Scholarship Region",
-      "deadline": "2026-06-30",
-      "deadlineRaw": "june 30, 2026",
-      "deadlineType": "fixed",
-      "sourceUrl": "https://www.scholarshipregion.com/ashesi-eth-masters-scholarship",
-      "urgency": "red"
-    },
-    "www.scholarshipregion.com_scholarship-region_mandela-rhodes-scholarship": {
-      "id": "www.scholarshipregion.com_scholarship-region_mandela-rhodes-scholarship",
-      "name": "Scholarship Region",
-      "deadline": "2026-04-14",
-      "deadlineRaw": "april 14, 2026",
-      "deadlineType": "fixed",
-      "sourceUrl": "https://www.scholarshipregion.com/mandela-rhodes-scholarship",
-      "urgency": "black"
-    },
     "scholarship-region-secondary-school-and-high-school-scholarships-2026": {
       "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
       "name": "Secondary School and High School Scholarships 2026",
@@ -180,24 +153,6 @@
       "deadlineRaw": "Rolling",
       "deadlineType": "rolling",
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/high-school-scholarships/",
-      "urgency": "green"
-    },
-    "www.scholarshipregion.com_scholarship-region_netherlands-government-nl-scholarship": {
-      "id": "www.scholarshipregion.com_scholarship-region_netherlands-government-nl-scholarship",
-      "name": "Scholarship Region",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.scholarshipregion.com/netherlands-government-nl-scholarship",
-      "urgency": "green"
-    },
-    "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship": {
-      "id": "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship",
-      "name": "Scholarship Region",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.scholarshipregion.com/mext-teachers-training-scholarship",
       "urgency": "green"
     },
     "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region": {
@@ -227,13 +182,22 @@
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/popular-scholarships/",
       "urgency": "green"
     },
-    "www.scholarshipregion.com_scholarship-region_ptdf-scholarship": {
-      "id": "www.scholarshipregion.com_scholarship-region_ptdf-scholarship",
+    "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship": {
+      "id": "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship",
       "name": "Scholarship Region",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.scholarshipregion.com/university-of-bradford-scholarship",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_sids-chevening-scholarship": {
+      "id": "www.chevening.org_chevening_sids-chevening-scholarship",
+      "name": "Chevening SIDS Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
       "urgency": "green"
     },
     "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co": {
@@ -299,15 +263,6 @@
       "sourceUrl": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
       "urgency": "green"
     },
-    "www.cambridgetrust.org_cambridge-trust-scholarships_find-a-scholarship": {
-      "id": "www.cambridgetrust.org_cambridge-trust-scholarships_find-a-scholarship",
-      "name": "The Cambridge Trust",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
-      "urgency": "green"
-    },
     "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars": {
       "id": "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars",
       "name": "The Cambridge Trust",
@@ -324,6 +279,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://scholarshipscafe.com/positions?page=96",
+      "urgency": "green"
+    },
+    "www.chevening.org_chevening_asean-chevening-scholarship": {
+      "id": "www.chevening.org_chevening_asean-chevening-scholarship",
+      "name": "Chevening ASEAN Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
       "urgency": "green"
     },
     "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c": {
@@ -353,15 +317,6 @@
       "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/application-tips-series",
       "urgency": "green"
     },
-    "www.chevening.org_chevening_asean-chevening-scholarship": {
-      "id": "www.chevening.org_chevening_asean-chevening-scholarship",
-      "name": "Chevening ASEAN Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
-      "urgency": "green"
-    },
     "www.chevening.org_chevening_fellowship-chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fell": {
       "id": "www.chevening.org_chevening_fellowship-chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fell",
       "name": "Chevening Overseas Territories In The Atlantic And Caribbean British Library Fellowship",
@@ -369,15 +324,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/fellowship/chevening-overseas-territories-in-the-atlantic-and-caribbean-british-library-fellowship",
-      "urgency": "green"
-    },
-    "www.chevening.org_chevening_sids-chevening-scholarship": {
-      "id": "www.chevening.org_chevening_sids-chevening-scholarship",
-      "name": "Chevening SIDS Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
       "urgency": "green"
     },
     "www.chevening.org_chevening_fellowship-chevening-southeast-europe-british-library-fellowship": {
@@ -423,24 +369,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.ox.ac.uk/students/academic/declared-awards",
-      "urgency": "green"
-    },
-    "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility": {
-      "id": "www.chevening.org_chevening_fellowships-who-can-apply-fellowships-eligibility",
-      "name": "Eligibility For A Chevening Fellowship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.chevening.org/fellowships/who-can-apply/fellowships-eligibility",
-      "urgency": "green"
-    },
-    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-undergraduate-fees-and-funding": {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-undergraduate-fees-and-funding",
-      "name": "Fees And Funding",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding",
       "urgency": "green"
     },
     "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding": {
@@ -513,6 +441,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/fellowships/host-a-fellowship",
+      "urgency": "green"
+    },
+    "www2.daad.de_alexander-von-humboldt-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database": {
+      "id": "www2.daad.de_alexander-von-humboldt-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database",
+      "name": "Humboldt Research Fellowship for Experienced Researchers",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000169",
       "urgency": "green"
     },
     "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where": {
@@ -603,15 +540,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "www.kuleuven.be_ku-leuven-scholarships_scholarships-year": {
-      "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year",
-      "name": "Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.kuleuven.be/scholarships/year",
       "urgency": "green"
     },
     "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-facetednav": {
@@ -821,24 +749,6 @@
       "sourceUrl": "https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program",
       "urgency": "green"
     },
-    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-veterans-affairs": {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-veterans-affairs",
-      "name": "Just A Moment...",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/veterans-affairs?__cf_chl_rt_tk=dOp6stchJ_1TDnkdouzTNbvA7BpMO2rtcVmY.RwOw0w-1778630077-1.0.1.1-iOJ1JT5e79Wmii7RYvITvTw6KCEYRc0bagC00Q4p5ns",
-      "urgency": "green"
-    },
-    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding": {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding",
-      "name": "Just A Moment...",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding?__cf_chl_rt_tk=V5B58Db2lBsQvjuXh5AbuA2V5IcNGHUHloyVMtLOnQ4-1778628223-1.0.1.1-Z7oWcFiQ.jljM1SglANWbufav6I5I3eWEdvzM8GsJWo",
-      "urgency": "green"
-    },
     "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-employment": {
       "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-employment",
       "name": "Just A Moment...",
@@ -855,6 +765,132 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-marshall-phd-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-marshall-phd-scholarship",
+      "name": "Cambridge Marshall PhD Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-opportunity-studentships-and-get-in-cambridge-studentships": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
+      "name": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
+      "urgency": "green"
+    },
+    "foreign.fulbrightonline.org_fulbright_about-foreign-student-program": {
+      "id": "foreign.fulbrightonline.org_fulbright_about-foreign-student-program",
+      "name": "Fulbright Foreign Student Program",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
+      "urgency": "green"
+    },
+    "www.studyinjapan.go.jp_mext_en-planning-scholarships-mext-scholarships": {
+      "id": "www.studyinjapan.go.jp_mext_en-planning-scholarships-mext-scholarships",
+      "name": "Japanese Government (MEXT) Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-aker-scholarship-at-university-of-cambridge": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-aker-scholarship-at-university-of-cambridge",
+      "name": "Aker Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-beit-cambridge-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-beit-cambridge-scholarship",
+      "name": "Beit Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-bhutan-kings-scholarship-at-the-university-of-cambridge": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-bhutan-kings-scholarship-at-the-university-of-cambridge",
+      "name": "Bhutan King’s Scholarship at the University of Cambridge",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-brockmann-cambridge-scholarship-2": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-brockmann-cambridge-scholarship-2",
+      "name": "Brockmann Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-bseisu-university-of-cambridge-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-bseisu-university-of-cambridge-scholarship",
+      "name": "Bseisu-University of Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-africa-changemakers-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-africa-changemakers-scholarship",
+      "name": "Cambridge Africa Changemakers Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-caribbean-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-caribbean-scholarship",
+      "name": "Cambridge Caribbean Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
+      "urgency": "green"
+    },
+    "study.ed.ac.uk_university-of-edinburgh_postgraduate-fees-funding-funding-studies-scholarships": {
+      "id": "study.ed.ac.uk_university-of-edinburgh_postgraduate-fees-funding-funding-studies-scholarships",
+      "name": "University of Edinburgh Postgraduate Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
+      "urgency": "green"
+    },
+    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship",
+      "name": "Cambridge Australia Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
+      "urgency": "green"
+    },
+    "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database": {
+      "id": "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database",
+      "name": "Scholarship for International Students",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
       "urgency": "green"
     }
   }

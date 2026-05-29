@@ -5,6 +5,7 @@ import { buildDashboardSnapshot } from "../../lib/dashboard.js";
 import { buildNotificationFeed } from "../../lib/notifications.js";
 import { useWorkspace } from "../../components/layout/WorkspaceContext.jsx";
 import { getLatestScholarshipFeed } from "../../lib/scholarshipFeed.js";
+import { getOnboardingStatus } from "../../lib/onboardingJourney.js";
 
 function SkillCard({ label, value }) {
   const numeric = Number(value);
@@ -206,9 +207,10 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
   const targetBand = snapshot.targetBand ? Number(snapshot.targetBand).toFixed(1) : "Set one";
   const testDate = profile?.test_date || profile?.testDate || null;
   const hasValue = (value) => value !== null && value !== undefined && String(value).trim() !== "";
-  const onboardingMissing = !hasValue(profile?.target_band) || !hasValue(testDate) || !hasValue(snapshot.skillBands.reading) || !hasValue(snapshot.skillBands.listening) || !hasValue(snapshot.skillBands.writing) || !hasValue(snapshot.skillBands.speaking);
+  const onboardingStatus = getOnboardingStatus(profile || {});
+  const onboardingMissing = onboardingStatus.shouldRedirect;
   const nextTask = onboardingMissing
-    ? "Complete onboarding so we can build your first study plan"
+    ? `Complete onboarding${onboardingStatus.nextLabel ? `: ${onboardingStatus.nextLabel}` : ""}`
     : snapshot.nextTask;
   const countdownText = snapshot.daysUntilTest === null
     ? "Add your test date"
@@ -261,48 +263,67 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
   return (
     <section className="dashboard-page">
       <div className="layout-grid dashboard-wireframe-grid" style={{ ["--grid-cols"]: 12, ["--grid-gap"]: "24px" }}>
-        <article className="loci-card loci-card--editorial dashboard-hero-wireframe" style={{ gridColumn: "span 8" }}>
-          <div className="dashboard-kicker">Readiness verdict</div>
-          <h1 className="dashboard-hero-wireframe-title">You’ve been looking everywhere. Here’s where to stand.</h1>
-          <p className="dashboard-hero-wireframe-copy">
-            Loci compares your CV, IELTS score, degree class, target country, field of study, and deadlines to surface the few opportunities that deserve your attention right now.
-          </p>
-          {onboardingMissing && (
-            <div className="dashboard-hero-alert">
-              Your profile is incomplete. Add your test date and self-assessment to unlock sharper recommendations.
+        <article className="dashboard-readiness-hero dashboard-span-8">
+          <div className="dashboard-readiness-hero__top">
+            <div>
+              <div className="dashboard-readiness-hero__kicker">Quarterly Assessment</div>
+              <h1 className="dashboard-readiness-hero__title">Readiness Verdict</h1>
             </div>
-          )}
-          <div className="dashboard-pill-row">
-            <span className="dashboard-pill">Target band {targetBand}</span>
-            <span className="dashboard-pill dashboard-pill--accent">{countdownText}</span>
-            <span className="dashboard-pill">Profile {completionPercent}% ready</span>
+            <div className="dashboard-readiness-hero__score-row">
+              <span className="dashboard-readiness-hero__score">{completionPercent}</span>
+              <span className="dashboard-readiness-hero__score-denom">/100</span>
+            </div>
           </div>
-          <div className="dashboard-cta-row">
-            <Link className="primary-btn link-button" to="/practice">Complete profile</Link>
-            <Link className="ghost-btn link-button" to="/account">View analysis</Link>
-            <button
-              type="button"
-              className="ghost-btn link-button"
-              onClick={() => openIntelPanel({
-                eyebrow: "Intelligence plane",
-                title: "Deep context",
-                summary: "A compact view of the signals driving ranking and next-step guidance.",
-                details: `Target band: ${targetBand}. Completion: ${completionPercent}%. Weakest focus: ${snapshot.weakestSkill}.`,
-                metrics: [
-                  { label: "Sessions", value: String(snapshot.totalSessions) },
-                  { label: "Streak", value: `${snapshot.streakDays}d` },
-                  { label: "Focus", value: snapshot.weakestSkill },
-                  { label: "Countdown", value: countdownText },
-                ],
-                expert: "The intelligence plane can later show raw readiness history, provenance, and scoring traces."
-              })}
-            >
-              Inspect intelligence
-            </button>
+
+          <div className="dashboard-readiness-hero__badges">
+            <span className="dashboard-readiness-hero__tier">
+              {completionPercent >= 80 ? "Elite standing" : completionPercent >= 60 ? "Progressing" : "Getting started"}
+            </span>
+            {snapshot.streakDays > 0 && (
+              <span className="dashboard-readiness-hero__trend">↑ {snapshot.streakDays}-day streak</span>
+            )}
+          </div>
+
+          <p className="dashboard-readiness-hero__intro">
+            Loci tracks your IELTS trajectory, surfaces relevant scholarships, and sharpens your matching score as your profile grows. The three steps below unlock the full intelligence layer.
+          </p>
+
+          <div className="dashboard-readiness-hero__steps">
+            <div className={`dashboard-readiness-hero__step${profile?.target_band ? " is-done" : ""}`}>
+              <span className="dashboard-readiness-hero__step-num">01</span>
+              <div>
+                <div className="dashboard-readiness-hero__step-title">Set your target band</div>
+                <div className="dashboard-readiness-hero__step-copy">Tell Loci the band score you are working toward so the relevance engine can calibrate every recommendation to your goal.</div>
+              </div>
+            </div>
+            <div className={`dashboard-readiness-hero__step${snapshot.totalSessions > 0 ? " is-done" : ""}`}>
+              <span className="dashboard-readiness-hero__step-num">02</span>
+              <div>
+                <div className="dashboard-readiness-hero__step-title">Complete a practice session</div>
+                <div className="dashboard-readiness-hero__step-copy">A single session establishes your baseline across reading, listening, writing, and speaking — giving Loci real data to work with.</div>
+              </div>
+            </div>
+            <div className={`dashboard-readiness-hero__step${scholarships.length > 0 ? " is-done" : ""}`}>
+              <span className="dashboard-readiness-hero__step-num">03</span>
+              <div>
+                <div className="dashboard-readiness-hero__step-title">Review your matched scholarships</div>
+                <div className="dashboard-readiness-hero__step-copy">Loci ranks every scholarship by how well it fits your profile, language level, and deadlines — so you spend time on the ones that count.</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="dashboard-readiness-hero__actions">
+            <Link className="dashboard-readiness-hero__btn-primary link-button" to={onboardingMissing ? "/onboarding" : "/practice"}>
+              {onboardingMissing ? "Continue onboarding" : "Start practice"}
+            </Link>
+            <Link className="dashboard-readiness-hero__btn-ghost link-button" to={onboardingMissing ? "/onboarding" : "/account"}>
+              {onboardingMissing ? "Review setup" : "Complete profile"}
+            </Link>
+            <Link className="dashboard-readiness-hero__btn-ghost link-button" to="/scholarships">See scholarships</Link>
           </div>
         </article>
 
-        <aside className="dashboard-rail" style={{ gridColumn: "span 4" }}>
+        <aside className="dashboard-rail dashboard-span-4">
           <div className="loci-card loci-card--utilitarian dashboard-rail-card">
             <div className="dashboard-kicker">Profile readiness</div>
             <ReadinessDial
@@ -343,7 +364,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           </div>
         </aside>
 
-        <article className="loci-card loci-card--editorial dashboard-feature-card" style={{ gridColumn: "span 6" }}>
+        <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-6">
           <div className="dashboard-kicker">Top match</div>
           <div className="dashboard-feature-title">{topMatch ? getScholarshipTitle(topMatch) : "No match yet"}</div>
           <div className="dashboard-feature-copy">
@@ -380,7 +401,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           )}
         </article>
 
-        <article className="loci-card loci-card--editorial dashboard-feature-card" style={{ gridColumn: "span 6" }}>
+        <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-6">
           <div className="dashboard-kicker">Daily drill</div>
           <div className="dashboard-feature-title">IELTS Reading: T/F/NG</div>
           <div className="dashboard-feature-copy">
@@ -399,7 +420,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           </div>
         </article>
 
-        <article className="loci-card loci-card--utilitarian dashboard-intelligence-card" style={{ gridColumn: "span 7" }}>
+        <article className="loci-card loci-card--utilitarian dashboard-intelligence-card dashboard-span-7">
           <div className="dashboard-kicker">The intelligence layer</div>
           <div className="dashboard-intelligence-grid">
             <div>
@@ -407,12 +428,6 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
               <p className="dashboard-intelligence-copy">
                 Candidate profile, IELTS performance, deadline urgency, and live scholarship freshness combine into a single ranked view.
               </p>
-              <div className="dashboard-intelligence-metrics">
-                <DashboardStat icon={<StatIcon type="target" />} label="Target band" value={targetBand} note="The destination band you are working toward." />
-                <DashboardStat icon={<StatIcon type="streak" />} label="Practice streak" value={`${snapshot.streakDays} day${snapshot.streakDays === 1 ? "" : "s"}`} note="Momentum is visible here." />
-                <DashboardStat icon={<StatIcon type="baseline" />} label="Baseline status" value={averageText} note="A quick read on current level." />
-                <DashboardStat icon={<StatIcon type="balance" />} label="Weakest focus" value={snapshot.weakestSkill} note="The next session should attack this first." />
-              </div>
             </div>
             <div className="dashboard-map-card">
               <div className="dashboard-map-card__frame">
@@ -429,9 +444,15 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
               </div>
             </div>
           </div>
+          <div className="dashboard-intelligence-metrics">
+            <DashboardStat icon={<StatIcon type="target" />} label="Target band" value={targetBand} note="The destination band you are working toward." />
+            <DashboardStat icon={<StatIcon type="streak" />} label="Practice streak" value={`${snapshot.streakDays} day${snapshot.streakDays === 1 ? "" : "s"}`} note="Momentum is visible here." />
+            <DashboardStat icon={<StatIcon type="baseline" />} label="Baseline status" value={averageText} note="A quick read on current level." />
+            <DashboardStat icon={<StatIcon type="balance" />} label="Weakest focus" value={snapshot.weakestSkill} note="The next session should attack this first." />
+          </div>
         </article>
 
-        <article className="loci-card loci-card--utilitarian dashboard-mini-grid" style={{ gridColumn: "span 5" }}>
+        <article className="loci-card loci-card--utilitarian dashboard-mini-grid dashboard-span-5">
           <div className="dashboard-kicker">Band snapshot</div>
           <div className="skills-grid">
             <SkillCard label="Reading" value={snapshot.skillBands.reading} />
@@ -441,7 +462,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           </div>
         </article>
 
-        <article className="loci-card loci-card--editorial dashboard-feature-card" style={{ gridColumn: "span 5" }}>
+        <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-5">
           <div className="dashboard-kicker">Next move</div>
           <div className="dashboard-feature-title">{nextTask}</div>
           <div className="dashboard-feature-copy">
@@ -456,7 +477,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           </div>
         </article>
 
-        <article className="loci-card loci-card--utilitarian dashboard-alerts" style={{ gridColumn: "1 / -1" }}>
+        <article className="loci-card loci-card--utilitarian dashboard-alerts dashboard-span-full">
           <div className="dashboard-kicker">Alerts</div>
           <div className="notification-list">
             {feed.length ? feed.map((item) => (
@@ -473,7 +494,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           </div>
         </article>
 
-        <article className="loci-card loci-card--editorial dashboard-scholarship-feed" style={{ gridColumn: "1 / -1" }}>
+        <article className="loci-card loci-card--editorial dashboard-scholarship-feed dashboard-span-full">
           <div className="dashboard-kicker">Latest scholarships</div>
           <div className="dashboard-feature-title">Fresh additions this week</div>
           <div className="dashboard-feature-copy">
