@@ -144,6 +144,13 @@ npm run dev
 npm run build
 ```
 
+## Verification
+
+- `npm run test:unit` runs the Vitest unit and integration suites
+- `npm run test:parser` runs parser contract checks
+- `npm run test:pipeline` runs lightweight scholarship pipeline checks
+- `npm run test:all` runs the full JS, parser, pipeline, and Python backend verification stack
+
 ---
 
 ## License
