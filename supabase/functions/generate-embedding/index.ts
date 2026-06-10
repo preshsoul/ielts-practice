@@ -1,4 +1,7 @@
-import { createOpenAIEmbeddings, DEFAULT_EMBEDDING_DIMENSIONS, DEFAULT_EMBEDDING_MODEL } from "../_shared/openai.ts";
+import { createDeepseekEmbeddings } from "../_shared/openai.ts";
+
+const DEFAULT_EMBEDDING_DIMENSIONS = 256;
+const DEFAULT_EMBEDDING_MODEL = "deepseek-chat";
 import {
   corsHeaders,
   enforceRateLimit,
@@ -78,7 +81,7 @@ Deno.serve(async (req: Request) => {
   if (req.method === "GET" && new URL(req.url).pathname.endsWith("/health")) {
     return runtimeHealthResponse({
       functionSlug: "generate-embedding",
-      requiredEnv: ["LOCI_SUPABASE_URL", "LOCI_SUPABASE_ANON_KEY", "APP_ORIGIN", "OPENAI_API_KEY"],
+      requiredEnv: ["LOCI_SUPABASE_URL", "LOCI_SUPABASE_ANON_KEY", "APP_ORIGIN", "DEEPSEEK_API_KEY"],
     });
   }
 
@@ -139,10 +142,9 @@ Deno.serve(async (req: Request) => {
       "embeddings",
       { input, model, dimensions, userId: user?.id || null },
       6 * 60 * 60,
-      async () => createOpenAIEmbeddings(input as string | string[], {
+      async () => createDeepseekEmbeddings(input as string | string[], {
         model,
         dimensions,
-        user: user?.id ? String(user.id) : undefined,
       }),
     );
 
