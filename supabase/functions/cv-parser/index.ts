@@ -507,16 +507,43 @@ Deno.serve(async (req: Request) => {
       try {
         extracted = await extractDocumentIntakeFromFile(file, notes);
       } catch (extractionError) {
-        // Structured extraction (PDF/DOCX) failed — fall back to reading the
-        // uploaded bytes as raw text.  This handles plain-text blobs from
-        // programmatic uploads and small text files that don't meet the
-        // structured extractor's minimum-length threshold.
         const detail = extractionError instanceof Response
           ? await extractionError.text().catch(() => "")
           : extractionError instanceof Error
             ? extractionError.message
             : "Document extraction failed";
 
+        // Only fall back to raw text for files that are actually text-based.
+        // Binary formats (PDF, DOCX) produce garbage when decoded as UTF-8.
+        const fileName = (file.name || "").toLowerCase();
+        const mimeType = (file.type || "").toLowerCase();
+        const isTextBased = mimeType.startsWith("text/")
+          || fileName.endsWith(".txt")
+          || fileName.endsWith(".md")
+          || fileName.endsWith(".csv")
+          || fileName.endsWith(".rtf");
+
+        if (!isTextBased) {
+          // Decode the error to extract a user-friendly message.
+          let userMessage = "We could not extract readable text from this document.";
+          try {
+            const parsed = JSON.parse(detail);
+            if (parsed?.error?.message) userMessage = parsed.error.message;
+            if (parsed?.error?.user_action) userMessage += " " + parsed.error.user_action;
+          } catch { /* detail wasn't JSON, use default */ }
+
+          return jsonResponse({
+            ok: false,
+            status: "FAILED",
+            error_code: "DOCUMENT_TEXT_UNREADABLE",
+            message: userMessage,
+            detail,
+            mapping_issues: [],
+            confidence_score: 0,
+          }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
+        }
+
+        // Text-based file — read raw bytes as a fallback.
         let fallbackText = "";
         try {
           fallbackText = await file.text();
@@ -530,7 +557,7 @@ Deno.serve(async (req: Request) => {
             ok: false,
             status: "FAILED",
             error_code: "DOCUMENT_TEXT_UNREADABLE",
-            message: "Could not read text layout streams from the uploaded file structure.",
+            message: "Could not read enough text from the uploaded file. Try a text-based format.",
             detail,
             mapping_issues: [],
             confidence_score: 0,

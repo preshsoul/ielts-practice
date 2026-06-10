@@ -1,5 +1,9 @@
 import * as pdfjsLib from "npm:pdfjs-dist@4.10.38/legacy/build/pdf.mjs";
 
+// Deno compatibility: the legacy pdfjs-dist build runs in the main thread
+// without a web worker when workerSrc is disabled.
+pdfjsLib.GlobalWorkerOptions.workerSrc = "";
+
 const MAX_DOCUMENT_BYTES = 5 * 1024 * 1024;
 const MIN_EXTRACTED_TEXT_LENGTH = 80;
 
@@ -49,7 +53,7 @@ async function extractPdfText(bytes: Uint8Array) {
   const task = pdfjsLib.getDocument({
     data: bytes,
     useSystemFonts: true,
-    isEvalSupported: false,
+    isEvalSupported: true,
   });
 
   const pdf = await task.promise;
