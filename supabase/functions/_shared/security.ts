@@ -1,6 +1,27 @@
 const memoryRateLimitStore = new Map<string, { count: number; expiresAt: number }>();
 const memoryCacheStore = new Map<string, { value: unknown; expiresAt: number }>();
 
+export function readRequiredEnv(name: string) {
+  const value = String(Deno.env.get(name) || "").trim();
+  if (!value) {
+    throw new Error(`${name} is not configured`);
+  }
+  return value;
+}
+
+export function runtimeHealthResponse({ functionSlug, requiredEnv = [] }: {
+  functionSlug: string;
+  requiredEnv?: string[];
+}) {
+  const missing = requiredEnv.filter((name) => !String(Deno.env.get(name) || "").trim());
+  return jsonResponse({
+    ok: missing.length === 0,
+    function: functionSlug,
+    configured: missing.length === 0,
+    missing,
+  }, missing.length ? 500 : 200);
+}
+
 export function readSupabaseUrl() {
   return String(
     Deno.env.get("LOCI_SUPABASE_URL")

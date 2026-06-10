@@ -180,6 +180,32 @@ describe("scoreScholarship", () => {
     );
     expect(matchingResult.score).toBeGreaterThanOrEqual(mismatchResult.score);
   });
+
+  it("does not allow semantic weight to override a hard blocker", () => {
+    const result = scoreScholarship(
+      {
+        ...baseScholarship,
+        eligibility: { ...baseScholarship.eligibility, nationalities: ["Canada"] },
+        semantic_embedding: [1, 0, 0],
+      },
+      {
+        ...baseProfile,
+        identity: { nationality: "Nigerian", countryOfResidence: "Nigeria" },
+        embedding: [1, 0, 0],
+      }
+    );
+    expect(result.blocked).toBe(true);
+    expect(result.score).toBeLessThan(50);
+  });
+
+  it("returns explanation criteria that match the blocked state", () => {
+    const result = scoreScholarship(
+      { ...baseScholarship, application: { ...baseScholarship.application, deadline: "2020-01-01T00:00:00.000Z" } },
+      baseProfile
+    );
+    expect(result.blocked).toBe(true);
+    expect(result.blockedReasons.length).toBeGreaterThan(0);
+  });
 });
 
 // ── rankScholarships ──────────────────────────────────────────────────────────

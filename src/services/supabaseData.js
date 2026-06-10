@@ -116,6 +116,7 @@ export async function ensureProfile(user) {
     last_seen_at: new Date().toISOString(),
   };
 
+  // The database trigger owns profile bootstrap; this upsert only repairs drift and refreshes last_seen_at.
   const { data, error } = await supabase
     .from("profiles")
     .upsert(profile, { onConflict: "id", ignoreDuplicates: false })

@@ -26,11 +26,15 @@
     "setup": "powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 -Fix",
     "test:pipeline": "node --use-system-ca scripts/test-pipeline-light.mjs",
     "test:parser": "node --use-system-ca scripts/test-backend-parser.mjs",
+    "test:parser:faker": "node --use-system-ca scripts/test-parser-faker-stress.mjs",
     "test:load": "npx artillery run load-tests/artillery.yml",
     "context7": "ctx7",
     "test": "vitest run",
     "test:unit": "vitest run",
     "test:all": "node scripts/test-all.mjs",
+    "verify:phase1": "node scripts/verification/run-phase1.mjs",
+    "verify:phase2": "node scripts/verification/run-phase2.mjs",
+    "verify:phase3": "node scripts/verification/run-phase3.mjs",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
@@ -55,6 +59,7 @@
     "zustand": "^5.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@storybook/addon-a11y": "^10.4.1",
     "@storybook/addon-docs": "^10.4.1",
     "@storybook/react-vite": "^10.4.1",

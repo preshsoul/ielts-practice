@@ -47,6 +47,18 @@ export type ParserFieldIssue = {
   suggested_value?: string | null;
 };
 
+export type ParserEvidence = {
+  source_text_excerpt: string;
+  extracted_characters: number;
+  inferred_sections: string[];
+};
+
+export type ParserValidation = {
+  missing_fields: ParserFieldIssue[];
+  low_confidence_fields: ParserFieldIssue[];
+  contradictions: ParserFieldIssue[];
+};
+
 export type ControlledValue = {
   id?: string | null;
   label?: string | null;
@@ -86,6 +98,8 @@ export type ParserMetadata = {
   completed_at?: string | null;
   normalized_candidate_profile?: NormalizedCandidateProfile | null;
   mapping_issues?: FieldMappingIssue[];
+  evidence?: ParserEvidence;
+  validation?: ParserValidation;
 };
 
 export type ParserResult = {
@@ -473,6 +487,166 @@ function rawOutputFromProfile(value: unknown, rawCvText: string): RawLLMOutput {
       pickExactQuote(rawCvText, ...asStringArray(personal.skills)),
     ),
   };
+}
+
+function coerceParserFieldIssue(value: unknown): ParserFieldIssue | null {
+  if (!value || typeof value !== "object") return null;
+  const issue = value as Record<string, unknown>;
+  const fieldPath = toText(issue.field_path ?? issue.fieldPath);
+  if (!fieldPath) return null;
+  return {
+    field_path: fieldPath,
+    message: toText(issue.message) || "Needs review",
+    confidence: issue.confidence === null || issue.confidence === undefined ? null : clampConfidence(issue.confidence),
+    raw_text: maybeText(issue.raw_text ?? issue.rawText),
+    suggested_value: maybeText(issue.suggested_value ?? issue.suggestedValue),
+  };
+}
+
+function normalizeDeepseekDegreeType(value: unknown) {
+  const text = toText(value);
+  if (!text) return null;
+  const lowered = text.toLowerCase();
+  if (lowered === "b.eng" || lowered === "beng" || lowered === "b.e") return "BSc";
+  if (lowered === "m.eng" || lowered === "meng" || lowered === "m.e") return "MSc";
+  return text;
+}
+
+function normalizeDeepseekPayload(value: unknown, rawCvText: string) {
+  const payload = value && typeof value === "object" ? value as Record<string, unknown> : {};
+  if (payload.profile || payload.raw_profile_map) {
+    return payload;
+  }
+
+  const academicHistory = Array.isArray(payload.academicHistory)
+    ? payload.academicHistory
+    : Array.isArray(payload.academic_history)
+      ? payload.academic_history
+      : [];
+  const firstAcademic = academicHistory[0] && typeof academicHistory[0] === "object"
+    ? academicHistory[0] as Record<string, unknown>
+    : {};
+  const degreeClass = firstAcademic.degreeClass && typeof firstAcademic.degreeClass === "object"
+    ? firstAcademic.degreeClass as Record<string, unknown>
+    : firstAcademic.degree_class && typeof firstAcademic.degree_class === "object"
+      ? firstAcademic.degree_class as Record<string, unknown>
+      : {};
+  const rawProfileMap = payload.rawProfileMap && typeof payload.rawProfileMap === "object"
+    ? payload.rawProfileMap as Record<string, unknown>
+    : payload.raw_profile_map && typeof payload.raw_profile_map === "object"
+      ? payload.raw_profile_map as Record<string, unknown>
+      : {};
+  const deepseekNationality = maybeText(payload.nationality);
+  const nationalityLabel = deepseekNationality
+    ? (NATIONALITY_MAP[deepseekNationality.toLowerCase()]?.label || deepseekNationality)
+    : null;
+  const missingFields = Array.isArray(payload.missingFields)
+    ? payload.missingFields.map(coerceParserFieldIssue).filter(Boolean)
+    : Array.isArray(payload.missing_fields)
+      ? payload.missing_fields.map(coerceParserFieldIssue).filter(Boolean)
+      : [];
+  const lowConfidenceFields = Array.isArray(payload.lowConfidenceFields)
+    ? payload.lowConfidenceFields.map(coerceParserFieldIssue).filter(Boolean)
+    : Array.isArray(payload.low_confidence_fields)
+      ? payload.low_confidence_fields.map(coerceParserFieldIssue).filter(Boolean)
+      : [];
+  const metadata = payload.metadata && typeof payload.metadata === "object"
+    ? payload.metadata as Record<string, unknown>
+    : {};
+  const parsingNotes = Array.isArray(metadata.parsing_notes)
+    ? metadata.parsing_notes
+    : Array.isArray(metadata.parsingNotes)
+      ? metadata.parsingNotes
+      : [];
+
+  const ieltsTaken = typeof payload.ieltsTaken === "boolean"
+    ? payload.ieltsTaken
+    : payload.ielts && typeof payload.ielts === "object" && typeof (payload.ielts as Record<string, unknown>).taken === "boolean"
+      ? (payload.ielts as Record<string, unknown>).taken
+      : null;
+  const ieltsScore = asNumber(payload.ieltsScore)
+    ?? (payload.ielts && typeof payload.ielts === "object"
+      ? asNumber((payload.ielts as Record<string, unknown>).score)
+      : null);
+
+  const normalized = {
+    raw_profile_map: {
+      fullName: {
+        extractedValue: maybeText(payload.fullName),
+        exactQuote: maybeText((rawProfileMap.fullName as Record<string, unknown> | undefined)?.exactQuote)
+          || pickExactQuote(rawCvText, payload.fullName),
+      },
+      degreeClass: {
+        extractedValue: maybeText(degreeClass.rawText ?? degreeClass.raw_text ?? degreeClass.normalized ?? degreeClass.label),
+        exactQuote: maybeText((rawProfileMap.degreeClass as Record<string, unknown> | undefined)?.exactQuote)
+          || pickExactQuote(rawCvText, degreeClass.rawText, degreeClass.raw_text, degreeClass.normalized, degreeClass.label),
+      },
+      degreeInstitution: {
+        extractedValue: maybeText(firstAcademic.institution),
+        exactQuote: maybeText((rawProfileMap.degreeInstitution as Record<string, unknown> | undefined)?.exactQuote)
+          || pickExactQuote(rawCvText, firstAcademic.institution),
+      },
+      graduationYear: {
+        extractedValue: firstAcademic.graduationYear ?? firstAcademic.graduation_year ?? null,
+        exactQuote: maybeText((rawProfileMap.graduationYear as Record<string, unknown> | undefined)?.exactQuote)
+          || pickExactQuote(rawCvText, firstAcademic.graduationYear, firstAcademic.graduation_year),
+      },
+      skills: {
+        extractedValue: asStringArray(payload.skills),
+        exactQuote: maybeText((rawProfileMap.skills as Record<string, unknown> | undefined)?.exactQuote)
+          || pickExactQuote(rawCvText, ...asStringArray(payload.skills)),
+      },
+    },
+    profile: {
+      personal_details: {
+        full_legal_name: maybeText(payload.fullName),
+        email: maybeText(payload.email),
+        phone: maybeText(payload.phone),
+        nationality: nationalityLabel
+          ? {
+              id: NATIONALITY_MAP[deepseekNationality?.toLowerCase() || ""]?.id || null,
+              label: nationalityLabel,
+              raw_text: deepseekNationality,
+            }
+          : null,
+        skills: asStringArray(payload.skills),
+      },
+      academic_history: academicHistory.map((entry) => {
+        const row = entry && typeof entry === "object" ? entry as Record<string, unknown> : {};
+        const rowDegreeClass = row.degreeClass && typeof row.degreeClass === "object"
+          ? row.degreeClass as Record<string, unknown>
+          : row.degree_class && typeof row.degree_class === "object"
+            ? row.degree_class as Record<string, unknown>
+            : {};
+        return {
+          institution: maybeText(row.institution),
+          degree_type: normalizeDeepseekDegreeType(row.degreeType ?? row.degree_type) || maybeText(row.degreeType ?? row.degree_type),
+          academic_discipline: maybeText(row.field ?? row.fieldOfStudy ?? row.academicDiscipline ?? row.academic_discipline),
+          graduation_year: asInteger(row.graduationYear ?? row.graduation_year),
+          degree_class: maybeText(rowDegreeClass.rawText ?? rowDegreeClass.raw_text ?? rowDegreeClass.normalized ?? rowDegreeClass.label)
+            ? {
+                id: maybeText(rowDegreeClass.id),
+                label: maybeText(rowDegreeClass.normalized ?? rowDegreeClass.label ?? rowDegreeClass.rawText ?? rowDegreeClass.raw_text),
+                raw_text: maybeText(rowDegreeClass.rawText ?? rowDegreeClass.raw_text ?? rowDegreeClass.normalized ?? rowDegreeClass.label),
+              }
+            : null,
+        };
+      }),
+      international_exams: {
+        ielts_taken: ieltsTaken,
+        ielts_band_score: ieltsScore,
+        gre_gmat_scores: maybeText(payload.greGmatScores ?? payload.gre_gmat_scores),
+      },
+    },
+    missing_fields: missingFields,
+    low_confidence_fields: lowConfidenceFields,
+    metadata: {
+      overall_confidence: clampConfidence(metadata.overall_confidence),
+      parsing_notes: parsingNotes.map((item) => toText(item)).filter(Boolean),
+    },
+  };
+
+  return normalized;
 }
 
 export async function processAndMapCV(rawLLMData: RawLLMOutput, rawCvText: string): Promise<NormalizedCandidateProfile> {
@@ -943,7 +1117,11 @@ export async function parseCvRawText(rawText: string, options: ParseOptions = {}
       : provider === "deepseek"
         ? await callDeepseek(rawText)
         : await callOpenAI(rawText);
-  const payload = result.payload && typeof result.payload === "object" ? result.payload as Record<string, unknown> : {};
+  const payload = result.provider === "deepseek"
+    ? normalizeDeepseekPayload(result.payload, rawText)
+    : result.payload && typeof result.payload === "object"
+      ? result.payload as Record<string, unknown>
+      : {};
   const rawMap = payload.raw_profile_map
     ? toRawLLMOutput(payload.raw_profile_map, rawText)
     : rawOutputFromProfile(payload.profile, rawText);

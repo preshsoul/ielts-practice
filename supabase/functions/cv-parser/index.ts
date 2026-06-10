@@ -1,5 +1,5 @@
 import { parseCvRawText } from "../_shared/cv-parser.ts";
-import { extractDocumentIntakeFromFile } from "../_shared/document-extract.ts";
+import { extractDocumentIntakeFromFile, sha256Hex } from "../_shared/document-extract.ts";
 import {
   corsHeaders,
   enforceRateLimit,
@@ -12,6 +12,7 @@ import {
   readOptionalString,
   readString,
   rejectUnexpectedFields,
+  runtimeHealthResponse,
 } from "../_shared/security.ts";
 
 const allowedOrigins = getAllowedOrigins();
@@ -216,6 +217,16 @@ function shapeJobResponse(job: Record<string, unknown>, draft: Record<string, un
   const metadata = job.metadata && typeof job.metadata === "object"
     ? job.metadata as Record<string, unknown>
     : {};
+  // canonical_profile is nested inside metadata to match the hosted table schema.
+  // Drafts store it as metadata_json.parsed_candidate_profile.
+  const draftMeta = draft?.metadata_json && typeof draft.metadata_json === "object"
+    ? draft.metadata_json as Record<string, unknown>
+    : {};
+  const canonicalProfile = metadata.canonical_profile
+    || job.parsed_candidate_profile
+    || draftMeta.parsed_candidate_profile
+    || draft?.parsed_candidate_profile
+    || null;
   return {
     job_id: job.id,
     draft_id: draft?.id || null,
@@ -224,16 +235,16 @@ function shapeJobResponse(job: Record<string, unknown>, draft: Record<string, un
     progress: job.progress,
     message: job.message,
     profile: job.parsed_profile || {},
-    parsed_candidate_profile: job.parsed_candidate_profile || draft?.parsed_candidate_profile || null,
+    parsed_candidate_profile: canonicalProfile,
     missing_fields: job.missing_fields || [],
     low_confidence_fields: job.low_confidence_fields || [],
     metadata: metadata,
     mapping_issues: Array.isArray(metadata.mapping_issues) ? metadata.mapping_issues : [],
     confidence_score: Number.isFinite(Number(metadata.overall_confidence)) ? Number(metadata.overall_confidence) : 0,
     provenance: {
-      parser_version: String(job.parser_version || "cv-parser-v2"),
-      method: String(job.parser_method || metadata.provider || "llm_parse"),
-      model: String(job.parser_model || metadata.model || ""),
+      parser_version: String(metadata.parser_version || job.parser_version || "cv-parser-v2"),
+      method: String(metadata.parser_method || metadata.provider || "llm_parse"),
+      model: String(metadata.parser_model || metadata.model || ""),
       parsed_at: job.completed_at || job.updated_at || new Date().toISOString(),
     },
     error: job.error || null,
@@ -267,9 +278,10 @@ function buildCanonicalProfile(parsed: Awaited<ReturnType<typeof parseCvRawText>
   const primaryAcademic = academicHistory[0] || {};
   const degreeClass = primaryAcademic.degree_class || null;
 
-  // Extract CGPA evidence from metadata or degree_class label
-  const gradeRaw = typeof degreeClass === "object" ? (degreeClass.raw_text || degreeClass.label || null) : null;
-  const gradeNormalized = typeof degreeClass === "object" ? (degreeClass.label || null) : null;
+  // Extract CGPA evidence from metadata or degree_class label.
+  // Guard against null — typeof null === "object" in JavaScript.
+  const gradeRaw = degreeClass && typeof degreeClass === "object" ? (degreeClass.raw_text || degreeClass.label || null) : null;
+  const gradeNormalized = degreeClass && typeof degreeClass === "object" ? (degreeClass.label || null) : null;
 
   return {
     personal_details: {
@@ -320,6 +332,8 @@ async function createDraftForJob(profileId: string, jobId: string, payload: {
   metadata: Record<string, unknown>;
   extractedPreview?: string | null;
 }) {
+  // cv_profile_drafts may not have parsed_candidate_profile column;
+  // nest it inside metadata_json alongside the canonical profile.
   return restInsert("cv_profile_drafts", {
     profile_id: profileId,
     cv_parse_job_id: jobId,
@@ -328,11 +342,11 @@ async function createDraftForJob(profileId: string, jobId: string, payload: {
     document_type: payload.documentType,
     source_document_hash: payload.sourceDocumentHash,
     profile_json: payload.profile,
-    parsed_candidate_profile: payload.parsedCandidateProfile,
     missing_fields: payload.missingFields,
     low_confidence_fields: payload.lowConfidenceFields,
     metadata_json: {
       ...payload.metadata,
+      parsed_candidate_profile: payload.parsedCandidateProfile,
       ...(payload.extractedPreview ? { extracted_text_preview: payload.extractedPreview } : {}),
     },
     expires_at: futureExpiryIso(),
@@ -356,19 +370,26 @@ async function finalizeParsedJob(profileId: string, jobId: string, payload: {
 
   const canonicalProfile = buildCanonicalProfile(payload.parsed);
 
+  // Store the canonical profile inside metadata (hosted table has parsed_profile
+  // but not parsed_candidate_profile column; keeping both in metadata avoids a migration).
+  // Hosted table has limited columns; store canonical profile and parser provenance inside metadata jsonb.
+  const enrichedMetadata = {
+    ...metadata,
+    canonical_profile: canonicalProfile,
+    parser_version: "cv-parser-v2",
+    parser_model: metadata.model || null,
+    parser_method: metadata.provider || "llm_parse",
+  };
+
   const completedJob = await restUpdate("cv_parse_jobs", `id=eq.${jobId}&profile_id=eq.${profileId}`, {
     status: "complete",
     phase: "complete",
     progress: 100,
     message: "CV parsing complete. Review the highlighted fields before saving.",
     parsed_profile: payload.parsed.profile,
-    parsed_candidate_profile: canonicalProfile,
     missing_fields: payload.parsed.missing_fields,
     low_confidence_fields: payload.parsed.low_confidence_fields,
-    metadata,
-    parser_version: "cv-parser-v2",
-    parser_model: metadata.model || null,
-    parser_method: metadata.provider || "llm_parse",
+    metadata: enrichedMetadata,
     error: null,
     expires_at: futureExpiryIso(),
   });
@@ -422,6 +443,24 @@ Deno.serve(async (req: Request) => {
     return new Response("ok", { headers: corsHeaders(origin) });
   }
 
+  // Health check must be BEFORE auth — it's a diagnostic endpoint, not a business route.
+  const subpath = parseFunctionSubpath(new URL(req.url));
+  if (req.method === "GET" && subpath === "/health") {
+    return runtimeHealthResponse({
+      functionSlug: "cv-parser",
+      requiredEnv: [
+        "LOCI_SUPABASE_URL",
+        "LOCI_SUPABASE_ANON_KEY",
+        "LOCI_SUPABASE_SERVICE_ROLE_KEY",
+        "APP_ORIGIN",
+        "OPENAI_API_KEY",
+        "DEEPSEEK_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "LLM_PROVIDER",
+      ],
+    });
+  }
+
   let user: { id?: string } | null = null;
   try {
     user = await requireAuthenticatedUser(req);
@@ -432,9 +471,9 @@ Deno.serve(async (req: Request) => {
   }
 
   const profileId = String(user?.id || "");
-  const subpath = parseFunctionSubpath(new URL(req.url));
 
   try {
+
     if (req.method === "POST" && subpath === "/upload") {
       const rateLimit = await enforceRateLimit(req, {
         namespace: "cv-parser-upload",
@@ -467,21 +506,50 @@ Deno.serve(async (req: Request) => {
       let extracted;
       try {
         extracted = await extractDocumentIntakeFromFile(file, notes);
-      } catch (error) {
-        const detail = error instanceof Response
-          ? await error.text().catch(() => "")
-          : error instanceof Error
-            ? error.message
+      } catch (extractionError) {
+        // Structured extraction (PDF/DOCX) failed — fall back to reading the
+        // uploaded bytes as raw text.  This handles plain-text blobs from
+        // programmatic uploads and small text files that don't meet the
+        // structured extractor's minimum-length threshold.
+        const detail = extractionError instanceof Response
+          ? await extractionError.text().catch(() => "")
+          : extractionError instanceof Error
+            ? extractionError.message
             : "Document extraction failed";
-        return jsonResponse({
-          ok: false,
-          status: "FAILED",
-          error_code: "DOCUMENT_TEXT_UNREADABLE",
-          message: "Could not read text layout streams from the uploaded file structure.",
-          detail,
-          mapping_issues: [],
-          confidence_score: 0,
-        }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
+
+        let fallbackText = "";
+        try {
+          fallbackText = await file.text();
+        } catch {
+          // If even the text() fallback fails, report the original error.
+        }
+
+        const trimmedFallback = String(fallbackText || "").trim();
+        if (trimmedFallback.length < 20) {
+          return jsonResponse({
+            ok: false,
+            status: "FAILED",
+            error_code: "DOCUMENT_TEXT_UNREADABLE",
+            message: "Could not read text layout streams from the uploaded file structure.",
+            detail,
+            mapping_issues: [],
+            confidence_score: 0,
+          }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
+        }
+
+        // Build a synthetic intake from the raw fallback text.
+        const fallbackName = file.name || "uploaded-document.txt";
+        const fallbackMime = file.type || "text/plain";
+        const fallbackBytes = new TextEncoder().encode(trimmedFallback);
+        const fallbackHash = await sha256Hex(fallbackBytes);
+        extracted = {
+          rawText: trimmedFallback,
+          sourceFilename: fallbackName,
+          mimeType: fallbackMime,
+          documentType: "text",
+          rawTextHash: fallbackHash,
+          notes: notes || "",
+        };
       }
 
       const shellJob = await restInsert("cv_parse_jobs", {
@@ -683,7 +751,15 @@ Deno.serve(async (req: Request) => {
       return jsonResponse({ ok: true, draft }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", headers: rateLimit, allowedOrigins });
     }
 
-    return jsonResponse(buildError("ERR_METHOD_NOT_ALLOWED", "That CV parser route does not exist.", "Use /parse, /jobs/{id}, or /drafts/{id}."), 404, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
+    return jsonResponse(buildError(
+      "ERR_METHOD_NOT_ALLOWED",
+      "That CV parser route does not exist.",
+      "Use /health, /upload, /parse, /jobs/{id}, or /drafts/{id}."
+    ), 404, {
+      origin,
+      methods: "GET, POST, PUT, PATCH, OPTIONS",
+      allowedOrigins,
+    });
   } catch (error) {
     const message = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
     return jsonResponse(buildError("ERR_INTERNAL", "The CV parser function failed unexpectedly.", "Retry once. If it keeps failing, check Supabase function logs.", true, message), error instanceof Response ? Math.max(400, error.status) : 500, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });

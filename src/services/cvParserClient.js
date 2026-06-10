@@ -172,6 +172,8 @@ export function mergeCvParserResultIntoIntake(intake, result) {
     parserJobId: result?.job_id || null,
     parserDraftId: result?.draft_id || null,
     parserMetadata: metadata,
+    parserEvidence: metadata?.evidence || null,
+    parserValidation: metadata?.validation || null,
     missingFields: Array.isArray(result?.missing_fields) ? result.missing_fields : [],
     lowConfidenceFields: Array.isArray(result?.low_confidence_fields) ? result.low_confidence_fields : [],
     parsedCandidateProfile: profile,

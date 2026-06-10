@@ -88,10 +88,10 @@ const mockScholarship = {
 const scored = scoreScholarship(mockScholarship, normalized, {});
 check("score is a number", typeof scored.score === "number");
 check("score is reasonable (0-100)", scored.score >= 0 && scored.score <= 100);
-check("analysis produced", scored.analysis && typeof scored.analysis === "object");
-check("eligibility criteria present", Array.isArray(scored.analysis?.criteria));
+check("criteria produced", Array.isArray(scored.criteria));
+check("eligibility criteria present", Array.isArray(scored.criteria) && scored.criteria.length > 0);
 console.log("  Score:", scored.score);
-console.log("  Criteria:", scored.analysis?.criteria?.join(", "));
+console.log("  Criteria:", scored.criteria?.map((item) => item?.key).filter(Boolean).join(", "));
 
 // ── 5. Blocked on past deadline ──
 const pastScholarship = { ...mockScholarship, id: "past-1", deadline: "2020-01-01T00:00:00.000Z" };

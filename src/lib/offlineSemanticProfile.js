@@ -22,8 +22,10 @@ function extractFirst(re, text) {
 function extractAll(re, text) {
   const results = [];
   const source = String(text || "").toLowerCase();
+  const flags = re.flags.includes("g") ? re.flags : `${re.flags}g`;
+  const matcher = new RegExp(re.source, flags);
   let m;
-  while ((m = re.exec(source)) !== null) {
+  while ((m = matcher.exec(source)) !== null) {
     results.push(m[1].toLowerCase().trim());
   }
   return unique(results);

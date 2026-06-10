@@ -11,6 +11,7 @@ import {
   readString,
   rejectUnexpectedFields,
   rememberJson,
+  runtimeHealthResponse,
 } from "../_shared/security.ts";
 
 const allowedOrigins = getAllowedOrigins();
@@ -139,6 +140,13 @@ Deno.serve(async (req: Request) => {
 
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders(origin) });
+  }
+
+  if (req.method === "GET" && new URL(req.url).pathname.endsWith("/health")) {
+    return runtimeHealthResponse({
+      functionSlug: "generate-semantic-profile",
+      requiredEnv: ["LOCI_SUPABASE_URL", "LOCI_SUPABASE_ANON_KEY", "APP_ORIGIN", "DEEPSEEK_API_KEY"],
+    });
   }
 
   if (req.method !== "POST") {
