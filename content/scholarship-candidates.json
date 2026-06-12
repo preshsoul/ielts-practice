@@ -23,9 +23,10 @@
       "title": "Scholarship for International Students",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.36,
-      "awardingBody": "Friedrich Ebert Foundation"
+      "awardingBody": "Friedrich Ebert Foundation",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:56:55.364Z",
@@ -37,9 +38,10 @@
       "title": "Hezekiah Wardwell Fellowship",
       "pageType": "detail",
       "pageScore": 7,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.38,
-      "awardingBody": "Alexander von Humboldt Foundation"
+      "awardingBody": "Alexander von Humboldt Foundation",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:56:57.588Z",
@@ -51,9 +53,10 @@
       "title": "Humboldt Research Fellowship for Experienced Researchers",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.38,
-      "awardingBody": "Alexander von Humboldt Foundation"
+      "awardingBody": "Alexander von Humboldt Foundation",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:57:03.270Z",
@@ -88,9 +91,10 @@
       "title": "Chevening ASEAN Scholarship",
       "pageType": "detail",
       "pageScore": 6,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.43,
-      "awardingBody": "Chevening"
+      "awardingBody": "Chevening",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:57:45.868Z",
@@ -102,9 +106,10 @@
       "title": "Chevening SIDS Scholarship",
       "pageType": "detail",
       "pageScore": 6,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.6000000000000001,
-      "awardingBody": "Chevening"
+      "awardingBody": "Chevening",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:57:52.207Z",
@@ -116,9 +121,10 @@
       "title": "Fulbright Foreign Student Program",
       "pageType": "detail",
       "pageScore": 7,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.5800000000000001,
-      "awardingBody": "Fulbright"
+      "awardingBody": "Fulbright",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:58:01.468Z",
@@ -130,9 +136,10 @@
       "title": "Japanese Government (MEXT) Scholarship",
       "pageType": "detail",
       "pageScore": 8,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.5800000000000001,
-      "awardingBody": "MEXT"
+      "awardingBody": "MEXT",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T19:58:03.731Z",
@@ -566,9 +573,10 @@
       "title": "Aker Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:10.834Z",
@@ -580,9 +588,10 @@
       "title": "Beit Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:13.425Z",
@@ -594,9 +603,10 @@
       "title": "Cambridge Africa Changemakers Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:16.006Z",
@@ -608,9 +618,10 @@
       "title": "Bhutan King’s Scholarship at the University of Cambridge",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:18.555Z",
@@ -622,9 +633,10 @@
       "title": "Brockmann Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:21.189Z",
@@ -636,9 +648,10 @@
       "title": "Bseisu-University of Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:23.951Z",
@@ -650,9 +663,10 @@
       "title": "Cambridge Australia Scholarships",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.36,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:26.719Z",
@@ -664,9 +678,10 @@
       "title": "Cambridge Caribbean Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:29.286Z",
@@ -678,9 +693,10 @@
       "title": "Cambridge Marshall PhD Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.78,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:31.872Z",
@@ -692,9 +708,10 @@
       "title": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.78,
-      "awardingBody": "Cambridge Trust"
+      "awardingBody": "Cambridge Trust",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:34.595Z",
@@ -726,9 +743,10 @@
       "title": "University of Edinburgh Postgraduate Scholarships",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "review_ready",
+      "status": "approved",
       "confidence": 0.39,
-      "awardingBody": "University of Edinburgh"
+      "awardingBody": "University of Edinburgh",
+      "reviewedAt": "2026-06-12T22:18:39.300Z"
     },
     {
       "capturedAt": "2026-05-18T20:00:46.493Z",
