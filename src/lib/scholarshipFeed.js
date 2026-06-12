@@ -126,6 +126,7 @@ const HARD_REJECT_TITLE_FRAGMENTS = [
   "application tips",
   "tips series",
   "course fees",
+  "course fees and fee liability",
   "fee liability",
   "alumni network",
   "position detail",
@@ -133,6 +134,15 @@ const HARD_REJECT_TITLE_FRAGMENTS = [
   "stories of impact",
   "current scholars",
   "additional funding form",
+  "just a moment",
+  "error 404",
+  "page not found",
+  "how to pay",
+  "student loans",
+  "financial support",  // too generic without context
+  "living costs",
+  "tuition fees",
+  "accommodation",
 ];
 
 const OPPORTUNITY_KEYWORDS = [

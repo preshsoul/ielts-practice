@@ -690,7 +690,7 @@ async function fetchCambridgeScholarshipCards(strategy = {}) {
       const context = await ensureBrowserContext();
       const browserPage = await context.newPage();
       try {
-        await browserPage.goto("https://www.cambridgetrust.org/find-a-scholarship/", { waitUntil: "domcontentloaded", timeout: 90000 });
+        await browserPage.goto("https://www.cambridgetrust.org/find-a-scholarship/", { waitUntil: "domcontentloaded", timeout: 15000 });
         payload = await browserPage.evaluate(async (currentPage) => {
           const response = await fetch("/wp-admin/admin-ajax.php", {
             method: "POST",
@@ -790,7 +790,7 @@ async function fetchPage(url) {
     const page = await browserContext.newPage();
     try {
       await paceDomain(url);
-      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 });
       const html = await page.content();
       return { html, contentType: "text/html", finalUrl: page.url(), source: "browser" };
     } finally {
