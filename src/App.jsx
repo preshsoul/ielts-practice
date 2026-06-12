@@ -339,6 +339,7 @@ export default function App() {
               <ErrorBoundary>
               <PracticeRoutes
                 sessions={sessions}
+                profile={profile}
                 onSessionComplete={onSessionComplete}
                 exportAction={exportAction}
                 qb={content.questions}

@@ -20,7 +20,7 @@ function RouteFallback({ label = "Loading route" }) {
   );
 }
 
-export function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, passages, learningPath, practiceLoaded, C, PrimaryBtn, GhostBtn, Chip, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR }) {
+export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAction, qb, passages, learningPath, practiceLoaded, C, PrimaryBtn, GhostBtn, Chip, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR }) {
   const weak = computeWeakSections(sessions);
   const location = useLocation();
   const pathname = location.pathname;
@@ -43,7 +43,7 @@ export function PracticeRoutes({ sessions, onSessionComplete, exportAction, qb, 
 
   let content = (
     <Suspense fallback={<RouteFallback label="Loading practice hub" />}>
-      <PracticeHub sessions={sessions} C={C} PrimaryBtn={PrimaryBtn} />
+      <PracticeHub sessions={sessions} C={C} PrimaryBtn={PrimaryBtn} profile={profile} />
     </Suspense>
   );
 

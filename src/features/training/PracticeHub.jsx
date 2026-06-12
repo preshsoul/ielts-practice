@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LociCard from "../../components/common/LociCard.jsx";
+import { estimateOverallBand } from "../../lib/bandScoreEstimator.js";
 
 const MODULE_LINKS = [
   { to: "/practice/reading", title: "Reading", copy: "Answer one question at a time and keep your reading pace steady." },
@@ -9,8 +10,12 @@ const MODULE_LINKS = [
   { to: "/practice/speaking", title: "Speaking", copy: "Answer clearly, keep moving, and finish each thought cleanly." },
 ];
 
-export default function PracticeHub({ sessions, C, PrimaryBtn }) {
+export default function PracticeHub({ sessions, C, PrimaryBtn, profile }) {
   const totalSessions = Array.isArray(sessions) ? sessions.length : 0;
+  const estimates = estimateOverallBand(sessions);
+  const targetBand = profile?.target_band ?? profile?.targetBand ?? null;
+  const showGap = targetBand !== null && estimates.overallBand !== null;
+
   return (
     <div className="practice-hub">
       <LociCard
@@ -28,12 +33,21 @@ export default function PracticeHub({ sessions, C, PrimaryBtn }) {
               <strong>{totalSessions}</strong>
             </div>
             <div className="summary-tile">
-              <span>Skills</span>
-              <strong>4</strong>
+              <span>Est. Band</span>
+              <strong>{estimates.overallBand !== null ? estimates.overallBand.toFixed(1) : "-"}</strong>
             </div>
+            {showGap && (
+              <div className="summary-tile">
+                <span>Target → Gap</span>
+                <strong style={{ color: estimates.overallBand >= targetBand ? "var(--green, #16a34a)" : "var(--red, #dc2626)" }}>
+                  {targetBand.toFixed(1)} → {estimates.overallBand >= targetBand ? "✓" : (targetBand - estimates.overallBand).toFixed(1) + " to go"}
+                </strong>
+              </div>
+            )}
           </div>
           <div className="practice-hub-hero-copy">
             Reading uses the shared question bank. Listening, Writing, and Speaking each use a dedicated practice flow.
+            {estimates.confidence === "low" && " Complete more sessions for reliable band estimates."}
           </div>
         </div>
       </LociCard>
