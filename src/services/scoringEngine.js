@@ -1024,7 +1024,7 @@ function computeUrgencyScore(deadline, confidence = 0.5) {
   return { score: Math.max(1, Math.min(10, Math.round(raw))), daysRemaining };
 }
 
-export function scoreScholarship(record, profile, { idfWeights = null } = {}) {
+export function scoreScholarship(record, profile, { idfWeights = null, engagementMap = null } = {}) {
   const candidate = normalizeStructuredProfile(profile);
   const resolvedSignals = getResolvedCandidateSignals(profile);
   const scholarship = normalizeScholarship(record);
@@ -1149,14 +1149,29 @@ export function scoreScholarship(record, profile, { idfWeights = null } = {}) {
     };
   }
 
+  // Engagement bonus: mild boost for scholarships the user engaged with.
+  // +5% shortlisted, +8% applied, -5% dismissed. Kept small to avoid filter bubble.
+  var engagementScore = 0;
+  var engagementReason = null;
+  if (engagementMap) {
+    var key = (scholarship.id || scholarship.slug || "").toString();
+    var entry = engagementMap[key];
+    if (entry) {
+      if (entry === "applied" || entry === "apply_start") { engagementScore = 0.08; engagementReason = "previously applied"; }
+      else if (entry === "shortlisted") { engagementScore = 0.05; engagementReason = "shortlisted"; }
+      else if (entry === "dismissed") { engagementScore = -0.05; engagementReason = "previously dismissed"; }
+    }
+  }
+
   const compositeBase = clamp01(
-    semanticScore * 0.35 +
-    eligibility.score * 0.3 +
-    coverage.score * 0.15 +
-    deadline.pressure * 0.1 +
+    semanticScore * 0.33 +
+    eligibility.score * 0.28 +
+    coverage.score * 0.13 +
+    deadline.pressure * 0.09 +
     provenance.value * 0.05 +
-    (1 - documentBurden) * 0.05 +
-    opportunityPriority.score * 0.15
+    (1 - documentBurden) * 0.04 +
+    opportunityPriority.score * 0.13 +
+    Math.max(-0.08, engagementScore)
   ) * provenance.value;
   const composite = Math.max(0, compositeBase - (eligibility.provisionalPenalty || 0));
   const total = Math.round(composite * 100);
@@ -1176,6 +1191,7 @@ export function scoreScholarship(record, profile, { idfWeights = null } = {}) {
     { key: "burden", label: "Document burden", score: Math.round((1 - documentBurden) * 100), max: 100, reason: "lower is better" },
     { key: "provenance", label: "Source confidence", score: Math.round(provenance.value * 100), max: 100, reason: `confidence ${provenance.value.toFixed(2)}` },
     { key: "priority", label: "Opportunity priority", score: Math.round(opportunityPriority.score * 100), max: 100, reason: opportunityPriority.priorityReasons.join(", ") || opportunityPriority.priorityTier },
+    ...(engagementReason ? [{ key: "engagement", label: "Your engagement", score: Math.round(engagementScore * 100), max: 100, reason: engagementReason }] : []),
   ];
 
   return {
