@@ -111,6 +111,13 @@ export default function ReadinessPage({ profile, sessions, scholarshipCatalog = 
             <span>Practice sessions</span>
             <strong>{sessionCount}</strong>
           </div>
+          {profile?.estimatedIelts != null && (
+            <div className="readiness-signal">
+              <span>Est. IELTS band (from practice)</span>
+              <strong>{Number(profile.estimatedIelts).toFixed(1)}</strong>
+              <p>{profile.estimatedIeltsConfidence === "high" ? "High confidence" : profile.estimatedIeltsConfidence === "medium" ? "Building confidence" : "Keep practicing"} — {sessionCount} sessions</p>
+            </div>
+          )}
           <div className="readiness-signal">
             <span>Top match</span>
             <strong>{ranked[0] ? `${Math.round(ranked[0].analysis?.score || 0)}%` : "Pending"}</strong>

@@ -32,6 +32,7 @@ import {
 } from "./lib/onboardingResolution.js";
 import { getOnboardingStatus } from "./lib/onboardingJourney.js";
 import { exportResultsData, mergeSessions } from "./lib/sessionTools.js";
+import { estimateOverallBand, getLanguageProof } from "./lib/bandScoreEstimator.js";
 import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
 import { getErrorMessage, logAppError } from "./lib/appErrors.js";
 import { C, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR } from "./lib/tokens.js";
@@ -218,7 +219,36 @@ export default function App() {
   // ── Practice session handlers ─────────────────────────
   const onSessionComplete = async (sess) => {
     const session = { ...sess, id: sess.id || crypto.randomUUID() };
-    setSessions((current) => mergeSessions(current, [session]));
+    const updatedList = mergeSessions(sessions, [session]);
+    setSessions(updatedList);
+
+    // Feed practice scores into profile language proof so the
+    // readiness engine and scholarship matcher see live band estimates.
+    try {
+      const allSessions = Array.isArray(updatedList) ? updatedList
+        : typeof updatedList === "object" && updatedList ? Object.values(updatedList).flat().filter(Boolean) : [];
+      const estimates = estimateOverallBand(allSessions);
+      if (estimates.overallBand !== null && profile?.id) {
+        const bandUpdates = {};
+        for (const [mod, est] of Object.entries(estimates.moduleEstimates)) {
+          if (est.estimatedBand !== null) bandUpdates[mod] = est.estimatedBand;
+        }
+        if (Object.keys(bandUpdates).length) {
+          setProfile((current) => ({
+            ...(current || {}),
+            selfAssessment: { ...(current?.selfAssessment || {}), ...bandUpdates },
+            languageTests: {
+              ...(current?.languageTests || {}),
+              ieltsBands: { ...(current?.languageTests?.ieltsBands || {}), ...bandUpdates },
+            },
+            estimatedIelts: estimates.overallBand,
+            estimatedIeltsConfidence: estimates.confidence,
+            estimatedIeltsUpdatedAt: new Date().toISOString(),
+          }));
+        }
+      }
+    } catch { /* band estimation is best-effort, never block the session save */ }
+
     if (authUser?.id && profile?.id) {
       try {
         await savePracticeSession(profile.id, session);
