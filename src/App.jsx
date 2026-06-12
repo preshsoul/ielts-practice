@@ -84,9 +84,12 @@ export default function App() {
   const [onboardingResolutionDraft, setOnboardingResolutionDraft] = useState(() => createOnboardingResolutionDraft());
   const [onboardingMessage, setOnboardingMessage] = useState("");
   const [onboardingBusy, setOnboardingBusy] = useState(false);
+  // Gate is dismissed if the user explicitly skipped OR previously completed onboarding.
+  // Persisted to sessionStorage so HMR and page reloads don't bounce completed users.
   const [onboardingGateDismissed, setOnboardingGateDismissed] = useState(() => {
     if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem("loci.onboardingSkipped") === "true";
+    return window.sessionStorage.getItem("loci.onboardingSkipped") === "true"
+      || window.sessionStorage.getItem("loci.onboardingCompleted") === "true";
   });
 
   // ── Derived hooks ─────────────────────────────────────
@@ -182,10 +185,10 @@ export default function App() {
       }
       if (typeof window !== "undefined") {
         window.sessionStorage.removeItem("loci.onboardingSkipped");
+        // Persist completion so the gate stays dismissed across HMR and page reloads.
+        window.sessionStorage.setItem("loci.onboardingCompleted", "true");
       }
       // Dismiss the onboarding gate so the user stays at the workspace.
-      // (Before this was set to false, which re-activated the gate and
-      // bounced the user right back to /onboarding if any field was missing.)
       setOnboardingGateDismissed(true);
       setOnboardingMessage("Setup saved. Your dashboard is ready.");
       const returnPath = location.state?.from?.pathname;
@@ -285,7 +288,19 @@ export default function App() {
     );
   }
 
-  if (location.pathname !== "/onboarding" && !onboardingGateDismissed && onboardingStatus.shouldRedirect) {
+  // Only redirect to onboarding if:
+  // 1. The gate hasn't been dismissed (user hasn't completed or skipped onboarding)
+  // 2. Auth is ready and profile object exists (don't redirect during initial load/HMR
+  //    when profile is still null — wait for Supabase to return the profile first)
+  // 3. The profile is genuinely incomplete AND not marked complete server-side
+  if (
+    location.pathname !== "/onboarding" &&
+    !onboardingGateDismissed &&
+    authReady &&
+    profile != null &&
+    !profile.onboarding_completed &&  // server-side truth: onboarding was completed
+    onboardingStatus.shouldRedirect
+  ) {
     return <Navigate to="/onboarding" replace state={{ from: location }} />;
   }
 
