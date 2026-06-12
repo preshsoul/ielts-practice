@@ -215,31 +215,28 @@ export function createOnboardingResolutionDraft(profile = {}) {
   };
 }
 
+// Syncs changes from the flat legacy draft (used by OnboardingForm UI) back into
+// the structured resolution draft (extraction/asserted/resolved layers).
+//
+// Why two drafts exist:
+//   - legacyDraft: flat shape matching what the OnboardingForm components read/write
+//   - resolutionDraft: tracks what was extracted vs what the user asserted, enabling
+//     conflict detection (e.g. "CV says 2:1 but you typed First Class")
+//
+// Consolidating into one would require rewriting all four OnboardingForm steps.
+// For now, this sync function keeps them consistent.
 export function syncOnboardingResolutionDraft(resolutionDraft = {}, nextLegacyDraft = {}) {
   const previousLegacyDraft = resolutionDraft?.legacyDraft || {};
+  // Deep-merge sub-objects so partial updates from individual form fields don't
+  // overwrite unrelated sections.
   const mergedLegacyDraft = {
     ...previousLegacyDraft,
     ...nextLegacyDraft,
-    identity: {
-      ...(previousLegacyDraft.identity || {}),
-      ...(nextLegacyDraft.identity || {}),
-    },
-    academic: {
-      ...(previousLegacyDraft.academic || {}),
-      ...(nextLegacyDraft.academic || {}),
-    },
-    professional: {
-      ...(previousLegacyDraft.professional || {}),
-      ...(nextLegacyDraft.professional || {}),
-    },
-    languageTests: {
-      ...(previousLegacyDraft.languageTests || {}),
-      ...(nextLegacyDraft.languageTests || {}),
-    },
-    currentLevel: {
-      ...(previousLegacyDraft.currentLevel || {}),
-      ...(nextLegacyDraft.currentLevel || {}),
-    },
+    identity: { ...(previousLegacyDraft.identity || {}), ...(nextLegacyDraft.identity || {}) },
+    academic: { ...(previousLegacyDraft.academic || {}), ...(nextLegacyDraft.academic || {}) },
+    professional: { ...(previousLegacyDraft.professional || {}), ...(nextLegacyDraft.professional || {}) },
+    languageTests: { ...(previousLegacyDraft.languageTests || {}), ...(nextLegacyDraft.languageTests || {}) },
+    currentLevel: { ...(previousLegacyDraft.currentLevel || {}), ...(nextLegacyDraft.currentLevel || {}) },
   };
 
   const nextResolution = createOnboardingResolutionDraft({
