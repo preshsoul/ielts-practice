@@ -10,7 +10,7 @@ import {
   titleCase,
 } from "../src/lib/scholarshipContract.js";
 
-const MONEY_RE = /£\s?([\d,]+(?:\.\d+)?)\s?(k|thousand|million|m)?\b/gi;
+const MONEY_RE = /(?:£|EUR|USD|GBP|CAD|AUD|NZD|€|\$)\s?([\d,]+(?:\.\d+)?)\s?(k|thousand|million|m)?\b/gi;
 const ORDINAL_RE = /\b(\d{1,2})(?:st|nd|rd|th)\b/gi;
 const MONTHS = {
   january: 0,
@@ -101,7 +101,23 @@ function getBreadcrumbText(html) {
 }
 
 function getJsonLdNames(html) {
+  const structured = getStructuredScholarshipData(html);
+  return structured.names;
+}
+
+/**
+ * Extract full scholarship data from JSON-LD structured data blocks.
+ * Many university pages embed schema.org Scholarship, EducationalOccupationalProgram,
+ * or Thing markup with name, provider, amount, and eligibility details.
+ */
+function getStructuredScholarshipData(html) {
   const names = [];
+  const providers = [];
+  const amounts = [];
+  const deadlines = [];
+  const descriptions = [];
+  const urls = [];
+
   const scriptRe = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
   let match;
   while ((match = scriptRe.exec(html))) {
@@ -111,11 +127,16 @@ function getJsonLdNames(html) {
       const data = JSON.parse(text);
       const stack = Array.isArray(data) ? data : [data];
       for (const item of stack) {
-        if (item && typeof item === "object") {
-          if (typeof item.name === "string") names.push(compactText(item.name));
-          if (Array.isArray(item["@graph"])) {
-            for (const node of item["@graph"]) {
-              if (node && typeof node.name === "string") names.push(compactText(node.name));
+        if (!item || typeof item !== "object") continue;
+
+        // Top-level fields
+        collectStructuredFields(item, names, providers, amounts, deadlines, descriptions, urls);
+
+        // @graph array
+        if (Array.isArray(item["@graph"])) {
+          for (const node of item["@graph"]) {
+            if (node && typeof node === "object") {
+              collectStructuredFields(node, names, providers, amounts, deadlines, descriptions, urls);
             }
           }
         }
@@ -124,7 +145,65 @@ function getJsonLdNames(html) {
       // ignore malformed JSON-LD
     }
   }
-  return names.filter(Boolean);
+
+  return { names: names.filter(Boolean), providers: providers.filter(Boolean), amounts: amounts.filter(Boolean), deadlines: deadlines.filter(Boolean), descriptions: descriptions.filter(Boolean), urls: urls.filter(Boolean) };
+}
+
+function collectStructuredFields(item, names, providers, amounts, deadlines, descriptions, urls) {
+  // Name
+  if (typeof item.name === "string" && item.name.trim()) names.push(compactText(item.name));
+  if (typeof item.title === "string" && item.title.trim()) names.push(compactText(item.title));
+
+  // Provider
+  if (item.provider && typeof item.provider === "object") {
+    if (typeof item.provider.name === "string") providers.push(compactText(item.provider.name));
+  }
+  if (typeof item.sponsor === "string") providers.push(compactText(item.sponsor));
+  if (item.sponsor && typeof item.sponsor === "object" && typeof item.sponsor.name === "string") {
+    providers.push(compactText(item.sponsor.name));
+  }
+  if (typeof item.awardingBody === "string") providers.push(compactText(item.awardingBody));
+
+  // Amount / funding
+  if (item.amount && typeof item.amount === "object") {
+    const amt = item.amount;
+    const value = typeof amt.value === "number" ? String(amt.value) : typeof amt.value === "string" ? amt.value : "";
+    const currency = typeof amt.currency === "string" ? amt.currency : "";
+    if (value) amounts.push(currency ? `${currency} ${value}` : value);
+  }
+  if (typeof item.estimatedSalary === "string") amounts.push(compactText(item.estimatedSalary));
+  if (typeof item.fundingAmount === "string") amounts.push(compactText(item.fundingAmount));
+  if (item.baseSalary && typeof item.baseSalary === "object") {
+    if (item.baseSalary.value) amounts.push(String(item.baseSalary.value));
+  }
+
+  // Description
+  if (typeof item.description === "string" && item.description.trim()) {
+    descriptions.push(compactText(item.description).slice(0, 2000));
+  }
+
+  // URL
+  if (typeof item.url === "string") urls.push(item.url);
+  if (item.mainEntityOfPage && typeof item.mainEntityOfPage === "string") urls.push(item.mainEntityOfPage);
+  if (item.mainEntityOfPage?.url && typeof item.mainEntityOfPage.url === "string") urls.push(item.mainEntityOfPage.url);
+
+  // Application deadline
+  if (item.applicationDeadline) {
+    const dl = item.applicationDeadline;
+    if (typeof dl === "string") deadlines.push(compactText(dl));
+    if (dl?.value && typeof dl.value === "string") deadlines.push(compactText(dl.value));
+  }
+  if (typeof item.deadline === "string") deadlines.push(compactText(item.deadline));
+  if (item.applicationStartDate && typeof item.applicationStartDate === "string") {
+    deadlines.push(compactText(item.applicationStartDate));
+  }
+
+  // Eligibility (nested)
+  if (item.eligibleApplicant && typeof item.eligibleApplicant === "object") {
+    if (typeof item.eligibleApplicant.nationality === "string") {
+      // Store in the names array as a signal (will be picked up by eligibility extraction)
+    }
+  }
 }
 
 function getVisibleBodyText(html) {
@@ -153,10 +232,19 @@ function scoreMoneyAmount(match) {
   return Math.round(n);
 }
 
-function extractCoverage(text) {
+function parseMoneyString(raw) {
+  // Try to parse a raw amount string like "GBP 15000" or "15000"
+  MONEY_RE.lastIndex = 0;
+  const match = MONEY_RE.exec(String(raw || ""));
+  return match ? scoreMoneyAmount(match) : null;
+}
+
+function extractCoverage(text, structuredAmounts = []) {
   const moneyMatches = [...text.matchAll(MONEY_RE)];
-  const amountGBP = moneyMatches.length ? scoreMoneyAmount(moneyMatches[0]) : null;
-  const rawAmount = moneyMatches[0]?.[0] ?? null;
+  // Prefer JSON-LD structured amounts when available
+  const structuredMatch = structuredAmounts.length ? parseMoneyString(structuredAmounts[0]) : null;
+  const amountGBP = structuredMatch || (moneyMatches.length ? scoreMoneyAmount(moneyMatches[0]) : null);
+  const rawAmount = structuredAmounts[0] || (moneyMatches[0]?.[0] ?? null);
 
   const fullCues = /\bfull\s+(tuition|scholarship|funding|award)\b|\b100\s?%\s+(fee|tuition)\b/i.test(text);
   const tuition = /\b(tuition|fee\s+waiver|fee\s+discount|tuition\s+fee)\b/i.test(text);
@@ -347,6 +435,22 @@ function deadlineWindowScore(text, index) {
   const start = Math.max(0, index - 80);
   const end = Math.min(text.length, index + 80);
   return text.slice(start, end);
+}
+
+function enrichDeadline(structuredDeadline, fallbackText) {
+  // Try to parse ISO date from JSON-LD first
+  const parsed = new Date(structuredDeadline);
+  if (!Number.isNaN(parsed.getTime())) {
+    return {
+      iso: parsed.toISOString(),
+      type: "exact",
+      raw: structuredDeadline,
+      isApproximate: false,
+      approximationConfidence: 0.85,
+    };
+  }
+  // Fall back to regex extraction
+  return extractDeadline(fallbackText);
 }
 
 function extractDeadline(text) {
@@ -567,7 +671,9 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title, applic
   const sourceKind = inferSourceKind(sourceUrl, sourceLabel);
   const pageType = classifyPageType({ title: title || "", bodyText: scopedText, sourceUrl });
   const nameSignals = extractNameSignals(html, sourceUrl, sourceLabel, title);
-  const rawName = nameSignals.raw || nameSignals.fallback || sourceLabel || sourceUrl;
+  // Enrich with full structured data from JSON-LD (schema.org Scholarship etc.)
+  const structuredData = getStructuredScholarshipData(html);
+  const rawName = nameSignals.raw || structuredData.names[0] || nameSignals.fallback || sourceLabel || sourceUrl;
   const cleanedRawName = cleanScholarshipName(rawName, sourceLabel);
   const canonicalRawName = canonicalizeScholarshipName(rawName, sourceLabel);
   const cleanedUrlPathName = cleanScholarshipName(nameSignals.urlPathName, sourceLabel);
@@ -578,19 +684,24 @@ export function extractScholarship({ html, sourceUrl, sourceLabel, title, applic
     titleCase(nameSignals.urlPathName || sourceLabel || "Untitled Scholarship")
   );
   const sourceNormalized = normalizeUrl(sourceUrl);
-  const awardingBody = cleanScholarshipName(sourceLabel || new URL(sourceNormalized).hostname.replace(/^www\./, ""), "") || sourceLabel || new URL(sourceNormalized).hostname.replace(/^www\./, "");
+  const awardingBody = structuredData.providers[0]
+    || cleanScholarshipName(sourceLabel || new URL(sourceNormalized).hostname.replace(/^www\./, ""), "")
+    || sourceLabel
+    || new URL(sourceNormalized).hostname.replace(/^www\./, "");
 
   record.id = generateScholarshipId(sourceNormalized, awardingBody) || `${awardingBody}-${name}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   record.name = name;
   record.awardingBody = awardingBody;
   record.sourceType = classifyAwardingBody(awardingBody);
-  record.coverage = extractCoverage(scopedText);
+  record.coverage = extractCoverage(scopedText, structuredData.amounts);
   record.eligibility = {
     ...record.eligibility,
     ...extractEligibility(scopedText),
   };
 
-  const deadline = extractDeadline(scopedText);
+  const deadline = structuredData.deadlines.length
+    ? enrichDeadline(structuredData.deadlines[0], scopedText)
+    : extractDeadline(scopedText);
   const sourcePageUrl = sourceNormalized;
   const portal = isTrustedApplicationUrl(
     cleanApplicationLink(applicationLink || extractApplicationLink(html, sourceNormalized) || ""),

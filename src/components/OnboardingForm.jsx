@@ -504,6 +504,7 @@ function ExtractionStep({ draft, setDraft, setStep, onSkipUpload }) {
       identity: { ...(current.identity || {}), ...(intake.parsedProfile?.identity || {}) },
       professional: { ...(current.professional || {}), ...(intake.parsedProfile?.professional || {}) },
       languageTests: { ...(current.languageTests || {}), ...(intake.parsedProfile?.languageTests || {}) },
+      currentLevel: current.currentLevel || {}, // ensure band-score inputs never crash VerdictStep
       targetDegreeLevel: current.targetDegreeLevel || intake.parsedProfile?.targetDegreeLevel || "",
       targetDisciplines: getList(current.targetDisciplines).length ? current.targetDisciplines : getList(intake.parsedProfile?.targetDisciplines),
       targetCountries: getList(current.targetCountries).length ? current.targetCountries : getList(intake.parsedProfile?.targetCountries),
@@ -727,7 +728,12 @@ function AlignmentStep({ draft, setDraft, setStep, scholarshipCatalog = [] }) {
   const scoredTargets = useMemo(() => {
     const catalog = Array.isArray(scholarshipCatalog) ? scholarshipCatalog : [];
     if (!catalog.length) return [];
-    return rankScholarships(catalog, buildProfileForScoring(draft), { limit: 4 }).scored || [];
+    try {
+      return rankScholarships(catalog, buildProfileForScoring(draft), { limit: 4 }).scored || [];
+    } catch {
+      // Ranking is best-effort during onboarding — partial profiles may not score cleanly
+      return [];
+    }
   }, [draft, scholarshipCatalog]);
   const targetCards = scoredTargets
     .filter(({ analysis }) => Number(analysis?.score || 0) > 0 || Number(analysis?.retrievalScore || 0) > 0)
@@ -895,7 +901,7 @@ function VerdictStep({ draft, resolutionDraft, setDraft, setStep, onSave, saving
             {MODULES.map((module) => (
               <label key={module}>
                 <span>{module}</span>
-                <input type="number" min="0" max="9" step="0.5" value={draft.currentLevel[module]} onChange={(event) => updateCurrentLevel(setDraft, module, event.target.value)} placeholder="7.0" />
+                <input type="number" min="0" max="9" step="0.5" value={draft.currentLevel?.[module] || ""} onChange={(event) => updateCurrentLevel(setDraft, module, event.target.value)} placeholder="7.0" />
               </label>
             ))}
           </div>

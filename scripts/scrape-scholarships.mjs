@@ -9,12 +9,13 @@ import { normalizeUrl as normalizeScholarshipUrl } from "../src/lib/scholarshipC
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
-const sourcesPath = join(root, "content", "scholarship-sources.json");
-const reviewQueuePath = join(root, "content", "scholarships.review.json");
-const validationFailuresPath = join(root, "content", "validation-failures.json");
-const deadLinksPath = join(root, "content", "dead-links.json");
-const candidateBankPath = join(root, "content", "scholarship-candidates.json");
-const sourceMetricsPath = join(root, "content", "scholarship-source-metrics.json");
+const sourcesPath = process.env.SOURCES_PATH || join(root, "content", "scholarship-sources.json");
+const outPrefix = process.env.SCHOLARSHIP_OUTPUT_PREFIX || "";
+const reviewQueuePath = join(root, "content", outPrefix + "scholarships.review.json");
+const validationFailuresPath = join(root, "content", outPrefix + "validation-failures.json");
+const deadLinksPath = join(root, "content", outPrefix + "dead-links.json");
+const candidateBankPath = join(root, "content", outPrefix + "scholarship-candidates.json");
+const sourceMetricsPath = join(root, "content", outPrefix + "scholarship-source-metrics.json");
 const wanted = /scholar|fund|funding|award|bursar|grant|fellow|fellowship|studentship|position|opportunity/i;
 const blockedPathPatterns = [
   "/login",
@@ -656,6 +657,9 @@ function scoreCandidateLink(link, strategy = {}) {
   if (/position-detail\?id=\d+/i.test(link.href)) score += 6;
   if (/\/positions(?:\/|$|\?)/i.test(link.href)) score += 4;
   if (/\/category\/scholarships\//i.test(link.href)) score += 4;
+  // University funding pages often use non-standard paths
+  if (/\/(fees-and-funding|student-funding|funding|studentships|bursaries|awards)\//i.test(link.href)) score += 3;
+  if (/\/(postgraduate|graduate|masters|phd|doctoral|research-degrees)\//i.test(link.href)) score += 2;
   return score;
 }
 
@@ -1079,13 +1083,17 @@ async function main() {
         matchesPatternList(haystack, strategy.priorityPatterns) ? 2 : 0,
         pathMatches(canonicalPageUrl, strategy.entryPaths) ? 1 : 0,
       ].reduce((sum, value) => sum + value, 0);
+      // University directory pages often lack strong keyword signals despite
+      // containing scholarship content. Use a lower bar for those sources.
+      const isUniversitySource = String(source?.source_type || "").toLowerCase() === "official_university_directory";
+      const minPageScore = isUniversitySource ? 1 : 3;
       const canExtractRecord =
         pageType !== "login" &&
         pageType !== "faq" &&
-        pageType !== "listing" &&
         pageType !== "news" &&
-        pageType === "detail" &&
-        pageScore >= 3 &&
+        pageType !== "listing" &&
+        (pageType === "detail" || (isUniversitySource && pageType === "unknown")) &&
+        pageScore >= minPageScore &&
         !isLowValueScholarshipCandidate({ title, summary, url: canonicalPageUrl, source });
 
       if (!canExtractRecord) {
