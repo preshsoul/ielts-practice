@@ -182,7 +182,10 @@ export default function App() {
       if (typeof window !== "undefined") {
         window.sessionStorage.removeItem("loci.onboardingSkipped");
       }
-      setOnboardingGateDismissed(false);
+      // Dismiss the onboarding gate so the user stays at the workspace.
+      // (Before this was set to false, which re-activated the gate and
+      // bounced the user right back to /onboarding if any field was missing.)
+      setOnboardingGateDismissed(true);
       setOnboardingMessage("Setup saved. Your dashboard is ready.");
       const returnPath = location.state?.from?.pathname;
       navigate(returnPath && returnPath !== "/onboarding" ? returnPath : "/", { replace: true });
