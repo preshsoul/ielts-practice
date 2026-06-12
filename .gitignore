@@ -69,3 +69,4 @@ tools/
 *.key
 *-service-account.json
 credentials.json
+scholarship-sources-merged-test.json
