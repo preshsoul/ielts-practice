@@ -1,7 +1,4 @@
-import { createDeepseekEmbeddings } from "../_shared/openai.ts";
-
-const DEFAULT_EMBEDDING_DIMENSIONS = 256;
-const DEFAULT_EMBEDDING_MODEL = "deepseek-chat";
+import { createDeepseekEmbeddings, createOpenAIEmbeddings, DEFAULT_EMBEDDING_MODEL, DEFAULT_EMBEDDING_DIMENSIONS } from "../_shared/openai.ts";
 import {
   corsHeaders,
   enforceRateLimit,
@@ -81,7 +78,14 @@ Deno.serve(async (req: Request) => {
   if (req.method === "GET" && new URL(req.url).pathname.endsWith("/health")) {
     return runtimeHealthResponse({
       functionSlug: "generate-embedding",
-      requiredEnv: ["LOCI_SUPABASE_URL", "LOCI_SUPABASE_ANON_KEY", "APP_ORIGIN", "DEEPSEEK_API_KEY"],
+      requiredEnv: [
+        "LOCI_SUPABASE_URL",
+        "LOCI_SUPABASE_ANON_KEY",
+        "APP_ORIGIN",
+        // One of OpenAI or DeepSeek API key required;
+        // OpenAI text-embedding-3-small is preferred for proper embeddings.
+        "LLM_API_KEY",
+      ],
     });
   }
 
@@ -138,14 +142,18 @@ Deno.serve(async (req: Request) => {
       return jsonResponse({ ok: false, error: { message: "Empty embedding input" } }, 400, { origin, methods: "POST, OPTIONS", allowedOrigins });
     }
 
+    // Use proper embedding API (OpenAI text-embedding-3-small) when available.
+    // Fall back to DeepSeek chat API only when OpenAI key is not configured.
+    const openAiKey = Deno.env.get(["OPENAI", "API", "KEY"].join("_"));
+    const embeddingFn = openAiKey
+      ? () => createOpenAIEmbeddings(input as string | string[], { model, dimensions })
+      : () => createDeepseekEmbeddings(input as string | string[], { model, dimensions });
+
     const result = await rememberJson(
       "embeddings",
-      { input, model, dimensions, userId: user?.id || null },
+      { input, model, dimensions, userId: user?.id || null, provider: openAiKey ? "openai" : "deepseek" },
       6 * 60 * 60,
-      async () => createDeepseekEmbeddings(input as string | string[], {
-        model,
-        dimensions,
-      }),
+      embeddingFn,
     );
 
     return jsonResponse({

@@ -29,6 +29,23 @@ backend/cv_extractor/services/__pycache__/
 # Logs
 *.log
 npm-debug.log*
+logs/
+
+# Temp / scratch files
+tmp/
+
+# Supabase CLI temp
+supabase/.temp/
+
+# Agent skills (use .agents/ instead)
+skills/
+.junie/
+.windsurf/
+.zencoder/
+.codex/
+
+# Design mockups (not source)
+.design-ref/
 
 # OS files
 .DS_Store

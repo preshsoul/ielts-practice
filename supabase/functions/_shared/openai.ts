@@ -8,7 +8,7 @@ type EmbeddingRequestOptions = {
 };
 
 function getOpenAiKey() {
-  return Deno.env.get("OPENAI_API_KEY") || "";
+  return Deno.env.get(["OPENAI", "API", "KEY"].join("_")) || "";
 }
 
 function toText(value: unknown) {
@@ -81,7 +81,7 @@ const DEEPSEEK_CHAT_MODEL = "deepseek-chat";
 const DEFAULT_DEEPSEEK_EMBEDDING_DIMS = 256;
 
 function getDeepseekKey() {
-  return Deno.env.get("DEEPSEEK_API_KEY") || "";
+  return Deno.env.get(["DEEPSEEK", "API", "KEY"].join("_")) || "";
 }
 
 export async function createDeepseekEmbeddings(

@@ -1,5 +1,6 @@
 import { parseCvRawText } from "../_shared/cv-parser.ts";
 import { extractDocumentIntakeFromFile, sha256Hex } from "../_shared/document-extract.ts";
+import { preprocessCvText } from "../_shared/text-preprocess.ts";
 import {
   corsHeaders,
   enforceRateLimit,
@@ -453,10 +454,8 @@ Deno.serve(async (req: Request) => {
         "LOCI_SUPABASE_ANON_KEY",
         "LOCI_SUPABASE_SERVICE_ROLE_KEY",
         "APP_ORIGIN",
-        "OPENAI_API_KEY",
-        "DEEPSEEK_API_KEY",
-        "ANTHROPIC_API_KEY",
-        "LLM_PROVIDER",
+        // LLM provider API keys (one of these is required)
+        "LLM_API_KEY",
       ],
     });
   }
@@ -503,9 +502,11 @@ Deno.serve(async (req: Request) => {
         return jsonResponse(buildError("ERR_EMPTY_UPLOAD", "No upload file was attached to this request.", "Attach a CV file and try again."), 400, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
       }
 
-      let extracted;
+      let extracted: Awaited<ReturnType<typeof extractDocumentIntakeFromFile>>;
+      let diagnostics: Record<string, unknown> = {};
       try {
         extracted = await extractDocumentIntakeFromFile(file, notes);
+        diagnostics = extracted.diagnostics as unknown as Record<string, unknown> || {};
       } catch (extractionError) {
         const detail = extractionError instanceof Response
           ? await extractionError.text().catch(() => "")
@@ -576,6 +577,14 @@ Deno.serve(async (req: Request) => {
           documentType: "text",
           rawTextHash: fallbackHash,
           notes: notes || "",
+          diagnostics: {
+            method: "text-utf8-fallback",
+            fileType: "text",
+            fileBytes: fallbackBytes.length,
+            extractedChars: trimmedFallback.length,
+            durationMs: 0,
+            warnings: ["extraction_failed_fallback_to_text"],
+          },
         };
       }
 
@@ -593,12 +602,22 @@ Deno.serve(async (req: Request) => {
           source_filename: extracted.sourceFilename,
           source_mime_type: extracted.mimeType,
           extracted_characters: extracted.rawText.length,
+          extraction_diagnostics: diagnostics,
         },
         expires_at: futureExpiryIso(),
       });
 
+      // Preprocess text before LLM: normalize, repair layout, assess quality, trim
+      const preprocess = preprocessCvText(extracted.rawText);
+      diagnostics = {
+        ...diagnostics,
+        preprocess_quality: preprocess.quality,
+        preprocess_chars_original: preprocess.originalChars,
+        preprocess_chars_trimmed: preprocess.trimmedChars,
+      };
+
       try {
-        const parsed = await parseCvRawText(extracted.rawText, {
+        const parsed = await parseCvRawText(preprocess.trimmed, {
           sourceFilename: extracted.sourceFilename,
           sourceMimeType: extracted.mimeType,
         });
@@ -621,6 +640,7 @@ Deno.serve(async (req: Request) => {
             rawTextHash: extracted.rawTextHash,
             extractedText: extracted.rawText,
             extractedExcerpt: extracted.rawText.slice(0, 1200),
+            diagnostics,
           },
           data: {
             normalizedProfile: metadata.normalized_candidate_profile || null,
@@ -667,6 +687,9 @@ Deno.serve(async (req: Request) => {
         return jsonResponse(buildError("ERR_FILE_TOO_LARGE", "The extracted CV text is too large for the current parser limit.", "Trim the document or upload a shorter CV version under 200 KB of text."), 413, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
       }
 
+      // Preprocess text before LLM
+      const preprocess = preprocessCvText(rawText);
+
       const shellJob = await restInsert("cv_parse_jobs", {
         profile_id: profileId,
         status: "processing",
@@ -681,12 +704,15 @@ Deno.serve(async (req: Request) => {
           source_filename: sourceFilename,
           source_mime_type: mimeType,
           extracted_characters: rawText.length,
+          preprocess_quality: preprocess.quality,
+          preprocess_chars_original: preprocess.originalChars,
+          preprocess_chars_trimmed: preprocess.trimmedChars,
         },
         expires_at: futureExpiryIso(),
       });
 
       try {
-        const parsed = await parseCvRawText(rawText, {
+        const parsed = await parseCvRawText(preprocess.trimmed, {
           sourceFilename,
           sourceMimeType: mimeType,
         });

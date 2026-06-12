@@ -1,5 +1,26 @@
 from __future__ import annotations
 
+# ═══════════════════════════════════════════════════════════════════════════
+# DEPRECATION NOTICE — 2026-06-12
+# ---------------------------------------------------------------------------
+# This Python backend is LEGACY. The primary CV parsing pipeline is now the
+# Supabase Edge Function at supabase/functions/cv-parser/index.ts.
+#
+# Reasons for deprecation:
+#   1. Dual-path maintenance burden (Supabase Deno + Python FastAPI)
+#   2. The Edge Function path now has:
+#      - Production-grade native PDF extraction (CMap, layout-aware)
+#      - Full DOCX support (ZIP/XML parsing)
+#      - Text preprocessing pipeline (normalize, repair, section, quality-gate)
+#      - Extraction telemetry (method, timing, warnings, OCR recommendation)
+#      - Proper embedding API (OpenAI text-embedding-3-small)
+#   3. Having two paths produces inconsistent results for the same CV
+#
+# This code is kept for reference and as an OPT-IN fallback.
+# Set CV_USE_PYTHON_BACKEND=true to route requests here instead of the
+# Edge Function. Otherwise, all parsing goes through the Deno path.
+# ═══════════════════════════════════════════════════════════════════════════
+
 import asyncio
 import logging
 import os
