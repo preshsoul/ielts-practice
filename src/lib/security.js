@@ -109,39 +109,19 @@ export function cleanProfilePatch(payload = {}) {
   if (next.languageTests) next.languageTests = cleanNestedProfileSection(next.languageTests);
 
   if (next.applicationCycle !== undefined) {
-    next.applicationcycle = cleanText(next.applicationCycle, { maxLength: 24 }) || null;
-    delete next.applicationCycle;
-  }
-
-  if (next.applicationcycle !== undefined) {
-    next.applicationcycle = cleanText(next.applicationcycle, { maxLength: 24 }) || null;
+    next.applicationCycle = cleanText(next.applicationCycle, { maxLength: 24 }) || null;
   }
 
   if (next.targetDegreeLevel !== undefined) {
-    next.targetdegreelevel = cleanText(next.targetDegreeLevel, { maxLength: 64 }) || null;
-    delete next.targetDegreeLevel;
-  }
-
-  if (next.targetdegreelevel !== undefined) {
-    next.targetdegreelevel = cleanText(next.targetdegreelevel, { maxLength: 64 }) || null;
+    next.targetDegreeLevel = cleanText(next.targetDegreeLevel, { maxLength: 64 }) || null;
   }
 
   if (next.targetDisciplines !== undefined) {
-    next.targetdisciplines = cleanList(next.targetDisciplines, { maxLength: 64 });
-    delete next.targetDisciplines;
-  }
-
-  if (next.targetdisciplines !== undefined) {
-    next.targetdisciplines = cleanList(next.targetdisciplines, { maxLength: 64 });
+    next.targetDisciplines = cleanList(next.targetDisciplines, { maxLength: 64 });
   }
 
   if (next.targetCountries !== undefined) {
-    next.targetcountries = cleanList(next.targetCountries, { maxLength: 64 });
-    delete next.targetCountries;
-  }
-
-  if (next.targetcountries !== undefined) {
-    next.targetcountries = cleanList(next.targetcountries, { maxLength: 64 });
+    next.targetCountries = cleanList(next.targetCountries, { maxLength: 64 });
   }
 
   if (next.self_assessment) {
