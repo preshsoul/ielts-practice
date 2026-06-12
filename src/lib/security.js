@@ -106,22 +106,31 @@ export function cleanProfilePatch(payload = {}) {
   if (next.identity) next.identity = cleanNestedProfileSection(next.identity);
   if (next.academic) next.academic = cleanNestedProfileSection(next.academic);
   if (next.professional) next.professional = cleanNestedProfileSection(next.professional);
-  if (next.languageTests) next.languageTests = cleanNestedProfileSection(next.languageTests);
+  // PostgreSQL folds unquoted identifiers to lowercase (applicationCycle -> applicationcycle).
+  // The PostgREST schema cache stores the lowercase names, so we must rename.
+  if (next.languageTests) {
+    next.languagetests = cleanNestedProfileSection(next.languageTests);
+    delete next.languageTests;
+  }
 
   if (next.applicationCycle !== undefined) {
-    next.applicationCycle = cleanText(next.applicationCycle, { maxLength: 24 }) || null;
+    next.applicationcycle = cleanText(next.applicationCycle, { maxLength: 24 }) || null;
+    delete next.applicationCycle;
   }
 
   if (next.targetDegreeLevel !== undefined) {
-    next.targetDegreeLevel = cleanText(next.targetDegreeLevel, { maxLength: 64 }) || null;
+    next.targetdegreelevel = cleanText(next.targetDegreeLevel, { maxLength: 64 }) || null;
+    delete next.targetDegreeLevel;
   }
 
   if (next.targetDisciplines !== undefined) {
-    next.targetDisciplines = cleanList(next.targetDisciplines, { maxLength: 64 });
+    next.targetdisciplines = cleanList(next.targetDisciplines, { maxLength: 64 });
+    delete next.targetDisciplines;
   }
 
   if (next.targetCountries !== undefined) {
-    next.targetCountries = cleanList(next.targetCountries, { maxLength: 64 });
+    next.targetcountries = cleanList(next.targetCountries, { maxLength: 64 });
+    delete next.targetCountries;
   }
 
   if (next.self_assessment) {
