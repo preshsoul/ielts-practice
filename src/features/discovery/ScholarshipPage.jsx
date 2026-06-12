@@ -582,6 +582,7 @@ export default function ScholarshipPage(props) {
 
   const [region, setRegion] = useState("All");
   const [maxFee, setMaxFee] = useState(999999);
+  const [closingSoonOnly, setClosingSoonOnly] = useState(false);
   const [shortlist, setShortlist] = useState([]);
   const [shortlistBusy, setShortlistBusy] = useState(false);
   const [shortlistMessage, setShortlistMessage] = useState("");
@@ -805,9 +806,22 @@ export default function ScholarshipPage(props) {
       });
   }, [catalog, region, maxFeeNum, matchingProfile]);
 
+  // Closing-soon quick filter — applied post-rank so urgency doesn't distort match scores
+  const displayed = useMemo(function () {
+    if (!closingSoonOnly) return scored;
+    return scored.filter(function (_ref) {
+      var s = _ref.scholarship;
+      var dl = s && s.application ? s.application.deadline : (s ? s.deadline : null);
+      if (!dl) return false;
+      var days = getDaysUntilDeadline(dl);
+      return days !== null && days >= 0 && days <= 14;
+    });
+  }, [scored, closingSoonOnly]);
+
   const rankedMatches = useMemo(() => {
+    const matches = closingSoonOnly ? displayed : scored;
     const seen = new Set();
-    return scored.filter(({ scholarship }) => {
+    return matches.filter(({ scholarship }) => {
       const title = String(getScholarshipTitle(scholarship) || "").trim().toLowerCase().replace(/\s+/g, " ");
       if (!title || isGenericScholarshipTitle(title)) return false;
       if (seen.has(title)) return false;
@@ -943,6 +957,23 @@ export default function ScholarshipPage(props) {
               <span>Max tuition (annual)</span>
               <input type="number" value={maxFee} onChange={(e) => setMaxFee(e.target.value)} />
             </label>
+            <button
+              type="button"
+              onClick={function () { return setClosingSoonOnly(function (v) { return !v; }); }}
+              style={{
+                padding: "8px 14px",
+                fontSize: 12,
+                fontFamily: "var(--font-ui)",
+                cursor: "pointer",
+                borderRadius: "8px",
+                border: closingSoonOnly ? "2px solid var(--red, #dc2626)" : "1px solid var(--border)",
+                background: closingSoonOnly ? "var(--red-bg, #fef2f2)" : "transparent",
+                color: closingSoonOnly ? "var(--red, #dc2626)" : "var(--text-2)",
+                fontWeight: closingSoonOnly ? 600 : 400,
+              }}
+            >
+              {closingSoonOnly ? "✓ Closing within 14 days" : "Closing soon"}
+            </button>
             <div className="scholarship-note">Saved shortlist items sync to your account.</div>
             {shortlistMessage && (
               <div className="scholarship-note" role="status" aria-live="polite">
