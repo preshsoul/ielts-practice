@@ -19,6 +19,9 @@ function uniqueDays(sessions = []) {
     .sort();
 }
 
+// Use the canonical band estimator so the dashboard and profile agree.
+import { estimateOverallBand } from "./bandScoreEstimator.js";
+
 function toBandNumber(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
@@ -32,25 +35,11 @@ function weakestSkill(selfAssessment = {}) {
   return ranked[0] || { skill: "reading", value: 0 };
 }
 
-function estimateBandFromSession(session = {}) {
-  const score = Number(session.score);
-  const total = Number(session.total);
-  if (!Number.isFinite(score) || !Number.isFinite(total) || total <= 0) return null;
-  const accuracy = Math.max(0, Math.min(1, score / total));
-  return Math.round(accuracy * 90) / 10;
-}
-
 function latestSessionBands(sessions = []) {
+  const estimates = estimateOverallBand(sessions);
   const skills = { reading: null, listening: null, writing: null, speaking: null };
-  const relevant = Array.isArray(sessions) ? sessions : [];
-  for (let index = relevant.length - 1; index >= 0; index -= 1) {
-    const session = relevant[index];
-    const module = String(session?.module || "").toLowerCase();
-    if (!Object.prototype.hasOwnProperty.call(skills, module) || skills[module] !== null) continue;
-    const estimate = estimateBandFromSession(session);
-    if (estimate !== null) {
-      skills[module] = estimate;
-    }
+  for (const [module, est] of Object.entries(estimates.moduleEstimates)) {
+    skills[module] = est.estimatedBand;
   }
   return skills;
 }
