@@ -569,7 +569,13 @@ async function decodePdfStream(obj: PdfObject, raw: string): Promise<string> {
       try {
         const compressed = new Uint8Array(data.length);
         for (let j = 0; j < data.length; j++) compressed[j] = data.charCodeAt(j) & 0xff;
-        const decompressed = await decompressDeflate(compressed);
+        // PDF FlateDecode uses zlib format (RFC 1950). Try zlib first, then raw deflate as fallback.
+        let decompressed: Uint8Array;
+        try {
+          decompressed = await decompressZlib(compressed);
+        } catch {
+          decompressed = await decompressDeflate(compressed);
+        }
         data = new TextDecoder("utf-8").decode(decompressed);
       } catch {
         // Return as-is if decompression fails
@@ -584,6 +590,36 @@ async function decodePdfStream(obj: PdfObject, raw: string): Promise<string> {
   return data;
 }
 
+/**
+ * Decompress a zlib-wrapped deflate stream (RFC 1950).
+ * PDF FlateDecode uses this format — the stream starts with a 2-byte zlib header.
+ */
+async function decompressZlib(data: Uint8Array): Promise<Uint8Array> {
+  const ds = new DecompressionStream("deflate");
+  const writer = ds.writable.getWriter();
+  const reader = ds.readable.getReader();
+  writer.write(data);
+  writer.close();
+  const chunks: Uint8Array[] = [];
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    if (value) chunks.push(value);
+  }
+  const totalLen = chunks.reduce((s, c) => s + c.length, 0);
+  const result = new Uint8Array(totalLen);
+  let offset = 0;
+  for (const chunk of chunks) {
+    result.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return result;
+}
+
+/**
+ * Decompress a raw deflate stream (RFC 1951, no zlib header).
+ * DOCX ZIP entries and some PDF streams use this format.
+ */
 async function decompressDeflate(data: Uint8Array): Promise<Uint8Array> {
   const ds = new DecompressionStream("deflate-raw");
   const writer = ds.writable.getWriter();

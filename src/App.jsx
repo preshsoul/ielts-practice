@@ -188,7 +188,8 @@ export default function App() {
       navigate(returnPath && returnPath !== "/onboarding" ? returnPath : "/", { replace: true });
     } catch (error) {
       logAppError(error, { event: "ONBOARDING_SAVE", profileId: profile?.id || authUser?.id });
-      setOnboardingMessage(getErrorMessage(error, "Unable to save onboarding right now."));
+      const detail = error instanceof Error ? error.message : (typeof error === "object" && error ? JSON.stringify(error).slice(0, 200) : String(error || ""));
+      setOnboardingMessage(detail || getErrorMessage(error, "Unable to save onboarding right now."));
     } finally {
       setOnboardingBusy(false);
     }

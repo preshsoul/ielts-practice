@@ -187,14 +187,8 @@ export function serializeOnboardingDraft(draft = {}) {
     targetDegreeLevel,
     targetDisciplines,
     targetCountries,
-    onboarding_completed: Boolean(
-      toNumberOrNull(draft.targetBand) !== null &&
-      toStringOrEmpty(draft.testDate) &&
-      Object.values(currentLevel).every((value) => value !== "") &&
-      toStringOrEmpty(academic.discipline) &&
-      targetDegreeLevel &&
-      targetCountries.length
-    ),
+    // onboarding_completed is a privileged field — set server-side only.
+    // The client computes readiness via isOnboardingComplete() instead.
   };
 }
 
