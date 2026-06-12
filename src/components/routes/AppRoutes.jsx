@@ -95,10 +95,13 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
   );
 }
 
+const ScholarshipReviewPage = lazy(() => import("../../features/admin/ScholarshipReviewPage.jsx"));
+
 export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, onImportCv, cvImportBusy, cvImportMessage, contentManifest, notifications, scholarships, scholarshipCatalog, C, Chip, PrimaryBtn }) {
   const { pathname } = useLocation();
   const freshness = contentManifest?.updated_at ? new Date(contentManifest.updated_at).toLocaleDateString("en-GB") : "No recent content manifest";
   const isWeeklyFeed = pathname.startsWith("/scholarships/weekly") || pathname.startsWith("/scholarships/latest");
+  const isAdminReview = pathname.startsWith("/scholarships/admin/review");
 
   return (
     <>
@@ -123,7 +126,9 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
         </div>
       </div>
       <Suspense fallback={<RouteFallback label="Loading scholarships" />}>
-        {isWeeklyFeed ? (
+        {isAdminReview ? (
+          <ScholarshipReviewPage C={C} Chip={Chip} />
+        ) : isWeeklyFeed ? (
           <ScholarshipFeedPage
             scholarships={scholarships}
             scholarshipCatalog={scholarshipCatalog}
