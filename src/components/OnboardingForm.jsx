@@ -460,14 +460,22 @@ function ExtractionStep({ draft, setDraft, setStep, onSkipUpload }) {
     const canonical = parserResult?.parsed_candidate_profile || null;
     const legacyProfile = parserResult?.profile || {};
 
+    // Read extracted text from the parser response intake (populated by Edge Function).
+    // Falls back to metadata preview for older parser versions without intake.extractedText.
+    const parserIntake = parserResult?.intake || {};
+    const extractedText = parserIntake.extractedText
+      || metadata?.extracted_text_preview
+      || parserIntake.extractedExcerpt
+      || "";
+
     const intake = {
       label: (draft?.dossierNote || "").trim() || file.name,
       sourceFilename: file.name,
       mimeType: file.type || "",
       documentType: file.name.match(/\.(pdf|docx?|txt|rtf)$/i)?.[1] || "unknown",
-      rawTextHash: metadata?.source_document_hash || null,
-      extractedExcerpt: metadata?.extracted_text_preview || "",
-      extractedText: "",
+      rawTextHash: metadata?.source_document_hash || parserIntake?.rawTextHash || null,
+      extractedExcerpt: metadata?.extracted_text_preview || parserIntake.extractedExcerpt || extractedText.slice(0, 1200),
+      extractedText,
       keywords: Array.isArray(canonical?.keywords) ? canonical.keywords : [],
       parsedProfile: {
         identity: {
@@ -494,6 +502,8 @@ function ExtractionStep({ draft, setDraft, setStep, onSkipUpload }) {
       parsedCandidateProfile: canonical,
       provenance: parserResult?.provenance || null,
       confidence: parserResult?.confidence_score ?? 0,
+      // Surface extraction diagnostics so the UI can show what happened
+      diagnostics: parserIntake.diagnostics || null,
     };
 
     setDraft((current) => ({
