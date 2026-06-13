@@ -8431,3 +8431,31 @@ h1, h2, h3, .page-title, .hero-title, .dashboard-hero-title, .scholarship-title,
 .mock-test__link { font-size: 14px; color: var(--c-accent); text-decoration: none; }
 
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* ═════════════════════════════════════════════════════════
+   Pagination & Scholarship Detail Panel
+   ═════════════════════════════════════════════════════════ */
+
+.scholarship-result-wrapper { display: flex; flex-direction: column; gap: 0; margin-bottom: 4px; }
+
+.scholarship-expand-toggle { width: 100%; border: none; background: var(--bg-2); color: var(--text-3); font-size: 11px; font-family: var(--font-ui); padding: 6px 12px; cursor: pointer; border-radius: 0 0 8px 8px; margin-top: -2px; }
+.scholarship-expand-toggle:hover { color: var(--text-1); background: var(--bg-3); }
+
+.pagination-controls { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 20px 0; grid-column: 1 / -1; }
+.pagination-btn { min-width: 34px; height: 34px; border: 1px solid var(--border-1); background: var(--bg-1); color: var(--text-2); border-radius: 6px; font-size: 13px; font-family: var(--font-ui); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.pagination-btn:hover:not(:disabled) { background: var(--bg-2); color: var(--text-1); }
+.pagination-btn--active { background: var(--c-accent); color: #fff; border-color: var(--c-accent); font-weight: 600; }
+.pagination-btn:disabled { opacity: 0.3; cursor: default; }
+
+.scholarship-detail-panel { padding: 16px; background: var(--bg-1); border: 1px solid var(--border-1); border-top: none; border-radius: 0 0 10px 10px; animation: sdpFadeIn 0.2s ease; }
+@keyframes sdpFadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.sdp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.sdp-section { padding: 10px 12px; background: var(--bg-2); border-radius: 8px; }
+.sdp-title { font-size: 12px; font-weight: 600; color: var(--text-2); margin: 0 0 6px; }
+.sdp-text { font-size: 13px; color: var(--text-1); margin: 0 0 4px; line-height: 1.5; }
+.sdp-meta { font-size: 11px; color: var(--text-3); margin: 2px 0 0; }
+.sdp-criteria-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.sdp-criteria-chip { font-size: 11px; padding: 3px 8px; border-radius: 6px; font-family: var(--font-ui); }
+.sdp-criteria-chip--pass { background: #dcfce7; color: #166534; }
+.sdp-criteria-chip--partial { background: #fef3c7; color: #92400e; }
+.sdp-criteria-chip--fail { background: #fee2e2; color: #991b1b; }

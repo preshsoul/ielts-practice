@@ -606,6 +606,113 @@ function ScholarshipDetailCard({
   );
 }
 
+/** Page navigation: Previous 1 2 3 ... Next */
+function PaginationControls({ currentPage, totalPages, onPageChange }) {
+  if (totalPages <= 1) return null;
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) pages.push(i);
+
+  return (
+    <div className="pagination-controls">
+      <button
+        className="pagination-btn"
+        disabled={currentPage <= 1}
+        onClick={() => onPageChange(currentPage - 1)}
+      >
+        ← Prev
+      </button>
+      {pages.map((p) => (
+        <button
+          key={p}
+          className={`pagination-btn${p === currentPage ? " pagination-btn--active" : ""}`}
+          onClick={() => onPageChange(p)}
+        >
+          {p}
+        </button>
+      ))}
+      <button
+        className="pagination-btn"
+        disabled={currentPage >= totalPages}
+        onClick={() => onPageChange(currentPage + 1)}
+      >
+        Next →
+      </button>
+    </div>
+  );
+}
+
+/** Expandable detail panel showing university context and international eligibility */
+function ScholarshipDetailPanel({ scholarship, analysis, profile }) {
+  const body = scholarship?.awardingBody || scholarship?.source?.sourceLabel || "";
+  const sourceUrl = scholarship?.source_url || scholarship?.source?.sourceUrl || "";
+  const host = (() => { try { return new URL(sourceUrl).hostname.replace("www.",""); } catch { return ""; } })();
+  const requirements = scholarship?.requirements_summary || scholarship?.requirementsSummary || "";
+  const coverage = scholarship?.coverage || {};
+  const fundingType = coverage?.type || scholarship?.funding_type || "unknown";
+  const amount = coverage?.amountGBP || scholarship?.stipend_amount || null;
+  const deadline = scholarship?.deadline || scholarship?.application?.deadline || null;
+  const criteria = analysis?.criteria || [];
+  const passedCriteria = criteria.filter((c) => c.max > 0 && c.score / c.max >= 0.8);
+
+  return (
+    <div className="scholarship-detail-panel">
+      <div className="sdp-grid">
+        <div className="sdp-section">
+          <h4 className="sdp-title">🏛 University</h4>
+          <p className="sdp-text">{body || "Unknown institution"}</p>
+          {host && <p className="sdp-meta">🌐 {host}</p>}
+        </div>
+        <div className="sdp-section">
+          <h4 className="sdp-title">🌍 International Context</h4>
+          <p className="sdp-text">
+            {passedCriteria.some((c) => c.key === "nationality") || scholarship?.nationality_is_open
+              ? "✅ Open to international students"
+              : "⚠ Check eligibility requirements"}
+          </p>
+          {Array.isArray(scholarship?.nationality_requirement) && scholarship.nationality_requirement.length > 0 && (
+            <p className="sdp-meta">Target: {scholarship.nationality_requirement.join(", ")}</p>
+          )}
+        </div>
+        <div className="sdp-section">
+          <h4 className="sdp-title">💰 Funding</h4>
+          <p className="sdp-text">
+            {fundingType === "full" ? "Full funding" : fundingType === "tuition_only" ? "Tuition covered" : fundingType === "partial" ? "Partial funding" : "Check details"}
+            {amount ? ` — £${amount.toLocaleString()}` : ""}
+          </p>
+          {scholarship?.stipend && <p className="sdp-meta">✅ Stipend included</p>}
+          {scholarship?.accommodation_covered && <p className="sdp-meta">✅ Accommodation covered</p>}
+        </div>
+        <div className="sdp-section">
+          <h4 className="sdp-title">📅 Deadline</h4>
+          <p className="sdp-text">
+            {deadline
+              ? new Date(deadline).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
+              : "No deadline specified"}
+          </p>
+          {scholarship?.deadline_is_approximate && <p className="sdp-meta">⚠ Date is approximate</p>}
+        </div>
+      </div>
+      <div className="sdp-section">
+        <h4 className="sdp-title">📋 Requirements</h4>
+        <p className="sdp-text">{requirements || "No requirements summary available."}</p>
+      </div>
+      <div className="sdp-section">
+        <h4 className="sdp-title">🎯 Match Criteria</h4>
+        <div className="sdp-criteria-list">
+          {criteria.slice(0, 6).map((c) => {
+            const r = c.max > 0 ? Math.round((c.score / c.max) * 100) : 0;
+            return (
+              <span key={c.key} className={`sdp-criteria-chip${r >= 80 ? " sdp-criteria-chip--pass" : r >= 50 ? " sdp-criteria-chip--partial" : " sdp-criteria-chip--fail"}`}>
+                {r >= 80 ? "✓" : r >= 50 ? "⚠" : "✗"} {c.label}: {r}%
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ScholarshipPage(props) {
   const { C, Chip } = props;
   const {
@@ -626,6 +733,9 @@ export default function ScholarshipPage(props) {
   const [closingSoonOnly, setClosingSoonOnly] = useState(false);
   const [shortlist, setShortlist] = useState([]);
   const [shortlistBusy, setShortlistBusy] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [expandedCard, setExpandedCard] = useState(null);
+  const PAGE_SIZE = 8;
   const [shortlistMessage, setShortlistMessage] = useState("");
   const [clearShortlistArmed, setClearShortlistArmed] = useState(false);
   const [trackedApplications, setTrackedApplications] = useState({});
@@ -1042,30 +1152,68 @@ export default function ScholarshipPage(props) {
 
       <div className="scholarship-results-label">
         {rankedMatches.length} scholarship{rankedMatches.length === 1 ? "" : "s"} matched
+        {secondaryMatches.length > PAGE_SIZE && (
+          <span style={{ fontSize: 11, color: "var(--text-3)", marginLeft: 10 }}>
+            — page {currentPage} of {Math.ceil(secondaryMatches.length / PAGE_SIZE)}
+          </span>
+        )}
       </div>
 
       <div className="scholarship-results-grid">
-        {secondaryMatches.length > 0 ? secondaryMatches.map(({ scholarship, analysis }) => {
-          const tracked = trackedApplications[scholarship.id];
+        {secondaryMatches.length > 0 ? (() => {
+          const totalPages = Math.ceil(secondaryMatches.length / PAGE_SIZE);
+          const safePage = Math.max(1, Math.min(currentPage, totalPages));
+          const start = (safePage - 1) * PAGE_SIZE;
+          const pageItems = secondaryMatches.slice(start, start + PAGE_SIZE);
           return (
-            <ScholarshipResultCard
-              key={scholarship.id}
-              scholarship={scholarship}
-              analysis={analysis}
-              tracked={tracked}
-              shortlistSaved={shortlist.includes(scholarship.id)}
-              authUser={authUser}
-              profileId={profile?.id}
-              matchingProfile={matchingProfile}
-              toggleShortlist={toggleShortlist}
-              trackApplication={trackApplication}
-              openIntelPanel={openIntelPanel}
-              handleOpenWebsite={handleOpenWebsite}
-              shortlistBusy={shortlistBusy}
-              advanceApplication={advanceApplication}
-            />
+            <>
+              {pageItems.map(({ scholarship, analysis }) => {
+                const tracked = trackedApplications[scholarship.id];
+                const isExpanded = expandedCard === scholarship.id;
+                return (
+                  <div key={scholarship.id} className="scholarship-result-wrapper">
+                    <ScholarshipResultCard
+                      scholarship={scholarship}
+                      analysis={analysis}
+                      tracked={tracked}
+                      shortlistSaved={shortlist.includes(scholarship.id)}
+                      authUser={authUser}
+                      profileId={profile?.id}
+                      matchingProfile={matchingProfile}
+                      toggleShortlist={toggleShortlist}
+                      trackApplication={trackApplication}
+                      openIntelPanel={openIntelPanel}
+                      handleOpenWebsite={handleOpenWebsite}
+                      shortlistBusy={shortlistBusy}
+                      advanceApplication={advanceApplication}
+                    />
+                    <button
+                      type="button"
+                      className="scholarship-expand-toggle"
+                      onClick={() => setExpandedCard(isExpanded ? null : scholarship.id)}
+                    >
+                      {isExpanded ? "▲ Less info" : "▼ More about this scholarship"}
+                    </button>
+                    {isExpanded && (
+                      <ScholarshipDetailPanel
+                        scholarship={scholarship}
+                        analysis={analysis}
+                        profile={matchingProfile}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+              {totalPages > 1 && (
+                <PaginationControls
+                  currentPage={safePage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
+              )}
+            </>
           );
-        }) : (
+        })() : (
           <div className="empty-state" role="status" aria-live="polite">
             <div className="empty-state-title">{primaryMatch ? "Top match ready" : "No eligible scholarships found"}</div>
             <div className="empty-state-copy">

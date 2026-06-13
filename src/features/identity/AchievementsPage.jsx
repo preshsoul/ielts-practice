@@ -1,54 +1,64 @@
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { evaluateAchievements } from "../../lib/achievements.js";
 import { loadVocabProgress, getVocabularyStats } from "../../lib/vocabularyEngine.js";
 import { IELTS_VOCABULARY } from "../../data/ieltsVocabulary.js";
+import { loadShortlistIds, loadApplicationTracking } from "../../services/supabaseData.js";
 import AchievementBadge from "../../components/AchievementBadge.jsx";
 
-/**
- * AchievementsPage — /achievements
- *
- * Displays all achievements in a grid, grouped by earned/unearned.
- * Evaluates achievements based on profile, sessions, shortlist, and vocabulary progress.
- *
- * Props:
- *   profile     - user profile
- *   sessions    - practice sessions array
- *   shortlistIds - array of shortlisted scholarship IDs
- *   trackedApps - object of tracked applications
- */
 export default function AchievementsPage({
   profile = null,
   sessions = [],
-  shortlistIds = [],
-  trackedApps = {},
 }) {
+  const [shortlistIds, setShortlistIds] = useState([]);
+  const [trackedApps, setTrackedApps] = useState({});
+  const profileId = profile?.id || null;
+
+  // Self-load shortlist and tracking data (like DeadlineActionPlan does)
+  useEffect(() => {
+    if (!profileId) return;
+    let cancelled = false;
+    Promise.all([
+      loadShortlistIds(profileId).catch(() => []),
+      loadApplicationTracking(profileId).catch(() => ({})),
+    ]).then(([ids, tracking]) => {
+      if (!cancelled) {
+        setShortlistIds(Array.isArray(ids) ? ids : []);
+        setTrackedApps(tracking || {});
+      }
+    });
+    return () => { cancelled = true; };
+  }, [profileId]);
+
   const results = useMemo(() => {
-    const profileId = profile?.id || null;
     const vocabProgress = loadVocabProgress(profileId);
     const vocabStats = getVocabularyStats(vocabProgress, IELTS_VOCABULARY);
 
     return evaluateAchievements(profile, sessions, {
-      shortlistCount: Array.isArray(shortlistIds) ? shortlistIds.length : 0,
+      shortlistCount: shortlistIds.length,
       trackedCount: Object.keys(trackedApps || {}).length,
       vocabMastered: vocabStats.mastered,
     });
-  }, [profile, sessions, shortlistIds, trackedApps]);
+  }, [profile, sessions, shortlistIds, trackedApps, profileId]);
 
   const earned = results.filter((r) => r.earned);
   const unearned = results.filter((r) => !r.earned);
+  const percent = results.length > 0 ? Math.round((earned.length / results.length) * 100) : 0;
 
   return (
     <div className="achievements-page">
       <div className="achievements-page__hero">
         <h1>Achievements</h1>
         <p className="achievements-page__subtitle">
-          {earned.length}/{results.length} unlocked — keep going!
+          {earned.length}/{results.length} unlocked · {percent}% complete
         </p>
+        <div className="achievements-page__progress-bar">
+          <div className="achievements-page__progress-fill" style={{ width: `${percent}%` }} />
+        </div>
       </div>
 
       {earned.length > 0 && (
         <section className="achievements-page__section">
-          <h2 className="achievements-page__section-title">Earned ({earned.length})</h2>
+          <h2 className="achievements-page__section-title">✅ Earned ({earned.length})</h2>
           <div className="achievements-page__grid">
             {earned.map(({ achievement, earned, earnedAt, progress }) => (
               <AchievementBadge
@@ -63,21 +73,19 @@ export default function AchievementsPage({
         </section>
       )}
 
-      {unearned.length > 0 && (
-        <section className="achievements-page__section">
-          <h2 className="achievements-page__section-title">Locked ({unearned.length})</h2>
-          <div className="achievements-page__grid">
-            {unearned.map(({ achievement, earned, progress }) => (
-              <AchievementBadge
-                key={achievement.id}
-                achievement={achievement}
-                earned={earned}
-                progress={progress}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      <section className="achievements-page__section">
+        <h2 className="achievements-page__section-title">🔒 Locked ({unearned.length})</h2>
+        <div className="achievements-page__grid">
+          {unearned.map(({ achievement, earned, progress }) => (
+            <AchievementBadge
+              key={achievement.id}
+              achievement={achievement}
+              earned={earned}
+              progress={progress}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
