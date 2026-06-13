@@ -1398,7 +1398,7 @@ async function main() {
     "utf8"
   );
 
-  console.log(`Wrote ${reviewQueue.total} scholarship review records to ${resolve(reviewQueuePath)}`);
+  console.log(`Wrote ${finalCount} scholarship review records to ${resolve(reviewQueuePath)}`);
   console.log(`Captured ${validationFailures.length} validation failures in ${resolve(validationFailuresPath)}`);
   console.log(`Recorded ${deadLinks.length} dead links in ${resolve(deadLinksPath)}`);
 

@@ -651,7 +651,8 @@ Deno.serve(async (req: Request) => {
           draft,
         }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", headers: rateLimit, allowedOrigins });
       } catch (error) {
-        const detail = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
+        const internalDetail = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
+        console.error("[cv-parser] Parse error:", internalDetail);
         const failedJob = await failJob(profileId, String(shellJob.id), {
           message: "The CV parsing model is temporarily unavailable or returned an invalid draft.",
           code: "ERR_LLM_UNAVAILABLE",
@@ -737,7 +738,8 @@ Deno.serve(async (req: Request) => {
           draft,
         }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", headers: rateLimit, allowedOrigins });
       } catch (error) {
-        const detail = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
+        const internalDetail = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
+        console.error("[cv-parser] Parse error:", internalDetail);
         const failedJob = await failJob(profileId, String(shellJob.id), {
           message: "The CV parsing model is temporarily unavailable or returned an invalid draft.",
           code: "ERR_LLM_UNAVAILABLE",
@@ -814,7 +816,10 @@ Deno.serve(async (req: Request) => {
       allowedOrigins,
     });
   } catch (error) {
-    const message = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
-    return jsonResponse(buildError("ERR_INTERNAL", "The CV parser function failed unexpectedly.", "Retry once. If it keeps failing, check Supabase function logs.", true, message), error instanceof Response ? Math.max(400, error.status) : 500, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
+    // Log full error internally but return sanitized message to client.
+    // Raw error text could expose stack traces, internal paths, or API keys.
+    const internalDetail = error instanceof Response ? await error.text().catch(() => "") : error instanceof Error ? error.message : "Unexpected parser failure";
+    console.error("[cv-parser] Internal error:", internalDetail);
+    return jsonResponse(buildError("ERR_INTERNAL", "The CV parser function failed unexpectedly.", "Retry once. If it keeps failing, check Supabase function logs.", true, "An internal error occurred. Please try again later."), error instanceof Response ? Math.max(400, error.status) : 500, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
   }
 });

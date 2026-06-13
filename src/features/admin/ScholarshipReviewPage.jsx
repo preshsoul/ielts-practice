@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { cleanText, cleanUrl } from "../../lib/security.js";
 
 // =========================================================================
 // Admin Scholarship Review Page
@@ -216,7 +217,7 @@ function Field(_ref2) {
     <div style={{ fontSize: 11, fontFamily: "var(--font-ui)" }}>
       <span style={{ color: "var(--text-3)", display: "block", marginBottom: 1 }}>{label}</span>
       {url && value && value !== "-" ? (
-        <a href={value} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", wordBreak: "break-all", fontSize: 11 }}>
+        <a href={cleanUrl(value)} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", wordBreak: "break-all", fontSize: 11 }}>
           {value}
         </a>
       ) : (
@@ -237,13 +238,15 @@ function EditModal(_ref3) {
   var _useState = useState(Object.assign({}, scholarship)), draft = _useState[0], setDraft = _useState[1];
 
   function updateField(section, field, value) {
+    // Sanitize string values: strip control chars and HTML tags
+    var sanitized = typeof value === "string" ? cleanText(value) : value;
     setDraft(function (prev) {
       var next = Object.assign({}, prev);
       if (section) {
         next[section] = Object.assign({}, next[section] || {});
-        next[section][field] = value;
+        next[section][field] = sanitized;
       } else {
-        next[field] = value;
+        next[field] = sanitized;
       }
       return next;
     });

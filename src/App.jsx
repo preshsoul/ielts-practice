@@ -42,6 +42,7 @@ const OnboardingForm = lazy(() => import("./components/OnboardingForm.jsx"));
 const DashboardHome = lazy(() => import("./features/intelligence/DashboardHome.jsx"));
 const ReadinessPage = lazy(() => import("./features/intelligence/ReadinessPage.jsx"));
 const AccountPage = lazy(() => import("./features/identity/AccountPage.jsx"));
+const AchievementsPage = lazy(() => import("./features/identity/AchievementsPage.jsx"));
 
 /* ═══════════════════════════════════════════════════════
    UI TOKENS — imported from src/lib/tokens.js
@@ -85,11 +86,16 @@ export default function App() {
   const [onboardingMessage, setOnboardingMessage] = useState("");
   const [onboardingBusy, setOnboardingBusy] = useState(false);
   // Gate is dismissed if the user explicitly skipped OR previously completed onboarding.
-  // Persisted to sessionStorage so HMR and page reloads don't bounce completed users.
+  // Persisted to user-scoped sessionStorage via userStorage.js utilities.
+  // Old unscoped keys are checked during migration, then scoped keys take over.
   const [onboardingGateDismissed, setOnboardingGateDismissed] = useState(() => {
     if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem("loci.onboardingSkipped") === "true"
-      || window.sessionStorage.getItem("loci.onboardingCompleted") === "true";
+    // Legacy unscoped check (gradually phased out as users migrate)
+    try {
+      if (window.sessionStorage.getItem("loci.onboardingSkipped") === "true") return true;
+      if (window.sessionStorage.getItem("loci.onboardingCompleted") === "true") return true;
+    } catch { /* ignore */ }
+    return false;
   });
 
   // ── Derived hooks ─────────────────────────────────────
@@ -167,6 +173,22 @@ export default function App() {
     setOnboardingMessage("");
   }, [profile]);
 
+  // Reset onboarding gate when user changes (prevents User B from
+  // inheriting User A's "completed" state within the same component lifecycle).
+  useEffect(() => {
+    if (!profile?.id) {
+      setOnboardingGateDismissed(false);
+      return;
+    }
+    // Check if THIS user has completed onboarding (user-scoped sessionStorage)
+    try {
+      const completed = window.sessionStorage.getItem(`loci.onboardingCompleted:${profile.id}`);
+      setOnboardingGateDismissed(completed === "true" || profile.onboarding_completed === true);
+    } catch {
+      setOnboardingGateDismissed(profile.onboarding_completed === true);
+    }
+  }, [profile?.id, profile?.onboarding_completed]);
+
   // ── Onboarding save ───────────────────────────────────
   const saveOnboarding = async () => {
     if (!authUser?.id) {
@@ -184,9 +206,14 @@ export default function App() {
         await handleCvImport({ intake: onboardingResolutionDraft.extraction.intake });
       }
       if (typeof window !== "undefined") {
-        window.sessionStorage.removeItem("loci.onboardingSkipped");
-        // Persist completion so the gate stays dismissed across HMR and page reloads.
-        window.sessionStorage.setItem("loci.onboardingCompleted", "true");
+        // Clean up legacy unscoped keys + set user-scoped completion
+        try { window.sessionStorage.removeItem("loci.onboardingSkipped"); } catch {}
+        try { window.sessionStorage.removeItem("loci.onboardingCompleted"); } catch {}
+        // Scoped persistence: add userId suffix so completion is user-specific
+        const userId = profile?.id || authUser?.id;
+        if (userId) {
+          try { window.sessionStorage.setItem(`loci.onboardingCompleted:${userId}`, "true"); } catch {}
+        }
       }
       // Dismiss the onboarding gate so the user stays at the workspace.
       setOnboardingGateDismissed(true);
@@ -329,7 +356,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <Shell sessions={sessions} onRefresh={refreshSessions} authUser={authUser} profile={profile}>
+    <Shell sessions={sessions} onRefresh={refreshSessions} authUser={authUser} profile={profile} scholarshipCatalog={content.scholarshipCatalog || content.scholarshipRecords || content.scholarships}>
       <ErrorBoundary>
       <Suspense fallback={routeFallback}>
         <Routes>
@@ -422,6 +449,17 @@ export default function App() {
                 profile={profile}
                 sessions={sessions}
                 scholarshipCatalog={content.scholarshipCatalog || content.scholarshipRecords || content.scholarships}
+              />
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/achievements"
+            element={
+              <ErrorBoundary>
+              <AchievementsPage
+                profile={profile}
+                sessions={sessions}
               />
               </ErrorBoundary>
             }

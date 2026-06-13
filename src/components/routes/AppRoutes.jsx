@@ -8,9 +8,13 @@ const PracticeHub = lazy(() => import("../../features/training/PracticeHub.jsx")
 const ModulePracticeScreen = lazy(() => import("../ModulePracticeScreen.jsx"));
 const ProgressView = lazy(() => import("../ProgressView.jsx"));
 const WeakAreasView = lazy(() => import("../WeakAreasView.jsx"));
+const DailyChallengePage = lazy(() => import("../../features/practice/DailyChallengePage.jsx"));
+const VocabularyPractice = lazy(() => import("../../features/practice/VocabularyPractice.jsx"));
+const MockTestSimulator = lazy(() => import("../../features/practice/MockTestSimulator.jsx"));
 const LearningPathView = lazy(() => import("../LearningPathView.jsx"));
 const ScholarshipPage = lazy(() => import("../../features/discovery/ScholarshipPage.jsx"));
 const ScholarshipFeedPage = lazy(() => import("../../features/discovery/ScholarshipFeedPage.jsx"));
+const DeadlineActionPlan = lazy(() => import("../../features/scholarships/DeadlineActionPlan.jsx"));
 function RouteFallback({ label = "Loading route" }) {
   return (
     <div className="empty-state" role="status" aria-live="polite">
@@ -81,6 +85,12 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
     content = <Suspense fallback={<RouteFallback label="Loading weak areas" />}><WeakAreasView sessions={sessions} C={C} Chip={Chip} computeWeakSections={computeWeakSections} /></Suspense>;
   } else if (pathname === "/practice/learning-path") {
     content = <Suspense fallback={<RouteFallback label="Loading learning path" />}><LearningPathView sessions={sessions} C={C} Chip={Chip} LEARNING_PATH={learningPath} computeWeakSections={computeWeakSections} /></Suspense>;
+  } else if (pathname === "/practice/daily") {
+    content = <Suspense fallback={<RouteFallback label="Loading daily challenge" />}><DailyChallengePage sessions={sessions} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} /></Suspense>;
+  } else if (pathname === "/practice/vocabulary") {
+    content = <Suspense fallback={<RouteFallback label="Loading vocabulary practice" />}><VocabularyPractice profile={profile} onSessionComplete={onSessionComplete} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} /></Suspense>;
+  } else if (pathname === "/practice/mock-test") {
+    content = <Suspense fallback={<RouteFallback label="Loading mock test" />}><MockTestSimulator sessions={sessions} onSessionComplete={onSessionComplete} qb={qb} passages={passages} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} /></Suspense>;
   }
 
   return (
@@ -102,6 +112,7 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
   const freshness = contentManifest?.updated_at ? new Date(contentManifest.updated_at).toLocaleDateString("en-GB") : "No recent content manifest";
   const isWeeklyFeed = pathname.startsWith("/scholarships/weekly") || pathname.startsWith("/scholarships/latest");
   const isAdminReview = pathname.startsWith("/scholarships/admin/review");
+  const isDeadlinePlan = pathname.startsWith("/scholarships/deadlines");
 
   return (
     <>
@@ -118,16 +129,36 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
           </div>
         </div>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-          {isWeeklyFeed ? (
+          {isDeadlinePlan ? (
+            <Link to="/scholarships" className="ghost-btn" style={{ textDecoration: "none" }}>My matches</Link>
+          ) : isWeeklyFeed ? (
             <Link to="/scholarships" className="ghost-btn" style={{ textDecoration: "none" }}>My matches</Link>
           ) : (
-            <Link to="/scholarships/weekly" className="ghost-btn" style={{ textDecoration: "none" }}>Weekly feed</Link>
+            <>
+              <Link to="/scholarships/deadlines" className="ghost-btn" style={{ textDecoration: "none" }}>Deadlines</Link>
+              <Link to="/scholarships/weekly" className="ghost-btn" style={{ textDecoration: "none" }}>Weekly feed</Link>
+            </>
           )}
         </div>
       </div>
       <Suspense fallback={<RouteFallback label="Loading scholarships" />}>
-        {isAdminReview ? (
-          <ScholarshipReviewPage C={C} Chip={Chip} />
+        {isDeadlinePlan ? (
+          <DeadlineActionPlan
+            profile={profile}
+            scholarshipCatalog={scholarshipCatalog}
+            C={C}
+            Chip={Chip}
+            PrimaryBtn={PrimaryBtn}
+          />
+        ) : isAdminReview ? (
+          authUser ? (
+            <ScholarshipReviewPage C={C} Chip={Chip} />
+          ) : (
+            <div className="empty-state" role="status">
+              <div className="empty-state-title">Admin access required</div>
+              <div className="empty-state-copy">Sign in to access the scholarship review panel.</div>
+            </div>
+          )
         ) : isWeeklyFeed ? (
           <ScholarshipFeedPage
             scholarships={scholarships}

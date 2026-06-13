@@ -6,6 +6,7 @@ import { buildNotificationFeed } from "../../lib/notifications.js";
 import { useWorkspace } from "../../components/layout/WorkspaceContext.jsx";
 import { getLatestScholarshipFeed } from "../../lib/scholarshipFeed.js";
 import { getOnboardingStatus } from "../../lib/onboardingJourney.js";
+import DailyChallengeCard from "../practice/DailyChallengeCard.jsx";
 
 function SkillCard({ label, value }) {
   const numeric = Number(value);
@@ -402,22 +403,7 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
         </article>
 
         <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-6">
-          <div className="dashboard-kicker">Daily drill</div>
-          <div className="dashboard-feature-title">IELTS Reading: T/F/NG</div>
-          <div className="dashboard-feature-copy">
-            {snapshot.recentSession?.module
-              ? `Latest test: ${snapshot.recentSession.module} · ${Number(snapshot.recentSession.score ?? 0)}/${Number(snapshot.recentSession.total ?? 0)}`
-              : "A first session will unlock stronger recommendations and a cleaner readiness picture."}
-          </div>
-          <div className="dashboard-drill-stack">
-            <div className="dashboard-drill-pill">15 minute session</div>
-            <div className="dashboard-drill-pill">Target: {targetBand} band score</div>
-            <div className="dashboard-drill-pill">Weakest focus: {snapshot.weakestSkill}</div>
-          </div>
-          <div className="dashboard-feature-actions">
-            <Link className="primary-btn link-button" to="/practice">Start practice</Link>
-            <Link className="ghost-btn link-button" to="/account">Update profile</Link>
-          </div>
+          <DailyChallengeCard sessions={sessions} />
         </article>
 
         <article className="loci-card loci-card--utilitarian dashboard-intelligence-card dashboard-span-7">

@@ -260,7 +260,6 @@ ${text}
       summary,
       confidence,
       usage: result.usage,
-      userId: user?.id || null,
     }, 200, {
       origin,
       methods: "POST, OPTIONS",

@@ -63,6 +63,11 @@ function normalizeText(input) {
 function normalizeUrl(rawUrl, baseUrl = null) {
   try {
     const url = new URL(rawUrl, baseUrl || undefined);
+    // Block dangerous protocols that can execute JavaScript
+    const protocol = (url.protocol || "").toLowerCase().replace(/:$/, "");
+    if (protocol === "javascript" || protocol === "data" || protocol === "vbscript") {
+      return "";
+    }
     url.hash = "";
     for (const key of [...url.searchParams.keys()]) {
       const lowered = key.toLowerCase();

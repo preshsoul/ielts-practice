@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { WorkspaceProvider, useWorkspace } from "./WorkspaceContext.jsx";
 import { cleanUrl } from "../../lib/security.js";
+import MatchAlertBadge from "../MatchAlertBadge.jsx";
+import { getMatchAlertCount, markMatchesViewed } from "../../lib/matchAlerts.js";
 
 const PRACTICE_NAV = [
   { to: "/practice", label: "Hub", end: true },
@@ -9,6 +11,9 @@ const PRACTICE_NAV = [
   { to: "/practice/listening", label: "Listening" },
   { to: "/practice/writing", label: "Writing" },
   { to: "/practice/speaking", label: "Speaking" },
+  { to: "/practice/daily", label: "Daily" },
+  { to: "/practice/vocabulary", label: "Vocabulary" },
+  { to: "/practice/mock-test", label: "Mock test" },
   { to: "/practice/progress", label: "Progress" },
   { to: "/practice/weak-areas", label: "Weak areas" },
   { to: "/practice/learning-path", label: "Learning path" },
@@ -69,6 +74,12 @@ function InterfaceIcon({ name }) {
           <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
         </svg>
       );
+    case "achievements":
+      return (
+        <svg {...iconProps}>
+          <polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -125,6 +136,11 @@ function CommandPalette() {
     { label: "Practice", description: "Jump into IELTS training", to: "/practice" },
     { label: "Scholarships", description: "Open matching and shortlist", to: "/scholarships" },
     { label: "Weekly scholarships", description: "See this week’s new additions", to: "/scholarships/weekly" },
+    { label: "Deadlines", description: "Scholarship deadline action plan", to: "/scholarships/deadlines" },
+    { label: "Daily challenge", description: "Today's practice challenge", to: "/practice/daily" },
+    { label: "Vocabulary", description: "Build your academic vocabulary", to: "/practice/vocabulary" },
+    { label: "Mock test", description: "Take a full timed mock test", to: "/practice/mock-test" },
+    { label: "Achievements", description: "View your earned badges", to: "/achievements" },
     { label: "Readiness", description: "View your IELTS readiness score", to: "/readiness" },
     { label: "Account", description: "Review your profile", to: "/account" },
   ]), []);
@@ -257,7 +273,7 @@ function IntelDrawer() {
   );
 }
 
-function ShellFrame({ sessions, onRefresh, children, authUser, profile }) {
+function ShellFrame({ sessions, onRefresh, children, authUser, profile, scholarshipCatalog }) {
   const location = useLocation();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -271,11 +287,21 @@ function ShellFrame({ sessions, onRefresh, children, authUser, profile }) {
       { to: "/practice", label: "Practice", icon: "practice" },
       { to: "/scholarships", label: "Scholarships", icon: "scholarships" },
       { to: "/readiness", label: "Readiness", icon: "readiness" },
+      { to: "/achievements", label: "Achievements", icon: "achievements" },
       { to: "/account", label: "Account", icon: "account" },
     ];
 
     return items;
   }, []);
+
+  const matchAlertCount = useMemo(() => {
+    if (!profile?.id || !Array.isArray(scholarshipCatalog)) return 0;
+    return getMatchAlertCount(scholarshipCatalog, profile);
+  }, [profile, scholarshipCatalog]);
+
+  const handleScholarshipNavClick = () => {
+    if (profile?.id) markMatchesViewed(profile.id);
+  };
 
   const targetBand = profile?.target_band || "Set goal";
   const deepWorkMode = location.pathname.startsWith("/practice");
@@ -338,9 +364,11 @@ function ShellFrame({ sessions, onRefresh, children, authUser, profile }) {
                 end={item.end}
                 className={({ isActive }) => `sidebar-nav-item${isActive ? " active" : ""}`}
                 title={isSidebarCollapsed ? item.label : undefined}
+                onClick={item.to === "/scholarships" ? handleScholarshipNavClick : undefined}
               >
                 <span className="nav-icon"><InterfaceIcon name={item.icon} /></span>
                 {!isSidebarCollapsed && <span className="nav-label">{item.label}</span>}
+                {item.to === "/scholarships" && <MatchAlertBadge count={matchAlertCount} />}
               </NavLink>
             ))}
           </nav>

@@ -1,7 +1,79 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T08:56:12.022Z",
+  "updated_at": "2026-06-13T15:11:05.490Z",
   "items": {
+    "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships": {
+      "id": "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships",
+      "name": "Doctoral Scholarships | Manchester Metropolitan University",
+      "deadline": "2026-05-25",
+      "deadlineRaw": "25 may 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.mmu.ac.uk/study/postgraduate/research-study/phd/funding/scholarships",
+      "urgency": "black"
+    },
+    "www.ncl.ac.uk_newcastle-university-scholarships_study-global-scholarships": {
+      "id": "www.ncl.ac.uk_newcastle-university-scholarships_study-global-scholarships",
+      "name": "Our Global Scholarships For",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.ncl.ac.uk/study/global-scholarships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-thekeates-leeeducationalt": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-thekeates-leeeducationalt",
+      "name": "The Keates-lee Educational Trust Bursary",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/thekeates-leeeducationaltrustbursary",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-home-postgraduate-scho": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-home-postgraduate-scho",
+      "name": "UAL Home Postgraduate £7,000 Scholarships",
+      "deadline": "2026-12-01",
+      "deadlineRaw": "Autumn 2026",
+      "deadlineType": "estimated",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search/ual-home-postgraduate-scholarships",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-international-postgrad": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-international-postgrad",
+      "name": "UAL International Postgraduate £10,000 Scholarships",
+      "deadline": "2026-03-18",
+      "deadlineRaw": "18 march 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search/ual-international-postgraduate-10,000-scholarships",
+      "urgency": "black"
+    },
+    "www.sunderland.ac.uk_sunderland-university-scholarships_scholarships-and-bursaries": {
+      "id": "www.sunderland.ac.uk_sunderland-university-scholarships_scholarships-and-bursaries",
+      "name": "University Scholarships And Bursaries",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.sunderland.ac.uk/scholarships-and-bursaries",
+      "urgency": "green"
+    },
+    "www.reading.ac.uk_university-of-reading-scholarships_global-academy-international-foundation-pathways-ifp-scholarships-a": {
+      "id": "www.reading.ac.uk_university-of-reading-scholarships_global-academy-international-foundation-pathways-ifp-scholarships-a",
+      "name": "Scholarships And Discounts",
+      "deadline": "2026-07-13",
+      "deadlineRaw": "13 july 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.reading.ac.uk/global-academy/international-foundation-pathways/ifp-scholarships-and-discounts",
+      "urgency": "red"
+    },
+    "www.herts.ac.uk_university-of-hertfordshire-uh-scholarships_study-fees-and-funding-student-loans-apply-for-student-finan": {
+      "id": "www.herts.ac.uk_university-of-hertfordshire-uh-scholarships_study-fees-and-funding-student-loans-apply-for-student-finan",
+      "name": "Student Finance For",
+      "deadline": "2025-05-16",
+      "deadlineRaw": "16 may 2025",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.herts.ac.uk/study/fees-and-funding/student-loans/apply-for-student-finance",
+      "urgency": "black"
+    },
     "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol": {
       "id": "scholarship-region-2026-chinese-government-mofcom-scholarship-fully-funded-schol",
       "name": "2026 Chinese Government MOFCOM Scholarship | Fully Funded | Scholarship Region",
@@ -146,6 +218,15 @@
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/fellowships/",
       "urgency": "green"
     },
+    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod": {
+      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
+      "name": "Search Our Scholarships",
+      "deadline": "2025-05-02",
+      "deadlineRaw": "2 may 2025",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/anne-seagrim-accommodation-scholarship-20252026.php",
+      "urgency": "black"
+    },
     "scholarship-region-secondary-school-and-high-school-scholarships-2026": {
       "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
       "name": "Secondary School and High School Scholarships 2026",
@@ -153,6 +234,483 @@
       "deadlineRaw": "Rolling",
       "deadlineType": "rolling",
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/high-school-scholarships/",
+      "urgency": "green"
+    },
+    "www.richmond.ac.uk_richmond-the-american-international-university-in-london-richmond-american-university-london-scholars": {
+      "id": "www.richmond.ac.uk_richmond-the-american-international-university-in-london-richmond-american-university-london-scholars",
+      "name": "US Undergraduate Scholarships And Finance - Richmond University London",
+      "deadline": "2027-05-30",
+      "deadlineRaw": "Spring 2027",
+      "deadlineType": "estimated",
+      "sourceUrl": "https://www.richmond.ac.uk/undergraduate-student-tuition-fees-and-funding/us-undergrad-student-finance",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-phd-funding": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-phd-funding",
+      "name": "PhD Funding And Financial Support",
+      "deadline": "2026-12-01",
+      "deadlineRaw": "Autumn 2026",
+      "deadlineType": "estimated",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/phd-funding",
+      "urgency": "green"
+    },
+    "www.roehampton.ac.uk_university-of-roehampton-scholarships_student-life-sports-and-activities-sport-roehampton-sport-sch": {
+      "id": "www.roehampton.ac.uk_university-of-roehampton-scholarships_student-life-sports-and-activities-sport-roehampton-sport-sch",
+      "name": "Sport Scholarship",
+      "deadline": "2024-01-16",
+      "deadlineRaw": "16 january 2024",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.roehampton.ac.uk/student-life/sports-and-activities/sport-roehampton/sport-scholarship",
+      "urgency": "black"
+    },
+    "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-fees-funding-international-fees-funding-i": {
+      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-fees-funding-international-fees-funding-i",
+      "name": "International Masters Funding And Scholarships| Northumbria University",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.northumbria.ac.uk/study-at-northumbria/fees-funding/international-fees-funding/international-masters-funding",
+      "urgency": "green"
+    },
+    "www.derby.ac.uk_derby-university-scholarships_study-fees-finance-scholarships": {
+      "id": "www.derby.ac.uk_derby-university-scholarships_study-fees-finance-scholarships",
+      "name": "Scholarships And Discounts For International Students",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.derby.ac.uk/study/fees-finance/scholarships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-vice-chancellorsscholarsh": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-vice-chancellorsscholarsh",
+      "name": "Vice-chancellors Scholarship Exam",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/vice-chancellorsscholarshipexam",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-international-scholarship": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-international-scholarship",
+      "name": "Aberystwyth International Scholarship For Undergraduate (bachelors) Students:",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/international-scholarship",
+      "urgency": "green"
+    },
+    "www.southwales.ac.uk_university-of-south-wales-scholarships_money-additional-support-alternative-funding": {
+      "id": "www.southwales.ac.uk_university-of-south-wales-scholarships_money-additional-support-alternative-funding",
+      "name": "Alternative Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.southwales.ac.uk/money/additional-support/alternative-funding",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-breakspear-scholarship": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-breakspear-scholarship",
+      "name": "Breakspear Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/breakspear-scholarship",
+      "urgency": "green"
+    },
+    "www.lboro.ac.uk_lboro-university-scholarships_students-handbook-money-bursaries-and-scholarships": {
+      "id": "www.lboro.ac.uk_lboro-university-scholarships_students-handbook-money-bursaries-and-scholarships",
+      "name": "Bursaries And Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.lboro.ac.uk/students/handbook/money/bursaries-and-scholarships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-caru-aber-international-a": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-caru-aber-international-a",
+      "name": "Caru Aber International Award",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/caru-aber-international-award",
+      "urgency": "green"
+    },
+    "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_international-students-h": {
+      "id": "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_international-students-h",
+      "name": "Coventry University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.coventry.ac.uk/international-students-hub/apply-for-a-scholarship",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-cyril-taylor-scholarships": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-cyril-taylor-scholarships",
+      "name": "Cyril Taylor Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/cyril-taylor-scholarships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-davidgamecollegescholarsh": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-davidgamecollegescholarsh",
+      "name": "David Game College Scholarship : Study With US , Aberystwyth University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/davidgamecollegescholarship",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-economics-postgraduate-schol": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-economics-postgraduate-schol",
+      "name": "Economics Postgraduate Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/economics-postgraduate-scholarship",
+      "urgency": "green"
+    },
+    "www.southwales.ac.uk_university-of-south-wales-scholarships_international-fees-scholarships-eu-fees-and-scholarships": {
+      "id": "www.southwales.ac.uk_university-of-south-wales-scholarships_international-fees-scholarships-eu-fees-and-scholarships",
+      "name": "EU Fees And Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.southwales.ac.uk/international/fees-scholarships/eu-fees-and-scholarships",
+      "urgency": "green"
+    },
+    "www.uwl.ac.uk_uwl-university-scholarships_current-students-support-students-money-advice": {
+      "id": "www.uwl.ac.uk_uwl-university-scholarships_current-students-support-students-money-advice",
+      "name": "Funding And Money Advice | University Of West London",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.uwl.ac.uk/current-students/support-students/money-advice?redirect=1",
+      "urgency": "green"
+    },
+    "www.wlv.ac.uk_wlv-university-scholarships_apply-funding-costs-fees-and-support": {
+      "id": "www.wlv.ac.uk_wlv-university-scholarships_apply-funding-costs-fees-and-support",
+      "name": "Funding, Costs, Fees, And Support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.wlv.ac.uk/apply/funding-costs-fees-and-support",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-global-gold-excellence-scholarship": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-global-gold-excellence-scholarship",
+      "name": "Global Gold Excellence Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/global-gold-excellence-scholarship",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-global-silver-excellence-scholarship": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-global-silver-excellence-scholarship",
+      "name": "Global Silver Excellence Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/global-silver-excellence-scholarship",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-ify-excellence-scholarship": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-ify-excellence-scholarship",
+      "name": "IFY Excellence Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/ify-excellence-scholarship",
+      "urgency": "green"
+    },
+    "www.durham.ac.uk_durham-university-scholarships_study-scholarships-international": {
+      "id": "www.durham.ac.uk_durham-university-scholarships_study-scholarships-international",
+      "name": "International - Durham University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.durham.ac.uk/study/scholarships/international",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-internationalfamilyaward": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-internationalfamilyaward",
+      "name": "International Family Award",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/internationalfamilyaward",
+      "urgency": "green"
+    },
+    "www.brookes.ac.uk_brookes-university-scholarships_study-international-students-fees-and-funding-scholarships-and-financi": {
+      "id": "www.brookes.ac.uk_brookes-university-scholarships_study-international-students-fees-and-funding-scholarships-and-financi",
+      "name": "International Scholarships And Financial Support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.brookes.ac.uk/study/international-students/fees-and-funding/scholarships-and-financial-support",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-ma-history-of-art-scholarshi": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-ma-history-of-art-scholarshi",
+      "name": "MA History Of Art Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/ma-history-of-art-scholarship",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-peltz-scholarships": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-peltz-scholarships",
+      "name": "Peltz Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/peltz-scholarships",
+      "urgency": "green"
+    },
+    "www.leeds.ac.uk_university-of-leeds-scholarships_scholarships": {
+      "id": "www.leeds.ac.uk_university-of-leeds-scholarships_scholarships",
+      "name": "Personal Circumstances Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.leeds.ac.uk/scholarships",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-salfordeatl-data-science-scholarship": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-salfordeatl-data-science-scholarship",
+      "name": "Salford/eatl Data Science Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/salfordeatl-data-science-scholarships",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-salfordinternational-nursing-college": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-salfordinternational-nursing-college",
+      "name": "Salford/international Nursing College Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/salfordinternational-nursing-college-scholarships",
+      "urgency": "green"
+    },
+    "www.worcester.ac.uk_worcester-university-scholarships_study-fees-and-finance-scholarships-aspx": {
+      "id": "www.worcester.ac.uk_worcester-university-scholarships_study-fees-and-finance-scholarships-aspx",
+      "name": "Scholarships And Discounts",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.worcester.ac.uk/study/fees-and-finance/scholarships.aspx",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search",
+      "name": "Scholarships Search",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-carena-institute-of-sustaina": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-carena-institute-of-sustaina",
+      "name": "The Carena Institute Of Sustainable Archaeologies Postgraduate Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/carena-institute-of-sustainable-archaeologies-scholarships",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-foundation-and-pre-deg": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-foundation-and-pre-deg",
+      "name": "UAL Foundation And Pre-degree £7,000 International Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search/ual-foundation-and-pre-degree-7000-international-scholarship",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-us-postgraduate-scholarshi": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-us-postgraduate-scholarshi",
+      "name": "UAL US Postgraduate Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search/us-postgraduate-scholarship",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-us-undergraduate-scholarsh": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-us-undergraduate-scholarsh",
+      "name": "UAL US Undergraduate Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search/us-undergraduate-scholarship",
+      "urgency": "green"
+    },
+    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-postgraduate-fees-funding-scholarships-uk-ci-roi-student": {
+      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-postgraduate-fees-funding-scholarships-uk-ci-roi-student",
+      "name": "Uk, CI And ROI Student Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/study/postgraduate/fees-funding/scholarships/uk-ci-roi-student-scholarships",
+      "urgency": "green"
+    },
+    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-scholarships-ukciroi-student-": {
+      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-scholarships-ukciroi-student-",
+      "name": "Uk/ci/roi Student Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/scholarships/ukciroi-student-scholarships",
+      "urgency": "green"
+    },
+    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-undergraduate-fees-funding": {
+      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-undergraduate-fees-funding",
+      "name": "Undergraduate Fees And Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/undergraduate-fees-funding",
+      "urgency": "green"
+    },
+    "www.ucb.ac.uk_ucb-university-scholarships_root": {
+      "id": "www.ucb.ac.uk_ucb-university-scholarships_root",
+      "name": "University College Birmingham",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ucb.ac.uk",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-regional-postgraduate": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships-regional-postgraduate",
+      "name": "Vice-chancellors Regional Scholarship For Postgraduate (masters) Students:",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/regional-postgraduate",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-will-vaughan-scholarship": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-will-vaughan-scholarship",
+      "name": "Will Vaughan Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/will-vaughan-scholarship",
+      "urgency": "green"
+    },
+    "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_student-life-student-finances-scholarships-and-burs": {
+      "id": "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_student-life-student-finances-scholarships-and-burs",
+      "name": "Scholarships And Bursaries | Health Sciences University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.hsu.ac.uk/student-life/student-finances/scholarships-and-bursaries",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-ncuk-scholarships": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-ncuk-scholarships",
+      "name": "NCUK Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/ncuk-scholarships",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_chevening_international-scholarships-chevening-scholarships": {
+      "id": "www.salford.ac.uk_chevening_international-scholarships-chevening-scholarships",
+      "name": "Chevening scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/chevening-scholarships",
+      "urgency": "green"
+    },
+    "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_error-404": {
+      "id": "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_error-404",
+      "name": "Coventry University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.coventry.ac.uk/error-404/?src=nomatch&url=/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.bcu.ac.uk_bcu-university-scholarships_international-fees-costs-and-scholarships": {
+      "id": "www.bcu.ac.uk_bcu-university-scholarships_international-fees-costs-and-scholarships",
+      "name": "Fees, Costs And Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bcu.ac.uk/international/fees-costs-and-scholarships",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-foundation-scholarships-and-funding": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-foundation-scholarships-and-funding",
+      "name": "Foundation Scholarships And Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/foundation-scholarships-and-funding",
+      "urgency": "green"
+    },
+    "www.brookes.ac.uk_brookes-university-scholarships_study-funding": {
+      "id": "www.brookes.ac.uk_brookes-university-scholarships_study-funding",
+      "name": "Funding And Financial Support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.brookes.ac.uk/study/funding",
+      "urgency": "green"
+    },
+    "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-support-for-students-financial-support-fu": {
+      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-support-for-students-financial-support-fu",
+      "name": "Funding For International Students",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.northumbria.ac.uk/study-at-northumbria/support-for-students/financial-support/funding/funding-for-international-students",
+      "urgency": "green"
+    },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-international-scholarships-terms-and": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-international-scholarships-terms-and",
+      "name": "International Scholarships: Terms And Conditions",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/international-scholarships-terms-and-conditions",
+      "urgency": "green"
+    },
+    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-african-future-leader": {
+      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-african-future-leader",
+      "name": "Search Our Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/ai-for-antibody-and-protein-design-20262027.php",
+      "urgency": "green"
+    },
+    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-undergraduate-scholarships": {
+      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-undergraduate-scholarships",
+      "name": "Undergraduate Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/undergraduate-scholarships",
+      "urgency": "green"
+    },
+    "www.bcu.ac.uk_not-applicable-scholarships_international-fees-costs-and-scholarships": {
+      "id": "www.bcu.ac.uk_not-applicable-scholarships_international-fees-costs-and-scholarships",
+      "name": "Fees, Costs And Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bcu.ac.uk/international/fees-costs-and-scholarships",
       "urgency": "green"
     },
     "scholarship-region-find-scholarships-in-2026-full-directory-scholarship-region": {
@@ -182,6 +740,15 @@
       "sourceUrl": "https://www.scholarshipregion.com/category/scholarships/popular-scholarships/",
       "urgency": "green"
     },
+    "www.falmouth.ac.uk_falmouth-university-scholarships_study-student-funding-fund-your-research-degree": {
+      "id": "www.falmouth.ac.uk_falmouth-university-scholarships_study-student-funding-fund-your-research-degree",
+      "name": "Fund Your Research Degree",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.falmouth.ac.uk/study/student-funding/fund-your-research-degree",
+      "urgency": "green"
+    },
     "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship": {
       "id": "www.scholarshipregion.com_scholarship-region_mext-teachers-training-scholarship",
       "name": "Scholarship Region",
@@ -189,6 +756,177 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.scholarshipregion.com/university-of-bradford-scholarship",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-bonnart-trust-sanctuary-scho": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-bonnart-trust-sanctuary-scho",
+      "name": "Bonnart Trust Sanctuary Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/bonnart-trust-sanctuary-scholarship",
+      "urgency": "green"
+    },
+    "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-masters-scholarships": {
+      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-masters-scholarships",
+      "name": "Masters Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/masters-scholarships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music",
+      "name": "Music Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/ug-studies/scholarships/music",
+      "urgency": "green"
+    },
+    "www.ncl.ac.uk_newcastle-university-scholarships_root": {
+      "id": "www.ncl.ac.uk_newcastle-university-scholarships_root",
+      "name": "Newcastle University | World Top 140 Research-led UK University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ncl.ac.uk",
+      "urgency": "green"
+    },
+    "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-phd-funding": {
+      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-phd-funding",
+      "name": "PhD Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/phd-funding",
+      "urgency": "green"
+    },
+    "www.bournemouth.ac.uk_bournemouth-university-scholarships_scholarships": {
+      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_scholarships",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/scholarships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-international-scholarships",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships",
+      "urgency": "green"
+    },
+    "www.bcu.ac.uk_bcu-university-scholarships_student-info-finance-financial-support-scholarships": {
+      "id": "www.bcu.ac.uk_bcu-university-scholarships_student-info-finance-financial-support-scholarships",
+      "name": "Scholarships At BCU",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bcu.ac.uk/student-info/finance/financial-support/scholarships",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-sir-terence-etherton-scholar": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-sir-terence-etherton-scholar",
+      "name": "Sir Terence Etherton Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/sir-terence-etherton-scholarship",
+      "urgency": "green"
+    },
+    "www.soas.ac.uk_school-of-oriental-and-african-studies-soas-university-of-london-scholarships_about-giving-soas-supportin": {
+      "id": "www.soas.ac.uk_school-of-oriental-and-african-studies-soas-university-of-london-scholarships_about-giving-soas-supportin",
+      "name": "Supporting Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.soas.ac.uk/about/giving-soas/supporting-scholarships",
+      "urgency": "green"
+    },
+    "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships-thrive-fund": {
+      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships-thrive-fund",
+      "name": "Thrive Fund | Scholarships | Edge Hill University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.edgehill.ac.uk/scholarships/thrive-fund",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-women-in-sport-scholarship": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-women-in-sport-scholarship",
+      "name": "Women In Sport Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/women-in-sport-scholarship",
+      "urgency": "green"
+    },
+    "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-masters-scholarships": {
+      "id": "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-masters-scholarships",
+      "name": "Masters Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/masters-scholarships",
+      "urgency": "green"
+    },
+    "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-phd-funding": {
+      "id": "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-phd-funding",
+      "name": "PhD Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/phd-funding",
+      "urgency": "green"
+    },
+    "www.rcs.ac.uk_royal-conservatoire-of-scotland-scholarships_study-fees-funding-scholarships": {
+      "id": "www.rcs.ac.uk_royal-conservatoire-of-scotland-scholarships_study-fees-funding-scholarships",
+      "name": "Scholarships | Royal Conservatoire Of Scotland",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.rcs.ac.uk/study/fees-funding/scholarships",
+      "urgency": "green"
+    },
+    "www.bcu.ac.uk_not-applicable-scholarships_student-info-finance-financial-support-scholarships": {
+      "id": "www.bcu.ac.uk_not-applicable-scholarships_student-info-finance-financial-support-scholarships",
+      "name": "Scholarships At BCU",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bcu.ac.uk/student-info/finance/financial-support/scholarships",
+      "urgency": "green"
+    },
+    "www.edgehill.ac.uk_not-applicable-scholarships_scholarships-thrive-fund": {
+      "id": "www.edgehill.ac.uk_not-applicable-scholarships_scholarships-thrive-fund",
+      "name": "Thrive Fund | Scholarships | Edge Hill University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.edgehill.ac.uk/scholarships/thrive-fund",
+      "urgency": "green"
+    },
+    "www.solent.ac.uk_solent-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.solent.ac.uk_solent-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "404 - We Couldnt Find What You Were Looking For | Solent University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.solent.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.ucl.ac.uk_ucl-scholarships_study-current-students-laidlaw-scholarships": {
+      "id": "www.ucl.ac.uk_ucl-scholarships_study-current-students-laidlaw-scholarships",
+      "name": "Laidlaw Leadership And Research Programme",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.ucl.ac.uk/study/current-students/laidlaw-scholarships",
       "urgency": "green"
     },
     "www.chevening.org_chevening_sids-chevening-scholarship": {
@@ -200,6 +938,105 @@
       "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
       "urgency": "green"
     },
+    "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-commonwealth-scholarships": {
+      "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-commonwealth-scholarships",
+      "name": "Commonwealth Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.salford.ac.uk/international/scholarships/commonwealth-scholarships",
+      "urgency": "green"
+    },
+    "www.aru.ac.uk_anglia-university-scholarships_international-fees-and-scholarships": {
+      "id": "www.aru.ac.uk_anglia-university-scholarships_international-fees-and-scholarships",
+      "name": "Fees, Funding And Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aru.ac.uk/international/fees-and-scholarships",
+      "urgency": "green"
+    },
+    "www.wlv.ac.uk_wlv-university-scholarships_business-services-funding-and-support": {
+      "id": "www.wlv.ac.uk_wlv-university-scholarships_business-services-funding-and-support",
+      "name": "Funding And Support For Businesses",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.wlv.ac.uk/business-services/funding-and-support",
+      "urgency": "green"
+    },
+    "www.wlv.ac.uk_wlv-university-scholarships_business-services-funding-and-support-knowledge-transfer-partnerships": {
+      "id": "www.wlv.ac.uk_wlv-university-scholarships_business-services-funding-and-support-knowledge-transfer-partnerships",
+      "name": "Knowledge Transfer Partnerships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.wlv.ac.uk/business-services/funding-and-support/knowledge-transfer-partnerships",
+      "urgency": "green"
+    },
+    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music-music-bursaries-form": {
+      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music-music-bursaries-form",
+      "name": "Music-bursaries-form",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/ug-studies/scholarships/music/music-bursaries-form",
+      "urgency": "green"
+    },
+    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-phd-and-mphil-funding": {
+      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-phd-and-mphil-funding",
+      "name": "PhD And Mphil Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/phd-and-mphil-funding",
+      "urgency": "green"
+    },
+    "www.bournemouth.ac.uk_bournemouth-university-scholarships_about-welcome-bu-rankings-awards": {
+      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_about-welcome-bu-rankings-awards",
+      "name": "Rankings And Awards",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/about/welcome-bu/rankings-awards",
+      "urgency": "green"
+    },
+    "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships": {
+      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships",
+      "name": "Scholarships | Edge Hill University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.edgehill.ac.uk/scholarships",
+      "urgency": "green"
+    },
+    "www.wlv.ac.uk_wlv-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.wlv.ac.uk_wlv-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "Sorry, We Cant Find That Page...",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.wlv.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.shu.ac.uk_shu-university-scholarships_funding": {
+      "id": "www.shu.ac.uk_shu-university-scholarships_funding",
+      "name": "Student Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.shu.ac.uk/funding",
+      "urgency": "green"
+    },
+    "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_aecc-school-of-chiropractic-celebrates-internationa": {
+      "id": "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_aecc-school-of-chiropractic-celebrates-internationa",
+      "name": "AECC School Of Chiropractic Celebrates International Research Excellence With Best Poster Award Win | Health Sciences University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.hsu.ac.uk/aecc-school-of-chiropractic-celebrates-international-research-excellence-with-best-poster-award-win",
+      "urgency": "green"
+    },
     "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co": {
       "id": "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co",
       "name": "Erasmus Mundus Master Of Theoretical Chemistry And Computational Modelling (tccm) Scholarship",
@@ -207,6 +1044,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.kuleuven.be/scholarships/year/2025-2026/erasmus-mundus-master-of-theoretical-chemistry-and-computational-modelling-scholarship",
+      "urgency": "green"
+    },
+    "www.aru.ac.uk_not-applicable-scholarships_international-fees-and-scholarships": {
+      "id": "www.aru.ac.uk_not-applicable-scholarships_international-fees-and-scholarships",
+      "name": "Fees, Funding And Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aru.ac.uk/international/fees-and-scholarships",
       "urgency": "green"
     },
     "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-funding-options": {
@@ -245,6 +1091,15 @@
       "sourceUrl": "https://kpmg.com/sg/en/careers/graduates.html",
       "urgency": "green"
     },
+    "www.edgehill.ac.uk_not-applicable-scholarships_scholarships": {
+      "id": "www.edgehill.ac.uk_not-applicable-scholarships_scholarships",
+      "name": "Scholarships | Edge Hill University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.edgehill.ac.uk/scholarships",
+      "urgency": "green"
+    },
     "scholarshipscafe.com_scholarships-cafe_positions": {
       "id": "scholarshipscafe.com_scholarships-cafe_positions",
       "name": "Scholarships Cafe",
@@ -261,6 +1116,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.kuleuven.be/scholarships/year/2026-2027/science-leuven-scholarship",
+      "urgency": "green"
+    },
+    "www.shu.ac.uk_not-applicable-scholarships_funding": {
+      "id": "www.shu.ac.uk_not-applicable-scholarships_funding",
+      "name": "Student Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.shu.ac.uk/funding",
       "urgency": "green"
     },
     "www.cambridgetrust.org_cambridge-trust-scholarships_current-scholars": {
@@ -288,6 +1152,24 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
+      "urgency": "green"
+    },
+    "www.aup.ac.uk_arts-university-plymouth-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.aup.ac.uk_arts-university-plymouth-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "Vercel Security Checkpoint",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aup.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_root": {
+      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_root",
+      "name": "Home",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk",
       "urgency": "green"
     },
     "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c": {
@@ -668,6 +1550,15 @@
       "sourceUrl": "https://www.chevening.org/scholarships/why-study-in-the-uk",
       "urgency": "green"
     },
+    "www.dmu.ac.uk_de-montfort-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "We Couldnt Find That Page :(",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.dmu.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
     "scholarships-cafe-position-detail": {
       "id": "scholarships-cafe-position-detail",
       "name": "Position Detail",
@@ -675,6 +1566,222 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://scholarshipscafe.com/position-detail?id=15499",
+      "urgency": "green"
+    },
+    "www.aston.ac.uk_not-applicable-scholarships_international-scholarships": {
+      "id": "www.aston.ac.uk_not-applicable-scholarships_international-scholarships",
+      "name": "International Scholarships",
+      "deadline": "2026-06-21",
+      "deadlineRaw": "21st june 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.aston.ac.uk/international/scholarships",
+      "urgency": "red"
+    },
+    "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-living-costs": {
+      "id": "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-living-costs",
+      "name": "Managing Your Money While Studying",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/living-costs",
+      "urgency": "green"
+    },
+    "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-living-costs": {
+      "id": "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-living-costs",
+      "name": "Managing Your Money While Studying",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/living-costs",
+      "urgency": "green"
+    },
+    "fast-1781302719300-231xgh": {
+      "id": "fast-1781302719300-231xgh",
+      "name": "Aker Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
+      "urgency": null
+    },
+    "test-1781303555235-12": {
+      "id": "test-1781303555235-12",
+      "name": "Amity University (in) London",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": null
+    },
+    "fast-1781302719300-cm6ddq": {
+      "id": "fast-1781302719300-cm6ddq",
+      "name": "Beit Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-u75txl": {
+      "id": "fast-1781302719300-u75txl",
+      "name": "Bhutan King’s Scholarship at the University of Cambridge",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
+      "urgency": null
+    },
+    "fast-1781302719300-q80fww": {
+      "id": "fast-1781302719300-q80fww",
+      "name": "Brockmann Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
+      "urgency": null
+    },
+    "fast-1781302719300-r8sm6v": {
+      "id": "fast-1781302719300-r8sm6v",
+      "name": "Bseisu-University of Cambridge Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-gaz7fi": {
+      "id": "fast-1781302719300-gaz7fi",
+      "name": "Cambridge Africa Changemakers Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-sz14db": {
+      "id": "fast-1781302719300-sz14db",
+      "name": "Cambridge Australia Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-uxlocl": {
+      "id": "fast-1781302719300-uxlocl",
+      "name": "Cambridge Caribbean Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-u5kp62": {
+      "id": "fast-1781302719300-u5kp62",
+      "name": "Cambridge Marshall PhD Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-cy9s0x": {
+      "id": "fast-1781302719300-cy9s0x",
+      "name": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
+      "urgency": null
+    },
+    "fast-1781302719300-ynzovh": {
+      "id": "fast-1781302719300-ynzovh",
+      "name": "Chevening ASEAN Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-06k6lu": {
+      "id": "fast-1781302719300-06k6lu",
+      "name": "Chevening SIDS Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
+      "urgency": null
+    },
+    "fast-1781302719300-lvq7q9": {
+      "id": "fast-1781302719300-lvq7q9",
+      "name": "Fulbright Foreign Student Program",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
+      "urgency": null
+    },
+    "fast-1781302719300-bwfh8q": {
+      "id": "fast-1781302719300-bwfh8q",
+      "name": "Hezekiah Wardwell Fellowship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000133&page=1",
+      "urgency": null
+    },
+    "fast-1781302719300-vs4qwo": {
+      "id": "fast-1781302719300-vs4qwo",
+      "name": "Humboldt Research Fellowship for Experienced Researchers",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000169&page=1",
+      "urgency": null
+    },
+    "fast-1781302719300-5xoq38": {
+      "id": "fast-1781302719300-5xoq38",
+      "name": "Japanese Government (MEXT) Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
+      "urgency": null
+    },
+    "test-1781303555235-28": {
+      "id": "test-1781303555235-28",
+      "name": "Peltz Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/peltz-scholarships",
+      "urgency": null
+    },
+    "fast-1781302719298-smi20e": {
+      "id": "fast-1781302719298-smi20e",
+      "name": "Scholarship for International Students",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
+      "urgency": null
+    },
+    "fast-1781302719300-av5x4q": {
+      "id": "fast-1781302719300-av5x4q",
+      "name": "University of Edinburgh Postgraduate Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": null,
+      "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
+      "urgency": null
+    },
+    "www.sunderland.ac.uk_not-applicable-scholarships_scholarships-and-bursaries": {
+      "id": "www.sunderland.ac.uk_not-applicable-scholarships_scholarships-and-bursaries",
+      "name": "University Scholarships And Bursaries",
+      "deadline": null,
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.sunderland.ac.uk/scholarships-and-bursaries",
       "urgency": "green"
     },
     "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-scholarships": {
@@ -711,6 +1818,15 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships",
+      "urgency": "green"
+    },
+    "www.regents.ac.uk_regents-university-london-scholarships_study-scholarships-funding-and-bursaries-us-financial-aid": {
+      "id": "www.regents.ac.uk_regents-university-london-scholarships_study-scholarships-funding-and-bursaries-us-financial-aid",
+      "name": "US Financial Aid",
+      "deadline": "2026-12-01",
+      "deadlineRaw": "Autumn 2026",
+      "deadlineType": "estimated",
+      "sourceUrl": "https://www.regents.ac.uk/study/scholarships-funding-and-bursaries/us-financial-aid",
       "urgency": "green"
     },
     "www.daad.de_daad-scholarships_de-barriere-melden": {
@@ -767,6 +1883,177 @@
       "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories",
       "urgency": "green"
     },
+    "www.rau.ac.uk_rau-university-scholarships_student-life-international-students-scholarships": {
+      "id": "www.rau.ac.uk_rau-university-scholarships_student-life-international-students-scholarships",
+      "name": "International Scholarships And Awards",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.rau.ac.uk/student-life/international-students/scholarships",
+      "urgency": "green"
+    },
+    "www.aston.ac.uk_not-applicable-scholarships_undergraduate-your-application-funding-ernest-edward-scholarship": {
+      "id": "www.aston.ac.uk_not-applicable-scholarships_undergraduate-your-application-funding-ernest-edward-scholarship",
+      "name": "Ernest Edward Scholarship",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.aston.ac.uk/undergraduate/your-application/funding/ernest-edward-scholarship",
+      "urgency": "green"
+    },
+    "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-ferguson": {
+      "id": "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-ferguson",
+      "name": "Ferguson Scholarship",
+      "deadline": null,
+      "deadlineRaw": "Closed",
+      "deadlineType": "closed",
+      "sourceUrl": "https://www.aston.ac.uk/international/scholarships/ferguson",
+      "urgency": "green"
+    },
+    "www.cardiff.ac.uk_cardiff-university-scholarships_welsh-courses-undergraduate-scholarships": {
+      "id": "www.cardiff.ac.uk_cardiff-university-scholarships_welsh-courses-undergraduate-scholarships",
+      "name": "Scholarships",
+      "deadline": "2026-03-06",
+      "deadlineRaw": "6 march 2026",
+      "deadlineType": "fixed",
+      "sourceUrl": "https://www.cardiff.ac.uk/welsh/courses/undergraduate/scholarships",
+      "urgency": "black"
+    },
+    "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship": {
+      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship",
+      "name": "De Montfort University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/global-partnerships-scholarship/global-partnerships-scholarship.aspx",
+      "urgency": "green"
+    },
+    "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-great-scholarship": {
+      "id": "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-great-scholarship",
+      "name": "GREAT Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.westminster.ac.uk/study/fees-and-funding/scholarships/great-scholarship",
+      "urgency": "green"
+    },
+    "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-international-postgraduate": {
+      "id": "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-international-postgraduate",
+      "name": "International Postgraduate Excellence Award For 2 Year Masters With Integrated Professional Year Experience",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.westminster.ac.uk/study/fees-and-funding/scholarships/international-postgraduate-excellence-award-for-2-year-masters-with-integrated-professional-year-experience",
+      "urgency": "green"
+    },
+    "www.hud.ac.uk_university-of-huddersfield-scholarships_international-scholarships": {
+      "id": "www.hud.ac.uk_university-of-huddersfield-scholarships_international-scholarships",
+      "name": "International Student Scholarships | Apply Today | Huddersfield - University Of Huddersfield",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.hud.ac.uk/international/scholarships",
+      "urgency": "green"
+    },
+    "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-payment-methods": {
+      "id": "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-payment-methods",
+      "name": "Payment Methods And Managing Your University Finances",
+      "deadline": null,
+      "deadlineRaw": "TBC",
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.mdx.ac.uk/study/fees-and-funding/payment-methods",
+      "urgency": "green"
+    },
+    "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-postgraduate-finance": {
+      "id": "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-postgraduate-finance",
+      "name": "Postgraduate Finance | Middlesex University London",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.mdx.ac.uk/study/fees-and-funding/postgraduate-finance",
+      "urgency": "green"
+    },
+    "test-1781303555235-24": {
+      "id": "test-1781303555235-24",
+      "name": "Postgraduate Financial Support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/postgraduate",
+      "urgency": "green"
+    },
+    "www.qub.ac.uk_queens-university-belfast-scholarships_root": {
+      "id": "www.qub.ac.uk_queens-university-belfast-scholarships_root",
+      "name": "Queens University Belfast",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.qub.ac.uk",
+      "urgency": "green"
+    },
+    "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships": {
+      "id": "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships",
+      "name": "Scholarships",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.westminster.ac.uk/study/fees-and-funding/scholarships",
+      "urgency": "green"
+    },
+    "www.gla.ac.uk_university-of-glasgow-scholarships_scholarships": {
+      "id": "www.gla.ac.uk_university-of-glasgow-scholarships_scholarships",
+      "name": "Scholarships And Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.gla.ac.uk/scholarships",
+      "urgency": "green"
+    },
+    "test-1781303555235-44": {
+      "id": "test-1781303555235-44",
+      "name": "Student Loans",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/student-loans",
+      "urgency": "green"
+    },
+    "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-the-serum-institute-pathwa": {
+      "id": "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-the-serum-institute-pathwa",
+      "name": "The Serum Institute Pathways To Excellence In Health And Life Sciences Programme For International Students",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.westminster.ac.uk/study/fees-and-funding/scholarships/the-serum-institute-pathways-to-excellence-in-health-and-life-sciences-programme-for-international-students",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-course-fees-year-abroad-fees": {
+      "id": "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-course-fees-year-abroad-fees",
+      "name": "Year abroad fees",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/course-fees/year-abroad-fees",
+      "urgency": "green"
+    },
+    "www.marjon.ac.uk_plymouth-marjon-university-scholarships_student-life-student-support-student-funding-advice": {
+      "id": "www.marjon.ac.uk_plymouth-marjon-university-scholarships_student-life-student-support-student-funding-advice",
+      "name": "Your Choice Regarding Cookies On This Site",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.marjon.ac.uk/student-life/student-support-/student-funding-advice",
+      "urgency": "green"
+    },
+    "www.cardiff.ac.uk_cardiff-university-scholarships_study-undergraduate-funding-scholarships-scholarships-for-studying-in-": {
+      "id": "www.cardiff.ac.uk_cardiff-university-scholarships_study-undergraduate-funding-scholarships-scholarships-for-studying-in-",
+      "name": "Yr Academi Gymraeg - Betty Campbell Scholarship",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cardiff.ac.uk/study/undergraduate/funding/scholarships/scholarships-for-studying-in-welsh/academi-gymraeg-betty-campbell-scholarship",
+      "urgency": "green"
+    },
     "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-marshall-phd-scholarship": {
       "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-marshall-phd-scholarship",
       "name": "Cambridge Marshall PhD Scholarship",
@@ -785,6 +2072,15 @@
       "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
       "urgency": "green"
     },
+    "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-international-undergraduat": {
+      "id": "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-international-undergraduat",
+      "name": "International Undergraduate Excellence Award (iea) – September",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.westminster.ac.uk/study/fees-and-funding/scholarships/international-undergraduate-excellence-award-iea-september-2026",
+      "urgency": "green"
+    },
     "foreign.fulbrightonline.org_fulbright_about-foreign-student-program": {
       "id": "foreign.fulbrightonline.org_fulbright_about-foreign-student-program",
       "name": "Fulbright Foreign Student Program",
@@ -801,6 +2097,51 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
+      "urgency": "green"
+    },
+    "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-international-scholarships-aspx": {
+      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-international-scholarships-aspx",
+      "name": "De Montfort University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/international-scholarships.aspx",
+      "urgency": "green"
+    },
+    "www.cardiff.ac.uk_cardiff-university-scholarships_study-undergraduate-funding-funding-your-healthcare-course": {
+      "id": "www.cardiff.ac.uk_cardiff-university-scholarships_study-undergraduate-funding-funding-your-healthcare-course",
+      "name": "Funding Your Healthcare Course",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.cardiff.ac.uk/study/undergraduate/funding/funding-your-healthcare-course",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-government-support": {
+      "id": "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-government-support",
+      "name": "Government support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/government-support",
+      "urgency": "green"
+    },
+    "test-1781303555235-43": {
+      "id": "test-1781303555235-43",
+      "name": "How To Pay Your Deposit – For Applicants With Overseas Fee Status",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bournemouth.ac.uk/study/international/international-fees-funding/how-pay-your-deposit-applicants-overseas-fee-status",
+      "urgency": "green"
+    },
+    "www.durham.ac.uk_durham-university-scholarships_study-international-fees-and-funding-foreign-loans": {
+      "id": "www.durham.ac.uk_durham-university-scholarships_study-international-fees-and-funding-foreign-loans",
+      "name": "U.s. Federal Loans",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.durham.ac.uk/study/international/fees-and-funding-/foreign-loans",
       "urgency": "green"
     },
     "www.cambridgetrust.org_cambridge-trust_scholarship-aker-scholarship-at-university-of-cambridge": {
@@ -866,6 +2207,15 @@
       "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
       "urgency": "green"
     },
+    "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-students-with-disabilities": {
+      "id": "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
+      "name": "Funding For Students With Disabilities",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/students-with-disabilities",
+      "urgency": "green"
+    },
     "study.ed.ac.uk_university-of-edinburgh_postgraduate-fees-funding-funding-studies-scholarships": {
       "id": "study.ed.ac.uk_university-of-edinburgh_postgraduate-fees-funding-funding-studies-scholarships",
       "name": "University of Edinburgh Postgraduate Scholarships",
@@ -873,1167 +2223,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
-      "urgency": "green"
-    },
-    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship": {
-      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship",
-      "name": "Cambridge Australia Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
-      "urgency": "green"
-    },
-    "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database": {
-      "id": "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database",
-      "name": "Scholarship for International Students",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
-      "urgency": "green"
-    },
-    "fast-1781302719298-smi20e": {
-      "id": "fast-1781302719298-smi20e",
-      "name": "Scholarship for International Students",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
-      "urgency": null
-    },
-    "fast-1781302719300-bwfh8q": {
-      "id": "fast-1781302719300-bwfh8q",
-      "name": "Hezekiah Wardwell Fellowship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000133&page=1",
-      "urgency": null
-    },
-    "fast-1781302719300-vs4qwo": {
-      "id": "fast-1781302719300-vs4qwo",
-      "name": "Humboldt Research Fellowship for Experienced Researchers",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000169&page=1",
-      "urgency": null
-    },
-    "fast-1781302719300-ynzovh": {
-      "id": "fast-1781302719300-ynzovh",
-      "name": "Chevening ASEAN Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-06k6lu": {
-      "id": "fast-1781302719300-06k6lu",
-      "name": "Chevening SIDS Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-lvq7q9": {
-      "id": "fast-1781302719300-lvq7q9",
-      "name": "Fulbright Foreign Student Program",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
-      "urgency": null
-    },
-    "fast-1781302719300-5xoq38": {
-      "id": "fast-1781302719300-5xoq38",
-      "name": "Japanese Government (MEXT) Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
-      "urgency": null
-    },
-    "fast-1781302719300-231xgh": {
-      "id": "fast-1781302719300-231xgh",
-      "name": "Aker Cambridge Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
-      "urgency": null
-    },
-    "fast-1781302719300-cm6ddq": {
-      "id": "fast-1781302719300-cm6ddq",
-      "name": "Beit Cambridge Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-gaz7fi": {
-      "id": "fast-1781302719300-gaz7fi",
-      "name": "Cambridge Africa Changemakers Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-u75txl": {
-      "id": "fast-1781302719300-u75txl",
-      "name": "Bhutan King’s Scholarship at the University of Cambridge",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
-      "urgency": null
-    },
-    "fast-1781302719300-q80fww": {
-      "id": "fast-1781302719300-q80fww",
-      "name": "Brockmann Cambridge Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
-      "urgency": null
-    },
-    "fast-1781302719300-r8sm6v": {
-      "id": "fast-1781302719300-r8sm6v",
-      "name": "Bseisu-University of Cambridge Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-sz14db": {
-      "id": "fast-1781302719300-sz14db",
-      "name": "Cambridge Australia Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-uxlocl": {
-      "id": "fast-1781302719300-uxlocl",
-      "name": "Cambridge Caribbean Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-u5kp62": {
-      "id": "fast-1781302719300-u5kp62",
-      "name": "Cambridge Marshall PhD Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
-      "urgency": null
-    },
-    "fast-1781302719300-cy9s0x": {
-      "id": "fast-1781302719300-cy9s0x",
-      "name": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
-      "urgency": null
-    },
-    "fast-1781302719300-av5x4q": {
-      "id": "fast-1781302719300-av5x4q",
-      "name": "University of Edinburgh Postgraduate Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
-      "urgency": null
-    },
-    "test-1781303555233-0": {
-      "id": "test-1781303555233-0",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk",
-      "urgency": null
-    },
-    "test-1781303555235-1": {
-      "id": "test-1781303555235-1",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-2": {
-      "id": "test-1781303555235-2",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/scholarships-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-3": {
-      "id": "test-1781303555235-3",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-4": {
-      "id": "test-1781303555235-4",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/funding",
-      "urgency": null
-    },
-    "test-1781303555235-5": {
-      "id": "test-1781303555235-5",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/study/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-6": {
-      "id": "test-1781303555235-6",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/study/fees-and-funding/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-7": {
-      "id": "test-1781303555235-7",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/international/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-8": {
-      "id": "test-1781303555235-8",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/international/fees-and-funding/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-9": {
-      "id": "test-1781303555235-9",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/postgraduate/finance",
-      "urgency": null
-    },
-    "test-1781303555235-10": {
-      "id": "test-1781303555235-10",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/study/postgraduate/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-11": {
-      "id": "test-1781303555235-11",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/study/postgraduate-research/funding",
-      "urgency": null
-    },
-    "test-1781303555235-12": {
-      "id": "test-1781303555235-12",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-13": {
-      "id": "test-1781303555235-13",
-      "name": "Error 404 - Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://arden.ac.uk/study/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-14": {
-      "id": "test-1781303555235-14",
-      "name": "Error 404 - Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://arden.ac.uk/study/fees-and-funding/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-15": {
-      "id": "test-1781303555235-15",
-      "name": "Error 404 - Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://arden.ac.uk/study/postgraduate/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-16": {
-      "id": "test-1781303555235-16",
-      "name": "Error 404 - Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://arden.ac.uk/study/postgraduate-research/funding",
-      "urgency": null
-    },
-    "test-1781303555235-17": {
-      "id": "test-1781303555235-17",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.aup.ac.uk/study/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-18": {
-      "id": "test-1781303555235-18",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.aup.ac.uk/study/fees-and-funding/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-19": {
-      "id": "test-1781303555235-19",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.aup.ac.uk/study/postgraduate/fees-and-funding",
-      "urgency": null
-    },
-    "test-1781303555235-20": {
-      "id": "test-1781303555235-20",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.aup.ac.uk/study/postgraduate-research/funding",
-      "urgency": null
-    },
-    "test-1781303555235-21": {
-      "id": "test-1781303555235-21",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.aup.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-22": {
-      "id": "test-1781303555235-22",
-      "name": "Home",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk",
-      "urgency": null
-    },
-    "test-1781303555235-23": {
-      "id": "test-1781303555235-23",
-      "name": "Financial Support",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support",
-      "urgency": null
-    },
-    "test-1781303555235-24": {
-      "id": "test-1781303555235-24",
-      "name": "Postgraduate Financial Support",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/postgraduate",
-      "urgency": null
-    },
-    "test-1781303555235-25": {
-      "id": "test-1781303555235-25",
-      "name": "PhD Funding And Financial Support",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/phd-funding",
-      "urgency": null
-    },
-    "test-1781303555235-26": {
-      "id": "test-1781303555235-26",
-      "name": "Cyril Taylor Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/cyril-taylor-scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-27": {
-      "id": "test-1781303555235-27",
-      "name": "The Carena Institute Of Sustainable Archaeologies Postgraduate Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/carena-institute-of-sustainable-archaeologies-scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-28": {
-      "id": "test-1781303555235-28",
-      "name": "Peltz Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/peltz-scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-29": {
-      "id": "test-1781303555235-29",
-      "name": "Economics Postgraduate Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/economics-postgraduate-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-30": {
-      "id": "test-1781303555235-30",
-      "name": "Sir Terence Etherton Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/sir-terence-etherton-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-31": {
-      "id": "test-1781303555235-31",
-      "name": "Women In Sport Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/women-in-sport-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-32": {
-      "id": "test-1781303555235-32",
-      "name": "Bonnart Trust Sanctuary Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/bonnart-trust-sanctuary-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-33": {
-      "id": "test-1781303555235-33",
-      "name": "Breakspear Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/breakspear-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-34": {
-      "id": "test-1781303555235-34",
-      "name": "MA History Of Art Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/ma-history-of-art-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-35": {
-      "id": "test-1781303555235-35",
-      "name": "Will Vaughan Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/will-vaughan-scholarship",
-      "urgency": null
-    },
-    "test-1781303555235-36": {
-      "id": "test-1781303555235-36",
-      "name": "Home",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk",
-      "urgency": null
-    },
-    "test-1781303555235-37": {
-      "id": "test-1781303555235-37",
-      "name": "Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-38": {
-      "id": "test-1781303555235-38",
-      "name": "Rankings And Awards",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/about/welcome-bu/rankings-awards",
-      "urgency": null
-    },
-    "test-1781303555235-39": {
-      "id": "test-1781303555235-39",
-      "name": "Uk/ci/roi Student Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/scholarships/ukciroi-student-scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-40": {
-      "id": "test-1781303555235-40",
-      "name": "Uk, CI And ROI Student Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/postgraduate/fees-funding/scholarships/uk-ci-roi-student-scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-41": {
-      "id": "test-1781303555235-41",
-      "name": "Undergraduate Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/undergraduate-scholarships",
-      "urgency": null
-    },
-    "test-1781303555235-42": {
-      "id": "test-1781303555235-42",
-      "name": "Undergraduate Fees And Funding",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/undergraduate-fees-funding",
-      "urgency": null
-    },
-    "test-1781303555235-43": {
-      "id": "test-1781303555235-43",
-      "name": "How To Pay Your Deposit – For Applicants With Overseas Fee Status",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/international/international-fees-funding/how-pay-your-deposit-applicants-overseas-fee-status",
-      "urgency": null
-    },
-    "test-1781303555235-44": {
-      "id": "test-1781303555235-44",
-      "name": "Student Loans",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": null,
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/student-loans",
-      "urgency": null
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-phd-funding": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-phd-funding",
-      "name": "PhD Funding And Financial Support",
-      "deadline": "2026-12-01",
-      "deadlineRaw": "Autumn 2026",
-      "deadlineType": "estimated",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/phd-funding",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-breakspear-scholarship": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-breakspear-scholarship",
-      "name": "Breakspear Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/breakspear-scholarship",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-cyril-taylor-scholarships": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-cyril-taylor-scholarships",
-      "name": "Cyril Taylor Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/cyril-taylor-scholarships",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-economics-postgraduate-schol": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-economics-postgraduate-schol",
-      "name": "Economics Postgraduate Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/economics-postgraduate-scholarship",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-ma-history-of-art-scholarshi": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-ma-history-of-art-scholarshi",
-      "name": "MA History Of Art Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/ma-history-of-art-scholarship",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-peltz-scholarships": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-peltz-scholarships",
-      "name": "Peltz Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/peltz-scholarships",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-carena-institute-of-sustaina": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-carena-institute-of-sustaina",
-      "name": "The Carena Institute Of Sustainable Archaeologies Postgraduate Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/carena-institute-of-sustainable-archaeologies-scholarships",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-postgraduate-fees-funding-scholarships-uk-ci-roi-student": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-postgraduate-fees-funding-scholarships-uk-ci-roi-student",
-      "name": "Uk, CI And ROI Student Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/postgraduate/fees-funding/scholarships/uk-ci-roi-student-scholarships",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-scholarships-ukciroi-student-": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-scholarships-ukciroi-student-",
-      "name": "Uk/ci/roi Student Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/scholarships/ukciroi-student-scholarships",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-undergraduate-fees-funding": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-undergraduate-fees-funding",
-      "name": "Undergraduate Fees And Funding",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/undergraduate-fees-funding",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-will-vaughan-scholarship": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-will-vaughan-scholarship",
-      "name": "Will Vaughan Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/will-vaughan-scholarship",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-undergraduate-scholarships": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-undergraduate-scholarships",
-      "name": "Undergraduate Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/undergraduate-scholarships",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-bonnart-trust-sanctuary-scho": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-bonnart-trust-sanctuary-scho",
-      "name": "Bonnart Trust Sanctuary Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/bonnart-trust-sanctuary-scholarship",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_scholarships": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_scholarships",
-      "name": "Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/scholarships",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-sir-terence-etherton-scholar": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-sir-terence-etherton-scholar",
-      "name": "Sir Terence Etherton Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/sir-terence-etherton-scholarship",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-women-in-sport-scholarship": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-women-in-sport-scholarship",
-      "name": "Women In Sport Scholarship",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/women-in-sport-scholarship",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_about-welcome-bu-rankings-awards": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_about-welcome-bu-rankings-awards",
-      "name": "Rankings And Awards",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/about/welcome-bu/rankings-awards",
-      "urgency": "green"
-    },
-    "www.aup.ac.uk_arts-university-plymouth-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.aup.ac.uk_arts-university-plymouth-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.aup.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_root": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_root",
-      "name": "Home",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-postgraduate": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-postgraduate",
-      "name": "Postgraduate Financial Support",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support/postgraduate",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-student-loans": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-undergraduate-fees-funding-student-loans",
-      "name": "Student Loans",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/undergraduate/fees-funding/student-loans",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-international-international-fees-funding-how-pay-your-de": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_study-international-international-fees-funding-how-pay-your-de",
-      "name": "How To Pay Your Deposit – For Applicants With Overseas Fee Status",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk/study/international/international-fees-funding/how-pay-your-deposit-applicants-overseas-fee-status",
-      "urgency": "green"
-    },
-    "www.bournemouth.ac.uk_bournemouth-university-scholarships_root": {
-      "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_root",
-      "name": "Home",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support",
-      "name": "Financial Support",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support",
-      "urgency": "green"
-    },
-    "www.amity.ac.uk_amity-university-in-london-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.amity.ac.uk_amity-university-in-london-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "Amity University (in) London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.amity.ac.uk/study/postgraduate-research/funding",
-      "urgency": "green"
-    },
-    "arden.ac.uk_arden-university-scholarships_study-postgraduate-research-funding": {
-      "id": "arden.ac.uk_arden-university-scholarships_study-postgraduate-research-funding",
-      "name": "Error 404 - Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://arden.ac.uk/study/postgraduate-research/funding",
-      "urgency": "green"
-    },
-    "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_error-404": {
-      "id": "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_error-404",
-      "name": "Coventry University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.coventry.ac.uk/error-404/?src=nomatch&url=/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_international-students-h": {
-      "id": "www.coventry.ac.uk_coventry-university-london-cu-coventry-cu-london-cu-scarborough-scholarships_international-students-h",
-      "name": "Coventry University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.coventry.ac.uk/international-students-hub/apply-for-a-scholarship",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_current-students-student-support-student-finance-scholarships-and-burs": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_current-students-student-support-student-finance-scholarships-and-burs",
-      "name": "De Montfort University",
-      "deadline": null,
-      "deadlineRaw": "Rolling",
-      "deadlineType": "rolling",
-      "sourceUrl": "https://www.dmu.ac.uk/current-students/student-support/student-finance/scholarships-and-bursaries/index.aspx",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_scholarships-and-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_scholarships-and-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/scholarships-and-funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_fees-and-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_fees-and-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/fees-and-funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_study-fees-and-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_study-fees-and-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/study/fees-and-funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_study-fees-and-funding-scholarships": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_study-fees-and-funding-scholarships",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/study/fees-and-funding/scholarships",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_international-scholarships": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-scholarships",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/international/scholarships",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_international-fees-and-funding-scholarships": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-fees-and-funding-scholarships",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/international/fees-and-funding/scholarships",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-fees-and-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-fees-and-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/postgraduate/fees-and-funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-fees-and-funding-scholarships": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-fees-and-funding-scholarships",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/postgraduate/fees-and-funding/scholarships",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-finance": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-finance",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/postgraduate/finance",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_postgraduate-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/postgraduate/funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_study-postgraduate-fees-and-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_study-postgraduate-fees-and-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/study/postgraduate/fees-and-funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_study-postgraduate-research-funding": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_study-postgraduate-research-funding",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/study/postgraduate-research/funding",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-international-scholarships-aspx": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-international-scholarships-aspx",
-      "name": "De Montfort University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/international-scholarships.aspx",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_study-fees-funding-leicester-postgraduate-partnership-index-aspx": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_study-fees-funding-leicester-postgraduate-partnership-index-aspx",
-      "name": "De Montfort University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/study/fees-funding/leicester-postgraduate-partnership/index.aspx",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-access-scholarship-aspx": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-access-scholarship-aspx",
-      "name": "De Montfort University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/global-access-scholarship.aspx",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship",
-      "name": "De Montfort University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/global-partnerships-scholarship/global-partnerships-scholarship.aspx",
-      "urgency": "green"
-    },
-    "www.durham.ac.uk_durham-university-scholarships_study-scholarships": {
-      "id": "www.durham.ac.uk_durham-university-scholarships_study-scholarships",
-      "name": "Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.durham.ac.uk/study/scholarships",
-      "urgency": "green"
-    },
-    "www.durham.ac.uk_durham-university-scholarships_study-international": {
-      "id": "www.durham.ac.uk_durham-university-scholarships_study-international",
-      "name": "International",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.durham.ac.uk/study/international",
-      "urgency": "green"
-    },
-    "www.durham.ac.uk_durham-university-scholarships_study-scholarships-international": {
-      "id": "www.durham.ac.uk_durham-university-scholarships_study-scholarships-international",
-      "name": "International - Durham University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.durham.ac.uk/study/scholarships/international",
-      "urgency": "green"
-    },
-    "www.durham.ac.uk_durham-university-scholarships_study-international-fees-and-funding-foreign-loans": {
-      "id": "www.durham.ac.uk_durham-university-scholarships_study-international-fees-and-funding-foreign-loans",
-      "name": "U.s. Federal Loans",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.durham.ac.uk/study/international/fees-and-funding-/foreign-loans",
-      "urgency": "green"
-    },
-    "www.gold.ac.uk_goldsmiths-university-of-london-south-east-london-teaching-partnership-scholarships_root": {
-      "id": "www.gold.ac.uk_goldsmiths-university-of-london-south-east-london-teaching-partnership-scholarships_root",
-      "name": "Goldsmiths, University Of London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.gold.ac.uk",
-      "urgency": "green"
-    },
-    "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_student-life-student-finances-scholarships-and-burs": {
-      "id": "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_student-life-student-finances-scholarships-and-burs",
-      "name": "Scholarships And Bursaries | Health Sciences University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.hsu.ac.uk/student-life/student-finances/scholarships-and-bursaries",
-      "urgency": "green"
-    },
-    "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_aecc-school-of-chiropractic-celebrates-internationa": {
-      "id": "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_aecc-school-of-chiropractic-celebrates-internationa",
-      "name": "AECC School Of Chiropractic Celebrates International Research Excellence With Best Poster Award Win | Health Sciences University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.hsu.ac.uk/aecc-school-of-chiropractic-celebrates-international-research-excellence-with-best-poster-award-win",
-      "urgency": "green"
-    },
-    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-ada-lovelace-phd-scho": {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-ada-lovelace-phd-scho",
-      "name": "Search Our Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/ada-lovelace-phd-scholarship-in-computational-and-data-science-2026-20262027.php",
-      "urgency": "green"
-    },
-    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-advisory-board-202520": {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-advisory-board-202520",
-      "name": "Search Our Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/advisory-board-20252026.php",
-      "urgency": "green"
-    },
-    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-african-future-leader": {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-african-future-leader",
-      "name": "Search Our Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/african-future-leader-20252026.php",
-      "urgency": "green"
-    },
-    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-ai-for-antibody-and-p": {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-ai-for-antibody-and-p",
-      "name": "Search Our Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/ai-for-antibody-and-protein-design-20262027.php",
-      "urgency": "green"
-    },
-    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-alan-howard-scholarsh": {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-alan-howard-scholarsh",
-      "name": "Search Our Scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/alan-howard-scholarship-20252026.php",
-      "urgency": "green"
-    },
-    "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod": {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
-      "name": "Search Our Scholarships",
-      "deadline": "2025-05-02",
-      "deadlineRaw": "2 may 2025",
-      "deadlineType": "fixed",
-      "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/anne-seagrim-accommodation-scholarship-20252026.php",
-      "urgency": "black"
-    },
-    "www.mdx.ac.uk_middlesex-university-scholarships_root": {
-      "id": "www.mdx.ac.uk_middlesex-university-scholarships_root",
-      "name": "Middlesex University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.mdx.ac.uk",
-      "urgency": "green"
-    },
-    "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-postgraduate-finance": {
-      "id": "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-postgraduate-finance",
-      "name": "Postgraduate Finance | Middlesex University London",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.mdx.ac.uk/study/fees-and-funding/postgraduate-finance",
-      "urgency": "green"
-    },
-    "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-payment-methods": {
-      "id": "www.mdx.ac.uk_middlesex-university-scholarships_study-fees-and-funding-payment-methods",
-      "name": "Payment Methods And Managing Your University Finances",
-      "deadline": null,
-      "deadlineRaw": "TBC",
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.mdx.ac.uk/study/fees-and-funding/payment-methods",
-      "urgency": "green"
-    },
-    "www.ncl.ac.uk_newcastle-university-scholarships_root": {
-      "id": "www.ncl.ac.uk_newcastle-university-scholarships_root",
-      "name": "Newcastle University | World Top 140 Research-led UK University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.ncl.ac.uk",
-      "urgency": "green"
-    },
-    "www.ncl.ac.uk_newcastle-university-scholarships_study-global-scholarships": {
-      "id": "www.ncl.ac.uk_newcastle-university-scholarships_study-global-scholarships",
-      "name": "Our Global Scholarships For",
-      "deadline": null,
-      "deadlineRaw": "Rolling",
-      "deadlineType": "rolling",
-      "sourceUrl": "https://www.ncl.ac.uk/study/global-scholarships",
       "urgency": "green"
     },
     "www.nulondon.ac.uk_northeastern-university-london-new-college-of-the-humanities-scholarships_admissions": {
@@ -2045,121 +2234,103 @@
       "sourceUrl": "https://www.nulondon.ac.uk/admissions",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_root": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_root",
-      "name": "Northumbria University | Uni Courses | Study In The Best Student City",
+    "www.tees.ac.uk_tees-university-scholarships_sections-international-scholarships-cfm": {
+      "id": "www.tees.ac.uk_tees-university-scholarships_sections-international-scholarships-cfm",
+      "name": "Scholarships And Funding",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk",
+      "sourceUrl": "https://www.tees.ac.uk/sections/international/scholarships.cfm",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_scholarships-and-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_scholarships-and-funding",
-      "name": "Oops - 404 Error",
+    "www.mmu.ac.uk_mmu-university-scholarships_sport-performance-sport-scholarships": {
+      "id": "www.mmu.ac.uk_mmu-university-scholarships_sport-performance-sport-scholarships",
+      "name": "Sports Scholarships | Manchester Metropolitan University",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/scholarships-and-funding",
+      "sourceUrl": "https://www.mmu.ac.uk/sport/performance-sport/scholarships",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_fees-and-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_fees-and-funding",
-      "name": "Oops - 404 Error",
+    "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship": {
+      "id": "www.cambridgetrust.org_cambridge-trust_scholarship-cambridge-australia-scholarship",
+      "name": "Cambridge Australia Scholarships",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/fees-and-funding",
+      "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_funding",
-      "name": "Oops - 404 Error",
+    "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-students-with-disabilities": {
+      "id": "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
+      "name": "Funding For Students With Disabilities",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/funding",
+      "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/students-with-disabilities",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_study-fees-and-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-fees-and-funding",
-      "name": "Oops - 404 Error",
+    "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-women-in-stem": {
+      "id": "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-women-in-stem",
+      "name": "British Council Women In STEM Scholarships",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/study/fees-and-funding",
+      "sourceUrl": "https://www.aston.ac.uk/international/scholarships/women-in-stem",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_study-fees-and-funding-scholarships": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-fees-and-funding-scholarships",
-      "name": "Oops - 404 Error",
+    "greatermanchester.ac.uk_bolton-university-scholarships_study-postgraduate-research-funding": {
+      "id": "greatermanchester.ac.uk_bolton-university-scholarships_study-postgraduate-research-funding",
+      "name": "404 | Page Not Found",
       "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/study/fees-and-funding/scholarships",
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://greatermanchester.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_international-scholarships": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_international-scholarships",
-      "name": "Oops - 404 Error",
+    "www.bath.ac.uk_university-of-bath-scholarships_announcements-bath-professor-named-honorary-fellow-of-the-chinese-chemica": {
+      "id": "www.bath.ac.uk_university-of-bath-scholarships_announcements-bath-professor-named-honorary-fellow-of-the-chinese-chemica",
+      "name": "Cookies On Bath.ac.uk",
       "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/international/scholarships",
+      "deadlineRaw": "Rolling",
+      "deadlineType": "rolling",
+      "sourceUrl": "https://www.bath.ac.uk/announcements/bath-professor-named-honorary-fellow-of-the-chinese-chemical-society",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_international-fees-and-funding-scholarships": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_international-fees-and-funding-scholarships",
-      "name": "Oops - 404 Error",
+    "www.royalholloway.ac.uk_royal-holloway-university-of-london-scholarships_studying-here-fees-and-funding": {
+      "id": "www.royalholloway.ac.uk_royal-holloway-university-of-london-scholarships_studying-here-fees-and-funding",
+      "name": "Fees And Funding",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/international/fees-and-funding/scholarships",
+      "sourceUrl": "https://www.royalholloway.ac.uk/studying-here/fees-and-funding",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-fees-and-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-fees-and-funding",
-      "name": "Oops - 404 Error",
+    "www.durham.ac.uk_durham-university-scholarships_study-scholarships": {
+      "id": "www.durham.ac.uk_durham-university-scholarships_study-scholarships",
+      "name": "Scholarships",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/postgraduate/fees-and-funding",
+      "sourceUrl": "https://www.durham.ac.uk/study/scholarships",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-fees-and-funding-scholarships": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-fees-and-funding-scholarships",
-      "name": "Oops - 404 Error",
+    "www.aston.ac.uk_not-applicable-scholarships_aston-business-school-aston-mba-mba-scholarships": {
+      "id": "www.aston.ac.uk_not-applicable-scholarships_aston-business-school-aston-mba-mba-scholarships",
+      "name": "Full-time MBA Scholarships",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/postgraduate/fees-and-funding/scholarships",
+      "sourceUrl": "https://www.aston.ac.uk/aston-business-school/aston-mba/mba-scholarships",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-finance": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-finance",
-      "name": "Oops - 404 Error",
+    "test-1781303555235-36": {
+      "id": "test-1781303555235-36",
+      "name": "Home",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/postgraduate/finance",
-      "urgency": "green"
-    },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_postgraduate-funding",
-      "name": "Oops - 404 Error",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/postgraduate/funding",
-      "urgency": "green"
-    },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_study-postgraduate-fees-and-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-postgraduate-fees-and-funding",
-      "name": "Oops - 404 Error",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/study/postgraduate/fees-and-funding",
+      "sourceUrl": "https://www.bournemouth.ac.uk",
       "urgency": "green"
     },
     "www.northumbria.ac.uk_northumbria-university-scholarships_study-postgraduate-research-funding": {
@@ -2168,34 +2339,133 @@
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/study/postgraduate-research/funding",
-      "urgency": "green"
-    },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "Oops - 404 Error",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
       "sourceUrl": "https://www.northumbria.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-fees-funding-international-fees-funding-i": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-fees-funding-international-fees-funding-i",
-      "name": "International Masters Funding And Scholarships| Northumbria University",
-      "deadline": null,
-      "deadlineRaw": "Closed",
-      "deadlineType": "closed",
-      "sourceUrl": "https://www.northumbria.ac.uk/study-at-northumbria/fees-funding/international-fees-funding/international-masters-funding",
-      "urgency": "green"
-    },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-support-for-students-financial-support-fu": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-at-northumbria-support-for-students-financial-support-fu",
-      "name": "Funding For International Students",
+    "www.uea.ac.uk_uea-university-of-east-anglia-scholarships_international-fees-and-funding-scholarships": {
+      "id": "www.uea.ac.uk_uea-university-of-east-anglia-scholarships_international-fees-and-funding-scholarships",
+      "name": "Scholarships",
       "deadline": null,
       "deadlineRaw": null,
       "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/study-at-northumbria/support-for-students/financial-support/funding/funding-for-international-students",
+      "sourceUrl": "https://www.uea.ac.uk/international/fees-and-funding/scholarships",
+      "urgency": "green"
+    },
+    "www.strath.ac.uk_university-of-strathclyde-scholarships_root": {
+      "id": "www.strath.ac.uk_university-of-strathclyde-scholarships_root",
+      "name": "The Place Of Useful Learning",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.strath.ac.uk",
+      "urgency": "green"
+    },
+    "www.essex.ac.uk_essex-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.essex.ac.uk_essex-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "404 | University Of Essex",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.essex.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.aru.ac.uk_anglia-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.aru.ac.uk_anglia-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "404 Page Not Found",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aru.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-course-fees-equivalent-and-lower-qualificati": {
+      "id": "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-course-fees-equivalent-and-lower-qualificati",
+      "name": "Equivalent and lower qualification fee",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/course-fees/equivalent-and-lower-qualification-fee",
+      "urgency": "green"
+    },
+    "test-1781303555235-23": {
+      "id": "test-1781303555235-23",
+      "name": "Financial Support",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bbk.ac.uk/student-services/financial-support",
+      "urgency": "green"
+    },
+    "www.hull.ac.uk_university-of-hull-scholarships_study-postgraduate-research-funded-opportunities": {
+      "id": "www.hull.ac.uk_university-of-hull-scholarships_study-postgraduate-research-funded-opportunities",
+      "name": "Funded PhD Opportunities",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.hull.ac.uk/study/postgraduate-research/funded-opportunities",
+      "urgency": "green"
+    },
+    "www.durham.ac.uk_durham-university-scholarships_study-international": {
+      "id": "www.durham.ac.uk_durham-university-scholarships_study-international",
+      "name": "International",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.durham.ac.uk/study/international",
+      "urgency": "green"
+    },
+    "www.intoglobal.com_intoglobal-university-scholarships_root": {
+      "id": "www.intoglobal.com_intoglobal-university-scholarships_root",
+      "name": "INTO University Partnerships: Empowering Global Education",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.intoglobal.com",
+      "urgency": "green"
+    },
+    "www.aru.ac.uk_not-applicable-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
+      "id": "www.aru.ac.uk_not-applicable-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
+      "name": "404 Page Not Found",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aru.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+      "urgency": "green"
+    },
+    "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-external-funding": {
+      "id": "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-external-funding",
+      "name": "External Funding",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.aston.ac.uk/international/scholarships/external-funding",
+      "urgency": "green"
+    },
+    "test-1781303555235-11": {
+      "id": "test-1781303555235-11",
+      "name": "Amity University (in) London",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.amity.ac.uk/study/postgraduate-research/funding",
+      "urgency": "green"
+    },
+    "test-1781303555235-16": {
+      "id": "test-1781303555235-16",
+      "name": "Error 404 - Page Not Found",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://arden.ac.uk/study/postgraduate-research/funding",
+      "urgency": "green"
+    },
+    "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database": {
+      "id": "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database",
+      "name": "Scholarship for International Students",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
       "urgency": "green"
     },
     "www.brunel.ac.uk_brunel-university-of-london_root": {
@@ -2205,6 +2475,60 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.brunel.ac.uk",
+      "urgency": "green"
+    },
+    "www.gcu.ac.uk_glasgow-caledonian-university-scholarships_root": {
+      "id": "www.gcu.ac.uk_glasgow-caledonian-university-scholarships_root",
+      "name": "Glasgow Caledonian University | Scotland, UK",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.gcu.ac.uk",
+      "urgency": "green"
+    },
+    "www.gold.ac.uk_goldsmiths-university-of-london-south-east-london-teaching-partnership-scholarships_root": {
+      "id": "www.gold.ac.uk_goldsmiths-university-of-london-south-east-london-teaching-partnership-scholarships_root",
+      "name": "Goldsmiths, University Of London",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.gold.ac.uk",
+      "urgency": "green"
+    },
+    "www.bangor.ac.uk_bangor-university-scholarships_root": {
+      "id": "www.bangor.ac.uk_bangor-university-scholarships_root",
+      "name": "Join One Of The Worlds Top Universities Of",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.bangor.ac.uk",
+      "urgency": "green"
+    },
+    "www.mdx.ac.uk_middlesex-university-scholarships_root": {
+      "id": "www.mdx.ac.uk_middlesex-university-scholarships_root",
+      "name": "Middlesex University",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.mdx.ac.uk",
+      "urgency": "green"
+    },
+    "www.northumbria.ac.uk_northumbria-university-scholarships_root": {
+      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_root",
+      "name": "Northumbria University | Uni Courses | Study In The Best Student City",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.northumbria.ac.uk",
+      "urgency": "green"
+    },
+    "www.gsa.ac.uk_the-glasgow-school-of-art-scholarships_root": {
+      "id": "www.gsa.ac.uk_the-glasgow-school-of-art-scholarships_root",
+      "name": "The Glasgow School Of Art",
+      "deadline": null,
+      "deadlineRaw": null,
+      "deadlineType": "unknown",
+      "sourceUrl": "https://www.gsa.ac.uk",
       "urgency": "green"
     }
   }

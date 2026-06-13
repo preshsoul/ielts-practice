@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-05-18T20:00:46.566Z",
-  "total": 59,
+  "updated_at": "2026-06-13T12:43:55.196Z",
+  "total": 56,
   "candidates": [
     {
-      "capturedAt": "2026-05-18T19:56:51.149Z",
+      "capturedAt": "2026-06-13T12:40:50.943Z",
       "sourceLabel": "DAAD Scholarship Database",
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database",
       "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database",
@@ -14,52 +14,46 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:56:53.125Z",
+      "capturedAt": "2026-06-13T12:40:53.252Z",
       "sourceLabel": "DAAD Scholarship Database",
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database",
       "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
       "canonicalUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
       "depth": 0,
-      "title": "Scholarship for International Students",
+      "title": "Friedrich Ebert Foundation: Scholarship for International Students",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
-      "confidence": 0.36,
-      "awardingBody": "Friedrich Ebert Foundation",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "status": "validation_failure",
+      "reason": "evidence_minimum"
     },
     {
-      "capturedAt": "2026-05-18T19:56:55.364Z",
+      "capturedAt": "2026-06-13T12:40:55.702Z",
       "sourceLabel": "DAAD Scholarship Database",
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database",
       "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000133&page=1",
       "canonicalUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000133",
       "depth": 0,
-      "title": "Hezekiah Wardwell Fellowship",
+      "title": "Alexander von Humboldt Foundation: Hezekiah Wardwell Fellowship",
       "pageType": "detail",
       "pageScore": 7,
-      "status": "approved",
-      "confidence": 0.38,
-      "awardingBody": "Alexander von Humboldt Foundation",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "status": "validation_failure",
+      "reason": "evidence_minimum"
     },
     {
-      "capturedAt": "2026-05-18T19:56:57.588Z",
+      "capturedAt": "2026-06-13T12:40:58.409Z",
       "sourceLabel": "DAAD Scholarship Database",
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database",
       "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000169&page=1",
       "canonicalUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000169",
       "depth": 0,
-      "title": "Humboldt Research Fellowship for Experienced Researchers",
+      "title": "Alexander von Humboldt Foundation: Humboldt Research Fellowship for Experienced Researchers",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
-      "confidence": 0.38,
-      "awardingBody": "Alexander von Humboldt Foundation",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "status": "validation_failure",
+      "reason": "evidence_minimum"
     },
     {
-      "capturedAt": "2026-05-18T19:57:03.270Z",
+      "capturedAt": "2026-06-13T12:41:02.606Z",
       "sourceLabel": "Erasmus Mundus Joint Masters",
       "sourceUrl": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
       "url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
@@ -72,47 +66,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:57:30.683Z",
-      "sourceLabel": "Chevening Scholarships",
-      "sourceUrl": "https://www.chevening.org/scholarships",
-      "url": "https://www.chevening.org/scholarships",
-      "canonicalUrl": "https://www.chevening.org/scholarships",
-      "depth": 0,
-      "status": "skipped",
-      "reason": "url-policy"
-    },
-    {
-      "capturedAt": "2026-05-18T19:57:38.886Z",
-      "sourceLabel": "Chevening Scholarships",
-      "sourceUrl": "https://www.chevening.org/scholarships",
-      "url": "https://www.chevening.org/asean-chevening-scholarship",
-      "canonicalUrl": "https://www.chevening.org/asean-chevening-scholarship",
-      "depth": 0,
-      "title": "Chevening ASEAN Scholarship",
-      "pageType": "detail",
-      "pageScore": 6,
-      "status": "approved",
-      "confidence": 0.43,
-      "awardingBody": "Chevening",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
-    },
-    {
-      "capturedAt": "2026-05-18T19:57:45.868Z",
-      "sourceLabel": "Chevening Scholarships",
-      "sourceUrl": "https://www.chevening.org/scholarships",
-      "url": "https://www.chevening.org/sids-chevening-scholarship",
-      "canonicalUrl": "https://www.chevening.org/sids-chevening-scholarship",
-      "depth": 0,
-      "title": "Chevening SIDS Scholarship",
-      "pageType": "detail",
-      "pageScore": 6,
-      "status": "approved",
-      "confidence": 0.6000000000000001,
-      "awardingBody": "Chevening",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
-    },
-    {
-      "capturedAt": "2026-05-18T19:57:52.207Z",
+      "capturedAt": "2026-06-13T12:41:26.288Z",
       "sourceLabel": "Fulbright Foreign Student Program",
       "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
       "url": "https://foreign.fulbrightonline.org/about/foreign-student-program",
@@ -121,13 +75,12 @@
       "title": "Fulbright Foreign Student Program",
       "pageType": "detail",
       "pageScore": 7,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.5800000000000001,
-      "awardingBody": "Fulbright",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Fulbright"
     },
     {
-      "capturedAt": "2026-05-18T19:58:01.468Z",
+      "capturedAt": "2026-06-13T12:41:34.271Z",
       "sourceLabel": "MEXT Scholarships",
       "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
       "url": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
@@ -136,13 +89,12 @@
       "title": "Japanese Government (MEXT) Scholarship",
       "pageType": "detail",
       "pageScore": 8,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.5800000000000001,
-      "awardingBody": "MEXT",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "MEXT"
     },
     {
-      "capturedAt": "2026-05-18T19:58:03.731Z",
+      "capturedAt": "2026-06-13T12:41:38.226Z",
       "sourceLabel": "Swedish Institute Scholarships",
       "sourceUrl": "https://si.se/en/apply/scholarships",
       "url": "https://si.se/en/apply/scholarships",
@@ -154,7 +106,7 @@
       "reason": "blocked or access-denied page"
     },
     {
-      "capturedAt": "2026-05-18T19:58:18.160Z",
+      "capturedAt": "2026-06-13T12:41:44.895Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/about/australia-in-africa",
@@ -167,7 +119,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:23.130Z",
+      "capturedAt": "2026-06-13T12:41:47.895Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org",
@@ -180,7 +132,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:27.876Z",
+      "capturedAt": "2026-06-13T12:41:57.620Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumniupdate",
@@ -190,7 +142,7 @@
       "reason": "blocked-path"
     },
     {
-      "capturedAt": "2026-05-18T19:58:31.039Z",
+      "capturedAt": "2026-06-13T12:41:59.776Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/awards/apply",
@@ -203,7 +155,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:34.385Z",
+      "capturedAt": "2026-06-13T12:42:02.332Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/about",
@@ -216,7 +168,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:37.685Z",
+      "capturedAt": "2026-06-13T12:42:04.830Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/about/how-we-are-helping",
@@ -229,7 +181,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:41.208Z",
+      "capturedAt": "2026-06-13T12:42:07.705Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/about/jobs",
@@ -242,7 +194,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:44.370Z",
+      "capturedAt": "2026-06-13T12:42:10.210Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/about/tenders",
@@ -255,7 +207,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:47.716Z",
+      "capturedAt": "2026-06-13T12:42:12.760Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/awards",
@@ -268,7 +220,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:51.370Z",
+      "capturedAt": "2026-06-13T12:42:14.942Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/awards/types-of-awards",
@@ -281,7 +233,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:53.835Z",
+      "capturedAt": "2026-06-13T12:42:17.206Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/?post_type=scholarships&amp;p=323",
@@ -294,7 +246,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:58:59.067Z",
+      "capturedAt": "2026-06-13T12:42:19.677Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/awards/pre-interview-information",
@@ -307,7 +259,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:02.794Z",
+      "capturedAt": "2026-06-13T12:42:22.281Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/on-award",
@@ -320,7 +272,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:06.357Z",
+      "capturedAt": "2026-06-13T12:42:24.659Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/on-award/pre-departure-support",
@@ -333,7 +285,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:09.619Z",
+      "capturedAt": "2026-06-13T12:42:27.125Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/awards/scholarship-experience",
@@ -346,7 +298,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:13.090Z",
+      "capturedAt": "2026-06-13T12:42:29.780Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni/reintegration-planning",
@@ -359,7 +311,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:16.000Z",
+      "capturedAt": "2026-06-13T12:42:32.097Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/awards/professional-associations-and-networking",
@@ -372,7 +324,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:19.065Z",
+      "capturedAt": "2026-06-13T12:42:34.473Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni",
@@ -385,7 +337,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:21.789Z",
+      "capturedAt": "2026-06-13T12:42:36.638Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni/continuous-professional-development-cpd-opportunities",
@@ -398,7 +350,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:25.007Z",
+      "capturedAt": "2026-06-13T12:42:39.480Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni/mentorships",
@@ -411,7 +363,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:28.154Z",
+      "capturedAt": "2026-06-13T12:42:41.869Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni/women-in-leadership-network",
@@ -424,7 +376,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:31.207Z",
+      "capturedAt": "2026-06-13T12:42:44.401Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni/alumni-database",
@@ -437,7 +389,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:34.763Z",
+      "capturedAt": "2026-06-13T12:42:47.207Z",
       "sourceLabel": "Australia Awards Africa",
       "sourceUrl": "https://australiaawardsafrica.org/about/australia-in-africa",
       "url": "https://australiaawardsafrica.org/alumni/alumniassociations",
@@ -450,7 +402,7 @@
       "reason": "not-extractable-yet"
     },
     {
-      "capturedAt": "2026-05-18T19:59:36.959Z",
+      "capturedAt": "2026-06-13T12:42:49.457Z",
       "sourceLabel": "Study UK GREAT Scholarships",
       "sourceUrl": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships",
       "url": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships",
@@ -462,7 +414,7 @@
       "reason": "blocked or access-denied page"
     },
     {
-      "capturedAt": "2026-05-18T19:59:38.512Z",
+      "capturedAt": "2026-06-13T12:42:50.994Z",
       "sourceLabel": "Study UK Commonwealth Scholarships",
       "sourceUrl": "https://study-uk.britishcouncil.org/scholarships-funding/commonwealth-scholarships",
       "url": "https://study-uk.britishcouncil.org/scholarships-funding/commonwealth-scholarships",
@@ -474,7 +426,7 @@
       "reason": "blocked or access-denied page"
     },
     {
-      "capturedAt": "2026-05-18T19:59:44.340Z",
+      "capturedAt": "2026-06-13T12:42:55.934Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
@@ -484,7 +436,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:46.504Z",
+      "capturedAt": "2026-06-13T12:42:57.820Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
@@ -494,7 +446,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:48.233Z",
+      "capturedAt": "2026-06-13T12:43:00.118Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/crankstart-graduate-scholarship",
@@ -504,7 +456,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:50.175Z",
+      "capturedAt": "2026-06-13T12:43:01.636Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/felix-scholarships",
@@ -514,7 +466,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:52.234Z",
+      "capturedAt": "2026-06-13T12:43:03.717Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/optiver-foundation-scholarships",
@@ -524,7 +476,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:54.188Z",
+      "capturedAt": "2026-06-13T12:43:05.721Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/oxford-centre-islamic-studies-ocis-scholarships",
@@ -534,7 +486,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:56.242Z",
+      "capturedAt": "2026-06-13T12:43:08.833Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/university-oxford-croucher-scholarships",
@@ -544,7 +496,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T19:59:58.303Z",
+      "capturedAt": "2026-06-13T12:43:10.448Z",
       "sourceLabel": "Oxford Graduate Scholarships",
       "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/weidenfeld-hoffmann-scholarships-and-leadership-programme",
@@ -554,7 +506,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T20:00:05.599Z",
+      "capturedAt": "2026-06-13T12:43:15.897Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/find-a-scholarship",
@@ -564,7 +516,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T20:00:08.088Z",
+      "capturedAt": "2026-06-13T12:43:18.355Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
@@ -573,13 +525,12 @@
       "title": "Aker Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:10.834Z",
+      "capturedAt": "2026-06-13T12:43:20.895Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
@@ -588,13 +539,12 @@
       "title": "Beit Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:13.425Z",
+      "capturedAt": "2026-06-13T12:43:23.443Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
@@ -603,13 +553,12 @@
       "title": "Cambridge Africa Changemakers Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:16.006Z",
+      "capturedAt": "2026-06-13T12:43:25.956Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
@@ -618,13 +567,12 @@
       "title": "Bhutan King’s Scholarship at the University of Cambridge",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:18.555Z",
+      "capturedAt": "2026-06-13T12:43:28.363Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
@@ -633,13 +581,12 @@
       "title": "Brockmann Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:21.189Z",
+      "capturedAt": "2026-06-13T12:43:30.905Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
@@ -648,13 +595,12 @@
       "title": "Bseisu-University of Cambridge Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:23.951Z",
+      "capturedAt": "2026-06-13T12:43:33.253Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
@@ -663,13 +609,12 @@
       "title": "Cambridge Australia Scholarships",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.36,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:26.719Z",
+      "capturedAt": "2026-06-13T12:43:35.716Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
@@ -678,13 +623,12 @@
       "title": "Cambridge Caribbean Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.53,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:29.286Z",
+      "capturedAt": "2026-06-13T12:43:38.137Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
@@ -693,13 +637,12 @@
       "title": "Cambridge Marshall PhD Scholarship",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
+      "status": "review_ready",
       "confidence": 0.78,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "awardingBody": "Cambridge Trust"
     },
     {
-      "capturedAt": "2026-05-18T20:00:31.872Z",
+      "capturedAt": "2026-06-13T12:43:40.545Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarship/cambridge-opportunity-studentships-and-get-in-cambridge-studentships",
@@ -708,13 +651,11 @@
       "title": "Cambridge Opportunity Studentships and Get In Cambridge Studentships",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
-      "confidence": 0.78,
-      "awardingBody": "Cambridge Trust",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "status": "skipped",
+      "reason": "not_international: uk_only_pattern: \\bhome rate\\b"
     },
     {
-      "capturedAt": "2026-05-18T20:00:34.595Z",
+      "capturedAt": "2026-06-13T12:43:42.996Z",
       "sourceLabel": "Cambridge Trust Scholarship Search",
       "sourceUrl": "https://www.cambridgetrust.org/find-a-scholarship",
       "url": "https://www.cambridgetrust.org/scholarships/undergraduate-scholarships",
@@ -724,7 +665,7 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T20:00:39.244Z",
+      "capturedAt": "2026-06-13T12:43:47.159Z",
       "sourceLabel": "Imperial Scholarship Search",
       "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search",
       "url": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search",
@@ -734,22 +675,20 @@
       "reason": "url-policy"
     },
     {
-      "capturedAt": "2026-05-18T20:00:42.856Z",
+      "capturedAt": "2026-06-13T12:43:51.196Z",
       "sourceLabel": "University of Edinburgh Scholarships",
       "sourceUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
       "url": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
       "canonicalUrl": "https://study.ed.ac.uk/postgraduate/fees-funding/funding-studies/scholarships",
       "depth": 0,
-      "title": "University of Edinburgh Postgraduate Scholarships",
+      "title": "Scholarships",
       "pageType": "detail",
       "pageScore": 9,
-      "status": "approved",
-      "confidence": 0.39,
-      "awardingBody": "University of Edinburgh",
-      "reviewedAt": "2026-06-12T22:18:39.300Z"
+      "status": "skipped",
+      "reason": "not_international: uk_only_pattern: \\bfor uk students\\b"
     },
     {
-      "capturedAt": "2026-05-18T20:00:46.493Z",
+      "capturedAt": "2026-06-13T12:43:55.168Z",
       "sourceLabel": "Mastercard Foundation Scholars Program",
       "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program",
       "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program",

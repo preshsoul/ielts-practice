@@ -85,4 +85,16 @@ export const useUiStore = create((set, get) => ({
       return { trackedApplications: next };
     });
   },
+
+  /** Reset all user-specific state. Called on sign-out to prevent stale data
+   *  from leaking to the next user who signs in on the same browser. */
+  reset() {
+    set({
+      shortlistIds: [],
+      trackedApplications: {},
+      scholarshipRegion: "All",
+      scholarshipMaxFee: 999999,
+      intelPanel: null,
+    });
+  },
 }));

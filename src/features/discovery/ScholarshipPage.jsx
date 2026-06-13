@@ -20,6 +20,7 @@ import {
   buildPlainMatchReasons,
   formatIeltsScore,
 } from "../../lib/opportunitySignals.js";
+import MatchBreakdownPanel from "./MatchBreakdownPanel.jsx";
 
 function parseMaxFee(value) {
   const num = Number(value);
@@ -390,6 +391,26 @@ function ScholarshipResultCard({
         >
           Why chosen
         </button>
+        <button
+          type="button"
+          className="ghost-btn scholarship-result-card__button"
+          onClick={() => openIntelPanel({
+            eyebrow: "Match breakdown",
+            title: getScholarshipTitle(scholarship),
+            summary: `${fitScore}/100 fit`,
+            details: (analysis?.criteria || []).map(c => {
+              const r = c.max > 0 ? Math.round(c.score / c.max * 100) : 0;
+              const icon = r >= 80 ? "✓" : r >= 50 ? "⚠" : "✗";
+              return `${icon} ${c.label}: ${r}% — ${c.reason || ""}`;
+            }).join("\n"),
+            metrics: (analysis?.criteria || []).map(c => ({
+              label: c.label,
+              value: `${c.max > 0 ? Math.round(c.score / c.max * 100) : 0}%`,
+            })),
+          })}
+        >
+          Criteria
+        </button>
         {applyUrl ? (
           <button
             type="button"
@@ -548,6 +569,26 @@ function ScholarshipDetailCard({
           })}
         >
           Why chosen
+        </button>
+        <button
+          type="button"
+          className="ghost-btn scholarship-result-card__button"
+          onClick={() => openIntelPanel({
+            eyebrow: "Match breakdown",
+            title: getScholarshipTitle(scholarship),
+            summary: `${analysis.score}/100 fit`,
+            details: (analysis?.criteria || []).map(c => {
+              const r = c.max > 0 ? Math.round(c.score / c.max * 100) : 0;
+              const icon = r >= 80 ? "✓" : r >= 50 ? "⚠" : "✗";
+              return `${icon} ${c.label}: ${r}% — ${c.reason || ""}`;
+            }).join("\n"),
+            metrics: (analysis?.criteria || []).map(c => ({
+              label: c.label,
+              value: `${c.max > 0 ? Math.round(c.score / c.max * 100) : 0}%`,
+            })),
+          })}
+        >
+          Criteria
         </button>
         {applyUrl ? (
           <button

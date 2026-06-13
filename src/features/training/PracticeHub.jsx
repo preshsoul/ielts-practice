@@ -63,6 +63,14 @@ export default function PracticeHub({ sessions, C, PrimaryBtn, profile }) {
             action={<Link className="primary-btn link-button" to={module.to}>Open {module.title}</Link>}
           />
         ))}
+
+        <LociCard
+          variant="editorial"
+          eyebrow="Full simulation"
+          title="Mock Test"
+          copy="Take a full 2h 45m timed IELTS simulation across all 4 modules — Listening, Reading, Writing, and Speaking. Get a complete band score estimate at the end."
+          action={<Link className="primary-btn link-button" to="/practice/mock-test" style={{ background: "var(--c-accent, #7c3aed)" }}>Start Mock Test</Link>}
+        />
       </div>
     </div>
   );
