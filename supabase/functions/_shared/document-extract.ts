@@ -569,12 +569,17 @@ async function decodePdfStream(obj: PdfObject, raw: string): Promise<string> {
       try {
         const compressed = new Uint8Array(data.length);
         for (let j = 0; j < data.length; j++) compressed[j] = data.charCodeAt(j) & 0xff;
-        // PDF FlateDecode uses zlib format (RFC 1950). Try zlib first, then raw deflate as fallback.
+        // PDF FlateDecode uses raw deflate (RFC 1951, no zlib header).
+        // Some PDFs incorrectly add a zlib wrapper — try raw first, then zlib fallback.
         let decompressed: Uint8Array;
         try {
-          decompressed = await decompressZlib(compressed);
-        } catch {
           decompressed = await decompressDeflate(compressed);
+        } catch {
+          try {
+            decompressed = await decompressZlib(compressed);
+          } catch {
+            throw new Error("PDF decompression failed: neither raw deflate nor zlib worked");
+          }
         }
         data = new TextDecoder("utf-8").decode(decompressed);
       } catch {

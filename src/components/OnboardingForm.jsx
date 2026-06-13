@@ -531,21 +531,58 @@ function ExtractionStep({ draft, setDraft, setStep, onSkipUpload }) {
           <span>Upload your academic dossier or professional history, then verify the profile signals Loci should use for matching.</span>
         </div>
 
-        <label className="loci-upload-zone">
-          <input
-            type="file"
-            accept=".pdf,.doc,.docx,.txt,.rtf,.md"
-            onChange={(event) => handleFile(event.target.files?.[0] || null)}
-          />
-          <strong>{isReading ? "Parsing intelligence..." : "Drop Intelligence Dossier"}</strong>
-          <span>PDF, DOCX, RTF, TXT, or profile notes under 5MB</span>
-          <b>{isReading ? "Reading" : "Select File"}</b>
-        </label>
+        {/* Upload zone with light parsing overlay */}
+        <div style={{ position: "relative" }}>
+          <label className="loci-upload-zone" style={{ opacity: isReading ? 0.4 : 1, transition: "opacity 0.3s" }}>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx,.txt,.rtf,.md"
+              onChange={(event) => handleFile(event.target.files?.[0] || null)}
+              disabled={isReading}
+            />
+            <strong>{uploadSucceeded ? "Dossier on file" : isReading ? "Reading document..." : "Drop Intelligence Dossier"}</strong>
+            <span>{uploadSucceeded ? draft?.dossier?.sourceFilename || "File received" : "PDF, DOCX, RTF, TXT, or profile notes under 5MB"}</span>
+            <b>{uploadSucceeded ? "✓ Received" : isReading ? "Parsing" : "Select File"}</b>
+          </label>
 
-        {uploadStatus && <div className={`loci-inline-status${uploadSucceeded ? " is-success" : ""}`}>{uploadStatus}</div>}
+          {/* Light overlay — slides in during parsing, fades out on completion */}
+          {isReading && (
+            <div style={{
+              position: "absolute", inset: 0,
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              background: "rgba(255,255,255,0.85)", backdropFilter: "blur(4px)",
+              borderRadius: 12, zIndex: 5, gap: 8, padding: 16,
+            }}>
+              <div style={{ fontSize: 13, fontWeight: 600, fontFamily: "var(--font-ui)", color: "var(--text-1)" }}>
+                {phase === "extracting_text" ? "Extracting readable text..." :
+                 phase === "analyzing_academics" ? "Analysing academic history..." :
+                 phase === "complete" ? "Finalising profile..." :
+                 "Reading your document..."}
+              </div>
+              <div style={{ width: "60%", height: 4, background: "var(--border)", borderRadius: 2, overflow: "hidden" }}>
+                <div style={{
+                  height: "100%", background: "var(--accent)",
+                  width: Math.max(5, progress || 0) + "%",
+                  transition: "width 0.5s ease",
+                  borderRadius: 2,
+                }} />
+              </div>
+              <div style={{ fontSize: 10, color: "var(--text-3)", fontFamily: "var(--font-ui)" }}>
+                {parserMessage || "Please wait..."}
+              </div>
+            </div>
+          )}
+        </div>
+
         {uploadSucceeded && (
-          <div className="loci-inline-status is-success">
-            Candidate dossier on file: {draft.dossier.sourceFilename}
+          <div className="loci-inline-status is-success" style={{ marginTop: 8 }}>
+            ✓ {draft?.dossier?.sourceFilename || "File"} — {draft?.dossier?.extractedText?.length || 0} chars extracted
+            {draft?.dossier?.diagnostics && (
+              <span style={{ fontSize: 10, color: "var(--text-3)", display: "block", marginTop: 2 }}>
+                Method: {draft.dossier.diagnostics.method} · {draft.dossier.diagnostics.durationMs}ms
+                {draft.dossier.diagnostics.ocrRecommended ? " · Scanned PDF detected — text may be limited" : ""}
+              </span>
+            )}
           </div>
         )}
 
