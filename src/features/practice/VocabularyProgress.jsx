@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getVocabularyStats } from "../../lib/vocabularyEngine.js";
 import { IELTS_VOCABULARY } from "../../data/ieltsVocabulary.js";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * VocabularyProgress — Compact progress widget.
@@ -15,7 +16,7 @@ export default function VocabularyProgress({ progress = null, profileId = null }
   return (
     <div className="vocab-progress">
       <div className="vocab-progress__header">
-        <span className="vocab-progress__icon">📚</span>
+        <span className="vocab-progress__icon"><SvgIcon name="book" size={20} /></span>
         <div>
           <h4 className="vocab-progress__title">Vocabulary</h4>
           <span className="vocab-progress__subtitle">

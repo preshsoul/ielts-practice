@@ -13,10 +13,10 @@
 export function formatCriterionStatus(criterion) {
   const ratio = criterion.max > 0 ? criterion.score / criterion.max : 0;
 
-  if (ratio >= 0.8) return { icon: "✓", label: "Strong match", color: "var(--c-green)" };
-  if (ratio >= 0.5) return { icon: "⚠", label: "Partial match", color: "var(--c-amber)" };
-  if (ratio > 0) return { icon: "○", label: "Weak match", color: "var(--c-amber)" };
-  return { icon: "✗", label: "Not met", color: "var(--c-red)" };
+  if (ratio >= 0.8) return { icon: "check", label: "Strong match", color: "var(--c-green)" };
+  if (ratio >= 0.5) return { icon: "warn", label: "Partial match", color: "var(--c-amber)" };
+  if (ratio > 0) return { icon: "warn", label: "Weak match", color: "var(--c-amber)" };
+  return { icon: "cross", label: "Not met", color: "var(--c-red)" };
 }
 
 /**

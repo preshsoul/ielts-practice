@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getDailyChallenge } from "../../data/dailyChallenges.js";
 import { isChallengeCompleted } from "../../lib/dailyChallengeEngine.js";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * DailyChallengeCard
@@ -27,7 +28,7 @@ export default function DailyChallengeCard({ sessions = [], date = new Date() })
           <span className="daily-challenge-card__subtitle">~{challenge.estimatedMinutes} min</span>
         </div>
         {completed && (
-          <span className="daily-challenge-card__done-badge">Done ✓</span>
+          <span className="daily-challenge-card__done-badge"><SvgIcon name="check" size={14} color="var(--c-green)" /> Done</span>
         )}
       </div>
 
@@ -36,7 +37,7 @@ export default function DailyChallengeCard({ sessions = [], date = new Date() })
       </p>
 
       {challenge.hint && !completed && (
-        <p className="daily-challenge-card__hint">💡 {challenge.hint}</p>
+        <p className="daily-challenge-card__hint"><SvgIcon name="lightbulb" size={14} /> {challenge.hint}</p>
       )}
 
       <div className="daily-challenge-card__actions">

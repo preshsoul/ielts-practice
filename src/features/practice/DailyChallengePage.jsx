@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { getDailyChallenge } from "../../data/dailyChallenges.js";
 import { isChallengeCompleted, getChallengeHistory } from "../../lib/dailyChallengeEngine.js";
 import { calculateStreakDays } from "../../lib/dashboard.js";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * DailyChallengePage
@@ -35,7 +36,7 @@ export default function DailyChallengePage({ sessions = [], C = {}, Chip = null,
       <div className="daily-challenge-page__stats">
         <div className="daily-challenge-page__stat">
           <span className="daily-challenge-page__stat-value">{streak}</span>
-          <span className="daily-challenge-page__stat-label">Day Streak 🔥</span>
+          <span className="daily-challenge-page__stat-label">Day Streak <SvgIcon name="fire" size={14} color="var(--c-orange, #f97316)" /></span>
         </div>
         <div className="daily-challenge-page__stat">
           <span className="daily-challenge-page__stat-value">{completedDays}/7</span>
@@ -53,14 +54,14 @@ export default function DailyChallengePage({ sessions = [], C = {}, Chip = null,
               <span className="daily-challenge-page__today-time">~{challenge.estimatedMinutes} minutes</span>
             </div>
             {completed ? (
-              <span className="daily-challenge-page__badge daily-challenge-page__badge--done">Completed ✓</span>
+              <span className="daily-challenge-page__badge daily-challenge-page__badge--done"><SvgIcon name="check" size={12} /> Completed</span>
             ) : (
               <span className="daily-challenge-page__badge daily-challenge-page__badge--pending">Today</span>
             )}
           </div>
           <p className="daily-challenge-page__today-desc">{challenge.description}</p>
           {challenge.hint && (
-            <p className="daily-challenge-page__today-hint">💡 {challenge.hint}</p>
+            <p className="daily-challenge-page__today-hint"><SvgIcon name="lightbulb" size={14} /> {challenge.hint}</p>
           )}
           {!completed && (
             <Link to={challenge.route} className="daily-challenge-page__start-btn">
@@ -86,7 +87,7 @@ export default function DailyChallengePage({ sessions = [], C = {}, Chip = null,
                 {day.challenge?.icon} {day.challenge?.title || "No challenge"}
               </span>
               <span className="daily-challenge-page__day-status">
-                {day.completed ? "✓" : "—"}
+                {day.completed ? <SvgIcon name="check" size={14} color="var(--c-green)" /> : <span style={{color:"var(--text-3)"}}>—</span>}
               </span>
             </div>
           ))}

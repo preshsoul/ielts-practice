@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { IELTS_VOCABULARY } from "../../data/ieltsVocabulary.js";
 import { loadVocabProgress, getDailyQueue, recordAnswer, getVocabularyStats } from "../../lib/vocabularyEngine.js";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * VocabularyPractice — Flashcard UI at /practice/vocabulary
@@ -147,13 +148,13 @@ export default function VocabularyPractice({ profile = null, onSessionComplete =
         <div className="vocabulary-practice__result-stats">
           <span>{stats.mastered} words mastered total</span>
           <span>{stats.percentComplete}% of {stats.totalAvailable} words</span>
-          {stats.streak > 0 && <span>{stats.streak}-day vocabulary streak 🔥</span>}
+          {stats.streak > 0 && <span>{stats.streak}-day vocabulary streak <SvgIcon name="fire" size={14} color="var(--c-orange, #f97316)" /></span>}
         </div>
         <div className="vocabulary-practice__review-list">
           {sessionResults.map((r, i) => (
             <div key={i} className={`vocabulary-practice__review-item ${r.correct ? "vocabulary-practice__review-item--correct" : "vocabulary-practice__review-item--incorrect"}`}>
               <span>{r.word}</span>
-              <span>{r.correct ? "✓" : "✗"}</span>
+              <span><SvgIcon name={r.correct ? "check" : "cross"} size={12} color={r.correct ? "var(--c-green)" : "var(--c-red)"} /></span>
             </div>
           ))}
         </div>

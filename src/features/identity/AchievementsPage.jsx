@@ -58,7 +58,10 @@ export default function AchievementsPage({
 
       {earned.length > 0 && (
         <section className="achievements-page__section">
-          <h2 className="achievements-page__section-title">✅ Earned ({earned.length})</h2>
+          <h2 className="achievements-page__section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 6 }}><polyline points="20 6 9 17 4 12"/></svg>
+            Earned ({earned.length})
+          </h2>
           <div className="achievements-page__grid">
             {earned.map(({ achievement, earned, earnedAt, progress }) => (
               <AchievementBadge
@@ -74,7 +77,10 @@ export default function AchievementsPage({
       )}
 
       <section className="achievements-page__section">
-        <h2 className="achievements-page__section-title">🔒 Locked ({unearned.length})</h2>
+        <h2 className="achievements-page__section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:6}}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Locked ({unearned.length})
+        </h2>
         <div className="achievements-page__grid">
           {unearned.map(({ achievement, earned, progress }) => (
             <AchievementBadge

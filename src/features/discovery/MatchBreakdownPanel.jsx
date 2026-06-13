@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { formatCriterionStatus, buildFixSuggestion, getCriterionDisplayName } from "../../lib/matchBreakdownFormatter.js";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * MatchBreakdownPanel
@@ -42,7 +43,7 @@ export default function MatchBreakdownPanel({ analysis = null, profile = null, c
           onClick={() => setExpanded(true)}
           aria-expanded="false"
         >
-          <span className="match-breakdown__toggle-icon">📋</span>
+          <span className="match-breakdown__toggle-icon"><SvgIcon name="clipboard" size={14} /></span>
           <span className="match-breakdown__toggle-label">
             Match breakdown ({earnedCount}/{totalCount} criteria met)
           </span>
@@ -82,7 +83,7 @@ export default function MatchBreakdownPanel({ analysis = null, profile = null, c
 
       {blocked && blockedReasons.length > 0 && (
         <div className="match-breakdown__blocked">
-          <strong>⚠ Blocked:</strong> {blockedReasons.join("; ")}
+          <strong><SvgIcon name="warn" size={14} color="var(--c-red)" /> Blocked:</strong> {blockedReasons.join("; ")}
         </div>
       )}
 
@@ -100,7 +101,7 @@ export default function MatchBreakdownPanel({ analysis = null, profile = null, c
             >
               <div className="match-breakdown__criterion-row">
                 <span className="match-breakdown__criterion-icon" style={{ color: status.color }}>
-                  {status.icon}
+                  <SvgIcon name={status.icon} size={14} color={status.color} />
                 </span>
                 <span className="match-breakdown__criterion-label">{displayName}</span>
                 <span className="match-breakdown__criterion-score" style={{ color: status.color }}>

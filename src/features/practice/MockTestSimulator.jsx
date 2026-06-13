@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { MOCK_TEST_PHASES, selectMockQuestions, computeMockResults } from "../../lib/mockTestEngine.js";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * MockTestSimulator — Full IELTS Mock Test at /practice/mock-test
@@ -151,7 +152,7 @@ export default function MockTestSimulator({
           {MOCK_TEST_PHASES.map((p) => (
             <div key={p.key} className="mock-test__phase-card">
               <span className="mock-test__phase-icon">
-                {p.key === "listening" ? "🎧" : p.key === "reading" ? "📖" : p.key === "writing" ? "✍️" : "🎤"}
+                <SvgIcon name={p.key === "listening" ? "headphones" : p.key === "reading" ? "book-open" : p.key === "writing" ? "pen" : "mic"} size={20} />
               </span>
               <div>
                 <h3>{p.label}</h3>

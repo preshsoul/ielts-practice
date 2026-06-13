@@ -400,7 +400,7 @@ function ScholarshipResultCard({
             summary: `${fitScore}/100 fit`,
             details: (analysis?.criteria || []).map(c => {
               const r = c.max > 0 ? Math.round(c.score / c.max * 100) : 0;
-              const icon = r >= 80 ? "✓" : r >= 50 ? "⚠" : "✗";
+              const icon = r >= 80 ? "PASS" : r >= 50 ? "WARN" : "FAIL";
               return `${icon} ${c.label}: ${r}% — ${c.reason || ""}`;
             }).join("\n"),
             metrics: (analysis?.criteria || []).map(c => ({
@@ -579,7 +579,7 @@ function ScholarshipDetailCard({
             summary: `${analysis.score}/100 fit`,
             details: (analysis?.criteria || []).map(c => {
               const r = c.max > 0 ? Math.round(c.score / c.max * 100) : 0;
-              const icon = r >= 80 ? "✓" : r >= 50 ? "⚠" : "✗";
+              const icon = r >= 80 ? "PASS" : r >= 50 ? "WARN" : "FAIL";
               return `${icon} ${c.label}: ${r}% — ${c.reason || ""}`;
             }).join("\n"),
             metrics: (analysis?.criteria || []).map(c => ({
@@ -641,6 +641,33 @@ function PaginationControls({ currentPage, totalPages, onPageChange }) {
   );
 }
 
+const SDP_ICONS = {
+  university: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+  globe: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>,
+  funding: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>,
+  calendar: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
+  list: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>,
+  target: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
+};
+
+function DetailIcon({ icon, label }) {
+  return <span className="sdp-title" style={{ display: "flex", alignItems: "center", gap: 6 }}>{SDP_ICONS[icon]} {label}</span>;
+}
+
+function CriteriaSymbol({ ratio }) {
+  if (ratio >= 80) return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#166534" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
+  if (ratio >= 50) return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#92400e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>;
+  return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#991b1b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>;
+}
+
+function CheckSymbol() {
+  return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--c-green)" }}><polyline points="20 6 9 17 4 12"/></svg>;
+}
+
+function WarnSymbol() {
+  return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--c-amber)" }}><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>;
+}
+
 /** Expandable detail panel showing university context and international eligibility */
 function ScholarshipDetailPanel({ scholarship, analysis, profile }) {
   const body = scholarship?.awardingBody || scholarship?.source?.sourceLabel || "";
@@ -658,52 +685,52 @@ function ScholarshipDetailPanel({ scholarship, analysis, profile }) {
     <div className="scholarship-detail-panel">
       <div className="sdp-grid">
         <div className="sdp-section">
-          <h4 className="sdp-title">🏛 University</h4>
+          <DetailIcon icon="university" label="University" />
           <p className="sdp-text">{body || "Unknown institution"}</p>
-          {host && <p className="sdp-meta">🌐 {host}</p>}
+          {host && <p className="sdp-meta">{host}</p>}
         </div>
         <div className="sdp-section">
-          <h4 className="sdp-title">🌍 International Context</h4>
+          <DetailIcon icon="globe" label="International eligibility" />
           <p className="sdp-text">
             {passedCriteria.some((c) => c.key === "nationality") || scholarship?.nationality_is_open
-              ? "✅ Open to international students"
-              : "⚠ Check eligibility requirements"}
+              ? <span style={{ display: "flex", alignItems: "center", gap: 4 }}><CheckSymbol /> Open to international students</span>
+              : <span style={{ display: "flex", alignItems: "center", gap: 4 }}><WarnSymbol /> Check eligibility requirements</span>}
           </p>
           {Array.isArray(scholarship?.nationality_requirement) && scholarship.nationality_requirement.length > 0 && (
             <p className="sdp-meta">Target: {scholarship.nationality_requirement.join(", ")}</p>
           )}
         </div>
         <div className="sdp-section">
-          <h4 className="sdp-title">💰 Funding</h4>
+          <DetailIcon icon="funding" label="Funding" />
           <p className="sdp-text">
             {fundingType === "full" ? "Full funding" : fundingType === "tuition_only" ? "Tuition covered" : fundingType === "partial" ? "Partial funding" : "Check details"}
             {amount ? ` — £${amount.toLocaleString()}` : ""}
           </p>
-          {scholarship?.stipend && <p className="sdp-meta">✅ Stipend included</p>}
-          {scholarship?.accommodation_covered && <p className="sdp-meta">✅ Accommodation covered</p>}
+          {scholarship?.stipend && <p className="sdp-meta"><CheckSymbol /> Stipend included</p>}
+          {scholarship?.accommodation_covered && <p className="sdp-meta"><CheckSymbol /> Accommodation covered</p>}
         </div>
         <div className="sdp-section">
-          <h4 className="sdp-title">📅 Deadline</h4>
+          <DetailIcon icon="calendar" label="Deadline" />
           <p className="sdp-text">
             {deadline
               ? new Date(deadline).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
               : "No deadline specified"}
           </p>
-          {scholarship?.deadline_is_approximate && <p className="sdp-meta">⚠ Date is approximate</p>}
+          {scholarship?.deadline_is_approximate && <p className="sdp-meta"><WarnSymbol /> Date is approximate</p>}
         </div>
       </div>
       <div className="sdp-section">
-        <h4 className="sdp-title">📋 Requirements</h4>
+        <DetailIcon icon="list" label="Requirements" />
         <p className="sdp-text">{requirements || "No requirements summary available."}</p>
       </div>
       <div className="sdp-section">
-        <h4 className="sdp-title">🎯 Match Criteria</h4>
+        <DetailIcon icon="target" label="Match criteria" />
         <div className="sdp-criteria-list">
           {criteria.slice(0, 6).map((c) => {
             const r = c.max > 0 ? Math.round((c.score / c.max) * 100) : 0;
             return (
               <span key={c.key} className={`sdp-criteria-chip${r >= 80 ? " sdp-criteria-chip--pass" : r >= 50 ? " sdp-criteria-chip--partial" : " sdp-criteria-chip--fail"}`}>
-                {r >= 80 ? "✓" : r >= 50 ? "⚠" : "✗"} {c.label}: {r}%
+                <CriteriaSymbol ratio={r} /> {c.label}: {r}%
               </span>
             );
           })}
@@ -1123,7 +1150,7 @@ export default function ScholarshipPage(props) {
                 fontWeight: closingSoonOnly ? 600 : 400,
               }}
             >
-              {closingSoonOnly ? "✓ Closing within 14 days" : "Closing soon"}
+              {closingSoonOnly ? "Closing within 14 days (active)" : "Closing soon"}
             </button>
             <div className="scholarship-note">Saved shortlist items sync to your account.</div>
             {shortlistMessage && (

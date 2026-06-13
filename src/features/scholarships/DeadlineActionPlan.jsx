@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { loadApplicationTracking } from "../../services/supabaseData.js";
 import DeadlineCountdownBadge, { getDaysUntilDeadline } from "./DeadlineCountdownBadge.jsx";
+import SvgIcon from "../../components/SvgIcon.jsx";
 
 /**
  * DeadlineActionPlan
@@ -116,7 +117,7 @@ export default function DeadlineActionPlan({
       {urgent.length > 0 && (
         <section className="deadline-action-plan__group deadline-action-plan__group--urgent">
           <h2 className="deadline-action-plan__group-title">
-            <span className="deadline-action-plan__group-icon">🔴</span>
+            <span className="deadline-action-plan__group-icon"><SvgIcon name="circle" size={12} color="var(--c-red)" /></span>
             Urgent — Due within 14 days ({urgent.length})
           </h2>
           <div className="deadline-action-plan__cards">
@@ -130,7 +131,7 @@ export default function DeadlineActionPlan({
       {caution.length > 0 && (
         <section className="deadline-action-plan__group deadline-action-plan__group--caution">
           <h2 className="deadline-action-plan__group-title">
-            <span className="deadline-action-plan__group-icon">🟠</span>
+            <span className="deadline-action-plan__group-icon"><SvgIcon name="circle" size={12} color="var(--c-orange, #f97316)" /></span>
             Caution — Due in 15-30 days ({caution.length})
           </h2>
           <div className="deadline-action-plan__cards">
@@ -144,7 +145,7 @@ export default function DeadlineActionPlan({
       {upcoming.length > 0 && (
         <section className="deadline-action-plan__group deadline-action-plan__group--upcoming">
           <h2 className="deadline-action-plan__group-title">
-            <span className="deadline-action-plan__group-icon">🔵</span>
+            <span className="deadline-action-plan__group-icon"><SvgIcon name="circle" size={12} color="var(--c-accent)" /></span>
             Upcoming — Due in 31+ days ({upcoming.length})
           </h2>
           <div className="deadline-action-plan__cards">
@@ -158,7 +159,7 @@ export default function DeadlineActionPlan({
       {noDeadline.length > 0 && (
         <section className="deadline-action-plan__group deadline-action-plan__group--no-deadline">
           <h2 className="deadline-action-plan__group-title">
-            <span className="deadline-action-plan__group-icon">⚪</span>
+            <span className="deadline-action-plan__group-icon"><SvgIcon name="circle" size={12} color="var(--text-3)" /></span>
             No deadline set ({noDeadline.length})
           </h2>
           <div className="deadline-action-plan__cards">
