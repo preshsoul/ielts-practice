@@ -1270,9 +1270,65 @@ async function main() {
         queued,
       });
     }
+
+    // ── Incremental write after each source ──
+    // Write review queue and metrics IMMEDIATELY so progress is visible
+    // during long runs. Previously all results were held until the end.
+    var sourceResults = resultsV2.filter(function (r) {
+      return (r.source || {}).sourceLabel === source.label;
+    });
+    if (sourceResults.length > 0) {
+      try {
+        var existingReview = { scholarships: [] };
+        try {
+          var raw = await readFile(reviewQueuePath, "utf8");
+          existingReview = JSON.parse(raw);
+        } catch { /* file doesn't exist yet */ }
+        var existingScholarships = Array.isArray(existingReview.scholarships) ? existingReview.scholarships : [];
+        // Deduplicate by name + source before merging
+        var existingKeys = new Set(existingScholarships.map(function (s) {
+          return (s.name || "") + "::" + ((s.source || {}).sourceLabel || s.awardingBody || "");
+        }));
+        var newEntries = sourceResults.filter(function (s) {
+          return !existingKeys.has((s.name || "") + "::" + ((s.source || {}).sourceLabel || s.awardingBody || ""));
+        });
+        if (newEntries.length > 0) {
+          var merged = existingScholarships.concat(newEntries);
+          var output = JSON.stringify({ version: "1.0.0", updated_at: new Date().toISOString(), total: merged.length, scholarships: merged }, null, 2);
+          await writeFile(reviewQueuePath, output, "utf8");
+          console.log("[incremental] " + source.label + ": +" + newEntries.length + " scholarships (queue total: " + merged.length + ")");
+        }
+      } catch (err) {
+        console.error("[incremental] write failed for " + source.label + ": " + (err.message || ""));
+      }
+    } else {
+      console.log("[incremental] " + source.label + ": 0 scholarships (skipped " + metric.skippedPages + " pages, " + metric.validationFailures + " failures)");
+    }
+
+    // Write metrics incrementally too
+    try {
+      var metricsOutput = JSON.stringify({
+        version: "1.0.0",
+        updated_at: new Date().toISOString(),
+        total: sourceMetrics.size,
+        sources: Array.from(sourceMetrics.values()).sort(function (a, b) { return (b.reviewReady || 0) - (a.reviewReady || 0); }),
+      }, null, 2);
+      await writeFile(sourceMetricsPath, metricsOutput, "utf8");
+    } catch { /* best-effort */ }
   }
 
-  const reviewQueue = await writeScholarshipReviewQueue({ scholarships: resultsV2 }, { version: "1.0.0" });
+  // Final review queue write (merges any remaining)
+  var finalReview = { scholarships: [] };
+  try { var raw = await readFile(reviewQueuePath, "utf8"); finalReview = JSON.parse(raw); } catch {}
+  var finalScholarships = Array.isArray(finalReview.scholarships) ? finalReview.scholarships : [];
+  var finalCount = finalScholarships.length;
+  if (finalCount > 0) {
+    console.log("\n=== SCRAPER COMPLETE ===");
+    console.log("Total scholarships found: " + finalCount);
+    console.log("Review queue: " + reviewQueuePath);
+  } else {
+    console.log("\n=== SCRAPER COMPLETE: 0 scholarships found ===");
+  }
 
   await writeFile(
     validationFailuresPath,
