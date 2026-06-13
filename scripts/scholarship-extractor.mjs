@@ -673,9 +673,11 @@ export function verifyScholarshipQuality(scholarship) {
   var confidence = Number(source.confidence || provenance.confidenceScore || 0);
   checks.push({ check: "confidence_threshold", passed: confidence >= 0.35, detail: (confidence * 100).toFixed(0) + "%" });
 
-  // Name quality
+  // Name quality — must be a scholarship, not a generic university page
   var name = scholarship.name || scholarship.title || "";
-  var nameOk = name.length >= 10 && !/^(home|error|just a moment|page not found|course fees)/i.test(name);
+  var isGenericPage = /^(scholarships and bursaries|additional costs|course fees|tuition fees|undergraduate fees|postgraduate fees|accommodation|living costs|how to apply|entry requirements|open days?|virtual tour|fee status|payment|student loans|fee liability|university of|welcome to|about us|contact us|news|events|research|study|undergraduate|postgraduate|international students)/i.test(name);
+  var isOnlyUniversityName = /^[a-z\s]+\s(university|college|institute|school)$/i.test(name.trim()) && name.length < 60;
+  var nameOk = name.length >= 10 && !isGenericPage && !isOnlyUniversityName && !/^(home|error|just a moment|page not found|not applicable)/i.test(name);
   checks.push({ check: "name_quality", passed: nameOk, detail: name.slice(0, 40) });
 
   var allPassed = checks.every(function (c) { return c.passed; });

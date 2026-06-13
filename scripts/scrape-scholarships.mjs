@@ -858,13 +858,15 @@ function isLowValueScholarshipCandidate({ title = "", summary = "", url = "", so
   const haystack = `${title} ${summary} ${url}`.toLowerCase();
   const sourceType = String(source?.source_type || "").toLowerCase();
   if (/\bcurrent scholars\b/.test(haystack)) return true;
-  if (/\b(application timeline|find a course|who can apply|how to apply|funding your studies|fees and funding|living costs|tuition fees)\b/.test(haystack)) {
-    return true;
-  }
+  if (/\b(application timeline|find a course|who can apply|how to apply|funding your studies|fees and funding|living costs|tuition fees)\b/.test(haystack)) return true;
   if (/\b(history, funding and future|funding opportunities)\b/.test(haystack)) return true;
-  if (sourceType === "discovery_directory" && /\bguide\b|\bguides\b/.test(haystack)) {
-    return true;
-  }
+  // Common generic pages that are NOT scholarship detail pages
+  if (/\b(additional costs|course fees \d{4}|tuition fees \d{4}|accommodation fees|payment schedule|how to pay|student loans|fee liability)\b/i.test(haystack)) return true;
+  if (/\b(undergraduate fees|postgraduate fees|international fees|tuition fee deposit|fee status|living costs)\b/i.test(haystack)) return true;
+  if (/\b(open days?|virtual tour|how to apply|entry requirements|english language requirements)\b/i.test(haystack)) return true;
+  // Title is just a university name — too generic
+  if (/^[a-z\s]+\s(university|college|institute|school)$/i.test(String(title || "").trim())) return true;
+  if (sourceType === "discovery_directory" && /\bguide\b|\bguides\b/.test(haystack)) return true;
   return false;
 }
 
