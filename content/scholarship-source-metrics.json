@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T08:54:34.445Z",
-  "total": 6,
+  "updated_at": "2026-06-13T08:55:18.435Z",
+  "total": 7,
   "sources": [
     {
       "sourceLabel": "De Montfort University Scholarships",
@@ -71,6 +71,19 @@
     {
       "sourceLabel": "Coventry University London CU Coventry CU London CU Scarborough Scholarships",
       "sourceUrl": "https://www.coventry.ac.uk",
+      "sourceType": "official_university_directory",
+      "trustTier": "tier_1",
+      "seedCount": 16,
+      "pagesVisited": 16,
+      "reviewReady": 0,
+      "validationFailures": 12,
+      "blockedPages": 0,
+      "skippedPages": 4,
+      "deadLinks": 0
+    },
+    {
+      "sourceLabel": "Keele University Scholarships",
+      "sourceUrl": "https://www.keele.ac.uk",
       "sourceType": "official_university_directory",
       "trustTier": "tier_1",
       "seedCount": 16,
