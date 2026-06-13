@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T15:11:05.490Z",
+  "updated_at": "2026-06-13T17:19:47.794Z",
   "items": {
     "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships": {
       "id": "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships",
@@ -909,15 +909,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.edgehill.ac.uk/scholarships/thrive-fund",
-      "urgency": "green"
-    },
-    "www.solent.ac.uk_solent-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.solent.ac.uk_solent-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "404 - We Couldnt Find What You Were Looking For | Solent University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.solent.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "urgency": "green"
     },
     "www.ucl.ac.uk_ucl-scholarships_study-current-students-laidlaw-scholarships": {
@@ -1865,15 +1856,6 @@
       "sourceUrl": "https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program",
       "urgency": "green"
     },
-    "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-employment": {
-      "id": "www.ox.ac.uk_oxford-graduate-scholarships_admissions-graduate-fees-and-funding-funding-employment",
-      "name": "Just A Moment...",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/employment?__cf_chl_rt_tk=UBw1myKp2NwguKZRI3aateMLZCDMcKipe8yhVft3FC0-1778630075-1.0.1.1-atmrWoxS_e2W_mhJps0twqwSsrqklPewgw3ISJWkwuw",
-      "urgency": "green"
-    },
     "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac": {
       "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac",
       "name": "Stories Of Impact | Mastercard Foundation Scholars Program",
@@ -2279,15 +2261,6 @@
       "sourceUrl": "https://www.aston.ac.uk/international/scholarships/women-in-stem",
       "urgency": "green"
     },
-    "greatermanchester.ac.uk_bolton-university-scholarships_study-postgraduate-research-funding": {
-      "id": "greatermanchester.ac.uk_bolton-university-scholarships_study-postgraduate-research-funding",
-      "name": "404 | Page Not Found",
-      "deadline": null,
-      "deadlineRaw": "Rolling",
-      "deadlineType": "rolling",
-      "sourceUrl": "https://greatermanchester.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
     "www.bath.ac.uk_university-of-bath-scholarships_announcements-bath-professor-named-honorary-fellow-of-the-chinese-chemica": {
       "id": "www.bath.ac.uk_university-of-bath-scholarships_announcements-bath-professor-named-honorary-fellow-of-the-chinese-chemica",
       "name": "Cookies On Bath.ac.uk",
@@ -2333,15 +2306,6 @@
       "sourceUrl": "https://www.bournemouth.ac.uk",
       "urgency": "green"
     },
-    "www.northumbria.ac.uk_northumbria-university-scholarships_study-postgraduate-research-funding": {
-      "id": "www.northumbria.ac.uk_northumbria-university-scholarships_study-postgraduate-research-funding",
-      "name": "Oops - 404 Error",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.northumbria.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
     "www.uea.ac.uk_uea-university-of-east-anglia-scholarships_international-fees-and-funding-scholarships": {
       "id": "www.uea.ac.uk_uea-university-of-east-anglia-scholarships_international-fees-and-funding-scholarships",
       "name": "Scholarships",
@@ -2358,24 +2322,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.strath.ac.uk",
-      "urgency": "green"
-    },
-    "www.essex.ac.uk_essex-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.essex.ac.uk_essex-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "404 | University Of Essex",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.essex.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "www.aru.ac.uk_anglia-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.aru.ac.uk_anglia-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "404 Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.aru.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
       "urgency": "green"
     },
     "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-course-fees-equivalent-and-lower-qualificati": {
@@ -2423,15 +2369,6 @@
       "sourceUrl": "https://www.intoglobal.com",
       "urgency": "green"
     },
-    "www.aru.ac.uk_not-applicable-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.aru.ac.uk_not-applicable-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "404 Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.aru.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
     "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-external-funding": {
       "id": "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-external-funding",
       "name": "External Funding",
@@ -2448,15 +2385,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.amity.ac.uk/study/postgraduate-research/funding",
-      "urgency": "green"
-    },
-    "test-1781303555235-16": {
-      "id": "test-1781303555235-16",
-      "name": "Error 404 - Page Not Found",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://arden.ac.uk/study/postgraduate-research/funding",
       "urgency": "green"
     },
     "www2.daad.de_friedrich-ebert-foundation_deutschland-stipendium-datenbank-en-21148-scholarship-database": {
