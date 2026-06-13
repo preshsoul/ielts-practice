@@ -173,21 +173,6 @@ export default function App() {
     setOnboardingMessage("");
   }, [profile]);
 
-  // Reset onboarding gate when user changes (prevents User B from
-  // inheriting User A's "completed" state within the same component lifecycle).
-  useEffect(() => {
-    if (!profile?.id) {
-      setOnboardingGateDismissed(false);
-      return;
-    }
-    // Check if THIS user has completed onboarding (user-scoped sessionStorage)
-    try {
-      const completed = window.sessionStorage.getItem(`loci.onboardingCompleted:${profile.id}`);
-      setOnboardingGateDismissed(completed === "true" || profile.onboarding_completed === true);
-    } catch {
-      setOnboardingGateDismissed(profile.onboarding_completed === true);
-    }
-  }, [profile?.id, profile?.onboarding_completed]);
 
   // ── Onboarding save ───────────────────────────────────
   const saveOnboarding = async () => {
@@ -206,14 +191,8 @@ export default function App() {
         await handleCvImport({ intake: onboardingResolutionDraft.extraction.intake });
       }
       if (typeof window !== "undefined") {
-        // Clean up legacy unscoped keys + set user-scoped completion
-        try { window.sessionStorage.removeItem("loci.onboardingSkipped"); } catch {}
-        try { window.sessionStorage.removeItem("loci.onboardingCompleted"); } catch {}
-        // Scoped persistence: add userId suffix so completion is user-specific
-        const userId = profile?.id || authUser?.id;
-        if (userId) {
-          try { window.sessionStorage.setItem(`loci.onboardingCompleted:${userId}`, "true"); } catch {}
-        }
+        window.sessionStorage.removeItem("loci.onboardingSkipped");
+        window.sessionStorage.setItem("loci.onboardingCompleted", "true");
       }
       // Dismiss the onboarding gate so the user stays at the workspace.
       setOnboardingGateDismissed(true);

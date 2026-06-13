@@ -10,8 +10,6 @@ import {
 import { mergeSessions } from "../lib/sessionTools.js";
 import securityLogger from "../services/securityLogger.js";
 import { logAppError } from "../lib/appErrors.js";
-import { clearAllUserStorage } from "../lib/userStorage.js";
-import { useUiStore } from "../stores/uiStore.js";
 
 function normalizeProfileRecord(record = {}) {
   return {
@@ -198,32 +196,16 @@ export function useAuthSession() {
       const session = event?.detail?.session || null;
       if (!mountedRef.current) return;
       if (!session?.user) {
-        const previousUserId = authUserRef.current?.id;
-        securityLogger.log("SECURITY", "USER_SESSION_END", { previousUserId });
+        securityLogger.log("SECURITY", "USER_SESSION_END", { previousUserId: authUserRef.current?.id });
         setAuthUser(null);
         setProfile(null);
         setSessions([]);
         bootstrapStateRef.current = { loadingUserId: null, loadedUserId: null };
         clearSessionRefreshTimer();
-        // Clear all user-scoped browser storage to prevent cross-user data leaks
-        if (previousUserId) clearAllUserStorage(previousUserId);
-        // Reset Zustand UI store (shortlists, tracked apps, filters)
-        useUiStore.getState().reset();
         setAuthReady(true);
         authBootstrappedRef.current = true;
         return;
       }
-      // Concurrent sign-in guard: if a different user is already loaded,
-      // clear their state before bootstrapping the new user.
-      const previousUserId = authUserRef.current?.id;
-      if (previousUserId && previousUserId !== session.user.id) {
-        securityLogger.log("SECURITY", "USER_SWITCH", { from: previousUserId, to: session.user.id });
-        clearAllUserStorage(previousUserId);
-        useUiStore.getState().reset();
-        setSessions([]);
-        bootstrapStateRef.current = { loadingUserId: null, loadedUserId: null };
-      }
-
       securityLogger.logAuthSuccess(session.user.id, session.user.email);
       setAuthUser(session.user);
       clearSessionRefreshTimer();
@@ -263,13 +245,8 @@ export function useAuthSession() {
   }, []);
 
   const signOut = async () => {
-    const userId = authUserRef.current?.id;
-    securityLogger.log("SECURITY", "USER_LOGOUT", { userId });
+    securityLogger.log("SECURITY", "USER_LOGOUT", { userId: authUserRef.current?.id });
     await signOutThroughBridge();
-    // Clear all user-scoped browser storage to prevent data leaks
-    if (userId) clearAllUserStorage(userId);
-    // Reset Zustand store (shortlists, tracked apps, filters)
-    useUiStore.getState().reset();
     setAuthUser(null);
     setProfile(null);
     setSessions([]);
