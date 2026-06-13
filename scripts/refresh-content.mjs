@@ -222,7 +222,11 @@ function isPublishablePublicRecord(record = {}) {
   const title = String(record?.name || record?.name_full || "").toLowerCase();
   const pageType = String(record?.page_type || "").toLowerCase();
   const scholarshipSignal = /\bscholar|fund|funding|award|grant|fellow|fellowship|studentship|bursar|opportunity|position\b/.test(title);
-  const genericTitle = /^(position detail|find scholarships in \d{4}|list of scholarships for international students in \d{4}|scholarships cafe|frequently asked questions about scholarships|faq|application timeline|find a course|just a moment|error 404|page not found|course fees|fee liability|student loans|how to pay|financial support|living costs|tuition fees|accommodation|home|stories of impact|current scholars|alumni network|we couldnt find that page|payment methods|postgraduate finance|undergraduate finance|welcome to|about us|contact us|privacy policy|accessibility|freedom of information|terms and conditions|cookie policy|site map)$/i.test(String(record?.name || "").trim());
+  const name = String(record?.name || "").trim();
+  // Catch junk pages — check if name STARTS WITH or IS a generic pattern
+  const genericPrefixes = /^(position detail|find scholarships|list of scholarships|scholarships cafe|frequently asked|faq|application timeline|find a course|just a moment|error 404|page not found|course fees|fee liability|student loans|how to pay|financial support|living costs|tuition fees|accommodation|home|stories of impact|current scholars|alumni network|we couldnt find|payment methods|postgraduate finance|welcome to|about us|contact us|privacy policy|accessibility|freedom of information|terms and conditions|cookie policy|site map)/i.test(name);
+  const genericExact = /^(not applicable|undergraduate finance|postgraduate course fees|additional costs|open days?)$/i.test(name);
+  const genericTitle = genericPrefixes || genericExact;
   const focus = classifyOpportunityFocus(record);
   const audienceScope = String(record?.audience_scope || focus.audienceScope || "").toLowerCase();
   const hasEvidence = Boolean(

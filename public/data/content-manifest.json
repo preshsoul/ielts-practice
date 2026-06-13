@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T08:55:26.987Z",
+  "updated_at": "2026-06-13T08:56:12.029Z",
   "sources": {
     "questions": {
       "base": 72,
@@ -15,9 +15,9 @@
     "scholarships": {
       "legacy": 0,
       "v2": 267,
-      "records": 47,
+      "records": 43,
       "published": 204,
-      "published_public": 47
+      "published_public": 43
     }
   },
   "deadlines": {
