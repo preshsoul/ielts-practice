@@ -2,7 +2,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
-import { extractScholarship } from "./scholarship-extractor.mjs";
+import { extractScholarship, verifyInternationalEligibility, verifyScholarshipQuality } from "./scholarship-extractor.mjs";
 import { validateScholarship } from "./scholarship-schema.mjs";
 import { writeScholarshipReviewQueue } from "./lib/scholarship-scraper/writer.js";
 import { normalizeUrl as normalizeScholarshipUrl } from "../src/lib/scholarshipContract.js";
@@ -1145,6 +1145,46 @@ async function main() {
       }
       v2.source.sourceLabel = source.label;
       v2.source.sourceBrand = extractionLabel;
+      // ── International-student verification ──
+      // Reject scholarships that are UK-only or have no international signal.
+      const intlCheck = verifyInternationalEligibility(
+        v2.eligibility?.rawText || structured.contentText || page.html,
+        canonicalPageUrl
+      );
+      if (!intlCheck.isInternational) {
+        metric.skippedPages += 1;
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label, sourceUrl: normalizedSourceUrl,
+          url: pageUrl, canonicalUrl: canonicalPageUrl, depth,
+          title, pageType, pageScore,
+          status: "skipped", reason: "not_international: " + (intlCheck.warnings[0] || "no signal"),
+        });
+        continue;
+      }
+
+      // ── Stringent quality verification ──
+      const qualityCheck = verifyScholarshipQuality(v2);
+      if (!qualityCheck.passed) {
+        metric.validationFailures += 1;
+        validationFailures.push({
+          sourceUrl: pageUrl, sourceLabel: source.label, title,
+          errors: qualityCheck.checks.filter(function (c) { return !c.passed; }).map(function (c) { return c.check + ": " + c.detail; }),
+          capturedAt: new Date().toISOString(),
+        });
+        pushCandidateCandidate(candidateBank, {
+          sourceLabel: source.label, sourceUrl: normalizedSourceUrl,
+          url: pageUrl, canonicalUrl: canonicalPageUrl, depth,
+          title, pageType, pageScore,
+          status: "validation_failure",
+          reason: qualityCheck.checks.filter(function (c) { return !c.passed; }).map(function (c) { return c.check; }).join("; "),
+        });
+        continue;
+      }
+
+      // Store international verification in the scholarship record
+      v2.internationalVerification = intlCheck;
+      v2.qualityVerification = qualityCheck;
+
       const validation = validateScholarship(v2);
       if (!validation.valid) {
         metric.validationFailures += 1;

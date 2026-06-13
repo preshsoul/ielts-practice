@@ -241,6 +241,16 @@ function isPublishablePublicRecord(record = {}) {
   if (genericTitle) return false;
   if (focus.nigeriaOnlySignal || audienceScope === "nigeria_only") return false;
   if (!scholarshipSignal && !hasEvidence && !hasPriorityFocus) return false;
+
+  // Reject UK-only scholarships. Our users are international applicants.
+  var scopeCheck = String(record?.audience_scope || focus.audienceScope || "").toLowerCase();
+  if (scopeCheck === "local" || scopeCheck === "nigeria_only") return false;
+
+  // Must have international signal or be from known global source
+  var knownGlobalSource = /cambridgetrust|chevening|daad|fulbright|erasmus|commonwealth|mext|great scholarship/i.test(sourceUrl);
+  var hasInternationalScope = scopeCheck === "international" || scopeCheck === "outside_country" || knownGlobalSource;
+  if (!hasInternationalScope && !hasPriorityFocus) return false;
+
   return true;
 }
 

@@ -562,6 +562,132 @@ function extractNameSignals(html, sourceUrl, sourceLabel, title) {
   };
 }
 
+// =========================================================================
+// International-student verification
+// =========================================================================
+// Our users are Nigerian graduates targeting UK/global postgraduate study.
+// Scholarships must be open to international students — not UK-only.
+
+const UK_ONLY_PATTERNS = [
+  /\buk only\b/i, /\bhome students only\b/i, /\buk residents only\b/i,
+  /\bfor uk students\b/i, /\bhome\/eu\b/i, /\bhome \/ eu\b/i,
+  /\bhome fees?\b/i, /\bhome status\b/i, /\bhome rate\b/i,
+  /\bscotland only\b/i, /\bwales only\b/i, /\bengland only\b/i,
+  /\bni only\b/i, /\bnorthern ireland only\b/i,
+];
+
+const INTERNATIONAL_PATTERNS = [
+  /\binternational\b/i, /\boverseas\b/i, /\babroad\b/i,
+  /\bglobal\b/i, /\bworldwide\b/i, /\bforeign\b/i,
+  /\bopen to all\b/i, /\bany nationality\b/i, /\ball nationalities\b/i,
+  /\bnon-uk\b/i, /\bnon uk\b/i, /\boutside the uk\b/i,
+  /\b发展中国家\b/i,  // "developing countries" in Chinese
+];
+
+var NIGERIA_FRIENDLY_PATTERNS = [
+  /\bnigeria\b/i, /\bnigerian\b/i, /\bafrica\b/i, /\bafrican\b/i,
+  /\bcommonwealth\b/i, /\bdeveloping countries\b/i,
+  /\blow.income\b/i, /\bmiddle.income\b/i, /\bemerging\b/i,
+  /\bsub.saharan\b/i, /\bglobal south\b/i,
+];
+
+export function verifyInternationalEligibility(scopedText, sourceUrl) {
+  if (!scopedText) return { isInternational: false, confidence: 0, signals: [], warnings: [] };
+
+  var text = String(scopedText || "").toLowerCase();
+  var url = String(sourceUrl || "").toLowerCase();
+
+  // Reject UK-only scholarships
+  for (var i = 0; i < UK_ONLY_PATTERNS.length; i++) {
+    if (UK_ONLY_PATTERNS[i].test(text)) {
+      return { isInternational: false, confidence: 0.9, signals: [], warnings: ["uk_only_pattern: " + UK_ONLY_PATTERNS[i].source] };
+    }
+  }
+
+  // Check for international signals
+  var intlSignals = [];
+  for (var j = 0; j < INTERNATIONAL_PATTERNS.length; j++) {
+    if (INTERNATIONAL_PATTERNS[j].test(text)) intlSignals.push(INTERNATIONAL_PATTERNS[j].source);
+  }
+
+  // Check for Nigeria/Africa-friendly signals
+  var ngSignals = [];
+  for (var k = 0; k < NIGERIA_FRIENDLY_PATTERNS.length; k++) {
+    if (NIGERIA_FRIENDLY_PATTERNS[k].test(text)) ngSignals.push(NIGERIA_FRIENDLY_PATTERNS[k].source);
+  }
+
+  // Known international sources don't need explicit text signals
+  var knownIntlSources = /cambridgetrust|chevening|daad|fulbright|erasmus|commonwealth|mext|studyin|kth/i;
+  var isKnownSource = knownIntlSources.test(url);
+
+  var hasIntlSignal = intlSignals.length > 0;
+  var hasNgSignal = ngSignals.length > 0;
+
+  if (hasIntlSignal || hasNgSignal || isKnownSource) {
+    var confidence = hasIntlSignal ? 0.8 : (isKnownSource ? 0.7 : 0.5);
+    return {
+      isInternational: true,
+      confidence: confidence,
+      signals: intlSignals.concat(ngSignals),
+      warnings: hasNgSignal ? [] : ["no_explicit_nigeria_signal"],
+    };
+  }
+
+  // No evidence either way — flag for review
+  return {
+    isInternational: false,
+    confidence: 0,
+    signals: [],
+    warnings: ["no_international_signal_found"],
+  };
+}
+
+// =========================================================================
+// Stringent verification — minimum evidence required
+// =========================================================================
+
+export function verifyScholarshipQuality(scholarship) {
+  var checks = [];
+  var coverage = scholarship.coverage || {};
+  var application = scholarship.application || {};
+  var eligibility = scholarship.eligibility || {};
+  var source = scholarship.source || {};
+  var provenance = scholarship.provenance || {};
+
+  // Must have at least 2 of these 4 evidence types
+  var hasDeadline = Boolean(application.deadline);
+  var hasCoverage = coverage.type && coverage.type !== "unknown";
+  var hasEligibility = Boolean(
+    (eligibility.nationalities && eligibility.nationalities.length) ||
+    (eligibility.disciplines && eligibility.disciplines.length) ||
+    eligibility.degreeClassMin ||
+    (eligibility.languageReqs && (eligibility.languageReqs.ielts || eligibility.languageReqs.toefl))
+  );
+  var hasSource = Boolean(source.sourceUrl || provenance.sourceUrl);
+
+  var evidenceCount = (hasDeadline ? 1 : 0) + (hasCoverage ? 1 : 0) + (hasEligibility ? 1 : 0) + (hasSource ? 1 : 0);
+
+  checks.push({ check: "evidence_minimum", passed: evidenceCount >= 2, detail: evidenceCount + "/4 evidence types present" });
+
+  // Confidence threshold
+  var confidence = Number(source.confidence || provenance.confidenceScore || 0);
+  checks.push({ check: "confidence_threshold", passed: confidence >= 0.35, detail: (confidence * 100).toFixed(0) + "%" });
+
+  // Name quality
+  var name = scholarship.name || scholarship.title || "";
+  var nameOk = name.length >= 10 && !/^(home|error|just a moment|page not found|course fees)/i.test(name);
+  checks.push({ check: "name_quality", passed: nameOk, detail: name.slice(0, 40) });
+
+  var allPassed = checks.every(function (c) { return c.passed; });
+
+  return {
+    passed: allPassed,
+    evidenceCount: evidenceCount,
+    confidence: confidence,
+    checks: checks,
+  };
+}
+
 function cleanApplicationLink(link) {
   return normalizeUrl(link || "");
 }

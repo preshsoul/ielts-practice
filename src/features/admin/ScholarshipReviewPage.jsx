@@ -278,7 +278,7 @@ function EditModal(_ref3) {
             elig.languageReqs = Object.assign({}, elig.languageReqs || {}, { ielts: v ? Number(v) : null });
             setDraft(Object.assign({}, draft, { eligibility: elig }));
           }} />
-          <EditField label="Nationalities (comma-separated)" value=((draft.eligibility || {}).nationalities || []).join(", ") onChange={function (v) {
+          <EditField label="Nationalities (comma-separated)" value={((draft.eligibility || {}).nationalities || []).join(", ")} onChange={function (v) {
             var elig = Object.assign({}, draft.eligibility || {});
             elig.nationalities = v ? v.split(",").map(function (s) { return s.trim(); }).filter(Boolean) : [];
             setDraft(Object.assign({}, draft, { eligibility: elig }));
