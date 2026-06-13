@@ -1,4 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
+
+/** Tiny error boundary so one new card can't crash the whole dashboard. */
+class CardErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { err: null }; }
+  static getDerivedStateFromError(err) { return { err }; }
+  render() {
+    if (this.state.err) return null;
+    return this.props.children;
+  }
+}
 import { Link } from "react-router-dom";
 import { rankScholarships } from "../../services/scoringEngine.js";
 import { buildDashboardSnapshot } from "../../lib/dashboard.js";
@@ -403,7 +413,9 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
         </article>
 
         <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-6">
-          <DailyChallengeCard sessions={sessions} />
+          <CardErrorBoundary>
+            <DailyChallengeCard sessions={sessions} />
+          </CardErrorBoundary>
         </article>
 
         <article className="loci-card loci-card--utilitarian dashboard-intelligence-card dashboard-span-7">
