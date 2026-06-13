@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T17:19:47.794Z",
+  "updated_at": "2026-06-13T20:12:26.491Z",
   "items": {
     "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships": {
       "id": "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships",
@@ -27,15 +27,6 @@
       "deadlineRaw": "Rolling",
       "deadlineType": "rolling",
       "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/international/scholarships/thekeates-leeeducationaltrustbursary",
-      "urgency": "green"
-    },
-    "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-home-postgraduate-scho": {
-      "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-home-postgraduate-scho",
-      "name": "UAL Home Postgraduate £7,000 Scholarships",
-      "deadline": "2026-12-01",
-      "deadlineRaw": "Autumn 2026",
-      "deadlineType": "estimated",
-      "sourceUrl": "https://www.arts.ac.uk/study-at-ual/fees-and-funding/scholarships-search/ual-home-postgraduate-scholarships",
       "urgency": "green"
     },
     "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-scholarships-search-ual-international-postgrad": {
@@ -965,15 +956,6 @@
       "sourceUrl": "https://www.wlv.ac.uk/business-services/funding-and-support/knowledge-transfer-partnerships",
       "urgency": "green"
     },
-    "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music-music-bursaries-form": {
-      "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music-music-bursaries-form",
-      "name": "Music-bursaries-form",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.aber.ac.uk/en/study-with-us/ug-studies/scholarships/music/music-bursaries-form",
-      "urgency": "green"
-    },
     "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-phd-and-mphil-funding": {
       "id": "www.arts.ac.uk_arts-university-scholarships_study-at-ual-fees-and-funding-phd-and-mphil-funding",
       "name": "PhD And Mphil Funding",
@@ -1001,15 +983,6 @@
       "sourceUrl": "https://www.edgehill.ac.uk/scholarships",
       "urgency": "green"
     },
-    "www.wlv.ac.uk_wlv-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.wlv.ac.uk_wlv-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "Sorry, We Cant Find That Page...",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.wlv.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
     "www.shu.ac.uk_shu-university-scholarships_funding": {
       "id": "www.shu.ac.uk_shu-university-scholarships_funding",
       "name": "Student Funding",
@@ -1017,15 +990,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.shu.ac.uk/funding",
-      "urgency": "green"
-    },
-    "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_aecc-school-of-chiropractic-celebrates-internationa": {
-      "id": "www.hsu.ac.uk_hsu-hsu-london-hsu-bournemouth-hsu-health-scholarships_aecc-school-of-chiropractic-celebrates-internationa",
-      "name": "AECC School Of Chiropractic Celebrates International Research Excellence With Best Poster Award Win | Health Sciences University",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.hsu.ac.uk/aecc-school-of-chiropractic-celebrates-international-research-excellence-with-best-poster-award-win",
       "urgency": "green"
     },
     "www.kuleuven.be_ku-leuven-scholarships_scholarships-year-2025-2026-erasmus-mundus-master-of-theoretical-chemistry-and-co": {
@@ -1071,15 +1035,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/information-for-scholarship-applicants",
-      "urgency": "green"
-    },
-    "kpmg.com_kpmg-graduates_sg-en-careers-graduates-html": {
-      "id": "kpmg.com_kpmg-graduates_sg-en-careers-graduates-html",
-      "name": "KPMG In Singapore",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://kpmg.com/sg/en/careers/graduates.html",
       "urgency": "green"
     },
     "www.edgehill.ac.uk_not-applicable-scholarships_scholarships": {
@@ -1143,33 +1098,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
-      "urgency": "green"
-    },
-    "www.aup.ac.uk_arts-university-plymouth-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.aup.ac.uk_arts-university-plymouth-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "Vercel Security Checkpoint",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.aup.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_root": {
-      "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_root",
-      "name": "Home",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bbk.ac.uk",
-      "urgency": "green"
-    },
-    "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c": {
-      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-articles-a-decade-of-impact-mastercard-foundation-scholars-program-c",
-      "name": "A Decade Of Impact: Mastercard Foundation Scholars Program Celebrates 10 Years At KNUST",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://mastercardfdn.org/en/articles/a-decade-of-impact-mastercard-foundation-scholars-program-celebrates-10-years-at-knust",
       "urgency": "green"
     },
     "www.chevening.org_chevening_scholarships-application-timeline": {
@@ -1323,15 +1251,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&detail=10000169",
-      "urgency": "green"
-    },
-    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where": {
-      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-where",
-      "name": "Institutions",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply",
       "urgency": "green"
     },
     "www.ox.ac.uk_oxford-graduate-scholarships_students-fees-funding-international": {
@@ -1539,24 +1458,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.chevening.org/scholarships/why-study-in-the-uk",
-      "urgency": "green"
-    },
-    "www.dmu.ac.uk_de-montfort-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships": {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_admissions-graduate-fees-and-funding-funding-scholarships",
-      "name": "We Couldnt Find That Page :(",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.dmu.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-      "urgency": "green"
-    },
-    "scholarships-cafe-position-detail": {
-      "id": "scholarships-cafe-position-detail",
-      "name": "Position Detail",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://scholarshipscafe.com/position-detail?id=15499",
       "urgency": "green"
     },
     "www.aston.ac.uk_not-applicable-scholarships_international-scholarships": {
@@ -1775,15 +1676,6 @@
       "sourceUrl": "https://www.sunderland.ac.uk/scholarships-and-bursaries",
       "urgency": "green"
     },
-    "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-scholarships": {
-      "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-daad-scholarships",
-      "name": "Daad-scholarships",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
-      "urgency": "green"
-    },
     "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-music-art": {
       "id": "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships-music-art",
       "name": "Funding Programmes For Musicians And Artists",
@@ -1791,15 +1683,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.daad.de/en/studying-in-germany/scholarships/music-art",
-      "urgency": "green"
-    },
-    "www.daad.de_daad-scholarships_en-report-an-accessibility-issue": {
-      "id": "www.daad.de_daad-scholarships_en-report-an-accessibility-issue",
-      "name": "Report An Accessibility Issue",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.daad.de/en/report-an-accessibility-issue/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/funding-options",
       "urgency": "green"
     },
     "www.daad.de_daad-scholarships_en-studying-in-germany-scholarships": {
@@ -1818,51 +1701,6 @@
       "deadlineRaw": "Autumn 2026",
       "deadlineType": "estimated",
       "sourceUrl": "https://www.regents.ac.uk/study/scholarships-funding-and-bursaries/us-financial-aid",
-      "urgency": "green"
-    },
-    "www.daad.de_daad-scholarships_de-barriere-melden": {
-      "id": "www.daad.de_daad-scholarships_de-barriere-melden",
-      "name": "Barriere Melden",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.daad.de/de/barriere-melden/?barrierUrl=https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships",
-      "urgency": "green"
-    },
-    "www.cambridgetrust.org_cambridge-trust-scholarships_wp-content-uploads-2026-03-ctaddfundform-additional-funding-form-v1-": {
-      "id": "www.cambridgetrust.org_cambridge-trust-scholarships_wp-content-uploads-2026-03-ctaddfundform-additional-funding-form-v1-",
-      "name": "Ctaddfundform-additional-funding-form-v1_march26.pdf",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.cambridgetrust.org/wp-content/uploads/2026/03/CTAddFundForm-Additional-Funding-Form-V1_March26.pdf",
-      "urgency": "green"
-    },
-    "careers.unilever.com_unilever-early-careers_en-early-careers": {
-      "id": "careers.unilever.com_unilever-early-careers_en-early-careers",
-      "name": "Early Careers",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://careers.unilever.com/en/early-careers",
-      "urgency": "green"
-    },
-    "mastercardfdn.org_mastercard-foundation-scholars_en-news-hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-": {
-      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-news-hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-",
-      "name": "HSRC Screens The Spirit Of Kanju: Leaders Transforming Africa - A Documentary Film Created By Alumni Of The Mastercard Foundation Scholars Program",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://mastercardfdn.org/en/news/hsrc-screens-the-spirit-of-kanju-leaders-transforming-africa-a-documentary-film-created-by-alumni-of-the-mastercard-foundation-scholars-program",
-      "urgency": "green"
-    },
-    "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac": {
-      "id": "mastercardfdn.org_mastercard-foundation-scholars_en-what-we-do-our-programs-mastercard-foundation-scholars-program-impac",
-      "name": "Stories Of Impact | Mastercard Foundation Scholars Program",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/impact-stories",
       "urgency": "green"
     },
     "www.rau.ac.uk_rau-university-scholarships_student-life-international-students-scholarships": {
@@ -2016,15 +1854,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/course-fees/year-abroad-fees",
-      "urgency": "green"
-    },
-    "www.marjon.ac.uk_plymouth-marjon-university-scholarships_student-life-student-support-student-funding-advice": {
-      "id": "www.marjon.ac.uk_plymouth-marjon-university-scholarships_student-life-student-support-student-funding-advice",
-      "name": "Your Choice Regarding Cookies On This Site",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.marjon.ac.uk/student-life/student-support-/student-funding-advice",
       "urgency": "green"
     },
     "www.cardiff.ac.uk_cardiff-university-scholarships_study-undergraduate-funding-scholarships-scholarships-for-studying-in-": {
@@ -2261,15 +2090,6 @@
       "sourceUrl": "https://www.aston.ac.uk/international/scholarships/women-in-stem",
       "urgency": "green"
     },
-    "www.bath.ac.uk_university-of-bath-scholarships_announcements-bath-professor-named-honorary-fellow-of-the-chinese-chemica": {
-      "id": "www.bath.ac.uk_university-of-bath-scholarships_announcements-bath-professor-named-honorary-fellow-of-the-chinese-chemica",
-      "name": "Cookies On Bath.ac.uk",
-      "deadline": null,
-      "deadlineRaw": "Rolling",
-      "deadlineType": "rolling",
-      "sourceUrl": "https://www.bath.ac.uk/announcements/bath-professor-named-honorary-fellow-of-the-chinese-chemical-society",
-      "urgency": "green"
-    },
     "www.royalholloway.ac.uk_royal-holloway-university-of-london-scholarships_studying-here-fees-and-funding": {
       "id": "www.royalholloway.ac.uk_royal-holloway-university-of-london-scholarships_studying-here-fees-and-funding",
       "name": "Fees And Funding",
@@ -2297,15 +2117,6 @@
       "sourceUrl": "https://www.aston.ac.uk/aston-business-school/aston-mba/mba-scholarships",
       "urgency": "green"
     },
-    "test-1781303555235-36": {
-      "id": "test-1781303555235-36",
-      "name": "Home",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.bournemouth.ac.uk",
-      "urgency": "green"
-    },
     "www.uea.ac.uk_uea-university-of-east-anglia-scholarships_international-fees-and-funding-scholarships": {
       "id": "www.uea.ac.uk_uea-university-of-east-anglia-scholarships_international-fees-and-funding-scholarships",
       "name": "Scholarships",
@@ -2313,15 +2124,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.uea.ac.uk/international/fees-and-funding/scholarships",
-      "urgency": "green"
-    },
-    "www.strath.ac.uk_university-of-strathclyde-scholarships_root": {
-      "id": "www.strath.ac.uk_university-of-strathclyde-scholarships_root",
-      "name": "The Place Of Useful Learning",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.strath.ac.uk",
       "urgency": "green"
     },
     "www.ox.ac.uk_university-of-oxford_admissions-undergraduate-fees-and-funding-course-fees-equivalent-and-lower-qualificati": {
@@ -2358,15 +2160,6 @@
       "deadlineRaw": null,
       "deadlineType": "unknown",
       "sourceUrl": "https://www.durham.ac.uk/study/international",
-      "urgency": "green"
-    },
-    "www.intoglobal.com_intoglobal-university-scholarships_root": {
-      "id": "www.intoglobal.com_intoglobal-university-scholarships_root",
-      "name": "INTO University Partnerships: Empowering Global Education",
-      "deadline": null,
-      "deadlineRaw": null,
-      "deadlineType": "unknown",
-      "sourceUrl": "https://www.intoglobal.com",
       "urgency": "green"
     },
     "www.aston.ac.uk_not-applicable-scholarships_international-scholarships-external-funding": {
