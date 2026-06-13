@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-12T23:04:06.836Z",
+  "updated_at": "2026-06-13T07:07:40.481Z",
   "notifications": [
     {
       "id": "content-refresh",
       "type": "info",
       "title": "Content refreshed",
-      "body": "Question bank and scholarship catalogue were refreshed at 13/06/2026, 00:04:06.",
+      "body": "Question bank and scholarship catalogue were refreshed at 13/06/2026, 08:07:40.",
       "target": "/admin"
     }
   ]
