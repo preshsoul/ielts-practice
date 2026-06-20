@@ -15,32 +15,50 @@ const checks = [
 ];
 
 const results = [];
+let passedCount = 0;
+let failedCount = 0;
 
 for (const check of checks) {
+  const startedAt = Date.now();
   try {
     const { stdout, stderr } = await execAsync(check.command, {
       maxBuffer: 10 * 1024 * 1024,
     });
-    results.push({ ...check, ok: true, stdout, stderr });
+    const ms = Date.now() - startedAt;
+    results.push({ ...check, ok: true, stdout, stderr, ms });
+    passedCount++;
+    console.log(`  ✓ ${check.label} (${ms}ms)`);
   } catch (error) {
+    const ms = Date.now() - startedAt;
     results.push({
       ...check,
       ok: false,
       stdout: error.stdout || "",
       stderr: error.stderr || "",
       message: error.message,
+      ms,
     });
+    failedCount++;
+    console.log(`  ✗ ${check.label} (${ms}ms)`);
   }
 }
+
+console.log(`\n${'═'.repeat(50)}`);
+console.log(`Phase 2: ${passedCount} passed, ${failedCount} failed, ${checks.length} total`);
+if (failedCount) {
+  console.log(`Failed: ${results.filter((r) => !r.ok).map((r) => r.label).join(', ')}`);
+}
+console.log(`${'═'.repeat(50)}\n`);
 
 const reportPath = await writeReport("phase2-latest", {
   phase: "phase2",
   checks: results,
-  passed: results.every((item) => item.ok),
+  passed: failedCount === 0,
+  counts: { passed: passedCount, failed: failedCount, total: checks.length },
 });
 
 console.log(`Phase 2 report: ${reportPath}`);
 
-if (results.some((item) => !item.ok)) {
+if (failedCount > 0) {
   process.exit(1);
 }
