@@ -1,30 +1,6 @@
 import { create } from "zustand";
 
-const SIDEBAR_KEY = "loci.sidebarCollapsed";
-
-function readSidebarPref() {
-  if (typeof window === "undefined") return false;
-  return window.localStorage.getItem(SIDEBAR_KEY) === "true";
-}
-
-function persistSidebar(collapsed) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(SIDEBAR_KEY, String(collapsed));
-}
-
 export const useUiStore = create((set, get) => ({
-  // Sidebar
-  sidebarCollapsed: readSidebarPref(),
-  toggleSidebar() {
-    const next = !get().sidebarCollapsed;
-    persistSidebar(next);
-    set({ sidebarCollapsed: next });
-  },
-  setSidebarCollapsed(collapsed) {
-    persistSidebar(collapsed);
-    set({ sidebarCollapsed: collapsed });
-  },
-
   // Command palette
   commandPaletteOpen: false,
   setCommandPaletteOpen(open) {
@@ -38,16 +14,6 @@ export const useUiStore = create((set, get) => ({
   },
   closeIntelPanel() {
     set({ intelPanel: null });
-  },
-
-  // Scholarship page filters
-  scholarshipRegion: "All",
-  setScholarshipRegion(region) {
-    set({ scholarshipRegion: region });
-  },
-  scholarshipMaxFee: 999999,
-  setScholarshipMaxFee(fee) {
-    set({ scholarshipMaxFee: fee });
   },
 
   // Shortlist (client-side cache — server is source of truth)
@@ -92,8 +58,6 @@ export const useUiStore = create((set, get) => ({
     set({
       shortlistIds: [],
       trackedApplications: {},
-      scholarshipRegion: "All",
-      scholarshipMaxFee: 999999,
       intelPanel: null,
     });
   },

@@ -33,7 +33,7 @@ import {
 } from "./lib/onboardingResolution.js";
 import { getOnboardingStatus } from "./lib/onboardingJourney.js";
 import { exportResultsData, mergeSessions } from "./lib/sessionTools.js";
-import { estimateOverallBand, getLanguageProof } from "./lib/bandScoreEstimator.js";
+import { estimateOverallBand } from "./lib/bandScoreEstimator.js";
 import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
 import NotFound from "./components/NotFound.jsx";
 import PageMeta from "./components/PageMeta.jsx";

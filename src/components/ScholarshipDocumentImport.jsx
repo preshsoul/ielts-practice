@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { useDocumentImport } from "../hooks/useDocumentImport.js";
-
-function inferDocumentType(file) {
-  const name = (file?.name || "").toLowerCase();
-  if (name.endsWith(".pdf")) return "pdf";
-  if (name.endsWith(".docx")) return "docx";
-  if (name.endsWith(".doc")) return "doc";
-  if (name.endsWith(".rtf")) return "rtf";
-  if (name.endsWith(".txt") || name.endsWith(".md") || name.endsWith(".csv")) return "text";
-  return "unknown";
-}
+import { inferDocumentType } from "../services/documentIntake.js";
 
 export default function ScholarshipDocumentImport({
   authUser,

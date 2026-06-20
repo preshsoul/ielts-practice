@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { loadApplicationTracking } from "../../services/supabaseData.js";
 import DeadlineCountdownBadge, { getDaysUntilDeadline } from "./DeadlineCountdownBadge.jsx";
 import SvgIcon from "../../components/SvgIcon.jsx";
@@ -98,7 +99,7 @@ export default function DeadlineActionPlan({
         </div>
         <div className="deadline-action-plan__empty">
           <p>No scholarships with deadlines found. Start tracking applications on the{" "}
-            <a href="/scholarships">Scholarships page</a> to build your action plan.
+            <Link to="/scholarships">Scholarships page</Link> to build your action plan.
           </p>
         </div>
       </div>
@@ -223,9 +224,9 @@ function DeadlineCard({ item }) {
             View scholarship →
           </a>
         )}
-        <a href="/scholarships" className="deadline-card__link">
+        <Link to="/scholarships" className="deadline-card__link">
           Open tracker →
-        </a>
+        </Link>
       </div>
     </div>
   );

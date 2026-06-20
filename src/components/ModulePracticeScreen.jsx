@@ -83,7 +83,7 @@ export default function ModulePracticeScreen({ module, sessions, onSessionComple
     setPhase("active");
     setIdx(0);
     setResponse("");
-    setRating(3);
+    setRubric(defaultRubric());
     setElapsed(0);
     setResults([]);
     setSummary("");
@@ -301,16 +301,7 @@ export default function ModulePracticeScreen({ module, sessions, onSessionComple
             </div>
           </div>
         )}
-        {module === "speaking" && !useRubric && (
-          <div className="module-rating-row">
-            <span>Self-rating</span>
-            <div className="module-rating-buttons">
-              {[1, 2, 3, 4, 5].map(function (value) {
-                return <button key={value} className={"seg-btn" + (rubric.fluency === value ? " active" : "")} onClick={function () { setRubric(function (prev) { var next = Object.assign({}, prev); next.fluency = value; return next; }); }}>{value}</button>;
-              })}
-            </div>
-          </div>
-        )}
+{/* Legacy self-rating block removed — speaking now uses the full rubric above (useRubric is always true when module === "speaking") */}
       </div>
 
       <div className="onboarding-actions">

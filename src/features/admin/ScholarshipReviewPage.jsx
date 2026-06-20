@@ -84,7 +84,11 @@ function ReviewCard(_ref) {
     >
       {/* Header row — always visible */}
       <div
+        role="button"
+        tabIndex={0}
+        aria-expanded={Boolean(isExpanded)}
         onClick={onToggle}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}
         style={{
           padding: "12px 16px",
           cursor: "pointer",
@@ -237,6 +241,14 @@ function EditModal(_ref3) {
   var onClose = _ref3.onClose;
   var _useState = useState(Object.assign({}, scholarship)), draft = _useState[0], setDraft = _useState[1];
 
+  useEffect(function () {
+    function handleKeyDown(e) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return function () { window.removeEventListener("keydown", handleKeyDown); };
+  }, [onClose]);
+
   function updateField(section, field, value) {
     // Sanitize string values: strip control chars and HTML tags
     var sanitized = typeof value === "string" ? cleanText(value) : value;
@@ -254,6 +266,9 @@ function EditModal(_ref3) {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Edit scholarship"
       style={{
         position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)",
         display: "flex", alignItems: "center", justifyContent: "center",

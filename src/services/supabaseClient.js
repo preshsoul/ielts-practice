@@ -24,9 +24,11 @@ function isLocalBrowser() {
 }
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    "Supabase environment variables are not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file."
-  );
+  if (typeof import.meta !== "undefined" && import.meta.env?.DEV) {
+    console.warn(
+      "Supabase environment variables are not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file."
+    );
+  }
 }
 
 export let supabase = null;
