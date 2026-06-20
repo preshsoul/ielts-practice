@@ -478,7 +478,7 @@ async def _enforce_rate_limit(
     return None
 
 
-@app.get("/healthz")
+@app.get("/healthz", response_model=None)
 async def healthcheck(request: Request) -> dict[str, str] | JSONResponse:
     limited = await _enforce_rate_limit(
         request,
