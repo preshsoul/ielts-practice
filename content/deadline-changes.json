@@ -1,6 +1,53 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T20:03:00.418Z",
-  "total": 0,
-  "changes": []
+  "updated_at": "2026-06-20T21:04:26.643Z",
+  "total": 2,
+  "changes": [
+    {
+      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
+      "name": "Search Our Scholarships",
+      "previous": {
+        "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
+        "name": "Search Our Scholarships",
+        "deadline": "2025-05-02",
+        "deadlineRaw": "2 may 2025",
+        "deadlineType": "fixed",
+        "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/anne-seagrim-accommodation-scholarship-20252026.php",
+        "urgency": "black"
+      },
+      "current": {
+        "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
+        "name": "Search Our Scholarships",
+        "deadline": null,
+        "deadlineRaw": null,
+        "deadlineType": "unknown",
+        "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/ai-for-antibody-and-protein-design-20262027.php",
+        "urgency": "green"
+      },
+      "changedAt": "2026-06-20T21:04:26.631Z"
+    },
+    {
+      "id": "test-1781303555235-12",
+      "name": "Amity University (in) London",
+      "previous": {
+        "id": "test-1781303555235-12",
+        "name": "Amity University (in) London",
+        "deadline": null,
+        "deadlineRaw": null,
+        "deadlineType": null,
+        "sourceUrl": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
+        "urgency": null
+      },
+      "current": {
+        "id": "test-1781303555235-12",
+        "name": "Amity University (in) London",
+        "deadline": null,
+        "deadlineRaw": null,
+        "deadlineType": "unknown",
+        "sourceUrl": "https://www.amity.ac.uk/study/postgraduate-research/funding",
+        "urgency": "green"
+      },
+      "changedAt": "2026-06-20T21:04:26.631Z"
+    }
+  ]
 }
