@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useState, useEffect, useMemo } from "react";
 import { Navigate, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Shell } from './components/layout/AppShell.jsx';
 import { PracticeRoutes, ScholarshipRoutes } from './components/routes/AppRoutes.jsx';
@@ -35,6 +36,7 @@ import { exportResultsData, mergeSessions } from "./lib/sessionTools.js";
 import { estimateOverallBand, getLanguageProof } from "./lib/bandScoreEstimator.js";
 import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
 import NotFound from "./components/NotFound.jsx";
+import PageMeta from "./components/PageMeta.jsx";
 import { getErrorMessage, logAppError } from "./lib/appErrors.js";
 import { C, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR } from "./lib/tokens.js";
 
@@ -336,6 +338,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
     <Shell sessions={sessions} onRefresh={refreshSessions} authUser={authUser} profile={profile} scholarshipCatalog={content.scholarshipCatalog || content.scholarshipRecords || content.scholarships}>
       <ErrorBoundary>
       <Suspense fallback={routeFallback}>
@@ -344,6 +347,7 @@ export default function App() {
             path="/"
             element={
               <ErrorBoundary>
+              <PageMeta title="Dashboard" description="Your Loci dashboard — track IELTS progress, discover scholarships, and manage your study abroad journey." path="/" />
               <DashboardHome
                 profile={profile}
                 sessions={sessions}
@@ -407,6 +411,7 @@ export default function App() {
             path="/account"
             element={
               <ErrorBoundary>
+              <PageMeta title="Account" description="Manage your Loci profile, CV, language scores, and application preferences." path="/account" />
               <AccountPage
                 sessions={sessions}
                 authUser={authUser}
@@ -425,6 +430,7 @@ export default function App() {
             path="/readiness"
             element={
               <ErrorBoundary>
+              <PageMeta title="Readiness" description="See your IELTS readiness score, band estimates, and scholarship match potential." path="/readiness" />
               <ReadinessPage
                 profile={profile}
                 sessions={sessions}
@@ -437,6 +443,7 @@ export default function App() {
             path="/achievements"
             element={
               <ErrorBoundary>
+              <PageMeta title="Achievements" description="Your Loci achievements, streaks, and milestones across IELTS practice and scholarship applications." path="/achievements" />
               <AchievementsPage
                 profile={profile}
                 sessions={sessions}
@@ -444,11 +451,12 @@ export default function App() {
               </ErrorBoundary>
             }
           />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<><PageMeta title="Page not found" description="The page you're looking for doesn't exist." noIndex /><NotFound /></>} />
         </Routes>
       </Suspense>
       </ErrorBoundary>
     </Shell>
+    </HelmetProvider>
     </QueryClientProvider>
   );
 }

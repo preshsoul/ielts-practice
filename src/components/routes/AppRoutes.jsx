@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PracticeShell } from "../layout/AppShell.jsx";
+import PageMeta from "../PageMeta.jsx";
 import { computeWeakSections, selectQueue } from "../../lib/sessionTools.js";
 
 const PracticeView = lazy(() => import("../PracticeView.jsx"));
@@ -93,6 +94,20 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
     content = <Suspense fallback={<RouteFallback label="Loading mock test" />}><MockTestSimulator sessions={sessions} onSessionComplete={onSessionComplete} qb={qb} passages={passages} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} /></Suspense>;
   }
 
+  const practiceMeta = {
+    "/practice/reading":      { title: "Reading Practice",          desc: "IELTS Reading practice with timed passages, answer feedback, and band score tracking.", path: "/practice/reading" },
+    "/practice/listening":    { title: "Listening Practice",        desc: "IELTS Listening practice with audio scenarios, question sets, and score analysis.", path: "/practice/listening" },
+    "/practice/writing":      { title: "Writing Practice",          desc: "IELTS Writing practice with task prompts, model answers, and band descriptors.", path: "/practice/writing" },
+    "/practice/speaking":     { title: "Speaking Practice",         desc: "IELTS Speaking practice with cue cards, timed responses, and fluency feedback.", path: "/practice/speaking" },
+    "/practice/progress":     { title: "Progress",                  desc: "Track your IELTS practice progress, band score trends, and section-by-section performance.", path: "/practice/progress" },
+    "/practice/weak-areas":   { title: "Weak Areas",                desc: "Identify and strengthen your weakest IELTS sections with targeted practice recommendations.", path: "/practice/weak-areas" },
+    "/practice/learning-path":{ title: "Learning Path",             desc: "Your personalized IELTS learning path with sequenced modules and milestone tracking.", path: "/practice/learning-path" },
+    "/practice/daily":        { title: "Daily Challenge",           desc: "Today's IELTS daily challenge — a fresh question set to keep your skills sharp.", path: "/practice/daily" },
+    "/practice/vocabulary":   { title: "Vocabulary Practice",       desc: "Build your IELTS vocabulary with spaced repetition and contextual word lists.", path: "/practice/vocabulary" },
+    "/practice/mock-test":    { title: "Mock Test",                 desc: "Full-length IELTS mock test simulator with timed sections and band score estimation.", path: "/practice/mock-test" },
+  };
+  const meta = practiceMeta[pathname] || { title: "Practice Hub", desc: "IELTS practice across all four modules — Reading, Listening, Writing, and Speaking.", path: "/practice" };
+
   return (
     <PracticeShell
       title="Practice"
@@ -100,6 +115,7 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
       weakCount={weak.length}
       exportAction={exportAction}
     >
+      <PageMeta {...meta} />
       {content}
     </PracticeShell>
   );
@@ -114,8 +130,19 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
   const isAdminReview = pathname.startsWith("/scholarships/admin/review");
   const isDeadlinePlan = pathname.startsWith("/scholarships/deadlines");
 
+  const scholarshipMeta = isAdminReview
+    ? { title: "Admin: Scholarship Review", desc: "Review and approve scholarship entries for the Loci catalog.", path: "/scholarships/admin/review", noIndex: true }
+    : isDeadlinePlan
+    ? { title: "Deadline Action Plan", desc: "Upcoming scholarship deadlines and a prioritised action plan for your applications.", path: "/scholarships/deadlines" }
+    : isWeeklyFeed
+    ? { title: "Weekly Scholarship Feed", desc: "This week's newest scholarship additions — fresh opportunities curated before they appear in matching.", path: "/scholarships/weekly" }
+    : pathname === "/scholarships/shortlist"
+    ? { title: "Shortlist", desc: "Your saved scholarship shortlist — track, compare, and manage your top opportunities.", path: "/scholarships/shortlist" }
+    : { title: "Scholarship Matches", desc: "Discover and match with international scholarships ranked by your profile, discipline, and IELTS score.", path: "/scholarships" };
+
   return (
     <>
+      <PageMeta {...scholarshipMeta} />
       <div className="topbar topbar--scholarships">
         <div>
           <div style={{ font: "600 11px/1.4 var(--font-ui)", color: "var(--text-3)", letterSpacing: "0.14em", textTransform: "uppercase" }}>Workspace</div>

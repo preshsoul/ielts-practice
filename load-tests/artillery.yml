@@ -1,6 +1,11 @@
-# Artillery load test — LOCI App
+# Artillery load test — Loci App
 # Run:  npx artillery run load-tests/artillery.yml
 # Docs: https://www.artillery.io/docs
+#
+# Targets:
+#   Python backend: http://127.0.0.1:8000
+#   Edge Functions: https://<project>.supabase.co/functions/v1
+#   Frontend:       https://loci.app (Netlify)
 
 config:
   target: "http://127.0.0.1:8000"
@@ -17,12 +22,16 @@ config:
       Accept: "application/json"
 
 scenarios:
-  - name: health-and-status
+  # ── Python backend health ────────────────────────
+  - name: health-check
+    weight: 3
     flow:
       - get:
           url: "/healthz"
 
+  # ── CV matching (stateless) ─────────────────────
   - name: match-cv
+    weight: 2
     flow:
       - post:
           url: "/api/v1/extractor/match-cv"
@@ -34,3 +43,49 @@ scenarios:
                 - "first_class"
                 - "second_upper"
               job_or_scholarship_description: "Scholarship for STEM graduates with strong English proficiency."
+
+  # ── CV parsing poll (read-only) ──────────────────
+  - name: parse-cv-status
+    weight: 1
+    flow:
+      - get:
+          url: "/api/v1/extractor/parse-cv/test-job-id"
+
+# ── Production targets (uncomment and update URL for live testing) ──
+#
+# config:
+#   target: "https://<project>.supabase.co"
+#   phases:
+#     - duration: 30
+#       arrivalRate: 1
+#       name: edge-warmup
+#     - duration: 120
+#       arrivalRate: 5
+#       rampTo: 10
+#       name: edge-sustained
+#
+# scenarios:
+#   - name: edge-health
+#     flow:
+#       - get:
+#           url: "/functions/v1/cv-parser/health"
+#           headers:
+#             Authorization: "Bearer {{ $processEnvironment.SUPABASE_ANON_KEY }}"
+#
+#   - name: edge-document-intake
+#     flow:
+#       - post:
+#           url: "/functions/v1/document-intake"
+#           headers:
+#             Authorization: "Bearer {{ $processEnvironment.TEST_ACCESS_TOKEN }}"
+#             Content-Type: "application/json"
+#           json:
+#             label: "Load test intake"
+#             sourceFilename: "test-cv.txt"
+#             mimeType: "text/plain"
+#             documentType: "text"
+#             rawTextHash: "load-test-{{ $randomString }}"
+#             extractedExcerpt: "Load test candidate."
+#             extractedText: "Load test candidate from Nigeria with MSc and IELTS 7.5."
+#             keywords: ["test", "load"]
+#             confidence: 0.85
