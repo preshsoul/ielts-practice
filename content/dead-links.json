@@ -1,19 +1,19 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T12:43:55.194Z",
+  "updated_at": "2026-06-20T20:37:34.905Z",
   "total": 3,
   "deadLinks": [
     {
       "url": "https://australiaawardsafrica.org/alumniupdate/login/?redirect_to=https%3A%2F%2Faustraliaawardsafrica.org%2Falumniupdate%2F",
       "sourceLabel": "Australia Awards Africa",
       "error": "blocked-path",
-      "capturedAt": "2026-06-13T12:41:57.620Z"
+      "capturedAt": "2026-06-20T20:34:40.362Z"
     },
     {
       "url": "https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem",
       "sourceLabel": "British Council Women in STEM",
       "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem\nCall log:\n\u001b[2m  - navigating to \"https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem\", waiting until \"domcontentloaded\"\u001b[22m\n",
-      "capturedAt": "2026-06-13T12:42:52.699Z"
+      "capturedAt": "2026-06-20T20:36:53.944Z"
     },
     {
       "url": "https://www.chevening.org/scholarships",

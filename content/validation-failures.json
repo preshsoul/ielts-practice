@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-13T12:43:55.192Z",
-  "total": 6,
+  "updated_at": "2026-06-20T20:37:34.903Z",
+  "total": 7,
   "failures": [
     {
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=57&status=3&subjectGrps=&daad=&q=&page=1&detail=10000153",
@@ -10,7 +10,7 @@
       "errors": [
         "evidence_minimum: 1/4 evidence types present"
       ],
-      "capturedAt": "2026-06-13T12:40:53.252Z"
+      "capturedAt": "2026-06-20T20:34:07.256Z"
     },
     {
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000133&page=1",
@@ -19,7 +19,7 @@
       "errors": [
         "evidence_minimum: 1/4 evidence types present"
       ],
-      "capturedAt": "2026-06-13T12:40:55.702Z"
+      "capturedAt": "2026-06-20T20:34:08.275Z"
     },
     {
       "sourceUrl": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=&page=1&lang=en&sd=1&detail=10000169&page=1",
@@ -28,7 +28,16 @@
       "errors": [
         "evidence_minimum: 1/4 evidence types present"
       ],
-      "capturedAt": "2026-06-13T12:40:58.409Z"
+      "capturedAt": "2026-06-20T20:34:09.163Z"
+    },
+    {
+      "sourceUrl": "https://www.chevening.org/asean-chevening-scholarship",
+      "sourceLabel": "Chevening Scholarships",
+      "title": "Chevening ASEAN Scholarship",
+      "errors": [
+        "evidence_minimum: 1/4 evidence types present"
+      ],
+      "capturedAt": "2026-06-20T20:34:17.410Z"
     },
     {
       "sourceUrl": "https://si.se/en/apply/scholarships",
@@ -37,7 +46,7 @@
       "errors": [
         "blocked or access-denied page"
       ],
-      "capturedAt": "2026-06-13T12:41:38.226Z"
+      "capturedAt": "2026-06-20T20:34:33.852Z"
     },
     {
       "sourceUrl": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships",
@@ -46,7 +55,7 @@
       "errors": [
         "blocked or access-denied page"
       ],
-      "capturedAt": "2026-06-13T12:42:49.457Z"
+      "capturedAt": "2026-06-20T20:35:11.806Z"
     },
     {
       "sourceUrl": "https://study-uk.britishcouncil.org/scholarships-funding/commonwealth-scholarships",
@@ -55,7 +64,7 @@
       "errors": [
         "blocked or access-denied page"
       ],
-      "capturedAt": "2026-06-13T12:42:50.994Z"
+      "capturedAt": "2026-06-20T20:35:13.374Z"
     }
   ]
 }
