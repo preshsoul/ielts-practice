@@ -1,3 +1,5 @@
+import { sanitizeForPrompt, wrapUserInput, INJECTION_DEFENSE_SYSTEM_NOTE } from "./prompt-guard.ts";
+
 export const DEFAULT_EMBEDDING_MODEL = "text-embedding-3-small";
 export const DEFAULT_EMBEDDING_DIMENSIONS = 1536;
 
@@ -105,9 +107,13 @@ export async function createDeepseekEmbeddings(
   const results: number[][] = [];
 
   for (const text of texts) {
-    const prompt = `You are an embedding model. Convert the following text into a ${dims}-dimensional unit-normalized embedding vector. Return ONLY a JSON array of ${dims} floats between -1 and 1. No explanation, no markdown — just the array.
+    // Sanitize user text and wrap in unambiguous delimiters
+    const sanitized = sanitizeForPrompt(text);
+    const wrapped = wrapUserInput(sanitized.text);
 
-Text: ${text}`;
+    const userMessage = `You are an embedding model. Convert the delimited text below into a ${dims}-dimensional unit-normalized embedding vector. Return ONLY a JSON object with an "embedding" key containing an array of ${dims} floats between -1 and 1. No explanation, no markdown — just the JSON object.\n\n${wrapped}`;
+
+    const systemMessage = `You are an embedding model. ${INJECTION_DEFENSE_SYSTEM_NOTE} Output ONLY a JSON object with an "embedding" key containing an array of floats.`;
 
     const response = await fetch(DEEPSEEK_CHAT_BASE, {
       method: "POST",
@@ -120,8 +126,8 @@ Text: ${text}`;
         temperature: 0,
         response_format: { type: "json_object" },
         messages: [
-          { role: "system", content: "You are an embedding model. Output ONLY a JSON object with an \"embedding\" key containing an array of floats." },
-          { role: "user", content: prompt },
+          { role: "system", content: systemMessage },
+          { role: "user", content: userMessage },
         ],
       }),
     });

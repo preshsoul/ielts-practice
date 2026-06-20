@@ -1,4 +1,5 @@
 import { createClaudeMessage, DEFAULT_ANTHROPIC_MODEL } from "../_shared/anthropic.ts";
+import { buildHardenedPrompt, validateLLMOutput } from "../_shared/prompt-guard.ts";
 import {
   corsHeaders,
   enforceRateLimit,
@@ -91,7 +92,7 @@ function errorResponse(error: unknown, origin: string | null = null) {
   }, 500, { origin, methods: "POST, OPTIONS", allowedOrigins });
 }
 
-async function callDeepseek(prompt: string) {
+async function callDeepseek(userMessage: string, systemMessage: string) {
   const apiKey = Deno.env.get("DEEPSEEK_API_KEY") || "";
   const model = Deno.env.get("DEEPSEEK_MODEL") || "deepseek-chat";
   if (!apiKey) throw new Response("Deepseek API key is not configured", { status: 500 });
@@ -107,8 +108,8 @@ async function callDeepseek(prompt: string) {
       temperature: 0,
       response_format: { type: "json_object" },
       messages: [
-        { role: "system", content: "You are a strict JSON-only normalization engine." },
-        { role: "user", content: prompt },
+        { role: "system", content: systemMessage },
+        { role: "user", content: userMessage },
       ],
     }),
   });
@@ -195,8 +196,8 @@ Deno.serve(async (req: Request) => {
       : hasDeepseek && !hasAnthropic ? "deepseek"
       : "anthropic";
 
-    const prompt = `
-You normalize scholarship candidate information for a recommendation engine.
+    // Build injection-hardened prompt — user text is delimited and sanitized
+    const instructions = `You normalize scholarship candidate information for a recommendation engine.
 Return JSON only, with these keys:
 {
   "semantic_text": string,
@@ -210,11 +211,9 @@ Rules:
 - Use canonical terms for degree level, discipline, nationality, country, and experience.
 - keywords should be 8 to 20 short, high-signal tokens.
 - confidence must be between 0 and 1.
-- Do not include markdown or commentary.
+- Do not include markdown or commentary.`;
 
-Input:
-${text}
-`.trim();
+    const { system, userMessage } = buildHardenedPrompt(instructions, text);
 
     let result: { model: string; text: string; usage: unknown };
 
@@ -224,7 +223,7 @@ ${text}
         "semantic-profile",
         { provider: "deepseek", model: deepseekModel, text, userId: user?.id || null },
         60 * 60,
-        async () => callDeepseek(prompt),
+        async () => callDeepseek(userMessage, system),
       );
     } else {
       const anthropicModel = ALLOWED_ANTHROPIC_MODELS.has(requestedModel) ? requestedModel : DEFAULT_ANTHROPIC_MODEL;
@@ -232,11 +231,11 @@ ${text}
         "semantic-profile",
         { provider: "anthropic", model: anthropicModel, text, userId: user?.id || null },
         60 * 60,
-        async () => createClaudeMessage(prompt, {
+        async () => createClaudeMessage(userMessage, {
           model: anthropicModel,
           maxTokens: 512,
           temperature: 0,
-          system: "You are a strict JSON-only normalization engine.",
+          system,
         }),
       );
       result = {
@@ -251,6 +250,12 @@ ${text}
     const keywords = Array.isArray(parsed?.keywords) ? parsed.keywords.map((item: unknown) => String(item ?? "").trim()).filter(Boolean) : [];
     const summary = String(parsed?.summary || "").trim() || semanticText;
     const confidence = Number.isFinite(Number(parsed?.confidence)) ? Math.max(0, Math.min(1, Number(parsed.confidence))) : 0.5;
+
+    // Post-processing guard: validate LLM output doesn't contain injection artifacts
+    const outputCheck = validateLLMOutput(semanticText + " " + summary);
+    if (!outputCheck.ok) {
+      console.warn("semantic-profile output flagged:", outputCheck.warnings);
+    }
 
     return jsonResponse({
       ok: true,
