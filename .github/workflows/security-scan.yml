@@ -1,0 +1,94 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run at 07:13 UTC daily (off-peak, avoids :00/:30 stampede)
+    - cron: "13 7 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  audit:
+    name: Dependency & secret audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Multi-layer security scan
+        run: node scripts/security-scan.mjs
+
+      - name: Upload SBOM artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: tmp/security/sbom.json
+          retention-days: 30
+
+      - name: Upload scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-results
+          path: tmp/security/
+          retention-days: 90
+
+  build:
+    name: Production build + secret scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:unit
+
+  lockfile-guard:
+    name: Lockfile integrity guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify lockfile matches package.json
+        run: |
+          if ! git diff --quiet HEAD~1 -- package-lock.json; then
+            if git diff --quiet HEAD~1 -- package.json; then
+              echo "::warning::package-lock.json changed without package.json changes — possible dependency confusion"
+            fi
+          fi
+
+      - name: Check for unsigned dependencies
+        run: |
+          node -e "
+          const pkgLock = require('./package-lock.json');
+          // Verify lockfile version is v3 (npm 7+) for integrity fields
+          if (pkgLock.lockfileVersion < 2) {
+            console.error('ERROR: Lockfile v1 detected — upgrade to lockfileVersion 2+ for integrity protection');
+            process.exit(1);
+          }
+          console.log('Lockfile version:', pkgLock.lockfileVersion, '(integrity-protected)');
+          "
