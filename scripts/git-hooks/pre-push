@@ -1,0 +1,42 @@
+#!/bin/bash
+# Pre-push hook: run local verification before allowing a push.
+# Phase 1 covers unit tests, parser contracts, pipeline checks,
+# faker stress, matcher sweeps, and a production build with secret scan.
+# Skippable with: git push --no-verify
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+REMOTE="$1"
+URL="$2"
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+echo ""
+echo -e "${YELLOW}═══ Pre-push verification ─── ${BRANCH} → ${REMOTE}${NC}"
+echo ""
+
+echo -e "${YELLOW}Running Phase 1 (local checks)...${NC}"
+echo ""
+
+START=$SECONDS
+node scripts/verification/run-phase1.mjs
+EXIT_CODE=$?
+DURATION=$((SECONDS - START))
+
+echo ""
+if [ "$EXIT_CODE" -eq 0 ]; then
+  echo -e "${GREEN}═══ Pre-push passed (${DURATION}s) ─── pushing...${NC}"
+  echo ""
+else
+  echo -e "${RED}═══ Pre-push BLOCKED (${DURATION}s)${NC}"
+  echo ""
+  echo -e "${RED}Phase 1 verification failed. Fix the failures above before pushing.${NC}"
+  echo "Emergency override: git push --no-verify"
+  echo ""
+  exit 1
+fi
+
+exit 0

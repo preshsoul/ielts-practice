@@ -24,6 +24,7 @@
     "content:review-questions": "node --use-system-ca scripts/review-questions.mjs",
     "bootstrap": "powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1",
     "setup": "powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 -Fix",
+    "setup:hooks": "bash scripts/install-hooks.sh",
     "test:pipeline": "node --use-system-ca scripts/test-pipeline-light.mjs",
     "test:parser": "node --use-system-ca scripts/test-backend-parser.mjs",
     "test:parser:faker": "node --use-system-ca scripts/test-parser-faker-stress.mjs",
