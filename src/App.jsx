@@ -34,6 +34,7 @@ import { getOnboardingStatus } from "./lib/onboardingJourney.js";
 import { exportResultsData, mergeSessions } from "./lib/sessionTools.js";
 import { estimateOverallBand, getLanguageProof } from "./lib/bandScoreEstimator.js";
 import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
+import NotFound from "./components/NotFound.jsx";
 import { getErrorMessage, logAppError } from "./lib/appErrors.js";
 import { C, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR } from "./lib/tokens.js";
 
@@ -443,7 +444,7 @@ export default function App() {
               </ErrorBoundary>
             }
           />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       </ErrorBoundary>
