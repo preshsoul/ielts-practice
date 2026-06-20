@@ -1,13 +1,27 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T20:03:00.428Z",
+  "updated_at": "2026-06-20T21:04:26.649Z",
   "notifications": [
     {
       "id": "content-refresh",
       "type": "info",
       "title": "Content refreshed",
-      "body": "Question bank and scholarship catalogue were refreshed at 20/06/2026, 21:03:00.",
+      "body": "Question bank and scholarship catalogue were refreshed at 20/06/2026, 22:04:26.",
       "target": "/admin"
+    },
+    {
+      "id": "deadline-www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
+      "type": "warning",
+      "title": "Search Our Scholarships deadline updated",
+      "body": "Deadline moved from 2 may 2025 to unknown.",
+      "target": "/scholarships"
+    },
+    {
+      "id": "deadline-test-1781303555235-12",
+      "type": "warning",
+      "title": "Amity University (in) London deadline updated",
+      "body": "Deadline moved from unknown to unknown.",
+      "target": "/scholarships"
     }
   ]
 }

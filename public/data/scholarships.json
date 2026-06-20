@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T20:03:00.420Z",
+  "updated_at": "2026-06-20T21:04:26.644Z",
   "total": 115,
   "institutions": [],
   "records": [
@@ -133,7 +133,7 @@
       "slug": "foreign-fulbrightonline-org-fulbright-about-foreign-student-program",
       "name": "Fulbright Foreign Student Program",
       "name_full": "Fulbright Foreign Student Program",
-      "requirements_summary": "Open to international applicants • Field: Education",
+      "requirements_summary": "Open to international applicants • Field: Education, Linguistics",
       "awardingBody": "Fulbright",
       "source_url": "https://foreign.fulbrightonline.org/about/foreign-student-program",
       "application_url": null,
@@ -143,7 +143,7 @@
       "country": "US",
       "city": null,
       "provenance_confidence": 0.5800000000000001,
-      "last_verified_at": "2026-06-13T12:41:26.287Z",
+      "last_verified_at": "2026-06-20T20:34:22.170Z",
       "opportunity_type": "graduate_trainee",
       "audience_scope": "international",
       "priority_score": 0.8500000000000001,
@@ -163,7 +163,8 @@
       "nationality_requirement": [],
       "nationality_is_open": true,
       "discipline_requirement": [
-        "Education"
+        "Education",
+        "Linguistics"
       ],
       "discipline_is_open": false,
       "language_test_required": false,
@@ -171,16 +172,17 @@
       "documents_required": [],
       "coverage_score": 0.21,
       "document_burden_score": 0.1,
-      "search_text": "Scholarship: Fulbright Foreign Student Program. Awarding body: Fulbright. Source type: government. Disciplines: Education. Work experience: 0. Coverage: tuition_only, currency GBP. Deadline: unknown. Opportunity type: graduate_trainee. Audience scope: international. Priority signal: high. Semantic tags: Fulbright Foreign Student Program, Fulbright, Education, tuition_only, GBP, unknown. Provenance confidence: 0.5800000000000001",
+      "search_text": "Scholarship: Fulbright Foreign Student Program. Awarding body: Fulbright. Source type: government. Disciplines: Education, Linguistics. Work experience: 0. Coverage: tuition_only, currency GBP. Deadline: unknown. Opportunity type: graduate_trainee. Audience scope: international. Priority signal: high. Semantic tags: Fulbright Foreign Student Program, Fulbright, Education, Linguistics, tuition_only, GBP, unknown. Provenance confidence: 0.5800000000000001",
       "semantic_tags": [
         "Fulbright Foreign Student Program",
         "Fulbright",
         "Education",
+        "Linguistics",
         "tuition_only",
         "GBP",
         "unknown"
       ],
-      "content_fingerprint": "09ddd98035557c8fdf17784d7481b2647f15895472613bf8d54a7713185cd3a6"
+      "content_fingerprint": "2f4f6bdf6f51079528bf49ff32de07f9b801264d4669d4e0894f870a5ccfb14f"
     },
     {
       "id": "www.ncl.ac.uk_newcastle-university-scholarships_study-global-scholarships",
@@ -2872,8 +2874,8 @@
       "content_fingerprint": "4c9f5cc82f52714aaa5ef272a2efcc18067b7abe5753bd8228e3c1e7f82f884e"
     },
     {
-      "id": "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-masters-scholarships",
-      "slug": "www-sussex-ac-uk-not-applicable-scholarships-study-fees-funding-masters-scholarships",
+      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-masters-scholarships",
+      "slug": "www-sussex-ac-uk-sussex-university-scholarships-study-fees-funding-masters-scholarships",
       "name": "Masters Scholarships",
       "name_full": "Masters scholarships",
       "requirements_summary": "Open to international applicants • Field: Computer Science, Engineering, Education",
@@ -2942,8 +2944,8 @@
       "content_fingerprint": "e09cd8f3c512964667ca43c7c10ea837442f11bd5926b594e00a000ebcdd3811"
     },
     {
-      "id": "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-phd-funding",
-      "slug": "www-sussex-ac-uk-not-applicable-scholarships-study-fees-funding-phd-funding",
+      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-phd-funding",
+      "slug": "www-sussex-ac-uk-sussex-university-scholarships-study-fees-funding-phd-funding",
       "name": "PhD Funding",
       "name_full": "PhD funding",
       "requirements_summary": "Open to international applicants • Field: Engineering, Education, Health Sciences",
@@ -3069,8 +3071,8 @@
       "content_fingerprint": "9da76d6cfae72eff8802e0a263d2d9dc913d648378d51c19cc73b75ab8090b19"
     },
     {
-      "id": "www.edgehill.ac.uk_not-applicable-scholarships_scholarships-thrive-fund",
-      "slug": "www-edgehill-ac-uk-not-applicable-scholarships-scholarships-thrive-fund",
+      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships-thrive-fund",
+      "slug": "www-edgehill-ac-uk-edgehill-university-scholarships-scholarships-thrive-fund",
       "name": "Thrive Fund | Scholarships | Edge Hill University",
       "name_full": "Thrive Fund | Scholarships | Edge Hill University",
       "requirements_summary": "Open to international applicants • Field: Engineering, Education, Business",
@@ -3143,7 +3145,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.78,
-      "last_verified_at": "2026-06-13T12:43:38.136Z",
+      "last_verified_at": "2026-06-20T20:37:24.030Z",
       "opportunity_type": "scholarship_phd",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -3974,7 +3976,7 @@
       "country": null,
       "city": null,
       "provenance_confidence": 0.5800000000000001,
-      "last_verified_at": "2026-06-13T12:41:34.270Z",
+      "last_verified_at": "2026-06-20T20:34:27.067Z",
       "opportunity_type": "scholarship",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -4147,8 +4149,8 @@
       "content_fingerprint": "744bbd9398c4c02e1dddf8cb54b8c7d9722fc3f7dd85e614c7f1172a7315ee91"
     },
     {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-african-future-leader",
-      "slug": "www-imperial-ac-uk-imperial-college-london-scholarships-study-fees-and-funding-scholarships-search-african-future-leader",
+      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
+      "slug": "www-imperial-ac-uk-imperial-college-london-scholarships-study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
       "name": "Search Our Scholarships",
       "name_full": "Search our scholarships",
       "requirements_summary": "Open to international applicants • Field: Computer Science, Engineering",
@@ -4319,8 +4321,8 @@
       "content_fingerprint": "0f61fb97034ae4ddbd159db3e805adfdf5012bb07bfb4ae910a0c531848c484d"
     },
     {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-international-scholarships-aspx",
-      "slug": "www-dmu-ac-uk-de-montfort-university-scholarships-international-en-fees-and-scholarships-international-scholarships-aspx",
+      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship",
+      "slug": "www-dmu-ac-uk-de-montfort-university-scholarships-international-en-fees-and-scholarships-global-partnerships-scholarship",
       "name": "De Montfort University",
       "name_full": "De Montfort University",
       "requirements_summary": "Open to international applicants • Field: Linguistics",
@@ -4773,8 +4775,8 @@
       "content_fingerprint": "a6f645253e1f4620f6a62c8d85b548e9003c3377a6ee0cb0f4d1e8be86a8c0fb"
     },
     {
-      "id": "www.edgehill.ac.uk_not-applicable-scholarships_scholarships",
-      "slug": "www-edgehill-ac-uk-not-applicable-scholarships-scholarships",
+      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships",
+      "slug": "www-edgehill-ac-uk-edgehill-university-scholarships-scholarships",
       "name": "Scholarships | Edge Hill University",
       "name_full": "Scholarships | Edge Hill University",
       "requirements_summary": "Open to international applicants • Field: Education",
@@ -4893,7 +4895,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:18.354Z",
+      "last_verified_at": "2026-06-20T20:37:14.613Z",
       "opportunity_type": "scholarship_phd",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -4946,7 +4948,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:20.894Z",
+      "last_verified_at": "2026-06-20T20:37:15.659Z",
       "opportunity_type": "scholarship_masters",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -4989,8 +4991,8 @@
     {
       "id": "www.cambridgetrust.org_cambridge-trust_scholarship-bhutan-kings-scholarship-at-the-university-of-cambridge",
       "slug": "www-cambridgetrust-org-cambridge-trust-scholarship-bhutan-kings-scholarship-at-the-university-of-cambridge",
-      "name": "Bhutan Kings Scholarship At The University Of Cambridge",
-      "name_full": "Bhutan Kings Scholarship at the University of Cambridge",
+      "name": "Bhutan King And #8217;s Scholarship At The University Of Cambridge",
+      "name_full": "Bhutan King&#8217;s Scholarship at the University of Cambridge",
       "requirements_summary": "Open to international applicants • Field: Engineering, Education, Health Sciences",
       "awardingBody": "Cambridge Trust",
       "source_url": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
@@ -5001,7 +5003,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:25.956Z",
+      "last_verified_at": "2026-06-20T20:37:18.305Z",
       "opportunity_type": "scholarship_masters",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -5035,9 +5037,9 @@
       "documents_required": [],
       "coverage_score": 0.21,
       "document_burden_score": 0.1,
-      "search_text": "Scholarship: Bhutan King’s Scholarship at the University of Cambridge. Awarding body: Cambridge Trust. Source type: foundation. Disciplines: Engineering, Education, Health Sciences, Business, Economics, Law, Arts and Humanities, Sciences. Work experience: 0. Coverage: tuition_only, currency GBP. Deadline: unknown. Opportunity type: scholarship_masters. Audience scope: international. Priority signal: medium. Semantic tags: Bhutan King’s Scholarship at the University of Cambridge, Cambridge Trust, Engineering, Education, Health Sciences, Business, Economics, Law, Arts and Humanities, Sciences, tuition_only, GBP, unknown. Provenance confidence: 0.53",
+      "search_text": "Scholarship: Bhutan King&#8217;s Scholarship at the University of Cambridge. Awarding body: Cambridge Trust. Source type: foundation. Disciplines: Engineering, Education, Health Sciences, Business, Economics, Law, Arts and Humanities, Sciences. Work experience: 0. Coverage: tuition_only, currency GBP. Deadline: unknown. Opportunity type: scholarship_masters. Audience scope: international. Priority signal: medium. Semantic tags: Bhutan King&#8217;s Scholarship at the University of Cambridge, Cambridge Trust, Engineering, Education, Health Sciences, Business, Economics, Law, Arts and Humanities, Sciences, tuition_only, GBP, unknown. Provenance confidence: 0.53",
       "semantic_tags": [
-        "Bhutan King’s Scholarship at the University of Cambridge",
+        "Bhutan King&#8217;s Scholarship at the University of Cambridge",
         "Cambridge Trust",
         "Engineering",
         "Education",
@@ -5051,7 +5053,7 @@
         "GBP",
         "unknown"
       ],
-      "content_fingerprint": "88f974c9095c7c946bafdd9b69ebdd1709f54d826f73a1202b78566bd757e112"
+      "content_fingerprint": "c5bc73710598374bfe5ba707ee848513f60c5dbec2502a11de752efdb4dd289e"
     },
     {
       "id": "www.cambridgetrust.org_cambridge-trust_scholarship-brockmann-cambridge-scholarship-2",
@@ -5068,7 +5070,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:28.363Z",
+      "last_verified_at": "2026-06-20T20:37:19.258Z",
       "opportunity_type": "scholarship_masters",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -5123,7 +5125,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:30.905Z",
+      "last_verified_at": "2026-06-20T20:37:20.244Z",
       "opportunity_type": "scholarship_masters",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -5182,7 +5184,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:23.443Z",
+      "last_verified_at": "2026-06-20T20:37:16.730Z",
       "opportunity_type": "scholarship_phd",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -5240,7 +5242,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.53,
-      "last_verified_at": "2026-06-13T12:43:35.716Z",
+      "last_verified_at": "2026-06-20T20:37:23.076Z",
       "opportunity_type": "scholarship_phd",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -5605,7 +5607,7 @@
       "country": "UK",
       "city": null,
       "provenance_confidence": 0.36,
-      "last_verified_at": "2026-06-13T12:43:33.253Z",
+      "last_verified_at": "2026-06-20T20:37:22.125Z",
       "opportunity_type": "scholarship_phd",
       "audience_scope": "international",
       "priority_score": 0.5,
@@ -5641,8 +5643,8 @@
       "content_fingerprint": "d2500d98ceb261d7a7338531a853732f24fc7100488dcf97c7327461b55e03b3"
     },
     {
-      "id": "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
-      "slug": "www-york-ac-uk-not-applicable-scholarships-study-undergraduate-fees-funding-students-with-disabilities",
+      "id": "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
+      "slug": "www-york-ac-uk-york-university-scholarships-study-undergraduate-fees-funding-students-with-disabilities",
       "name": "Funding For Students With Disabilities",
       "name_full": "Funding for students with disabilities",
       "requirements_summary": "Open to international applicants",

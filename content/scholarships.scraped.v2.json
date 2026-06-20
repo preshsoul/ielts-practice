@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-06-13T18:00:00.000Z",
-  "total": 250,
+  "updated_at": "2026-06-20T21:04:26.236Z",
+  "total": 241,
   "scholarships": [
     {
       "id": "www.mmu.ac.uk_mmu-university-scholarships_study-postgraduate-research-study-phd-funding-scholarships",
@@ -2522,150 +2522,6 @@
         "confidence": 0.75,
         "duplicateKey": "ongoing fellowships awards 2026 scholarship region::scholarship region::https://www.scholarshipregion.com/airtel-3mtt-nextgen-fellowship-program"
       }
-    },
-    {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
-      "name": "Search Our Scholarships",
-      "nameFull": "Search our scholarships",
-      "name_full": "Search our scholarships",
-      "displayName": "Search Our Scholarships",
-      "awardingBody": "Imperial College London Scholarships",
-      "coverage": {
-        "type": "tuition_only",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": 10000,
-        "amountGBP": 10000,
-        "amountType": "annual",
-        "currency": "GBP",
-        "rawAmountString": "£10,000 ",
-        "rawAmount": "£10,000 "
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Engineering",
-          "Health Sciences",
-          "Business",
-          "Sciences"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.imperial.ac.uk/study/apply",
-        "portal": "https://www.imperial.ac.uk/study/apply",
-        "deadline": "2025-05-02",
-        "deadlineType": "fixed",
-        "deadlineRaw": "2 may 2025",
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 1,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Anne Seagrim Accommodation Scholarship",
-        "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/anne-seagrim-accommodation-scholarship-20252026.php"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/anne-seagrim-accommodation-scholarship-20252026.php",
-        "scrapedAt": "2026-06-13T08:12:19.338Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 1,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 9
-      },
-      "source": {
-        "sourceUrl": "https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/anne-seagrim-accommodation-scholarship-20252026.php",
-        "sourceLabel": "Imperial College London Scholarships",
-        "scrapedAt": "2026-06-13T08:12:19.338Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 1,
-        "rawText": "In this section Study Study Imperial Home StudyFees and fundingSearch our scholarships Anne Seagrim Accommodation Scholarship Scholarship overview Degree level Postgraduate doctoral ValueAn annual award of £10,000 Number of awards2 Academic year2025/2026 Tuition fee statusOverseas Mode of studyFull time Available toProspective students Application deadline02/05/2025 Closed Additional information scholarships@imperial.ac.uk Available to applicants in the following departmentsAeronautics Bioengineering Brain Sciences Business School Centre for Environmental Policy Chemical Engineering Chemistry Civil and Environmental Engineering Computing Design Engineering Earth Science and Engineering Electrical and Electronic Engineering Immunology and Inflammation Infectious Disease Institute of Clinical Sciences Life Sciences Materials Mathematics Mechanical Engineering Metabolism, Digestion and Reproduction National Heart and Lung Institute Physics School of Public Health Surgery and Cancer Eligibility criteria The Anne Seagrim Accommodation Scholarship supports international students at Imperial College London towards the cost of their accommodation. Funded by Ms. Anne Seagrim, this scholarship is designed to ease financial pressures, allowing talented researchers from around the world to focus on their studies and research. The award provides £10,000 toward accommodation costs, with funding available for one year for the MRes program and up to three years for the PhD program. Eligibility To be considered for this scholarship, candidates must: Have been assessed as Overseas fee status.Apply to undertake an MRes or PhD courseHave an offer of admission from the College to study by 23:59 (UK local time) on 2 May 2025Please note: This scholarship is available to new entrants only. Students already studying the course are not eligible.Course specific information .lf-progress { -webkit-appearance: none; -moz-apperance: none; width: 100%; /* margin: 0 10px; */ height: 4px; border-rad",
-        "pageType": "detail",
-        "pageTitle": "Anne Seagrim Accommodation Scholarship",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "Imperial College London Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 9,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Field: Engineering, Health Sciences, Business",
-      "status": "open",
-      "urgency": "black",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b",
-          "\\boverseas\\b"
-        ],
-        "warnings": [
-          "no_explicit_nigeria_signal"
-        ]
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 4,
-        "confidence": 1,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "4/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "100%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "Search Our Scholarships"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T08:54:57.610Z",
-      "promotedAt": "2026-06-13T08:54:57.610Z"
     },
     {
       "id": "scholarship-region-secondary-school-and-high-school-scholarships-2026",
@@ -9757,7 +9613,7 @@
       }
     },
     {
-      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-african-future-leader",
+      "id": "www.imperial.ac.uk_imperial-college-london-scholarships_study-fees-and-funding-scholarships-search-anne-seagrim-accommod",
       "name": "Search Our Scholarships",
       "nameFull": "Search our scholarships",
       "name_full": "Search our scholarships",
@@ -10841,163 +10697,6 @@
       }
     },
     {
-      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-masters-scholarships",
-      "name": "Masters Scholarships",
-      "nameFull": "Masters scholarships",
-      "name_full": "Masters scholarships",
-      "displayName": "Masters Scholarships",
-      "awardingBody": "University of Sussex Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": 2,
-        "amountGBP": 2,
-        "amountType": "total",
-        "currency": "GBP",
-        "rawAmountString": "£2",
-        "rawAmount": "£2"
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Computer Science",
-          "Engineering",
-          "Education",
-          "Health Sciences",
-          "Business",
-          "Economics",
-          "Law",
-          "Linguistics",
-          "Arts and Humanities",
-          "Sciences"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.sussex.ac.uk/study/apply",
-        "portal": "https://www.sussex.ac.uk/study/apply",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Masters scholarships",
-        "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/masters-scholarships"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/masters-scholarships",
-        "scrapedAt": "2026-06-13T13:13:49.846Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.8300000000000001,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 9
-      },
-      "source": {
-        "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/masters-scholarships",
-        "sourceLabel": "University of Sussex Scholarships",
-        "scrapedAt": "2026-06-13T13:13:49.846Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.8300000000000001,
-        "rawText": "Masters scholarships Make the future with a Sussex Masters scholarship. For the academic year 2026/27, we have a £2-million scholarship fund for UK and international students. Search for a Masters scholarship Use our database to see if you're eligible for a scholarship to fund your Masters, including our country scholarships and government-funded schemes. Study level Masters Where are you from? Please select your country United Kingdom Afghanistan Albania Algeria American Samoa Andorra, Principality of Angola Anguilla Antarctica Antigua and Barbuda Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin Bermuda Bhutan Bolivia Bosnia-Herzegovina Botswana Bouvet Island Brazil British Indian Ocean Territory British National (Overseas) Brunei Darussalam Bulgaria Burkina Faso Burundi Cambodia, Kingdom of Cameroon Canada Cape Verde Cayman Islands Central African Republic Chad Channel Islands not otherwise specified Chile China Colombia Comoros Congo Congo, The Democratic Republic of the Costa Rica Croatia Cuba Curacao Cyprus (European Union) Cyprus (Non-European Union) Cyprus not otherwise specified Czechoslovakia not otherwise specified Czech Republic Denmark Djibouti Dominica Dominican Republic East Timor Ecuador Egypt El Salvador England Equatorial Guinea Eritrea Estonia Ethiopia Europe not otherwise specified Falkland Islands Faroe Islands Fiji Finland France Gabon Gambia Georgia Germany Ghana Gibraltar Greece Greenland Grenada Guam (USA) Guatemala Guernsey Guinea Guinea Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong (Special Administrative Region of China) [Hong Kong] Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast (Cote d'Ivoire) Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyz Republic (Kyrgyzstan) Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macau Macedonia Madagascar Malawi Malaysia Mald",
-        "pageType": "detail",
-        "pageTitle": "Masters scholarships",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "Sussex University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 9,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Field: Computer Science, Engineering, Education",
-      "status": "unknown",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b",
-          "\\boverseas\\b",
-          "\\babroad\\b",
-          "\\bglobal\\b",
-          "\\bforeign\\b",
-          "\\bnigeria\\b",
-          "\\bafrica\\b",
-          "\\bafrican\\b"
-        ],
-        "warnings": []
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 2,
-        "confidence": 0.8300000000000001,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "2/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "83%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "Masters Scholarships"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
-      "reviewChecks": {
-        "valid": true
-      }
-    },
-    {
       "id": "www.aber.ac.uk_aberystwyth-university-scholarships_en-study-with-us-ug-studies-scholarships-music",
       "name": "Music Scholarships",
       "nameFull": "Music Scholarships",
@@ -11288,160 +10987,6 @@
       "reviewStatus": "approved",
       "reviewedAt": "2026-06-13T08:54:57.610Z",
       "promotedAt": "2026-06-13T08:54:57.610Z"
-    },
-    {
-      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-phd-funding",
-      "name": "PhD Funding",
-      "nameFull": "PhD funding",
-      "name_full": "PhD funding",
-      "displayName": "PhD Funding",
-      "awardingBody": "University of Sussex Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": 28673,
-        "amountGBP": 28673,
-        "amountType": "total",
-        "currency": "GBP",
-        "rawAmountString": "£28,673",
-        "rawAmount": "£28,673"
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Engineering",
-          "Education",
-          "Health Sciences",
-          "Business",
-          "Economics",
-          "Law",
-          "Linguistics",
-          "Arts and Humanities",
-          "Sciences"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.sussex.ac.uk/study/apply",
-        "portal": "https://www.sussex.ac.uk/study/apply",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "PhD funding",
-        "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/phd-funding"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/phd-funding",
-        "scrapedAt": "2026-06-13T13:13:52.353Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.8300000000000001,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 9
-      },
-      "source": {
-        "sourceUrl": "https://www.sussex.ac.uk/study/fees-funding/phd-funding",
-        "sourceLabel": "University of Sussex Scholarships",
-        "scrapedAt": "2026-06-13T13:13:52.353Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.8300000000000001,
-        "rawText": "PhD funding Create ground-breaking research with our funded PhD opportunities and PhD scholarships for UK and international students. Find PhD funding and scholarships Study level PhD Where are you from? Please select your country United Kingdom Afghanistan Albania Algeria American Samoa Andorra, Principality of Angola Anguilla Antarctica Antigua and Barbuda Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin Bermuda Bhutan Bolivia Bosnia-Herzegovina Botswana Bouvet Island Brazil British Indian Ocean Territory British National (Overseas) Brunei Darussalam Bulgaria Burkina Faso Burundi Cambodia, Kingdom of Cameroon Canada Cape Verde Cayman Islands Central African Republic Chad Channel Islands not otherwise specified Chile China Colombia Comoros Congo Congo, The Democratic Republic of the Costa Rica Croatia Cuba Curacao Cyprus (European Union) Cyprus (Non-European Union) Cyprus not otherwise specified Czechoslovakia not otherwise specified Czech Republic Denmark Djibouti Dominica Dominican Republic East Timor Ecuador Egypt El Salvador England Equatorial Guinea Eritrea Estonia Ethiopia Europe not otherwise specified Falkland Islands Faroe Islands Fiji Finland France Gabon Gambia Georgia Germany Ghana Gibraltar Greece Greenland Grenada Guam (USA) Guatemala Guernsey Guinea Guinea Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong (Special Administrative Region of China) [Hong Kong] Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast (Cote d'Ivoire) Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyz Republic (Kyrgyzstan) Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macau Macedonia Madagascar Malawi Malaysia Maldives Mali Malta Marshall Islands Mauritania Mauritius Mexico Micronesia Moldova Monaco Mongolia Montenegro Montserrat Morocco Mozambique Myanmar Namibia Nauru Nepal Netherlands New Zealand Nicar",
-        "pageType": "detail",
-        "pageTitle": "PhD funding",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "Sussex University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 9,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Field: Engineering, Education, Health Sciences",
-      "status": "unknown",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b",
-          "\\boverseas\\b",
-          "\\bglobal\\b",
-          "\\bnigeria\\b",
-          "\\bafrica\\b",
-          "\\bafrican\\b"
-        ],
-        "warnings": []
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 2,
-        "confidence": 0.8300000000000001,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "2/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "83%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "PhD Funding"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
-      "reviewChecks": {
-        "valid": true
-      }
     },
     {
       "id": "www.bournemouth.ac.uk_bournemouth-university-scholarships_scholarships",
@@ -12122,155 +11667,6 @@
       }
     },
     {
-      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships-thrive-fund",
-      "name": "Thrive Fund | Scholarships | Edge Hill University",
-      "nameFull": "Thrive Fund | Scholarships | Edge Hill University",
-      "name_full": "Thrive Fund | Scholarships | Edge Hill University",
-      "displayName": "Thrive Fund | Scholarships | Edge Hill University",
-      "awardingBody": "Edge Hill University Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": 1000,
-        "amountGBP": 1000,
-        "amountType": "annual",
-        "currency": "GBP",
-        "rawAmountString": "£1,000 ",
-        "rawAmount": "£1,000 "
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Engineering",
-          "Education",
-          "Business",
-          "Law",
-          "Arts and Humanities"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.edgehill.ac.uk/study/apply",
-        "portal": "https://www.edgehill.ac.uk/study/apply",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Thrive Fund",
-        "sourceUrl": "https://www.edgehill.ac.uk/scholarships/thrive-fund"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.edgehill.ac.uk/scholarships/thrive-fund",
-        "scrapedAt": "2026-06-13T13:03:07.403Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.8300000000000001,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 7
-      },
-      "source": {
-        "sourceUrl": "https://www.edgehill.ac.uk/scholarships/thrive-fund",
-        "sourceLabel": "Edge Hill University Scholarships",
-        "scrapedAt": "2026-06-13T13:03:07.403Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.8300000000000001,
-        "rawText": "Scholarships View our courses Visit us Get a prospectus In this section Scholarships Applicants Current Students Calculator Thrive Fund Contact Us Home Scholarships Thrive Fund Thrive Fund Apply now The Thrive Fund is an exciting initiative which contributes financial support that helps you to take part in activities which enhance your employability, build your confidence and develop your transferable skills. About the Thrive Fund You can apply for funding to support a career-enhancing project, initiative or opportunity that will enhance the development of graduate attributes and enrich your student experience enabling you to stand out in a competitive environment. Up to £1,000 for UK projects (total per year). Up to £2,000 for overseas projects arranged with an approved partner. If you’re applying to the Thrive Fund for an oversees project, this will only be considered when arranged through an established partner of the University, with existing links with our International Office and where the University has a Memorandum of Understanding or similar in place. Some examples of what eligible students can apply for includes: Travel and accommodation costs required to undertake unpaid work experience or volunteering opportunities for up to a maximum of 30 days Expenses to travel to and from interviews or assessment days (which are not covered by the employer) Representing the University at a conference, festival or event Developing and making creative material, for example films, performances, readings and publications which are not a compulsory part of your coursework Who is eligible to apply? You are eligible to apply to the Thrive fund if you are a UK home undergraduate student and meet one or more of the following criteria: Student who is a care leaver, care experienced or estranged Student entering university from a neighbourhood where there is low participation in higher education, and/or a student from low-income households (Check your postcode). Student with ca",
-        "pageType": "detail",
-        "pageTitle": "Thrive Fund",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "Edgehill University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 7,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Field: Engineering, Education, Business",
-      "status": "unknown",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b",
-          "\\boverseas\\b",
-          "\\babroad\\b",
-          "\\bglobal\\b",
-          "\\blow.income\\b"
-        ],
-        "warnings": []
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 2,
-        "confidence": 0.8300000000000001,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "2/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "83%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "Thrive Fund | Scholarships | Edge Hill U"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
-      "reviewChecks": {
-        "valid": true
-      }
-    },
-    {
       "id": "www.bbk.ac.uk_birkbeck-university-of-london-scholarships_student-services-financial-support-women-in-sport-scholarship",
       "name": "Women In Sport Scholarship",
       "awardingBody": "Birkbeck, University Of London Scholarships",
@@ -12388,7 +11784,7 @@
       }
     },
     {
-      "id": "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-masters-scholarships",
+      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-masters-scholarships",
       "name": "Masters Scholarships",
       "nameFull": "Masters scholarships",
       "name_full": "Masters scholarships",
@@ -12545,7 +11941,7 @@
       }
     },
     {
-      "id": "www.sussex.ac.uk_not-applicable-scholarships_study-fees-funding-phd-funding",
+      "id": "www.sussex.ac.uk_sussex-university-scholarships_study-fees-funding-phd-funding",
       "name": "PhD Funding",
       "nameFull": "PhD funding",
       "name_full": "PhD funding",
@@ -12991,7 +12387,7 @@
       }
     },
     {
-      "id": "www.edgehill.ac.uk_not-applicable-scholarships_scholarships-thrive-fund",
+      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships-thrive-fund",
       "name": "Thrive Fund | Scholarships | Edge Hill University",
       "nameFull": "Thrive Fund | Scholarships | Edge Hill University",
       "name_full": "Thrive Fund | Scholarships | Edge Hill University",
@@ -13344,7 +12740,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
-        "scrapedAt": "2026-05-18T19:57:45.868Z",
+        "scrapedAt": "2026-06-20T20:34:20.192Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.6000000000000001,
@@ -13359,7 +12755,7 @@
       "source": {
         "sourceUrl": "https://www.chevening.org/sids-chevening-scholarship",
         "sourceLabel": "Chevening Scholarships",
-        "scrapedAt": "2026-05-18T19:57:45.868Z",
+        "scrapedAt": "2026-06-20T20:34:20.192Z",
         "verified": false,
         "needsVerification": [
           "amount",
@@ -13389,18 +12785,42 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-05-18T20:10:43.001Z",
-      "promotedAt": "2026-05-18T20:10:43.001Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
-        "valid": true,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.6000000000000001,
-        "duplicateKey": "chevening sids scholarship::chevening::https://www.chevening.org/apply"
+        "valid": true
       },
-      "requirementsSummary": "Open to Commonwealth countries"
+      "requirementsSummary": "Open to Commonwealth countries",
+      "internationalVerification": {
+        "isInternational": true,
+        "confidence": 0.7,
+        "signals": [
+          "\\bcommonwealth\\b"
+        ],
+        "warnings": []
+      },
+      "qualityVerification": {
+        "passed": true,
+        "evidenceCount": 2,
+        "confidence": 0.6000000000000001,
+        "checks": [
+          {
+            "check": "evidence_minimum",
+            "passed": true,
+            "detail": "2/4 evidence types present"
+          },
+          {
+            "check": "confidence_threshold",
+            "passed": true,
+            "detail": "60%"
+          },
+          {
+            "check": "name_quality",
+            "passed": true,
+            "detail": "Chevening SIDS Scholarship"
+          }
+        ]
+      }
     },
     {
       "id": "www.salford.ac.uk_the-university-of-salford-scholarships_international-scholarships-commonwealth-scholarships",
@@ -14278,151 +13698,6 @@
       }
     },
     {
-      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships",
-      "name": "Scholarships | Edge Hill University",
-      "nameFull": "Scholarships | Edge Hill University",
-      "name_full": "Scholarships | Edge Hill University",
-      "displayName": "Scholarships | Edge Hill University",
-      "awardingBody": "Edge Hill University Scholarships",
-      "coverage": {
-        "type": "unknown",
-        "tuition": false,
-        "tuitionCovered": false,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Education"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": "https://www.edgehill.ac.uk/study/apply",
-        "portal": "https://www.edgehill.ac.uk/study/apply",
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Scholarships",
-        "sourceUrl": "https://www.edgehill.ac.uk/scholarships"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.edgehill.ac.uk/scholarships",
-        "scrapedAt": "2026-06-13T13:02:44.953Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.5800000000000001,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "amount",
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 7
-      },
-      "source": {
-        "sourceUrl": "https://www.edgehill.ac.uk/scholarships",
-        "sourceLabel": "Edge Hill University Scholarships",
-        "scrapedAt": "2026-06-13T13:02:44.953Z",
-        "verified": false,
-        "needsVerification": [
-          "amount",
-          "deadline"
-        ],
-        "confidence": 0.5800000000000001,
-        "rawText": "Scholarships View our courses Visit us Get a prospectus In this section Scholarships Applicants Current Students Calculator Thrive Fund Contact Us Home Scholarships Scholarships Our scholarships celebrate determination, commitment and achievement in a variety of areas, from rewarding academic excellence to celebrating success outside of your studies, overcoming adversity, and inspiring others. Applicants Find our about the scholarships you can apply for before you start your course with us. Current students Discover how to apply for, or be nominated for scholarships once you’re studying with us. Scholarships calculator Our scholarships calculator helps you to check your eligibility to apply or be nominated for our scholarships. We will ask you up to six short questions and provide guidance, based on your responses, as to which scholarships you may be eligible to receive. Check your eligibility to apply for our scholarships Thrive Fund Alongside one of the most impressive and innovative scholarship packages in the higher education sector, the University operates the Thrive Fund. This exciting initiative contributes financial support to help Thrive eligible students make the most of their student experience and take part in career enhancing opportunities. This fund is available to support Thrive eligible students Find out more about the Thrive Fund Get in touch If you have any queries about scholarships, please email our Scholarships team who will be happy to assist you. International students should contact the International office for any scholarship related queries. Scholarships team scholarships@edgehill.ac.uk International office international@edgehill.ac.uk",
-        "pageType": "detail",
-        "pageTitle": "Scholarships",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "Edgehill University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 7,
-        "discoveryDepth": 0
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Field: Education",
-      "status": "unknown",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b"
-        ],
-        "warnings": [
-          "no_explicit_nigeria_signal"
-        ]
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 2,
-        "confidence": 0.5800000000000001,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "2/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "58%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "Scholarships | Edge Hill University"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
-      "reviewChecks": {
-        "valid": true
-      }
-    },
-    {
       "id": "www.shu.ac.uk_shu-university-scholarships_funding",
       "name": "Student Funding",
       "nameFull": "Student funding",
@@ -15174,7 +14449,7 @@
       "requirementsSummary": "Open to international applicants • Degree class: third"
     },
     {
-      "id": "www.edgehill.ac.uk_not-applicable-scholarships_scholarships",
+      "id": "www.edgehill.ac.uk_edgehill-university-scholarships_scholarships",
       "name": "Scholarships | Edge Hill University",
       "nameFull": "Scholarships | Edge Hill University",
       "name_full": "Scholarships | Edge Hill University",
@@ -20723,145 +19998,6 @@
       },
       "provenance": {
         "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/living-costs",
-        "scrapedAt": "2026-06-13T12:53:38.365Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.76,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [],
-        "sourceType": "scraped",
-        "discoveryScore": 7
-      },
-      "source": {
-        "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/living-costs",
-        "sourceLabel": "University of York Scholarships",
-        "scrapedAt": "2026-06-13T12:53:38.365Z",
-        "verified": false,
-        "needsVerification": [],
-        "confidence": 0.76,
-        "rawText": "Managing your money while studying If you’re moving to York for your studies, getting to grips with your spending will help you plan ahead. We know thinking about money can feel daunting, but support is always close by. If you have any concerns about managing your money, let us know – we'd love to show you what's possible. 💡 Did you know? WhatUni's Student Budget Calculator is a good start towards working out how much you'll spend when living independently as a student. In the meantime, take a peek at some of our students' top tips… Rent 🏡 Outside of tuition fees, living in rented accommodation will likely be your biggest expense. Most York students choose Uni-managed accommodation in their first year. We have plenty of options for different budgets, so prices will vary with your room choice – size, location, bathroom type, and so on. 💎 Tip: All our accommodation includes bills (electricity, water, high-speed internet, etc) and other protections (contents insurance, 24/7 security, etc). It goes a long way to simplifying your experience as a first-time budgeter. Explore rooms and prices Usually, students look for private accommodation from their second year of study onwards. Again, York has options to suit, and we’re always on-hand to help you through the process. 💎 Tip: You’ll likely be eligible to pay less or no council tax as a student here. Make sure you talk to City of York Council when you’re moving in to avoid paying what you don’t need. Explore private accommodation VLOG Food 🍲 Like your rent, how much you spend on food will vary a good deal based on where you shop and what you eat. York is home to all major supermarkets (with two stores on campus), and all kinds of cafes, bars and restaurants, so you’re well covered for choice. 💎 Tip: Lots of our accommodation options are catered, which means you’ll get ten meals a week included in your room price. 💎 Tip: Our Meals in Advance Deal gives all students the chance to get in on the action, too. They’re ano",
-        "pageType": "detail",
-        "pageTitle": "Managing your money while studying",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "York University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 7,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Field: Law",
-      "status": "open",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\boverseas\\b"
-        ],
-        "warnings": [
-          "no_explicit_nigeria_signal"
-        ]
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 3,
-        "confidence": 0.76,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "3/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "76%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "Managing Your Money While Studying"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
-      "reviewChecks": {
-        "valid": true
-      }
-    },
-    {
-      "id": "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-living-costs",
-      "name": "Managing Your Money While Studying",
-      "nameFull": "Managing your money while studying",
-      "name_full": "Managing your money while studying",
-      "displayName": "Managing Your Money While Studying",
-      "awardingBody": "University of York Scholarships",
-      "coverage": {
-        "type": "tuition_only",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Law"
-        ],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": null,
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "rolling",
-        "deadlineRaw": "Rolling",
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 1,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Managing your money while studying",
-        "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/living-costs"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/living-costs",
         "scrapedAt": "2026-06-13T09:02:30.390Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
@@ -20966,40 +20102,6 @@
       "reviewStatus": "fast_tracked",
       "reviewedAt": "2026-06-12T22:18:39.300Z",
       "promotedAt": "2026-06-12T22:18:39.300Z"
-    },
-    {
-      "id": "test-1781303555235-12",
-      "name": "Amity University (in) London",
-      "awardingBody": "Amity University [IN] London Scholarships",
-      "source": {
-        "sourceUrl": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-        "sourceLabel": "Amity University [IN] London Scholarships",
-        "confidence": 0.65,
-        "pageType": "detail",
-        "scrapedAt": "2026-06-12T22:28:39.362Z",
-        "needsVerification": []
-      },
-      "application": {
-        "url": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-        "sourceUrl": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.amity.ac.uk/admissions/graduate/fees-and-funding/funding/scholarships",
-        "confidenceScore": 0.65,
-        "sourceType": "scraped",
-        "flaggedFields": []
-      },
-      "eligibility": {
-        "languageReqs": {}
-      },
-      "coverage": {
-        "type": "unknown"
-      },
-      "reviewStatus": "test_promoted",
-      "reviewedAt": "2026-06-12T22:32:35.235Z",
-      "promotedAt": "2026-06-12T22:32:35.235Z",
-      "tags": [],
-      "awardeeContributions": []
     },
     {
       "id": "fast-1781302719300-cm6ddq",
@@ -22591,149 +21693,6 @@
       "reviewChecks": {
         "valid": true
       }
-    },
-    {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship",
-      "name": "De Montfort University",
-      "nameFull": "De Montfort University",
-      "name_full": "De Montfort University",
-      "displayName": "De Montfort University",
-      "awardingBody": "De Montfort University Scholarships",
-      "coverage": {
-        "type": "full",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": true,
-        "flightsCovered": true,
-        "visaFees": false,
-        "numericAmount": 8500,
-        "amountGBP": 8500,
-        "amountType": "total",
-        "currency": "GBP",
-        "rawAmountString": "£8,500 ",
-        "rawAmount": "£8,500 "
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [
-          "Computer Science",
-          "Business",
-          "Linguistics"
-        ],
-        "degreeClassMin": "2:1",
-        "degreeClassRequired": "2:1",
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": null,
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Global Partnerships Scholarship",
-        "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/global-partnerships-scholarship/global-partnerships-scholarship.aspx"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/global-partnerships-scholarship/global-partnerships-scholarship.aspx",
-        "scrapedAt": "2026-06-13T08:08:55.346Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.81,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 9
-      },
-      "source": {
-        "sourceUrl": "https://www.dmu.ac.uk/international/en/fees-and-scholarships/global-partnerships-scholarship/global-partnerships-scholarship.aspx",
-        "sourceLabel": "De Montfort University Scholarships",
-        "scrapedAt": "2026-06-13T08:08:55.346Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.81,
-        "rawText": "More International Recruitment through educational agentsAgent feedbackAgents in your countryInternational studentsMidyear intakesVisa informationEntry requirementsRegionsEvents for international studentsCentre for English Language Learning (CELL)Study on ExchangeAccommodationTestimonialsMeet the International OfficeExplore the DMU campusFees and scholarships Global Partnerships Scholarship Partnerships with purpose are a strong theme of DMU’s Empowering University strategy. We believe strong global partnerships enable us to deliver our vision in Leicester and enable students and graduates to access international opportunities. The following merit-based scholarships will be awarded on an application basis to students meeting a defined criteria who are applying for any level of an undergraduate degree. We welcome applications to the Global Partnership Scholarship from prospective students who will contribute to our Partnerships with purpose strategy and can demonstrate the championing of the partnership between the UK and their home country or institution. Awards available are: 3 x Full Scholarship Awards 9 x £8,500 Scholarship Awards The Global Partnership Scholarship is only awarded for the first year of study; however can be combined with the Global Access Scholarship for progressing years of study. Applications will be open from 15 May 2026 until 17 July. Winning applications are decided by a panel, and successful award winners will be notified no later than 31 July 2026 via the email provided in your application. Academic entry requirements – China Meets one of the following: SQA AD: GU BB or above Overall, 85% and all modules passed GPA 3.5 BTEC HND: 10 D, All Pass IETLS 5.5 and no components lower than 5.0 (or equivalent) Academic qualification requirements – rest of the world Equivalent of a 2:1, 60% GPA or Merit Award If you are unsure whether you meet the academic qualification score required, please email progression@dmu.ac.uk for clarification. There are ",
-        "pageType": "detail",
-        "pageTitle": "Global Partnerships Scholarship",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "De Montfort University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 9,
-        "discoveryDepth": 2
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants • Degree class: 2:1 • Field: Computer Science, Business, Linguistics",
-      "status": "unknown",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b",
-          "\\bglobal\\b"
-        ],
-        "warnings": [
-          "no_explicit_nigeria_signal"
-        ]
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 3,
-        "confidence": 0.81,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "3/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "81%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "De Montfort University"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T08:54:57.610Z",
-      "promotedAt": "2026-06-13T08:54:57.610Z"
     },
     {
       "id": "www.westminster.ac.uk_westminster-university-scholarships_study-fees-and-funding-scholarships-great-scholarship",
@@ -24639,7 +23598,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
-        "scrapedAt": "2026-06-13T12:43:38.136Z",
+        "scrapedAt": "2026-06-20T20:37:24.030Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.78,
@@ -24653,7 +23612,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-marshall-phd-scholarship",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:38.136Z",
+        "scrapedAt": "2026-06-20T20:37:24.030Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -24683,8 +23642,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -25009,7 +23968,8 @@
         "nationalities": [],
         "nationalityIsOpen": true,
         "disciplines": [
-          "Education"
+          "Education",
+          "Linguistics"
         ],
         "degreeClassMin": "",
         "degreeClassRequired": null,
@@ -25046,7 +24006,7 @@
       },
       "provenance": {
         "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
-        "scrapedAt": "2026-06-13T12:41:26.287Z",
+        "scrapedAt": "2026-06-20T20:34:22.170Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.5800000000000001,
@@ -25060,13 +24020,13 @@
       "source": {
         "sourceUrl": "https://foreign.fulbrightonline.org/about/foreign-student-program",
         "sourceLabel": "Fulbright Foreign Student Program",
-        "scrapedAt": "2026-06-13T12:41:26.287Z",
+        "scrapedAt": "2026-06-20T20:34:22.170Z",
         "verified": false,
         "needsVerification": [
           "deadline"
         ],
         "confidence": 0.5800000000000001,
-        "rawText": "I am: Choose... Non-U.S. Student Current U.S. Student U.S. Citizen but not a student U.S. Professor Non-U.S. Professor Non-U.S. Student If you are a non-U.S. citizen looking to applying for a Fulbright grant to study in the United States you will apply to the Fulbright Commissions/Foundations or U.S. Embassy in your home country. Current U.S. Student If you are a U.S. citizen currently enrolled in an undergraduate or graduate degree program, please visit our Fulbright U.S. Student Program site. U.S. Citizen but not a Student If you are a U.S. citizen, hold a bachelor’s degree, and do not have a PhD degree then you could be eligible for certain awards within the Fulbright U.S. Student Program. Please review the program summary for the country where you would like to apply. U.S. Professor If you are a U.S. citizen and a professor at a U.S. institution and are interested in applying for a Fulbright Scholar Award you will need to apply through fulbrightscholars.org. Non-U.S. Professor If you are a non-U.S. citizen and a professor interested in applying for a Fulbright Scholar Award in the United States you need to apply through the Fulbright Commission or U.S. Embassy in your home country. Find out more information on the Fulbright Visiting Scholar Program. Contact Us AboutHistoryForeign Student ProgramFLTA ProgramPartner AgenciesFulbrighter BlogContact UsApplyHost InstitutionsForeign Student ProgramVisiting Student ResearchersDegree Seeking Student Placement InformationFulbright Program & Placement FactsForeign Fulbright Student Information & ResourcesPlacement TimelineFLTA ProgramFLTA - Thinking of ApplyingFLTA - Pre-Arrival InformationFLTA - During the ProgramFLTA - Best PracticesFLTA - Policies & ProceduresFLTA - Help Your FLTA Navigate Common IssuesFLTA - Working with the IIE AdvisorFLTA - ResourcesFLTA - WebinarsCandidatesCurrent FulbrightersCommissions & PostsECAAlumniGrantee Directory Foreign Fulbright Program - Foreign Student Program HistoryForeign Student Pro",
+        "rawText": "I am: Choose... Non-U.S. Student Current U.S. Student U.S. Citizen but not a student U.S. Professor Non-U.S. Professor Non-U.S. Student If you are a non-U.S. citizen looking to applying for a Fulbright grant to study in the United States you will apply to the Fulbright Commissions/Foundations or U.S. Embassy in your home country. Current U.S. Student If you are a U.S. citizen currently enrolled in an undergraduate or graduate degree program, please visit our Fulbright U.S. Student Program site. U.S. Citizen but not a Student If you are a U.S. citizen, hold a bachelor’s degree, and do not have a PhD degree then you could be eligible for certain awards within the Fulbright U.S. Student Program. Please review the program summary for the country where you would like to apply. U.S. Professor If you are a U.S. citizen and a professor at a U.S. institution and are interested in applying for a Fulbright Scholar Award you will need to apply through fulbrightscholars.org. Non-U.S. Professor If you are a non-U.S. citizen and a professor interested in applying for a Fulbright Scholar Award in the United States you need to apply through the Fulbright Commission or U.S. Embassy in your home country. Find out more information on the Fulbright Visiting Scholar Program. Contact Us AboutHistoryForeign Student ProgramFLTA ProgramPartner AgenciesFulbrighter BlogContact UsApplyHost InstitutionsForeign Student ProgramVisiting Student ResearchersDegree Seeking Student Placement InformationForeign Fulbright Student Information & ResourcesPlacement TimelineFulbright Program & Placement FactsFLTA ProgramFLTA - Thinking of ApplyingFLTA - Pre-Arrival InformationFLTA - During the ProgramFLTA - Best PracticesFLTA - Policies & ProceduresFLTA - Help Your FLTA Navigate Common IssuesFLTA - Working with the IIE AdvisorFLTA - ResourcesFLTA - WebinarsCandidatesCurrent FulbrightersCommissions & PostsECAAlumniGrantee Directory Foreign Fulbright Program - Foreign Student Program HistoryForeign Student Pro",
         "pageType": "detail",
         "pageTitle": "Foreign Fulbright Program - Foreign Student Program",
         "discoveryNotes": "Official international Fulbright route. Prioritize country application pages and direct eligibility guidance.",
@@ -25085,13 +24045,13 @@
       "verified": true,
       "active": true,
       "sourceType": "government",
-      "requirementsSummary": "Open to international applicants • Field: Education",
+      "requirementsSummary": "Open to international applicants • Field: Education, Linguistics",
       "status": "unknown",
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -25197,7 +24157,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
-        "scrapedAt": "2026-06-13T12:41:34.270Z",
+        "scrapedAt": "2026-06-20T20:34:27.067Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.5800000000000001,
@@ -25211,7 +24171,7 @@
       "source": {
         "sourceUrl": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships",
         "sourceLabel": "MEXT Scholarships",
-        "scrapedAt": "2026-06-13T12:41:34.270Z",
+        "scrapedAt": "2026-06-20T20:34:27.067Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -25241,8 +24201,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -25282,7 +24242,7 @@
       }
     },
     {
-      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-international-scholarships-aspx",
+      "id": "www.dmu.ac.uk_de-montfort-university-scholarships_international-en-fees-and-scholarships-global-partnerships-scholarship",
       "name": "De Montfort University",
       "nameFull": "De Montfort University",
       "name_full": "De Montfort University",
@@ -26033,7 +24993,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
-        "scrapedAt": "2026-06-13T12:43:18.354Z",
+        "scrapedAt": "2026-06-20T20:37:14.613Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26047,7 +25007,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/aker-scholarship-at-university-of-cambridge",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:18.354Z",
+        "scrapedAt": "2026-06-20T20:37:14.613Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26077,8 +25037,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -26178,7 +25138,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
-        "scrapedAt": "2026-06-13T12:43:20.894Z",
+        "scrapedAt": "2026-06-20T20:37:15.659Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26192,7 +25152,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/beit-cambridge-scholarship",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:20.894Z",
+        "scrapedAt": "2026-06-20T20:37:15.659Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26222,8 +25182,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -26263,10 +25223,10 @@
     },
     {
       "id": "www.cambridgetrust.org_cambridge-trust_scholarship-bhutan-kings-scholarship-at-the-university-of-cambridge",
-      "name": "Bhutan King’s Scholarship at the University of Cambridge",
-      "nameFull": "Bhutan King’s Scholarship at the University of Cambridge",
-      "name_full": "Bhutan King’s Scholarship at the University of Cambridge",
-      "displayName": "Bhutan King’s Scholarship at the University of Cambridge",
+      "name": "Bhutan King&#8217;s Scholarship at the University of Cambridge",
+      "nameFull": "Bhutan King&#8217;s Scholarship at the University of Cambridge",
+      "name_full": "Bhutan King&#8217;s Scholarship at the University of Cambridge",
+      "displayName": "Bhutan King&#8217;s Scholarship at the University of Cambridge",
       "awardingBody": "Cambridge Trust",
       "coverage": {
         "type": "tuition_only",
@@ -26330,7 +25290,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
-        "scrapedAt": "2026-06-13T12:43:25.956Z",
+        "scrapedAt": "2026-06-20T20:37:18.305Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26344,7 +25304,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/bhutan-kings-scholarship-at-the-university-of-cambridge",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:25.956Z",
+        "scrapedAt": "2026-06-20T20:37:18.305Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26374,8 +25334,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -26407,7 +25367,7 @@
           {
             "check": "name_quality",
             "passed": true,
-            "detail": "Bhutan King’s Scholarship at the Univers"
+            "detail": "Bhutan King&#8217;s Scholarship at the U"
           }
         ]
       }
@@ -26475,7 +25435,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
-        "scrapedAt": "2026-06-13T12:43:28.363Z",
+        "scrapedAt": "2026-06-20T20:37:19.258Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26489,7 +25449,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/brockmann-cambridge-scholarship-2",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:28.363Z",
+        "scrapedAt": "2026-06-20T20:37:19.258Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26519,8 +25479,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -26624,7 +25584,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
-        "scrapedAt": "2026-06-13T12:43:30.905Z",
+        "scrapedAt": "2026-06-20T20:37:20.244Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26638,7 +25598,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/bseisu-university-of-cambridge-scholarship",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:30.905Z",
+        "scrapedAt": "2026-06-20T20:37:20.244Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26668,8 +25628,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -26772,7 +25732,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
-        "scrapedAt": "2026-06-13T12:43:23.443Z",
+        "scrapedAt": "2026-06-20T20:37:16.730Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26786,7 +25746,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-africa-changemakers-scholarship",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:23.443Z",
+        "scrapedAt": "2026-06-20T20:37:16.730Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26816,8 +25776,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -26920,7 +25880,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
-        "scrapedAt": "2026-06-13T12:43:35.716Z",
+        "scrapedAt": "2026-06-20T20:37:23.076Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.53,
@@ -26934,7 +25894,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-caribbean-scholarship",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:35.716Z",
+        "scrapedAt": "2026-06-20T20:37:23.076Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -26964,8 +25924,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -27000,148 +25960,6 @@
             "detail": "Cambridge Caribbean Scholarship"
           }
         ]
-      }
-    },
-    {
-      "id": "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
-      "name": "Funding For Students With Disabilities",
-      "nameFull": "Funding for students with disabilities",
-      "name_full": "Funding for students with disabilities",
-      "displayName": "Funding For Students With Disabilities",
-      "awardingBody": "University of York Scholarships",
-      "coverage": {
-        "type": "tuition_only",
-        "tuition": true,
-        "tuitionCovered": true,
-        "livingCovered": false,
-        "flightsCovered": false,
-        "visaFees": false,
-        "numericAmount": null,
-        "amountGBP": null,
-        "amountType": null,
-        "currency": "GBP",
-        "rawAmountString": null,
-        "rawAmount": null
-      },
-      "eligibility": {
-        "nationalities": [],
-        "nationalityIsOpen": true,
-        "disciplines": [],
-        "degreeClassMin": "",
-        "degreeClassRequired": null,
-        "ageLimitMin": null,
-        "ageLimitMax": null,
-        "workExperienceYearsMin": 0,
-        "employmentStatusAtApplication": null,
-        "languageReqs": {
-          "ielts": null,
-          "toefl": null,
-          "celpip": null,
-          "exemptions": []
-        },
-        "refereesRequired": 0,
-        "refereeCategories": [],
-        "targetInstitutions": [],
-        "targetProgrammes": [],
-        "notes": ""
-      },
-      "application": {
-        "url": null,
-        "portal": null,
-        "deadline": null,
-        "deadlineType": "unknown",
-        "deadlineRaw": null,
-        "deadlineIsApproximate": false,
-        "deadlineApproximationConfidence": 0,
-        "applicationOpensAt": null,
-        "requiredDocuments": [],
-        "essayPrompts": [],
-        "pageType": "detail",
-        "pageTitle": "Funding for students with disabilities",
-        "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/students-with-disabilities"
-      },
-      "provenance": {
-        "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/students-with-disabilities",
-        "scrapedAt": "2026-06-13T12:53:36.140Z",
-        "lastVerifiedAt": null,
-        "verifiedBy": "",
-        "confidenceScore": 0.39,
-        "confidenceDecayRatePerDay": 0.001,
-        "flaggedFields": [
-          "deadline"
-        ],
-        "sourceType": "scraped",
-        "discoveryScore": 7
-      },
-      "source": {
-        "sourceUrl": "https://www.york.ac.uk/study/undergraduate/fees-funding/students-with-disabilities",
-        "sourceLabel": "University of York Scholarships",
-        "scrapedAt": "2026-06-13T12:53:36.140Z",
-        "verified": false,
-        "needsVerification": [
-          "deadline"
-        ],
-        "confidence": 0.39,
-        "rawText": "Funding for students with disabilities If you have a disability, medical condition, mental health problem or learning difficulty, you may be eligible for additional financial support. UK students The Disabled Students' Allowance is designed to cover any extra study-related costs you may incur due to your disability. International students If you're from outside the UK, and have been awarded a UK Research Council studentship, you might also be eligible to apply for Disabled Students' Allowances. For all other international students, you may be eligible for financial support from the University. Contact the Disability Team before you enter the UK to allow time to discuss your support needs and options. You'll need to provide relevant medical evidence. More information Find out more about how we support students with disabilities. Fees and funding UK (home) tuition feesInternational tuition feesFee statusPaying undergraduate tuition feesFunding for students with disabilitiesLiving costs Contact us Disability Services disabilityservices@york.ac.uk +44 (0) 1904 324785",
-        "pageType": "detail",
-        "pageTitle": "Funding for students with disabilities",
-        "discoveryNotes": "Generated from official Office for Students Register registry for England. Use as a university-owned scholarship discovery surface and only publish verifiable scholarship records.",
-        "sourceBrand": "York University Scholarships",
-        "registrySourceType": "official_university_directory",
-        "registryTrustTier": "tier_1",
-        "registryCountry": "United Kingdom",
-        "registryCity": "England",
-        "discoveryScore": 7,
-        "discoveryDepth": 1
-      },
-      "awardeeContributions": [],
-      "tags": [],
-      "fit_score_default": null,
-      "sourceKind": "static",
-      "verified": true,
-      "active": true,
-      "sourceType": "university",
-      "requirementsSummary": "Open to international applicants",
-      "status": "unknown",
-      "urgency": "green",
-      "internationalVerification": {
-        "isInternational": true,
-        "confidence": 0.8,
-        "signals": [
-          "\\binternational\\b",
-          "\\boutside the uk\\b"
-        ],
-        "warnings": [
-          "no_explicit_nigeria_signal"
-        ]
-      },
-      "qualityVerification": {
-        "passed": true,
-        "evidenceCount": 2,
-        "confidence": 0.39,
-        "checks": [
-          {
-            "check": "evidence_minimum",
-            "passed": true,
-            "detail": "2/4 evidence types present"
-          },
-          {
-            "check": "confidence_threshold",
-            "passed": true,
-            "detail": "39%"
-          },
-          {
-            "check": "name_quality",
-            "passed": true,
-            "detail": "Funding For Students With Disabilities"
-          }
-        ]
-      },
-      "reviewStatus": "approved",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
-      "reviewChecks": {
-        "valid": true
       }
     },
     {
@@ -27768,7 +26586,7 @@
       },
       "provenance": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
-        "scrapedAt": "2026-06-13T12:43:33.253Z",
+        "scrapedAt": "2026-06-20T20:37:22.125Z",
         "lastVerifiedAt": null,
         "verifiedBy": "",
         "confidenceScore": 0.36,
@@ -27782,7 +26600,7 @@
       "source": {
         "sourceUrl": "https://www.cambridgetrust.org/scholarship/cambridge-australia-scholarship",
         "sourceLabel": "Cambridge Trust Scholarship Search",
-        "scrapedAt": "2026-06-13T12:43:33.253Z",
+        "scrapedAt": "2026-06-20T20:37:22.125Z",
         "verified": false,
         "needsVerification": [
           "deadline"
@@ -27812,8 +26630,8 @@
       "urgency": "green",
       "reviewStatus": "approved",
       "reviewNotes": "",
-      "reviewedAt": "2026-06-13T15:10:08.179Z",
-      "promotedAt": "2026-06-13T15:10:08.179Z",
+      "reviewedAt": "2026-06-20T21:04:26.236Z",
+      "promotedAt": "2026-06-20T21:04:26.236Z",
       "reviewChecks": {
         "valid": true
       },
@@ -27851,7 +26669,7 @@
       }
     },
     {
-      "id": "www.york.ac.uk_not-applicable-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
+      "id": "www.york.ac.uk_york-university-scholarships_study-undergraduate-fees-funding-students-with-disabilities",
       "name": "Funding For Students With Disabilities",
       "nameFull": "Funding for students with disabilities",
       "name_full": "Funding for students with disabilities",
@@ -29432,7 +28250,7 @@
       }
     },
     {
-      "id": "test-1781303555235-11",
+      "id": "test-1781303555235-12",
       "name": "Amity University (in) London",
       "awardingBody": "Amity University [in] London Scholarships",
       "source": {
