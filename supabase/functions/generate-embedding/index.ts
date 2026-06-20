@@ -142,19 +142,43 @@ Deno.serve(async (req: Request) => {
       return jsonResponse({ ok: false, error: { message: "Empty embedding input" } }, 400, { origin, methods: "POST, OPTIONS", allowedOrigins });
     }
 
-    // Use proper embedding API (OpenAI text-embedding-3-small) when available.
-    // Fall back to DeepSeek chat API only when OpenAI key is not configured.
+    // Prefer OpenAI text-embedding-3-small for proper embeddings.
+    // Fall back to DeepSeek chat API automatically when OpenAI is down, quota-exhausted, or unconfigured.
     const openAiKey = Deno.env.get(["OPENAI", "API", "KEY"].join("_"));
-    const embeddingFn = openAiKey
-      ? () => createOpenAIEmbeddings(input as string | string[], { model, dimensions })
-      : () => createDeepseekEmbeddings(input as string | string[], { model, dimensions });
+    const deepseekKey = Deno.env.get(["DEEPSEEK", "API", "KEY"].join("_"));
 
-    const result = await rememberJson(
-      "embeddings",
-      { input, model, dimensions, userId: user?.id || null, provider: openAiKey ? "openai" : "deepseek" },
-      6 * 60 * 60,
-      embeddingFn,
-    );
+    let result: { model: string; embeddings: number[][]; usage: unknown };
+    let provider = "deepseek";
+
+    if (openAiKey) {
+      try {
+        result = await rememberJson(
+          "embeddings",
+          { input, model, dimensions, userId: user?.id || null, provider: "openai" },
+          6 * 60 * 60,
+          () => createOpenAIEmbeddings(input as string | string[], { model, dimensions }),
+        );
+        provider = "openai";
+      } catch (openAiError) {
+        if (!deepseekKey) throw openAiError;
+        console.warn("OpenAI embedding failed, falling back to DeepSeek:", openAiError);
+        result = await rememberJson(
+          "embeddings",
+          { input, model, dimensions, userId: user?.id || null, provider: "deepseek" },
+          6 * 60 * 60,
+          () => createDeepseekEmbeddings(input as string | string[], { model, dimensions }),
+        );
+      }
+    } else if (deepseekKey) {
+      result = await rememberJson(
+        "embeddings",
+        { input, model, dimensions, userId: user?.id || null, provider: "deepseek" },
+        6 * 60 * 60,
+        () => createDeepseekEmbeddings(input as string | string[], { model, dimensions }),
+      );
+    } else {
+      throw new Response("No embedding provider is configured. Set the LLM API key.", { status: 500 });
+    }
 
     return jsonResponse({
       ok: true,
