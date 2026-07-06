@@ -2,6 +2,7 @@ import React from 'react';
 import './instrument.js';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import './index.css';
 import App from './App';
 
@@ -11,6 +12,7 @@ if (root) {
     <React.StrictMode>
       <BrowserRouter>
         <App />
+        <Analytics />
       </BrowserRouter>
     </React.StrictMode>
   );
