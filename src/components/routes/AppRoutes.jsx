@@ -13,6 +13,8 @@ const DailyChallengePage = lazy(() => import("../../features/practice/DailyChall
 const VocabularyPractice = lazy(() => import("../../features/practice/VocabularyPractice.jsx"));
 const MockTestSimulator = lazy(() => import("../../features/practice/MockTestSimulator.jsx"));
 const LearningPathView = lazy(() => import("../LearningPathView.jsx"));
+const AdaptiveReadingPage = lazy(() => import("../../features/practice/AdaptiveReadingPage.jsx"));
+const WeeklyPlanView = lazy(() => import("../../features/coach/WeeklyPlanView.jsx"));
 const ScholarshipPage = lazy(() => import("../../features/discovery/ScholarshipPage.jsx"));
 const ScholarshipFeedPage = lazy(() => import("../../features/discovery/ScholarshipFeedPage.jsx"));
 const DeadlineActionPlan = lazy(() => import("../../features/scholarships/DeadlineActionPlan.jsx"));
@@ -92,6 +94,33 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
     content = <Suspense fallback={<RouteFallback label="Loading vocabulary practice" />}><VocabularyPractice profile={profile} onSessionComplete={onSessionComplete} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} /></Suspense>;
   } else if (pathname === "/practice/mock-test") {
     content = <Suspense fallback={<RouteFallback label="Loading mock test" />}><MockTestSimulator sessions={sessions} onSessionComplete={onSessionComplete} qb={qb} passages={passages} C={C} Chip={Chip} PrimaryBtn={PrimaryBtn} /></Suspense>;
+  } else if (pathname === "/practice/adaptive-reading") {
+    content = (
+      <Suspense fallback={<RouteFallback label="Loading adaptive reading" />}>
+        <AdaptiveReadingPage
+          sessions={sessions}
+          profile={profile}
+          onSessionComplete={onSessionComplete}
+          C={C}
+          Chip={Chip}
+          PrimaryBtn={PrimaryBtn}
+          GhostBtn={GhostBtn}
+        />
+      </Suspense>
+    );
+  } else if (pathname === "/practice/weekly-plan") {
+    content = (
+      <Suspense fallback={<RouteFallback label="Loading weekly plan" />}>
+        <WeeklyPlanView
+          sessions={sessions}
+          profile={profile}
+          scholarshipCatalog={[]}
+          rankedScholarships={null}
+          C={C}
+          PrimaryBtn={PrimaryBtn}
+        />
+      </Suspense>
+    );
   }
 
   const practiceMeta = {
@@ -105,6 +134,8 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
     "/practice/daily":        { title: "Daily Challenge",           desc: "Today's IELTS daily challenge — a fresh question set to keep your skills sharp.", path: "/practice/daily" },
     "/practice/vocabulary":   { title: "Vocabulary Practice",       desc: "Build your IELTS vocabulary with spaced repetition and contextual word lists.", path: "/practice/vocabulary" },
     "/practice/mock-test":    { title: "Mock Test",                 desc: "Full-length IELTS mock test simulator with timed sections and band score estimation.", path: "/practice/mock-test" },
+    "/practice/adaptive-reading": { title: "Adaptive Reading",       desc: "AI-generated IELTS reading passages at calibrated difficulty levels with auto-generated questions and instant scoring.", path: "/practice/adaptive-reading" },
+    "/practice/weekly-plan":      { title: "Weekly Study Plan",        desc: "Your personalized 7-day IELTS study plan prioritizing the skills that unlock the most scholarships.", path: "/practice/weekly-plan" },
   };
   const meta = practiceMeta[pathname] || { title: "Practice Hub", desc: "IELTS practice across all four modules — Reading, Listening, Writing, and Speaking.", path: "/practice" };
 
@@ -122,6 +153,7 @@ export function PracticeRoutes({ sessions, profile, onSessionComplete, exportAct
 }
 
 const ScholarshipReviewPage = lazy(() => import("../../features/admin/ScholarshipReviewPage.jsx"));
+const IeltsBridgePage = lazy(() => import("../../features/coach/IeltsBridgePage.jsx"));
 
 export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, onImportCv, cvImportBusy, cvImportMessage, contentManifest, notifications, scholarships, scholarshipCatalog, C, Chip, PrimaryBtn }) {
   const { pathname } = useLocation();
@@ -129,11 +161,14 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
   const isWeeklyFeed = pathname.startsWith("/scholarships/weekly") || pathname.startsWith("/scholarships/latest");
   const isAdminReview = pathname.startsWith("/scholarships/admin/review");
   const isDeadlinePlan = pathname.startsWith("/scholarships/deadlines");
+  const isBridge = pathname.startsWith("/scholarships/ielts-bridge");
 
   const scholarshipMeta = isAdminReview
     ? { title: "Admin: Scholarship Review", desc: "Review and approve scholarship entries for the Loci catalog.", path: "/scholarships/admin/review", noIndex: true }
     : isDeadlinePlan
     ? { title: "Deadline Action Plan", desc: "Upcoming scholarship deadlines and a prioritised action plan for your applications.", path: "/scholarships/deadlines" }
+    : isBridge
+    ? { title: "IELTS → Scholarship Bridge", desc: "See how your IELTS band connects to scholarship eligibility. Each 0.5 band improvement unlocks new opportunities.", path: "/scholarships/ielts-bridge" }
     : isWeeklyFeed
     ? { title: "Weekly Scholarship Feed", desc: "This week's newest scholarship additions — fresh opportunities curated before they appear in matching.", path: "/scholarships/weekly" }
     : pathname === "/scholarships/shortlist"
@@ -163,6 +198,7 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
           ) : (
             <>
               <Link to="/scholarships/deadlines" className="ghost-btn" style={{ textDecoration: "none" }}>Deadlines</Link>
+              <Link to="/scholarships/ielts-bridge" className="ghost-btn" style={{ textDecoration: "none" }}>IELTS Bridge</Link>
               <Link to="/scholarships/weekly" className="ghost-btn" style={{ textDecoration: "none" }}>Weekly feed</Link>
             </>
           )}
@@ -186,6 +222,16 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
               <div className="empty-state-copy">Sign in to access the scholarship review panel.</div>
             </div>
           )
+        ) : isBridge ? (
+          <IeltsBridgePage
+            sessions={sessions}
+            profile={profile}
+            scholarshipCatalog={scholarshipCatalog}
+            rankedScholarships={null}
+            C={C}
+            Chip={Chip}
+            PrimaryBtn={PrimaryBtn}
+          />
         ) : isWeeklyFeed ? (
           <ScholarshipFeedPage
             scholarships={scholarships}

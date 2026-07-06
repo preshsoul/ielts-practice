@@ -16,6 +16,9 @@ export function useFeatureGate(profile) {
     // Practice
     canExportResults: rank >= TIER_RANK.pro,
     canAccessAdvancedPractice: rank >= TIER_RANK.pro,
+    canAccessAdaptiveReading: rank >= TIER_RANK.pro,
+    canAccessBridge: rank >= TIER_RANK.pro,
+    canAccessStudyCoach: rank >= TIER_RANK.pro,
 
     // Scholarships
     canAccessSemanticSearch: rank >= TIER_RANK.pro,

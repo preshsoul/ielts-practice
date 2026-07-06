@@ -17,6 +17,13 @@ import { useWorkspace } from "../../components/layout/WorkspaceContext.jsx";
 import { getLatestScholarshipFeed } from "../../lib/scholarshipFeed.js";
 import { getOnboardingStatus } from "../../lib/onboardingJourney.js";
 import DailyChallengeCard from "../practice/DailyChallengeCard.jsx";
+import StudyCoachCard from "../coach/StudyCoachCard.jsx";
+import ScholarshipBridgeSummary from "../coach/ScholarshipBridgeSummary.jsx";
+import TimeToTargetWidget from "../coach/TimeToTargetWidget.jsx";
+import { useFeatureGate } from "../../hooks/useFeatureGate.js";
+import { analyzeBridge, estimateTimeToTarget } from "../../lib/bridgeService.js";
+import { generateDailyActions } from "../../lib/studyCoachEngine.js";
+import { estimateOverallBand } from "../../lib/bandScoreEstimator.js";
 
 function SkillCard({ label, value }) {
   const numeric = Number(value);
@@ -215,6 +222,20 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
   const feed = buildNotificationFeed({ profile: profile || {}, sessions: sessions || [], contentManifest, contentNotifications: notifications || [] });
   const catalog = Array.isArray(scholarshipCatalog) ? scholarshipCatalog : [];
   const rankedScholarships = rankScholarships(catalog, profile || {}, { limit: 5 });
+  const gate = useFeatureGate(profile);
+
+  // Bridge + Coach analysis (Pro/Premium only)
+  const bandsForBridge = estimateOverallBand(sessions || []);
+  const bridgeAnalysis = gate.isPro && rankedScholarships?.scored?.length
+    ? analyzeBridge(rankedScholarships.scored, bandsForBridge, profile || {})
+    : null;
+  const timeProjection = gate.isPro
+    ? estimateTimeToTarget(bandsForBridge, snapshot.targetBand, sessions || [])
+    : null;
+  const dailyActions = gate.isPro
+    ? generateDailyActions(snapshot, bridgeAnalysis, null, profile || {}, sessions || [])
+    : [];
+
   const targetBand = snapshot.targetBand ? Number(snapshot.targetBand).toFixed(1) : "Set one";
   const testDate = profile?.test_date || profile?.testDate || null;
   const hasValue = (value) => value !== null && value !== undefined && String(value).trim() !== "";
@@ -413,6 +434,17 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
         </article>
 
         <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-6">
+          <div className="dashboard-kicker">AI Reading Generator</div>
+          <div className="dashboard-feature-title">Generate passages at your level</div>
+          <div className="dashboard-feature-copy">
+            Get custom IELTS reading passages calibrated to your target band with auto-generated questions.
+          </div>
+          <div className="dashboard-feature-actions">
+            <Link className="primary-btn link-button" to="/practice/adaptive-reading" style={{ textDecoration: "none" }}>Open Adaptive Reading</Link>
+          </div>
+        </article>
+
+        <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-6">
           <CardErrorBoundary>
             <DailyChallengeCard sessions={sessions} />
           </CardErrorBoundary>
@@ -450,6 +482,12 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
           </div>
         </article>
 
+        <article className="loci-card loci-card--utilitarian dashboard-intelligence-card dashboard-span-5">
+          <CardErrorBoundary>
+            <TimeToTargetWidget projection={timeProjection} isPro={gate.isPro} />
+          </CardErrorBoundary>
+        </article>
+
         <article className="loci-card loci-card--utilitarian dashboard-mini-grid dashboard-span-5">
           <div className="dashboard-kicker">Band snapshot</div>
           <div className="skills-grid">
@@ -461,18 +499,15 @@ export default function DashboardHome({ profile, sessions, contentManifest, noti
         </article>
 
         <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-5">
-          <div className="dashboard-kicker">Next move</div>
-          <div className="dashboard-feature-title">{nextTask}</div>
-          <div className="dashboard-feature-copy">
-            {snapshot.recentSession?.module
-              ? `Latest test: ${snapshot.recentSession.module} · ${Number(snapshot.recentSession.score ?? 0)}/${Number(snapshot.recentSession.total ?? 0)}`
-              : "No session yet. A first run will unlock smarter recommendations."}
-          </div>
-          <div className="dashboard-meta">
-            <div>Sessions completed: {snapshot.totalSessions}</div>
-            <div>Weakest focus: {snapshot.weakestSkill}</div>
-            {testDate && <div>Test date: {new Date(testDate).toLocaleDateString("en-GB")}</div>}
-          </div>
+          <CardErrorBoundary>
+            <StudyCoachCard actions={dailyActions} isPro={gate.isPro} snapshot={snapshot} />
+          </CardErrorBoundary>
+        </article>
+
+        <article className="loci-card loci-card--editorial dashboard-feature-card dashboard-span-5">
+          <CardErrorBoundary>
+            <ScholarshipBridgeSummary bridgeAnalysis={bridgeAnalysis} isPro={gate.isPro} />
+          </CardErrorBoundary>
         </article>
 
         <article className="loci-card loci-card--utilitarian dashboard-alerts dashboard-span-full">

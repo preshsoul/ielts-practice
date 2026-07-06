@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-06-29T16:12:55.909Z",
+  "profile": "smoke",
+  "metrics": {
+    "totalDBQueries": 0,
+    "avgQueryDuration": 1214.3032786885246,
+    "p95QueryDuration": 6081.299999999992,
+    "p99QueryDuration": 0,
+    "maxQueryDuration": 20976,
+    "dbErrorRate": 1,
+    "totalErrors": 65
+  },
+  "verdict": "FAIL — Database queries need optimization (indexing, query patterns)"
+}

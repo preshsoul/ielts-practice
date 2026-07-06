@@ -66,6 +66,14 @@ export default function PracticeHub({ sessions, C, PrimaryBtn, profile }) {
 
         <LociCard
           variant="editorial"
+          eyebrow="AI-powered"
+          title="Adaptive Reading"
+          copy="Generate custom IELTS reading passages at your target band level with auto-generated questions and instant scoring. Pro feature."
+          action={<Link className="primary-btn link-button" to="/practice/adaptive-reading" style={{ background: "var(--c-accent, #7c3aed)" }}>Try Adaptive Reading</Link>}
+        />
+
+        <LociCard
+          variant="editorial"
           eyebrow="Full simulation"
           title="Mock Test"
           copy="Take a full 2h 45m timed IELTS simulation across all 4 modules — Listening, Reading, Writing, and Speaking. Get a complete band score estimate at the end."

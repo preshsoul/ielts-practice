@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-06-29T16:07:43.804Z",
+  "profile": "smoke",
+  "config": {
+    "vus": 5,
+    "duration": "30s",
+    "description": "Quick sanity check — 5 concurrent users, 30 seconds"
+  },
+  "tests": {
+    "database": {
+      "totalRequests": 250,
+      "elapsedSeconds": "25.8",
+      "rps": "9.7",
+      "p50": 435,
+      "p90": 780,
+      "p95": 859,
+      "p99": 1743,
+      "p999": 1777,
+      "max": 1777,
+      "min": 367,
+      "avg": 509,
+      "statusDistribution": {
+        "0": 250
+      },
+      "rateLimited": 0,
+      "errorCount": 0,
+      "errorRate": "0.00"
+    },
+    "edgeFunctions": {
+      "generate-ielts-reading": {
+        "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+      },
+      "generate-semantic-profile": {
+        "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+      },
+      "generate-embedding": {
+        "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+      },
+      "document-intake": {
+        "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+      },
+      "cv-parser": {
+        "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+      }
+    },
+    "rateLimiting": [
+      {
+        "endpoint": "document-intake (health)",
+        "first429At": -1,
+        "total429s": 0,
+        "rateLimited": false
+      }
+    ]
+  },
+  "verdict": {
+    "result": "PASS",
+    "issues": [
+      "Rate limiting not detected — verify Upstash Redis configuration"
+    ]
+  }
+}

@@ -13,6 +13,8 @@ const PRACTICE_NAV = [
   { to: "/practice/speaking", label: "Speaking" },
   { to: "/practice/daily", label: "Daily" },
   { to: "/practice/vocabulary", label: "Vocabulary" },
+  { to: "/practice/adaptive-reading", label: "Adaptive Reading" },
+  { to: "/practice/weekly-plan", label: "Study Plan" },
   { to: "/practice/mock-test", label: "Mock test" },
   { to: "/practice/progress", label: "Progress" },
   { to: "/practice/weak-areas", label: "Weak areas" },

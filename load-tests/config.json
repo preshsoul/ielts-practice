@@ -1,0 +1,55 @@
+{
+  "supabase": {
+    "url": "https://bnttvgrqyxxhsdmpvkfz.supabase.co",
+    "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJudHR2Z3JxeXh4aHNkbXB2a2Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNDg3NzYsImV4cCI6MjA5MTkyNDc3Nn0.rVNnVBFIkTNwIpwScPd-0PlBxRls0jcesoVZEhf9q9Y",
+    "functionsUrl": "https://bnttvgrqyxxhsdmpvkfz.supabase.co/functions/v1"
+  },
+  "local": {
+    "devServer": "http://localhost:5173",
+    "pythonBackend": "http://127.0.0.1:8000"
+  },
+  "testProfiles": {
+    "smoke": {
+      "vus": 5,
+      "duration": "30s",
+      "description": "Quick sanity check — 5 concurrent users, 30 seconds"
+    },
+    "load": {
+      "vus": 50,
+      "duration": "2m",
+      "rampUp": "30s",
+      "description": "Moderate load — ramps to 50 users over 30s, holds 2 minutes"
+    },
+    "stress": {
+      "vus": 200,
+      "duration": "3m",
+      "rampUp": "1m",
+      "description": "Heavy load — ramps to 200 users over 1m, holds 3 minutes"
+    },
+    "spike": {
+      "vus": 500,
+      "duration": "30s",
+      "rampUp": "5s",
+      "description": "Sudden spike — 500 users in 5 seconds, sustained 30s (harsh)"
+    },
+    "endurance": {
+      "vus": 100,
+      "duration": "10m",
+      "rampUp": "2m",
+      "description": "Endurance — 100 users sustained for 10 minutes"
+    }
+  },
+  "thresholds": {
+    "http_req_duration": ["p(95)<2000", "p(99)<5000"],
+    "http_req_failed": ["rate<0.05"],
+    "static_asset_duration": ["p(95)<500", "p(99)<1000"],
+    "edge_function_duration": ["p(95)<5000", "p(99)<10000"]
+  },
+  "rateLimitThresholds": {
+    "generateIeltsReading": { "max": 20, "window": 300 },
+    "generateSemanticProfile": { "max": 20, "window": 300 },
+    "generateEmbedding": { "max": 30, "window": 300 },
+    "cvParserUpload": { "max": 10, "window": 600 },
+    "documentIntake": { "max": 30, "window": 300 }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-06-29T15:34:53.035Z",
+  "profile": "load",
+  "config": {
+    "vus": 50,
+    "duration": "2m",
+    "rampUp": "30s",
+    "description": "Moderate load — ramps to 50 users over 30s, holds 2 minutes"
+  },
+  "tests": {
+    "database": {
+      "totalRequests": 2500,
+      "elapsedSeconds": "4.2",
+      "rps": "591.0",
+      "p50": 73,
+      "p90": 92,
+      "p95": 103,
+      "p99": 445,
+      "p999": 458,
+      "max": 518,
+      "min": 6,
+      "avg": 82,
+      "statusDistribution": {
+        "0": 2500
+      },
+      "rateLimited": 0,
+      "errorCount": 0,
+      "errorRate": "0.00"
+    },
+    "edgeFunctions": {
+      "generate-ielts-reading": {
+        "error": "getaddrinfo ENOTFOUND bnttvgrqyxxhsdmpvkfz.supabase.co"
+      },
+      "generate-semantic-profile": {
+        "error": "getaddrinfo ENOTFOUND bnttvgrqyxxhsdmpvkfz.supabase.co"
+      },
+      "generate-embedding": {
+        "error": "getaddrinfo ENOTFOUND bnttvgrqyxxhsdmpvkfz.supabase.co"
+      },
+      "document-intake": {
+        "error": "getaddrinfo ENOTFOUND bnttvgrqyxxhsdmpvkfz.supabase.co"
+      },
+      "cv-parser": {
+        "error": "getaddrinfo ENOTFOUND bnttvgrqyxxhsdmpvkfz.supabase.co"
+      }
+    },
+    "rateLimiting": [
+      {
+        "endpoint": "document-intake (health)",
+        "first429At": -1,
+        "total429s": 0,
+        "rateLimited": false
+      }
+    ]
+  },
+  "verdict": {
+    "result": "PASS",
+    "issues": [
+      "Rate limiting not detected — verify Upstash Redis configuration"
+    ]
+  }
+}

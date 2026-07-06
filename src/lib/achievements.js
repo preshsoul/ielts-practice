@@ -112,6 +112,27 @@ export const ACHIEVEMENTS = [
       return count >= 5 ? "5/5" : `${count}/5`;
     },
   },
+
+  // ── Bridge + Coach achievements (Phase 2) ─────────────────────────────
+  {
+    id: "bridge_activated",
+    title: "Bridge Activated",
+    description: "Connect your IELTS score to scholarship eligibility for the first time.",
+    icon: "🌉",
+    evaluate: (_profile, _sessions, context) => context?.bridgeActivated === true,
+    progressText: (_profile, _sessions, context) => context?.bridgeActivated === true ? "Activated" : "Visit the IELTS Bridge",
+  },
+  {
+    id: "scholarship_ready",
+    title: "Scholarship Ready",
+    description: "Reach the IELTS threshold for 5 or more scholarships.",
+    icon: "🎓",
+    evaluate: (_profile, _sessions, context) => (context?.eligibleNowCount || 0) >= 5,
+    progressText: (_profile, _sessions, context) => {
+      const count = context?.eligibleNowCount || 0;
+      return count >= 5 ? "5/5" : `${count}/5`;
+    },
+  },
 ];
 
 /**

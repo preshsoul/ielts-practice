@@ -424,6 +424,38 @@ function computeOpportunityPriority(scholarship = {}) {
   return { ...focus, score, signals };
 }
 
+// ── Per-band IELTS minimum checking ──────────────────────────────────────
+
+function checkIeltsBandMinimums(candidateBands, scholarshipEligibility) {
+  const reqs = scholarshipEligibility?.languageReqs || {};
+  const bandReqs = {
+    listening: toMaybeNumber(reqs.listening),
+    reading: toMaybeNumber(reqs.reading),
+    writing: toMaybeNumber(reqs.writing),
+    speaking: toMaybeNumber(reqs.speaking),
+  };
+
+  const activeReqs = Object.entries(bandReqs).filter(([, v]) => v !== null);
+
+  if (activeReqs.length === 0) {
+    return { passed: true, failures: [], maxGap: 0 };
+  }
+
+  const failures = [];
+  for (const [band, required] of activeReqs) {
+    const actual = toMaybeNumber(candidateBands?.[band]) ?? 0;
+    if (actual < required) {
+      failures.push({ band, required, actual, gap: required - actual });
+    }
+  }
+
+  const maxGap = failures.length > 0
+    ? Math.max(...failures.map((f) => f.gap))
+    : 0;
+
+  return { passed: failures.length === 0, failures, maxGap };
+}
+
 function computeEligibilityScore(candidate = {}, scholarship = {}, resolvedSignals = null) {
   const blockedReasons = [];
   const criteria = [];
@@ -585,6 +617,25 @@ function computeEligibilityScore(candidate = {}, scholarship = {}, resolvedSigna
       languageMatch = false;
       blockedReasons.push(`IELTS ${requiredIelts} required`);
     }
+
+    // Per-band minimum checking (integrated with overall IELTS check)
+    if (requiredIelts !== null && candidateIelts !== null) {
+      const candidateBands = candidateLanguageTests?.ieltsBands || candidate?.languageTests?.ieltsBands || {};
+      const bandCheck = checkIeltsBandMinimums(candidateBands, scholarshipEligibility);
+      if (!bandCheck.passed) {
+        for (const failure of bandCheck.failures) {
+          const bandLabel = failure.band.charAt(0).toUpperCase() + failure.band.slice(1);
+          if (languageFromExtraction) {
+            addGap("language", `CV-detected ${bandLabel} ${failure.actual} may be below the required ${failure.required}.`, resolvedSignals?.languageTests?.confidence);
+            languageMatch = false;
+          } else {
+            blockedReasons.push(`${bandLabel} ${failure.required} required (you have ${failure.actual})`);
+            languageMatch = false;
+          }
+        }
+      }
+    }
+
     languageScore = candidateIelts !== null ? Math.min(1, candidateIelts / Math.max(requiredIelts || 1, 1)) : 0;
   } else if (requiredToefl !== null) {
     if (resolvedSignals?.languageTests && !resolvedSignals.languageTests.available) {
