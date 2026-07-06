@@ -1,37 +1,5 @@
 import { defineConfig, loadEnv } from "vite";
 
-function readRequestBody(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    req.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
-    req.on("end", () => resolve(chunks.length ? Buffer.concat(chunks) : undefined));
-    req.on("error", reject);
-  });
-}
-
-function toRequest(req, body) {
-  const url = new URL(req.url || "/", `http://${req.headers.host || "localhost:5173"}`);
-  return new Request(url, {
-    method: req.method || "GET",
-    headers: req.headers,
-    body: body && !["GET", "HEAD"].includes(req.method || "GET") ? body : undefined,
-  });
-}
-
-function writeResponse(res, response) {
-  res.statusCode = response.status;
-
-  const setCookies = response.headers.getSetCookie?.() || [];
-  for (const [key, value] of response.headers.entries()) {
-    if (key.toLowerCase() === "set-cookie") continue;
-    res.setHeader(key, value);
-  }
-
-  if (setCookies.length) {
-    res.setHeader("Set-Cookie", setCookies);
-  }
-}
-
 function applyDevSecurityHeaders(res) {
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -65,7 +33,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       {
-        name: "auth-bridge-dev-middleware",
+        name: "dev-server-config",
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
             applyDevSecurityHeaders(res);
@@ -89,24 +57,7 @@ export default defineConfig(({ mode }) => {
               }, null, 2)};\n`
             );
           });
-
-          server.middlewares.use(async (req, res, next) => {
-            if (!req.url?.startsWith("/api/auth")) {
-              next();
-              return;
-          }
-
-          const { createAuthBridgeResponse } = await import("./src/server/supabaseAuthBridge.js");
-          const body = await readRequestBody(req);
-          const request = toRequest(req, body);
-          const response = await createAuthBridgeResponse(request, {
-            supabaseUrl,
-            supabaseAnonKey,
-          });
-          writeResponse(res, response);
-          res.end(await response.text());
-        });
-      },
+        },
       },
     ],
   };
