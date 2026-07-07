@@ -147,6 +147,41 @@ export default async function handler(req, res) {
     });
   }
 
+  /* ── Exchange (OAuth token → HttpOnly cookies) ───── */
+
+  if (action === "exchange") {
+    if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+
+    const body = await readBody(req);
+    if (!body || typeof body !== "object") return res.status(400).json({ error: "Invalid JSON body" });
+
+    const accessToken = String(body.access_token || "").trim();
+    const refreshToken = String(body.refresh_token || "").trim();
+    const nonce = String(body.nonce || "").trim();
+
+    if (!accessToken || !refreshToken) return res.status(400).json({ error: "Missing tokens." });
+
+    // Validate nonce against cookie to prevent CSRF
+    const cookieNonce = String(cookies[OAUTH_NONCE_COOKIE] || "").trim();
+    const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidRe.test(nonce) || nonce !== cookieNonce) {
+      return res.status(403).json({ error: "Invalid nonce. Please restart sign-in." });
+    }
+
+    // Verify the access token is real by getting the user
+    const supabase = createSupabase();
+    const { data: userData, error: userError } = await supabase.auth.getUser(accessToken);
+    if (userError || !userData?.user) return res.status(401).json({ error: "Invalid access token." });
+
+    // Set cookies and return
+    res.setHeader("Set-Cookie", [
+      setCookie(REFRESH_COOKIE, refreshToken, { maxAge: COOKIE_MAX_AGE }),
+      setCookie(ACCESS_COOKIE, accessToken, { maxAge: 3600 }),
+      setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }),
+    ]);
+    return res.status(200).json({ ok: true, user: userData.user });
+  }
+
   /* ── Session / Login / Callback / Logout ───────────── */
 
   try {

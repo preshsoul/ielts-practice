@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Signing in…</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f172a; color: #fff; font-family: system-ui, sans-serif; }
+    .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div style="text-align:center">
+    <div class="spinner" style="margin:0 auto 16px"></div>
+    <p>Completing sign-in…</p>
+  </div>
+<script>
+(async () => {
+  const hash = window.location.hash.slice(1); // remove leading #
+  const params = new URLSearchParams(hash);
+
+  const accessToken = params.get("access_token");
+  const refreshToken = params.get("refresh_token");
+  const expiresIn = params.get("expires_in");
+  const nonce = new URL(window.location).searchParams.get("nonce");
+  const next = new URL(window.location).searchParams.get("next") || "/";
+
+  if (!accessToken || !refreshToken) {
+    document.body.innerHTML = '<div style="text-align:center"><p style="color:#ef4444">Sign-in failed — no tokens received.</p><a href="/" style="color:#38bdf8">Go back</a></div>';
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/auth?action=exchange", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn, nonce }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || "Token exchange failed");
+    }
+
+    // Redirect to the app — cookies are now set
+    window.location.replace(next);
+  } catch (e) {
+    document.body.innerHTML = '<div style="text-align:center"><p style="color:#ef4444">Sign-in failed: ' + e.message + '</p><a href="/" style="color:#38bdf8">Go back</a></div>';
+  }
+})();
+</script>
+</body>
+</html>

@@ -54,6 +54,11 @@ async function main() {
     await writeFile(runtimeEnvPath, runtimeEnv, 'utf8');
   }
   await cp(path.join(root, 'public', 'data'), path.join(distDir, 'data'), { recursive: true });
+  // OAuth callback page (reads hash fragments, exchanges for HttpOnly cookies)
+  const authDir = path.join(root, 'public', 'auth');
+  if (await exists(authDir)) {
+    await cp(authDir, path.join(distDir, 'auth'), { recursive: true });
+  }
   // Static files served at root
   for (const file of ['robots.txt', 'sitemap.xml']) {
     const src = path.join(root, 'public', file);

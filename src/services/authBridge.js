@@ -114,10 +114,13 @@ export async function startGoogleSignIn(nextPath) {
 
   const nonce = generateOauthNonce();
   setClientCookie(OAUTH_NONCE_COOKIE, nonce, OAUTH_NONCE_MAX_AGE);
-  const redirectTo = buildBridgeUrl("callback", {
-    next: getRedirectPath(nextPath),
-    nonce,
-  }).toString();
+  // OAuth tokens arrive in the URL hash — we need a client-side page to extract them.
+  // The callback.html page reads tokens from the hash, calls /api/auth?action=exchange
+  // to set HttpOnly cookies, then redirects to the app.
+  const callbackUrl = new URL("/auth/callback.html", window.location.origin);
+  callbackUrl.searchParams.set("next", getRedirectPath(nextPath));
+  callbackUrl.searchParams.set("nonce", nonce);
+  const redirectTo = callbackUrl.toString();
 
   try {
     const { error } = await supabase.auth.signInWithOAuth({
