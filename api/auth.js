@@ -31,6 +31,10 @@ function getConfig() {
   };
 }
 
+function isEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
+}
+
 function safeNext(value) {
   const next = String(value || "/").trim();
   return !next.startsWith("/") || next.startsWith("//") || next.includes("://") ? "/" : next;
@@ -227,6 +231,51 @@ export default async function handler(req, res) {
           token_type: data.session.token_type || "bearer",
           user: data.session.user,
         },
+      });
+    }
+
+    /* ── Sign-up ──────────────────────────────────── */
+
+    if (action === "signup") {
+      if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+
+      const origin = (req.headers.origin || "").trim();
+      const base = `${proto}://${host}`;
+      if (origin && origin !== base) return res.status(403).json({ error: "Origin mismatch" });
+
+      const body = await readBody(req);
+      if (!body || typeof body !== "object") return res.status(400).json({ error: "Invalid JSON body" });
+
+      const email = String(body.email || "").trim().toLowerCase();
+      const password = String(body.password || "");
+
+      if (!email || !isEmail(email)) return res.status(400).json({ error: "Enter a valid email address." });
+      if (password.length < 8) return res.status(400).json({ error: "Password must be at least 8 characters." });
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        const msg = error.message || "Could not create account.";
+        return res.status(400).json({ error: msg.includes("already registered") ? "An account with this email already exists." : msg });
+      }
+
+      // If session is available, email confirmation is disabled — log them in immediately
+      if (data?.session) {
+        setAuthCookie(res, data.session);
+        return res.status(200).json({
+          session: {
+            access_token: data.session.access_token,
+            expires_at: data.session.expires_at || null,
+            expires_in: data.session.expires_in || null,
+            token_type: data.session.token_type || "bearer",
+            user: data.session.user,
+          },
+        });
+      }
+
+      // Email confirmation required
+      return res.status(200).json({
+        ok: true,
+        message: "Account created! Check your email for a confirmation link before signing in.",
       });
     }
 

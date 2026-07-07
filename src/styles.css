@@ -6341,7 +6341,8 @@ body{
   to{ transform:rotate(360deg); }
 }
 
-.auth-error-banner{
+.auth-error-banner,
+.auth-banner{
   font:400 13px/1.55 var(--font-ui);
   color:var(--red);
   background:color-mix(in srgb, var(--red) 8%, transparent);
@@ -6350,9 +6351,16 @@ body{
   border-radius:14px;
 }
 
+.auth-banner.success{
+  color:var(--green);
+  background:color-mix(in srgb, var(--green) 8%, transparent);
+  border-color:color-mix(in srgb, var(--green) 18%, transparent);
+}
+
 .auth-link-button,
 .auth-secondary-link,
-.auth-switcher button{
+.auth-switcher button,
+.auth-mode-toggle button{
   background:none;
   border:none;
   padding:0;
@@ -6360,6 +6368,13 @@ body{
   cursor:pointer;
   font:600 12px/1.4 var(--font-ui);
   text-decoration:none;
+}
+
+.auth-mode-toggle{
+  margin-top:14px;
+  text-align:center;
+  font:400 13px/1.6 var(--font-ui);
+  color:var(--text-3);
 }
 
 .auth-link-button{

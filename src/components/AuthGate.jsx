@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithPassword, startGoogleSignIn } from "../services/authBridge.js";
+import { signInWithPassword, signUpWithPassword, startGoogleSignIn } from "../services/authBridge.js";
 import { supabase } from "../services/supabaseClient.js";
 
 function isEmail(value) {
@@ -18,36 +18,59 @@ function Spinner() {
 
 export default function AuthGate() {
   const navigate = useNavigate();
+  const [mode, setMode] = useState("signin"); // "signin" | "signup"
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
+  const isSignUp = mode === "signup";
+
   const validation = {
     email: !email.trim() || !isEmail(email) ? "Enter a valid email address." : "",
     password: !password ? "Enter your password." : "",
+    confirm: isSignUp && password !== confirmPassword ? "Passwords do not match." : "",
   };
 
   const showError = (field) => submitted || touched[field];
+
+  const switchMode = () => {
+    setMode(isSignUp ? "signin" : "signup");
+    setMessage("");
+    setSubmitted(false);
+    setTouched({});
+    setConfirmPassword("");
+  };
 
   const submitPasswordFlow = async (event) => {
     event.preventDefault();
     setSubmitted(true);
     setMessage("");
 
-    if (validation.email || validation.password) {
+    if (validation.email || validation.password || validation.confirm) {
       return;
     }
 
     setBusy(true);
     try {
-      await signInWithPassword(email, password);
-      navigate("/", { replace: true });
+      if (isSignUp) {
+        const result = await signUpWithPassword(email, password);
+        if (result?.message) {
+          // Email confirmation required — show message instead of navigating
+          setMessage(result.message);
+        } else {
+          navigate("/", { replace: true });
+        }
+      } else {
+        await signInWithPassword(email, password);
+        navigate("/", { replace: true });
+      }
     } catch (error) {
-      setMessage(error?.message || "Invalid email or password.");
+      setMessage(error?.message || (isSignUp ? "Could not create account." : "Invalid email or password."));
     } finally {
       setBusy(false);
     }
@@ -75,7 +98,9 @@ export default function AuthGate() {
     }
   };
 
-  const authCopy = "Sign in with Google or your email password to continue.";
+  const authCopy = isSignUp
+    ? "Create an account to start practising and discovering scholarships."
+    : "Sign in with Google or your email password to continue.";
 
   return (
     <div className="auth-shell">
@@ -93,7 +118,7 @@ export default function AuthGate() {
         <div className="auth-card" role="presentation">
           <div className="auth-card-head">
             <div className="auth-kicker">Candidate workspace</div>
-            <h2 className="auth-title">Welcome back</h2>
+            <h2 className="auth-title">{isSignUp ? "Create your account" : "Welcome back"}</h2>
             <p className="auth-subtitle">
               Use the same account across practice, onboarding, and scholarship matching.
             </p>
@@ -116,7 +141,7 @@ export default function AuthGate() {
             </label>
 
             <label className="auth-field">
-              <span>Password</span>
+              <span>Password{isSignUp ? " (min. 8 characters)" : ""}</span>
               <div className={`auth-password-wrap${showError("password") && validation.password ? " error" : ""}`}>
                 <input
                   className="auth-input auth-password-input"
@@ -125,7 +150,7 @@ export default function AuthGate() {
                   onChange={(event) => setPassword(event.target.value)}
                   onBlur={() => setTouched((current) => ({ ...current, password: true }))}
                   placeholder="Password"
-                  autoComplete="current-password"
+                  autoComplete={isSignUp ? "new-password" : "current-password"}
                   disabled={busy}
                 />
                 <button
@@ -141,18 +166,43 @@ export default function AuthGate() {
               <FieldError error={showError("password") ? validation.password : ""} />
             </label>
 
+            {isSignUp && (
+              <label className="auth-field">
+                <span>Confirm password</span>
+                <div className={`auth-password-wrap${showError("confirm") && validation.confirm ? " error" : ""}`}>
+                  <input
+                    className="auth-input auth-password-input"
+                    type={showPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(event) => setConfirmPassword(event.target.value)}
+                    onBlur={() => setTouched((current) => ({ ...current, confirm: true }))}
+                    placeholder="Re-enter password"
+                    autoComplete="new-password"
+                    disabled={busy}
+                  />
+                </div>
+                <FieldError error={showError("confirm") ? validation.confirm : ""} />
+              </label>
+            )}
+
             <button className="auth-primary" type="submit" disabled={busy}>
               {busy ? <Spinner /> : null}
-              <span>Sign in</span>
+              <span>{isSignUp ? "Create account" : "Sign in"}</span>
             </button>
 
-            {message && <div className="auth-error-banner">{message}</div>}
+            {message && <div className={`auth-banner${message.startsWith("Account created") ? " success" : ""}`}>{message}</div>}
           </form>
 
           <div className="auth-footer">
             <button type="button" className="auth-secondary-link" onClick={sendGoogleSignIn} disabled={busy || !supabase}>
               Continue with Google
             </button>
+            <p className="auth-mode-toggle">
+              {isSignUp ? "Already have an account?" : "No account yet?"}{" "}
+              <button type="button" onClick={switchMode} disabled={busy}>
+                {isSignUp ? "Sign in" : "Create one"}
+              </button>
+            </p>
           </div>
         </div>
       </main>

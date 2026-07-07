@@ -107,6 +107,24 @@ export async function signInWithPassword(email, password) {
   return applyClientSession(payload?.session || null, { broadcast: true });
 }
 
+export async function signUpWithPassword(email, password) {
+  const payload = await requestAuthBridge("signup", {
+    method: "POST",
+    body: JSON.stringify({
+      email: String(email || "").trim(),
+      password: String(password || ""),
+    }),
+  });
+
+  // If email confirmation is required, there's no session yet
+  if (payload?.session) {
+    return applyClientSession(payload.session, { broadcast: true });
+  }
+
+  // Return the message (e.g., "Check your email...") for the UI
+  return { message: payload?.message || "Account created." };
+}
+
 export async function startGoogleSignIn(nextPath) {
   if (!supabase) {
     throw new Error("Supabase is not configured.");
