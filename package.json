@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --use-system-ca ./node_modules/vite/bin/vite.js",
-    "build": "node scripts/build.mjs && node scripts/copy-html.mjs && node scripts/scan-client-secrets.mjs",
+    "build": "node scripts/build.mjs && node scripts/copy-html.mjs && node scripts/build-css.mjs && node scripts/scan-client-secrets.mjs",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
