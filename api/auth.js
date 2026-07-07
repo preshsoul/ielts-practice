@@ -229,12 +229,13 @@ export default async function handler(req, res) {
 
       const { data, error } = await supabase.auth.exchangeCodeForSession(code);
       if (error || !data?.session) {
-        res.setHeader("Set-Cookie", setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
+        // Clear nonce cookie on failure
+        res.setHeader("Set-Cookie", setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
         return res.status(401).send("Unable to complete sign in. Please try again.");
       }
 
-      setAuthCookies(res, data.session);
+      // Set all cookies in a SINGLE array — Node.js setHeader replaces, doesn't append
       res.setHeader("Set-Cookie", [
         setCookie(REFRESH_COOKIE, data.session.refresh_token, { maxAge: COOKIE_MAX_AGE }),
         clearCookie(ACCESS_COOKIE),
