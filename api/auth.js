@@ -8,6 +8,30 @@
 
 import { createClient } from "@supabase/supabase-js";
 
+/* ── Timeout + Retry ───────────────────────────────────── */
+// Free-tier Supabase shares CPU and can time out under load.
+// Each call gets 5s timeout + 2 retries with backoff so Vercel's
+// 10s function limit isn't wasted on hanging connections.
+
+const SB_TIMEOUT = 5000;
+const SB_RETRIES = 2;
+
+async function sbCall(fn, label) {
+  let last;
+  for (let i = 0; i <= SB_RETRIES; i++) {
+    try {
+      return await Promise.race([
+        fn(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error(`${label} timed out`)), SB_TIMEOUT)),
+      ]);
+    } catch (e) {
+      last = e;
+      if (i < SB_RETRIES) await new Promise((r) => setTimeout(r, 400 * Math.pow(2, i)));
+    }
+  }
+  throw last;
+}
+
 // Single-cookie auth model — Vercel's runtime merges multiple
 // Set-Cookie headers into one, so we keep exactly ONE cookie.
 const REFRESH_COOKIE = "loci-sb-refresh-token";
@@ -89,12 +113,16 @@ function createSupabase() {
 async function verifySession(supabase, accessToken, refreshToken) {
   if (!accessToken && !refreshToken) return null;
   if (accessToken) {
-    const { data, error } = await supabase.auth.getUser(accessToken);
-    if (!error && data?.user) return { access_token: accessToken, refresh_token: refreshToken || null, user: data.user };
+    try {
+      const { data, error } = await sbCall(() => supabase.auth.getUser(accessToken), "getUser");
+      if (!error && data?.user) return { access_token: accessToken, refresh_token: refreshToken || null, user: data.user };
+    } catch { /* fall through to refresh */ }
   }
   if (refreshToken) {
-    const { data, error } = await supabase.auth.refreshSession({ refresh_token: refreshToken });
-    if (!error && data?.session) return data.session;
+    try {
+      const { data, error } = await sbCall(() => supabase.auth.refreshSession({ refresh_token: refreshToken }), "refreshSession");
+      if (!error && data?.session) return data.session;
+    } catch { /* return null below */ }
   }
   return null;
 }
@@ -219,7 +247,7 @@ export default async function handler(req, res) {
       const password = String(body.password || "");
       if (!email || !password) return res.status(400).json({ error: "Email and password are required." });
 
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await sbCall(() => supabase.auth.signInWithPassword({ email, password }), "signIn");
       if (error || !data?.session) return res.status(401).json({ error: "Invalid email or password." });
 
       setAuthCookie(res, data.session);
@@ -252,7 +280,7 @@ export default async function handler(req, res) {
       if (!email || !isEmail(email)) return res.status(400).json({ error: "Enter a valid email address." });
       if (password.length < 8) return res.status(400).json({ error: "Password must be at least 8 characters." });
 
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await sbCall(() => supabase.auth.signUp({ email, password }), "signUp");
       if (error) {
         const msg = error.message || "Could not create account.";
         return res.status(400).json({ error: msg.includes("already registered") ? "An account with this email already exists." : msg });
@@ -301,7 +329,7 @@ export default async function handler(req, res) {
         return res.status(400).send("Invalid sign-in state. Please try again.");
       }
 
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data, error } = await sbCall(() => supabase.auth.exchangeCodeForSession(code), "exchangeCode");
       if (error || !data?.session) {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
         clearAuthCookie(res);
