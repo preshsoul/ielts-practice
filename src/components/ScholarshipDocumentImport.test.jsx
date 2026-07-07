@@ -127,7 +127,7 @@ describe("ScholarshipDocumentImport", () => {
     const fileInput = view.container.querySelector('input[type="file"]');
     const notesInput = view.container.querySelector("textarea");
     const button = view.container.querySelector("button.primary-btn");
-    const file = new File(["resume"], "resume.pdf", { type: "application/pdf" });
+    const file = new File(["resume"], "resume.docx", { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
 
     await selectFile(fileInput, file);
     await change(notesInput, "Master's application CV");
@@ -137,9 +137,9 @@ describe("ScholarshipDocumentImport", () => {
     expect(onImport).toHaveBeenCalledWith({
       intake: {
         label: "Master's application CV",
-        sourceFilename: "resume.pdf",
-        mimeType: "application/pdf",
-        documentType: "pdf",
+        sourceFilename: "resume.docx",
+        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        documentType: "docx",
         rawTextHash: "hash-123",
         extractedExcerpt: "Preview text",
         extractedText: "",
