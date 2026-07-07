@@ -8,10 +8,8 @@
 export function inferDocumentType(file) {
   const name = (file?.name || "").toLowerCase();
   const mime = (file?.type || "").toLowerCase();
-  if (mime.includes("pdf") || name.endsWith(".pdf")) return "pdf";
+  // Only DOCX/Word files are accepted — PDF parsing is not supported in this release.
   if (mime.includes("word") || name.endsWith(".docx")) return "docx";
   if (name.endsWith(".doc")) return "doc";
-  if (mime.includes("rtf") || name.endsWith(".rtf")) return "rtf";
-  if (mime.startsWith("text/") || name.endsWith(".txt") || name.endsWith(".md") || name.endsWith(".csv")) return "text";
   return "unknown";
 }

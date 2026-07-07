@@ -1,10 +1,10 @@
 import * as Sentry from "@sentry/react";
 
-const dsn = import.meta.env.VITE_SENTRY_DSN;
-const environment = import.meta.env.VITE_SENTRY_ENVIRONMENT || import.meta.env.MODE || "local";
-const tracesSampleRate = Number(import.meta.env.VITE_SENTRY_TRACES_SAMPLE_RATE || 0);
-const replaySessionSampleRate = Number(import.meta.env.VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE || 0);
-const replayOnErrorSampleRate = Number(import.meta.env.VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE || 0);
+const dsn = import.meta?.env?.VITE_SENTRY_DSN;
+const environment = import.meta?.env?.VITE_SENTRY_ENVIRONMENT || import.meta?.env?.MODE || "local";
+const tracesSampleRate = Number(import.meta?.env?.VITE_SENTRY_TRACES_SAMPLE_RATE || 0);
+const replaySessionSampleRate = Number(import.meta?.env?.VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE || 0);
+const replayOnErrorSampleRate = Number(import.meta?.env?.VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE || 0);
 
 function scrubEvent(event) {
   if (event.request?.data) {

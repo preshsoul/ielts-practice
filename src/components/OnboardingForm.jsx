@@ -472,7 +472,7 @@ function ExtractionStep({ draft, setDraft, setStep, onSkipUpload }) {
       label: (draft?.dossierNote || "").trim() || file.name,
       sourceFilename: file.name,
       mimeType: file.type || "",
-      documentType: file.name.match(/\.(pdf|docx?|txt|rtf)$/i)?.[1] || "unknown",
+      documentType: file.name.match(/\.(docx?)$/i)?.[1] || "unknown",
       rawTextHash: metadata?.source_document_hash || parserIntake?.rawTextHash || null,
       extractedExcerpt: metadata?.extracted_text_preview || parserIntake.extractedExcerpt || extractedText.slice(0, 1200),
       extractedText,
@@ -536,12 +536,12 @@ function ExtractionStep({ draft, setDraft, setStep, onSkipUpload }) {
           <label className="loci-upload-zone" style={{ opacity: isReading ? 0.4 : 1, transition: "opacity 0.3s" }}>
             <input
               type="file"
-              accept=".pdf,.doc,.docx,.txt,.rtf,.md"
+              accept=".doc,.docx"
               onChange={(event) => handleFile(event.target.files?.[0] || null)}
               disabled={isReading}
             />
             <strong>{uploadSucceeded ? "Dossier on file" : isReading ? "Reading document..." : "Drop Intelligence Dossier"}</strong>
-            <span>{uploadSucceeded ? draft?.dossier?.sourceFilename || "File received" : "PDF, DOCX, RTF, TXT, or profile notes under 5MB"}</span>
+            <span>{uploadSucceeded ? draft?.dossier?.sourceFilename || "File received" : "Microsoft Word documents only (.docx), under 5MB"}</span>
             <b>{uploadSucceeded ? "✓ Received" : isReading ? "Parsing" : "Select File"}</b>
           </label>
 

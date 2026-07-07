@@ -72,7 +72,7 @@ export default function ScholarshipDocumentImport({
       <div style={{ display: "grid", gap: 10 }}>
         <input
           type="file"
-          accept=".pdf,.doc,.docx,.txt,.rtf"
+          accept=".doc,.docx"
           onChange={(e) => {
             const file = e.target.files?.[0] || null;
             setSelectedFile(file);
