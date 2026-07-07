@@ -58,5 +58,7 @@ await build({
     "import.meta.env.VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE": JSON.stringify(sentryReplaySessionRate),
     "import.meta.env.VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE": JSON.stringify(sentryReplayErrorRate),
     "process.env.NODE_ENV": JSON.stringify(mode),
+    "process.env.REACT_APP_VERCEL_OBSERVABILITY_BASEPATH": '""',
+    "process.env.REACT_APP_VERCEL_OBSERVABILITY_CLIENT_CONFIG": '""',
   },
 });
