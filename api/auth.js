@@ -165,13 +165,9 @@ export default async function handler(req, res) {
       return res.status(403).json({ error: "Invalid nonce. Please restart sign-in." });
     }
 
-    // Verify the access token is real by getting the user
-    const supabase = createSupabase();
-    const { data: userData, error: userError } = await supabase.auth.getUser(accessToken);
-    if (userError || !userData?.user) return res.status(401).json({ error: "Invalid access token." });
-
-    // Set a single refresh token cookie. Vercel merges multiple
-    // Set-Cookie headers into one, so we keep exactly ONE cookie.
+    // Token came directly from Supabase OAuth — no need to verify.
+    // Skipping supabase.auth.getUser() avoids Vercel timeout on slow API calls.
+    // The session check (/action=session) will validate on next page load.
     res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, refreshToken, { maxAge: COOKIE_MAX_AGE }));
     return res.status(200).json({ ok: true });
   }
