@@ -8,8 +8,9 @@
 
 import { createClient } from "@supabase/supabase-js";
 
-const ACCESS_COOKIE = "loci-sb-access-token";
-const REFRESH_COOKIE = "__Host-loci-refresh-token";
+// Single-cookie auth model — Vercel's runtime merges multiple
+// Set-Cookie headers into one, so we keep exactly ONE cookie.
+const REFRESH_COOKIE = "loci-sb-refresh-token";
 const OAUTH_NONCE_COOKIE = "loci-oauth-nonce";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
@@ -63,19 +64,12 @@ function clearCookie(name) {
   return setCookie(name, "", { maxAge: 0 });
 }
 
-function setAuthCookies(res, session) {
-  res.setHeader("Set-Cookie", [
-    setCookie(REFRESH_COOKIE, session.refresh_token, { maxAge: COOKIE_MAX_AGE }),
-    clearCookie(ACCESS_COOKIE),
-  ]);
+function setAuthCookie(res, session) {
+  res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, session.refresh_token, { maxAge: COOKIE_MAX_AGE }));
 }
 
-function clearAllCookies(res) {
-  res.setHeader("Set-Cookie", [
-    clearCookie(ACCESS_COOKIE),
-    clearCookie(REFRESH_COOKIE),
-    setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }),
-  ]);
+function clearAuthCookie(res) {
+  res.setHeader("Set-Cookie", clearCookie(REFRESH_COOKIE));
 }
 
 function createSupabase() {
@@ -173,13 +167,10 @@ export default async function handler(req, res) {
     const { data: userData, error: userError } = await supabase.auth.getUser(accessToken);
     if (userError || !userData?.user) return res.status(401).json({ error: "Invalid access token." });
 
-    // Set cookies and return
-    res.setHeader("Set-Cookie", [
-      setCookie(REFRESH_COOKIE, refreshToken, { maxAge: COOKIE_MAX_AGE }),
-      setCookie(ACCESS_COOKIE, accessToken, { maxAge: 3600 }),
-      setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }),
-    ]);
-    return res.status(200).json({ ok: true, user: userData.user });
+    // Set a single refresh token cookie. Vercel merges multiple
+    // Set-Cookie headers into one, so we keep exactly ONE cookie.
+    res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, refreshToken, { maxAge: COOKIE_MAX_AGE }));
+    return res.status(200).json({ ok: true });
   }
 
   /* ── Session / Login / Callback / Logout ───────────── */
@@ -191,12 +182,12 @@ export default async function handler(req, res) {
     /* ── Session ──────────────────────────────────── */
 
     if (action === "session") {
-      const session = await verifySession(supabase, cookies[ACCESS_COOKIE] || "", cookies[REFRESH_COOKIE] || "");
+      const session = await verifySession(supabase, "", cookies[REFRESH_COOKIE] || "");
       if (!session) {
-        clearAllCookies(res);
+        clearAuthCookie(res);
         return res.status(200).json({ session: null, user: null });
       }
-      if (session.refresh_token) setAuthCookies(res, session);
+      if (session.refresh_token) setAuthCookie(res, session);
       return res.status(200).json({
         session: {
           access_token: session.access_token,
@@ -228,7 +219,7 @@ export default async function handler(req, res) {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error || !data?.session) return res.status(401).json({ error: "Invalid email or password." });
 
-      setAuthCookies(res, data.session);
+      setAuthCookie(res, data.session);
       return res.status(200).json({
         session: {
           access_token: data.session.access_token,
@@ -257,7 +248,7 @@ export default async function handler(req, res) {
       const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
       if (!uuidRe.test(cbNonce) || cbNonce !== cookieNonce) {
-        clearAllCookies(res);
+        clearAuthCookie(res);
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
         return res.status(400).send("Invalid sign-in state. Please try again.");
       }
@@ -265,17 +256,12 @@ export default async function handler(req, res) {
       const { data, error } = await supabase.auth.exchangeCodeForSession(code);
       if (error || !data?.session) {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
-        // Clear nonce cookie on failure
-        res.setHeader("Set-Cookie", setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
+        clearAuthCookie(res);
         return res.status(401).send("Unable to complete sign in. Please try again.");
       }
 
-      // Set all cookies in a SINGLE array — Node.js setHeader replaces, doesn't append
-      res.setHeader("Set-Cookie", [
-        setCookie(REFRESH_COOKIE, data.session.refresh_token, { maxAge: COOKIE_MAX_AGE }),
-        clearCookie(ACCESS_COOKIE),
-        setCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }),
-      ]);
+      // Single Set-Cookie header — Vercel merges multiples into one
+      res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, data.session.refresh_token, { maxAge: COOKIE_MAX_AGE }));
       res.setHeader("Location", next);
       return res.status(302).end();
     }
@@ -284,7 +270,7 @@ export default async function handler(req, res) {
 
     if (action === "logout") {
       if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-      clearAllCookies(res);
+      clearAuthCookie(res);
       return res.status(200).json({ ok: true });
     }
 
