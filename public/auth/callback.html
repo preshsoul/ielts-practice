@@ -4,32 +4,45 @@
   <meta charset="utf-8" />
   <title>Signing in…</title>
   <style>
-    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f172a; color: #fff; font-family: system-ui, sans-serif; }
-    .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spin 0.8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:#0f172a; color:#fff; font-family:system-ui,sans-serif; }
+    .spinner { width:40px; height:40px; border:3px solid rgba(255,255,255,0.2); border-top-color:#38bdf8; border-radius:50%; animation:spin .8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .log { font-size:12px; color:#94a3b8; margin-top:12px; max-width:400px; word-break:break-all; }
   </style>
 </head>
 <body>
   <div style="text-align:center">
     <div class="spinner" style="margin:0 auto 16px"></div>
-    <p>Completing sign-in…</p>
+    <p id="status">Completing sign-in…</p>
+    <div id="log" class="log"></div>
   </div>
 <script>
 (async () => {
-  const hash = window.location.hash.slice(1); // remove leading #
-  const params = new URLSearchParams(hash);
+  const log = document.getElementById("log");
+  const status = document.getElementById("status");
+  function say(msg) { log.innerHTML += msg + "<br>"; }
 
+  const hash = window.location.hash.slice(1);
+  say("hash length: " + hash.length);
+
+  const params = new URLSearchParams(hash);
   const accessToken = params.get("access_token");
   const refreshToken = params.get("refresh_token");
   const expiresIn = params.get("expires_in");
-  const nonce = new URL(window.location).searchParams.get("nonce");
+  const nonce = new URL(window.location).searchParams.get("nonce") || "";
   const next = new URL(window.location).searchParams.get("next") || "/";
 
+  say("access_token: " + (accessToken ? "present (" + accessToken.slice(0,20) + "...)" : "MISSING"));
+  say("refresh_token: " + (refreshToken ? "present (" + refreshToken.slice(0,10) + "...)" : "MISSING"));
+  say("nonce: " + (nonce || "MISSING"));
+
   if (!accessToken || !refreshToken) {
-    document.body.innerHTML = '<div style="text-align:center"><p style="color:#ef4444">Sign-in failed — no tokens received.</p><a href="/" style="color:#38bdf8">Go back</a></div>';
+    status.textContent = "Sign-in failed — no tokens in URL hash.";
+    status.style.color = "#ef4444";
     return;
   }
 
+  status.textContent = "Exchanging tokens…";
   try {
     const res = await fetch("/api/auth?action=exchange", {
       method: "POST",
@@ -37,15 +50,23 @@
       body: JSON.stringify({ access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn, nonce }),
     });
 
+    say("exchange status: " + res.status);
+
     if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.error || "Token exchange failed");
+      let errText = "";
+      try { const j = await res.json(); errText = j.error || JSON.stringify(j); } catch { errText = await res.text(); }
+      throw new Error("Exchange failed (" + res.status + "): " + errText);
     }
 
-    // Redirect to the app — cookies are now set
+    const data = await res.json();
+    say("exchange ok, user: " + (data.user?.email || "no email"));
+
+    status.textContent = "Signed in! Redirecting…";
     window.location.replace(next);
   } catch (e) {
-    document.body.innerHTML = '<div style="text-align:center"><p style="color:#ef4444">Sign-in failed: ' + e.message + '</p><a href="/" style="color:#38bdf8">Go back</a></div>';
+    status.textContent = "Exchange error";
+    status.style.color = "#ef4444";
+    say("ERROR: " + e.message);
   }
 })();
 </script>
