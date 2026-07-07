@@ -95,14 +95,17 @@ async function verifySession(supabase, accessToken, refreshToken) {
   return null;
 }
 
-function readBody(req) {
+// Vercel's @vercel/node runtime auto-parses JSON bodies into req.body.
+// Manual stream reading can hang if the runtime already consumed it.
+async function readBody(req) {
+  if (req.body && typeof req.body === "object") return req.body;
+  // Fallback: manually read stream (with safety check)
   return new Promise((resolve) => {
-    if (req.body && typeof req.body === "object") return resolve(req.body);
     let raw = "";
-    req.on("data", (chunk) => { raw += chunk; });
-    req.on("end", () => {
-      try { resolve(JSON.parse(raw)); } catch { resolve(null); }
-    });
+    const timeout = setTimeout(() => { resolve(null); }, 5000); // 5s safety
+    req.on("data", (c) => { raw += c; });
+    req.on("end", () => { clearTimeout(timeout); try { resolve(JSON.parse(raw)); } catch { resolve(null); } });
+    req.on("error", () => { clearTimeout(timeout); resolve(null); });
   });
 }
 
