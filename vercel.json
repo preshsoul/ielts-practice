@@ -1,6 +1,12 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/auth.js": {
+      "maxDuration": 30,
+      "includeFiles": "node_modules/@supabase/supabase-js/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "node --use-system-ca ./node_modules/vite/bin/vite.js",
     "build": "node scripts/build.mjs && node scripts/copy-html.mjs && node scripts/build-css.mjs && node scripts/scan-client-secrets.mjs",

@@ -1,31 +1,35 @@
 /**
  * Vercel Serverless Function — Auth Bridge
  *
- * Handles /api/auth?action=session|login|callback|logout
+ * Handles /api/auth?action=session|login|callback|logout|health
  * Proxies Supabase Auth operations server-side so tokens stay in
  * HttpOnly cookies (no localStorage exposure).
- *
- * Deployed automatically by Vercel from the /api directory.
  */
 
 import { createClient } from "@supabase/supabase-js";
 
-/* ── Config ──────────────────────────────────────────────── */
-
-const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "";
-const SUPABASE_ANON_KEY =
-  process.env.SUPABASE_ANON_KEY ||
-  process.env.SUPABASE_PUBLISHABLE_KEY ||
-  process.env.VITE_SUPABASE_ANON_KEY ||
-  "";
-
+// Cookie constants (not env-dependent)
 const ACCESS_COOKIE = "loci-sb-access-token";
 const REFRESH_COOKIE = "__Host-loci-refresh-token";
 const OAUTH_NONCE_COOKIE = "loci-oauth-nonce";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
-const IS_PROD = /^prod/i.test(process.env.VERCEL_ENV || process.env.NODE_ENV || "");
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
 /* ── Helpers ─────────────────────────────────────────────── */
+
+function isProd() {
+  return /^prod/i.test(process.env.VERCEL_ENV || process.env.NODE_ENV || "");
+}
+
+function getSupabaseConfig() {
+  return {
+    url: process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "",
+    anonKey:
+      process.env.SUPABASE_ANON_KEY ||
+      process.env.SUPABASE_PUBLISHABLE_KEY ||
+      process.env.VITE_SUPABASE_ANON_KEY ||
+      "",
+  };
+}
 
 function safeNextPath(value) {
   const next = String(value || "/").trim();
@@ -53,7 +57,7 @@ function serializeCookie(name, value, opts = {}) {
     maxAge,
     httpOnly = true,
     sameSite = "Lax",
-    secure = IS_PROD || String(name).startsWith("__Host-"),
+    secure = isProd() || String(name).startsWith("__Host-"),
     path = "/",
   } = opts;
   const parts = [`${encodeURIComponent(name)}=${encodeURIComponent(value ?? "")}`];
@@ -83,18 +87,25 @@ function clearAuthCookies(headers) {
   headers.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
 }
 
-function json(data, status = 200, extraHeaders = {}) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...extraHeaders },
-  });
+/**
+ * Build a Response from a Headers object, preserving multiple Set-Cookie.
+ * Vercel's runtime supports Headers.getSetCookie() for multi-cookie responses.
+ */
+function buildResponse(body, status, headers) {
+  return new Response(body, { status, headers });
+}
+
+function jsonResponse(data, status, headers) {
+  headers.set("Content-Type", "application/json; charset=utf-8");
+  return buildResponse(JSON.stringify(data), status, headers);
 }
 
 function createSupabaseClient() {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    throw new Error("Supabase is not configured.");
+  const config = getSupabaseConfig();
+  if (!config.url || !config.anonKey) {
+    throw new Error("Supabase is not configured. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in Vercel environment variables.");
   }
-  return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  return createClient(config.url, config.anonKey, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
 }
@@ -117,33 +128,62 @@ async function getVerifiedSession(supabase, accessToken, refreshToken) {
   return null;
 }
 
-/* ── CORS ────────────────────────────────────────────────── */
-
 function corsHeaders(request) {
   const origin = request.headers.get("origin") || "";
-  const allowed = !origin || origin === new URL(request.url).origin;
-  return allowed
-    ? {
-        "Access-Control-Allow-Origin": origin || "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      }
-    : {};
+  let allowedOrigin = "";
+  try {
+    const requestUrl = new URL(request.url);
+    allowedOrigin = !origin || origin === requestUrl.origin ? origin || "*" : "";
+  } catch {
+    // If URL parsing fails, allow no origin
+  }
+  const h = new Headers();
+  if (allowedOrigin) {
+    h.set("Access-Control-Allow-Origin", allowedOrigin);
+    h.set("Access-Control-Allow-Credentials", "true");
+  }
+  h.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  h.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  return h;
 }
 
 /* ── Handler ─────────────────────────────────────────────── */
 
 export default async function handler(request) {
-  const cors = corsHeaders(request);
+  const headers = corsHeaders(request);
 
   // Preflight
   if (request.method === "OPTIONS") {
-    return new Response(null, { status: 204, headers: cors });
+    return buildResponse(null, 204, headers);
   }
 
-  const url = new URL(request.url);
+  let url;
+  try {
+    url = new URL(request.url);
+  } catch {
+    return jsonResponse({ error: "Invalid request URL" }, 400, headers);
+  }
+
   const action = url.searchParams.get("action") || "session";
+
+  /* ── Health check ───────────────────────────────────── */
+
+  if (action === "health") {
+    try {
+      const config = getSupabaseConfig();
+      return jsonResponse({
+        ok: true,
+        supabase: {
+          configured: Boolean(config.url && config.anonKey),
+          urlPrefix: config.url ? config.url.slice(0, 30) + "..." : "not set",
+        },
+        production: isProd(),
+        region: process.env.VERCEL_REGION || "unknown",
+      }, 200, headers);
+    } catch (e) {
+      return jsonResponse({ ok: false, error: e.message }, 500, headers);
+    }
+  }
 
   try {
     const supabase = createSupabaseClient();
@@ -159,14 +199,14 @@ export default async function handler(request) {
       );
 
       if (!session) {
-        const headers = new Headers(cors);
-        clearAuthCookies(headers);
-        return json({ session: null, user: null }, 200, Object.fromEntries(headers));
+        const h = new Headers(headers);
+        clearAuthCookies(h);
+        return jsonResponse({ session: null, user: null }, 200, h);
       }
 
-      const headers = new Headers(cors);
-      if (session.refresh_token) setAuthCookies(headers, session);
-      return json(
+      const h = new Headers(headers);
+      if (session.refresh_token) setAuthCookies(h, session);
+      return jsonResponse(
         {
           session: {
             access_token: session.access_token,
@@ -177,42 +217,52 @@ export default async function handler(request) {
           },
         },
         200,
-        Object.fromEntries(headers),
+        h,
       );
     }
 
     /* ── Login ────────────────────────────────────────── */
 
     if (action === "login") {
-      if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, cors);
+      if (request.method !== "POST") {
+        return jsonResponse({ error: "Method not allowed" }, 405, headers);
+      }
 
-      const origin = request.headers.get("origin") || "";
-      if (origin && origin !== new URL(request.url).origin) {
-        return json({ error: "Origin mismatch" }, 403, cors);
+      let origin;
+      try {
+        origin = request.headers.get("origin") || "";
+      } catch { origin = ""; }
+
+      if (origin) {
+        try {
+          if (origin !== new URL(request.url).origin) {
+            return jsonResponse({ error: "Origin mismatch" }, 403, headers);
+          }
+        } catch { /* proceed */ }
       }
 
       let body;
       try {
         body = await request.json();
       } catch {
-        return json({ error: "Invalid JSON body" }, 400, cors);
+        return jsonResponse({ error: "Invalid JSON body" }, 400, headers);
       }
 
       const email = String(body.email || "").trim().toLowerCase();
       const password = String(body.password || "");
 
       if (!email || !password) {
-        return json({ error: "Email and password are required." }, 400, cors);
+        return jsonResponse({ error: "Email and password are required." }, 400, headers);
       }
 
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error || !data?.session) {
-        return json({ error: "Invalid email or password." }, 401, cors);
+        return jsonResponse({ error: "Invalid email or password." }, 401, headers);
       }
 
-      const headers = new Headers(cors);
-      setAuthCookies(headers, data.session);
-      return json(
+      const h = new Headers(headers);
+      setAuthCookies(h, data.session);
+      return jsonResponse(
         {
           session: {
             access_token: data.session.access_token,
@@ -223,7 +273,7 @@ export default async function handler(request) {
           },
         },
         200,
-        Object.fromEntries(headers),
+        h,
       );
     }
 
@@ -234,56 +284,52 @@ export default async function handler(request) {
       const next = safeNextPath(url.searchParams.get("next"));
 
       if (!code) {
-        return new Response("Missing authorization code.", {
-          status: 400,
-          headers: { ...cors, "Content-Type": "text/plain; charset=utf-8" },
-        });
+        const h = new Headers(headers);
+        h.set("Content-Type", "text/plain; charset=utf-8");
+        return buildResponse("Missing authorization code.", 400, h);
       }
 
-      // Validate OAuth nonce to prevent CSRF
       const callbackNonce = String(url.searchParams.get("nonce") || "").trim();
       const cookieNonce = String(cookies[OAUTH_NONCE_COOKIE] || "").trim();
       const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
       if (!uuidRe.test(callbackNonce) || callbackNonce !== cookieNonce) {
-        const headers = new Headers(cors);
-        headers.set("Content-Type", "text/plain; charset=utf-8");
-        clearAuthCookies(headers);
-        return new Response("Invalid sign-in state. Please try again.", { status: 400, headers: Object.fromEntries(headers) });
+        const h = new Headers(headers);
+        h.set("Content-Type", "text/plain; charset=utf-8");
+        clearAuthCookies(h);
+        return buildResponse("Invalid sign-in state. Please try again.", 400, h);
       }
 
       const { data, error } = await supabase.auth.exchangeCodeForSession(code);
       if (error || !data?.session) {
-        const headers = new Headers(cors);
-        headers.set("Content-Type", "text/plain; charset=utf-8");
-        headers.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
-        return new Response("Unable to complete sign in. Please try again.", {
-          status: 401,
-          headers: Object.fromEntries(headers),
-        });
+        const h = new Headers(headers);
+        h.set("Content-Type", "text/plain; charset=utf-8");
+        h.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
+        return buildResponse("Unable to complete sign in. Please try again.", 401, h);
       }
 
-      const headers = new Headers(cors);
-      headers.set("Location", next);
-      setAuthCookies(headers, data.session);
-      headers.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
-      return new Response(null, { status: 302, headers: Object.fromEntries(headers) });
+      const h = new Headers(headers);
+      h.set("Location", next);
+      setAuthCookies(h, data.session);
+      h.append("Set-Cookie", serializeCookie(OAUTH_NONCE_COOKIE, "", { maxAge: 0 }));
+      return buildResponse(null, 302, h);
     }
 
     /* ── Logout ───────────────────────────────────────── */
 
     if (action === "logout") {
-      if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, cors);
-
-      const headers = new Headers(cors);
-      clearAuthCookies(headers);
-      return json({ ok: true }, 200, Object.fromEntries(headers));
+      if (request.method !== "POST") {
+        return jsonResponse({ error: "Method not allowed" }, 405, headers);
+      }
+      const h = new Headers(headers);
+      clearAuthCookies(h);
+      return jsonResponse({ ok: true }, 200, h);
     }
 
-    return json({ error: "Not found" }, 404, cors);
+    return jsonResponse({ error: "Not found" }, 404, headers);
   } catch (error) {
     const message = error?.message || "Auth bridge failed";
     const status = /required|invalid|unexpected|must be/i.test(message) ? 400 : 500;
-    return json({ error: message }, status, cors);
+    return jsonResponse({ error: message }, status, headers);
   }
 }
