@@ -107,12 +107,13 @@ export async function signInWithPassword(email, password) {
   return applyClientSession(payload?.session || null, { broadcast: true });
 }
 
-export async function signUpWithPassword(email, password) {
+export async function signUpWithPassword(email, password, name) {
   const payload = await requestAuthBridge("signup", {
     method: "POST",
     body: JSON.stringify({
       email: String(email || "").trim(),
       password: String(password || ""),
+      name: String(name || "").trim(),
     }),
   });
 
@@ -125,6 +126,14 @@ export async function signUpWithPassword(email, password) {
   return { message: payload?.message || "Account created." };
 }
 
+export async function requestPasswordReset(email) {
+  const payload = await requestAuthBridge("reset-password", {
+    method: "POST",
+    body: JSON.stringify({ email: String(email || "").trim() }),
+  });
+  return { message: payload?.message || "If an account with that email exists, a reset link has been sent." };
+}
+
 export async function startGoogleSignIn(nextPath) {
   if (!supabase) {
     throw new Error("Supabase is not configured.");
@@ -132,24 +141,38 @@ export async function startGoogleSignIn(nextPath) {
 
   const nonce = generateOauthNonce();
   setClientCookie(OAUTH_NONCE_COOKIE, nonce, OAUTH_NONCE_MAX_AGE);
-  // OAuth tokens arrive in the URL hash — we need a client-side page to extract them.
-  // The callback.html page reads tokens from the hash, calls /api/auth?action=exchange
-  // to set HttpOnly cookies, then redirects to the app.
+
+  // The callback.html page handles two OAuth flows:
+  //   1. PKCE:  reads ?code=... from query params, exchanges via Supabase token endpoint,
+  //             then POSTs tokens to /api/auth?action=exchange to set HttpOnly cookies.
+  //   2. Implicit: reads #access_token=... from the hash fragment,
+  //                POSTs to /api/auth?action=exchange to set HttpOnly cookies.
+  // Either way, callback.html redirects to the app afterwards.
   const callbackUrl = new URL("/auth/callback.html", window.location.origin);
   callbackUrl.searchParams.set("next", getRedirectPath(nextPath));
   callbackUrl.searchParams.set("nonce", nonce);
   const redirectTo = callbackUrl.toString();
 
   try {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo,
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
       },
     });
 
     if (error) {
       throw error;
+    }
+
+    // Fallback: if the browser didn't auto-redirect (unlikely in v2, but
+    // possible in newer versions), manually navigate to the provider URL.
+    if (data?.url) {
+      window.location.href = data.url;
     }
   } catch (error) {
     clearClientCookie(OAUTH_NONCE_COOKIE);

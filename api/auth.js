@@ -7,6 +7,7 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
+import { createHash } from "node:crypto";
 
 /* ── Timeout + Retry ───────────────────────────────────── */
 // Free-tier Supabase shares CPU and can time out under load.
@@ -32,17 +33,90 @@ async function sbCall(fn, label) {
   throw last;
 }
 
-// Single-cookie auth model — Vercel's runtime merges multiple
-// Set-Cookie headers into one, so we keep exactly ONE cookie.
-const REFRESH_COOKIE = "loci-sb-refresh-token";
-const OAUTH_NONCE_COOKIE = "loci-oauth-nonce";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
+/* ── Rate Limiter (in-memory) ──────────────────────────── */
+// Vercel serverless functions are short-lived, so an in-memory
+// Map is sufficient. Each action has its own window + max count.
+
+const rateStore = new Map();
+
+const RATE_LIMITS = {
+  login:     { max: 8,   windowMs: 10 * 60_000 },  //  8 per 10 min
+  signup:    { max: 5,   windowMs: 10 * 60_000 },  //  5 per 10 min
+  exchange:  { max: 10,  windowMs: 10 * 60_000 },  // 10 per 10 min
+  session:   { max: 120, windowMs: 60_000     },  // 120 per min
+  "reset-password": { max: 3, windowMs: 10 * 60_000 },  //  3 per 10 min
+};
+
+function getClientIp(req) {
+  return String(
+    req.headers["cf-connecting-ip"] ||
+    req.headers["x-real-ip"] ||
+    (req.headers["x-forwarded-for"] || "").split(",")[0] ||
+    req.socket?.remoteAddress ||
+    "127.0.0.1"
+  ).trim();
+}
+
+function hashKey(raw) {
+  return createHash("sha256").update(raw).digest("hex");
+}
+
+function checkRateLimit(action, req) {
+  const limit = RATE_LIMITS[action];
+  if (!limit) return null; // no limit configured
+
+  const ip = getClientIp(req);
+  const key = hashKey(`${action}:${ip}`);
+  const now = Date.now();
+
+  let entry = rateStore.get(key);
+  if (!entry || now > entry.windowEnd) {
+    entry = { count: 1, windowEnd: now + limit.windowMs };
+    rateStore.set(key, entry);
+  } else {
+    entry.count += 1;
+  }
+
+  // Periodic cleanup (every ~100 requests)
+  if (Math.random() < 0.01) {
+    for (const [k, v] of rateStore) {
+      if (now > v.windowEnd) rateStore.delete(k);
+    }
+  }
+
+  if (entry.count > limit.max) {
+    const retryAfter = Math.ceil((entry.windowEnd - now) / 1000);
+    return {
+      status: 429,
+      body: {
+        ok: false,
+        error: {
+          code: "RATE_LIMITED",
+          message: "Too many requests. Please slow down and try again shortly.",
+        },
+      },
+      headers: {
+        "Retry-After": String(retryAfter),
+        "X-RateLimit-Limit": String(limit.max),
+        "X-RateLimit-Remaining": "0",
+        "X-RateLimit-Reset": String(Math.ceil(entry.windowEnd / 1000)),
+      },
+    };
+  }
+
+  return null; // allowed
+}
+
+// Cookie model — `__Host-` prefix enforces Secure, Path=/, and origin binding.
+// Access token: short-lived (1hr), SameSite=Lax for cross-page navigations.
+// Refresh token: long-lived (30d), SameSite=Strict for stronger CSRF protection.
+const ACCESS_COOKIE = "__Host-loci-access-token";
+const REFRESH_COOKIE = "__Host-loci-refresh-token";
+const OAUTH_NONCE_COOKIE = "loci-oauth-nonce"; // client-readable, not __Host-
+const ACCESS_MAX_AGE = 60 * 60;        // 1 hour
+const REFRESH_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 
 /* ── Helpers ─────────────────────────────────────────────── */
-
-function isProd() {
-  return /^prod/i.test(process.env.VERCEL_ENV || process.env.NODE_ENV || "");
-}
 
 function getConfig() {
   return {
@@ -78,7 +152,13 @@ function parseCookies(header = "") {
 }
 
 function setCookie(name, value, opts = {}) {
-  const { maxAge, httpOnly = true, sameSite = "Lax", secure = isProd() || String(name).startsWith("__Host-"), path = "/" } = opts;
+  const {
+    maxAge,
+    httpOnly = true,
+    sameSite = String(name).startsWith("__Host-") ? "Strict" : "Lax",
+    secure = String(name).startsWith("__Host-") || opts.useSecure === true,
+    path = "/",
+  } = opts;
   const parts = [`${encodeURIComponent(name)}=${encodeURIComponent(value ?? "")}`];
   if (typeof maxAge === "number") parts.push(`Max-Age=${Math.max(0, Math.trunc(maxAge))}`);
   parts.push(`Path=${path}`);
@@ -92,12 +172,23 @@ function clearCookie(name) {
   return setCookie(name, "", { maxAge: 0 });
 }
 
-function setAuthCookie(res, session) {
-  res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, session.refresh_token, { maxAge: COOKIE_MAX_AGE }));
+function makeCookieHeader(cookies) {
+  return cookies.join(", ");
 }
 
-function clearAuthCookie(res) {
-  res.setHeader("Set-Cookie", clearCookie(REFRESH_COOKIE));
+function setAuthCookies(res, session) {
+  const cookies = [];
+  if (session.access_token) {
+    cookies.push(setCookie(ACCESS_COOKIE, session.access_token, { maxAge: ACCESS_MAX_AGE }));
+  }
+  if (session.refresh_token) {
+    cookies.push(setCookie(REFRESH_COOKIE, session.refresh_token, { maxAge: REFRESH_MAX_AGE }));
+  }
+  if (cookies.length) res.setHeader("Set-Cookie", makeCookieHeader(cookies));
+}
+
+function clearAuthCookies(res) {
+  res.setHeader("Set-Cookie", makeCookieHeader([clearCookie(ACCESS_COOKIE), clearCookie(REFRESH_COOKIE)]));
 }
 
 function createSupabase() {
@@ -112,18 +203,28 @@ function createSupabase() {
 
 async function verifySession(supabase, accessToken, refreshToken) {
   if (!accessToken && !refreshToken) return null;
+
+  // 1. Try access token first (fast — no API call to refresh)
   if (accessToken) {
     try {
       const { data, error } = await sbCall(() => supabase.auth.getUser(accessToken), "getUser");
-      if (!error && data?.user) return { access_token: accessToken, refresh_token: refreshToken || null, user: data.user };
+      if (!error && data?.user) {
+        return { access_token: accessToken, refresh_token: refreshToken || null, user: data.user };
+      }
     } catch { /* fall through to refresh */ }
   }
+
+  // 2. Access token invalid/expired — try refresh
   if (refreshToken) {
     try {
-      const { data, error } = await sbCall(() => supabase.auth.refreshSession({ refresh_token: refreshToken }), "refreshSession");
+      const { data, error } = await sbCall(
+        () => supabase.auth.refreshSession({ refresh_token: refreshToken }),
+        "refreshSession"
+      );
       if (!error && data?.session) return data.session;
     } catch { /* return null below */ }
   }
+
   return null;
 }
 
@@ -167,6 +268,10 @@ export default async function handler(req, res) {
 
   /* ── Health ────────────────────────────────────────── */
 
+  // Parse cookies early — needed by exchange handler (which must stay
+  // outside the try block to avoid the slow supabase.auth.getUser call).
+  const cookies = parseCookies(req.headers.cookie || "");
+
   if (action === "health") {
     const c = getConfig();
     return res.status(200).json({
@@ -179,6 +284,11 @@ export default async function handler(req, res) {
   /* ── Exchange (OAuth token → HttpOnly cookies) ───── */
 
   if (action === "exchange") {
+    const rateLimit = checkRateLimit("exchange", req);
+    if (rateLimit) {
+      Object.entries(rateLimit.headers || {}).forEach(([k, v]) => res.setHeader(k, v));
+      return res.status(429).json(rateLimit.body);
+    }
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
     const body = await readBody(req);
@@ -197,10 +307,15 @@ export default async function handler(req, res) {
       return res.status(403).json({ error: "Invalid nonce. Please restart sign-in." });
     }
 
-    // Token came directly from Supabase OAuth — no need to verify.
-    // Skipping supabase.auth.getUser() avoids Vercel timeout on slow API calls.
-    // The session check (/action=session) will validate on next page load.
-    res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, refreshToken, { maxAge: COOKIE_MAX_AGE }));
+    // Store both tokens in HttpOnly cookies.
+    // The access token lets the session check skip the refresh call on next page load.
+    // Nonce cookie is cleared after successful exchange (one-time use).
+    const cookiesToSet = [
+      setCookie(ACCESS_COOKIE, accessToken, { maxAge: ACCESS_MAX_AGE }),
+      setCookie(REFRESH_COOKIE, refreshToken, { maxAge: REFRESH_MAX_AGE }),
+      clearCookie(OAUTH_NONCE_COOKIE),
+    ];
+    res.setHeader("Set-Cookie", makeCookieHeader(cookiesToSet));
     return res.status(200).json({ ok: true });
   }
 
@@ -208,17 +323,22 @@ export default async function handler(req, res) {
 
   try {
     const supabase = createSupabase();
-    const cookies = parseCookies(req.headers.cookie || "");
 
     /* ── Session ──────────────────────────────────── */
 
     if (action === "session") {
-      const session = await verifySession(supabase, "", cookies[REFRESH_COOKIE] || "");
+      // Try access token cookie first (fast path), then refresh token
+      const accessTok = cookies[ACCESS_COOKIE] || "";
+      const refreshTok = cookies[REFRESH_COOKIE] || "";
+      const session = await verifySession(supabase, accessTok, refreshTok);
       if (!session) {
-        clearAuthCookie(res);
+        clearAuthCookies(res);
         return res.status(200).json({ session: null, user: null });
       }
-      if (session.refresh_token) setAuthCookie(res, session);
+      // If we refreshed, the session has new tokens — update cookies
+      if (session.refresh_token && session.refresh_token !== refreshTok) {
+        setAuthCookies(res, session);
+      }
       return res.status(200).json({
         session: {
           access_token: session.access_token,
@@ -233,6 +353,11 @@ export default async function handler(req, res) {
     /* ── Login ────────────────────────────────────── */
 
     if (action === "login") {
+      const rateLimit = checkRateLimit("login", req);
+      if (rateLimit) {
+        Object.entries(rateLimit.headers || {}).forEach(([k, v]) => res.setHeader(k, v));
+        return res.status(429).json(rateLimit.body);
+      }
       if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
       // CSRF: verify same origin
@@ -250,7 +375,7 @@ export default async function handler(req, res) {
       const { data, error } = await sbCall(() => supabase.auth.signInWithPassword({ email, password }), "signIn");
       if (error || !data?.session) return res.status(401).json({ error: "Invalid email or password." });
 
-      setAuthCookie(res, data.session);
+      setAuthCookies(res, data.session);
       return res.status(200).json({
         session: {
           access_token: data.session.access_token,
@@ -265,6 +390,11 @@ export default async function handler(req, res) {
     /* ── Sign-up ──────────────────────────────────── */
 
     if (action === "signup") {
+      const rateLimit = checkRateLimit("signup", req);
+      if (rateLimit) {
+        Object.entries(rateLimit.headers || {}).forEach(([k, v]) => res.setHeader(k, v));
+        return res.status(429).json(rateLimit.body);
+      }
       if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
       const origin = (req.headers.origin || "").trim();
@@ -276,11 +406,23 @@ export default async function handler(req, res) {
 
       const email = String(body.email || "").trim().toLowerCase();
       const password = String(body.password || "");
+      const name = String(body.name || "").trim();
 
+      if (!name) return res.status(400).json({ error: "Full name is required." });
       if (!email || !isEmail(email)) return res.status(400).json({ error: "Enter a valid email address." });
       if (password.length < 8) return res.status(400).json({ error: "Password must be at least 8 characters." });
+      if (password.length > 128) return res.status(400).json({ error: "Password must be 128 characters or fewer." });
 
-      const { data, error } = await sbCall(() => supabase.auth.signUp({ email, password }), "signUp");
+      const { data, error } = await sbCall(
+        () => supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { full_name: name },
+          },
+        }),
+        "signUp"
+      );
       if (error) {
         const msg = error.message || "Could not create account.";
         return res.status(400).json({ error: msg.includes("already registered") ? "An account with this email already exists." : msg });
@@ -288,7 +430,7 @@ export default async function handler(req, res) {
 
       // If session is available, email confirmation is disabled — log them in immediately
       if (data?.session) {
-        setAuthCookie(res, data.session);
+        setAuthCookies(res, data.session);
         return res.status(200).json({
           session: {
             access_token: data.session.access_token,
@@ -324,7 +466,7 @@ export default async function handler(req, res) {
       const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
       if (!uuidRe.test(cbNonce) || cbNonce !== cookieNonce) {
-        clearAuthCookie(res);
+        clearAuthCookies(res);
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
         return res.status(400).send("Invalid sign-in state. Please try again.");
       }
@@ -332,21 +474,53 @@ export default async function handler(req, res) {
       const { data, error } = await sbCall(() => supabase.auth.exchangeCodeForSession(code), "exchangeCode");
       if (error || !data?.session) {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
-        clearAuthCookie(res);
+        clearAuthCookies(res);
         return res.status(401).send("Unable to complete sign in. Please try again.");
       }
 
-      // Single Set-Cookie header — Vercel merges multiples into one
-      res.setHeader("Set-Cookie", setCookie(REFRESH_COOKIE, data.session.refresh_token, { maxAge: COOKIE_MAX_AGE }));
+      // Store both tokens + clear the nonce cookie
+      res.setHeader("Set-Cookie", makeCookieHeader([
+        setCookie(ACCESS_COOKIE, data.session.access_token, { maxAge: ACCESS_MAX_AGE }),
+        setCookie(REFRESH_COOKIE, data.session.refresh_token, { maxAge: REFRESH_MAX_AGE }),
+        clearCookie(OAUTH_NONCE_COOKIE),
+      ]));
       res.setHeader("Location", next);
       return res.status(302).end();
+    }
+
+    /* ── Reset Password ──────────────────────────── */
+
+    if (action === "reset-password") {
+      const rateLimit = checkRateLimit("reset-password", req);
+      if (rateLimit) {
+        Object.entries(rateLimit.headers || {}).forEach(([k, v]) => res.setHeader(k, v));
+        return res.status(429).json(rateLimit.body);
+      }
+      if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+
+      const body = await readBody(req);
+      const email = String(body.email || "").trim().toLowerCase();
+      if (!email || !isEmail(email)) return res.status(400).json({ error: "Enter a valid email address." });
+
+      // Always return success to prevent email enumeration
+      await sbCall(
+        () => supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${proto}://${host}/auth/callback.html?next=/account`,
+        }),
+        "resetPassword"
+      ).catch(() => {});
+
+      return res.status(200).json({
+        ok: true,
+        message: "If an account with that email exists, a reset link has been sent.",
+      });
     }
 
     /* ── Logout ───────────────────────────────────── */
 
     if (action === "logout") {
       if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-      clearAuthCookie(res);
+      clearAuthCookies(res);
       return res.status(200).json({ ok: true });
     }
 

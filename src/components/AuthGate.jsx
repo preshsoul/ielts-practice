@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithPassword, signUpWithPassword, startGoogleSignIn } from "../services/authBridge.js";
+import { signInWithPassword, signUpWithPassword, startGoogleSignIn, requestPasswordReset } from "../services/authBridge.js";
 import { supabase } from "../services/supabaseClient.js";
 
 function isEmail(value) {
@@ -18,7 +18,8 @@ function Spinner() {
 
 export default function AuthGate() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState("signin"); // "signin" | "signup"
+  const [mode, setMode] = useState("signin"); // "signin" | "signup" | "reset"
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,17 +30,28 @@ export default function AuthGate() {
   const [submitted, setSubmitted] = useState(false);
 
   const isSignUp = mode === "signup";
+  const isReset = mode === "reset";
 
   const validation = {
+    name: isSignUp && !name.trim() ? "Enter your full name." : "",
     email: !email.trim() || !isEmail(email) ? "Enter a valid email address." : "",
-    password: !password ? "Enter your password." : "",
+    password: !isReset
+      ? !password
+        ? "Enter your password."
+        : isSignUp && password.length < 8
+          ? "Password must be at least 8 characters."
+          : isSignUp && password.length > 128
+            ? "Password must be 128 characters or fewer."
+            : ""
+      : "",
     confirm: isSignUp && password !== confirmPassword ? "Passwords do not match." : "",
   };
 
   const showError = (field) => submitted || touched[field];
 
-  const switchMode = () => {
-    setMode(isSignUp ? "signin" : "signup");
+  const switchMode = (nextMode) => {
+    setMode(nextMode || (isSignUp ? "signin" : "signup"));
+    setName("");
     setMessage("");
     setSubmitted(false);
     setTouched({});
@@ -51,14 +63,14 @@ export default function AuthGate() {
     setSubmitted(true);
     setMessage("");
 
-    if (validation.email || validation.password || validation.confirm) {
+    if (validation.name || validation.email || validation.password || validation.confirm) {
       return;
     }
 
     setBusy(true);
     try {
       if (isSignUp) {
-        const result = await signUpWithPassword(email, password);
+        const result = await signUpWithPassword(email, password, name);
         if (result?.message) {
           // Email confirmation required — show message instead of navigating
           setMessage(result.message);
@@ -71,6 +83,24 @@ export default function AuthGate() {
       }
     } catch (error) {
       setMessage(error?.message || (isSignUp ? "Could not create account." : "Invalid email or password."));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const submitResetFlow = async (event) => {
+    event.preventDefault();
+    setSubmitted(true);
+    setMessage("");
+
+    if (validation.email) return;
+
+    setBusy(true);
+    try {
+      const result = await requestPasswordReset(email);
+      setMessage(result?.message || "If an account with that email exists, a reset link has been sent.");
+    } catch (error) {
+      setMessage(error?.message || "Could not send reset link. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -124,7 +154,24 @@ export default function AuthGate() {
             </p>
           </div>
 
-          <form className="auth-form" onSubmit={submitPasswordFlow}>
+          <form className="auth-form" onSubmit={isReset ? submitResetFlow : submitPasswordFlow}>
+            {isSignUp && (
+              <label className="auth-field">
+                <span>Full name</span>
+                <input
+                  className={`auth-input${showError("name") && validation.name ? " error" : ""}`}
+                  type="text"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  onBlur={() => setTouched((current) => ({ ...current, name: true }))}
+                  placeholder="Your full name"
+                  autoComplete="name"
+                  disabled={busy}
+                />
+                <FieldError error={showError("name") ? validation.name : ""} />
+              </label>
+            )}
+
             <label className="auth-field">
               <span>Email</span>
               <input
@@ -140,69 +187,89 @@ export default function AuthGate() {
               <FieldError error={showError("email") ? validation.email : ""} />
             </label>
 
-            <label className="auth-field">
-              <span>Password{isSignUp ? " (min. 8 characters)" : ""}</span>
-              <div className={`auth-password-wrap${showError("password") && validation.password ? " error" : ""}`}>
-                <input
-                  className="auth-input auth-password-input"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  onBlur={() => setTouched((current) => ({ ...current, password: true }))}
-                  placeholder="Password"
-                  autoComplete={isSignUp ? "new-password" : "current-password"}
-                  disabled={busy}
-                />
-                <button
-                  type="button"
-                  className="auth-eye"
-                  onClick={() => setShowPassword((current) => !current)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                  disabled={busy}
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </button>
-              </div>
-              <FieldError error={showError("password") ? validation.password : ""} />
-            </label>
+            {!isReset && (
+              <>
+                <label className="auth-field">
+                  <span>Password{isSignUp ? " (min. 8 characters)" : ""}</span>
+                  <div className={`auth-password-wrap${showError("password") && validation.password ? " error" : ""}`}>
+                    <input
+                      className="auth-input auth-password-input"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      onBlur={() => setTouched((current) => ({ ...current, password: true }))}
+                      placeholder="Password"
+                      autoComplete={isSignUp ? "new-password" : "current-password"}
+                      disabled={busy}
+                    />
+                    <button
+                      type="button"
+                      className="auth-eye"
+                      onClick={() => setShowPassword((current) => !current)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                      disabled={busy}
+                    >
+                      {showPassword ? "Hide" : "Show"}
+                    </button>
+                  </div>
+                  <FieldError error={showError("password") ? validation.password : ""} />
+                </label>
 
-            {isSignUp && (
-              <label className="auth-field">
-                <span>Confirm password</span>
-                <div className={`auth-password-wrap${showError("confirm") && validation.confirm ? " error" : ""}`}>
-                  <input
-                    className="auth-input auth-password-input"
-                    type={showPassword ? "text" : "password"}
-                    value={confirmPassword}
-                    onChange={(event) => setConfirmPassword(event.target.value)}
-                    onBlur={() => setTouched((current) => ({ ...current, confirm: true }))}
-                    placeholder="Re-enter password"
-                    autoComplete="new-password"
-                    disabled={busy}
-                  />
-                </div>
-                <FieldError error={showError("confirm") ? validation.confirm : ""} />
-              </label>
+                {isSignUp && (
+                  <label className="auth-field">
+                    <span>Confirm password</span>
+                    <div className={`auth-password-wrap${showError("confirm") && validation.confirm ? " error" : ""}`}>
+                      <input
+                        className="auth-input auth-password-input"
+                        type={showPassword ? "text" : "password"}
+                        value={confirmPassword}
+                        onChange={(event) => setConfirmPassword(event.target.value)}
+                        onBlur={() => setTouched((current) => ({ ...current, confirm: true }))}
+                        placeholder="Re-enter password"
+                        autoComplete="new-password"
+                        disabled={busy}
+                      />
+                    </div>
+                    <FieldError error={showError("confirm") ? validation.confirm : ""} />
+                  </label>
+                )}
+              </>
             )}
 
             <button className="auth-primary" type="submit" disabled={busy}>
               {busy ? <Spinner /> : null}
-              <span>{isSignUp ? "Create account" : "Sign in"}</span>
+              <span>{isSignUp ? "Create account" : isReset ? "Send reset link" : "Sign in"}</span>
             </button>
 
-            {message && <div className={`auth-banner${message.startsWith("Account created") ? " success" : ""}`}>{message}</div>}
+            {message && <div className={`auth-banner${message.startsWith("Account created") || message.startsWith("If an account") ? " success" : ""}`}>{message}</div>}
           </form>
 
           <div className="auth-footer">
             <button type="button" className="auth-secondary-link" onClick={sendGoogleSignIn} disabled={busy || !supabase}>
               Continue with Google
             </button>
-            <p className="auth-mode-toggle">
-              {isSignUp ? "Already have an account?" : "No account yet?"}{" "}
-              <button type="button" onClick={switchMode} disabled={busy}>
-                {isSignUp ? "Sign in" : "Create one"}
-              </button>
-            </p>
+            {!isReset && (
+              <p className="auth-mode-toggle">
+                {isSignUp ? "Already have an account?" : "No account yet?"}{" "}
+                <button type="button" onClick={() => switchMode()} disabled={busy}>
+                  {isSignUp ? "Sign in" : "Create one"}
+                </button>
+              </p>
+            )}
+            {!isSignUp && !isReset && (
+              <p className="auth-mode-toggle">
+                <button type="button" onClick={() => switchMode("reset")} disabled={busy} className="auth-text-link">
+                  Forgot your password?
+                </button>
+              </p>
+            )}
+            {isReset && (
+              <p className="auth-mode-toggle">
+                <button type="button" onClick={() => switchMode("signin")} disabled={busy}>
+                  Back to sign in
+                </button>
+              </p>
+            )}
           </div>
         </div>
       </main>

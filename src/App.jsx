@@ -93,7 +93,8 @@ export default function App() {
   // Old unscoped keys are checked during migration, then scoped keys take over.
   const [onboardingGateDismissed, setOnboardingGateDismissed] = useState(() => {
     if (typeof window === "undefined") return false;
-    // Legacy unscoped check (gradually phased out as users migrate)
+    // Check legacy unscoped keys first (phased out as users migrate)
+    // New saves also write user-scoped keys: loci:user:<id>:onboardingSkipped/Completed
     try {
       if (window.sessionStorage.getItem("loci.onboardingSkipped") === "true") return true;
       if (window.sessionStorage.getItem("loci.onboardingCompleted") === "true") return true;
@@ -194,6 +195,12 @@ export default function App() {
         await handleCvImport({ intake: onboardingResolutionDraft.extraction.intake });
       }
       if (typeof window !== "undefined") {
+        const userId = authUser?.id || profile?.id;
+        // Scoped key (per-user) — prevents cross-user sessionStorage leakage
+        if (userId) {
+          window.sessionStorage.setItem(`loci:user:${userId}:onboardingCompleted`, "true");
+        }
+        // Legacy unscoped key — for backward compatibility during migration
         window.sessionStorage.removeItem("loci.onboardingSkipped");
         window.sessionStorage.setItem("loci.onboardingCompleted", "true");
       }
@@ -215,7 +222,11 @@ export default function App() {
   const onboardingStatus = useMemo(() => getOnboardingStatus(profile || onboardingDraft), [profile, onboardingDraft]);
   const skipOnboardingEntry = () => {
     if (typeof window !== "undefined") {
-      window.sessionStorage.setItem("loci.onboardingSkipped", "true");
+      const userId = authUser?.id || profile?.id;
+      if (userId) {
+        window.sessionStorage.setItem(`loci:user:${userId}:onboardingSkipped`, "true");
+      }
+      window.sessionStorage.setItem("loci.onboardingSkipped", "true"); // legacy unscoped
     }
     setOnboardingGateDismissed(true);
     navigate("/", { replace: true });

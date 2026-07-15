@@ -102,21 +102,33 @@ export async function ensureProfile(user) {
 
   const emailHash = user.email ? await hashText(user.email.toLowerCase()) : null;
 
+  // Check if profile already exists — only set display_name on first creation
+  const { data: existing } = await supabase
+    .from("profiles")
+    .select("id, display_name")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const displayName = existing?.display_name
+    ? null // preserve existing name
+    : cleanText(
+        user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          user.email?.split("@")?.[0] ||
+          null,
+        { maxLength: 120 }
+      ) || null;
+
   const profile = {
     id: user.id,
-    display_name: cleanText(
-      user.user_metadata?.full_name ||
-        user.user_metadata?.name ||
-        user.email?.split("@")?.[0] ||
-        null,
-      { maxLength: 120 }
-    ) || null,
+    ...(displayName ? { display_name: displayName } : {}),
     email_hash: emailHash,
     is_anonymous: false,
     last_seen_at: new Date().toISOString(),
   };
 
   // The database trigger owns profile bootstrap; this upsert only repairs drift and refreshes last_seen_at.
+  // If the profile already exists with a display_name, we preserve it (only update last_seen_at).
   const { data, error } = await supabase
     .from("profiles")
     .upsert(profile, { onConflict: "id", ignoreDuplicates: false })
