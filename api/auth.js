@@ -107,11 +107,10 @@ function checkRateLimit(action, req) {
   return null; // allowed
 }
 
-// Cookie model — `__Host-` prefix enforces Secure, Path=/, and origin binding.
-// Access token: short-lived (1hr), SameSite=Lax for cross-page navigations.
-// Refresh token: long-lived (30d), SameSite=Strict for stronger CSRF protection.
-const ACCESS_COOKIE = "__Host-loci-access-token";
-const REFRESH_COOKIE = "__Host-loci-refresh-token";
+// Cookie model — `__Host-` prefix on HTTPS (enforces Secure + origin binding).
+// Falls back to unprefixed names on HTTP dev (browsers reject __Host- without HTTPS).
+function accessCookieName(isHttps) { return isHttps ? "__Host-loci-access-token" : "loci-sb-access-token"; }
+function refreshCookieName(isHttps) { return isHttps ? "__Host-loci-refresh-token" : "loci-sb-refresh-token"; }
 const OAUTH_NONCE_COOKIE = "loci-oauth-nonce"; // client-readable, not __Host-
 const ACCESS_MAX_AGE = 60 * 60;        // 1 hour
 const REFRESH_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
@@ -152,11 +151,13 @@ function parseCookies(header = "") {
 }
 
 function setCookie(name, value, opts = {}) {
+  const isHttps = opts.isHttps === true;
+  const isHostPrefixed = String(name).startsWith("__Host-");
   const {
     maxAge,
     httpOnly = true,
-    sameSite = String(name).startsWith("__Host-") ? "Strict" : "Lax",
-    secure = String(name).startsWith("__Host-") || opts.useSecure === true,
+    sameSite = isHostPrefixed ? "Strict" : "Lax",
+    secure = isHttps || isHostPrefixed,
     path = "/",
   } = opts;
   const parts = [`${encodeURIComponent(name)}=${encodeURIComponent(value ?? "")}`];
@@ -168,27 +169,36 @@ function setCookie(name, value, opts = {}) {
   return parts.join("; ");
 }
 
-function clearCookie(name) {
-  return setCookie(name, "", { maxAge: 0 });
+function clearCookie(name, opts = {}) {
+  return setCookie(name, "", { ...opts, maxAge: 0 });
 }
 
 function makeCookieHeader(cookies) {
   return cookies.join(", ");
 }
 
-function setAuthCookies(res, session) {
+function setAuthCookies(res, session, opts = {}) {
+  const isHttps = opts.isHttps === true;
+  const accessName = accessCookieName(isHttps);
+  const refreshName = refreshCookieName(isHttps);
   const cookies = [];
   if (session.access_token) {
-    cookies.push(setCookie(ACCESS_COOKIE, session.access_token, { maxAge: ACCESS_MAX_AGE }));
+    cookies.push(setCookie(accessName, session.access_token, { maxAge: ACCESS_MAX_AGE, isHttps }));
   }
   if (session.refresh_token) {
-    cookies.push(setCookie(REFRESH_COOKIE, session.refresh_token, { maxAge: REFRESH_MAX_AGE }));
+    cookies.push(setCookie(refreshName, session.refresh_token, { maxAge: REFRESH_MAX_AGE, isHttps }));
   }
   if (cookies.length) res.setHeader("Set-Cookie", makeCookieHeader(cookies));
 }
 
-function clearAuthCookies(res) {
-  res.setHeader("Set-Cookie", makeCookieHeader([clearCookie(ACCESS_COOKIE), clearCookie(REFRESH_COOKIE)]));
+function clearAuthCookies(res, opts = {}) {
+  const isHttps = opts.isHttps === true;
+  const accessName = accessCookieName(isHttps);
+  const refreshName = refreshCookieName(isHttps);
+  res.setHeader("Set-Cookie", makeCookieHeader([
+    clearCookie(accessName, { isHttps }),
+    clearCookie(refreshName, { isHttps }),
+  ]));
 }
 
 function createSupabase() {
@@ -263,6 +273,7 @@ export default async function handler(req, res) {
 
   const proto = req.headers["x-forwarded-proto"] || "https";
   const host = req.headers.host || "localhost";
+  const isHttps = proto.startsWith("https");
   const url = new URL(req.url, `${proto}://${host}`);
   const action = url.searchParams.get("action") || "session";
 
@@ -311,9 +322,9 @@ export default async function handler(req, res) {
     // The access token lets the session check skip the refresh call on next page load.
     // Nonce cookie is cleared after successful exchange (one-time use).
     const cookiesToSet = [
-      setCookie(ACCESS_COOKIE, accessToken, { maxAge: ACCESS_MAX_AGE }),
-      setCookie(REFRESH_COOKIE, refreshToken, { maxAge: REFRESH_MAX_AGE }),
-      clearCookie(OAUTH_NONCE_COOKIE),
+      setCookie(accessCookieName(isHttps), accessToken, { maxAge: ACCESS_MAX_AGE, isHttps }),
+      setCookie(refreshCookieName(isHttps), refreshToken, { maxAge: REFRESH_MAX_AGE, isHttps }),
+      clearCookie(OAUTH_NONCE_COOKIE, { isHttps }),
     ];
     res.setHeader("Set-Cookie", makeCookieHeader(cookiesToSet));
     return res.status(200).json({ ok: true });
@@ -328,16 +339,18 @@ export default async function handler(req, res) {
 
     if (action === "session") {
       // Try access token cookie first (fast path), then refresh token
-      const accessTok = cookies[ACCESS_COOKIE] || "";
-      const refreshTok = cookies[REFRESH_COOKIE] || "";
+      const accessName = accessCookieName(isHttps);
+      const refreshName = refreshCookieName(isHttps);
+      const accessTok = cookies[accessName] || "";
+      const refreshTok = cookies[refreshName] || "";
       const session = await verifySession(supabase, accessTok, refreshTok);
       if (!session) {
-        clearAuthCookies(res);
+        clearAuthCookies(res, { isHttps });
         return res.status(200).json({ session: null, user: null });
       }
       // If we refreshed, the session has new tokens — update cookies
       if (session.refresh_token && session.refresh_token !== refreshTok) {
-        setAuthCookies(res, session);
+        setAuthCookies(res, session, { isHttps });
       }
       return res.status(200).json({
         session: {
@@ -375,7 +388,7 @@ export default async function handler(req, res) {
       const { data, error } = await sbCall(() => supabase.auth.signInWithPassword({ email, password }), "signIn");
       if (error || !data?.session) return res.status(401).json({ error: "Invalid email or password." });
 
-      setAuthCookies(res, data.session);
+      setAuthCookies(res, data.session, { isHttps });
       return res.status(200).json({
         session: {
           access_token: data.session.access_token,
@@ -430,7 +443,7 @@ export default async function handler(req, res) {
 
       // If session is available, email confirmation is disabled — log them in immediately
       if (data?.session) {
-        setAuthCookies(res, data.session);
+        setAuthCookies(res, data.session, { isHttps });
         return res.status(200).json({
           session: {
             access_token: data.session.access_token,
@@ -466,7 +479,7 @@ export default async function handler(req, res) {
       const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
       if (!uuidRe.test(cbNonce) || cbNonce !== cookieNonce) {
-        clearAuthCookies(res);
+        clearAuthCookies(res, { isHttps });
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
         return res.status(400).send("Invalid sign-in state. Please try again.");
       }
@@ -474,15 +487,15 @@ export default async function handler(req, res) {
       const { data, error } = await sbCall(() => supabase.auth.exchangeCodeForSession(code), "exchangeCode");
       if (error || !data?.session) {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
-        clearAuthCookies(res);
+        clearAuthCookies(res, { isHttps });
         return res.status(401).send("Unable to complete sign in. Please try again.");
       }
 
       // Store both tokens + clear the nonce cookie
       res.setHeader("Set-Cookie", makeCookieHeader([
-        setCookie(ACCESS_COOKIE, data.session.access_token, { maxAge: ACCESS_MAX_AGE }),
-        setCookie(REFRESH_COOKIE, data.session.refresh_token, { maxAge: REFRESH_MAX_AGE }),
-        clearCookie(OAUTH_NONCE_COOKIE),
+        setCookie(accessCookieName(isHttps), data.session.access_token, { maxAge: ACCESS_MAX_AGE, isHttps }),
+        setCookie(refreshCookieName(isHttps), data.session.refresh_token, { maxAge: REFRESH_MAX_AGE, isHttps }),
+        clearCookie(OAUTH_NONCE_COOKIE, { isHttps }),
       ]));
       res.setHeader("Location", next);
       return res.status(302).end();
@@ -520,7 +533,7 @@ export default async function handler(req, res) {
 
     if (action === "logout") {
       if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-      clearAuthCookies(res);
+      clearAuthCookies(res, { isHttps });
       return res.status(200).json({ ok: true });
     }
 
