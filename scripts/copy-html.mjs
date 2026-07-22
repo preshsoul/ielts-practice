@@ -33,15 +33,22 @@ async function main() {
     VITE_APP_OWNER: env.VITE_APP_OWNER || '',
   };
 
+  // Root-relative (not "./assets/...") — deep routes like /auth/callback are
+  // served this same index.html via the SPA catch-all rewrite. A relative
+  // path resolves against the *current* URL, so from /auth/callback the
+  // browser would request /auth/assets/index.js instead of /assets/index.js.
+  // Vercel's rewrite matches that too and returns index.html's HTML body
+  // with a text/html content type, which the browser rejects as a module
+  // script — so the app never loads at all on any nested route.
   let html = await readFile(path.join(root, 'index.html'), 'utf8');
-  html = html.replace('<script type="module" src="/src/index.jsx"></script>', '<script type="module" src="./assets/index.js"></script>');
-  html = html.replace('<script src="/runtime-env.js"></script>', '<script src="./runtime-env.js"></script>');
+  html = html.replace('<script type="module" src="/src/index.jsx"></script>', '<script type="module" src="/assets/index.js"></script>');
+  html = html.replace('<script src="/runtime-env.js"></script>', '<script src="/runtime-env.js"></script>');
   for (const [key, value] of Object.entries(publicEnv)) {
     html = html.replaceAll(`%${key}%`, value);
   }
 
   if (await exists(cssPath)) {
-    html = html.replace('</head>', '    <link rel="stylesheet" href="./assets/index.css" />\n  </head>');
+    html = html.replace('</head>', '    <link rel="stylesheet" href="/assets/index.css" />\n  </head>');
   }
 
   await writeFile(path.join(distDir, 'index.html'), html, 'utf8');
@@ -54,11 +61,6 @@ async function main() {
     await writeFile(runtimeEnvPath, runtimeEnv, 'utf8');
   }
   await cp(path.join(root, 'public', 'data'), path.join(distDir, 'data'), { recursive: true });
-  // OAuth callback page (reads hash fragments, exchanges for HttpOnly cookies)
-  const authDir = path.join(root, 'public', 'auth');
-  if (await exists(authDir)) {
-    await cp(authDir, path.join(distDir, 'auth'), { recursive: true });
-  }
   // Static files served at root
   for (const file of ['robots.txt', 'sitemap.xml']) {
     const src = path.join(root, 'public', file);
