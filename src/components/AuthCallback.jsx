@@ -26,18 +26,28 @@ export default function AuthCallback() {
     }
 
     let cancelled = false;
-    const next = safeNext(new URLSearchParams(window.location.search).get("next"));
+    const params = new URLSearchParams(window.location.search);
+    const next = safeNext(params.get("next"));
+    const code = params.get("code");
+    const oauthError = params.get("error_description") || params.get("error");
 
     (async () => {
       try {
-        // exchangeCodeForSession reads the ?code= from the URL,
-        // retrieves the PKCE verifier from localStorage, and
-        // exchanges them for a session — all handled by the SDK.
+        if (oauthError) {
+          throw new Error(oauthError);
+        }
+        if (!code) {
+          throw new Error("No authorization code was returned by the sign-in provider.");
+        }
+
+        // exchangeCodeForSession takes the raw auth code — NOT the query
+        // string or full URL. Passing "?code=xyz" (the query string) sends
+        // Supabase a code it never issued, which it correctly rejects as
+        // "invalid flow state, no valid flow state found" since no stored
+        // PKCE flow matches that malformed value.
         // Wrapped in try/catch because this call is documented to
         // sometimes throw instead of returning { error } (auth-js #782).
-        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(
-          window.location.search
-        );
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
         if (cancelled) return;
 
