@@ -41,6 +41,7 @@ import { getErrorMessage, logAppError } from "./lib/appErrors.js";
 import { C, EXAMS, EXAM_COLOR, DIFF_LABEL, DIFF_COLOR } from "./lib/tokens.js";
 
 const AuthGate = lazy(() => import("./components/AuthGate.jsx"));
+const AuthCallback = lazy(() => import("./components/AuthCallback.jsx"));
 const OnboardingForm = lazy(() => import("./components/OnboardingForm.jsx"));
 const DashboardHome = lazy(() => import("./features/intelligence/DashboardHome.jsx"));
 const ReadinessPage = lazy(() => import("./features/intelligence/ReadinessPage.jsx"));
@@ -297,6 +298,16 @@ export default function App() {
       Loading the next screen…
     </div>
   );
+
+  // OAuth callback — must render before the auth gate so the SDK
+  // can exchange the PKCE code for a session. No auth check needed.
+  if (location.pathname === "/auth/callback") {
+    return (
+      <Suspense fallback={routeFallback}>
+        <AuthCallback />
+      </Suspense>
+    );
+  }
 
   if (!loaded || !authReady) return routeFallback;
 

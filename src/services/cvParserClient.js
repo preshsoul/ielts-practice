@@ -1,5 +1,11 @@
-import { getCvExtractorUrl, getSupabaseAccessToken, getSupabaseFunctionsUrl, supabase } from "./supabaseClient.js";
+import { getCvExtractorUrl, getSupabaseFunctionsUrl, supabase } from "./supabaseClient.js";
 import api from "./api.js";
+
+async function requireAccessToken() {
+  if (!supabase) return null;
+  const { data } = await supabase.auth.getSession();
+  return data?.session?.access_token || null;
+}
 
 function trimTrailingParserSegments(base) {
   return String(base || "")
@@ -49,7 +55,7 @@ function normalizeFunctionError(error, fallbackMessage) {
 }
 
 async function invokeCvParser(path, { method = "POST", body } = {}) {
-  const accessToken = getSupabaseAccessToken();
+  const accessToken = await requireAccessToken();
 
   if (!accessToken) {
     throw new Error("You need to sign in again before using the CV parser.");
@@ -73,7 +79,7 @@ async function invokeCvParser(path, { method = "POST", body } = {}) {
 }
 
 async function invokeCvParserUpload(path, formData) {
-  const accessToken = getSupabaseAccessToken();
+  const accessToken = await requireAccessToken();
 
   if (!accessToken) {
     throw new Error("You need to sign in again before using the CV parser.");

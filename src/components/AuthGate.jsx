@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithPassword, signUpWithPassword, startGoogleSignIn, requestPasswordReset } from "../services/authBridge.js";
-import { supabase } from "../services/supabaseClient.js";
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
@@ -107,15 +106,10 @@ export default function AuthGate() {
   };
 
   const sendGoogleSignIn = async () => {
-    if (!supabase) {
-      setMessage("Supabase is not configured yet.");
-      return;
-    }
-
     setBusy(true);
     setMessage("");
     try {
-      await startGoogleSignIn(window.location.pathname + window.location.search + window.location.hash);
+      await startGoogleSignIn();
     } catch (error) {
       const nextMessage = error?.message || "Google sign-in is unavailable right now.";
       if (nextMessage.includes("provider is not enabled") || nextMessage.includes("Unsupported provider")) {
@@ -245,7 +239,7 @@ export default function AuthGate() {
           </form>
 
           <div className="auth-footer">
-            <button type="button" className="auth-secondary-link" onClick={sendGoogleSignIn} disabled={busy || !supabase}>
+            <button type="button" className="auth-secondary-link" onClick={sendGoogleSignIn} disabled={busy}>
               Continue with Google
             </button>
             {!isReset && (

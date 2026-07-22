@@ -1,190 +1,89 @@
-import { configureSupabaseSession, supabase } from "./supabaseClient.js";
+import { supabase } from "./supabaseClient.js";
 
-const AUTH_BRIDGE_PATH = "/api/auth";
-const OAUTH_NONCE_COOKIE = "loci-oauth-nonce";
-const OAUTH_NONCE_MAX_AGE = 10 * 60;
-
-function buildBridgeUrl(action, params = {}) {
-  const url = new URL(AUTH_BRIDGE_PATH, window.location.origin);
-  url.searchParams.set("action", action);
-  for (const [key, value] of Object.entries(params)) {
-    if (value === undefined || value === null || value === "") continue;
-    url.searchParams.set(key, String(value));
-  }
-  return url;
-}
-
-async function requestAuthBridge(action, { method = "GET", body, signal } = {}) {
-  const response = await fetch(buildBridgeUrl(action), {
-    method,
-    credentials: "include",
-    cache: "no-store",
-    headers: body ? { "Content-Type": "application/json" } : undefined,
-    body,
-    signal,
-  });
-
-  if (!response.ok) {
-    let message = "Authentication request failed.";
-    try {
-      const payload = await response.json();
-      if (payload?.error) message = String(payload.error);
-    } catch {
-      try {
-        const text = await response.text();
-        if (text) message = text;
-      } catch {
-        // Ignore parse failures and keep the generic message.
-      }
-    }
-    throw new Error(message);
-  }
-
-  return response.json();
-}
-
-function broadcastSession(session) {
-  if (typeof window === "undefined") return;
-  window.dispatchEvent(
-    new CustomEvent("loci-auth-session", {
-      detail: session ? { session } : { session: null },
-    })
-  );
-}
-
-function applyClientSession(session, { broadcast = false } = {}) {
-  configureSupabaseSession(session?.access_token || null);
-  if (broadcast) {
-    broadcastSession(session || null);
-  }
-  return session || null;
-}
-
-function getRedirectPath(nextPath = window.location.pathname + window.location.search + window.location.hash) {
-  const value = String(nextPath || "/").trim();
-  if (!value.startsWith("/") || value.startsWith("//") || value.includes("://")) {
-    return "/";
-  }
-  return value;
-}
-
-function generateOauthNonce() {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-    return crypto.randomUUID();
-  }
-  const bytes = typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function"
-    ? crypto.getRandomValues(new Uint8Array(16))
-    : Array.from({ length: 16 }, () => Math.floor(Math.random() * 256));
-  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
-}
-
-function setClientCookie(name, value, maxAgeSeconds) {
-  if (typeof document === "undefined") return;
-  const secure = window.location.protocol === "https:" ? "; Secure" : "";
-  document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; Path=/; Max-Age=${Math.max(0, Math.trunc(maxAgeSeconds))}; SameSite=Lax${secure}`;
-}
-
-function clearClientCookie(name) {
-  if (typeof document === "undefined") return;
-  const secure = window.location.protocol === "https:" ? "; Secure" : "";
-  document.cookie = `${encodeURIComponent(name)}=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
-}
-
-export async function bootstrapAuthSession(signal) {
-  const payload = await requestAuthBridge("session", { signal });
-  return applyClientSession(payload?.session || null);
-}
+/**
+ * Thin wrappers around Supabase Auth — no custom bridge, no cookies, no API calls.
+ * The SDK handles session storage, PKCE exchange, token refresh, and tab sync.
+ */
 
 export async function signInWithPassword(email, password) {
-  const payload = await requestAuthBridge("login", {
-    method: "POST",
-    body: JSON.stringify({
-      email: String(email || "").trim(),
-      password: String(password || ""),
-    }),
+  if (!supabase) throw new Error("Supabase is not configured.");
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: String(email || "").trim(),
+    password: String(password || ""),
   });
 
-  return applyClientSession(payload?.session || null, { broadcast: true });
+  if (error) throw error;
+  return data.session;
 }
 
 export async function signUpWithPassword(email, password, name) {
-  const payload = await requestAuthBridge("signup", {
-    method: "POST",
-    body: JSON.stringify({
-      email: String(email || "").trim(),
-      password: String(password || ""),
-      name: String(name || "").trim(),
-    }),
+  if (!supabase) throw new Error("Supabase is not configured.");
+
+  const { data, error } = await supabase.auth.signUp({
+    email: String(email || "").trim(),
+    password: String(password || ""),
+    options: {
+      data: { full_name: String(name || "").trim() },
+    },
   });
 
-  // If email confirmation is required, there's no session yet
-  if (payload?.session) {
-    return applyClientSession(payload.session, { broadcast: true });
+  if (error) {
+    const msg = error.message || "Could not create account.";
+    if (msg.includes("already registered")) {
+      throw new Error("An account with this email already exists.");
+    }
+    throw error;
   }
 
-  // Return the message (e.g., "Check your email...") for the UI
-  return { message: payload?.message || "Account created." };
+  // If email confirmation is enabled, there's no session yet
+  if (!data.session) {
+    return { message: "Account created! Check your email for a confirmation link before signing in." };
+  }
+
+  // Session is auto-stored by the SDK
+  return data.session;
+}
+
+export async function startGoogleSignIn() {
+  if (!supabase) throw new Error("Supabase is not configured.");
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/auth/callback`,
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
+    },
+  });
+
+  if (error) throw error;
+
+  // SDK may auto-redirect; fallback manual redirect if not
+  if (data?.url) {
+    window.location.href = data.url;
+  }
 }
 
 export async function requestPasswordReset(email) {
-  const payload = await requestAuthBridge("reset-password", {
-    method: "POST",
-    body: JSON.stringify({ email: String(email || "").trim() }),
-  });
-  return { message: payload?.message || "If an account with that email exists, a reset link has been sent." };
+  if (!supabase) throw new Error("Supabase is not configured.");
+
+  const { error } = await supabase.auth.resetPasswordForEmail(
+    String(email || "").trim(),
+    { redirectTo: `${window.location.origin}/auth/callback?next=/account` }
+  );
+
+  // Always return success to prevent email enumeration
+  if (error) {
+    console.error("Password reset error:", error.message);
+  }
+
+  return { message: "If an account with that email exists, a reset link has been sent." };
 }
 
-export async function startGoogleSignIn(nextPath) {
-  if (!supabase) {
-    throw new Error("Supabase is not configured.");
-  }
-
-  const nonce = generateOauthNonce();
-  setClientCookie(OAUTH_NONCE_COOKIE, nonce, OAUTH_NONCE_MAX_AGE);
-
-  // The callback.html page handles two OAuth flows:
-  //   1. PKCE:  reads ?code=... from query params, exchanges via Supabase token endpoint,
-  //             then POSTs tokens to /api/auth?action=exchange to set HttpOnly cookies.
-  //   2. Implicit: reads #access_token=... from the hash fragment,
-  //                POSTs to /api/auth?action=exchange to set HttpOnly cookies.
-  // Either way, callback.html redirects to the app afterwards.
-  const callbackUrl = new URL("/auth/callback.html", window.location.origin);
-  callbackUrl.searchParams.set("next", getRedirectPath(nextPath));
-  callbackUrl.searchParams.set("nonce", nonce);
-  const redirectTo = callbackUrl.toString();
-
-  try {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo,
-        queryParams: {
-          access_type: "offline",
-          prompt: "consent",
-        },
-      },
-    });
-
-    if (error) {
-      throw error;
-    }
-
-    // Fallback: if the browser didn't auto-redirect (unlikely in v2, but
-    // possible in newer versions), manually navigate to the provider URL.
-    if (data?.url) {
-      window.location.href = data.url;
-    }
-  } catch (error) {
-    clearClientCookie(OAUTH_NONCE_COOKIE);
-    throw error;
-  }
-}
-
-export async function signOutThroughBridge() {
-  try {
-    await requestAuthBridge("logout", { method: "POST" });
-  } finally {
-    clearClientCookie(OAUTH_NONCE_COOKIE);
-    applyClientSession(null, { broadcast: true });
-  }
+export async function signOut() {
+  if (!supabase) return;
+  await supabase.auth.signOut();
 }

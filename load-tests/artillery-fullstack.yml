@@ -46,14 +46,6 @@ scenarios:
           headers:
             Accept: "application/json"
 
-  - name: auth-session-check
-    weight: 2
-    flow:
-      - get:
-          url: "/api/auth?action=session"
-          headers:
-            Accept: "application/json"
-
   - name: health-check
     weight: 1
     flow:

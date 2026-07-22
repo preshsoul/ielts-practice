@@ -16,7 +16,6 @@ const supabaseUrl = readPublicEnv("VITE_SUPABASE_URL");
 const supabaseAnonKey = readPublicEnv("VITE_SUPABASE_ANON_KEY");
 const supabaseFunctionsUrl = readPublicEnv("VITE_SUPABASE_FUNCTIONS_URL");
 const cvExtractorUrl = readPublicEnv("VITE_CV_EXTRACTOR_URL");
-let currentAccessToken = null;
 
 function isLocalBrowser() {
   const host = String(globalThis?.location?.hostname || "").toLowerCase();
@@ -31,7 +30,19 @@ if (!supabaseUrl || !supabaseAnonKey) {
   }
 }
 
-export let supabase = null;
+/**
+ * Single Supabase client instance.
+ * PKCE flow enabled — the standard for SPAs in 2025.
+ * Session auto-stored in localStorage, auto-refreshed, and
+ * synchronized across tabs by the Supabase SDK.
+ */
+export const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        flowType: "pkce",
+      },
+    })
+  : null;
 
 export function getSupabaseUrl() {
   return supabaseUrl;
@@ -46,41 +57,3 @@ export function getCvExtractorUrl() {
   if (isLocalBrowser()) return "http://127.0.0.1:8000";
   return "";
 }
-
-export function getSupabaseAccessToken() {
-  return currentAccessToken;
-}
-
-function createSupabaseClient(accessToken = null) {
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return null;
-  }
-
-  return createClient(supabaseUrl, supabaseAnonKey, {
-    global: accessToken
-      ? {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      : {},
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-      detectSessionInUrl: false,
-    },
-  });
-}
-
-export function configureSupabaseSession(accessToken = null) {
-  const normalizedToken = accessToken ? String(accessToken) : null;
-  if (normalizedToken === currentAccessToken && supabase) {
-    return supabase;
-  }
-
-  currentAccessToken = normalizedToken;
-  supabase = createSupabaseClient(currentAccessToken);
-  return supabase;
-}
-
-configureSupabaseSession();

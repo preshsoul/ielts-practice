@@ -2,9 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 
 vi.mock("./supabaseClient.js", () => ({
   getCvExtractorUrl: () => "http://localhost:8000",
-  getSupabaseAccessToken: () => "token",
   getSupabaseFunctionsUrl: () => "https://example.supabase.co/functions/v1",
-  supabase: {},
+  supabase: {
+    auth: {
+      getSession: () => Promise.resolve({ data: { session: { access_token: "token" } } }),
+    },
+  },
 }));
 
 vi.mock("./api.js", () => ({

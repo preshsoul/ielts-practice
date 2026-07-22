@@ -161,15 +161,15 @@ The `LOCI_` prefix namespaces the project's secrets in your OS env, preventing c
 ## 5. Authentication & Session Security
 
 ### 5.1 Token Storage
-- **Access token:** Server-side only, stored in short-lived `loci-sb-access-token` cookie (HttpOnly, SameSite=Strict, Secure in production).
-- **Refresh token:** `__Host-loci-refresh-token` cookie (HttpOnly, SameSite=Strict, Secure, `__Host-` prefix enforces origin binding).
-- **No localStorage or sessionStorage for tokens.**
+- **No custom cookie bridge.** Auth runs entirely through the Supabase JS SDK (`@supabase/supabase-js`) in the browser — no `api/auth.js` serverless proxy, no hand-rolled cookies.
+- **Session storage:** the SDK persists the session (access + refresh token) in `localStorage` under its own key and handles PKCE code-verifier storage, auto-refresh, and cross-tab sync internally. This is the standard, Supabase-recommended pattern for SPAs and is what `src/services/supabaseClient.js` and `src/services/authBridge.js` implement.
+- **Why the change:** an earlier iteration used a Vercel serverless function (`api/auth.js`) to set `HttpOnly` cookies manually. That approach hit a persistent, unrecoverable bug: Node's `res.setHeader("Set-Cookie", ...)` was called with a single comma-joined string instead of an array, so the browser only ever stored one of the two cookies (per RFC 6265, `Set-Cookie` cannot be folded) — the refresh token silently vanished on every login. Multiple attempts to patch this in place (see commit history around `api/auth.js`) kept resurfacing. The SDK-native approach removes the entire class of bug by eliminating the manual cookie bridge.
+- If a future change reintroduces a server-side cookie bridge, `Set-Cookie` **must** be set via an array (`res.setHeader("Set-Cookie", [cookieA, cookieB])`), never a joined string.
 
 ### 5.2 Session Lifecycle
-- Token refresh is server-side only (client never handles raw JWTs).
-- Proactive refresh 60 seconds before expiry.
-- Session re-verified on `visibilitychange` and `window.focus`.
-- Debounced concurrent refresh calls.
+- Session refresh, expiry, and cross-tab sync are handled entirely by the Supabase SDK (`onAuthStateChange`, `getSession()`).
+- OAuth (Google) uses the SDK's PKCE flow: `signInWithOAuth` redirects to Google, then `/auth/callback` (`src/components/AuthCallback.jsx`) calls `supabase.auth.exchangeCodeForSession()` to complete sign-in.
+- The Supabase project's **Redirect URLs** allowlist (Auth → URL Configuration) must include `https://<production-domain>/auth/callback` — otherwise Supabase silently falls back to the Site URL and drops the OAuth code, which looks like a redirect loop back to the login page.
 
 ### 5.3 CSRF Protection
 - `assertSameOrigin()` verifies `Origin` header on all POST operations.

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../services/supabaseClient.js";
-import { bootstrapAuthSession, signOutThroughBridge } from "../services/authBridge.js";
 import {
   ensureProfile,
   loadLatestCandidateProfileSnapshot,
@@ -8,7 +7,6 @@ import {
   loadPracticeSessions,
 } from "../services/supabaseData.js";
 import { mergeSessions } from "../lib/sessionTools.js";
-import securityLogger from "../services/securityLogger.js";
 import { logAppError } from "../lib/appErrors.js";
 
 function normalizeProfileRecord(record = {}) {
@@ -45,35 +43,6 @@ export function useAuthSession() {
 
   const mountedRef = useRef(false);
   const bootstrapStateRef = useRef({ loadingUserId: null, loadedUserId: null });
-  const sessionRefreshTimerRef = useRef(null);
-  const sessionRefreshPromiseRef = useRef(null);
-  const authBootstrappedRef = useRef(false);
-  const authUserRef = useRef(null);
-  const lastSessionRefreshRef = useRef(0);
-
-  useEffect(() => {
-    authUserRef.current = authUser;
-  }, [authUser]);
-
-  const clearSessionRefreshTimer = () => {
-    if (sessionRefreshTimerRef.current) {
-      window.clearTimeout(sessionRefreshTimerRef.current);
-      sessionRefreshTimerRef.current = null;
-    }
-  };
-
-  const scheduleSessionRefresh = (expiresAt) => {
-    if (typeof window === "undefined") return;
-    clearSessionRefreshTimer();
-    const expiryMs = Number(expiresAt) * 1000;
-    if (!Number.isFinite(expiryMs) || expiryMs <= 0) return;
-    const delay = Math.max(30_000, expiryMs - Date.now() - 60_000);
-    sessionRefreshTimerRef.current = window.setTimeout(() => {
-      void syncAuthSession().catch((error) => {
-        logAppError(error, { event: "SESSION_REFRESH" });
-      });
-    }, delay);
-  };
 
   const bootstrapUser = async (user) => {
     if (!user) return;
@@ -94,16 +63,13 @@ export function useAuthSession() {
         const canonicalProfile = latestCandidate?.canonical_json && typeof latestCandidate.canonical_json === "object"
           ? latestCandidate.canonical_json
           : null;
-        const candidateConfidence = latestCandidate?.confidence_json && typeof latestCandidate.confidence_json === "object"
-          ? latestCandidate.confidence_json
-          : null;
         if (canonicalProfile) {
           enrichedProfile = {
             ...profileRow,
             ...canonicalProfile,
             semanticText: latestCandidate?.semantic_text || canonicalProfile?.semanticText || null,
-            semanticKeywords: Array.isArray(candidateConfidence?.semanticKeywords)
-              ? candidateConfidence.semanticKeywords
+            semanticKeywords: Array.isArray(latestCandidate?.confidence_json?.semanticKeywords)
+              ? latestCandidate.confidence_json.semanticKeywords
               : Array.isArray(canonicalProfile?.semanticKeywords)
                 ? canonicalProfile.semanticKeywords
                 : [],
@@ -139,114 +105,47 @@ export function useAuthSession() {
     }
   };
 
-  const syncAuthSession = async () => {
-    if (sessionRefreshPromiseRef.current) return sessionRefreshPromiseRef.current;
+  useEffect(() => {
+    mountedRef.current = true;
 
-    const task = (async () => {
-      const session = await bootstrapAuthSession();
-      if (!mountedRef.current) return session;
+    if (!supabase) {
+      setAuthReady(true);
+      return;
+    }
 
+    // 1. Get initial session (may be in localStorage from previous visit)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!mountedRef.current) return;
       const user = session?.user || null;
       setAuthUser(user);
+      if (user) bootstrapUser(user);
+      setAuthReady(true);
+    }).catch(() => {
+      if (mountedRef.current) setAuthReady(true);
+    });
 
+    // 2. Subscribe to auth state changes (login, logout, token refresh, tab sync)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!mountedRef.current) return;
+      const user = session?.user || null;
+      setAuthUser(user);
       if (!user) {
         setProfile(null);
         setSessions([]);
         bootstrapStateRef.current = { loadingUserId: null, loadedUserId: null };
-        clearSessionRefreshTimer();
-        return session;
+      } else {
+        bootstrapUser(user);
       }
-
-      await bootstrapUser(user);
-      scheduleSessionRefresh(session?.expires_at || null);
-      return session;
-    })()
-      .catch((error) => {
-        logAppError(error, { event: "SESSION_CHECK" });
-        if (mountedRef.current) {
-          setAuthUser(null);
-          setProfile(null);
-          setSessions([]);
-          bootstrapStateRef.current = { loadingUserId: null, loadedUserId: null };
-          clearSessionRefreshTimer();
-          setAuthReady(true);
-          authBootstrappedRef.current = true;
-        }
-        return null;
-      })
-      .finally(() => {
-        sessionRefreshPromiseRef.current = null;
-        if (mountedRef.current && !authBootstrappedRef.current) {
-          setAuthReady(true);
-          authBootstrappedRef.current = true;
-        }
-      });
-
-    sessionRefreshPromiseRef.current = task;
-    return task;
-  };
-
-  useEffect(() => {
-    mountedRef.current = true;
-    if (!supabase) {
-      securityLogger.log("SECURITY", "AUTH_DEGRADED", { reason: "supabase_client_not_configured" });
-    }
-
-    const handleAuthSession = (event) => {
-      const session = event?.detail?.session || null;
-      if (!mountedRef.current) return;
-      if (!session?.user) {
-        securityLogger.log("SECURITY", "USER_SESSION_END", { previousUserId: authUserRef.current?.id });
-        setAuthUser(null);
-        setProfile(null);
-        setSessions([]);
-        bootstrapStateRef.current = { loadingUserId: null, loadedUserId: null };
-        clearSessionRefreshTimer();
-        setAuthReady(true);
-        authBootstrappedRef.current = true;
-        return;
-      }
-      securityLogger.logAuthSuccess(session.user.id, session.user.email);
-      setAuthUser(session.user);
-      clearSessionRefreshTimer();
-      scheduleSessionRefresh(session.expires_at || null);
-      void bootstrapUser(session.user);
-    };
-
-    const _throttledRefresh = () => {
-      const now = Date.now();
-      if (now - lastSessionRefreshRef.current < 30_000) return;
-      lastSessionRefreshRef.current = now;
-      void syncAuthSession().catch((error) => logAppError(error, { event: "SESSION_REFRESH" }));
-    };
-
-    const refreshOnVisibility = () => {
-      if (!mountedRef.current || document.hidden) return;
-      _throttledRefresh();
-    };
-
-    const refreshOnFocus = () => {
-      if (!mountedRef.current) return;
-      _throttledRefresh();
-    };
-
-    void syncAuthSession();
-    window.addEventListener("loci-auth-session", handleAuthSession);
-    document.addEventListener("visibilitychange", refreshOnVisibility);
-    window.addEventListener("focus", refreshOnFocus);
+    });
 
     return () => {
       mountedRef.current = false;
-      clearSessionRefreshTimer();
-      window.removeEventListener("loci-auth-session", handleAuthSession);
-      document.removeEventListener("visibilitychange", refreshOnVisibility);
-      window.removeEventListener("focus", refreshOnFocus);
+      subscription.unsubscribe();
     };
   }, []);
 
   const signOut = async () => {
-    securityLogger.log("SECURITY", "USER_LOGOUT", { userId: authUserRef.current?.id });
-    await signOutThroughBridge();
+    await supabase?.auth.signOut();
     setAuthUser(null);
     setProfile(null);
     setSessions([]);

@@ -1,12 +1,6 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/auth.js": {
-      "maxDuration": 30,
-      "includeFiles": "node_modules/@supabase/supabase-js/**"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
@@ -45,15 +39,6 @@
     },
     {
       "source": "/runtime-env.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, max-age=0"
-        }
-      ]
-    },
-    {
-      "source": "/auth/callback.html",
       "headers": [
         {
           "key": "Cache-Control",
