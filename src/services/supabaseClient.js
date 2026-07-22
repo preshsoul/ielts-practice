@@ -35,11 +35,19 @@ if (!supabaseUrl || !supabaseAnonKey) {
  * PKCE flow enabled — the standard for SPAs in 2025.
  * Session auto-stored in localStorage, auto-refreshed, and
  * synchronized across tabs by the Supabase SDK.
+ *
+ * detectSessionInUrl is explicitly disabled: AuthCallback.jsx is the single
+ * dedicated route that exchanges the ?code= param. Leaving this at its
+ * default (true) makes the SDK *also* auto-exchange the same one-time-use
+ * PKCE code the moment this client is constructed, racing the manual
+ * exchange in AuthCallback.jsx — whichever runs second fails (commonly
+ * "both auth code and code verifier should be non-empty").
  */
 export const supabase = supabaseUrl && supabaseAnonKey
   ? createClient(supabaseUrl, supabaseAnonKey, {
       auth: {
         flowType: "pkce",
+        detectSessionInUrl: false,
       },
     })
   : null;
