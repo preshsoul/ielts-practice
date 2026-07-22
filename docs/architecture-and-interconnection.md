@@ -16,9 +16,9 @@
 │  │  AUTH FLOW  │   │  ONBOARDING   │   │     PRACTICE ENGINE       │ │
 │  │             │   │               │   │                           │ │
 │  │ Supabase    │──▶│ CV Parser ───▶│──▶│ Reading Quiz (20 Q)       │ │
-│  │ Auth /      │   │ Edge Function │   │ Listening Prompts         │ │
-│  │ Netlify     │   │               │   │ Writing Tasks             │ │
-│  │ Bridge      │   │ Profile Save  │   │ Speaking Drills           │ │
+│  │ Auth JS SDK │   │ Edge Function │   │ Listening Prompts         │ │
+│  │ (PKCE +     │   │               │   │ Writing Tasks             │ │
+│  │ localStorage)│  │ Profile Save  │   │ Speaking Drills           │ │
 │  └─────┬───────┘   └───────┬───────┘   └─────────────┬─────────────┘ │
 │        │                   │                         │               │
 │        ▼                   ▼                         ▼               │
@@ -73,15 +73,15 @@
 ## 2. System-by-System Analysis
 
 ### 2.1 Auth Flow
-**Files:** `api/auth.js`, `netlify/functions/auth.js`, `src/server/supabaseAuthBridge.js`, `src/hooks/useAuthSession.js`
+**Files:** `src/services/supabaseClient.js`, `src/services/authBridge.js`, `src/hooks/useAuthSession.js`, `src/components/AuthGate.jsx`, `src/components/AuthCallback.jsx`
 
-**Flow:** Supabase OAuth → Netlify redirect → auth bridge function → cookie-based session → `useAuthSession` hook → profile hydration
+**Flow:** Supabase JS SDK handles everything client-side — `signInWithPassword` / `signUpWithPassword` / `signInWithOAuth` (PKCE) → session persisted in `localStorage` by the SDK → `supabase.auth.onAuthStateChange` drives `useAuthSession` → profile hydration. Google OAuth returns to `/auth/callback` (`AuthCallback.jsx`), which calls `supabase.auth.exchangeCodeForSession()`.
 
 **Connects to:** Everything — all authenticated operations depend on this.
 
-**Status:** ✅ Working (restored after accidental deletion). Both `api/auth.js` and `netlify/functions/auth.js` exist — they're redundant implementations of the same bridge.
+**Status:** ✅ Working. This replaced an earlier Vercel serverless cookie bridge (`api/auth.js`, deleted 2026-07-22) that set two `Set-Cookie` values by joining them into one comma-separated header — invalid per RFC 6265, so the browser only ever kept the first cookie and login never actually persisted a session. There is no `netlify/functions/auth.js` in this codebase and never was; an earlier version of this document described one that didn't exist. See CLAUDE.md §5.1 for the current model.
 
-**Optimization:** Pick one (recommend `netlify/functions/auth.js` since it uses the native Netlify event format). Remove the other to avoid confusion.
+**Optimization:** None outstanding — the redundant-bridge problem this section used to describe no longer applies.
 
 ### 2.2 Onboarding Flow
 **Files:** `src/components/OnboardingForm.jsx`, `src/lib/onboarding.js`, `src/lib/onboardingJourney.js`, `src/lib/onboardingResolution.js`, `src/App.jsx` (gate logic)
@@ -212,7 +212,7 @@
 | Profile → Scholarship Matcher | Eligibility fields filter/rank opportunities |
 | Practice → Band Estimator → Profile | Session scores → estimated bands → language proof |
 | Practice → Weak Section Detection | Low-accuracy sections get more questions |
-| Auth → Everything | Cookie-based session gates all authenticated routes |
+| Auth → Everything | Supabase SDK session (localStorage) gates all authenticated routes |
 
 ### Weakly Connected Systems ⚠️
 
@@ -227,7 +227,6 @@
 
 | Duplication | Recommendation |
 |-------------|---------------|
-| `api/auth.js` + `netlify/functions/auth.js` | Keep one (prefer netlify/functions/auth.js) |
 | Python backend + Edge Function parser | Python backend deprecated; remove after verification |
 | Multiple data load paths (static JSON + Supabase) | Unify on Supabase for scholarships too |
 | Two onboarding draft systems (legacyDraft + resolutionDraft) | Consolidate into single draft model |

@@ -5,14 +5,20 @@
  * Layers:
  *   1. npm audit with severity gate (blocks high/critical)
  *   2. Forbidden dependency detection (known-malicious patterns)
- *   3. Lockfile integrity check (prevents dependency confusion)
- *   4. SBOM generation (CycloneDX 1.4 JSON)
- *   5. Secret scan rerun (catches any drift since pre-commit)
- *   6. Production-only audit (strips dev deps for true surface area)
+ *   3. SBOM generation (CycloneDX 1.4 JSON)
+ *   4. Secret scan rerun (catches any drift since pre-commit)
+ *   5. Production-only audit (strips dev deps for true surface area)
+ *
+ * A whole-file lockfile-hash gate used to live here as a manual
+ * accept-to-unblock ritual. It fired on every legitimate dependency
+ * bump, not just suspicious ones, so it was pure CI friction with no
+ * detection value beyond what `lockfile-guard` in the CI workflow
+ * already does (warns when the lockfile changes without package.json
+ * changing — the actual dependency-confusion signal).
  */
 
 import { execSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -131,29 +137,7 @@ run("Forbidden dependency patterns", () => {
   return { scanned: allPkgs.size, hits: 0 };
 });
 
-// ── Layer 3: Lockfile integrity ────────────────────────────────────────
-run("Lockfile integrity check", () => {
-  const pkgLock = readFileSync(join(ROOT, "package-lock.json"), "utf8");
-  const lockHash = createHash("sha256").update(pkgLock).digest("hex");
-
-  const integrityFile = join(ROOT, ".security", "lockfile-integrity.sha256");
-  const previous = existsSync(integrityFile)
-    ? readFileSync(integrityFile, "utf8").trim()
-    : null;
-
-  if (previous && previous !== lockHash) {
-    throw new Error(
-      `Lockfile integrity mismatch. The package-lock.json has changed since last verified state.\n` +
-      `  Previous: ${previous.substring(0, 16)}...\n` +
-      `  Current:  ${lockHash.substring(0, 16)}...\n` +
-      `  Run 'node scripts/security-scan.mjs --accept' to accept the new lockfile after review.`
-    );
-  }
-
-  return { verified: !previous, hash: lockHash.substring(0, 16) };
-});
-
-// ── Layer 4: SBOM generation ───────────────────────────────────────────
+// ── Layer 3: SBOM generation ───────────────────────────────────────────
 run("SBOM generation (CycloneDX 1.4)", () => {
   const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
   const pkgLock = JSON.parse(readFileSync(join(ROOT, "package-lock.json"), "utf8"));
@@ -207,7 +191,7 @@ run("SBOM generation (CycloneDX 1.4)", () => {
   return { path: sbomPath, components: components.length };
 });
 
-// ── Layer 5: Secret scan rerun ─────────────────────────────────────────
+// ── Layer 4: Secret scan rerun ─────────────────────────────────────────
 run("Client secret scan (build-time check)", () => {
   execSync("node scripts/scan-client-secrets.mjs", {
     cwd: ROOT,
@@ -217,7 +201,7 @@ run("Client secret scan (build-time check)", () => {
   return { clean: true };
 });
 
-// ── Layer 6: Production-only surface area audit ─────────────────────────
+// ── Layer 5: Production-only surface area audit ─────────────────────────
 run("Production dependency surface area", () => {
   const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
   const prodDeps = Object.keys(pkg.dependencies || {});
@@ -261,16 +245,6 @@ if (failed.length) {
   }
 }
 console.log(`${"=".repeat(50)}\n`);
-
-// ── Handle --accept flag ───────────────────────────────────────────────
-if (process.argv.includes("--accept")) {
-  const pkgLock = readFileSync(join(ROOT, "package-lock.json"), "utf8");
-  const lockHash = createHash("sha256").update(pkgLock).digest("hex");
-  const integrityFile = join(ROOT, ".security", "lockfile-integrity.sha256");
-  mkdirSync(join(ROOT, ".security"), { recursive: true });
-  writeFileSync(integrityFile, lockHash);
-  console.log(`${PASS} Lockfile integrity hash accepted: ${lockHash.substring(0, 16)}...`);
-}
 
 if (failed.length > 0) {
   process.exit(1);
