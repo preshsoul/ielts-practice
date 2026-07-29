@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /auth/
 Disallow: /admin/
 
-Sitemap: https://loci.app/sitemap.xml
+Sitemap: https://loci-project.vercel.app/sitemap.xml

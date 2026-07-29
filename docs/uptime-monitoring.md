@@ -15,7 +15,7 @@
 
 | Monitor | URL | Check interval | Type |
 |---------|-----|---------------|------|
-| Frontend | `https://loci.app` | 5 min | HTTP(s) |
+| Frontend | `https://loci-project.vercel.app` | 5 min | HTTP(s) |
 | Python API | `https://loci-api.example.com/healthz` | 5 min | HTTP(s) |
 | Supabase REST | `https://<project>.supabase.co/rest/v1/` | 5 min | HTTP(s) — expect 401 |
 

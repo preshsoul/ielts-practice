@@ -5,7 +5,7 @@
 # Targets:
 #   Python backend: http://127.0.0.1:8000
 #   Edge Functions: https://<project>.supabase.co/functions/v1
-#   Frontend:       https://loci.app (Netlify)
+#   Frontend:       https://loci-project.vercel.app (Vercel)
 
 config:
   target: "http://127.0.0.1:8000"

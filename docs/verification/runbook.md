@@ -40,7 +40,7 @@ Expected:
 
 Notes:
 
-- set `LOCI_PRODUCTION_URL` when the primary domain changes; defaults to `https://loci.app`
+- set `LOCI_PRODUCTION_URL` when the primary domain changes; defaults to `https://loci-project.vercel.app`
 - set `LOCI_VERCEL_URL` when the Vercel project URL changes; defaults to `https://loci-project.vercel.app`
 - phase 2 performs controlled live writes for a temporary verification user, parser job, and optional profile bootstrap row, then deletes them
 - failures here usually indicate deployment drift, missing live secrets, or auth/profile bootstrap gaps

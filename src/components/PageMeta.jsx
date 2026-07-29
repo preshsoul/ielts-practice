@@ -13,7 +13,7 @@ export default function PageMeta({
 }) {
   const fullTitle = title ? `${title} — Loci` : "Loci — IELTS Practice & International Scholarship Discovery";
   const desc = description || "Master IELTS with focused practice across all four modules. Discover and match with international scholarships, graduate opportunities, and funding for study abroad.";
-  const url = path ? `https://loci.app${path}` : "https://loci.app";
+  const url = path ? `https://loci-project.vercel.app${path}` : "https://loci-project.vercel.app";
 
   return (
     <Helmet>

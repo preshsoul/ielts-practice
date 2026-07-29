@@ -3,7 +3,7 @@ import { writeReport } from "./report-writer.mjs";
 const primaryUrl = normalizeOrigin(
   process.env.LOCI_PRODUCTION_URL
     || process.env.PRODUCTION_URL
-    || "https://loci.app",
+    || "https://loci-project.vercel.app",
 );
 const vercelUrl = normalizeOrigin(
   process.env.LOCI_VERCEL_URL
