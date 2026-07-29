@@ -6,6 +6,13 @@ const execAsync = promisify(exec);
 
 const checks = [
   {
+    id: "production-deployment-smoke",
+    label: "Production domain and Vercel deployment smoke checks",
+    command: "node --use-system-ca scripts/verification/check-production-deployment.mjs",
+    safety: "read-only",
+    evidence: "production-smoke",
+  },
+  {
     id: "hosted-supabase-smoke",
     label: "Hosted Supabase auth, database, and function smoke checks",
     command: "node --use-system-ca scripts/verification/check-supabase-hosted.mjs",

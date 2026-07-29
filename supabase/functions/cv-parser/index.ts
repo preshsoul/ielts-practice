@@ -454,8 +454,12 @@ Deno.serve(async (req: Request) => {
         "LOCI_SUPABASE_ANON_KEY",
         "LOCI_SUPABASE_SERVICE_ROLE_KEY",
         "APP_ORIGIN",
-        // LLM provider API keys (one of these is required)
-        "LLM_API_KEY",
+      ],
+      anyEnvGroups: [
+        {
+          label: "CV parser provider",
+          names: ["ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY"],
+        },
       ],
     });
   }
@@ -657,7 +661,7 @@ Deno.serve(async (req: Request) => {
           message: "The CV parsing model is temporarily unavailable or returned an invalid draft.",
           code: "ERR_LLM_UNAVAILABLE",
           userAction: "Retry once. If it persists, upload a cleaner CV or switch providers.",
-          detail,
+          detail: internalDetail,
           retryable: true,
         });
 
@@ -744,7 +748,7 @@ Deno.serve(async (req: Request) => {
           message: "The CV parsing model is temporarily unavailable or returned an invalid draft.",
           code: "ERR_LLM_UNAVAILABLE",
           userAction: "Retry once. If it persists, upload a cleaner CV or switch providers.",
-          detail,
+          detail: internalDetail,
           retryable: true,
         });
 

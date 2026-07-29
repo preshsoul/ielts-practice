@@ -44,7 +44,9 @@ async function requestJson(url, { label, expectOk = true, ...options } = {}) {
     const message = json?.msg
       || json?.message
       || json?.error_description
+      || json?.error?.code
       || json?.error?.message
+      || json?.error?.detail
       || text
       || `${label || "request"} failed`;
     throw new Error(`${label || "request"} failed with ${response.status}: ${message}`);
@@ -276,6 +278,36 @@ await runCheck("function-document-intake", "Hosted document-intake function", as
   };
 });
 
+await runCheck("function-runtime-health", "Hosted function runtime health routes", async () => {
+  const slugs = [
+    "cv-parser",
+    "generate-semantic-profile",
+    "generate-embedding",
+  ];
+  const results = [];
+  for (const slug of slugs) {
+    const response = await requestJson(`${functionsBase}/${slug}/health`, {
+      label: `${slug}/health`,
+      headers: userHeaders(accessToken),
+      expectOk: false,
+    });
+    results.push({
+      slug,
+      status: response.status,
+      ok: Boolean(response.json?.ok),
+      configured: response.json?.configured ?? null,
+      missing: response.json?.missing || [],
+      anyEnv: response.json?.anyEnv || [],
+      error: response.ok && response.json?.ok ? null : response.json?.error?.message || response.text.slice(0, 200) || null,
+    });
+  }
+  const failed = results.filter((item) => item.status !== 200 || !item.ok);
+  if (failed.length) {
+    throw new Error(`Hosted runtime health failed: ${JSON.stringify(failed)}`);
+  }
+  return results;
+});
+
 await runCheck("function-generate-semantic-profile", "Hosted generate-semantic-profile function", async () => {
   const response = await requestJson(`${functionsBase}/generate-semantic-profile`, {
     label: "generate-semantic-profile",
@@ -331,7 +363,12 @@ await runCheck("function-cv-parser-parse", "Hosted cv-parser parse route", async
   parserJobId = response.json?.job_id || null;
   parserDraftId = response.json?.draft_id || null;
   if (!parserJobId) {
-    throw new Error("cv-parser/parse did not return a job id.");
+    const errorMessage = response.json?.error?.message
+      || response.json?.message
+      || response.json?.error?.detail
+      || response.text.slice(0, 500)
+      || `HTTP ${response.status}`;
+    throw new Error(`cv-parser/parse did not return a job id: ${errorMessage}`);
   }
   if (!response.ok || !response.json?.ok) {
     const errorMessage = response.json?.error?.message || response.json?.message || `HTTP ${response.status}`;

@@ -13,9 +13,13 @@ import { check, group } from "k6";
 import { Rate, Counter } from "k6/metrics";
 
 const config = JSON.parse(open("../load-tests/config.json"));
-const SUPABASE_URL = config.supabase.url;
-const ANON_KEY = config.supabase.anonKey;
-const FUNCTIONS_URL = config.supabase.functionsUrl;
+const SUPABASE_URL = __ENV.SUPABASE_URL || __ENV.VITE_SUPABASE_URL || config.supabase.url;
+const ANON_KEY = __ENV.SUPABASE_ANON_KEY || __ENV.VITE_SUPABASE_ANON_KEY || config.supabase.anonKey;
+const FUNCTIONS_URL = __ENV.SUPABASE_FUNCTIONS_URL || __ENV.VITE_SUPABASE_FUNCTIONS_URL || config.supabase.functionsUrl || `${SUPABASE_URL}/functions/v1`;
+
+if (!SUPABASE_URL || !ANON_KEY) {
+  throw new Error("Set SUPABASE_URL and SUPABASE_ANON_KEY (or VITE_ equivalents) before running load tests.");
+}
 
 const rateLimit429s = new Counter("rate_limit_429s");
 const rateLimitPasses = new Counter("rate_limit_passes");

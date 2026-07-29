@@ -7,6 +7,14 @@ npm install -g artillery
 
 ## Test Suites
 
+Set the Supabase target through environment variables before running hosted load tests:
+
+```bash
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_FUNCTIONS_URL=https://your-project.supabase.co/functions/v1
+```
+
 ### Backend (Python CV Extractor)
 ```bash
 # Requires Python backend running on :8000
@@ -24,8 +32,7 @@ npx artillery run load-tests/artillery-fullstack.yml
 ### Production (Edge Functions)
 ```bash
 # Tests against deployed Supabase Edge Functions
-# Replace URL with your Supabase project URL
-npx artillery run load-tests/artillery-edge.yml --target https://bnttvgrqyxxhsdmpvkfz.supabase.co
+npx artillery run load-tests/artillery-edge.yml --target "$SUPABASE_URL"
 ```
 
 ## Output

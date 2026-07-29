@@ -9,17 +9,28 @@ export function readRequiredEnv(name: string) {
   return value;
 }
 
-export function runtimeHealthResponse({ functionSlug, requiredEnv = [] }: {
+export function runtimeHealthResponse({ functionSlug, requiredEnv = [], anyEnvGroups = [] }: {
   functionSlug: string;
   requiredEnv?: string[];
+  anyEnvGroups?: { label: string; names: string[] }[];
 }) {
   const missing = requiredEnv.filter((name) => !String(Deno.env.get(name) || "").trim());
+  const anyEnvResults = anyEnvGroups.map((group) => {
+    const configured = group.names.some((name) => String(Deno.env.get(name) || "").trim());
+    return {
+      label: group.label,
+      configured,
+      names: group.names,
+    };
+  });
+  const missingAny = anyEnvResults.filter((group) => !group.configured);
   return jsonResponse({
-    ok: missing.length === 0,
+    ok: missing.length === 0 && missingAny.length === 0,
     function: functionSlug,
-    configured: missing.length === 0,
+    configured: missing.length === 0 && missingAny.length === 0,
     missing,
-  }, missing.length ? 500 : 200);
+    anyEnv: anyEnvResults,
+  }, missing.length || missingAny.length ? 500 : 200);
 }
 
 export function readSupabaseUrl() {

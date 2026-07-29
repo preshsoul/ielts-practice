@@ -146,7 +146,13 @@ Deno.serve(async (req: Request) => {
   if (req.method === "GET" && new URL(req.url).pathname.endsWith("/health")) {
     return runtimeHealthResponse({
       functionSlug: "generate-semantic-profile",
-      requiredEnv: ["LOCI_SUPABASE_URL", "LOCI_SUPABASE_ANON_KEY", "APP_ORIGIN", "DEEPSEEK_API_KEY"],
+      requiredEnv: ["LOCI_SUPABASE_URL", "LOCI_SUPABASE_ANON_KEY", "APP_ORIGIN"],
+      anyEnvGroups: [
+        {
+          label: "semantic profile provider",
+          names: ["DEEPSEEK_API_KEY", "ANTHROPIC_API_KEY"],
+        },
+      ],
     });
   }
 

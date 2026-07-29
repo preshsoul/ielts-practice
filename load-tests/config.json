@@ -1,8 +1,8 @@
 {
   "supabase": {
-    "url": "https://bnttvgrqyxxhsdmpvkfz.supabase.co",
-    "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJudHR2Z3JxeXh4aHNkbXB2a2Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNDg3NzYsImV4cCI6MjA5MTkyNDc3Nn0.rVNnVBFIkTNwIpwScPd-0PlBxRls0jcesoVZEhf9q9Y",
-    "functionsUrl": "https://bnttvgrqyxxhsdmpvkfz.supabase.co/functions/v1"
+    "url": "",
+    "anonKey": "",
+    "functionsUrl": ""
   },
   "local": {
     "devServer": "http://localhost:5173",

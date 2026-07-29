@@ -82,9 +82,12 @@ Deno.serve(async (req: Request) => {
         "LOCI_SUPABASE_URL",
         "LOCI_SUPABASE_ANON_KEY",
         "APP_ORIGIN",
-        // One of OpenAI or DeepSeek API key required;
-        // OpenAI text-embedding-3-small is preferred for proper embeddings.
-        "LLM_API_KEY",
+      ],
+      anyEnvGroups: [
+        {
+          label: "embedding provider",
+          names: ["OPENAI_API_KEY", "DEEPSEEK_API_KEY"],
+        },
       ],
     });
   }

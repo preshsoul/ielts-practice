@@ -44,4 +44,7 @@ if (-not (Test-Path -LiteralPath $exePath)) {
 
 if ($Mode -eq "git") {
   & $exePath git --config (Join-Path $root ".gitleaks.toml") --redact $root
+  if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+  }
 }

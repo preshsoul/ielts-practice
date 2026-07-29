@@ -15,9 +15,13 @@ const path = require("path");
 
 const config = require("./config.json");
 
-const SUPABASE_URL = config.supabase.url;
-const ANON_KEY = config.supabase.anonKey;
-const FUNCTIONS_URL = config.supabase.functionsUrl;
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || config.supabase.url;
+const ANON_KEY = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || config.supabase.anonKey;
+const FUNCTIONS_URL = process.env.SUPABASE_FUNCTIONS_URL || process.env.VITE_SUPABASE_FUNCTIONS_URL || config.supabase.functionsUrl || `${SUPABASE_URL}/functions/v1`;
+
+if (!SUPABASE_URL || !ANON_KEY) {
+  throw new Error("Set SUPABASE_URL and SUPABASE_ANON_KEY (or VITE_ equivalents) before running load tests.");
+}
 
 const PROFILE = process.argv[2] || "load";
 const profile = config.testProfiles[PROFILE] || config.testProfiles.load;

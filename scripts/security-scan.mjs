@@ -72,14 +72,41 @@ run("npm audit (severity gate: block high/critical)", () => {
   // Dev-only vulnerabilities — not in production bundle.
   // All require vite 8 upgrade (breaking change) to resolve.
   // Documented risk acceptance: see docs/security/vulnerability-register.md
-  const allowed = [
+  const devOnlyAllowed = [
     "esbuild",  // Dev server request smuggling (moderate) — vite dev only
     "vite",     // Path traversal in dev server + NTLMv2 hash on Windows (high) — dev only, not in dist
     "vitest",   // Arbitrary file read via UI server (critical) — we use vitest run, not UI server
   ];
 
+  const riskAcceptedAdvisories = [
+    {
+      name: "react-router",
+      source: 1124282,
+      reason: "RSC mode CSRF advisory; this project ships a Vite SPA and does not enable React Router RSC/framework mode.",
+    },
+  ];
+
+  function isRiskAccepted(v) {
+    if (devOnlyAllowed.includes(v.name)) return true;
+
+    if (v.name === "react-router") {
+      return v.via.every((entry) => {
+        if (typeof entry === "string") return false;
+        return riskAcceptedAdvisories.some((accepted) => (
+          accepted.name === v.name && accepted.source === entry.source
+        ));
+      });
+    }
+
+    if (v.name === "react-router-dom") {
+      return v.via.every((entry) => entry === "react-router");
+    }
+
+    return false;
+  }
+
   const blocked = Object.values(vulns).filter(v => {
-    if (allowed.includes(v.name)) return false;
+    if (isRiskAccepted(v)) return false;
     return v.severity === "high" || v.severity === "critical";
   });
 
@@ -94,7 +121,10 @@ run("npm audit (severity gate: block high/critical)", () => {
     total: Object.keys(vulns).length,
     high,
     critical,
-    allowed: allowed.length ? `esbuild (dev-only, needs vite 8) accepted` : null,
+    allowed: [
+      "esbuild/vite/vitest dev-only findings accepted pending vite 8",
+      "react-router RSC-only finding accepted for Vite SPA until react-router-dom publishes a patched stable release",
+    ],
   };
 });
 

@@ -13,8 +13,12 @@ const path = require("path");
 
 const config = require("./config.json");
 
-const SUPABASE_URL = config.supabase.url;
-const ANON_KEY = config.supabase.anonKey;
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || config.supabase.url;
+const ANON_KEY = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || config.supabase.anonKey;
+
+if (!SUPABASE_URL || !ANON_KEY) {
+  throw new Error("Set SUPABASE_URL and SUPABASE_ANON_KEY (or VITE_ equivalents) before running load tests.");
+}
 const DEV_SERVER = config.local.devServer;
 
 const RESULTS_DIR = path.join(__dirname, "results");
