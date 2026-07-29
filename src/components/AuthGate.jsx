@@ -123,8 +123,8 @@ export default function AuthGate() {
   };
 
   const authCopy = isSignUp
-    ? "Create an account to start practising and discovering scholarships."
-    : "Sign in with Google or your email password to continue.";
+    ? "Create an account, upload your dossier, or skip setup and start exploring."
+    : "Returning candidates can sign in. New candidates can start in the same panel.";
 
   return (
     <div className="auth-shell">
@@ -144,9 +144,32 @@ export default function AuthGate() {
             <div className="auth-kicker">Candidate workspace</div>
             <h2 className="auth-title">{isSignUp ? "Create your account" : "Welcome back"}</h2>
             <p className="auth-subtitle">
-              Use the same account across practice, onboarding, and scholarship matching.
+              Use one account across practice, onboarding, and scholarship matching.
             </p>
           </div>
+
+          {!isReset && (
+            <div className="auth-mode-tabs" role="tablist" aria-label="Account access">
+              <button
+                type="button"
+                className={`auth-mode-tab${!isSignUp ? " active" : ""}`}
+                onClick={() => switchMode("signin")}
+                disabled={busy}
+                aria-pressed={!isSignUp}
+              >
+                Sign in
+              </button>
+              <button
+                type="button"
+                className={`auth-mode-tab${isSignUp ? " active" : ""}`}
+                onClick={() => switchMode("signup")}
+                disabled={busy}
+                aria-pressed={isSignUp}
+              >
+                Create account
+              </button>
+            </div>
+          )}
 
           <form className="auth-form" onSubmit={isReset ? submitResetFlow : submitPasswordFlow}>
             {isSignUp && (
@@ -244,9 +267,9 @@ export default function AuthGate() {
             </button>
             {!isReset && (
               <p className="auth-mode-toggle">
-                {isSignUp ? "Already have an account?" : "No account yet?"}{" "}
+                {isSignUp ? "Already have an account?" : "Starting fresh?"}{" "}
                 <button type="button" onClick={() => switchMode()} disabled={busy}>
-                  {isSignUp ? "Sign in" : "Create one"}
+                  {isSignUp ? "Sign in" : "Create an account"}
                 </button>
               </p>
             )}

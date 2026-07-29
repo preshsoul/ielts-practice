@@ -69,13 +69,14 @@ const DEFAULT_SECURITY_HEADERS = {
 };
 
 export function getAllowedOrigins() {
-  return String(Deno.env.get("APP_ORIGIN") || Deno.env.get("SITE_URL") || "")
+  return `${Deno.env.get("APP_ORIGIN") || ""},${Deno.env.get("SITE_URL") || ""}`
     .split(",")
     .map((value) => value.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((value, index, values) => values.indexOf(value) === index);
 }
 
-export function corsHeaders(origin: string | null, methods: string, allowedOrigins = getAllowedOrigins()) {
+export function corsHeaders(origin: string | null, methods = "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins = getAllowedOrigins()) {
   return {
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
     "Access-Control-Allow-Methods": methods,

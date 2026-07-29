@@ -455,6 +455,13 @@ a{ color:inherit; }
   background:rgba(45,106,79,0.06);
 }
 
+.loci-inline-status.is-error{
+  padding:14px 16px;
+  color:var(--red);
+  border:1px solid color-mix(in srgb, var(--red) 22%, transparent);
+  background:color-mix(in srgb, var(--red) 7%, transparent);
+}
+
 .loci-card-grid{
   margin-top:24px;
   display:grid;
@@ -6228,6 +6235,39 @@ body{
   margin:0;
   font:400 13px/1.65 var(--font-ui);
   color:var(--text-2);
+}
+
+.auth-mode-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  padding:5px;
+  margin:0 0 18px;
+  border:1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+  border-radius:14px;
+  background:color-mix(in srgb, var(--layer-1) 76%, transparent);
+}
+
+.auth-mode-tab{
+  min-height:38px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:transparent;
+  color:var(--text-2);
+  font:700 12px/1 var(--font-ui);
+  cursor:pointer;
+}
+
+.auth-mode-tab.active{
+  color:var(--text);
+  border-color:color-mix(in srgb, var(--accent) 18%, transparent);
+  background:var(--color-surface-overlay-strong);
+  box-shadow:var(--shadow-sm);
+}
+
+.auth-mode-tab:disabled{
+  cursor:not-allowed;
+  opacity:.65;
 }
 
 .auth-field{

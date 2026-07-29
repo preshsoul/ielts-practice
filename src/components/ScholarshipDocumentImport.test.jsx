@@ -95,6 +95,53 @@ describe("ScholarshipDocumentImport", () => {
     view.unmount();
   });
 
+  it("advertises the parser-supported upload formats", () => {
+    const view = renderComponent(
+      <ScholarshipDocumentImport
+        authUser={{ id: "user-1" }}
+        profile={{ id: "profile-1" }}
+        onImport={vi.fn()}
+        busy={false}
+        message=""
+      />
+    );
+
+    const fileInput = view.container.querySelector('input[type="file"]');
+    expect(fileInput.getAttribute("accept")).toContain(".pdf");
+    expect(fileInput.getAttribute("accept")).toContain(".docx");
+    expect(fileInput.getAttribute("accept")).toContain(".txt");
+    expect(fileInput.getAttribute("accept")).toContain(".rtf");
+
+    view.unmount();
+  });
+
+  it("blocks unsupported files before calling the parser", async () => {
+    const onImport = vi.fn();
+    const view = renderComponent(
+      <ScholarshipDocumentImport
+        authUser={{ id: "user-1" }}
+        profile={{ id: "profile-1" }}
+        onImport={onImport}
+        busy={false}
+        message=""
+      />
+    );
+
+    const fileInput = view.container.querySelector('input[type="file"]');
+    const button = view.container.querySelector("button.primary-btn");
+    const file = new File(["image"], "scan.png", { type: "image/png" });
+
+    await selectFile(fileInput, file);
+    expect(button.disabled).toBe(true);
+    expect(view.container.textContent).toContain("Upload a supported document");
+    await click(button);
+
+    expect(uploadMock).not.toHaveBeenCalled();
+    expect(onImport).not.toHaveBeenCalled();
+
+    view.unmount();
+  });
+
   it("uploads a file and sends a normalized intake payload to onImport", async () => {
     uploadMock.mockResolvedValue({
       metadata: {

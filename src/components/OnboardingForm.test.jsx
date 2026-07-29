@@ -130,6 +130,32 @@ describe("OnboardingForm", () => {
     view.unmount();
   });
 
+  it("accepts the same document formats as the Edge parser on onboarding", () => {
+    const view = renderComponent(
+      <OnboardingForm
+        profile={{ email: "candidate@example.com" }}
+        draft={baseDraft()}
+        resolutionDraft={baseResolutionDraft()}
+        setDraft={vi.fn()}
+        onSave={vi.fn()}
+        saving={false}
+        message=""
+        greeting={{ title: "Welcome back" }}
+        scholarshipCatalog={[]}
+        onSkipUpload={vi.fn()}
+      />
+    );
+
+    const fileInput = view.container.querySelector('input[type="file"]');
+    expect(fileInput.getAttribute("accept")).toContain(".pdf");
+    expect(fileInput.getAttribute("accept")).toContain(".docx");
+    expect(fileInput.getAttribute("accept")).toContain(".txt");
+    expect(fileInput.getAttribute("accept")).toContain(".rtf");
+    expect(view.container.textContent).toContain("PDF, DOCX, DOC, TXT, or RTF");
+
+    view.unmount();
+  });
+
   it("falls back to navigation when no skip handler is provided", async () => {
     const view = renderComponent(
       <OnboardingForm

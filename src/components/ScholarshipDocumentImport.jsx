@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useDocumentImport } from "../hooks/useDocumentImport.js";
-import { inferDocumentType } from "../services/documentIntake.js";
+import {
+  SUPPORTED_DOCUMENT_ACCEPT,
+  SUPPORTED_DOCUMENT_FORMAT_LABEL,
+  getDocumentUploadError,
+  inferDocumentType,
+} from "../services/documentIntake.js";
 
 export default function ScholarshipDocumentImport({
   authUser,
@@ -10,6 +15,7 @@ export default function ScholarshipDocumentImport({
   message,
 }) {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileError, setFileError] = useState("");
   const [manualNotes, setManualNotes] = useState("");
 
   const {
@@ -25,7 +31,7 @@ export default function ScholarshipDocumentImport({
   } = useDocumentImport();
 
   const handleUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile || fileError) return;
     const parserResult = await upload(selectedFile, manualNotes);
     if (!parserResult) return;
 
@@ -67,15 +73,16 @@ export default function ScholarshipDocumentImport({
         Upload a CV, transcript, or support document here. We'll read it and use it to shape a better match for you.
       </div>
       <div style={{ fontSize: 12, color: "var(--text-3)", fontFamily: "var(--font-ui)", lineHeight: 1.7, marginBottom: 10 }}>
-        {profile ? "Your account is ready to receive documents." : "Sign in first so the upload can be tied to your profile."}
+        {profile ? `${SUPPORTED_DOCUMENT_FORMAT_LABEL}, under 5 MB.` : "Sign in first so the upload can be tied to your profile."}
       </div>
       <div style={{ display: "grid", gap: 10 }}>
         <input
           type="file"
-          accept=".doc,.docx"
+          accept={SUPPORTED_DOCUMENT_ACCEPT}
           onChange={(e) => {
             const file = e.target.files?.[0] || null;
             setSelectedFile(file);
+            setFileError(getDocumentUploadError(file));
             resetParser();
           }}
         />
@@ -89,6 +96,7 @@ export default function ScholarshipDocumentImport({
         {selectedFile && (
           <div style={{ fontSize: 12, color: "var(--text-3)", fontFamily: "var(--font-ui)", lineHeight: 1.7 }}>
             Selected: {selectedFile.name} {selectedFile.size ? `(${Math.round(selectedFile.size / 1024)} KB)` : ""}
+            {fileError && <div style={{ marginTop: 6, color: "var(--danger)" }}>{fileError}</div>}
             {parserStatus === "completed" && result?.profile && (
               <>
                 {result.profile?.personal_details?.full_legal_name && (
@@ -110,8 +118,8 @@ export default function ScholarshipDocumentImport({
           </div>
         )}
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <button className="primary-btn" onClick={handleUpload} disabled={!authUser || overallBusy || !selectedFile}>
-            {overallBusy ? "Saving..." : "Save to account"}
+          <button className="primary-btn" onClick={handleUpload} disabled={!authUser || overallBusy || !selectedFile || Boolean(fileError)}>
+            {overallBusy ? "Reading..." : "Upload and parse"}
           </button>
         </div>
         <div style={{ fontSize: 12, color: "var(--text-3)", fontFamily: "var(--font-ui)", lineHeight: 1.7 }}>
