@@ -46,13 +46,17 @@ async function requireAuthenticatedUser(req: Request) {
 
 function errorResponse(error: unknown, origin: string | null = null) {
   if (error instanceof Response) {
-    return new Response(error.body, {
-      status: error.status,
-      headers: {
-        ...corsHeaders(origin),
-        "Content-Type": "text/plain; charset=utf-8",
+    const status = error.status >= 400 && error.status < 500 ? error.status : 500;
+    const message = error.status === 401 ? "Unauthorized"
+      : error.status === 400 ? "Bad request"
+      : "Embedding service temporarily unavailable";
+    return jsonResponse({
+      ok: false,
+      error: {
+        name: "EmbeddingError",
+        message,
       },
-    });
+    }, status, { origin, methods: "POST, OPTIONS", allowedOrigins });
   }
 
   const message = error instanceof Error ? error.message : "Unexpected embedding failure";

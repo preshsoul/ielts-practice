@@ -3,10 +3,13 @@ import {
   cleanCandidateProfile,
   cleanApplicationTracking,
   cleanCvProfile,
+  cleanList,
   cleanProfilePatch,
   cleanText,
 } from "../lib/security.js";
+import { containsSuspiciousPatterns } from "./inputSanitizer.js";
 import { cachedFetch } from "./dataCache.js";
+import securityLogger from "./securityLogger.js";
 
 const CONTENT_BASE = "/data";
 
@@ -38,8 +41,35 @@ function isMissingRelationError(error) {
   return error?.code === "42P01" || (message.includes("relation") && message.includes("does not exist"));
 }
 
+function collectSuspiciousPaths(value, path = "$", paths = []) {
+  if (paths.length >= 12) return paths;
+  if (typeof value === "string") {
+    if (containsSuspiciousPatterns(value)) paths.push(path);
+    return paths;
+  }
+  if (Array.isArray(value)) {
+    value.slice(0, 50).forEach((item, index) => collectSuspiciousPaths(item, `${path}[${index}]`, paths));
+    return paths;
+  }
+  if (value && typeof value === "object") {
+    Object.entries(value).slice(0, 100).forEach(([key, item]) => collectSuspiciousPaths(item, `${path}.${key}`, paths));
+  }
+  return paths;
+}
+
+function logSuspiciousPayload(label, payload, details = {}) {
+  const suspiciousPaths = collectSuspiciousPaths(payload);
+  if (!suspiciousPaths.length) return;
+  securityLogger.logSuspiciousActivity("suspicious_input_sanitized", {
+    label,
+    suspiciousPaths,
+    ...details,
+  });
+}
+
 async function updateProfileRecord(profileId, payload) {
   if (!supabase || !profileId) return null;
+  logSuspiciousPayload("profile_update", payload, { profileId });
 
   const { data, error } = await supabase
     .from("profiles")
@@ -148,6 +178,7 @@ export async function saveOnboardingProfile(profileId, onboardingProfile) {
 
 export async function saveCvProfile(profileId, cvProfile) {
   if (!supabase || !profileId) return null;
+  logSuspiciousPayload("cv_profile_save", cvProfile, { profileId });
 
   const payload = cleanCvProfile({
     profile_id: profileId,
@@ -177,6 +208,7 @@ export async function saveCvProfile(profileId, cvProfile) {
 
 export async function updateCvProfileMetadata(profileId, rawTextHash, patch = {}) {
   if (!supabase || !profileId || !rawTextHash) return null;
+  logSuspiciousPayload("cv_profile_metadata_update", patch, { profileId });
 
   const updatePayload = {};
   if (patch.label !== undefined) {
@@ -238,6 +270,7 @@ export async function loadLatestCandidateProfileSnapshot(profileId) {
 
 export async function saveCandidateProfileSnapshot(profileId, snapshot = {}) {
   if (!supabase || !profileId) return null;
+  logSuspiciousPayload("candidate_profile_snapshot", snapshot, { profileId });
 
   const payload = cleanCandidateProfile({
     profile_id: profileId,
@@ -266,6 +299,7 @@ export async function saveCandidateProfileSnapshot(profileId, snapshot = {}) {
 
 export async function generateSemanticProfile(text, options = {}) {
   if (!supabase?.functions?.invoke) return null;
+  logSuspiciousPayload("semantic_profile_request", { text }, {});
   const normalizedText = cleanText(text, { maxLength: 12000, allowNewlines: true }) || "";
   const requestedModel = cleanText(options.model || null, { maxLength: 120 }) || null;
   const payload = {
@@ -295,6 +329,7 @@ export async function generateSemanticProfile(text, options = {}) {
 
 export async function saveMatchEvent(profileId, event = {}) {
   if (!supabase || !profileId) return null;
+  logSuspiciousPayload("match_event", event, { profileId });
 
   const payload = {
     profile_id: profileId,
@@ -375,6 +410,7 @@ export async function loadApplicationTracking(profileId) {
 
 export async function saveApplicationTracking(profileId, scholarship, state = "saved") {
   if (!supabase || !profileId || !scholarship?.id) return null;
+  logSuspiciousPayload("application_tracking_save", { scholarship, state }, { profileId });
 
   const checklist = buildApplicationChecklist(scholarship);
   const { data: existing, error: fetchError } = await supabase
@@ -420,6 +456,7 @@ export async function saveApplicationTracking(profileId, scholarship, state = "s
 
 export async function updateApplicationTracking(profileId, scholarshipId, nextState) {
   if (!supabase || !profileId || !scholarshipId) return null;
+  logSuspiciousPayload("application_tracking_state_update", { scholarshipId, nextState }, { profileId });
 
   const { data: existing, error: fetchError } = await supabase
     .from("application_tracking")
@@ -459,6 +496,7 @@ export async function updateApplicationTracking(profileId, scholarshipId, nextSt
 
 export async function updateApplicationChecklist(profileId, scholarshipId, checklistPatch) {
   if (!supabase || !profileId || !scholarshipId) return null;
+  logSuspiciousPayload("application_tracking_checklist_update", checklistPatch, { profileId, scholarshipId });
 
   const { data: existing, error: fetchError } = await supabase
     .from("application_tracking")

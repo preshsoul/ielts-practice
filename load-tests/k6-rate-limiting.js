@@ -23,6 +23,7 @@ if (!SUPABASE_URL || !ANON_KEY) {
 
 const rateLimit429s = new Counter("rate_limit_429s");
 const rateLimitPasses = new Counter("rate_limit_passes");
+const ALLOW_REAL_AUTH_SIGNUP = String(__ENV.ALLOW_REAL_AUTH_SIGNUP_LOAD_TEST || "").toLowerCase() === "true";
 
 // This test uses a single VU sending sequential requests
 export const options = {
@@ -36,6 +37,14 @@ export const options = {
 // ── Auth token ──────────────────────────────────────────────────────────────
 
 function getAuthToken() {
+  if (__ENV.LOAD_TEST_AUTH_TOKEN) {
+    return __ENV.LOAD_TEST_AUTH_TOKEN;
+  }
+
+  if (!ALLOW_REAL_AUTH_SIGNUP) {
+    throw new Error("Set LOAD_TEST_AUTH_TOKEN for rate-limit tests. To create real Supabase signup emails, set ALLOW_REAL_AUTH_SIGNUP_LOAD_TEST=true.");
+  }
+
   const res = http.post(`${SUPABASE_URL}/auth/v1/signup`, JSON.stringify({
     email: `ratelimit_test_${Date.now()}@loci.test`,
     password: "ratelimit-test-password-123",

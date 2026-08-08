@@ -27,6 +27,7 @@ const rateLimitedCount = new Rate("rate_limited");
 // Test profiles — override via CLI: k6 run -e PROFILE=stress ...
 const PROFILE = __ENV.PROFILE || "load";
 const profile = config.testProfiles[PROFILE] || config.testProfiles.load;
+const ALLOW_REAL_AUTH_SIGNUP = String(__ENV.ALLOW_REAL_AUTH_SIGNUP_LOAD_TEST || "").toLowerCase() === "true";
 
 export const options = {
   stages: [
@@ -85,7 +86,7 @@ const ENDPOINTS = {
   generateEmbedding: {
     path: "/generate-embedding",
     body: () => ({
-      input: "Scholarship for international students in computer science and engineering disciplines with full funding and stipend.",
+      text: "Scholarship for international students in computer science and engineering disciplines with full funding and stipend.",
       model: "",
     }),
     weight: 1,
@@ -122,6 +123,16 @@ const ENDPOINTS = {
 // ── Test setup ─────────────────────────────────────────────────────────────
 
 export function setup() {
+  if (__ENV.LOAD_TEST_AUTH_TOKEN) {
+    authToken = __ENV.LOAD_TEST_AUTH_TOKEN;
+    console.log("[Setup] Auth token loaded from LOAD_TEST_AUTH_TOKEN");
+    return { authToken, startTime: new Date().toISOString() };
+  }
+
+  if (!ALLOW_REAL_AUTH_SIGNUP) {
+    throw new Error("Set LOAD_TEST_AUTH_TOKEN for Edge Function load tests. To create real Supabase signup emails, set ALLOW_REAL_AUTH_SIGNUP_LOAD_TEST=true.");
+  }
+
   // Sign in anonymously to get a JWT for authenticated tests
   const signInRes = http.post(`${SUPABASE_URL}/auth/v1/signup`, JSON.stringify({
     email: `loadtest_${Date.now()}@loci.test`,

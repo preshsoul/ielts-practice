@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { loadApplicationTracking } from "../../services/supabaseData.js";
+import { cleanUrl } from "../../lib/security.js";
 import DeadlineCountdownBadge, { getDaysUntilDeadline } from "./DeadlineCountdownBadge.jsx";
 import SvgIcon from "../../components/SvgIcon.jsx";
 
@@ -216,7 +217,7 @@ function DeadlineCard({ item }) {
       <div className="deadline-card__actions">
         {sourceUrl && (
           <a
-            href={sourceUrl}
+            href={cleanUrl(sourceUrl) || undefined}
             target="_blank"
             rel="noopener noreferrer"
             className="deadline-card__link"

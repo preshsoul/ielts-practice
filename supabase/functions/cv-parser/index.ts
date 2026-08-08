@@ -20,6 +20,7 @@ const allowedOrigins = getAllowedOrigins();
 
 const MAX_UPLOAD_BYTES = 6 * 1024 * 1024; // 6 MB — Supabase Edge Function body limit
 const MAX_TEXT_BYTES = 200_000;
+const MAX_PARSE_BODY_BYTES = 256_000;
 const DRAFT_TTL_HOURS = 24;
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -214,6 +215,23 @@ function validateParseRequestBody(body: unknown) {
   };
 }
 
+function toSafeErrorText(value: unknown, maxLength: number) {
+  const text = String(value ?? "").trim();
+  return text ? text.slice(0, maxLength) : null;
+}
+
+function sanitizeJobError(error: unknown) {
+  if (!error || typeof error !== "object") return error || null;
+  const value = error as Record<string, unknown>;
+  return {
+    code: toSafeErrorText(value.code, 80) || "ERR_UNKNOWN",
+    message: toSafeErrorText(value.message, 240) || "The request could not be completed.",
+    retryable: Boolean(value.retryable),
+    user_action: toSafeErrorText(value.user_action || value.userAction, 240),
+    detail: null,
+  };
+}
+
 function shapeJobResponse(job: Record<string, unknown>, draft: Record<string, unknown> | null = null) {
   const metadata = job.metadata && typeof job.metadata === "object"
     ? job.metadata as Record<string, unknown>
@@ -248,7 +266,7 @@ function shapeJobResponse(job: Record<string, unknown>, draft: Record<string, un
       model: String(metadata.parser_model || metadata.model || ""),
       parsed_at: job.completed_at || job.updated_at || new Date().toISOString(),
     },
-    error: job.error || null,
+    error: sanitizeJobError(job.error),
     expires_at: job.expires_at,
   };
 }
@@ -428,7 +446,7 @@ async function failJob(profileId: string, jobId: string, payload: {
       message: payload.message,
       retryable: payload.retryable ?? false,
       user_action: payload.userAction,
-      detail: payload.detail,
+      detail: null,
     },
     expires_at: futureExpiryIso(),
   });
@@ -436,7 +454,7 @@ async function failJob(profileId: string, jobId: string, payload: {
 
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get("origin");
-  if (origin && allowedOrigins.length && !allowedOrigins.includes(origin)) {
+  if (origin && (!allowedOrigins.length || !allowedOrigins.includes(origin))) {
     return new Response("Origin not allowed", { status: 403 });
   }
 
@@ -542,7 +560,7 @@ Deno.serve(async (req: Request) => {
             status: "FAILED",
             error_code: "DOCUMENT_TEXT_UNREADABLE",
             message: userMessage,
-            detail,
+            detail: null,
             mapping_issues: [],
             confidence_score: 0,
           }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
@@ -563,7 +581,7 @@ Deno.serve(async (req: Request) => {
             status: "FAILED",
             error_code: "DOCUMENT_TEXT_UNREADABLE",
             message: "Could not read enough text from the uploaded file. Try a text-based format.",
-            detail,
+            detail: null,
             mapping_issues: [],
             confidence_score: 0,
           }, 200, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", allowedOrigins });
@@ -684,6 +702,11 @@ Deno.serve(async (req: Request) => {
         allowedOrigins,
       });
       if (rateLimit instanceof Response) return rateLimit;
+
+      const contentLength = Number(req.headers.get("content-length") || 0);
+      if (contentLength > MAX_PARSE_BODY_BYTES) {
+        return jsonResponse(buildError("ERR_FILE_TOO_LARGE", "The parse request body is too large.", "Trim the document text or upload a shorter CV version under 200 KB of text."), 413, { origin, methods: "GET, POST, PUT, PATCH, OPTIONS", headers: rateLimit, allowedOrigins });
+      }
 
       const body = validateParseRequestBody(await req.json().catch(() => ({})));
       const { rawText, sourceFilename, mimeType, documentType, sourceDocumentHash } = body;

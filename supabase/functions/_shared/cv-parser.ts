@@ -1,5 +1,5 @@
 import { createClaudeToolMessage, DEFAULT_ANTHROPIC_MODEL } from "./anthropic.ts";
-import { INJECTION_DEFENSE_SYSTEM_NOTE } from "./prompt-guard.ts";
+import { INJECTION_DEFENSE_SYSTEM_NOTE, sanitizeForPrompt } from "./prompt-guard.ts";
 
 const OPENAI_API_BASE = "https://api.openai.com/v1/chat/completions";
 const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
@@ -962,8 +962,9 @@ function extractJsonPayload(text: string) {
 }
 
 async function callAnthropic(rawText: string) {
+  const sanitized = sanitizeForPrompt(rawText);
   const model = Deno.env.get("ANTHROPIC_MODEL") || DEFAULT_ANTHROPIC_MODEL;
-  const prompt = `Extract candidate data from this CV text:\n<cv_text>\n${rawText}\n</cv_text>`;
+  const prompt = `Extract candidate data from this CV text:\n<cv_text>\n${sanitized.text}\n</cv_text>`;
   const result = await createClaudeToolMessage(prompt, {
     model,
     maxTokens: 1400,
@@ -995,6 +996,7 @@ async function callAnthropic(rawText: string) {
 }
 
 async function callOpenAI(rawText: string) {
+  const sanitized = sanitizeForPrompt(rawText);
   const apiKey = Deno.env.get("OPENAI_API_KEY") || "";
   const model = Deno.env.get("OPENAI_MODEL") || "gpt-4.1";
   if (!apiKey) throw new Response("OpenAI API key is not configured", { status: 500 });
@@ -1018,7 +1020,7 @@ async function callOpenAI(rawText: string) {
       },
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: `Extract candidate data from this CV text:\n<cv_text>\n${rawText}\n</cv_text>` },
+        { role: "user", content: `Extract candidate data from this CV text:\n<cv_text>\n${sanitized.text}\n</cv_text>` },
       ],
     }),
   });
@@ -1040,6 +1042,7 @@ async function callOpenAI(rawText: string) {
 }
 
 async function callDeepseek(rawText: string) {
+  const sanitized = sanitizeForPrompt(rawText);
   const apiKey = Deno.env.get("DEEPSEEK_API_KEY") || "";
   const model = Deno.env.get("DEEPSEEK_MODEL") || "deepseek-chat";
   if (!apiKey) throw new Response("Deepseek API key is not configured", { status: 500 });
@@ -1056,7 +1059,7 @@ async function callDeepseek(rawText: string) {
       response_format: { type: "json_object" },
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: `Extract candidate data from this CV text as JSON:\n<cv_text>\n${rawText}\n</cv_text>` },
+        { role: "user", content: `Extract candidate data from this CV text as JSON:\n<cv_text>\n${sanitized.text}\n</cv_text>` },
       ],
     }),
   });
@@ -1074,6 +1077,7 @@ async function callDeepseek(rawText: string) {
 }
 
 async function callGemini(rawText: string) {
+  const sanitized = sanitizeForPrompt(rawText);
   const apiKey = Deno.env.get("GEMINI_API_KEY") || "";
   const model = Deno.env.get("GEMINI_MODEL") || "gemini-2.5-flash";
   if (!apiKey) throw new Response("Gemini API key is not configured", { status: 500 });
@@ -1087,7 +1091,7 @@ async function callGemini(rawText: string) {
           role: "user",
           parts: [
             {
-              text: `${SYSTEM_PROMPT}\n\nExtract candidate data from this CV text:\n<cv_text>\n${rawText}\n</cv_text>`,
+              text: `${SYSTEM_PROMPT}\n\nExtract candidate data from this CV text:\n<cv_text>\n${sanitized.text}\n</cv_text>`,
             },
           ],
         },

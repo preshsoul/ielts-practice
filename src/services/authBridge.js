@@ -24,6 +24,7 @@ export async function signUpWithPassword(email, password, name) {
     email: String(email || "").trim(),
     password: String(password || ""),
     options: {
+      emailRedirectTo: `${window.location.origin}/auth/callback`,
       data: { full_name: String(name || "").trim() },
     },
   });

@@ -81,10 +81,14 @@ export function corsHeaders(origin: string | null, methods = "GET, POST, PUT, PA
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
     "Access-Control-Allow-Methods": methods,
     Vary: "Origin",
-    ...(origin && (!allowedOrigins.length || allowedOrigins.includes(origin))
+    ...(origin && allowedOrigins.includes(origin)
       ? { "Access-Control-Allow-Origin": origin }
       : {}),
   };
+}
+
+export function isAllowedOrigin(origin: string | null, allowedOrigins = getAllowedOrigins()) {
+  return Boolean(origin && allowedOrigins.length && allowedOrigins.includes(origin));
 }
 
 export function withSecurityHeaders(

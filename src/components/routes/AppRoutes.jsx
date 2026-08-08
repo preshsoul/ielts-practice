@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PracticeShell } from "../layout/AppShell.jsx";
 import PageMeta from "../PageMeta.jsx";
+import { isAdminUser } from "../../lib/adminAccess.js";
 import { computeWeakSections, selectQueue } from "../../lib/sessionTools.js";
 
 const PracticeView = lazy(() => import("../PracticeView.jsx"));
@@ -160,6 +161,7 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
   const freshness = contentManifest?.updated_at ? new Date(contentManifest.updated_at).toLocaleDateString("en-GB") : "No recent content manifest";
   const isWeeklyFeed = pathname.startsWith("/scholarships/weekly") || pathname.startsWith("/scholarships/latest");
   const isAdminReview = pathname.startsWith("/scholarships/admin/review");
+  const canReviewScholarships = isAdminUser(authUser);
   const isDeadlinePlan = pathname.startsWith("/scholarships/deadlines");
   const isBridge = pathname.startsWith("/scholarships/ielts-bridge");
 
@@ -214,12 +216,12 @@ export function ScholarshipRoutes({ sessions, authUser, profile, profileDraft, o
             PrimaryBtn={PrimaryBtn}
           />
         ) : isAdminReview ? (
-          authUser ? (
+          canReviewScholarships ? (
             <ScholarshipReviewPage C={C} Chip={Chip} />
           ) : (
             <div className="empty-state" role="status">
               <div className="empty-state-title">Admin access required</div>
-              <div className="empty-state-copy">Sign in to access the scholarship review panel.</div>
+              <div className="empty-state-copy">Your account needs an admin role before it can access the scholarship review panel.</div>
             </div>
           )
         ) : isBridge ? (

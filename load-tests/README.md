@@ -13,7 +13,10 @@ Set the Supabase target through environment variables before running hosted load
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_FUNCTIONS_URL=https://your-project.supabase.co/functions/v1
+LOAD_TEST_AUTH_TOKEN=eyJ...
 ```
+
+The k6 Edge Function and rate-limit suites no longer create Supabase Auth signups by default, because that burns hosted email quota. Use a temporary JWT in `LOAD_TEST_AUTH_TOKEN`. Only set `ALLOW_REAL_AUTH_SIGNUP_LOAD_TEST=true` when you intentionally want the test to create real Auth users and send confirmation email.
 
 ### Backend (Python CV Extractor)
 ```bash
